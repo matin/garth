@@ -1,0 +1,16 @@
+
+[project]
+name = "garth"
+version = "0.1.0"
+description = "Garmin SSO auth"
+authors = [
+    {name = "Matin Tamizi", email = "mtamizi@duck.com"},
+]
+dependencies = []
+requires-python = ">=3.10"
+readme = "README.md"
+license = {text = "MIT"}
+
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
