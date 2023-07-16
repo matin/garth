@@ -6,7 +6,9 @@ from urllib.parse import urlencode
 from . import http
 
 
-def login(email: str, password: str, /, client: Optional[http.Client] = None):
+def login(
+    email: str, password: str, /, client: Optional["http.Client"] = None
+) -> tuple[dict, str]:
     client = client or http.client
 
     # Define params based on domain
@@ -66,13 +68,27 @@ def login(email: str, password: str, /, client: Optional[http.Client] = None):
     username = m.groups()[0]
 
     # Create oauth exchange token
-    auth = client.post("connect", "/modern/di-oauth/exchange").json()
+    token = client.post("connect", "/modern/di-oauth/exchange").json()
 
-    # Make auth response usable
-    auth["username"] = username
-    auth["expires_at"] = time.time() + auth.pop("expires_in")
-    auth["refresh_token_expires_at"] = time.time() + auth.pop(
-        "refresh_token_expires_in"
+    return _set_expirations(token), username
+
+
+def refresh(
+    refresh_token: str, /, client: Optional["http.Client"] = None
+) -> dict:
+    client = client or http.client
+
+    token = client.post(
+        "connect",
+        "/services/auth/token/refresh",
+        json=dict(refresh_token=refresh_token),
+    ).json()
+    return _set_expirations(token)
+
+
+def _set_expirations(token: dict) -> dict:
+    token["expires"] = int(time.time() + token["expires_in"])
+    token["refresh_token_expires"] = int(
+        time.time() + token["refresh_token_expires_in"]
     )
-
-    return auth
+    return token
