@@ -1,13 +1,13 @@
 [project]
 name = "garth"
-version = "0.1.1"
+version = "0.1.2"
 description = "Garmin SSO auth"
 authors = [
     {name = "Matin Tamizi", email = "mtamizi@duck.com"},
 ]
 dependencies = [
     "fire>=0.5.0",
-    "requests>=2.31.0",
+    "requests>=2.27.0",
 ]
 requires-python = ">=3.10"
 readme = "README.md"
