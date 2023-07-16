@@ -16,8 +16,8 @@ USER_AGENT = {
 class Client:
     sess: Session
     domain: str = "garmin.com"
-    auth_token: Optional[AuthToken] = None
-    username: Optional[str] = None
+    auth_token: AuthToken | None = None
+    username: str | None = None
 
     def __init__(self, **kwargs):
         self.auth_token = None

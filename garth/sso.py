@@ -1,13 +1,12 @@
 import re
 import time
-from typing import Optional
 from urllib.parse import urlencode
 
 from . import http
 
 
 def login(
-    email: str, password: str, /, client: Optional["http.Client"] = None
+    email: str, password: str, /, client: "http.Client" | None = None
 ) -> tuple[dict, str]:
     client = client or http.client
 
@@ -74,7 +73,7 @@ def login(
 
 
 def refresh(
-    refresh_token: str, /, client: Optional["http.Client"] = None
+    refresh_token: str, /, client: "http.Client" | None = None
 ) -> dict:
     client = client or http.client
 
