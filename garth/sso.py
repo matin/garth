@@ -1,7 +1,6 @@
 import re
 import time
 from typing import Optional
-from urllib.parse import urlencode
 
 from . import http
 
@@ -27,7 +26,6 @@ def login(
         ("redirectAfterAccountCreationUrl", SSO_EMBED),
         ("gauthHost", SSO_EMBED),
     ]
-    SIGNIN_URL = f"{SSO}/signin?{urlencode(SIGNIN_PARAMS)}"
 
     # Set cookies
     client.get("sso", "/sso/embed", params=SSO_EMBED_PARAMS)
@@ -51,7 +49,7 @@ def login(
         "/sso/signin",
         params=SIGNIN_PARAMS,
         data=data,
-        headers=dict(Referer=SIGNIN_URL),
+        headers=dict(Referer=resp.url),
     )
     m = re.search(r"<title>(.+?)</title>", resp.text)
     if not (m and m.group(1) == "Success"):
