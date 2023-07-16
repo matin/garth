@@ -46,9 +46,12 @@ def login(
         embed="true",
         _csrf=csrf_token,
     )
-    headers = dict(Referer=SIGNIN_URL)
     resp = client.post(
-        "sso", "/sso/signin", params=SIGNIN_PARAMS, data=data, headers=headers
+        "sso",
+        "/sso/signin",
+        params=SIGNIN_PARAMS,
+        data=data,
+        headers=dict(Referer=SIGNIN_URL),
     )
     m = re.search(r"<title>(.+?)</title>", resp.text)
     if not (m and m.groups()[0] == "Success"):
@@ -70,7 +73,7 @@ def login(
     # Create oauth exchange token
     token = exchange(client)
 
-    return _set_expirations(token), username
+    return token, username
 
 
 def exchange(client: Optional["http.Client"] = None) -> dict:
@@ -93,8 +96,8 @@ def refresh(
 
 
 def _set_expirations(token: dict) -> dict:
-    token["expires"] = int(time.time() + token["expires_in"])
-    token["refresh_token_expires"] = int(
+    token["expires_at"] = int(time.time() + token["expires_in"])
+    token["refresh_token_expires_at"] = int(
         time.time() + token["refresh_token_expires_in"]
     )
     return token

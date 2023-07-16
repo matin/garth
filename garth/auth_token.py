@@ -12,9 +12,9 @@ class AuthToken:
     access_token: str
     refresh_token: str
     expires_in: int
-    expires: int
+    expires_at: int
     refresh_token_expires_in: int
-    refresh_token_expires: int
+    refresh_token_expires_at: int
 
     @classmethod
     def login(cls, *args, **kwargs) -> tuple["AuthToken", str]:
@@ -30,11 +30,11 @@ class AuthToken:
 
     @property
     def expired(self):
-        return self.expires < time.time()
+        return self.expires_at < time.time()
 
     @property
     def refresh_expired(self):
-        return self.refresh_token_expires < time.time()
+        return self.refresh_token_expires_at < time.time()
 
     def __str__(self):
         return f"{self.token_type} {self.access_token}"
