@@ -21,4 +21,5 @@ build-backend = "pdm.backend"
 dev = [
     "ipython>=8.14.0",
     "ipdb>=0.13.13",
+    "types-requests>=2.31.0.1",
 ]

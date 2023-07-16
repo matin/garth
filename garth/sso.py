@@ -1,11 +1,14 @@
 import re
 import time
+from typing import Optional
 from urllib.parse import urlencode
 
-from .client import Client
+from . import http
 
 
-def login(client: Client, email: str, password: str):
+def login(email: str, password: str, /, client: Optional[http.Client] = None):
+    client = client or http.client
+
     # Define params based on domain
     SSO = f"https://sso.{client.domain}/sso"
     SSO_EMBED = f"{SSO}/embed"
@@ -67,9 +70,9 @@ def login(client: Client, email: str, password: str):
 
     # Make auth response usable
     auth["username"] = username
-    auth["expires_at"] = time.time() + auth["expires_in"]
-    auth["refresh_token_expires_at"] = (
-        time.time() + auth["refresh_token_expires_in"]
+    auth["expires_at"] = time.time() + auth.pop("expires_in")
+    auth["refresh_token_expires_at"] = time.time() + auth.pop(
+        "refresh_token_expires_in"
     )
 
     return auth

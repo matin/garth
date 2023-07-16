@@ -1,3 +1,3 @@
-from .client import client
+from .http import client
 
 configure = client.configure
