@@ -37,7 +37,7 @@ def login(
     m = re.search(r'name="_csrf" value="(.+?)"', resp.text)
     if not m:
         raise Exception("Could not find CSRF token")
-    csrf_token = m.groups()[0]
+    csrf_token = m.group(1)
 
     # Sign in
     data = dict(
@@ -54,21 +54,21 @@ def login(
         headers=dict(Referer=SIGNIN_URL),
     )
     m = re.search(r"<title>(.+?)</title>", resp.text)
-    if not (m and m.groups()[0] == "Success"):
+    if not (m and m.group(1) == "Success"):
         raise Exception("Login failed")
 
     # Parse ticket
     m = re.search(r'embed\?ticket=([^"]+)"', resp.text)
     if not m:
         raise Exception("Could not find Service Ticket")
-    ticket = m.groups()[0]
+    ticket = m.group(1)
 
     # Get username
     resp = client.get("connect", "/modern", params=dict(ticket=ticket))
     m = re.search(r'userName":"(.+?)"', resp.text)
     if not m:
         raise Exception("Could not find username")
-    username = m.groups()[0]
+    username = m.group(1)
 
     # Create oauth exchange token
     token = exchange(client)
