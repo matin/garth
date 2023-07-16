@@ -1,12 +1,13 @@
 import re
 import time
+from typing import Optional
 from urllib.parse import urlencode
 
 from . import http
 
 
 def login(
-    email: str, password: str, /, client: "http.Client" | None = None
+    email: str, password: str, /, client: Optional["http.Client"] = None
 ) -> tuple[dict, str]:
     client = client or http.client
 
@@ -67,13 +68,19 @@ def login(
     username = m.groups()[0]
 
     # Create oauth exchange token
-    token = client.post("connect", "/modern/di-oauth/exchange").json()
+    token = exchange(client)
 
     return _set_expirations(token), username
 
 
+def exchange(client: Optional["http.Client"] = None) -> dict:
+    client = client or http.client
+    token = client.post("connect", "/modern/di-oauth/exchange").json()
+    return _set_expirations(token)
+
+
 def refresh(
-    refresh_token: str, /, client: "http.Client" | None = None
+    refresh_token: str, /, client: Optional["http.Client"] = None
 ) -> dict:
     client = client or http.client
 

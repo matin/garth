@@ -45,16 +45,25 @@ class Client:
         method: str,
         subdomain: str,
         path: str,
+        /,
+        api: bool = False,
+        headers: dict | None = None,
         **kwargs,
     ):
-        if self.auth_token and self.auth_token.expired:
-            self.auth_token.refresh(client=self)
         url = f"https://{subdomain}.{self.domain}{path}"
+        if api:
+            headers = headers or {}
+            if self.auth_token and self.auth_token.expired:
+                self.auth_token.refresh(client=self)
+            headers["Authorization"] = str(self.auth_token)
+            headers["di-backend"] = f"connectapi.{self.domain}"
         resp = self.sess.request(
             method,
             url,
+            headers=headers,
             **kwargs,
         )
+        resp.raise_for_status()
         return resp
 
     def get(self, *args, **kwargs):
