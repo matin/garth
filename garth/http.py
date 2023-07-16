@@ -52,6 +52,8 @@ class Client:
         data: Optional[dict] = None,
         **kwargs,
     ):
+        if self.auth_token and self.auth_token.expired:
+            self.auth_token.refresh(client=self)
         url = f"https://{subdomain}.{self.domain}{path}"
         resp = self.sess.request(
             method,
