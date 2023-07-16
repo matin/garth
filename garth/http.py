@@ -1,5 +1,3 @@
-from typing import Optional
-
 from requests import Session
 
 from .auth_token import AuthToken
@@ -28,10 +26,10 @@ class Client:
     def configure(
         self,
         /,
-        auth_token: Optional[AuthToken] = None,
-        username: Optional[str] = None,
-        cookies: Optional[dict] = None,
-        domain: Optional[str] = None,  # Set to "garmin.cn" for China
+        auth_token: AuthToken | None = None,
+        username: str | None = None,
+        cookies: dict | None = None,
+        domain: str | None = None,  # Set to "garmin.cn" for China
     ):
         if auth_token:
             self.auth_token = auth_token
@@ -47,9 +45,6 @@ class Client:
         method: str,
         subdomain: str,
         path: str,
-        *,
-        params: Optional[dict] = None,
-        data: Optional[dict] = None,
         **kwargs,
     ):
         if self.auth_token and self.auth_token.expired:
@@ -58,8 +53,6 @@ class Client:
         resp = self.sess.request(
             method,
             url,
-            params=params,
-            data=data,
             **kwargs,
         )
         return resp
