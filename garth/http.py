@@ -1,3 +1,5 @@
+import re
+
 from requests import Session
 
 from .auth_token import AuthToken
@@ -40,6 +42,17 @@ class Client:
         if domain:
             self.domain = domain
 
+    @property
+    def username(self) -> str:
+        if hasattr(self, "_username") and self._username:
+            return self._username
+        resp = self.get("connect", "/modern")
+        m = re.search(r'userName":"(.+?)"', resp.text)
+        if not m:
+            raise Exception("Couldn't find username")
+        self._username = m.group(1)
+        return self._username
+
     def request(
         self,
         method: str,
@@ -74,11 +87,13 @@ class Client:
 
     def login(self, *args):
         if not self.auth_token:
-            token, username = AuthToken.login(*args, client=self)
+            token = AuthToken.login(*args, client=self)
             self.auth_token = token
-            self.username = username
         else:
             self.auth_token.refresh(client=self)
+
+    def connectapi(self, path: str, **kwargs):
+        return self.get("connect", path, api=True, **kwargs)
 
 
 client = Client()

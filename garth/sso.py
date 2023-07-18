@@ -7,7 +7,7 @@ from . import http
 
 def login(
     email: str, password: str, /, client: Optional["http.Client"] = None
-) -> tuple[dict, str]:
+) -> dict:
     client = client or http.client
 
     # Define params based on domain
@@ -61,17 +61,11 @@ def login(
         raise Exception("Could not find Service Ticket")
     ticket = m.group(1)
 
-    # Get username
-    resp = client.get("connect", "/modern", params=dict(ticket=ticket))
-    m = re.search(r'userName":"(.+?)"', resp.text)
-    if not m:
-        raise Exception("Could not find username")
-    username = m.group(1)
-
-    # Create oauth exchange token
+    # Exchange ticket for token
+    client.get("connect", "/modern", params=dict(ticket=ticket))
     token = exchange(client)
 
-    return token, username
+    return token
 
 
 def exchange(client: Optional["http.Client"] = None) -> dict:

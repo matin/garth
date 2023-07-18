@@ -17,9 +17,8 @@ class AuthToken:
     refresh_token_expires_at: int
 
     @classmethod
-    def login(cls, *args, **kwargs) -> tuple["AuthToken", str]:
-        token, username = sso.login(*args, **kwargs)
-        return cls(**token), username
+    def login(cls, *args, **kwargs) -> "AuthToken":
+        return cls(**sso.login(*args, **kwargs))
 
     def refresh(self, **kwargs):
         if self.refresh_expired:
