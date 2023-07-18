@@ -93,7 +93,7 @@ class Client:
             self.auth_token.refresh(client=self)
 
     def connectapi(self, path: str, **kwargs):
-        return self.get("connect", path, api=True, **kwargs)
+        return self.get("connect", path, api=True, **kwargs).json()
 
 
 client = Client()
