@@ -20,9 +20,9 @@ class Client:
     sess: Session
     domain: str = "garmin.com"
     auth_token: AuthToken | None = None
+    _username: str | None = None
 
     def __init__(self, **kwargs):
-        self.auth_token = None
         self.sess = Session()
         self.sess.headers.update(USER_AGENT)
         self.configure(**kwargs)
@@ -31,19 +31,16 @@ class Client:
         self,
         /,
         auth_token: AuthToken | None = None,
-        username: str | None = None,
         domain: str | None = None,  # Set to "garmin.cn" for China
     ):
         if auth_token:
             self.auth_token = auth_token
-        if username:
-            self.username = username
         if domain:
             self.domain = domain
 
     @property
     def username(self) -> str:
-        if hasattr(self, "_username") and self._username:
+        if self._username:
             return self._username
         resp = self.get("connect", "/modern")
         m = re.search(r'userName":"(.+?)"', resp.text)
