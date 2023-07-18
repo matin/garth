@@ -1,3 +1,4 @@
+import json
 import re
 
 from requests import Session
@@ -93,6 +94,15 @@ class Client:
 
     def connectapi(self, path: str, **kwargs):
         return self.get("connect", path, api=True, **kwargs).json()
+
+    def save_session(self, path: str):
+        with open(path, "w") as f:
+            json.dump(self.sess.cookies.get_dict(), f)
+
+    def resume_session(self, path: str):
+        with open(path) as f:
+            cookies = json.load(f)
+        self.sess.cookies.update(cookies)
 
 
 client = Client()
