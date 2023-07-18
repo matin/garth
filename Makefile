@@ -73,6 +73,11 @@ testcov: test
 	@echo "building coverage lcov"
 	@pdm run coverage lcov
 
+.PHONE: publish  ## Publish to PyPi
+publish: .pdm
+	pdm build
+	twine upload dist/*
+
 .PHONY: all  ## Run the standard set of checks performed in CI
 all: lint typecheck codespell testcov
 
