@@ -3,6 +3,7 @@ import time
 from typing import Optional
 
 from . import http
+from .exc import GarthException
 
 
 CSRF_RE = re.compile(r'name="_csrf"\s+value="(.+?)"')
@@ -76,12 +77,12 @@ def login(
         )
 
     if _get_title(resp.text) != "Success":
-        raise Exception("Login failed")
+        raise GarthException("Login failed")
 
     # Parse ticket
     m = re.search(r'embed\?ticket=([^"]+)"', resp.text)
     if not m:
-        raise Exception("Could not find Service Ticket")
+        raise GarthException("Could not find Service Ticket")
     ticket = m.group(1)
 
     # Exchange SSO Ticket for Connect Token
@@ -130,12 +131,12 @@ def _set_expirations(token: dict) -> dict:
 def _get_csrf_token(html: str) -> str:
     m = CSRF_RE.search(html)
     if not m:
-        raise Exception("Couldn't find CSRF token")
+        raise GarthException("Couldn't find CSRF token")
     return m.group(1)
 
 
 def _get_title(html: str) -> str:
     m = TITLE_RE.search(html)
     if not m:
-        raise Exception("Couldn't find title")
+        raise GarthException("Couldn't find title")
     return m.group(1)
