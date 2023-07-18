@@ -51,3 +51,4 @@ pydantic/*.so
 /sandbox/
 /worktrees/
 .pdm-python
+tmp/

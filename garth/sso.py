@@ -5,6 +5,10 @@ from typing import Optional
 from . import http
 
 
+CSRF_RE = re.compile(r'name="_csrf"\s+value="(.+?)"')
+TITLE_RE = re.compile(r"<title>(.+?)</title>")
+
+
 def login(
     email: str, password: str, /, client: Optional["http.Client"] = None
 ) -> dict:
@@ -37,27 +41,41 @@ def login(
         params=SIGNIN_PARAMS,
         headers=dict(referer=resp.url),
     )
-    m = re.search(r'name="_csrf" value="(.+?)"', resp.text)
-    if not m:
-        raise Exception("Could not find CSRF token")
-    csrf_token = m.group(1)
+    csrf_token = _get_csrf_token(resp.text)
 
-    # Sign in
-    data = dict(
-        username=email,
-        password=password,
-        embed="true",
-        _csrf=csrf_token,
-    )
+    # Submit login form with email and password
     resp = client.post(
         "sso",
         "/sso/signin",
         params=SIGNIN_PARAMS,
-        data=data,
         headers=dict(referer=resp.url),
+        data=dict(
+            username=email,
+            password=password,
+            embed="true",
+            _csrf=csrf_token,
+        ),
     )
-    m = re.search(r"<title>(.+?)</title>", resp.text)
-    if not (m and m.group(1) == "Success"):
+    title = _get_title(resp.text)
+
+    # Handle MFA
+    if "MFA" in title:
+        csrf_token = _get_csrf_token(resp.text)
+        mfa_code = input("Enter MFA code: ")
+        resp = client.post(
+            "sso",
+            "/sso/verifyMFA/loginEnterMfaCode",
+            params=SIGNIN_PARAMS,
+            headers=dict(referer=resp.url),
+            data={
+                "mfa-code": mfa_code,
+                "embed": "true",
+                "_csrf": csrf_token,
+                "fromPage": "setupEnterMfaCode",
+            },
+        )
+
+    if _get_title(resp.text) != "Success":
         raise Exception("Login failed")
 
     # Parse ticket
@@ -107,3 +125,17 @@ def _set_expirations(token: dict) -> dict:
         time.time() + token["refresh_token_expires_in"]
     )
     return token
+
+
+def _get_csrf_token(html: str) -> str:
+    m = CSRF_RE.search(html)
+    if not m:
+        raise Exception("Couldn't find CSRF token")
+    return m.group(1)
+
+
+def _get_title(html: str) -> str:
+    m = TITLE_RE.search(html)
+    if not m:
+        raise Exception("Couldn't find title")
+    return m.group(1)
