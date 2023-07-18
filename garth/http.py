@@ -1,6 +1,7 @@
 import json
 import re
 
+from requests.cookies import RequestsCookieJar
 from requests import Session
 
 from .auth_token import AuthToken
@@ -31,15 +32,12 @@ class Client:
         /,
         auth_token: AuthToken | None = None,
         username: str | None = None,
-        cookies: dict | None = None,
         domain: str | None = None,  # Set to "garmin.cn" for China
     ):
         if auth_token:
             self.auth_token = auth_token
         if username:
             self.username = username
-        if cookies:
-            self.sess.cookies.update(cookies)
         if domain:
             self.domain = domain
 
@@ -87,6 +85,7 @@ class Client:
 
     def login(self, *args):
         if not self.auth_token:
+            self.cookies = RequestsCookieJar()  # Clear cookies
             token = AuthToken.login(*args, client=self)
             self.auth_token = token
         else:

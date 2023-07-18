@@ -28,10 +28,15 @@ def login(
     ]
 
     # Set cookies
-    client.get("sso", "/sso/embed", params=SSO_EMBED_PARAMS)
+    resp = client.get("sso", "/sso/embed", params=SSO_EMBED_PARAMS)
 
     # Get CSRF token
-    resp = client.get("sso", "/sso/signin", params=SIGNIN_PARAMS)
+    resp = client.get(
+        "sso",
+        "/sso/signin",
+        params=SIGNIN_PARAMS,
+        headers=dict(referer=resp.url),
+    )
     m = re.search(r'name="_csrf" value="(.+?)"', resp.text)
     if not m:
         raise Exception("Could not find CSRF token")
@@ -49,7 +54,7 @@ def login(
         "/sso/signin",
         params=SIGNIN_PARAMS,
         data=data,
-        headers=dict(Referer=resp.url),
+        headers=dict(referer=resp.url),
     )
     m = re.search(r"<title>(.+?)</title>", resp.text)
     if not (m and m.group(1) == "Success"):
@@ -62,7 +67,12 @@ def login(
     ticket = m.group(1)
 
     # Exchange SSO Ticket for Connect Token
-    client.get("connect", "/modern", params=dict(ticket=ticket))
+    client.get(
+        "connect",
+        "/modern",
+        params=dict(ticket=ticket),
+        headers=dict(referer=resp.url),
+    )
     token = exchange(client)
 
     return token
@@ -70,7 +80,11 @@ def login(
 
 def exchange(client: Optional["http.Client"] = None) -> dict:
     client = client or http.client
-    token = client.post("connect", "/modern/di-oauth/exchange").json()
+    token = client.post(
+        "connect",
+        "/modern/di-oauth/exchange",
+        headers=dict(referer=f"https://connect.{client.domain}/modern"),
+    ).json()
     return _set_expirations(token)
 
 
