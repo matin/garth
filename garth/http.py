@@ -60,14 +60,13 @@ class Client:
         path: str,
         /,
         api: bool = False,
-        headers: dict | None = None,
+        headers: dict = {},
         **kwargs,
     ):
         url = f"https://{subdomain}.{self.domain}{path}"
         if api:
             if self.auth_token and self.auth_token.expired:
                 self.auth_token.refresh(client=self)
-            headers = headers or {}
             headers["Authorization"] = str(self.auth_token)
             headers["di-backend"] = f"connectapi.{self.domain}"
         resp = self.sess.request(
