@@ -5,6 +5,7 @@ from requests.cookies import RequestsCookieJar
 from requests import Session
 
 from .auth_token import AuthToken
+from .exc import GarthException
 
 
 USER_AGENT = {
@@ -19,7 +20,6 @@ class Client:
     sess: Session
     domain: str = "garmin.com"
     auth_token: AuthToken | None = None
-    username: str | None = None
 
     def __init__(self, **kwargs):
         self.auth_token = None
@@ -48,7 +48,7 @@ class Client:
         resp = self.get("connect", "/modern")
         m = re.search(r'userName":"(.+?)"', resp.text)
         if not m:
-            raise Exception("Couldn't find username")
+            raise GarthException("Could not find username")
         self._username = m.group(1)
         return self._username
 
