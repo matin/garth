@@ -61,7 +61,7 @@ def login(
         raise Exception("Could not find Service Ticket")
     ticket = m.group(1)
 
-    # Exchange ticket for token
+    # Exchange SSO Ticket for Connect Token
     client.get("connect", "/modern", params=dict(ticket=ticket))
     token = exchange(client)
 
