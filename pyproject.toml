@@ -1,6 +1,6 @@
 [project]
 name = "garth"
-version = "0.1.10"
+version = "0.1.11"
 description = "Garmin SSO auth"
 authors = [
     {name = "Matin Tamizi", email = "mtamizi@duck.com"},
@@ -23,4 +23,7 @@ dev = [
     "types-requests>=2.31.0.1",
     "pytest>=7.4.0",
     "pytest-vcr>=1.0.2",
+    "ipykernel>=6.24.0",
+    "pandas>=2.0.3",
+    "matplotlib>=3.7.2",
 ]

@@ -1,5 +1,7 @@
 import json
 import re
+import os
+from dataclasses import asdict
 
 from requests.cookies import RequestsCookieJar
 from requests import Session
@@ -91,14 +93,17 @@ class Client:
     def connectapi(self, path: str, **kwargs):
         return self.get("connect", path, api=True, **kwargs).json()
 
-    def save_session(self, path: str):
-        with open(path, "w") as f:
+    def save_session(self, dir_path: str):
+        with open(os.path.join(dir_path, "cookies.json"), "w") as f:
             json.dump(self.sess.cookies.get_dict(), f)
+        with open(os.path.join(dir_path, "auth_token.json"), "w") as f:
+            json.dump(asdict(self.auth_token) if self.auth_token else {}, f)
 
-    def resume_session(self, path: str):
-        with open(path) as f:
-            cookies = json.load(f)
-        self.sess.cookies.update(cookies)
+    def resume_session(self, dir_path: str):
+        with open(os.path.join(dir_path, "cookies.json")) as f:
+            self.sess.cookies.update(json.load(f))
+        with open(os.path.join(dir_path, "auth_token.json")) as f:
+            self.auth_token = AuthToken(**json.load(f))
 
 
 client = Client()
