@@ -1,4 +1,5 @@
 import json
+import pickle
 import re
 import os
 from dataclasses import asdict
@@ -33,20 +34,21 @@ class Client:
         self,
         /,
         auth_token: AuthToken | None = None,
-        cookies: dict | None = None,
+        cookies: RequestsCookieJar | None = None,
         domain: str | None = None,  # Set to "garmin.cn" for China
         proxies: dict | None = None,
-        ssl_verify: bool = True,
+        ssl_verify: bool | None = None,
     ):
         if auth_token:
             self.auth_token = auth_token
         if cookies:
-            self.sess.cookies.update(cookies)
+            self.sess.cookies = cookies
         if domain:
             self.domain = domain
         if proxies:
             self.sess.proxies.update(proxies)
-        self.sess.verify = ssl_verify
+        if ssl_verify is not None:
+            self.sess.verify = ssl_verify
 
     @property
     def username(self) -> str:
@@ -101,15 +103,15 @@ class Client:
 
     def save_session(self, dir_path: str):
         dir_path = os.path.expanduser(dir_path)
-        with open(os.path.join(dir_path, "cookies.json"), "w") as f:
-            json.dump(self.sess.cookies.get_dict(), f)
+        with open(os.path.join(dir_path, "cookies.pickle"), "wb") as f:
+            pickle.dump(self.sess.cookies, f)
         with open(os.path.join(dir_path, "auth_token.json"), "w") as f:
             json.dump(asdict(self.auth_token) if self.auth_token else {}, f)
 
     def resume_session(self, dir_path: str):
         dir_path = os.path.expanduser(dir_path)
-        with open(os.path.join(dir_path, "cookies.json")) as f:
-            cookies = json.load(f)
+        with open(os.path.join(dir_path, "cookies.pickle"), "rb") as f:
+            cookies = pickle.load(f)
         with open(os.path.join(dir_path, "auth_token.json")) as f:
             auth_token = AuthToken(**json.load(f))
         self.configure(auth_token=auth_token, cookies=cookies)
