@@ -18,19 +18,19 @@ def login(
     # Define params based on domain
     SSO = f"https://sso.{client.domain}/sso"
     SSO_EMBED = f"{SSO}/embed"
-    SSO_EMBED_PARAMS = [
-        ("id", "gauth-widget"),
-        ("embedWidget", "true"),
-        ("gauthHost", SSO),
-    ]
-    SIGNIN_PARAMS = [
-        ("id", "gauth-widget"),
-        ("service", SSO_EMBED),
-        ("source", SSO_EMBED),
-        ("redirectAfterAccountLoginUrl", SSO_EMBED),
-        ("redirectAfterAccountCreationUrl", SSO_EMBED),
-        ("gauthHost", SSO_EMBED),
-    ]
+    SSO_EMBED_PARAMS = dict(
+        id="gauth-widget",
+        embedWidget="true",
+        gauthHost=SSO,
+    )
+    SIGNIN_PARAMS = dict(
+        id="gauth-widget",
+        service=SSO_EMBED,
+        source=SSO_EMBED,
+        redirectAfterAccountLoginUrl=SSO_EMBED,
+        redirectAfterAccountCreationUrl=SSO_EMBED,
+        gauthHost=SSO_EMBED,
+    )
 
     # Set cookies
     resp = client.get("sso", "/sso/embed", params=SSO_EMBED_PARAMS)
@@ -66,7 +66,7 @@ def login(
         resp = client.post(
             "sso",
             "/sso/verifyMFA/loginEnterMfaCode",
-            params=SIGNIN_PARAMS,
+            params=SIGNIN_PARAMS | dict(rememberMyBrowserChecked="true"),
             headers=dict(referer=resp.url),
             data={
                 "mfa-code": mfa_code,
