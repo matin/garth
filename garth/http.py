@@ -82,9 +82,10 @@ class Client:
     def post(self, *args, **kwargs):
         return self.request("POST", *args, **kwargs)
 
-    def login(self, *args):
+    def login(self, *args, clear_cookies: bool = False):
         if not self.auth_token:
-            self.cookies = RequestsCookieJar()  # Clear cookies
+            if clear_cookies:
+                self.cookies = RequestsCookieJar()
             token = AuthToken.login(*args, client=self)
             self.auth_token = token
         else:
