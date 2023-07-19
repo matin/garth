@@ -33,12 +33,20 @@ class Client:
         self,
         /,
         auth_token: AuthToken | None = None,
+        cookies: dict | None = None,
         domain: str | None = None,  # Set to "garmin.cn" for China
+        proxies: dict | None = None,
+        ssl_verify: bool = True,
     ):
         if auth_token:
             self.auth_token = auth_token
+        if cookies:
+            self.sess.cookies.update(cookies)
         if domain:
             self.domain = domain
+        if proxies:
+            self.sess.proxies.update(proxies)
+        self.sess.verify = ssl_verify
 
     @property
     def username(self) -> str:
@@ -83,13 +91,10 @@ class Client:
         return self.request("POST", *args, **kwargs)
 
     def login(self, *args, clear_cookies: bool = False):
-        if not self.auth_token:
-            if clear_cookies:
-                self.cookies = RequestsCookieJar()
-            token = AuthToken.login(*args, client=self)
-            self.auth_token = token
-        else:
-            self.auth_token.refresh(client=self)
+        if clear_cookies:
+            self.cookies = RequestsCookieJar()
+        token = AuthToken.login(*args, client=self)
+        self.auth_token = token
 
     def connectapi(self, path: str, **kwargs):
         return self.get("connect", path, api=True, **kwargs).json()
@@ -104,9 +109,10 @@ class Client:
     def resume_session(self, dir_path: str):
         dir_path = os.path.expanduser(dir_path)
         with open(os.path.join(dir_path, "cookies.json")) as f:
-            self.sess.cookies.update(json.load(f))
+            cookies = json.load(f)
         with open(os.path.join(dir_path, "auth_token.json")) as f:
-            self.auth_token = AuthToken(**json.load(f))
+            auth_token = AuthToken(**json.load(f))
+        self.configure(auth_token=auth_token, cookies=cookies)
 
 
 client = Client()
