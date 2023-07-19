@@ -94,12 +94,14 @@ class Client:
         return self.get("connect", path, api=True, **kwargs).json()
 
     def save_session(self, dir_path: str):
+        dir_path = os.path.expanduser(dir_path)
         with open(os.path.join(dir_path, "cookies.json"), "w") as f:
             json.dump(self.sess.cookies.get_dict(), f)
         with open(os.path.join(dir_path, "auth_token.json"), "w") as f:
             json.dump(asdict(self.auth_token) if self.auth_token else {}, f)
 
     def resume_session(self, dir_path: str):
+        dir_path = os.path.expanduser(dir_path)
         with open(os.path.join(dir_path, "cookies.json")) as f:
             self.sess.cookies.update(json.load(f))
         with open(os.path.join(dir_path, "auth_token.json")) as f:
