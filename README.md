@@ -73,7 +73,7 @@ garth.resume("~/.garth")
 try:
     garth.client.auth_token.refresh()
 except (GarthException, HTTPError):
-    # Session is expired
+    # Session is expired. You'll need to log in again
 ```
 
 ## Connect API
