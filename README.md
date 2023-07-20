@@ -91,4 +91,4 @@ stress =  garth.connectapi(f'/usersummary-service/stats/stress/weekly/2023-07-05
 
 ## Google Colabs
 
-1. [Graph 28-day rolling average of daily stress](https://colab.research.google.com/github/matin/garth/blob/main/colabs/stress.ipynb)
+[Graph 28-day rolling average of daily stress](https://colab.research.google.com/github/matin/garth/blob/main/colabs/stress.ipynb)
