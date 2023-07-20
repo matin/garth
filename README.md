@@ -51,6 +51,7 @@ pip install garth
 ### Authenticate and save session
 
 ```python
+import garth
 from getpass import getpass
 
 email = input("Enter email address: ")
@@ -64,6 +65,7 @@ garth.save("~/.garth")
 ### Attempt to resume session
 
 ```python
+import garth
 from garth import GarthException
 from requests import HTTPError
 
