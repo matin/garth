@@ -13,16 +13,16 @@ There are already a few Garmin Connect libraries. Why write another?
 
 ### Authentication
 
-The most important reasoning was building a library with authentication that
-worked on [Google Colab](https://colab.research.google.com/) and didn't require
-Cloudscraper. Garth, in comparison:
+The most important reasoning is to build a library with authentication that
+works on [Google Colab](https://colab.research.google.com/) and doesn't require
+tools like Cloudscraper. Garth, in comparison:
 
 1. Uses the same embedded SSO as the mobile app
-1. Only requires `requests`
+1. Only requires `requests` as a dependency
 1. Supports MFA
 1. Supports saving and resuming sessions to avoid the need to log in each time
-you run a script—particularly useful if you have MFA enabled
-1. Appears to be working on Google Colab thus far
+you run a script, which is particularly useful if you have MFA enabled
+1. Appears to be working on Google Colab thus far 🤞
 
 ### Python 3.10+
 
