@@ -85,12 +85,41 @@ sleep = garth.connectapi(
     f"/wellness-service/wellness/dailySleepData/{garth.client.username}",
     params={"date": "2023-07-05", "nonSleepBufferMinutes": 60),
 )
+list(sleep.keys())
+```
+
+```json
+[
+    "dailySleepDTO",
+    "sleepMovement",
+    "remSleepData",
+    "sleepLevels",
+    "sleepRestlessMoments",
+    "restlessMomentsCount",
+    "wellnessSpO2SleepSummaryDTO",
+    "wellnessEpochSPO2DataDTOList",
+    "wellnessEpochRespirationDataDTOList",
+    "sleepStress"
+]
 ```
 
 ### Usersummary
 
 ```python
-stress =  garth.connectapi(f'/usersummary-service/stats/stress/weekly/2023-07-05/52'):
+stress =  garth.connectapi(f"/usersummary-service/stats/stress/weekly/2023-07-05/52")
+```
+
+```json
+{
+    "calendarDate": "2023-07-13",
+    "values": {
+        "highStressDuration": 2880,
+        "lowStressDuration": 10140,
+        "overallStressLevel": 33,
+        "restStressDuration": 30960,
+        "mediumStressDuration": 8760
+    }
+}
 ```
 
 ## Google Colabs
