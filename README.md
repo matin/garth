@@ -44,7 +44,9 @@ the Connect API.
 
 ### Install
 
-`pip install garth`
+```bash
+pip install garth
+```
 
 ### Authenticate and save session
 
