@@ -18,15 +18,20 @@ build-backend = "pdm.backend"
 
 [tool.pdm.dev-dependencies]
 dev = [
-    "ipython>=8.14.0",
-    "ipdb>=0.13.13",
-    "types-requests>=2.31.0.1",
-    "pytest>=7.4.0",
-    "pytest-vcr>=1.0.2",
-    "ipykernel>=6.24.0",
-    "pandas>=2.0.3",
-    "matplotlib>=3.7.2",
-    "mypy>=1.4.1",
-    "coverage>=7.2.7",
+    "ipython",
+    "ipdb",
+    "ipykernel",
+    "pandas",
+    "matplotlib",
+]
+linting = [
+    "black",
+    "ruff",
+    "mypy~=1.4.1",
     "isort>=5.12.0",
+]
+testing = [
+    "coverage",
+    "pytest",
+    "betamax",
 ]
