@@ -4,6 +4,7 @@ import re
 import os
 from dataclasses import asdict
 
+from requests.adapters import HTTPAdapter, Retry
 from requests.cookies import RequestsCookieJar
 from requests import Session
 
@@ -24,12 +25,21 @@ class Client:
     domain: str = "garmin.com"
     auth_token: AuthToken | None = None
     timeout: int = 15
+    retries: int = 3
+    status_forcelist: tuple[int, ...] = (429, 500, 502, 503, 504)
+    backoff_factor: float = 0.5
     _username: str | None = None
 
     def __init__(self, **kwargs):
         self.sess = Session()
         self.sess.headers.update(USER_AGENT)
-        self.configure(timeout=self.timeout, **kwargs)
+        self.configure(
+            timeout=self.timeout,
+            retries=self.retries,
+            status_forcelist=self.status_forcelist,
+            backoff_factor=self.backoff_factor,
+            **kwargs,
+        )
 
     def configure(
         self,
@@ -40,6 +50,9 @@ class Client:
         proxies: dict | None = None,
         ssl_verify: bool | None = None,
         timeout: int | None = None,
+        retries: int | None = None,
+        status_forcelist: tuple[int, ...] | None = None,
+        backoff_factor: float | None = None,
     ):
         if auth_token:
             self.auth_token = auth_token
@@ -53,6 +66,20 @@ class Client:
             self.sess.verify = ssl_verify
         if timeout is not None:
             self.timeout = timeout
+        if retries is not None:
+            self.retries = retries
+        if status_forcelist is not None:
+            self.status_forcelist = status_forcelist
+        if backoff_factor is not None:
+            self.backoff_factor = backoff_factor
+
+        retry = Retry(
+            total=self.retries,
+            status_forcelist=self.status_forcelist,
+            backoff_factor=self.backoff_factor,
+        )
+        adapter = HTTPAdapter(max_retries=retry)
+        self.sess.mount("https://", adapter)
 
     @property
     def username(self) -> str:
