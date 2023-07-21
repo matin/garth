@@ -29,6 +29,7 @@ linting = [
     "ruff",
     "mypy~=1.4.1",
     "isort>=5.12.0",
+    "types-requests",
 ]
 testing = [
     "coverage",
