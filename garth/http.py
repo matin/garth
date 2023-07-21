@@ -23,12 +23,13 @@ class Client:
     sess: Session
     domain: str = "garmin.com"
     auth_token: AuthToken | None = None
+    timeout: int = 15
     _username: str | None = None
 
     def __init__(self, **kwargs):
         self.sess = Session()
         self.sess.headers.update(USER_AGENT)
-        self.configure(**kwargs)
+        self.configure(timeout=self.timeout, **kwargs)
 
     def configure(
         self,
@@ -38,6 +39,7 @@ class Client:
         domain: str | None = None,  # Set to "garmin.cn" for China
         proxies: dict | None = None,
         ssl_verify: bool | None = None,
+        timeout: int | None = None,
     ):
         if auth_token:
             self.auth_token = auth_token
@@ -49,6 +51,8 @@ class Client:
             self.sess.proxies.update(proxies)
         if ssl_verify is not None:
             self.sess.verify = ssl_verify
+        if timeout is not None:
+            self.timeout = timeout
 
     @property
     def username(self) -> str:
@@ -81,6 +85,7 @@ class Client:
             method,
             url,
             headers=headers,
+            timeout=self.timeout,
             **kwargs,
         )
         resp.raise_for_status()
