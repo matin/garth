@@ -39,3 +39,45 @@ jobs:
           extra_args: --all-files --verbose
         env:
           SKIP: no-commit-to-branch
+
+  test:
+    name: test ${{ matrix.python-version }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu, macos, windows]
+        python-version: ['3.10', '3.11']
+
+    env:
+      PYTHON: ${{ matrix.python-version }}
+      OS: ${{ matrix.os }}
+      DEPS: yes
+
+    runs-on: ${{ matrix.os }}-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: pdm-project/setup-pdm@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: true
+
+      - name: install
+        run: |
+          pdm use -f $PYTHON
+          pdm install -G testing
+
+      - run: mkdir coverage
+
+      - name: test
+        run: make test
+        env:
+          COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}-with-deps
+          CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}-with-deps
+
+      - name: upload coverage
+        uses: actions/upload-artifact@v2
+        with:
+          name: coverage
+          path: coverage
