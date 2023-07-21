@@ -22,7 +22,7 @@ tools like Cloudscraper. Garth, in comparison:
 1. Supports MFA
 1. Supports saving and resuming sessions to avoid the need to log in each time
 you run a script, which is particularly useful if you have MFA enabled
-1. Appears to be working on Google Colab thus far 🤞
+1. Appears to be working on Google Colab thus far 🤞🏽
 
 ### Python 3.10+
 
