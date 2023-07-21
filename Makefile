@@ -33,6 +33,7 @@ format: .pdm
 lint: .pdm
 	pdm run ruff $(sources)
 	pdm run black -l 79 $(sources) --check --diff
+	pdm run mypy $(sources)
 
 .PHONY: codespell  ## Use Codespell to do spellchecking
 codespell: .pre-commit
@@ -41,26 +42,6 @@ codespell: .pre-commit
 .PHONY: typecheck  ## Perform type-checking
 typecheck: .pre-commit .pdm
 	pre-commit run typecheck --all-files
-
-.PHONY: test-mypy  ## Run the mypy integration tests
-test-mypy: .pdm
-	pdm run coverage run -m pytest tests/mypy --test-mypy
-
-.PHONY: test-mypy-update  ## Update the mypy integration tests for the current mypy version
-test-mypy-update: .pdm
-	pdm run coverage run -m pytest tests/mypy --test-mypy --update-mypy
-
-.PHONY: test-mypy-update-all  ## Update the mypy integration tests for all mypy versions
-test-mypy-update-all: .pdm
-	rm -rf tests/mypy/outputs
-	pip install --force mypy==1.0.1 && make test-mypy-update
-	pip install --force mypy==1.1.1 && make test-mypy-update
-	pip install --force mypy==1.2.0 && make test-mypy-update
-	pip install --force mypy==1.4.1 && make test-mypy-update
-
-.PHONY: test-pyright  ## Run the pyright integration tests
-test-pyright: .pdm
-	pdm run bash -c 'cd tests/pyright && pyright'
 
 .PHONY: test  ## Run all tests, skipping the type-checker integration tests
 test: .pdm
