@@ -62,6 +62,20 @@ garth.login(email, password)
 garth.save("~/.garth")
 ```
 
+### Configure
+
+#### Set domain for China
+
+```python
+garth.configure(domain="garmin.cn")
+```
+
+#### Proxy through Charles
+
+```python
+garth.configure(proxies={"https": "http://localhost:8888"}, ssl_verify=False)
+```
+
 ### Attempt to resume session
 
 ```python

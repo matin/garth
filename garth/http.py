@@ -46,7 +46,7 @@ class Client:
         /,
         auth_token: AuthToken | None = None,
         cookies: RequestsCookieJar | None = None,
-        domain: str | None = None,  # Set to "garmin.cn" for China
+        domain: str | None = None,
         proxies: dict | None = None,
         ssl_verify: bool | None = None,
         timeout: int | None = None,
