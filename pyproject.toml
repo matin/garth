@@ -16,6 +16,9 @@ license = {text = "MIT"}
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
+[tool.pytest.ini_options]
+addopts = "--ignore=__pypackages__"
+
 [tool.pdm.dev-dependencies]
 dev = [
     "ipython",
