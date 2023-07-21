@@ -5,7 +5,6 @@ from typing import Optional
 from . import http
 from .exc import GarthException
 
-
 CSRF_RE = re.compile(r'name="_csrf"\s+value="(.+?)"')
 TITLE_RE = re.compile(r"<title>(.+?)</title>")
 

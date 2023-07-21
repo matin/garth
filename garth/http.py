@@ -1,16 +1,15 @@
 import json
+import os
 import pickle
 import re
-import os
 from dataclasses import asdict
 
+from requests import Session
 from requests.adapters import HTTPAdapter, Retry
 from requests.cookies import RequestsCookieJar
-from requests import Session
 
 from .auth_token import AuthToken
 from .exc import GarthException
-
 
 USER_AGENT = {
     "User-Agent": (

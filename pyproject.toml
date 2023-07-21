@@ -28,4 +28,5 @@ dev = [
     "matplotlib>=3.7.2",
     "mypy>=1.4.1",
     "coverage>=7.2.7",
+    "isort>=5.12.0",
 ]
