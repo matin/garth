@@ -38,12 +38,6 @@ test.py
 /site/
 /site.zip
 
-# Project-specific files
-pydantic/*.c
-pydantic/*.so
-/fastapi/
-.mypy-configs/
-
 # Other files and folders
 .python-version
 .DS_Store

@@ -25,10 +25,3 @@ repos:
     types: [python]
     language: system
     pass_filenames: false
-  - id: typecheck
-    name: Typecheck
-    entry: pdm run pyright pydantic
-    types: [python]
-    language: node
-    pass_filenames: false
-    additional_dependencies: ["pyright@1.1.310"]
