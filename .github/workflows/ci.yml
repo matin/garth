@@ -32,7 +32,7 @@ jobs:
       - name: install
         run: |
           pdm use -f $PYTHON
-          pdm install -G linting -G email
+          pdm install -G linting
 
       - uses: pre-commit/action@v3.0.0
         with:
