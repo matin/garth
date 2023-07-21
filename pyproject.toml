@@ -28,8 +28,9 @@ linting = [
     "black",
     "ruff",
     "mypy~=1.4.1",
-    "isort>=5.12.0",
+    "isort",
     "types-requests",
+    "pytest-mypy-plugins",
 ]
 testing = [
     "coverage",
