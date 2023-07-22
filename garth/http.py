@@ -54,13 +54,13 @@ class Client:
         status_forcelist: tuple[int, ...] | None = None,
         backoff_factor: float | None = None,
     ):
-        if auth_token:
+        if auth_token is not None:
             self.auth_token = auth_token
-        if cookies:
+        if cookies is not None:
             self.sess.cookies = cookies
         if domain:
             self.domain = domain
-        if proxies:
+        if proxies is not None:
             self.sess.proxies.update(proxies)
         if ssl_verify is not None:
             self.sess.verify = ssl_verify
