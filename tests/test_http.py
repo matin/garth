@@ -83,3 +83,15 @@ def test_client_request(client: Client):
 
     with pytest.raises(HTTPError):
         client.request("GET", "connect", "/", api=True)
+
+
+@pytest.mark.vcr
+def test_login_success(monkeypatch, client: Client):
+    def mock_input(_):
+        return "327751"
+
+    monkeypatch.setattr("builtins.input", mock_input)
+
+    assert client.auth_token is None
+    client.login("user@example.com", "correct_password")
+    assert client.auth_token is not None
