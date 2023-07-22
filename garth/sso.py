@@ -41,7 +41,7 @@ def login(
         params=SIGNIN_PARAMS,
         headers=dict(referer=resp.url),
     )
-    csrf_token = _get_csrf_token(resp.text)
+    csrf_token = get_csrf_token(resp.text)
 
     # Submit login form with email and password
     resp = client.post(
@@ -56,11 +56,11 @@ def login(
             _csrf=csrf_token,
         ),
     )
-    title = _get_title(resp.text)
+    title = get_title(resp.text)
 
     # Handle MFA
     if "MFA" in title:
-        csrf_token = _get_csrf_token(resp.text)
+        csrf_token = get_csrf_token(resp.text)
         mfa_code = input("Enter MFA code: ")
         resp = client.post(
             "sso",
@@ -75,7 +75,7 @@ def login(
             },
         )
 
-    if _get_title(resp.text) != "Success":
+    if get_title(resp.text) != "Success":
         raise GarthException("Login failed")
 
     # Parse ticket
@@ -103,7 +103,7 @@ def exchange(client: Optional["http.Client"] = None) -> dict:
         "/modern/di-oauth/exchange",
         headers=dict(referer=f"https://connect.{client.domain}/modern"),
     ).json()
-    return _set_expirations(token)
+    return set_expirations(token)
 
 
 def refresh(
@@ -116,10 +116,10 @@ def refresh(
         "/services/auth/token/refresh",
         json=dict(refresh_token=refresh_token),
     ).json()
-    return _set_expirations(token)
+    return set_expirations(token)
 
 
-def _set_expirations(token: dict) -> dict:
+def set_expirations(token: dict) -> dict:
     token["expires_at"] = int(time.time() + token["expires_in"])
     token["refresh_token_expires_at"] = int(
         time.time() + token["refresh_token_expires_in"]
@@ -127,14 +127,14 @@ def _set_expirations(token: dict) -> dict:
     return token
 
 
-def _get_csrf_token(html: str) -> str:
+def get_csrf_token(html: str) -> str:
     m = CSRF_RE.search(html)
     if not m:
         raise GarthException("Couldn't find CSRF token")
     return m.group(1)
 
 
-def _get_title(html: str) -> str:
+def get_title(html: str) -> str:
     m = TITLE_RE.search(html)
     if not m:
         raise GarthException("Couldn't find title")

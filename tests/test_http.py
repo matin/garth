@@ -82,4 +82,4 @@ def test_client_request(session: Session, client: Client):
     assert resp.ok
 
     with pytest.raises(HTTPError):
-        resp = client.request("GET", "connect", "/", api=True)
+        client.request("GET", "connect", "/", api=True)
