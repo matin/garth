@@ -1,3 +1,5 @@
+import pytest
+from requests import HTTPError, Session
 from requests.cookies import RequestsCookieJar
 
 from garth.auth_token import AuthToken
@@ -72,3 +74,12 @@ def test_backoff_factor(client: Client):
         client.sess.adapters["https://"].max_retries.backoff_factor
         == client.backoff_factor
     )
+
+
+@pytest.mark.vcr
+def test_client_request(session: Session, client: Client):
+    resp = client.request("GET", "connect", "/")
+    assert resp.ok
+
+    with pytest.raises(HTTPError):
+        resp = client.request("GET", "connect", "/", api=True)

@@ -29,8 +29,8 @@ class Client:
     backoff_factor: float = 0.5
     _username: str | None = None
 
-    def __init__(self, **kwargs):
-        self.sess = Session()
+    def __init__(self, session: Session | None = None, **kwargs):
+        self.sess = session if session else Session()
         self.sess.headers.update(USER_AGENT)
         self.configure(
             timeout=self.timeout,

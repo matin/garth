@@ -33,10 +33,9 @@ linting = [
     "mypy~=1.4.1",
     "isort",
     "types-requests",
-    "pytest-mypy-plugins",
 ]
 testing = [
     "coverage",
     "pytest",
-    "betamax",
+    "pytest-vcr>=1.0.2",
 ]
