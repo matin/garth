@@ -1,0 +1,61 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - None
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+      di-backend:
+      - connectapi.garmin.com
+    method: GET
+    uri: https://connect.garmin.com/
+  response:
+    body:
+      string: "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html;
+        charset=UTF-8\"><title>Not Found</title></head>\n<body>\n    <div class=\"headerContainer\">\n
+        \       <h2 class=\"page-title\">Page Not Found</h2>\n\n        <p>We're sorry.
+        The page you're looking for does not exist.</p>\n    </div>\n<script defer
+        src=\"https://static.cloudflareinsights.com/beacon.min.js/v2cb3a2ab87c5498db5ce7e6608cf55231689030342039\"
+        integrity=\"sha512-DI3rPuZDcpH/mSGyN22erN5QFnhl760f50/te7FTIYxodEF8jJnSFnfnmG/c+osmIQemvUrnBtxnMpNdzvx1/g==\"
+        data-cf-beacon='{\"rayId\":\"7eab66e7fc4d154a\",\"version\":\"2023.4.0\",\"b\":1,\"token\":\"1bd18b8f69214e379ef7bd34509191ae\",\"si\":100}'
+        crossorigin=\"anonymous\"></script>\n</body>\n</html>"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 7eab66e7fc4d154a-QRO
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - text/html
+      Date:
+      - Sat, 22 Jul 2023 11:39:14 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=rqnSnHRcxXhoD67ybYstkUAeR8RClEf60OsZE0jNJNgsvmVle5AquAC2kPHZubTDoiLc%2B6VNCdakwRzqU6lrPQbfQr8G0VigSwABvBsSWIwgjUyJHrFXSGCekw8c51R9hrj5sw%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - __cflb=02DiuJLbVZHipNWxN8xk76RcdLU1TyEExbDPNdkStBiYU; SameSite=None; Secure;
+        path=/; expires=Sun, 23-Jul-23 10:39:14 GMT; HttpOnly
+      - _cfuvid=b_J69BjAIYKgjde6wZdQee2Rtf6fV417uojBxE9zkOk-1690025954614-0-604800000;
+        path=/; domain=.connect.garmin.com; HttpOnly; Secure; SameSite=None
+      Transfer-Encoding:
+      - chunked
+      cache-control:
+      - no-cache
+    status:
+      code: 404
+      message: Not Found
+version: 1
