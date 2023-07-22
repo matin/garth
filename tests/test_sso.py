@@ -23,16 +23,17 @@ def test_login_success(monkeypatch, client: Client):
     sso.login("user@example.com", "correct_password", client=client)
 
 
-def test_set_expirations():
-    token = dict(
-        access_token="foo",
-        refresh_token="bar",
-        expires_in=3599,
-        refresh_token_expires_in=7199,
+def test_set_expirations(auth_token_dict: dict):
+    token = sso.set_expirations(auth_token_dict)
+    assert (
+        token["expires_at"] - time.time() - auth_token_dict["expires_in"] < 1
     )
-    token = sso.set_expirations(token)
-    assert token["expires_at"] - time.time() - 3599 < 1
-    assert token["refresh_token_expires_at"] - time.time() - 7199 < 1
+    assert (
+        token["refresh_token_expires_at"]
+        - time.time()
+        - auth_token_dict["refresh_token_expires_in"]
+        < 1
+    )
 
 
 def test_get_csrf_token():

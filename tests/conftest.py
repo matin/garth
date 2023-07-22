@@ -20,6 +20,19 @@ def client(session):
 
 
 @pytest.fixture
+def auth_token_dict():
+    return dict(
+        scope="CONNECT_READ CONNECT_WRITE",
+        jti="foo",
+        token_type="Bearer",
+        access_token="bar",
+        refresh_token="baz",
+        expires_in=3599,
+        refresh_token_expires_in=7199,
+    )
+
+
+@pytest.fixture
 def auth_token() -> AuthToken:
     token = AuthToken(
         scope="CONNECT_READ CONNECT_WRITE",
