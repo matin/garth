@@ -53,8 +53,8 @@ test: .pdm
 testcov: test
 	@echo "building coverage html"
 	@pdm run coverage html
-	@echo "building coverage lcov"
-	@pdm run coverage lcov
+	@echo "building coverage xml"
+	@pdm run coverage xml -o coverage/coverage.xml
 
 .PHONE: publish  ## Publish to PyPi
 publish: .pdm

@@ -20,7 +20,7 @@ def test_login_success(monkeypatch, client: Client):
         return "327751"
 
     monkeypatch.setattr("builtins.input", mock_input)
-    sso.login("mtamizi@gmail.com", "gqx*atm7kht!vpm9UAV", client=client)
+    sso.login("user@example.com", "correct_password", client=client)
 
 
 def test_set_expirations():

@@ -32,23 +32,23 @@ def login(
     )
 
     # Set cookies
-    resp = client.get("sso", "/sso/embed", params=SSO_EMBED_PARAMS)
+    client.get("sso", "/sso/embed", params=SSO_EMBED_PARAMS)
 
     # Get CSRF token
-    resp = client.get(
+    client.get(
         "sso",
         "/sso/signin",
         params=SIGNIN_PARAMS,
-        headers=dict(referer=resp.url),
+        referrer=True,
     )
-    csrf_token = get_csrf_token(resp.text)
+    csrf_token = get_csrf_token(client.last_resp.text)
 
     # Submit login form with email and password
-    resp = client.post(
+    client.post(
         "sso",
         "/sso/signin",
         params=SIGNIN_PARAMS,
-        headers=dict(referer=resp.url),
+        referrer=True,
         data=dict(
             username=email,
             password=password,
@@ -56,30 +56,17 @@ def login(
             _csrf=csrf_token,
         ),
     )
-    title = get_title(resp.text)
+    title = get_title(client.last_resp.text)
 
     # Handle MFA
     if "MFA" in title:
-        csrf_token = get_csrf_token(resp.text)
-        mfa_code = input("Enter MFA code: ")
-        resp = client.post(
-            "sso",
-            "/sso/verifyMFA/loginEnterMfaCode",
-            params=SIGNIN_PARAMS | dict(rememberMyBrowserChecked="true"),
-            headers=dict(referer=resp.url),
-            data={
-                "mfa-code": mfa_code,
-                "embed": "true",
-                "_csrf": csrf_token,
-                "fromPage": "setupEnterMfaCode",
-            },
-        )
+        handle_mfa(client, SIGNIN_PARAMS)
 
-    if get_title(resp.text) != "Success":
+    if get_title(client.last_resp.text) != "Success":
         raise GarthException("Login failed")
 
     # Parse ticket
-    m = re.search(r'embed\?ticket=([^"]+)"', resp.text)
+    m = re.search(r'embed\?ticket=([^"]+)"', client.last_resp.text)
     if not m:
         raise GarthException("Could not find Service Ticket")
     ticket = m.group(1)
@@ -89,11 +76,28 @@ def login(
         "connect",
         "/modern",
         params=dict(ticket=ticket),
-        headers=dict(referer=resp.url),
+        referrer=True,
     )
     token = exchange(client)
 
     return token
+
+
+def handle_mfa(client: "http.Client", signin_params: dict) -> None:
+    csrf_token = get_csrf_token(client.last_resp.text)
+    mfa_code = input("Enter MFA code: ")
+    client.post(
+        "sso",
+        "/sso/verifyMFA/loginEnterMfaCode",
+        params=signin_params | dict(rememberMyBrowserChecked="true"),
+        referrer=True,
+        data={
+            "mfa-code": mfa_code,
+            "embed": "true",
+            "_csrf": csrf_token,
+            "fromPage": "setupEnterMfaCode",
+        },
+    )
 
 
 def exchange(client: Optional["http.Client"] = None) -> dict:
@@ -101,7 +105,7 @@ def exchange(client: Optional["http.Client"] = None) -> dict:
     token = client.post(
         "connect",
         "/modern/di-oauth/exchange",
-        headers=dict(referer=f"https://connect.{client.domain}/modern"),
+        referrer=f"https://connect.{client.domain}/modern",
     ).json()
     return set_expirations(token)
 

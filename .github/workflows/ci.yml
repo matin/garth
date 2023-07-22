@@ -71,13 +71,15 @@ jobs:
       - run: mkdir coverage
 
       - name: test
-        run: make test
+        run: make testcov
         env:
-          COVERAGE_FILE: coverage/.coverage.${{ runner.os }}-py${{ matrix.python-version }}-with-deps
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}-with-deps
 
-      - name: upload coverage
-        uses: actions/upload-artifact@v2
+      - name: upload coverage to Codecov
+        uses: codecov/codecov-action@v3
         with:
-          name: coverage
-          path: coverage
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/coverage.xml
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true

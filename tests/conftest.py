@@ -54,13 +54,11 @@ def sanitize_request(request):
 
 
 def sanitize_response(response):
-    header_keys = [h for h in response["headers"].keys()]
-    if "set-cookie" in [h.lower() for h in header_keys]:
-        idx = [h.lower() for h in header_keys].index("set-cookie")
-        key = header_keys[idx]
-        cookies = response["headers"][key]
-        sanitized_cookies = [sanitize_cookie(cookie) for cookie in cookies]
-        response["headers"][key] = sanitized_cookies
+    for key in ["set-cookie", "Set-Cookie"]:
+        if key in response["headers"]:
+            cookies = response["headers"][key]
+            sanitized_cookies = [sanitize_cookie(cookie) for cookie in cookies]
+            response["headers"][key] = sanitized_cookies
 
     if "body" in response and response["body"]["string"]:
         try:

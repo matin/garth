@@ -4,7 +4,7 @@ import pickle
 import re
 from dataclasses import asdict
 
-from requests import Session
+from requests import Response, Session
 from requests.adapters import HTTPAdapter, Retry
 from requests.cookies import RequestsCookieJar
 
@@ -21,6 +21,7 @@ USER_AGENT = {
 
 class Client:
     sess: Session
+    last_resp: Response
     domain: str = "garmin.com"
     auth_token: AuthToken | None = None
     timeout: int = 15
@@ -98,24 +99,29 @@ class Client:
         path: str,
         /,
         api: bool = False,
+        referrer: str | bool | None = None,
         headers: dict = {},
         **kwargs,
     ):
         url = f"https://{subdomain}.{self.domain}{path}"
+        if referrer is True and self.last_resp:
+            headers["referer"] = self.last_resp.url
+        elif referrer:
+            headers["referer"] = referrer
         if api:
             if self.auth_token and self.auth_token.expired:
                 self.auth_token.refresh(client=self)
             headers["Authorization"] = str(self.auth_token)
             headers["di-backend"] = f"connectapi.{self.domain}"
-        resp = self.sess.request(
+        self.last_resp = self.sess.request(
             method,
             url,
             headers=headers,
             timeout=self.timeout,
             **kwargs,
         )
-        resp.raise_for_status()
-        return resp
+        self.last_resp.raise_for_status()
+        return self.last_resp
 
     def get(self, *args, **kwargs):
         return self.request("GET", *args, **kwargs)
