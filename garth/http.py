@@ -129,11 +129,8 @@ class Client:
     def post(self, *args, **kwargs):
         return self.request("POST", *args, **kwargs)
 
-    def login(self, *args, clear_cookies: bool = False):
-        if clear_cookies:
-            self.cookies = RequestsCookieJar()
-        token = AuthToken.login(*args, client=self)
-        self.auth_token = token
+    def login(self, *args):
+        self.auth_token = AuthToken.login(*args, client=self)
 
     def connectapi(self, path: str, **kwargs):
         return self.get("connect", path, api=True, **kwargs).json()
