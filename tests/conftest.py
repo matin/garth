@@ -48,6 +48,14 @@ def auth_token() -> AuthToken:
     return token
 
 
+@pytest.fixture
+def authed_client(mocker, auth_token_dict: dict, auth_token: AuthToken):
+    mock_client = mocker.MagicMock(spec=Client)
+    mock_client.auth_token = auth_token
+    mock_client.post.return_value.json.return_value = auth_token_dict
+    return mock_client
+
+
 def sanitize_cookie(cookie_value):
     return re.sub(r"=[^;]*", "=SANITIZED", cookie_value)
 

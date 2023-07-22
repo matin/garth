@@ -4,6 +4,7 @@ import pytest
 from requests import HTTPError
 
 from garth import sso
+from garth.auth_token import AuthToken
 from garth.exc import GarthException
 from garth.http import Client
 
@@ -33,6 +34,30 @@ def test_set_expirations(auth_token_dict: dict):
         - time.time()
         - auth_token_dict["refresh_token_expires_in"]
         < 1
+    )
+
+
+def test_exchange(authed_client):
+    token = sso.exchange(authed_client)
+    AuthToken(**token)
+    assert authed_client.post.called
+    assert authed_client.post.return_value.json.called
+    assert authed_client.post.return_value.json.return_value == token
+    assert authed_client.post.call_args[0] == (
+        "connect",
+        "/modern/di-oauth/exchange",
+    )
+
+
+def test_refresh(authed_client):
+    token = sso.refresh("baz", authed_client)
+    AuthToken(**token)
+    assert authed_client.post.called
+    assert authed_client.post.return_value.json.called
+    assert authed_client.post.return_value.json.return_value == token
+    assert authed_client.post.call_args[0] == (
+        "connect",
+        "/services/auth/token/refresh",
     )
 
 
