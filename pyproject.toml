@@ -17,7 +17,7 @@ requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 [tool.pytest.ini_options]
-addopts = "--ignore=__pypackages__"
+addopts = "--ignore=__pypackages__ --ignore=tests/cassettes"
 
 [tool.pdm.dev-dependencies]
 dev = [
