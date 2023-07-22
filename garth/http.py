@@ -99,7 +99,7 @@ class Client:
         path: str,
         /,
         api: bool = False,
-        referrer: str | bool | None = None,
+        referrer: str | bool = False,
         headers: dict = {},
         **kwargs,
     ):
