@@ -87,8 +87,7 @@ class Client:
             return self._username
         resp = self.get("connect", "/modern")
         m = re.search(r'userName":"(.+?)"', resp.text)
-        if not m:
-            raise GarthException("Could not find username")
+        assert m
         self._username = m.group(1)
         return self._username
 
