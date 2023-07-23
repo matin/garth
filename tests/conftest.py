@@ -15,12 +15,12 @@ def session():
 
 
 @pytest.fixture
-def client(session):
+def client(session) -> Client:
     return Client(session=session)
 
 
 @pytest.fixture
-def auth_token_dict():
+def auth_token_dict() -> dict:
     return dict(
         scope="CONNECT_READ CONNECT_WRITE",
         jti="foo",
@@ -33,30 +33,26 @@ def auth_token_dict():
 
 
 @pytest.fixture
-def auth_token() -> AuthToken:
+def auth_token(auth_token_dict: dict) -> AuthToken:
     token = AuthToken(
-        scope="CONNECT_READ CONNECT_WRITE",
-        jti="foo",
-        token_type="Bearer",
-        access_token="bar",
-        refresh_token="baz",
-        expires_in=3599,
         expires_at=int(time.time() + 3599),
-        refresh_token_expires_in=7199,
         refresh_token_expires_at=int(time.time() + 7199),
+        **auth_token_dict,
     )
     return token
 
 
 @pytest.fixture
-def authed_client(mocker, auth_token_dict: dict, auth_token: AuthToken):
+def authed_client(
+    mocker, auth_token_dict: dict, auth_token: AuthToken
+) -> Client:
     mock_client = mocker.MagicMock(spec=Client)
     mock_client.auth_token = auth_token
     mock_client.post.return_value.json.return_value = auth_token_dict
     return mock_client
 
 
-def sanitize_cookie(cookie_value):
+def sanitize_cookie(cookie_value) -> str:
     return re.sub(r"=[^;]*", "=SANITIZED", cookie_value)
 
 
