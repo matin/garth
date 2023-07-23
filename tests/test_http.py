@@ -115,3 +115,19 @@ def test_save_and_resume_session(authed_client: Client):
 
         assert new_client.sess.cookies == authed_client.sess.cookies
         assert new_client.auth_token == authed_client.auth_token
+
+
+@pytest.mark.vcr
+def test_connectapi(authed_client: Client):
+    stress = authed_client.connectapi(
+        "/usersummary-service/stats/stress/daily/2023-07-21/2023-07-21"
+    )
+    assert len(stress) == 1
+    assert stress[0]["calendarDate"] == "2023-07-21"
+    assert list(stress[0]["values"].keys()) == [
+        "highStressDuration",
+        "lowStressDuration",
+        "overallStressLevel",
+        "restStressDuration",
+        "mediumStressDuration",
+    ]
