@@ -1,6 +1,6 @@
 [project]
 name = "garth"
-version = {attr = "garth.__version__"}
+version = "0.2.0"
 description = "Garmin SSO auth + Connect client"
 authors = [
     {name = "Matin Tamizi", email = "mtamizi@duck.com"},
