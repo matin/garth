@@ -1,0 +1,62 @@
+interactions:
+- request:
+    body: '{"refresh_token": "SANITIZED"}'
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '57'
+      Content-Type:
+      - application/json
+      Cookie:
+      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
+        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; SESSIONID=SANITIZED; __cflb=SANITIZED
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+    method: POST
+    uri: https://connect.garmin.com/services/auth/token/refresh
+  response:
+    body:
+      string: '{"access_token": "SANITIZED", "token_type": "bearer", "refresh_token":
+        "SANITIZED", "expires_in": 3599, "scope": "COMMUNITY_COURSE_READ GOLF_API_READ
+        GHS_HID ATP_READ GHS_SAMD INSIGHTS_READ COMMUNITY_COURSE_WRITE CONNECT_WRITE
+        DIVE_SHARED_READ GHS_REGISTRATION GOLF_API_WRITE INSIGHTS_WRITE PRODUCT_SEARCH_READ
+        GOLF_SHARED_READ CONNECT_NON_SOCIAL_SHARED_READ CONNECT_READ ATP_WRITE", "jti":
+        "SANITIZED", "refresh_token_expires_in": 7199}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 7eb41bb0d8471549-QRO
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '1685'
+      Content-Type:
+      - application/json; charset=utf-8
+      Date:
+      - Sun, 23 Jul 2023 13:00:46 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=qvssb2pR8clCJ9TqmPzrjjTgy2YL5%2F1ZiGv%2F8zmCUgQVf6AJeZTNgTsOCCUdPSWP%2Bm%2FNrTGy2frrbJJ2quWBgK04viYeGeiKqh5KBiYOtkYVq2vCKg2PvZzAXDf0rGIMz%2FVcrA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      etag:
+      - W/"695-06sM1EKqILFTnvbNt7w08+ZJ9Rs"
+      set-cookie:
+      - JWT_FGP=SANITIZED; Max-Age=SANITIZED; Domain=SANITIZED; Path=SANITIZED; Expires=SANITIZED;
+        HttpOnly; Secure
+      x-powered-by:
+      - Express
+      x-vcap-request-id:
+      - 7dd8a031-3d6c-46a5-49c9-4d62c693158d
+    status:
+      code: 201
+      message: Created
+version: 1

@@ -1,4 +1,5 @@
 import json
+import os
 import re
 import time
 
@@ -43,13 +44,13 @@ def auth_token(auth_token_dict: dict) -> AuthToken:
 
 
 @pytest.fixture
-def authed_client(
-    mocker, auth_token_dict: dict, auth_token: AuthToken
-) -> Client:
-    mock_client = mocker.MagicMock(spec=Client)
-    mock_client.auth_token = auth_token
-    mock_client.post.return_value.json.return_value = auth_token_dict
-    return mock_client
+def authed_client(auth_token: AuthToken) -> Client:
+    client = Client()
+    if "GARTH_SESSION" in os.environ:
+        client.resume_session(os.environ["GARTH_SESSION"])
+    else:
+        client.auth_token = auth_token
+    return client
 
 
 def sanitize_cookie(cookie_value) -> str:
@@ -59,8 +60,8 @@ def sanitize_cookie(cookie_value) -> str:
 def sanitize_request(request):
     if request.body:
         body = request.body.decode("utf8")
-        body = re.sub(r"username=[^&]*", "username=SANITIZED", body)
-        body = re.sub(r"password=[^&]*", "password=SANITIZED", body)
+        for key in ["username", "password"]:
+            body = re.sub(key + r"=[^&]*", "username=SANITIZED", body)
         request.body = body.encode("utf8")
 
     if "Cookie" in request.headers:

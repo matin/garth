@@ -38,5 +38,4 @@ testing = [
     "coverage",
     "pytest",
     "pytest-vcr>=1.0.2",
-    "pytest-mock>=3.11.1",
 ]

@@ -37,28 +37,18 @@ def test_set_expirations(auth_token_dict: dict):
     )
 
 
-def test_exchange(authed_client):
+@pytest.mark.vcr
+def test_exchange(authed_client: Client):
     token = sso.exchange(authed_client)
     AuthToken(**token)
-    assert authed_client.post.called
-    assert authed_client.post.return_value.json.called
-    assert authed_client.post.return_value.json.return_value == token
-    assert authed_client.post.call_args[0] == (
-        "connect",
-        "/modern/di-oauth/exchange",
-    )
 
 
-def test_refresh(authed_client):
-    token = sso.refresh("baz", authed_client)
+@pytest.mark.vcr
+def test_refresh(authed_client: Client):
+    assert authed_client.auth_token is not None
+    refresh_token = authed_client.auth_token.refresh_token
+    token = sso.refresh(refresh_token, authed_client)
     AuthToken(**token)
-    assert authed_client.post.called
-    assert authed_client.post.return_value.json.called
-    assert authed_client.post.return_value.json.return_value == token
-    assert authed_client.post.call_args[0] == (
-        "connect",
-        "/services/auth/token/refresh",
-    )
 
 
 def test_get_csrf_token():
