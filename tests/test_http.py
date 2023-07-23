@@ -1,4 +1,5 @@
 import tempfile
+import time
 
 import pytest
 from requests import HTTPError
@@ -131,3 +132,15 @@ def test_connectapi(authed_client: Client):
         "restStressDuration",
         "mediumStressDuration",
     ]
+
+
+@pytest.mark.vcr
+def test_connectapi_refresh(authed_client: Client):
+    assert authed_client.auth_token
+    authed_client.auth_token.expires_at = int(time.time() - 1)
+    assert authed_client.auth_token.expired
+    assert not authed_client.auth_token.refresh_expired
+    authed_client.connectapi(
+        "/usersummary-service/stats/stress/daily/2023-07-21/2023-07-21"
+    )
+    assert not authed_client.auth_token.expired

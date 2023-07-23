@@ -60,7 +60,7 @@ def sanitize_cookie(cookie_value) -> str:
 def sanitize_request(request):
     if request.body:
         body = request.body.decode("utf8")
-        for key in ["username", "password"]:
+        for key in ["username", "password", "refresh_token"]:
             body = re.sub(key + r"=[^&]*", "username=SANITIZED", body)
         request.body = body.encode("utf8")
 
