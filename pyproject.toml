@@ -13,7 +13,7 @@ readme = "README.md"
 license = {text = "MIT"}
 
 [tool.pdm]
-version = { source = "file", path = "garth/__version__.py" }
+version = { source = "file", path = "garth/__init__.py" }
 
 [build-system]
 requires = ["pdm-backend"]
