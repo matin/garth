@@ -40,7 +40,11 @@ def test_set_expirations(auth_token_dict: dict):
 @pytest.mark.vcr
 def test_exchange(authed_client: Client):
     token = sso.exchange(authed_client)
-    AuthToken(**token)
+    auth_token = AuthToken(**token)
+    assert not auth_token.expired
+    assert not auth_token.refresh_expired
+    assert auth_token.token_type.title() == "Bearer"
+    assert authed_client.auth_token != auth_token
 
 
 @pytest.mark.vcr
@@ -48,7 +52,11 @@ def test_refresh(authed_client: Client):
     assert authed_client.auth_token is not None
     refresh_token = authed_client.auth_token.refresh_token
     token = sso.refresh(refresh_token, authed_client)
-    AuthToken(**token)
+    auth_token = AuthToken(**token)
+    assert not auth_token.expired
+    assert not auth_token.refresh_expired
+    assert auth_token.token_type.title() == "Bearer"
+    assert authed_client.auth_token != auth_token
 
 
 def test_get_csrf_token():

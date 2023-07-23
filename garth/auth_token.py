@@ -36,4 +36,4 @@ class AuthToken:
         return self.refresh_token_expires_at < time.time()
 
     def __str__(self):
-        return f"{self.token_type} {self.access_token}"
+        return f"{self.token_type.title()} {self.access_token}"
