@@ -1,6 +1,15 @@
 from .http import client
+from .version import __version__
 
-__version__ = "0.2.1"
+__all__ = [
+    "client",
+    "configure",
+    "login",
+    "connectapi",
+    "save",
+    "resume",
+    "__version__",
+]
 
 configure = client.configure
 login = client.login
