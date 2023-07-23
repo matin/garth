@@ -95,3 +95,10 @@ def test_login_success(monkeypatch, client: Client):
     assert client.auth_token is None
     client.login("user@example.com", "correct_password")
     assert client.auth_token is not None
+
+
+@pytest.mark.vcr
+def test_get_username(authed_client: Client):
+    assert not authed_client._username
+    assert authed_client.username
+    assert authed_client._username == authed_client.username

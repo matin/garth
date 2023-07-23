@@ -1,0 +1,125 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Cookie:
+      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
+        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; SESSIONID=SANITIZED; __cflb=SANITIZED
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+    method: GET
+    uri: https://connect.garmin.com/modern
+  response:
+    body:
+      string: "<!DOCTYPE html>\n<html class=\"signed-in\" lang=\"es\">\n\n\n\n<head>\n
+        \   <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"/>\n    <meta
+        charset=\"UTF-8\"/>\n    <meta name=\"viewport\" content=\"width=device-width,
+        initial-scale=1.0\"/>\n\n    <title>Garmin Connect</title>\n\n    \n\n\n    \n\n
+        \   <link rel=\"shortcut icon\" href=\"/modern/images/favicon.ico\" />\n\n
+        \   <!-- Connect Styles -->\n    \n        <link rel=\"stylesheet\" type=\"text/css\"
+        href=\"/modern/css/dropzone.min.css?bust=4.69.0.17\" />\n        <link rel=\"stylesheet\"
+        type=\"text/css\" href=\"/web-react/styles/global.css?bust=4.69.0.17\" />\n
+        \   \n    \n\n    \n\n    <!-- to be modify the google fonts in cdn here -->\n
+        \   <!--garmin.cn-->\n\n    \n    \n        <!-- FONTS -->\n        <link
+        rel='stylesheet' type='text/css' href=\"https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&amp;subset=latin,cyrillic-ext,greek-ext,vietnamese\"
+        />\n    \n\n\n\n    <title>Connect</title>\n</head>\n\n\n<body>\n<a href=\"connectagent://launch\"
+        id=\"notify-agent\" style=\"display: none\" tabindex=\"-1\"><!-- dummy comment
+        --></a>\n\n\n\n<div class=\"connect-container\">\n\n    <nav class=\"main-nav
+        hide\"><!-- main navigation --></nav>\n\n    <div class=\"react-global-modal\"><!--
+        react-global-modal --></div>\n\n    <div class=\"main-body\">\n        <!--
+        Header -->\n        \n\n    <header class=\"header hide\">\n        <!-- placeholder
+        -->\n    </header>\n\n    <section class=\"beta-testers-survey-banner takeover-container\">\n
+        \       <!-- placeholder -->\n    </section>\n\n\n<div class=\"main-header\"></div>\n\n\n
+        \       <!-- Content Container -->\n        \n<div class=\"content clearfix\">\n\n
+        \   \n    <script>\n        window.VIEWER_USERPREFERENCES = {\"heartRateFormat\":{\"formatKey\":\"bpm\",\"formatId\":21,\"maxFraction\":0,\"displayFormat\":null,\"groupingUsed\":false,\"minFraction\":0},\"golfSpeedUnit\":null,\"dateFormat\":{\"formatKey\":\"mmddyyyy\",\"formatId\":23,\"maxFraction\":0,\"displayFormat\":\"EEE,
+        MMM d, yyyy\",\"groupingUsed\":false,\"minFraction\":0},\"displayName\":\"acamus\",\"golfDistanceUnit\":\"statute_us\",\"timeZone\":\"America\\/Chicago\",\"hydrationContainers\":[],\"hydrationMeasurementUnit\":\"milliliter\",\"powerFormat\":{\"formatKey\":\"watt\",\"formatId\":30,\"maxFraction\":0,\"displayFormat\":null,\"groupingUsed\":true,\"minFraction\":0},\"numberFormat\":\"decimal_period\",\"firstDayOfWeek\":{\"dayName\":\"sunday\",\"isPossibleFirstDay\":true,\"sortOrder\":2,\"dayId\":2},\"timeFormat\":{\"formatKey\":\"time_twenty_four_hr\",\"formatId\":33,\"maxFraction\":0,\"displayFormat\":\"H:mm\",\"groupingUsed\":false,\"minFraction\":0},\"measurementSystem\":\"metric\",\"golfElevationUnit\":null,\"preferredLocale\":\"es\"};\n
+        \       window.VIEWER_SOCIAL_PROFILE = {\"runningTrainingSpeed\":0,\"swimmingTrainingSpeed\":0,\"showRecentDevice\":false,\"twitterUrl\":null,\"levelIsViewed\":false,\"bio\":null,\"activityStartVisibility\":\"private\",\"cyclingTrainingSpeed\":0,\"showHeight\":false,\"showBadges\":true,\"levelUpdateDate\":\"2020-12-12T15:20:38.0\",\"id\":3154645,\"showRecentFavorites\":false,\"makeGolfScorecardsPrivate\":true,\"activityHeartRateVisibility\":\"public\",\"profileVisibility\":\"private\",\"nameApproved\":true,\"garminGUID\":\"0690cc1d-d23d-4412-b027-80fd4ed1c0f6\",\"otherMotivation\":null,\"showAgeRange\":false,\"showLifetimeTotals\":false,\"favoriteCyclingActivityTypes\":[],\"cyclingClassification\":null,\"otherPrimaryActivity\":null,\"userPointOffset\":0,\"userRoles\":[\"ROLE_OUTDOOR_USER\",\"ROLE_CONNECTUSER\",\"ROLE_FITNESS_USER\",\"ROLE_WELLNESS_USER\",\"ROLE_CONNECT_2_USER\",\"ROLE_TACX_APP_USER\"],\"profileId\":2591602,\"showActivityClass\":false,\"profileImageUrlSmall\":\"https:\\/\\/s3.amazonaws.com\\/garmin-connect-prod\\/profile_images\\/6302f021-0ec7-4dc9-b0c3-d5a19bc5a08c-2591602.png\",\"showRecentGear\":false,\"showLast12Months\":false,\"showGender\":false,\"displayName\":\"acamus\",\"personalWebsite\":null,\"motivation\":null,\"primaryActivity\":null,\"facebookUrl\":null,\"userLevel\":3,\"userPro\":false,\"favoriteActivityTypes\":[],\"courseVisibility\":\"public\",\"profileImageUuid\":\"73240e81-6e4d-43fc-8af8-c8f6c51b3b8f\",\"userPoint\":117,\"badgeVisibility\":\"private\",\"fullName\":\"Albert
+        Camus\",\"showWeightClass\":false,\"allowGolfScoringByConnections\":true,\"levelPointThreshold\":140,\"userName\":\"acamus\",\"showVO2Max\":false,\"allowGolfLiveScoring\":false,\"profileImageUrlMedium\":\"https:\\/\\/s3.amazonaws.com\\/garmin-connect-prod\\/profile_images\\/685a19e9-a7be-4a11-9bf9-faca0c5d1f1a-2591602.png\",\"otherActivity\":null,\"showUpcomingEvents\":false,\"showAge\":false,\"profileImageUrlLarge\":\"https:\\/\\/s3.amazonaws.com\\/garmin-connect-prod\\/profile_images\\/73240e81-6e4d-43fc-8af8-c8f6c51b3b8f-2591602.png\",\"location\":\"Ciudad
+        de M\xE9xico, CDMX\",\"showPersonalRecords\":false,\"activityMapVisibility\":\"public\",\"userProfileFullName\":\"Albert
+        Camus\",\"cyclingMaxAvgPower\":0,\"showWeight\":false,\"activityPowerVisibility\":\"public\"};\n
+        \       window.VIEWER_DASHBOARDS = [{\"dashboardTitle\":\"\",\"dashboardId\":3282008,\"dashboardOrder\":0,\"ownerId\":2591602,\"dashboardTitleKey\":\"fitness_dashboard\"},{\"dashboardTitle\":\"\",\"dashboardId\":55801129,\"dashboardOrder\":1,\"ownerId\":2591602,\"dashboardTitleKey\":\"wellness_dashboard\"},{\"dashboardTitle\":\"\",\"dashboardId\":55801130,\"dashboardOrder\":2,\"ownerId\":2591602,\"dashboardTitleKey\":\"golf_dashboard\"}];\n\n
+        \       window.queueNotificationTimeout = 600000;\n        window.queuePollRate
+        = 600000;\n\n        window.ERROR_VIEW = null;\n        window.USER_PROFILE
+        = null;\n\n        window.viewerIsAuthenticated = true;\n\n        window.SYSTEM_TIME_GMT
+        = 1690120321447;\n        window.SESSION_LENGTH = 2700000;\n        window.GAUTH_HOST
+        = \"https:\\/\\/sso.garmin.com\\/sso\";\n        window.GARMIN_APP_URL = \"https:\\/\\/apps.garmin.com\\/connect?locale={locale}\";\n
+        \       window.WEB_TOKEN = \"\";\n        window.URL_BUST_VALUE = \"4.69.0.17\";\n\n
+        \       window.IS_READONLY = null;\n        window.PRODUCT_SUPPORT_MODE =
+        null;\n\n        window.JS_ERROR = true;\n        window.DI_BACKENDS = {\"golf\":\"golf.garmin.com\",\"ghs\":\"ghs.connect.garmin.com\",\"insights\":\"insights.gcs.garmin.com\",\"gcs\":\"api.gcs.garmin.com\",\"gcapi\":\"connectapi.garmin.com\",\"omt\":\"omt.garmin.com\",\"gcsalt\":\"gcs.garmin.com\",\"atp\":\"atp.gcs.garmin.com\"};\n
+        \       window.PREFERENCES = {\"ce34657d-8a85-4b6e-8bb4-00897590c217\":\"ROLE_DI_TESTER\",\"5c8d3401-e6e7-4354-9095-39526016a47c\":\"ROLE_CONNECTUSER\",\"d3c94498-8962-4a62-bd3a-0d80a08e3386\":\"false\",\"7ae52c9a-1967-46e9-952f-3e40e3770bde\":\"ROLE_DI_TESTER\"};\n
+        \   </script>\n\n    <script src=\"/web-react/static/js/vendor.js?bust=4.69.0.17\"></script>\n
+        \   <script src=\"/web-react/static/js/backbone-lib.js?bust=4.69.0.17\"></script>\n
+        \   <script src=\"/web-react/static/js/bundle.js?bust=4.69.0.17\"></script>\n</div>\n\n
+        \       <!-- END .content -->\n\n        <!-- Footer -->\n        <div class=\"main-footer\"></div>\n
+        \       <!-- END .footer -->\n        <p style=\"display: none;\" id=\"garmin-connect-version\">4.69.0.17</p>\n
+        \   </div>\n\n    <!-- END .container -->\n</div>\n\n<style>\n    .privacy-overlay
+        {\n        position: fixed; /* Sit on top of the page content */\n        width:
+        100%; /* Full width (cover the whole page) */\n        height: 100%; /* Full
+        height (cover the whole page) */\n        top: 0;\n        left: 0;\n        background-color:
+        #fff;\n        z-index: 9999; /* Specify a stack order in case you're using
+        a different order for other elements */\n    }\n</style>\n\n<div id=\"overlay\"
+        class=\"privacy-overlay\">\n</div>\n\n<script defer src=\"https://static.cloudflareinsights.com/beacon.min.js/v2cb3a2ab87c5498db5ce7e6608cf55231689030342039\"
+        integrity=\"sha512-DI3rPuZDcpH/mSGyN22erN5QFnhl760f50/te7FTIYxodEF8jJnSFnfnmG/c+osmIQemvUrnBtxnMpNdzvx1/g==\"
+        data-cf-beacon='{\"rayId\":\"7eb466c789a7b6ee\",\"version\":\"2023.4.0\",\"b\":1,\"token\":\"1bd18b8f69214e379ef7bd34509191ae\",\"si\":100}'
+        crossorigin=\"anonymous\"></script>\n</body>\n\n\n\n</html>"
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 7eb466c789a7b6ee-QRO
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - text/html;charset=UTF-8
+      Date:
+      - Sun, 23 Jul 2023 13:52:01 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=d%2F1QJlUAShwmo9ItttTPbc%2B9cyJGyLqNToRoH1%2BVRBhYxknfTfuYSZeZKnFOmUae%2BWyVgfDIUPsLNuyi2y8To8QJGAHQDQraTHB0HO0S1YoyX9ahT37gh7EJyadyYHLok8YVVA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      cache-control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      content-language:
+      - en-US
+      expires:
+      - '0'
+      pragma:
+      - no-cache
+      set-cookie:
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      strict-transport-security:
+      - max-age=31536000 ; includeSubDomains
+      x-content-type-options:
+      - nosniff
+      x-frame-options:
+      - DENY
+      x-vcap-request-id:
+      - 97e13421-a47d-4b04-5372-a052ef2e7417
+      x-xss-protection:
+      - 1; mode=block
+    status:
+      code: 200
+      message: OK
+version: 1
