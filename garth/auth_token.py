@@ -24,8 +24,8 @@ class AuthToken:
         if self.refresh_expired:
             token = sso.exchange(**kwargs)
         else:
-            token = self.__class__(**sso.refresh(self.refresh_token, **kwargs))
-        self.__dict__.update(token.__dict__)
+            token = sso.refresh(self.refresh_token, **kwargs)
+        self.__dict__.update(token)
 
     @property
     def expired(self):
