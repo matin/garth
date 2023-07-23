@@ -46,9 +46,9 @@ def auth_token(auth_token_dict: dict) -> AuthToken:
 @pytest.fixture
 def authed_client(auth_token: AuthToken) -> Client:
     client = Client()
-    if "GARTH_SESSION" in os.environ:
+    try:
         client.resume_session(os.environ["GARTH_SESSION"])
-    else:
+    except KeyError:
         client.auth_token = auth_token
     return client
 
