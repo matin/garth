@@ -16,7 +16,7 @@ class DailyStress:
     rest_stress_duration: int
     low_stress_duration: int
     medium_stress_duration: int
-    high_stress_duration: int
+    high_stress_duration: int | None
 
     _path: ClassVar[str] = f"{BASE_PATH}/daily"
     _page_size: ClassVar[int] = 28
