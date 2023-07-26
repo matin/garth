@@ -18,7 +18,7 @@ requires = ["pdm-backend"]
 build-backend = "pdm.backend"
 
 [tool.pytest.ini_options]
-addopts = "--ignore=__pypackages__ --ignore=tests/cassettes"
+addopts = "--ignore=__pypackages__"
 
 [tool.pdm]
 version = { source = "file", path = "garth/version.py" }
