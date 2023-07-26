@@ -1,14 +1,17 @@
 from .http import client
+from .resources import DailyStress, WeeklyStress
 from .version import __version__
 
 __all__ = [
+    "DailyStress",
+    "WeeklyStress",
+    "__version__",
     "client",
     "configure",
-    "login",
     "connectapi",
-    "save",
+    "login",
     "resume",
-    "__version__",
+    "save",
 ]
 
 configure = client.configure

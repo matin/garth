@@ -5,6 +5,11 @@
 
 Garmin SSO auth + Connect client
 
+## Google Colabs
+
+[Graph 28-day rolling average of daily stress](https://colab.research.google.com/github/matin/garth/blob/main/colabs/stress.ipynb)
+
+
 ## Background
 
 Garth is meant for personal use and follows the philosiphy that your data is
@@ -21,11 +26,11 @@ works on [Google Colab](https://colab.research.google.com/) and doesn't require
 tools like Cloudscraper. Garth, in comparison:
 
 1. Uses the same embedded SSO as the mobile app
-1. Only requires `requests` as a dependency
+1. Only requires `requests` and `pydantic` as a dependencies
 1. Supports MFA
 1. Supports saving and resuming sessions to avoid the need to log in each time
 you run a script, which is particularly useful if you have MFA enabled
-1. Appears to be working on Google Colab thus far 🤞🏽
+1. Works on Google Colab
 
 ### Python 3.10+
 
@@ -139,6 +144,46 @@ stress =  garth.connectapi(f"/usersummary-service/stats/stress/weekly/2023-07-05
 }
 ```
 
-## Google Colabs
+## Resources
 
-[Graph 28-day rolling average of daily stress](https://colab.research.google.com/github/matin/garth/blob/main/colabs/stress.ipynb)
+### Stress
+
+Daily stress levels
+
+```python
+DailyStress.get("2023-07-23", 2)
+```
+
+```python
+[
+    DailyStress(
+        calendar_date=datetime.date(2023, 7, 22),
+        overall_stress_level=31,
+        rest_stress_duration=31980,
+        low_stress_duration=23820,
+        medium_stress_duration=7440,
+        high_stress_duration=1500
+    ),
+    DailyStress(
+        calendar_date=datetime.date(2023, 7, 23),
+        overall_stress_level=26,
+        rest_stress_duration=38220,
+        low_stress_duration=22500,
+        medium_stress_duration=2520,
+        high_stress_duration=300
+    )
+]
+```
+
+Weekly stress levels
+
+```python
+WeeklyStress.get("2023-07-23", 2)
+```
+
+```python
+[
+    WeeklyStress(calendar_date=datetime.date(2023, 7, 10), value=33),
+    WeeklyStress(calendar_date=datetime.date(2023, 7, 17), value=32)
+]
+```
