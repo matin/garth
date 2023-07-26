@@ -70,9 +70,6 @@ jobs:
 
       - run: mkdir coverage
 
-      - name: check PyYAML version
-        run: pdm run python -c "import yaml; print(yaml.__version__)"
-
       - name: test
         run: make testcov
         env:
