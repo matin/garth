@@ -16,13 +16,6 @@ license = {text = "MIT"}
 [tool.pdm]
 version = { source = "file", path = "garth/version.py" }
 
-[build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
-
-[tool.pytest.ini_options]
-addopts = "--ignore=__pypackages__ --ignore=tests/cassettes"
-
 [tool.pdm.dev-dependencies]
 dev = [
     "ipython",
@@ -42,4 +35,11 @@ testing = [
     "coverage",
     "pytest",
     "pytest-vcr>=1.0.2",
+    "pytest-mock>=3.11.1",
 ]
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
+
+[tool.pytest.ini_options]
+addopts = "--ignore=__pypackages__ --ignore=tests/cassettes"
