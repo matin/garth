@@ -26,7 +26,7 @@ works on [Google Colab](https://colab.research.google.com/) and doesn't require
 tools like Cloudscraper. Garth, in comparison:
 
 1. Uses the same embedded SSO as the mobile app
-1. Only requires `requests` and `pydantic` as a dependencies
+1. Only requires `requests` and `pydantic` as dependencies
 1. Supports MFA
 1. Supports saving and resuming sessions to avoid the need to log in each time
 you run a script, which is particularly useful if you have MFA enabled
