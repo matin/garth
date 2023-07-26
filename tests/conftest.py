@@ -47,7 +47,7 @@ def auth_token(auth_token_dict: dict) -> AuthToken:
 def authed_client(auth_token: AuthToken) -> Client:
     client = Client()
     try:
-        client.resume_session(os.environ["GARTH_SESSION"])
+        client.load(os.environ["GARTH_SESSION"])
     except KeyError:
         client.auth_token = auth_token
     return client

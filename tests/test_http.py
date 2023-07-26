@@ -109,10 +109,10 @@ def test_get_username(authed_client: Client):
 
 def test_save_and_resume_session(authed_client: Client):
     with tempfile.TemporaryDirectory() as tempdir:
-        authed_client.save_session(tempdir)
+        authed_client.dump(tempdir)
 
         new_client = Client()
-        new_client.resume_session(tempdir)
+        new_client.load(tempdir)
 
         assert new_client.sess.cookies == authed_client.sess.cookies
         assert new_client.auth_token == authed_client.auth_token

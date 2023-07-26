@@ -133,14 +133,14 @@ class Client:
     def connectapi(self, path: str, **kwargs):
         return self.get("connect", path, api=True, **kwargs).json()
 
-    def save_session(self, dir_path: str):
+    def dump(self, dir_path: str):
         dir_path = os.path.expanduser(dir_path)
         with open(os.path.join(dir_path, "cookies.pickle"), "wb") as f:
             pickle.dump(self.sess.cookies, f)
         with open(os.path.join(dir_path, "auth_token.json"), "w") as f:
             json.dump(asdict(self.auth_token) if self.auth_token else {}, f)
 
-    def resume_session(self, dir_path: str):
+    def load(self, dir_path: str):
         dir_path = os.path.expanduser(dir_path)
         with open(os.path.join(dir_path, "cookies.pickle"), "rb") as f:
             cookies = pickle.load(f)
