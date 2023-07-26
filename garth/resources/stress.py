@@ -13,9 +13,9 @@ BASE_PATH = "/usersummary-service/stats/stress"
 class DailyStress:
     calendar_date: date
     overall_stress_level: int
-    rest_stress_duration: int
-    low_stress_duration: int
-    medium_stress_duration: int
+    rest_stress_duration: int | None
+    low_stress_duration: int | None
+    medium_stress_duration: int | None
     high_stress_duration: int | None
 
     _path: ClassVar[str] = f"{BASE_PATH}/daily"
