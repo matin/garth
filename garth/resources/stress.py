@@ -4,7 +4,7 @@ from typing import ClassVar
 from pydantic.dataclasses import dataclass
 
 from .. import http
-from ..utils import camel_to_snake_dict
+from ..utils import camel_to_snake_dict, format_end_date
 
 BASE_PATH = "/usersummary-service/stats/stress"
 
@@ -24,13 +24,13 @@ class DailyStress:
     @classmethod
     def get(
         cls,
-        end: date | str,
+        end: date | str | None = None,
         days: int = 1,
         *,
         client: http.Client | None = None,
     ) -> list["DailyStress"]:
         client = client or http.client
-        end = date.fromisoformat(end) if isinstance(end, str) else end
+        end = format_end_date(end)
         # paginate for more than 28 days
         if days > cls._page_size:
             page = cls.get(end, cls._page_size, client=client)
@@ -65,13 +65,13 @@ class WeeklyStress:
     @classmethod
     def get(
         cls,
-        end: date | str,
+        end: date | str | None = None,
         weeks: int = 1,
         *,
         client: http.Client | None = None,
     ) -> list["WeeklyStress"]:
         client = client or http.client
-        end = date.fromisoformat(end) if isinstance(end, str) else end
+        end = format_end_date(end)
         # paginate for more than 52 weeks
         if weeks > cls._page_size:
             page = cls.get(end, cls._page_size, client=client)
