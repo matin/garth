@@ -1,11 +1,11 @@
-from datetime import date
-from typing import ClassVar
+from datetime import date, datetime
+from typing import ClassVar, List
 
 from pydantic.dataclasses import dataclass
 
 from .. import http
 from ..stats import Stats
-from ..utils import camel_to_snake_dict
+from ..utils import camel_to_snake_dict, date_range, format_end_date
 
 
 @dataclass(frozen=True)
@@ -42,17 +42,17 @@ class SleepScores:
 class DailySleepDTO:
     id: int
     user_profile_pk: int
-    calendar_date: str
+    calendar_date: date
     sleep_time_seconds: int
     nap_time_seconds: int
     sleep_window_confirmed: bool
     sleep_window_confirmation_type: str
-    sleep_start_timestamp_gmt: int
-    sleep_end_timestamp_gmt: int
-    sleep_start_timestamp_local: int
-    sleep_end_timestamp_local: int
-    auto_sleep_start_timestamp_gmt: int | None
-    auto_sleep_end_timestamp_gmt: int | None
+    sleep_start_timestamp_gmt: datetime
+    sleep_end_timestamp_gmt: datetime
+    sleep_start_timestamp_local: datetime
+    sleep_end_timestamp_local: datetime
+    auto_sleep_start_timestamp_gmt: datetime | None
+    auto_sleep_end_timestamp_gmt: datetime | None
     sleep_quality_type_pk: int | None
     sleep_result_type_pk: int | None
     unmeasurable_sleep_seconds: int
@@ -81,15 +81,15 @@ class DailySleepDTO:
 
 @dataclass(frozen=True)
 class SleepMovement:
-    start_gmt: str
-    end_gmt: str
+    start_gmt: datetime
+    end_gmt: datetime
     activity_level: float
 
 
 @dataclass(frozen=True)
 class SleepData:
     daily_sleep_dto: DailySleepDTO
-    sleep_movement: list[SleepMovement]
+    sleep_movement: List[SleepMovement]
 
     @classmethod
     def get(cls, day: date | str, *, client: http.Client | None = None):
@@ -101,3 +101,17 @@ class SleepData:
         sleep_data = client.connectapi(path)
         sleep_data = camel_to_snake_dict(sleep_data)
         return cls(**sleep_data)
+
+    @classmethod
+    def list(
+        cls,
+        end: date | str | None = None,
+        days: int = 1,
+        *,
+        client: http.Client | None = None,
+    ):
+        client = client or http.client
+        end = format_end_date(end)
+        return [
+            cls.get(date_, client=client) for date_ in date_range(end, days)
+        ]

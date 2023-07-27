@@ -1,5 +1,5 @@
 import re
-from datetime import date
+from datetime import date, timedelta
 from typing import Any
 
 CAMEL_TO_SNAKE = re.compile(r"((?<=[a-z0-9])[A-Z]|(?!^)[A-Z](?=[a-z]))")
@@ -35,3 +35,9 @@ def format_end_date(end: date | str | None) -> date:
     elif isinstance(end, str):
         end = date.fromisoformat(end)
     return end
+
+
+def date_range(date_: date | str, days: int):
+    date_ = date_ if isinstance(date_, date) else date.fromisoformat(date_)
+    for day in range(days):
+        yield date_ - timedelta(days=day)
