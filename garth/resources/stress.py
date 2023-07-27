@@ -1,4 +1,3 @@
-from datetime import date
 from typing import ClassVar
 
 from pydantic.dataclasses import dataclass
@@ -22,7 +21,6 @@ class DailyStress(Stats):
 
 @dataclass(frozen=True)
 class WeeklyStress(Stats):
-    calendar_date: date
     value: int
 
     _path: ClassVar[str] = f"{BASE_PATH}/weekly"

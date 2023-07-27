@@ -1,0 +1,73 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
+        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; SESSIONID=SANITIZED; __cflb=SANITIZED
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+      di-backend:
+      - connectapi.garmin.com
+      referer:
+      - https://connect.garmin.com/modern
+    method: GET
+    uri: https://connect.garmin.com/wellness-service/stats/daily/sleep/score/2023-07-01/2023-07-20
+  response:
+    body:
+      string: '[{"calendarDate": "2023-07-01", "value": 60}, {"calendarDate": "2023-07-02",
+        "value": 70}, {"calendarDate": "2023-07-03", "value": 82}, {"calendarDate":
+        "2023-07-04", "value": 75}, {"calendarDate": "2023-07-05", "value": 70}, {"calendarDate":
+        "2023-07-06", "value": 28}, {"calendarDate": "2023-07-07", "value": 79}, {"calendarDate":
+        "2023-07-08", "value": 70}, {"calendarDate": "2023-07-09", "value": 77}, {"calendarDate":
+        "2023-07-10", "value": 87}, {"calendarDate": "2023-07-11", "value": 64}, {"calendarDate":
+        "2023-07-12", "value": 58}, {"calendarDate": "2023-07-13", "value": 71}, {"calendarDate":
+        "2023-07-14", "value": 80}, {"calendarDate": "2023-07-15", "value": 69}, {"calendarDate":
+        "2023-07-16", "value": 71}, {"calendarDate": "2023-07-17", "value": 94}, {"calendarDate":
+        "2023-07-18", "value": 77}, {"calendarDate": "2023-07-19", "value": 80}, {"calendarDate":
+        "2023-07-20", "value": 68}]'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 7ed53bffbdc1b6e7-QRO
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 27 Jul 2023 13:29:59 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=mcH9qRTKgVawVzt%2Fwd%2BXH5ToBuUsjCQc1mlRKrUO3HwURn4w27YgL%2F6tVXco3j7glLvrTvKhhoCU91F8lyIwDbg4zFMeetk68vkdeKKn%2BMUClbU83EWQ11WBd6%2FWPEh9ygliqA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      cache-control:
+      - no-cache, no-store, private
+      pragma:
+      - no-cache
+      set-cookie:
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+    status:
+      code: 200
+      message: OK
+version: 1

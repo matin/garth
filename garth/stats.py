@@ -26,7 +26,7 @@ class Stats:
     ) -> list["Stats"]:
         client = client or http.client
         end = format_end_date(end)
-        period_type = "days" if cls._path.endswith("daily") else "weeks"
+        period_type = "days" if "daily" in cls._path else "weeks"
 
         if period > cls._page_size:
             page = cls.list(end, cls._page_size, client=client)

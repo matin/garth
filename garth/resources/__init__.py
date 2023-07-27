@@ -1,3 +1,4 @@
-__all__ = ["DailyStress", "WeeklyStress"]
+__all__ = ["DailySleep", "DailyStress", "WeeklyStress"]
 
+from .sleep import DailySleep
 from .stress import DailyStress, WeeklyStress
