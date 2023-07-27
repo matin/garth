@@ -1,10 +1,11 @@
 from .http import client
-from .resources import DailySleep, DailyStress, WeeklyStress
+from .resources import DailySleep, DailyStress, SleepData, WeeklyStress
 from .version import __version__
 
 __all__ = [
     "DailySleep",
     "DailyStress",
+    "SleepData",
     "WeeklyStress",
     "__version__",
     "client",
