@@ -39,3 +39,11 @@ def test_weekly_pagination(authed_client: Client):
     weekly_stress = WeeklyStress.list(end, weeks, client=authed_client)
     assert len(weekly_stress) == weeks
     assert weekly_stress[-1].calendar_date == end - timedelta(days=6)
+
+
+@pytest.mark.vcr
+def test_weekly_beyond_data(authed_client: Client):
+    end = date(2023, 7, 20)
+    weeks = 1000
+    weekly_stress = WeeklyStress.list(end, weeks, client=authed_client)
+    assert len(weekly_stress) < weeks

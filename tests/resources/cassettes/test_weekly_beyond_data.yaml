@@ -1,0 +1,345 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
+        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; SESSIONID=SANITIZED; __cflb=SANITIZED
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+      di-backend:
+      - connectapi.garmin.com
+      referer:
+      - https://connect.garmin.com/modern
+    method: GET
+    uri: https://connect.garmin.com/usersummary-service/stats/stress/weekly/2023-07-20/52
+  response:
+    body:
+      string: '[{"calendarDate": "2022-07-22", "value": 25}, {"calendarDate": "2022-07-29",
+        "value": 26}, {"calendarDate": "2022-08-05", "value": 27}, {"calendarDate":
+        "2022-08-12", "value": 29}, {"calendarDate": "2022-08-19", "value": 28}, {"calendarDate":
+        "2022-08-26", "value": 25}, {"calendarDate": "2022-09-02", "value": 27}, {"calendarDate":
+        "2022-09-09", "value": 23}, {"calendarDate": "2022-09-16", "value": 30}, {"calendarDate":
+        "2022-09-23", "value": 25}, {"calendarDate": "2022-09-30", "value": 23}, {"calendarDate":
+        "2022-10-07", "value": 22}, {"calendarDate": "2022-10-14", "value": 26}, {"calendarDate":
+        "2022-10-21", "value": 29}, {"calendarDate": "2022-10-28", "value": 25}, {"calendarDate":
+        "2022-11-04", "value": 29}, {"calendarDate": "2022-11-11", "value": 31}, {"calendarDate":
+        "2022-11-18", "value": 26}, {"calendarDate": "2022-11-25", "value": 26}, {"calendarDate":
+        "2022-12-02", "value": 27}, {"calendarDate": "2022-12-09", "value": 25}, {"calendarDate":
+        "2022-12-16", "value": 27}, {"calendarDate": "2022-12-23", "value": 30}, {"calendarDate":
+        "2022-12-30", "value": 30}, {"calendarDate": "2023-01-06", "value": 31}, {"calendarDate":
+        "2023-01-13", "value": 30}, {"calendarDate": "2023-01-20", "value": 31}, {"calendarDate":
+        "2023-01-27", "value": 26}, {"calendarDate": "2023-02-03", "value": 26}, {"calendarDate":
+        "2023-02-10", "value": 29}, {"calendarDate": "2023-02-17", "value": 25}, {"calendarDate":
+        "2023-02-24", "value": 23}, {"calendarDate": "2023-03-03", "value": 24}, {"calendarDate":
+        "2023-03-10", "value": 27}, {"calendarDate": "2023-03-17", "value": 35}, {"calendarDate":
+        "2023-03-24", "value": 35}, {"calendarDate": "2023-03-31", "value": 31}, {"calendarDate":
+        "2023-04-07", "value": 30}, {"calendarDate": "2023-04-14", "value": 27}, {"calendarDate":
+        "2023-04-21", "value": 27}, {"calendarDate": "2023-04-28", "value": 30}, {"calendarDate":
+        "2023-05-05", "value": 29}, {"calendarDate": "2023-05-12", "value": 28}, {"calendarDate":
+        "2023-05-19", "value": 26}, {"calendarDate": "2023-05-26", "value": 29}, {"calendarDate":
+        "2023-06-02", "value": 24}, {"calendarDate": "2023-06-09", "value": 28}, {"calendarDate":
+        "2023-06-16", "value": 34}, {"calendarDate": "2023-06-23", "value": 32}, {"calendarDate":
+        "2023-06-30", "value": 37}, {"calendarDate": "2023-07-07", "value": 30}, {"calendarDate":
+        "2023-07-14", "value": 34}]'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 7ed31509be6db6e2-QRO
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 27 Jul 2023 07:13:51 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=dM%2B0KMFMfZr2VIp4NH5rFSxTCoVDh2NcCcj%2FphiSlbZOcSi55BATmyNN0D8buyoKiodPfK0W5eCXvyUGW3Bh42nS7XKQdP6F0ArrX%2FvMk5QIAKcH6XmrIt81CWKeFfFOqPei9g%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      cache-control:
+      - no-cache, no-store, private
+      pragma:
+      - no-cache
+      set-cookie:
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
+        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
+        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+      di-backend:
+      - connectapi.garmin.com
+      referer:
+      - https://connect.garmin.com/modern
+    method: GET
+    uri: https://connect.garmin.com/usersummary-service/stats/stress/weekly/2022-07-21/52
+  response:
+    body:
+      string: '[{"calendarDate": "2021-07-23", "value": 28}, {"calendarDate": "2021-07-30",
+        "value": 27}, {"calendarDate": "2021-08-06", "value": 25}, {"calendarDate":
+        "2021-08-13", "value": 24}, {"calendarDate": "2021-08-20", "value": 28}, {"calendarDate":
+        "2021-08-27", "value": 24}, {"calendarDate": "2021-09-03", "value": 32}, {"calendarDate":
+        "2021-09-10", "value": 28}, {"calendarDate": "2021-09-17", "value": 26}, {"calendarDate":
+        "2021-09-24", "value": 29}, {"calendarDate": "2021-10-01", "value": 25}, {"calendarDate":
+        "2021-10-08", "value": 23}, {"calendarDate": "2021-10-15", "value": 24}, {"calendarDate":
+        "2021-10-22", "value": 28}, {"calendarDate": "2021-10-29", "value": 21}, {"calendarDate":
+        "2021-11-05", "value": 25}, {"calendarDate": "2021-11-12", "value": 25}, {"calendarDate":
+        "2021-11-19", "value": 27}, {"calendarDate": "2021-11-26", "value": 25}, {"calendarDate":
+        "2021-12-03", "value": 25}, {"calendarDate": "2021-12-10", "value": 20}, {"calendarDate":
+        "2021-12-17", "value": 25}, {"calendarDate": "2021-12-24", "value": 27}, {"calendarDate":
+        "2021-12-31", "value": 26}, {"calendarDate": "2022-01-07", "value": 28}, {"calendarDate":
+        "2022-01-14", "value": 28}, {"calendarDate": "2022-01-21", "value": 27}, {"calendarDate":
+        "2022-01-28", "value": 29}, {"calendarDate": "2022-02-04", "value": 31}, {"calendarDate":
+        "2022-02-11", "value": 26}, {"calendarDate": "2022-02-18", "value": 26}, {"calendarDate":
+        "2022-02-25", "value": 27}, {"calendarDate": "2022-03-04", "value": 25}, {"calendarDate":
+        "2022-03-11", "value": 26}, {"calendarDate": "2022-03-18", "value": 23}, {"calendarDate":
+        "2022-03-25", "value": 23}, {"calendarDate": "2022-04-01", "value": 22}, {"calendarDate":
+        "2022-04-08", "value": 22}, {"calendarDate": "2022-04-15", "value": 28}, {"calendarDate":
+        "2022-04-22", "value": 28}, {"calendarDate": "2022-04-29", "value": 30}, {"calendarDate":
+        "2022-05-06", "value": 25}, {"calendarDate": "2022-05-13", "value": 27}, {"calendarDate":
+        "2022-05-20", "value": 24}, {"calendarDate": "2022-05-27", "value": 26}, {"calendarDate":
+        "2022-06-03", "value": 29}, {"calendarDate": "2022-06-10", "value": 24}, {"calendarDate":
+        "2022-06-17", "value": 27}, {"calendarDate": "2022-06-24", "value": 30}, {"calendarDate":
+        "2022-07-01", "value": 29}, {"calendarDate": "2022-07-08", "value": 31}, {"calendarDate":
+        "2022-07-15", "value": 29}]'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 7ed3150b4cea1557-QRO
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 27 Jul 2023 07:13:51 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=cHo7%2BtwVkvRm3Fu%2F4uStl1Rk1Ov82KMzDzmAzMWHkpV433KWK3e%2FUrBozQWb4izknis544WtWpcKL4DUro%2Fiake378rrkkMQ5zjlfE0kn25bXI%2BX3xH0IW83byOE5Wknj%2B4fLw%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      cache-control:
+      - no-cache, no-store, private
+      pragma:
+      - no-cache
+      set-cookie:
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
+        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
+        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+      di-backend:
+      - connectapi.garmin.com
+      referer:
+      - https://connect.garmin.com/modern
+    method: GET
+    uri: https://connect.garmin.com/usersummary-service/stats/stress/weekly/2021-07-22/52
+  response:
+    body:
+      string: '[{"calendarDate": "2020-11-13", "value": 25}, {"calendarDate": "2020-11-20",
+        "value": 25}, {"calendarDate": "2020-11-27", "value": 21}, {"calendarDate":
+        "2020-12-04", "value": 26}, {"calendarDate": "2020-12-11", "value": 28}, {"calendarDate":
+        "2020-12-18", "value": 21}, {"calendarDate": "2020-12-25", "value": 26}, {"calendarDate":
+        "2021-01-01", "value": 21}, {"calendarDate": "2021-01-08", "value": 23}, {"calendarDate":
+        "2021-01-15", "value": 22}, {"calendarDate": "2021-01-22", "value": 24}, {"calendarDate":
+        "2021-01-29", "value": 23}, {"calendarDate": "2021-02-05", "value": 27}, {"calendarDate":
+        "2021-02-12", "value": 25}, {"calendarDate": "2021-02-19", "value": 27}, {"calendarDate":
+        "2021-02-26", "value": 20}, {"calendarDate": "2021-03-05", "value": 24}, {"calendarDate":
+        "2021-03-12", "value": 23}, {"calendarDate": "2021-03-19", "value": 23}, {"calendarDate":
+        "2021-03-26", "value": 25}, {"calendarDate": "2021-04-02", "value": 26}, {"calendarDate":
+        "2021-04-09", "value": 25}, {"calendarDate": "2021-04-16", "value": 22}, {"calendarDate":
+        "2021-04-23", "value": 24}, {"calendarDate": "2021-04-30", "value": 25}, {"calendarDate":
+        "2021-05-07", "value": 24}, {"calendarDate": "2021-05-14", "value": 24}, {"calendarDate":
+        "2021-05-21", "value": 24}, {"calendarDate": "2021-05-28", "value": 23}, {"calendarDate":
+        "2021-06-04", "value": 24}, {"calendarDate": "2021-06-11", "value": 21}, {"calendarDate":
+        "2021-06-18", "value": 20}, {"calendarDate": "2021-06-25", "value": 22}, {"calendarDate":
+        "2021-07-02", "value": 24}, {"calendarDate": "2021-07-09", "value": 28}, {"calendarDate":
+        "2021-07-16", "value": 22}]'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 7ed3150d5d5a154d-QRO
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 27 Jul 2023 07:13:52 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=fWZrjf3u80zEQH%2BnGGVgCyvjgiVJwhA1cQh2CFYE%2FQwVttnv4iWp72O5eO9sOWG5bY%2BNLRnscSpa5aELeyCqu%2FnkNkmE727QALlvo5TzfF66y%2Bx5bDuqUcH9cT2ZkmSCgUc4Ww%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      cache-control:
+      - no-cache, no-store, private
+      pragma:
+      - no-cache
+      set-cookie:
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
+        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
+        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+      di-backend:
+      - connectapi.garmin.com
+      referer:
+      - https://connect.garmin.com/modern
+    method: GET
+    uri: https://connect.garmin.com/usersummary-service/stats/stress/weekly/2020-07-23/52
+  response:
+    body:
+      string: '[]'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 7ed3150f0e51b6e2-QRO
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 27 Jul 2023 07:13:52 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Hx9TnuLPiSZYwU7UBacvZo5o5KAbnaYDZlPvat3REcXAAfLp1vxWYbqKIENkqEoRJcBh0uoWTgzeStFAiovj0DZuOeGUGYVsUID1fDvaTBzsg2yWvRJP7Ka3LmuFaTmgvUakLA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      cache-control:
+      - no-cache, no-store, private
+      pragma:
+      - no-cache
+      set-cookie:
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+    status:
+      code: 200
+      message: OK
+version: 1
