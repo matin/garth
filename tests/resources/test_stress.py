@@ -18,7 +18,7 @@ def test_daily(authed_client: Client):
 @pytest.mark.vcr
 def test_daily_pagination(authed_client: Client):
     end = date(2023, 7, 20)
-    days = 30
+    days = 60
     daily_stress = DailyStress.list(end, days, client=authed_client)
     assert len(daily_stress) == days
 
