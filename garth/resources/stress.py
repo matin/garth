@@ -22,7 +22,7 @@ class DailyStress:
     _page_size: ClassVar[int] = 28
 
     @classmethod
-    def get(
+    def list(
         cls,
         end: date | str | None = None,
         days: int = 1,
@@ -33,10 +33,10 @@ class DailyStress:
         end = format_end_date(end)
         # paginate for more than 28 days
         if days > cls._page_size:
-            page = cls.get(end, cls._page_size, client=client)
+            page = cls.list(end, cls._page_size, client=client)
             if page:
                 page = (
-                    cls.get(
+                    cls.list(
                         end - timedelta(days=cls._page_size),
                         days - cls._page_size,
                         client=client,
@@ -63,7 +63,7 @@ class WeeklyStress:
     _page_size: ClassVar[int] = 52
 
     @classmethod
-    def get(
+    def list(
         cls,
         end: date | str | None = None,
         weeks: int = 1,
@@ -74,10 +74,10 @@ class WeeklyStress:
         end = format_end_date(end)
         # paginate for more than 52 weeks
         if weeks > cls._page_size:
-            page = cls.get(end, cls._page_size, client=client)
+            page = cls.list(end, cls._page_size, client=client)
             if page:
                 page = (
-                    cls.get(
+                    cls.list(
                         end - timedelta(weeks=cls._page_size),
                         weeks - cls._page_size,
                         client=client,
