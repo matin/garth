@@ -6,8 +6,8 @@ authors = [
     {name = "Matin Tamizi", email = "mtamizi@duck.com"},
 ]
 dependencies = [
-    "requests>=2.27.0",
-    "pydantic>=2.1.1",
+    "requests",
+    "pydantic",
 ]
 requires-python = ">=3.10"
 readme = "README.md"
@@ -34,13 +34,12 @@ dev = [
 linting = [
     "black",
     "ruff",
-    "mypy~=1.4.1",
+    "mypy",
     "isort",
     "types-requests",
 ]
 testing = [
     "coverage",
     "pytest",
-    "pytest-vcr>=1.0.2",
-    "pytest-mock>=3.11.1",
+    "pytest-vcr",
 ]

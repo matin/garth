@@ -6,7 +6,7 @@ groups = ["default", "linting", "testing", "dev"]
 cross_platform = true
 static_urls = false
 lock_version = "4.3"
-content_hash = "sha256:1117ad0e89404120da38c64d53303809a1c4b7584cc79744d6f4bfd11f8620de"
+content_hash = "sha256:c60327dc296fa43542bdf4a4f0ea03e38c41ccfb57cf33a87f5fdf20bc5df24d"
 
 [[package]]
 name = "annotated-types"
@@ -1379,19 +1379,6 @@ dependencies = [
 files = [
     {file = "pytest-7.4.0-py3-none-any.whl", hash = "sha256:78bf16451a2eb8c7a2ea98e32dc119fd2aa758f1d5d66dbf0a59d69a3969df32"},
     {file = "pytest-7.4.0.tar.gz", hash = "sha256:b4bf8c45bd59934ed84001ad51e11b4ee40d40a1229d2c79f9c592b0a3f6bd8a"},
-]
-
-[[package]]
-name = "pytest-mock"
-version = "3.11.1"
-requires_python = ">=3.7"
-summary = "Thin-wrapper around the mock package for easier use with pytest"
-dependencies = [
-    "pytest>=5.0",
-]
-files = [
-    {file = "pytest-mock-3.11.1.tar.gz", hash = "sha256:7f6b125602ac6d743e523ae0bfa71e1a697a2f5534064528c6ff84c2f7c2fc7f"},
-    {file = "pytest_mock-3.11.1-py3-none-any.whl", hash = "sha256:21c279fff83d70763b05f8874cc9cfb3fcacd6d354247a976f9529d19f9acf39"},
 ]
 
 [[package]]
