@@ -43,3 +43,9 @@ testing = [
     "pytest",
     "pytest-vcr",
 ]
+
+[project.packages]
+include = [
+    { from = ".", include = "garth" },
+    { from = "garth", include = "py.typed" },
+]
