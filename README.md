@@ -9,7 +9,6 @@ Garmin SSO auth + Connect client
 
 [Graph 28-day rolling average of daily stress](https://colab.research.google.com/github/matin/garth/blob/main/colabs/stress.ipynb)
 
-
 ## Background
 
 Garth is meant for personal use and follows the philosiphy that your data is
@@ -203,7 +202,6 @@ garth.DailySleep.list("2023-07-23", 2)
     DailySleep(calendar_date=datetime.date(2023, 7, 23), value=73)
 ]
 ```
-
 
 Detailed sleep data
 
