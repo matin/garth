@@ -7,7 +7,9 @@ Garmin SSO auth + Connect client
 
 ## Google Colabs
 
-[Graph 28-day rolling average of daily stress](https://colab.research.google.com/github/matin/garth/blob/main/colabs/stress.ipynb)
+[Stress: 28-day rolling average](https://colab.research.google.com/github/matin/garth/blob/main/colabs/stress.ipynb)
+
+![Stress: Garph of 28-day rolling average](https://github.com/matin/garth/assets/98985/2a1cae42-1ff2-424d-be7f-9be110b2a723)
 
 ## Background
 
