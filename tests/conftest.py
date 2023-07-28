@@ -30,6 +30,7 @@ def auth_token_dict() -> dict:
         refresh_token="baz",
         expires_in=3599,
         refresh_token_expires_in=7199,
+        username="guido",
     )
 
 

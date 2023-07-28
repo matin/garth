@@ -15,6 +15,7 @@ class AuthToken:
     expires_at: int
     refresh_token_expires_in: int
     refresh_token_expires_at: int
+    username: str
 
     @classmethod
     def login(cls, *args, **kwargs) -> "AuthToken":

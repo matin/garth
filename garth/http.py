@@ -1,7 +1,6 @@
 import json
 import os
 import pickle
-import re
 from dataclasses import asdict
 
 from requests import Response, Session
@@ -81,14 +80,8 @@ class Client:
         self.sess.mount("https://", adapter)
 
     @property
-    def username(self) -> str:
-        if self._username:
-            return self._username
-        resp = self.get("connect", "/modern")
-        m = re.search(r'userName":"(.+?)"', resp.text)
-        assert m
-        self._username = m.group(1)
-        return self._username
+    def username(self) -> str | None:
+        return self.auth_token.username if self.auth_token else None
 
     def request(
         self,

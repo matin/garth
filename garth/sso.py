@@ -76,7 +76,11 @@ def login(
         params=dict(ticket=ticket),
         referrer=True,
     )
+    m = re.search(r'userName":"(.+?)"', client.last_resp.text)
+    assert m
+    username = m.group(1)
     token = exchange(client)
+    token["username"] = username
 
     return token
 
@@ -105,6 +109,7 @@ def exchange(client: Optional["http.Client"] = None) -> dict:
         "/modern/di-oauth/exchange",
         referrer=f"https://connect.{client.domain}/modern",
     ).json()
+    token["username"] = client.username
     return set_expirations(token)
 
 
@@ -118,6 +123,7 @@ def refresh(
         "/services/auth/token/refresh",
         json=dict(refresh_token=refresh_token),
     ).json()
+    token["username"] = client.username
     return set_expirations(token)
 
 
