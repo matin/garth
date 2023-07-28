@@ -1,0 +1,80 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
+        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; SESSIONID=SANITIZED; __cflb=SANITIZED
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+      di-backend:
+      - connectapi.garmin.com
+    method: GET
+    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-20
+  response:
+    body:
+      string: '{"dailySleepDTO": {"id": 1626758400000, "userProfilePK": 2591602, "calendarDate":
+        "2021-07-20", "sleepTimeSeconds": 25740, "napTimeSeconds": 0, "sleepWindowConfirmed":
+        true, "sleepWindowConfirmationType": "enhanced_confirmed_final", "sleepStartTimestampGMT":
+        1626758400000, "sleepEndTimestampGMT": 1626785940000, "sleepStartTimestampLocal":
+        1626740400000, "sleepEndTimestampLocal": 1626767940000, "autoSleepStartTimestampGMT":
+        null, "autoSleepEndTimestampGMT": null, "sleepQualityTypePK": null, "sleepResultTypePK":
+        null, "unmeasurableSleepSeconds": 0, "deepSleepSeconds": 4440, "lightSleepSeconds":
+        18720, "remSleepSeconds": 2580, "awakeSleepSeconds": 1800, "deviceRemCapable":
+        true, "retro": false, "sleepFromDevice": true, "averageSpO2Value": 92.0, "lowestSpO2Value":
+        84, "highestSpO2Value": 100, "averageSpO2HRSleep": 51.0, "averageRespirationValue":
+        15.0, "lowestRespirationValue": 8.0, "highestRespirationValue": 18.0, "sleepVersion":
+        1}, "sleepMovement": [], "remSleepData": true, "sleepLevels": [], "wellnessSpO2SleepSummaryDTO":
+        {"userProfilePk": 2591602, "deviceId": 3329978681, "sleepMeasurementStartGMT":
+        "2021-07-20T05:21:00.0", "sleepMeasurementEndGMT": "2021-07-20T12:56:00.0",
+        "alertThresholdValue": null, "numberOfEventsBelowThreshold": null, "durationOfEventsBelowThreshold":
+        null, "averageSPO2": 92.0, "averageSpO2HR": 51.0, "lowestSPO2": 84}}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 7edd14a5db49b6e5-QRO
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Fri, 28 Jul 2023 12:21:13 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=jklwb3c1t6T%2FrR6W3iby3vlzyf6YM%2BnS57q2FaFoJL4ZMucJzrbdzIv9mPEIIdXic3BxLYwygxYR0HgYlxZ5vAz0p8a%2F4hJ%2FxD%2Bwv4JkRsdeLiDmMkpojIfh%2BNqY7%2FgfGvSINQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      cache-control:
+      - no-cache, no-store, private
+      pragma:
+      - no-cache
+      set-cookie:
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+    status:
+      code: 200
+      message: OK
+version: 1

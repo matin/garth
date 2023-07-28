@@ -59,9 +59,9 @@ class DailySleepDTO:
     device_rem_capable: bool
     retro: bool
     sleep_from_device: bool
-    awake_count: int
-    sleep_scores: SleepScores
     sleep_version: int
+    awake_count: Optional[int] = None
+    sleep_scores: Optional[SleepScores] = None
     auto_sleep_start_timestamp_gmt: Optional[datetime] = None
     auto_sleep_end_timestamp_gmt: Optional[datetime] = None
     sleep_quality_type_pk: Optional[int] = None
@@ -112,6 +112,9 @@ class SleepData:
     ):
         client = client or http.client
         end = format_end_date(end)
-        return [
+        sleep_data = [
             cls.get(date_, client=client) for date_ in date_range(end, days)
         ]
+        return sorted(
+            sleep_data, key=lambda x: x.daily_sleep_dto.calendar_date
+        )
