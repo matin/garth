@@ -30,7 +30,7 @@ def auth_token_dict() -> dict:
         refresh_token="baz",
         expires_in=3599,
         refresh_token_expires_in=7199,
-        username="guido",
+        username="mtamizi",
     )
 
 
@@ -52,6 +52,13 @@ def authed_client(auth_token: AuthToken) -> Client:
     except KeyError:
         client.auth_token = auth_token
     return client
+
+
+@pytest.fixture
+def vcr(vcr):
+    if "GARTH_SESSION" not in os.environ:
+        vcr.record_mode = "none"
+    return vcr
 
 
 def sanitize_cookie(cookie_value) -> str:
