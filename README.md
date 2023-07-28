@@ -31,6 +31,7 @@ tools like Cloudscraper. Garth, in comparison:
 1. Supports saving and resuming sessions to avoid the need to log in each time
 you run a script, which is particularly useful if you have MFA enabled
 1. Works on Google Colab
+1. Uses Pydantic dataclasses to validate and simplify use of data
 
 ### Python 3.10+
 
@@ -151,7 +152,7 @@ stress =  garth.connectapi(f"/usersummary-service/stats/stress/weekly/2023-07-05
 Daily stress levels
 
 ```python
-DailyStress.get("2023-07-23", 2)
+DailyStress.list("2023-07-23", 2)
 ```
 
 ```python
@@ -178,7 +179,7 @@ DailyStress.get("2023-07-23", 2)
 Weekly stress levels
 
 ```python
-WeeklyStress.get("2023-07-23", 2)
+WeeklyStress.list("2023-07-23", 2)
 ```
 
 ```python
@@ -186,4 +187,159 @@ WeeklyStress.get("2023-07-23", 2)
     WeeklyStress(calendar_date=datetime.date(2023, 7, 10), value=33),
     WeeklyStress(calendar_date=datetime.date(2023, 7, 17), value=32)
 ]
+```
+
+### Sleep
+
+Daily sleep quality
+
+```python
+garth.DailySleep.list("2023-07-23", 2)
+```
+
+```python
+[
+    DailySleep(calendar_date=datetime.date(2023, 7, 22), value=69),
+    DailySleep(calendar_date=datetime.date(2023, 7, 23), value=73)
+]
+```
+
+
+Detailed sleep data
+
+```python
+garth.SleepData.get("2023-07-20")
+```
+
+```python
+SleepData(
+    daily_sleep_dto=DailySleepDTO(
+        id=1689830700000,
+        user_profile_pk=2591602,
+        calendar_date=datetime.date(2023, 7, 20),
+        sleep_time_seconds=23700,
+        nap_time_seconds=0,
+        sleep_window_confirmed=True,
+        sleep_window_confirmation_type='enhanced_confirmed_final',
+        sleep_start_timestamp_gmt=datetime.datetime(2023, 7, 20, 5, 25, tzinfo=TzInfo(UTC)),
+        sleep_end_timestamp_gmt=datetime.datetime(2023, 7, 20, 12, 11, tzinfo=TzInfo(UTC)),
+        sleep_start_timestamp_local=datetime.datetime(2023, 7, 19, 23, 25, tzinfo=TzInfo(UTC)),
+        sleep_end_timestamp_local=datetime.datetime(2023, 7, 20, 6, 11, tzinfo=TzInfo(UTC)),
+        unmeasurable_sleep_seconds=0,
+        deep_sleep_seconds=9660,
+        light_sleep_seconds=12600,
+        rem_sleep_seconds=1440,
+        awake_sleep_seconds=660,
+        device_rem_capable=True,
+        retro=False,
+        sleep_from_device=True,
+        sleep_version=2,
+        awake_count=1,
+        sleep_scores=SleepScores(
+            total_duration=Score(
+                qualifier_key='FAIR',
+                optimal_start=28800.0,
+                optimal_end=28800.0,
+                value=None,
+                ideal_start_in_seconds=None,
+                deal_end_in_seconds=None
+            ),
+            stress=Score(
+                qualifier_key='FAIR',
+                optimal_start=0.0,
+                optimal_end=15.0,
+                value=None,
+                ideal_start_in_seconds=None,
+                ideal_end_in_seconds=None
+            ),
+            awake_count=Score(
+                qualifier_key='GOOD',
+                optimal_start=0.0,
+                optimal_end=1.0,
+                value=None,
+                ideal_start_in_seconds=None,
+                ideal_end_in_seconds=None
+            ),
+            overall=Score(
+                qualifier_key='FAIR',
+                optimal_start=None,
+                optimal_end=None,
+                value=68,
+                ideal_start_in_seconds=None,
+                ideal_end_in_seconds=None
+            ),
+            rem_percentage=Score(
+                qualifier_key='POOR',
+                optimal_start=21.0,
+                optimal_end=31.0,
+                value=6,
+                ideal_start_in_seconds=4977.0,
+                ideal_end_in_seconds=7347.0
+            ),
+            restlessness=Score(
+                qualifier_key='EXCELLENT',
+                optimal_start=0.0,
+                optimal_end=5.0,
+                value=None,
+                ideal_start_in_seconds=None,
+                ideal_end_in_seconds=None
+            ),
+            light_percentage=Score(
+                qualifier_key='EXCELLENT',
+                optimal_start=30.0,
+                optimal_end=64.0,
+                value=53,
+                ideal_start_in_seconds=7110.0,
+                ideal_end_in_seconds=15168.0
+            ),
+            deep_percentage=Score(
+                qualifier_key='EXCELLENT',
+                optimal_start=16.0,
+                optimal_end=33.0,
+                value=41,
+                ideal_start_in_seconds=3792.0,
+                ideal_end_in_seconds=7821.0
+            )
+        ),
+        auto_sleep_start_timestamp_gmt=None,
+        auto_sleep_end_timestamp_gmt=None,
+        sleep_quality_type_pk=None,
+        sleep_result_type_pk=None,
+        average_sp_o2_value=92.0,
+        lowest_sp_o2_value=87,
+        highest_sp_o2_value=100,
+        average_sp_o2_hr_sleep=53.0,
+        average_respiration_value=14.0,
+        lowest_respiration_value=12.0,
+        highest_respiration_value=16.0,
+        avg_sleep_stress=17.0,
+        age_group='ADULT',
+        sleep_score_feedback='NEGATIVE_NOT_ENOUGH_REM',
+        sleep_score_insight='NONE'
+    ),
+    sleep_movement=[
+        SleepMovement(
+            start_gmt=datetime.datetime(2023, 7, 20, 4, 25),
+            end_gmt=datetime.datetime(2023, 7, 20, 4, 26),
+            activity_level=5.688743692980419
+        ),
+        SleepMovement(
+            start_gmt=datetime.datetime(2023, 7, 20, 4, 26),
+            end_gmt=datetime.datetime(2023, 7, 20, 4, 27),
+            activity_level=5.318763075304898
+        ),
+        ...,
+        SleepMovement(
+            start_gmt=datetime.datetime(2023, 7, 20, 13, 10),
+            end_gmt=datetime.datetime(2023, 7, 20, 13, 11),
+            activity_level=7.088729101943337
+        )
+    ]
+)
+```
+
+leep data over several nights
+
+```python
+garth.SleepData.get(end="2023-07-20", days=30)
 ```
