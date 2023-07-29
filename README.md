@@ -259,6 +259,54 @@ garth.WeeklySteps.list(period=2)
 ]
 ```
 
+### Intensity Minutes
+
+Daily intensity minutes
+
+```python
+garth.DailyIntensityMinutes.list(period=2)
+```
+
+```python
+[
+    DailyIntensityMinutes(
+        calendar_date=datetime.date(2023, 7, 28),
+        weekly_goal=150,
+        moderate_value=0,
+        vigorous_value=0
+    ),
+    DailyIntensityMinutes(
+        calendar_date=datetime.date(2023, 7, 29),
+        weekly_goal=150,
+        moderate_value=0,
+        vigorous_value=0
+    )
+]
+```
+
+Weekly intensity minutes
+
+```python
+garth.WeeklyIntensityMinutes.list(period=2)
+```
+
+```python
+[
+    WeeklyIntensityMinutes(
+        calendar_date=datetime.date(2023, 7, 17),
+        weekly_goal=150,
+        moderate_value=103,
+        vigorous_value=9
+    ),
+    WeeklyIntensityMinutes(
+        calendar_date=datetime.date(2023, 7, 24),
+        weekly_goal=150,
+        moderate_value=101,
+        vigorous_value=105
+    )
+]
+```
+
 ### Sleep
 
 Daily sleep quality
