@@ -207,6 +207,58 @@ WeeklyStress.list("2023-07-23", 2)
 ]
 ```
 
+### Steps
+
+Daily steps
+
+```python
+garth.DailySteps.list(period=2)
+```
+
+```python
+[
+    DailySteps(
+        calendar_date=datetime.date(2023, 7, 28),
+        total_steps=6510,
+        total_distance=5552,
+        step_goal=8090
+    ),
+    DailySteps(
+        calendar_date=datetime.date(2023, 7, 29),
+        total_steps=7218,
+        total_distance=6002,
+        step_goal=7940
+    )
+]
+```
+
+Weekly steps
+
+```python
+garth.WeeklySteps.list(period=2)
+```
+
+```python
+[
+    WeeklySteps(
+        calendar_date=datetime.date(2023, 7, 16),
+        total_steps=42339,
+        average_steps=6048.428571428572,
+        average_distance=5039.285714285715,
+        total_distance=35275.0,
+        wellness_data_days_count=7
+    ),
+    WeeklySteps(
+        calendar_date=datetime.date(2023, 7, 23),
+        total_steps=56420,
+        average_steps=8060.0,
+        average_distance=7198.142857142857,
+        total_distance=50387.0,
+        wellness_data_days_count=7
+    )
+]
+```
+
 ### Sleep
 
 Daily sleep quality
