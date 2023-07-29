@@ -1,4 +1,4 @@
-# Garth
+![image](https://github.com/matin/garth/assets/98985/94538123-d3f4-48cb-aafd-b8d511a1545b)# Garth
 
 [![CI](https://github.com/matin/garth/workflows/CI/badge.svg?event=push)](https://github.com/matin/garth/actions?query=event%3Apush+branch%3Amain+workflow%3ACI)
 [![codecov](https://codecov.io/gh/matin/garth/branch/main/graph/badge.svg?token=0EFFYJNFIL)](https://codecov.io/gh/matin/garth)
@@ -11,7 +11,7 @@ Garmin SSO auth + Connect client
 
 ![Stress: Garph of 28-day rolling average](https://github.com/matin/garth/assets/98985/868ecf25-4644-4879-b28f-ed0706a9e7b9)
 
-#### [Sleep stages over 90 days](https://colab.research.google.com/github/matin/garth/blob/main/sleep.ipynb)
+#### [Sleep stages over 90 days](https://colab.research.google.com/github/matin/garth/blob/main/colabs/sleep.ipynb)
 
 ![Sleep stages over 90 days](https://github.com/matin/garth/assets/98985/2e43d68e-b882-4a5e-839a-a1326ed7c61e)
 
