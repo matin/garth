@@ -119,7 +119,7 @@ except (GarthException, HTTPError):
 
 ## Connect API
 
-### Wellness
+### Daily details
 
 ```python
 sleep = garth.connectapi(
@@ -144,7 +144,7 @@ list(sleep.keys())
 ]
 ```
 
-### Usersummary
+### Stats
 
 ```python
 stress =  garth.connectapi(f"/usersummary-service/stats/stress/weekly/2023-07-05/52")
