@@ -1,4 +1,4 @@
-![image](https://github.com/matin/garth/assets/98985/94538123-d3f4-48cb-aafd-b8d511a1545b)# Garth
+# Garth
 
 [![CI](https://github.com/matin/garth/workflows/CI/badge.svg?event=push)](https://github.com/matin/garth/actions?query=event%3Apush+branch%3Amain+workflow%3ACI)
 [![codecov](https://codecov.io/gh/matin/garth/branch/main/graph/badge.svg?token=0EFFYJNFIL)](https://codecov.io/gh/matin/garth)
