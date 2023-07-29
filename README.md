@@ -11,9 +11,9 @@ Garmin SSO auth + Connect client
 
 ![Stress: Garph of 28-day rolling average](https://github.com/matin/garth/assets/98985/868ecf25-4644-4879-b28f-ed0706a9e7b9)
 
-#### [Sleep stages over 30 days](https://colab.research.google.com/github/matin/garth/blob/main/sleep.ipynb)
+#### [Sleep stages over 90 days](https://colab.research.google.com/github/matin/garth/blob/main/sleep.ipynb)
 
-![Sleep stages over 30 days](https://github.com/matin/garth/assets/98985/309ed3f7-c265-41bd-b988-a7333ea2b513)
+![Sleep stages over 90 days](https://github.com/matin/garth/assets/98985/2e43d68e-b882-4a5e-839a-a1326ed7c61e)
 
 ## Background
 
