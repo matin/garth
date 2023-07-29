@@ -13,9 +13,7 @@ Garmin SSO auth + Connect client
 
 #### [Sleep stages over 30 days](https://colab.research.google.com/github/matin/garth/blob/main/sleep.ipynb)
 
-![Sleep stages over 30 days](https://github.com/matin/garth/assets/98985/128f655d-2996-4118-955f-b525dae12f73)
-
-
+![Sleep stages over 30 days](https://github.com/matin/garth/assets/98985/309ed3f7-c265-41bd-b988-a7333ea2b513)
 
 ## Background
 
