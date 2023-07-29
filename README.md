@@ -7,11 +7,24 @@ Garmin SSO auth + Connect client
 
 ## Google Colabs
 
-#### [Stress: 28-day rolling average](https://colab.research.google.com/github/matin/garth/blob/main/colabs/stress.ipynb)
+### [Stress: 28-day rolling average](https://colab.research.google.com/github/matin/garth/blob/main/colabs/stress.ipynb)
+
+Stress levels from one day to another can vary by extremes, but there's always
+a general trend. Using a scatter plot with a rolling average shows both the
+individual days and the trend. The Colab retrieves up to three years of daily
+data. If there's less than three years of data, it retrieves whatever is
+available.
 
 ![Stress: Garph of 28-day rolling average](https://github.com/matin/garth/assets/98985/868ecf25-4644-4879-b28f-ed0706a9e7b9)
 
-#### [Sleep stages over 90 days](https://colab.research.google.com/github/matin/garth/blob/main/colabs/sleep.ipynb)
+### [Sleep stages over 90 days](https://colab.research.google.com/github/matin/garth/blob/main/colabs/sleep.ipynb)
+
+The Garmin Connect app only shows a maximum of seven days for sleep
+stages—making it hard to see trends. The Connect API supports retrieving
+daily sleep quality in 28-day pages, but that doesn't show details. Using
+`SleedData.list()` gives us the ability to retrieve an arbitrary number of
+day with enough detail to product a stacked bar graph of the daily sleep
+stages.
 
 ![Sleep stages over 90 days](https://github.com/matin/garth/assets/98985/2e43d68e-b882-4a5e-839a-a1326ed7c61e)
 
