@@ -25,6 +25,14 @@ build-backend = "pdm.backend"
 [tool.pytest.ini_options]
 addopts = "--ignore=__pypackages__ --ignore-glob=*.yaml"
 
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 79
+known_first_party = "garth"
+
 [tool.pdm]
 version = { source = "file", path = "garth/version.py" }
 
