@@ -17,6 +17,9 @@ classifiers = [
     "Operating System :: Microsoft :: Windows",
     "Operating System :: POSIX :: Linux",
 ]
+packages = [
+    { include = "garth" },
+]
 
 [build-system]
 requires = ["pdm-backend"]
@@ -55,10 +58,4 @@ testing = [
     "coverage",
     "pytest",
     "pytest-vcr",
-]
-
-[project.packages]
-include = [
-    { from = ".", include = "garth" },
-    { from = "garth", include = "py.typed" },
 ]
