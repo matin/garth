@@ -1,0 +1,184 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
+        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; SESSIONID=SANITIZED; __cflb=SANITIZED
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+      di-backend:
+      - connectapi.garmin.com
+    method: GET
+    uri: https://connect.garmin.com/usersummary-service/stats/steps/weekly/2023-07-20/52
+  response:
+    body:
+      string: '[{"calendarDate": "2022-07-22", "values": {"totalSteps": 55744.0, "averageSteps":
+        7963.428571428572, "wellnessDataDaysCount": 7, "averageDistance": 7138.571428571428,
+        "totalDistance": 49970.0}}, {"calendarDate": "2022-07-29", "values": {"totalSteps":
+        94875.0, "averageSteps": 13553.57142857143, "wellnessDataDaysCount": 7, "averageDistance":
+        12255.42857142857, "totalDistance": 85788.0}}, {"calendarDate": "2022-08-05",
+        "values": {"totalSteps": 96469.0, "averageSteps": 13781.285714285714, "wellnessDataDaysCount":
+        7, "averageDistance": 12684.285714285714, "totalDistance": 88790.0}}, {"calendarDate":
+        "2022-08-12", "values": {"totalSteps": 101740.0, "averageSteps": 14534.285714285714,
+        "wellnessDataDaysCount": 7, "averageDistance": 12921.42857142857, "totalDistance":
+        90450.0}}, {"calendarDate": "2022-08-19", "values": {"totalSteps": 94178.0,
+        "averageSteps": 13454.0, "wellnessDataDaysCount": 7, "averageDistance": 12366.857142857143,
+        "totalDistance": 86568.0}}, {"calendarDate": "2022-08-26", "values": {"totalSteps":
+        73373.0, "averageSteps": 10481.857142857143, "wellnessDataDaysCount": 7, "averageDistance":
+        9067.57142857143, "totalDistance": 63473.0}}, {"calendarDate": "2022-09-02",
+        "values": {"totalSteps": 90386.0, "averageSteps": 12912.285714285714, "wellnessDataDaysCount":
+        7, "averageDistance": 12175.42857142857, "totalDistance": 85228.0}}, {"calendarDate":
+        "2022-09-09", "values": {"totalSteps": 76107.0, "averageSteps": 10872.42857142857,
+        "wellnessDataDaysCount": 7, "averageDistance": 9251.142857142857, "totalDistance":
+        64758.0}}, {"calendarDate": "2022-09-16", "values": {"totalSteps": 96712.0,
+        "averageSteps": 13816.0, "wellnessDataDaysCount": 7, "averageDistance": 12459.57142857143,
+        "totalDistance": 87217.0}}, {"calendarDate": "2022-09-23", "values": {"totalSteps":
+        104410.0, "averageSteps": 14915.714285714286, "wellnessDataDaysCount": 7,
+        "averageDistance": 13487.0, "totalDistance": 94409.0}}, {"calendarDate": "2022-09-30",
+        "values": {"totalSteps": 124758.0, "averageSteps": 17822.571428571428, "wellnessDataDaysCount":
+        7, "averageDistance": 16172.285714285714, "totalDistance": 113206.0}}, {"calendarDate":
+        "2022-10-07", "values": {"totalSteps": 78949.0, "averageSteps": 11278.42857142857,
+        "wellnessDataDaysCount": 7, "averageDistance": 9671.42857142857, "totalDistance":
+        67700.0}}, {"calendarDate": "2022-10-14", "values": {"totalSteps": 95605.0,
+        "averageSteps": 13657.857142857143, "wellnessDataDaysCount": 7, "averageDistance":
+        12018.142857142857, "totalDistance": 84127.0}}, {"calendarDate": "2022-10-21",
+        "values": {"totalSteps": 106901.0, "averageSteps": 15271.57142857143, "wellnessDataDaysCount":
+        7, "averageDistance": 12944.857142857143, "totalDistance": 90614.0}}, {"calendarDate":
+        "2022-10-28", "values": {"totalSteps": 113999.0, "averageSteps": 16285.57142857143,
+        "wellnessDataDaysCount": 7, "averageDistance": 13413.57142857143, "totalDistance":
+        93895.0}}, {"calendarDate": "2022-11-04", "values": {"totalSteps": 62749.0,
+        "averageSteps": 8964.142857142857, "wellnessDataDaysCount": 7, "averageDistance":
+        7447.0, "totalDistance": 52129.0}}, {"calendarDate": "2022-11-11", "values":
+        {"totalSteps": 74023.0, "averageSteps": 10574.714285714286, "wellnessDataDaysCount":
+        7, "averageDistance": 9399.42857142857, "totalDistance": 65796.0}}, {"calendarDate":
+        "2022-11-18", "values": {"totalSteps": 89319.0, "averageSteps": 12759.857142857143,
+        "wellnessDataDaysCount": 7, "averageDistance": 10888.142857142857, "totalDistance":
+        76217.0}}, {"calendarDate": "2022-11-25", "values": {"totalSteps": 93055.0,
+        "averageSteps": 13293.57142857143, "wellnessDataDaysCount": 7, "averageDistance":
+        11539.57142857143, "totalDistance": 80777.0}}, {"calendarDate": "2022-12-02",
+        "values": {"totalSteps": 89611.0, "averageSteps": 12801.57142857143, "wellnessDataDaysCount":
+        7, "averageDistance": 11499.142857142857, "totalDistance": 80494.0}}, {"calendarDate":
+        "2022-12-09", "values": {"totalSteps": 92294.0, "averageSteps": 13184.857142857143,
+        "wellnessDataDaysCount": 7, "averageDistance": 11573.57142857143, "totalDistance":
+        81015.0}}, {"calendarDate": "2022-12-16", "values": {"totalSteps": 56511.0,
+        "averageSteps": 8073.0, "wellnessDataDaysCount": 7, "averageDistance": 7093.285714285715,
+        "totalDistance": 49653.0}}, {"calendarDate": "2022-12-23", "values": {"totalSteps":
+        61345.0, "averageSteps": 8763.57142857143, "wellnessDataDaysCount": 7, "averageDistance":
+        7951.142857142857, "totalDistance": 55658.0}}, {"calendarDate": "2022-12-30",
+        "values": {"totalSteps": 57291.0, "averageSteps": 8184.428571428572, "wellnessDataDaysCount":
+        7, "averageDistance": 7035.285714285715, "totalDistance": 49247.0}}, {"calendarDate":
+        "2023-01-06", "values": {"totalSteps": 90689.0, "averageSteps": 12955.57142857143,
+        "wellnessDataDaysCount": 7, "averageDistance": 11743.714285714286, "totalDistance":
+        82206.0}}, {"calendarDate": "2023-01-13", "values": {"totalSteps": 74267.0,
+        "averageSteps": 10609.57142857143, "wellnessDataDaysCount": 7, "averageDistance":
+        9200.57142857143, "totalDistance": 64404.0}}, {"calendarDate": "2023-01-20",
+        "values": {"totalSteps": 76068.0, "averageSteps": 10866.857142857143, "wellnessDataDaysCount":
+        7, "averageDistance": 9655.0, "totalDistance": 67585.0}}, {"calendarDate":
+        "2023-01-27", "values": {"totalSteps": 111426.0, "averageSteps": 15918.0,
+        "wellnessDataDaysCount": 7, "averageDistance": 14085.57142857143, "totalDistance":
+        98599.0}}, {"calendarDate": "2023-02-03", "values": {"totalSteps": 82907.0,
+        "averageSteps": 11843.857142857143, "wellnessDataDaysCount": 7, "averageDistance":
+        10047.0, "totalDistance": 70329.0}}, {"calendarDate": "2023-02-10", "values":
+        {"totalSteps": 102936.0, "averageSteps": 14705.142857142857, "wellnessDataDaysCount":
+        7, "averageDistance": 16319.0, "totalDistance": 114233.0}}, {"calendarDate":
+        "2023-02-17", "values": {"totalSteps": 105100.0, "averageSteps": 15014.285714285714,
+        "wellnessDataDaysCount": 7, "averageDistance": 13199.42857142857, "totalDistance":
+        92396.0}}, {"calendarDate": "2023-02-24", "values": {"totalSteps": 50555.0,
+        "averageSteps": 7222.142857142857, "wellnessDataDaysCount": 7, "averageDistance":
+        6147.714285714285, "totalDistance": 43034.0}}, {"calendarDate": "2023-03-03",
+        "values": {"totalSteps": 39897.0, "averageSteps": 5699.571428571428, "wellnessDataDaysCount":
+        7, "averageDistance": 4749.142857142857, "totalDistance": 33244.0}}, {"calendarDate":
+        "2023-03-10", "values": {"totalSteps": 38956.0, "averageSteps": 5565.142857142857,
+        "wellnessDataDaysCount": 7, "averageDistance": 4789.142857142857, "totalDistance":
+        33524.0}}, {"calendarDate": "2023-03-17", "values": {"totalSteps": 67507.0,
+        "averageSteps": 9643.857142857143, "wellnessDataDaysCount": 7, "averageDistance":
+        7943.285714285715, "totalDistance": 55603.0}}, {"calendarDate": "2023-03-24",
+        "values": {"totalSteps": 69336.0, "averageSteps": 9905.142857142857, "wellnessDataDaysCount":
+        7, "averageDistance": 8405.42857142857, "totalDistance": 58838.0}}, {"calendarDate":
+        "2023-03-31", "values": {"totalSteps": 78022.0, "averageSteps": 11146.0, "wellnessDataDaysCount":
+        7, "averageDistance": 9539.42857142857, "totalDistance": 66776.0}}, {"calendarDate":
+        "2023-04-07", "values": {"totalSteps": 99009.0, "averageSteps": 14144.142857142857,
+        "wellnessDataDaysCount": 7, "averageDistance": 12221.285714285714, "totalDistance":
+        85549.0}}, {"calendarDate": "2023-04-14", "values": {"totalSteps": 80389.0,
+        "averageSteps": 11484.142857142857, "wellnessDataDaysCount": 7, "averageDistance":
+        9664.142857142857, "totalDistance": 67649.0}}, {"calendarDate": "2023-04-21",
+        "values": {"totalSteps": 65577.0, "averageSteps": 9368.142857142857, "wellnessDataDaysCount":
+        7, "averageDistance": 7924.142857142857, "totalDistance": 55469.0}}, {"calendarDate":
+        "2023-04-28", "values": {"totalSteps": 123412.0, "averageSteps": 17630.285714285714,
+        "wellnessDataDaysCount": 7, "averageDistance": 15070.57142857143, "totalDistance":
+        105494.0}}, {"calendarDate": "2023-05-05", "values": {"totalSteps": 86922.0,
+        "averageSteps": 12417.42857142857, "wellnessDataDaysCount": 7, "averageDistance":
+        10949.857142857143, "totalDistance": 76649.0}}, {"calendarDate": "2023-05-12",
+        "values": {"totalSteps": 91695.0, "averageSteps": 13099.285714285714, "wellnessDataDaysCount":
+        7, "averageDistance": 12020.714285714286, "totalDistance": 84145.0}}, {"calendarDate":
+        "2023-05-19", "values": {"totalSteps": 85574.0, "averageSteps": 12224.857142857143,
+        "wellnessDataDaysCount": 7, "averageDistance": 10725.857142857143, "totalDistance":
+        75081.0}}, {"calendarDate": "2023-05-26", "values": {"totalSteps": 67963.0,
+        "averageSteps": 9709.0, "wellnessDataDaysCount": 7, "averageDistance": 8510.57142857143,
+        "totalDistance": 59574.0}}, {"calendarDate": "2023-06-02", "values": {"totalSteps":
+        93534.0, "averageSteps": 13362.0, "wellnessDataDaysCount": 7, "averageDistance":
+        11683.42857142857, "totalDistance": 81784.0}}, {"calendarDate": "2023-06-09",
+        "values": {"totalSteps": 67701.0, "averageSteps": 9671.57142857143, "wellnessDataDaysCount":
+        7, "averageDistance": 8122.714285714285, "totalDistance": 56859.0}}, {"calendarDate":
+        "2023-06-16", "values": {"totalSteps": 52219.0, "averageSteps": 7459.857142857143,
+        "wellnessDataDaysCount": 7, "averageDistance": 6380.571428571428, "totalDistance":
+        44664.0}}, {"calendarDate": "2023-06-23", "values": {"totalSteps": 52441.0,
+        "averageSteps": 7491.571428571428, "wellnessDataDaysCount": 7, "averageDistance":
+        6437.428571428572, "totalDistance": 45062.0}}, {"calendarDate": "2023-06-30",
+        "values": {"totalSteps": 49029.0, "averageSteps": 7004.142857142857, "wellnessDataDaysCount":
+        7, "averageDistance": 6117.285714285715, "totalDistance": 42821.0}}, {"calendarDate":
+        "2023-07-07", "values": {"totalSteps": 73115.0, "averageSteps": 10445.0, "wellnessDataDaysCount":
+        7, "averageDistance": 11094.857142857143, "totalDistance": 77664.0}}, {"calendarDate":
+        "2023-07-14", "values": {"totalSteps": 43517.0, "averageSteps": 6216.714285714285,
+        "wellnessDataDaysCount": 7, "averageDistance": 5155.857142857143, "totalDistance":
+        36091.0}}]'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 7ee737adac3db6ee-QRO
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 29 Jul 2023 17:52:45 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=wBzsVsqBE0q4MpDCAwxph9mr3nHJyUeDFLqE7r%2Bb7CK0J4rlBK40JSN3Jxs13SN13QBA3fX1X9YDzOJerOJli8lXugo%2FREaYpoNEfW0gdRhUGciwjciDZ63qzN7o%2FEYCJ6HENA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      cache-control:
+      - no-cache, no-store, private
+      pragma:
+      - no-cache
+      set-cookie:
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+    status:
+      code: 200
+      message: OK
+version: 1
