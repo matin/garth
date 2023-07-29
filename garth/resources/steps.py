@@ -13,7 +13,7 @@ class DailySteps(Stats):
     total_distance: int
     step_goal: int
 
-    _path: ClassVar[str] = f"{BASE_PATH}/daily"
+    _path: ClassVar[str] = f"{BASE_PATH}/daily/{{start}}/{{end}}"
     _page_size: ClassVar[int] = 28
 
 
@@ -25,5 +25,5 @@ class WeeklySteps(Stats):
     total_distance: float
     wellness_data_days_count: int
 
-    _path: ClassVar[str] = f"{BASE_PATH}/weekly"
+    _path: ClassVar[str] = f"{BASE_PATH}/weekly/{{end}}/{{period}}"
     _page_size: ClassVar[int] = 52

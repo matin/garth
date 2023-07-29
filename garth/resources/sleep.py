@@ -12,7 +12,9 @@ from ..utils import camel_to_snake_dict, date_range, format_end_date
 class DailySleep(Stats):
     value: int
 
-    _path: ClassVar[str] = "/wellness-service/stats/daily/sleep/score"
+    _path: ClassVar[
+        str
+    ] = "/wellness-service/stats/daily/sleep/score/{start}/{end}"
     _page_size: ClassVar[int] = 28
 
 

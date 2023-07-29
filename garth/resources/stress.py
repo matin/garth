@@ -15,7 +15,7 @@ class DailyStress(Stats):
     medium_stress_duration: int | None
     high_stress_duration: int | None
 
-    _path: ClassVar[str] = f"{BASE_PATH}/daily"
+    _path: ClassVar[str] = f"{BASE_PATH}/daily/{{start}}/{{end}}"
     _page_size: ClassVar[int] = 28
 
 
@@ -23,5 +23,5 @@ class DailyStress(Stats):
 class WeeklyStress(Stats):
     value: int
 
-    _path: ClassVar[str] = f"{BASE_PATH}/weekly"
+    _path: ClassVar[str] = f"{BASE_PATH}/weekly/{{end}}/{{period}}"
     _page_size: ClassVar[int] = 52
