@@ -1,0 +1,132 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
+        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; SESSIONID=SANITIZED; __cflb=SANITIZED
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+      di-backend:
+      - connectapi.garmin.com
+    method: GET
+    uri: https://connect.garmin.com/hrv-service/hrv/daily/2023-07-01/2023-07-20
+  response:
+    body:
+      string: '{"hrvSummaries": [{"calendarDate": "2023-07-01", "weeklyAvg": 43, "lastNightAvg":
+        43, "lastNight5MinHigh": 60, "baseline": {"lowUpper": 35, "balancedLow": 38,
+        "balancedUpper": 52, "markerValue": 0.42855835}, "status": "BALANCED", "feedbackPhrase":
+        "HRV_BALANCED_8", "createTimeStamp": "2023-07-01T12:27:14.85"}, {"calendarDate":
+        "2023-07-02", "weeklyAvg": 43, "lastNightAvg": 44, "lastNight5MinHigh": 63,
+        "baseline": {"lowUpper": 35, "balancedLow": 38, "balancedUpper": 51, "markerValue":
+        0.44230652}, "status": "BALANCED", "feedbackPhrase": "HRV_BALANCED_5", "createTimeStamp":
+        "2023-07-02T11:54:17.128"}, {"calendarDate": "2023-07-03", "weeklyAvg": 43,
+        "lastNightAvg": 48, "lastNight5MinHigh": 82, "baseline": {"lowUpper": 35,
+        "balancedLow": 38, "balancedUpper": 52, "markerValue": 0.42855835}, "status":
+        "BALANCED", "feedbackPhrase": "HRV_BALANCED_6", "createTimeStamp": "2023-07-03T12:41:20.280"},
+        {"calendarDate": "2023-07-04", "weeklyAvg": 43, "lastNightAvg": 40, "lastNight5MinHigh":
+        80, "baseline": {"lowUpper": 35, "balancedLow": 38, "balancedUpper": 52, "markerValue":
+        0.42855835}, "status": "BALANCED", "feedbackPhrase": "HRV_BALANCED_7", "createTimeStamp":
+        "2023-07-04T11:41:59.456"}, {"calendarDate": "2023-07-05", "weeklyAvg": 43,
+        "lastNightAvg": 40, "lastNight5MinHigh": 67, "baseline": {"lowUpper": 35,
+        "balancedLow": 38, "balancedUpper": 52, "markerValue": 0.42855835}, "status":
+        "BALANCED", "feedbackPhrase": "HRV_BALANCED_8", "createTimeStamp": "2023-07-05T12:46:25.805"},
+        {"calendarDate": "2023-07-06", "weeklyAvg": 43, "lastNightAvg": 46, "lastNight5MinHigh":
+        58, "baseline": {"lowUpper": 35, "balancedLow": 38, "balancedUpper": 52, "markerValue":
+        0.42855835}, "status": "BALANCED", "feedbackPhrase": "HRV_BALANCED_5", "createTimeStamp":
+        "2023-07-06T17:20:46.196"}, {"calendarDate": "2023-07-07", "weeklyAvg": 44,
+        "lastNightAvg": 44, "lastNight5MinHigh": 85, "baseline": {"lowUpper": 35,
+        "balancedLow": 38, "balancedUpper": 52, "markerValue": 0.46427917}, "status":
+        "BALANCED", "feedbackPhrase": "HRV_BALANCED_6", "createTimeStamp": "2023-07-07T12:15:26.744"},
+        {"calendarDate": "2023-07-08", "weeklyAvg": 43, "lastNightAvg": 40, "lastNight5MinHigh":
+        63, "baseline": {"lowUpper": 35, "balancedLow": 38, "balancedUpper": 52, "markerValue":
+        0.42855835}, "status": "BALANCED", "feedbackPhrase": "HRV_BALANCED_7", "createTimeStamp":
+        "2023-07-09T01:57:41.693"}, {"calendarDate": "2023-07-09", "weeklyAvg": 43,
+        "lastNightAvg": 43, "lastNight5MinHigh": 66, "baseline": {"lowUpper": 35,
+        "balancedLow": 38, "balancedUpper": 52, "markerValue": 0.42855835}, "status":
+        "BALANCED", "feedbackPhrase": "HRV_BALANCED_8", "createTimeStamp": "2023-07-09T14:15:53.403"},
+        {"calendarDate": "2023-07-10", "weeklyAvg": 42, "lastNightAvg": 41, "lastNight5MinHigh":
+        62, "baseline": {"lowUpper": 36, "balancedLow": 39, "balancedUpper": 52, "markerValue":
+        0.3653717}, "status": "BALANCED", "feedbackPhrase": "HRV_BALANCED_5", "createTimeStamp":
+        "2023-07-10T12:43:37.356"}, {"calendarDate": "2023-07-11", "weeklyAvg": 43,
+        "lastNightAvg": 46, "lastNight5MinHigh": 67, "baseline": {"lowUpper": 36,
+        "balancedLow": 39, "balancedUpper": 52, "markerValue": 0.4038391}, "status":
+        "BALANCED", "feedbackPhrase": "HRV_BALANCED_6", "createTimeStamp": "2023-07-11T12:42:55.467"},
+        {"calendarDate": "2023-07-12", "weeklyAvg": 42, "lastNightAvg": 38, "lastNight5MinHigh":
+        56, "baseline": {"lowUpper": 36, "balancedLow": 39, "balancedUpper": 52, "markerValue":
+        0.3653717}, "status": "BALANCED", "feedbackPhrase": "HRV_BALANCED_3", "createTimeStamp":
+        "2023-07-12T10:08:55.474"}, {"calendarDate": "2023-07-13", "weeklyAvg": 42,
+        "lastNightAvg": 41, "lastNight5MinHigh": 66, "baseline": {"lowUpper": 36,
+        "balancedLow": 39, "balancedUpper": 52, "markerValue": 0.3653717}, "status":
+        "BALANCED", "feedbackPhrase": "HRV_BALANCED_8", "createTimeStamp": "2023-07-13T12:59:44.753"},
+        {"calendarDate": "2023-07-14", "weeklyAvg": 41, "lastNightAvg": 37, "lastNight5MinHigh":
+        57, "baseline": {"lowUpper": 36, "balancedLow": 39, "balancedUpper": 52, "markerValue":
+        0.32691956}, "status": "BALANCED", "feedbackPhrase": "HRV_BALANCED_3", "createTimeStamp":
+        "2023-07-14T12:16:07.618"}, {"calendarDate": "2023-07-15", "weeklyAvg": 40,
+        "lastNightAvg": 37, "lastNight5MinHigh": 54, "baseline": {"lowUpper": 36,
+        "balancedLow": 39, "balancedUpper": 52, "markerValue": 0.28845215}, "status":
+        "BALANCED", "feedbackPhrase": "HRV_BALANCED_3", "createTimeStamp": "2023-07-15T18:18:32.522"},
+        {"calendarDate": "2023-07-16", "weeklyAvg": 39, "lastNightAvg": 37, "lastNight5MinHigh":
+        64, "baseline": {"lowUpper": 36, "balancedLow": 39, "balancedUpper": 52, "markerValue":
+        0.25}, "status": "BALANCED", "feedbackPhrase": "HRV_BALANCED_3", "createTimeStamp":
+        "2023-07-17T03:13:54.585"}, {"calendarDate": "2023-07-17", "weeklyAvg": 39,
+        "lastNightAvg": 41, "lastNight5MinHigh": 65, "baseline": {"lowUpper": 36,
+        "balancedLow": 39, "balancedUpper": 52, "markerValue": 0.25}, "status": "BALANCED",
+        "feedbackPhrase": "HRV_BALANCED_8", "createTimeStamp": "2023-07-17T11:58:26.731"},
+        {"calendarDate": "2023-07-18", "weeklyAvg": 39, "lastNightAvg": 40, "lastNight5MinHigh":
+        72, "baseline": {"lowUpper": 36, "balancedLow": 40, "balancedUpper": 52, "markerValue":
+        0.22801208}, "status": "UNBALANCED", "feedbackPhrase": "HRV_UNBALANCED_12",
+        "createTimeStamp": "2023-07-18T13:45:54.638"}, {"calendarDate": "2023-07-19",
+        "weeklyAvg": 39, "lastNightAvg": 43, "lastNight5MinHigh": 60, "baseline":
+        {"lowUpper": 36, "balancedLow": 39, "balancedUpper": 52, "markerValue": 0.25},
+        "status": "BALANCED", "feedbackPhrase": "HRV_BALANCED_4", "createTimeStamp":
+        "2023-07-19T14:43:16.394"}, {"calendarDate": "2023-07-20", "weeklyAvg": 39,
+        "lastNightAvg": 42, "lastNight5MinHigh": 66, "baseline": {"lowUpper": 36,
+        "balancedLow": 39, "balancedUpper": 52, "markerValue": 0.25}, "status": "BALANCED",
+        "feedbackPhrase": "HRV_BALANCED_7", "createTimeStamp": "2023-07-20T12:14:11.898"}],
+        "userProfilePk": 2591602}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 7ee9c25508eab6ee-QRO
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 30 Jul 2023 01:16:56 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Ig10n8P3G%2FX4Vp3ul24i1kHttHYtcRm1HiCd6dc%2Fjz1lmoB4AtNDuCVpY54U4ex5q2t13XG5VtXvxr2fofHo1aG0CXozSONIa4yPdKFoWX1NaIdE9QGEgalg46QnrI6w6D9yVA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      cache-control:
+      - no-cache, no-store, private
+      pragma:
+      - no-cache
+      set-cookie:
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+    status:
+      code: 200
+      message: OK
+version: 1

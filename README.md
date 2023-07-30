@@ -307,6 +307,49 @@ garth.WeeklyIntensityMinutes.list(period=2)
 ]
 ```
 
+### HRV
+
+Daily HRV
+
+```python
+garth.DailyHRV.list(period=2)
+```
+
+```python
+[
+    DailyHRV(
+        calendar_date=datetime.date(2023, 7, 28),
+        weekly_avg=39,
+        last_night_avg=36,
+        last_night_5_min_high=52,
+        baseline=HRVBaseline(
+            low_upper=36,
+            balanced_low=39,
+            balanced_upper=51,
+            marker_value=0.25
+        ),
+        status='BALANCED',
+        feedback_phrase='HRV_BALANCED_2',
+        create_time_stamp=datetime.datetime(2023, 7, 28, 12, 40, 16, 785000)
+    ),
+    DailyHRV(
+        calendar_date=datetime.date(2023, 7, 29),
+        weekly_avg=40,
+        last_night_avg=41,
+        last_night_5_min_high=76,
+        baseline=HRVBaseline(
+            low_upper=36,
+            balanced_low=39,
+            balanced_upper=51,
+            marker_value=0.2916565
+        ),
+        status='BALANCED',
+        feedback_phrase='HRV_BALANCED_8',
+        create_time_stamp=datetime.datetime(2023, 7, 29, 13, 45, 23, 479000)
+    )
+]
+```
+
 ### Sleep
 
 Daily sleep quality
