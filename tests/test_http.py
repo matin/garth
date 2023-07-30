@@ -42,7 +42,7 @@ def test_configure_ssl_verify(client: Client):
 
 
 def test_configure_timeout(client: Client):
-    assert client.timeout == 15
+    assert client.timeout == 10
     client.configure(timeout=99)
     assert client.timeout == 99
 
@@ -56,7 +56,7 @@ def test_configure_retry(client: Client):
 
 
 def test_configure_status_forcelist(client: Client):
-    assert client.status_forcelist == (429, 500, 502, 503, 504)
+    assert client.status_forcelist == (408, 429, 500, 502, 503, 504)
     assert (
         client.sess.adapters["https://"].max_retries.status_forcelist
         == client.status_forcelist

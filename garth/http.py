@@ -22,9 +22,9 @@ class Client:
     last_resp: Response
     domain: str = "garmin.com"
     auth_token: AuthToken | None = None
-    timeout: int = 15
+    timeout: int = 10
     retries: int = 5
-    status_forcelist: tuple[int, ...] = (429, 500, 502, 503, 504)
+    status_forcelist: tuple[int, ...] = (408, 429, 500, 502, 503, 504)
     backoff_factor: float = 1
     _username: str | None = None
 
