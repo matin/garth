@@ -23,9 +23,9 @@ class Client:
     domain: str = "garmin.com"
     auth_token: AuthToken | None = None
     timeout: int = 10
-    retries: int = 5
+    retries: int = 3
     status_forcelist: tuple[int, ...] = (408, 429, 500, 502, 503, 504)
-    backoff_factor: float = 1
+    backoff_factor: float = 0.5
     _username: str | None = None
 
     def __init__(self, session: Session | None = None, **kwargs):

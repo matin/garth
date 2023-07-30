@@ -48,7 +48,7 @@ def test_configure_timeout(client: Client):
 
 
 def test_configure_retry(client: Client):
-    assert client.retries == 5
+    assert client.retries == 3
     assert client.sess.adapters["https://"].max_retries.total == client.retries
     client.configure(retries=99)
     assert client.retries == 99
@@ -66,7 +66,7 @@ def test_configure_status_forcelist(client: Client):
 
 
 def test_backoff_factor(client: Client):
-    assert client.backoff_factor == 1
+    assert client.backoff_factor == 0.5
     assert (
         client.sess.adapters["https://"].max_retries.backoff_factor
         == client.backoff_factor
