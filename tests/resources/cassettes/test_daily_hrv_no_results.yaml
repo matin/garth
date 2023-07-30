@@ -1,0 +1,56 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
+        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; SESSIONID=SANITIZED; __cflb=SANITIZED
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+      di-backend:
+      - connectapi.garmin.com
+    method: GET
+    uri: https://connect.garmin.com/hrv-service/hrv/daily/1990-06-23/1990-07-20
+  response:
+    body:
+      string: ''
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 7eead970d8a5b6ed-QRO
+      Connection:
+      - keep-alive
+      Date:
+      - Sun, 30 Jul 2023 04:27:28 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=yPrpdQ23qfB8H%2FQpSeMAUsxSLl0eLVlDn3oXACqejazSHz6B9MBIHCS9FtK7SY6pVR4k1ReIzzwSz9r5MOO4KI8Qgqm0TI6QW6ZfK0kqrrwA30JsYkhhOJu%2Fqhrp3hPe05V%2FJA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      cache-control:
+      - no-cache, no-store, private
+      pragma:
+      - no-cache
+      set-cookie:
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+    status:
+      code: 204
+      message: No Content
+version: 1

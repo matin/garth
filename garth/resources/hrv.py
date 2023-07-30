@@ -58,5 +58,7 @@ class DailyHRV:
         start = end - timedelta(days=period - 1)
         path = cls._path.format(start=start, end=end)
         daily_hrv = client.connectapi(path)
+        if daily_hrv is None:
+            return []
         daily_hrv = camel_to_snake_dict(daily_hrv)["hrv_summaries"]
         return [cls(**hrv) for hrv in daily_hrv]

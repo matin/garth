@@ -124,7 +124,12 @@ class Client:
         self.auth_token = AuthToken.login(*args, client=self)
 
     def connectapi(self, path: str, **kwargs):
-        return self.get("connect", path, api=True, **kwargs).json()
+        resp = self.get("connect", path, api=True, **kwargs)
+        if resp.status_code == 204:
+            rv = None
+        else:
+            rv = resp.json()
+        return rv
 
     def dump(self, dir_path: str):
         dir_path = os.path.expanduser(dir_path)
