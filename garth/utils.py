@@ -2,7 +2,9 @@ import re
 from datetime import date, timedelta
 from typing import Any
 
-CAMEL_TO_SNAKE = re.compile(r"((?<=[a-z0-9])[A-Z]|(?!^)[A-Z](?=[a-z]))")
+CAMEL_TO_SNAKE = re.compile(
+    r"((?<=[a-z0-9])[A-Z]|(?!^)[A-Z](?=[a-z])|(?<=[a-zA-Z])[0-9])"
+)
 
 
 def camel_to_snake(camel_str: str) -> str:
