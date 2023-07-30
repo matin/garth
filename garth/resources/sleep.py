@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from typing import ClassVar, List, Optional
+from typing import ClassVar, Optional
 
 from pydantic.dataclasses import dataclass
 
@@ -91,7 +91,7 @@ class SleepMovement:
 @dataclass(frozen=True)
 class SleepData:
     daily_sleep_dto: DailySleepDTO
-    sleep_movement: List[SleepMovement]
+    sleep_movement: list[SleepMovement]
 
     @classmethod
     def get(cls, day: date | str, *, client: Optional[http.Client] = None):
@@ -107,10 +107,10 @@ class SleepData:
     @classmethod
     def list(
         cls,
-        end: Optional[date] | str = None,
+        end: date | str | None = None,
         days: int = 1,
         *,
-        client: Optional[http.Client] = None,
+        client: http.Client | None = None,
     ):
         client = client or http.client
         end = format_end_date(end)
