@@ -27,6 +27,7 @@ class DailyHRV:
     create_time_stamp: datetime
 
     _path: ClassVar[str] = "/hrv-service/hrv/daily/{start}/{end}"
+    _page_size: ClassVar[int] = 28
 
     @classmethod
     def list(
@@ -38,6 +39,22 @@ class DailyHRV:
     ) -> list["DailyHRV"]:
         client = client or http.client
         end = format_end_date(end)
+
+        # Paginate if period is greater than page size
+        if period > cls._page_size:
+            page = cls.list(end, cls._page_size, client=client)
+            if not page:
+                return []
+            page = (
+                cls.list(
+                    end - timedelta(days=cls._page_size),
+                    period - cls._page_size,
+                    client=client,
+                )
+                + page
+            )
+            return page
+
         start = end - timedelta(days=period - 1)
         path = cls._path.format(start=start, end=end)
         daily_hrv = client.connectapi(path)
