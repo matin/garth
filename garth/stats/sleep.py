@@ -4,8 +4,8 @@ from typing import ClassVar, Optional
 from pydantic.dataclasses import dataclass
 
 from .. import http
-from ..stats import Stats
 from ..utils import camel_to_snake_dict, date_range, format_end_date
+from ._base import Stats
 
 
 @dataclass(frozen=True)

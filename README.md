@@ -163,7 +163,7 @@ stress =  garth.connectapi(f"/usersummary-service/stats/stress/weekly/2023-07-05
 }
 ```
 
-## Resources
+## Stats resources
 
 ### Stress
 

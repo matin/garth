@@ -2,7 +2,7 @@ from typing import ClassVar
 
 from pydantic.dataclasses import dataclass
 
-from ..stats import Stats
+from ._base import Stats
 
 BASE_PATH = "/usersummary-service/stats/steps"
 

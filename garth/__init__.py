@@ -1,5 +1,5 @@
 from .http import client
-from .resources import (
+from .stats import (
     DailyHRV,
     DailyIntensityMinutes,
     DailySleep,
