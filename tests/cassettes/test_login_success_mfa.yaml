@@ -135,7 +135,7 @@ interactions:
         \       No  true/false (Default value is false)                      Whether
         the \"Remember My Browser\" check box feature is checked by default.\n\tconsentTypeIds\t\t\t\t\tNo\tconsent_types
         ids\t\t \t\t\t\t\t\t\t\t multiple consent types ids can be passed as consentTypeIds=type1&consentTypeIds=type2\n\t</pre>\n</div>\n\n\n\t<script>(function(){var
-        js = \"window['__CF$cv$params']={r:'7f19a351192546a1'};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/invisible.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
+        js = \"window['__CF$cv$params']={r:'7f19f84d2d2047a4'};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/invisible.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
         _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position
         = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility
         = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi =
@@ -159,7 +159,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7f19a351192546a1-DFW
+      - 7f19f84d2d2047a4-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -169,11 +169,11 @@ interactions:
       Content-Type:
       - text/html;charset=UTF-8
       Date:
-      - Fri, 04 Aug 2023 20:44:22 GMT
+      - Fri, 04 Aug 2023 21:42:23 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=ytG3iKzcFS5%2B99VJD7%2FtqNm2w0E8GcBl0PO%2FS5qsCmdfQkBSJ6ekYSPKRo4ICSZ7qTGOe0aGYYvlGTJhYzx4Z5A46RMoBaAS2EdJ0JfNbriBi4n6TElpPegnmwjqc7Hj"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=zvXYngpt%2FM66%2Fz9gI0xFgQkzoTIocpc3OGEfkncJ37tBwN57jD%2B09JoWPKA%2BcR75KbtbFv7%2FwUMueVpsMUkKalOfkWJqWd9CZJvR9dmZYBgUP2HbcZR8pURmJPN48%2F9J"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:
@@ -187,13 +187,13 @@ interactions:
       Transfer-Encoding:
       - chunked
       X-Application-Context:
-      - casServer:cloud,prod,prod-US_1102:2
+      - casServer:cloud,prod,prod-US_1102:5
       X-B3-Traceid:
-      - 7de36dd29fa2d733290a6725dc47dfb8
+      - 6ca6b8ec7d365a895ef418b6319455ad
       X-Robots-Tag:
       - noindex
       X-Vcap-Request-Id:
-      - f780910f-ccdf-4771-49c7-aad225e3c68d
+      - ce3465b6-c1f7-4274-7cea-5812380e0fc9
     status:
       code: 200
       message: OK
@@ -311,7 +311,7 @@ interactions:
         id=\"capslock-warning\" class=\"information\" title=\"Caps lock is on.\" style=\"display:
         none;\">Caps lock is on.</strong>\n\t\t\t\t\t    </div>\n                        <input
         type=\"hidden\" name=\"embed\" value=\"false\"/>\n                        <input
-        type=\"hidden\" name=\"_csrf\" value=\"884C8386EF425D4BA55B54C0B893A3B750BFD7FC791A34EC0BA934444EC04CE6B1FA7484E35E2DF94006783318F9980B7A3A\"
+        type=\"hidden\" name=\"_csrf\" value=\"8FD1312E0D2A8A6D81CFF06E3ECFC06500351F8735530EBCE4F75FCB1A63EF6E8444F31A1CB9774C56E57C2C363807E8FF33\"
         />\n                        <button type=\"submit\" id=\"login-btn-signin\"
         class=\"btn1\" accesskey=\"l\">Sign In</button>\n                        \n\n\n
         \                       <!-- The existence of the \"rememberme\" parameter
@@ -337,7 +337,7 @@ interactions:
         \                   send({'openLiteBox':'createAccountLink', 'popupUrl': createAccountConfigURL,
         'popupTitle':'Create An Account', 'clientId':clientId});\n\t                });\n
         \               }\n            });\n        </script>\n    <script>(function(){var
-        js = \"window['__CF$cv$params']={r:'7f19a3536a19468a'};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/invisible.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
+        js = \"window['__CF$cv$params']={r:'7f19f84e7fa8b6e8'};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/invisible.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
         _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position
         = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility
         = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi =
@@ -361,7 +361,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 7f19a3536a19468a-DFW
+      - 7f19f84e7fa8b6e8-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -371,11 +371,11 @@ interactions:
       Content-Type:
       - text/html;charset=UTF-8
       Date:
-      - Fri, 04 Aug 2023 20:44:23 GMT
+      - Fri, 04 Aug 2023 21:42:23 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=%2FFRtmPmaDfGDypVhatXfunnrGA%2BA8%2FxV6e%2BuekUdoE5fp2JNEw4bdoizvGG90r1BbOkbo3Ux5ybFDdoX4bKGqoKZWemHOBRFCYnaxHW3Ewoy9EHnNXohVMAu47T3dGnV"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=vC5EgD2UglMkkfFYe73MTEAE%2Ba%2BwXEfO1fjtmIdd0szIyodAnJpcate6PdHLtQdup9QOd%2F3QsAS5I0UwloNcZnT3gCBvs%2BOglqOmgC2YYJhOHmbrNHAlh%2FhQdk0Bc4XV"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:
@@ -390,16 +390,16 @@ interactions:
       X-Application-Context:
       - casServer:cloud,prod,prod-US_1102:7
       X-B3-Traceid:
-      - 66c4d064ee4981291e470a27733c75c8
+      - 23e25790497950af53ad870cb9a288b8
       X-Robots-Tag:
       - noindex
       X-Vcap-Request-Id:
-      - 97a74fb2-172b-46bf-69fb-dc6d6ac7ca6b
+      - 0790e6ab-9635-4d69-6b8a-244cf044e56c
     status:
       code: 200
       message: OK
 - request:
-    body: username=SANITIZED&password=SANITIZED&embed=true&_csrf=884C8386EF425D4BA55B54C0B893A3B750BFD7FC791A34EC0BA934444EC04CE6B1FA7484E35E2DF94006783318F9980B7A3A
+    body: username=SANITIZED&password=SANITIZED&embed=true&_csrf=8FD1312E0D2A8A6D81CFF06E3ECFC06500351F8735530EBCE4F75FCB1A63EF6E8444F31A1CB9774C56E57C2C363807E8FF33
     headers:
       Accept:
       - '*/*'
@@ -437,7 +437,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 7f19a354dcda1547-QRO
+      - 7f19f84fd8d5154b-QRO
       Connection:
       - keep-alive
       Content-Language:
@@ -445,13 +445,13 @@ interactions:
       Content-Length:
       - '0'
       Date:
-      - Fri, 04 Aug 2023 20:44:24 GMT
+      - Fri, 04 Aug 2023 21:42:25 GMT
       Location:
       - https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=tT3Bm66IlHoACTPEW5aaWCih7nnzM48aWyyucJvJmXCHD6IH9yzYzqrcuZRsM3bzCgO5iQl0GWdKr4pSX%2Bbww%2F1QQ2HgTgnaYSYzYE9M9%2BiXwO8Z9zPyD5ShoR5IaGGZ"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=tFguDXcU1G6XJJv%2BBcpNv3veY3trRFFdHZIhw4TIp60D4GyisC1Rp3K1v%2Bj%2Fcq4FuGh4LJaZA8UQLxCLAuJfHezU7jFSlTbZvV2qXbNxQ%2F7n0OtnJh2FuSrZzYLtIXUZ"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:
@@ -463,11 +463,11 @@ interactions:
       X-Application-Context:
       - casServer:cloud,prod,prod-US_1102:7
       X-B3-Traceid:
-      - 55b92cb20bd883142b4f3a21212f1a1c
+      - 2306946bb772deae0299aca0881a0afe
       X-Robots-Tag:
       - noindex
       X-Vcap-Request-Id:
-      - 2993f7d4-157a-412b-4177-8315cd0e0f50
+      - 90ed387d-cabf-4049-4122-09090680db2b
     status:
       code: 302
       message: Found
@@ -554,13 +554,13 @@ interactions:
         \                       <button type=\"submit\" id=\"mfa-verification-code-submit\"
         class=\"btn1\">Next</button>\n                    </div>\n                    <input
         type=\"hidden\" name=\"embed\"            value=\"\"/>\n                    <input
-        type=\"hidden\" name=\"_csrf\"            value=\"89E48A5A52FDC9A4B5C29D2918F619B337621D199A534539AAD83C0AA2AB17DAF3C4CF9F56195AEE3BCE4B6866A34928D8BF\"
+        type=\"hidden\" name=\"_csrf\"            value=\"F9C17B99B345D1989FF8805BC611547BEC7C8F3C4C3DD4EC32AB8B766A27731265986903FD84CB56F1A1CA270D1D598F1D6F\"
         />\n                    <input type=\"hidden\" name=\"fromPage\"            value=\"setupEnterMfaCode\"/>\n
         \                   <br/>\n                </form>\n            </div>\n            <div
         class=\"clearfix\"></div> <!-- Ensure that GAuth-component div's height is
         computed correctly. -->\n        </div>\n    </div>\n    <script type=\"text/javascript\">\n
         \       resizePageOnLoad(jQuery(\"#GAuth-component\").height());\n    </script>\n<script>(function(){var
-        js = \"window['__CF$cv$params']={r:'7f19a35eadf64797'};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/invisible.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
+        js = \"window['__CF$cv$params']={r:'7f19f85a8a0846d4'};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/invisible.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
         _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position
         = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility
         = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi =
@@ -584,7 +584,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7f19a35eadf64797-DFW
+      - 7f19f85a8a0846d4-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -594,11 +594,11 @@ interactions:
       Content-Type:
       - text/html;charset=UTF-8
       Date:
-      - Fri, 04 Aug 2023 20:44:24 GMT
+      - Fri, 04 Aug 2023 21:42:25 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Cx2KhXZ92%2Fc38BjEH2TJ8bKkuzKrXn7G4k2KBB4F77VUlfrRtd3Ma36EuNIuEwPKt0MbbTBkiKz6cmCVpLHL78Grb1yaW4qioaOhRpKmselHhTiRADUtZ986y6gwrMzF"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=vlAIfwLdw1RDwdV2miJoXWzSRPUIP0vka2ZV3M%2BpTKxZz%2F2bv%2FBHlFw0eOQ767Weo7hVAd9dM0d9VkbqussSgEMIYQ268IuyC8EfS2AzRvnQYhcWPAvkZuw%2Fxl6HzYh9"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:
@@ -609,16 +609,16 @@ interactions:
       X-Application-Context:
       - casServer:cloud,prod,prod-US_1102:7
       X-B3-Traceid:
-      - 7af5fbfce51e803d25255d01c1881b84
+      - 0a3e2d17f07851c273668f7d119fdd2e
       X-Robots-Tag:
       - noindex
       X-Vcap-Request-Id:
-      - b3ef8bab-184d-4715-4701-3c7749dfb38d
+      - be07a1e9-4b86-4a15-4a39-c26e2e86dd49
     status:
       code: 200
       message: OK
 - request:
-    body: mfa-code=577212&embed=true&_csrf=89E48A5A52FDC9A4B5C29D2918F619B337621D199A534539AAD83C0AA2AB17DAF3C4CF9F56195AEE3BCE4B6866A34928D8BF&fromPage=setupEnterMfaCode
+    body: mfa-code=195893&embed=true&_csrf=F9C17B99B345D1989FF8805BC611547BEC7C8F3C4C3DD4EC32AB8B766A27731265986903FD84CB56F1A1CA270D1D598F1D6F&fromPage=setupEnterMfaCode
     headers:
       Accept:
       - '*/*'
@@ -656,7 +656,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7f19a3b10f7a475e-DFW
+      - 7f19f8c8aff41557-QRO
       Connection:
       - keep-alive
       Content-Language:
@@ -664,13 +664,13 @@ interactions:
       Content-Length:
       - '0'
       Date:
-      - Fri, 04 Aug 2023 20:44:38 GMT
+      - Fri, 04 Aug 2023 21:42:44 GMT
       Location:
-      - https://sso.garmin.com/sso/login?logintoken=VuQcJ7ivPg&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&locale=en&embed=true&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&embedWidget=true
+      - https://sso.garmin.com/sso/login?logintoken=PFID9Y5XoQ&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&locale=en&embed=true&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&embedWidget=true
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=NGgvN3mY6mMbca0W6oPgP77yYti09%2FRuMFbc%2B3TANMVXaqj0LqEANMWpu2bhQ3eP7bUp%2FJHcPil5lor7r%2FZj%2FeqlikvJC40NazuUT3fD0gr%2FhpkVtHuFxfupzOnFljZr"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=cUvppW2Waaho4sVepx4f%2BpBXljwio9Mr5vgx73I%2F2Z0A8qBX1eiBnQz%2Fi24%2BbKl74JW8QBFec2n4hSbX2xJgLE9ud3f1xdREl9jbvaIngvRcXsD4cUuqoLgm%2BP1f4iof"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:
@@ -679,11 +679,11 @@ interactions:
       X-Application-Context:
       - casServer:cloud,prod,prod-US_1102:7
       X-B3-Traceid:
-      - 2da2090d89494ce45f9fac6d04602be8
+      - 0339eee8eb299f1c0626712d33b7683c
       X-Robots-Tag:
       - noindex
       X-Vcap-Request-Id:
-      - e7305dea-ccb7-422a-4d05-8e07ecb69277
+      - 013c5c74-8192-4e87-7be3-d293d92aa83e
     status:
       code: 302
       message: Found
@@ -705,7 +705,7 @@ interactions:
       referer:
       - https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
     method: GET
-    uri: https://sso.garmin.com/sso/login?logintoken=VuQcJ7ivPg&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&locale=en&embed=true&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&embedWidget=true
+    uri: https://sso.garmin.com/sso/login?logintoken=PFID9Y5XoQ&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&locale=en&embed=true&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&embedWidget=true
   response:
     body:
       string: "<!DOCTYPE html>\n<html class=\"no-js\">\n\t<head>\n\t\t<title>Success</title>\n\t\t<meta
@@ -720,8 +720,8 @@ interactions:
         redirectAfterAccountCreationUrl = \"\";\n\t\t\tvar consumeServiceTicket         \t
         \ = \"true\";\n\t\t\tvar service_url                  \t  = \"https:\\/\\/sso.garmin.com\\/sso\\/embed\";\n\t\t\tvar
         parent_url                   \t  = \"https:\\/\\/sso.garmin.com\\/sso\\/embed\";\n\t\t\tvar
-        response_url                 \t  = \"https:\\/\\/sso.garmin.com\\/sso\\/embed?ticket=ST-2435197-JpeHGkPdeOMWbeob04zU-cas\";\n\t\t\tvar
-        logintoken                   \t  = \"VuQcJ7ivPg\";\n\t\t\tvar socialLogin
+        response_url                 \t  = \"https:\\/\\/sso.garmin.com\\/sso\\/embed?ticket=ST-2438674-btozWOKhrVdRH4PKUwah-cas\";\n\t\t\tvar
+        logintoken                   \t  = \"PFID9Y5XoQ\";\n\t\t\tvar socialLogin
         \                  \t  = \"\";\n\t\t\tvar performMFACheck                 =
         \"\";\n\n\t\t\t// Decode url if it's encoded unnecessarily (which is happening
         when SSO GAuth logins redisplay the login page due to session timeouts.)\n\t\t\tif
@@ -814,7 +814,7 @@ interactions:
         type=\"text/javascript\">\n\t\t\tjQuery(document).ready(function(){\n\t\t\t\tvar
         service = \"https:\\/\\/sso.garmin.com\\/sso\\/embed\";\n\t\t\t\tconsoleInfo(\"casEmbedSuccess.html:
         ready, calling redirect('\" + service + \"')...\");\n\t\t\t\tredirect(service);\n\t\t\t});\n\t\t</script>\n\t<script>(function(){var
-        js = \"window['__CF$cv$params']={r:'7f19a3b83f801549'};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/invisible.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
+        js = \"window['__CF$cv$params']={r:'7f19f8d24c9745e8'};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/invisible.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
         _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position
         = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility
         = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi =
@@ -838,7 +838,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 7f19a3b83f801549-QRO
+      - 7f19f8d24c9745e8-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -848,11 +848,11 @@ interactions:
       Content-Type:
       - text/html;charset=UTF-8
       Date:
-      - Fri, 04 Aug 2023 20:44:39 GMT
+      - Fri, 04 Aug 2023 21:42:45 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=imfmx6AwwEBoeOxkjGZH0%2Fuo7TerKPfAo3lexzqusMZoSuUvTb9NcJ%2ByyJcQ2tpq2ir22LFjOMkQL1I3GIaG3fryTvPe4zy0OUoN6zviNS23J9BNLEXkCIiTx381dS8m"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=mkKV3UBsbSn3e2rQHCFQRE14OiBbFa6u7cpCIcXy3QvaEvbDu8dCCamDRgjKkU%2FElrNOIvq2IG3JogUVOk2XT6UoxD4O59Nk0XIMOi4wHBKjb1GrAc5I34cz7VNebdaf"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:
@@ -887,11 +887,11 @@ interactions:
       X-Application-Context:
       - casServer:cloud,prod,prod-US_1102:7
       X-B3-Traceid:
-      - 4fcf72f20e7a66dc13e58e89d1664544
+      - 782920201f8436216612583f8f870378
       X-Robots-Tag:
       - noindex
       X-Vcap-Request-Id:
-      - 6feb25a6-e44a-4549-47fa-75badeb102f8
+      - c796ecd4-094e-4657-479b-b1ab8bc1b185
     status:
       code: 200
       message: OK
@@ -919,7 +919,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 04 Aug 2023 20:44:40 GMT
+      - Fri, 04 Aug 2023 21:42:47 GMT
       ETag:
       - '"20240b1013cb35419bb5b2cff1407a4e"'
       Last-Modified:
@@ -927,9 +927,9 @@ interactions:
       Server:
       - AmazonS3
       x-amz-id-2:
-      - /eMqmlK8obld8yP0MiiccJ5jEcyJNyjP5NUEl5p0NQ6WmCSo+GNI0sthWE+8i64u6u61lY+iJr4=
+      - cBp5mKgmX+Tjt0vISDuygu6J3/f6qZBCBlJCFl1gmUtHNNKgCK2hu4TiOCmoyIX+Hx16w5mDCeA=
       x-amz-request-id:
-      - 29FWE9MM7JBZB8MM
+      - WTDF5S9E2EP14K4Z
       x-amz-server-side-encryption:
       - AES256
     status:
@@ -953,16 +953,16 @@ interactions:
       - !!binary |
         Y29tLmdhcm1pbi5hbmRyb2lkLmFwcHMuY29ubmVjdG1vYmlsZQ==
     method: GET
-    uri: https://connectapi.garmin.com/oauth-service/oauth/preauthorized?ticket=ST-2435197-JpeHGkPdeOMWbeob04zU-cas&login-url=https://sso.garmin.com/sso/embed&accepts-mfa-tokens=true
+    uri: https://connectapi.garmin.com/oauth-service/oauth/preauthorized?ticket=ST-2438674-btozWOKhrVdRH4PKUwah-cas&login-url=https://sso.garmin.com/sso/embed&accepts-mfa-tokens=true
   response:
     body:
       string: oauth_token=SANITIZED&oauth_token_secret=SANITIZED&mfa_token=SANITIZED&mfa_expiration_timestamp=2024-08-03
-        20:44:39.000
+        21:42:45.000
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7f19a3beb9b71557-QRO
+      - 7f19f8daecc2155f-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -970,11 +970,11 @@ interactions:
       Content-Type:
       - text/plain;charset=utf-8
       Date:
-      - Fri, 04 Aug 2023 20:44:40 GMT
+      - Fri, 04 Aug 2023 21:42:46 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=cG8UfEpttvW4gX8RkcgEbc%2Fjz0MOIm5YWeo68x2UdO4WGG3DSY1lC1dGGocc%2BZj7p%2BqZy2yZNbmtfxjXlFnSxBfQJ0RE1907rivdo8lAIeNjlyk35y6acqUmJCio9gc9xyTMxWZkSA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=AwBdGlGunrRQ4HgAAKD04iQqlLixnUaZ%2BIiNeadv9QCozM%2FwAoeCZ8YyQrD7x2J1c1JpLNaGsq8EDNxKrFCxQNh9tCgG4rt7GL7skaSruW%2BcEiDbenbXD8UlQDGQFx4yHcZcEW8nDg%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:
@@ -987,7 +987,7 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: ''
+    body: mfa_token=MFA-1536-goMvl9PeE1QlH6JSJX1f5hqZk4ccycCbkdy6nxF3WTOg5inTfx-cas
     headers:
       Accept:
       - !!binary |
@@ -1001,8 +1001,7 @@ interactions:
       - !!binary |
         a2VlcC1hbGl2ZQ==
       Content-Length:
-      - !!binary |
-        MA==
+      - '73'
       Content-Type:
       - !!binary |
         YXBwbGljYXRpb24veC13d3ctZm9ybS11cmxlbmNvZGVk
@@ -1018,12 +1017,12 @@ interactions:
         GARMINPAY_READ DT_CLIENT_ANALYTICS_WRITE GOLF_API_WRITE INSIGHTS_WRITE PRODUCT_SEARCH_READ
         GCOFFER_READ CONNECT_READ ATP_WRITE", "jti": "SANITIZED", "access_token":
         "SANITIZED", "token_type": "Bearer", "refresh_token": "SANITIZED", "expires_in":
-        90758, "refresh_token_expires_in": 2591999}'
+        86606, "refresh_token_expires_in": 2591999}'
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7f19a3c2d926479c-DFW
+      - 7f19f8de88e8b6e2-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -1031,11 +1030,11 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 04 Aug 2023 20:44:41 GMT
+      - Fri, 04 Aug 2023 21:42:47 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=iIakQJY4Wz4BRd8mQXfQOMjElxMfZq5J4gzbTACzNHp9kt41Bxc9H%2BBRkdEbAGQPKU08O%2Bb0x67cPAQq1%2FhiQVtxLq%2FrWxUY68hK0Jt4npTqoiIUeHLjsYph3hpIQlEbligc2nhR0w%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=%2Bvsjzm2UP5VPvfHrSEgS%2FMFxJs3GC4%2FoPObBG3tEuBguxri1QtILCfVGEjYpJA09T8cTXeSsVkZcSCc2Kf6PtL4luax0IhsRSKPsBrCR1FYBrMCpKHInwe3m%2FX5mUKL%2FlNn4Q42ilg%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:

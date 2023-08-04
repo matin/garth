@@ -115,10 +115,12 @@ def exchange(oauth1: OAuth1Token, client: "http.Client") -> OAuth2Token:
         resource_owner_key=oauth1.oauth_token,
         resource_owner_secret=oauth1.oauth_token_secret,
     )
+    data = dict(mfa_token=oauth1.mfa_token) if oauth1.mfa_token else {}
     token = sess.post(
         "https://connectapi.garmin.com/oauth-service/oauth/exchange/user/2.0",
         headers=USER_AGENT
         | {"Content-Type": "application/x-www-form-urlencoded"},
+        data=data,
     ).json()
 
     return OAuth2Token(**set_expirations(token))
