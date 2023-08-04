@@ -37,19 +37,18 @@ Matplotlib, etc.
 
 There are already a few Garmin Connect libraries. Why write another?
 
-### Authentication
+### Authentication and stability
 
 The most important reasoning is to build a library with authentication that
 works on [Google Colab](https://colab.research.google.com/) and doesn't require
 tools like Cloudscraper. Garth, in comparison:
 
-1. Uses the same embedded SSO as the mobile app
-1. Only requires `requests` and `pydantic` as dependencies
+1. Uses OAuth1 and OAuth2 token authentication after initial login
+1. OAuth tokens survive for a year
 1. Supports MFA
-1. Supports saving and resuming sessions to avoid the need to log in each time
-you run a script, which is particularly useful if you have MFA enabled
 1. Works on Google Colab
 1. Uses Pydantic dataclasses to validate and simplify use of data
+1. Full test coverage
 
 ### Python 3.10+
 
