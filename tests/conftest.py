@@ -6,7 +6,7 @@ import time
 import pytest
 from requests import Session
 
-from garth.auth_token import AuthToken
+from garth.auth_tokens import OAuth1Token, OAuth2Token
 from garth.http import Client
 
 
@@ -21,7 +21,22 @@ def client(session) -> Client:
 
 
 @pytest.fixture
-def auth_token_dict() -> dict:
+def oauth1_token_dict() -> dict:
+    return dict(
+        oauth_token="7fdff19aa9d64dda83e9d7858473aed1",
+        oauth_token_secret="49919d7c4c8241ac93fb4345886fbcea",
+        mfa_token="ab316f8640f3491f999f3298f3d6f1bb",
+        mfa_expiration_timestamp="2023-08-02 05:56:10.000",
+    )
+
+
+@pytest.fixture
+def oauth1_token(oauth1_token_dict) -> OAuth1Token:
+    return OAuth1Token(**oauth1_token_dict)
+
+
+@pytest.fixture
+def oauth2_token_dict() -> dict:
     return dict(
         scope="CONNECT_READ CONNECT_WRITE",
         jti="foo",
@@ -30,33 +45,34 @@ def auth_token_dict() -> dict:
         refresh_token="baz",
         expires_in=3599,
         refresh_token_expires_in=7199,
-        username="mtamizi",
     )
 
 
 @pytest.fixture
-def auth_token(auth_token_dict: dict) -> AuthToken:
-    token = AuthToken(
+def oauth2_token(oauth2_token_dict: dict) -> OAuth2Token:
+    token = OAuth2Token(
         expires_at=int(time.time() + 3599),
         refresh_token_expires_at=int(time.time() + 7199),
-        **auth_token_dict,
+        **oauth2_token_dict,
     )
     return token
 
 
 @pytest.fixture
-def authed_client(auth_token: AuthToken) -> Client:
+def authed_client(
+    oauth1_token: OAuth1Token, oauth2_token: OAuth2Token
+) -> Client:
     client = Client()
     try:
-        client.load(os.environ["GARTH_SESSION"])
+        client.load(os.environ["GARTH_HOME"])
     except KeyError:
-        client.auth_token = auth_token
+        client.configure(oauth1_token=oauth1_token, oauth2_token=oauth2_token)
     return client
 
 
 @pytest.fixture
 def vcr(vcr):
-    if "GARTH_SESSION" not in os.environ:
+    if "GARTH_HOME" not in os.environ:
         vcr.record_mode = "none"
     return vcr
 
@@ -69,7 +85,7 @@ def sanitize_request(request):
     if request.body:
         body = request.body.decode("utf8")
         for key in ["username", "password", "refresh_token"]:
-            body = re.sub(key + r"=[^&]*", "username=SANITIZED", body)
+            body = re.sub(key + r"=[^&]*", f"{key}=SANITIZED", body)
         request.body = body.encode("utf8")
 
     if "Cookie" in request.headers:
@@ -86,23 +102,35 @@ def sanitize_response(response):
             sanitized_cookies = [sanitize_cookie(cookie) for cookie in cookies]
             response["headers"][key] = sanitized_cookies
 
-    if "body" in response and response["body"]["string"]:
-        try:
-            body = response["body"]["string"].decode("utf8")
-            body_json = json.loads(body)
-        except json.JSONDecodeError:
-            pass
-        else:
-            # sanitize access_token and refresh_token
-            if "access_token" in body_json:
-                body_json["access_token"] = "SANITIZED"
-            if "refresh_token" in body_json:
-                body_json["refresh_token"] = "SANITIZED"
-            if "jti" in body_json:
-                body_json["jti"] = "SANITIZED"
+    if "body" not in response and response["body"]["string"]:
+        return response
 
-            body = json.dumps(body_json)
-            response["body"]["string"] = body.encode("utf8")
+    body = response["body"]["string"].decode("utf8")
+    patterns = [
+        "oauth_token=[^&]*",
+        "oauth_token_secret=[^&]*",
+        "mfa_token=[^&]*",
+    ]
+    for pattern in patterns:
+        body = re.sub(pattern, pattern.split("=")[0] + "=SANITIZED", body)
+    try:
+        body_json = json.loads(body)
+    except json.JSONDecodeError:
+        pass
+    else:
+        for field in [
+            "access_token",
+            "refresh_token",
+            "jti",
+            "consumer_key",
+            "consumer_secret",
+        ]:
+            if field in body_json:
+                body_json[field] = "SANITIZED"
+
+        body = json.dumps(body_json)
+    response["body"]["string"] = body.encode("utf8")
+
     return response
 
 

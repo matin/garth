@@ -10,16 +10,104 @@ interactions:
       - Bearer SANITIZED
       Connection:
       - keep-alive
-      Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; SESSIONID=SANITIZED; __cflb=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-20
+    uri: https://connectapi.garmin.com/userprofile-service/socialProfile
+  response:
+    body:
+      string: '{"id": 3154645, "profileId": 2591602, "garminGUID": "0690cc1d-d23d-4412-b027-80fd4ed1c0f6",
+        "displayName": "mtamizi", "fullName": "Matin Tamizi", "userName": "mtamizi",
+        "profileImageUuid": "73240e81-6e4d-43fc-8af8-c8f6c51b3b8f", "profileImageUrlLarge":
+        "https://s3.amazonaws.com/garmin-connect-prod/profile_images/73240e81-6e4d-43fc-8af8-c8f6c51b3b8f-2591602.png",
+        "profileImageUrlMedium": "https://s3.amazonaws.com/garmin-connect-prod/profile_images/685a19e9-a7be-4a11-9bf9-faca0c5d1f1a-2591602.png",
+        "profileImageUrlSmall": "https://s3.amazonaws.com/garmin-connect-prod/profile_images/6302f021-0ec7-4dc9-b0c3-d5a19bc5a08c-2591602.png",
+        "location": "Ciudad de M\u00e9xico, CDMX", "facebookUrl": null, "twitterUrl":
+        null, "personalWebsite": null, "motivation": null, "bio": null, "primaryActivity":
+        null, "favoriteActivityTypes": [], "runningTrainingSpeed": 0.0, "cyclingTrainingSpeed":
+        0.0, "favoriteCyclingActivityTypes": [], "cyclingClassification": null, "cyclingMaxAvgPower":
+        0.0, "swimmingTrainingSpeed": 0.0, "profileVisibility": "private", "activityStartVisibility":
+        "private", "activityMapVisibility": "public", "courseVisibility": "public",
+        "activityHeartRateVisibility": "public", "activityPowerVisibility": "public",
+        "badgeVisibility": "private", "showAge": false, "showWeight": false, "showHeight":
+        false, "showWeightClass": false, "showAgeRange": false, "showGender": false,
+        "showActivityClass": false, "showVO2Max": false, "showPersonalRecords": false,
+        "showLast12Months": false, "showLifetimeTotals": false, "showUpcomingEvents":
+        false, "showRecentFavorites": false, "showRecentDevice": false, "showRecentGear":
+        false, "showBadges": true, "otherActivity": null, "otherPrimaryActivity":
+        null, "otherMotivation": null, "userRoles": ["SCOPE_ATP_READ", "SCOPE_ATP_WRITE",
+        "SCOPE_COMMUNITY_COURSE_READ", "SCOPE_COMMUNITY_COURSE_WRITE", "SCOPE_CONNECT_READ",
+        "SCOPE_CONNECT_WRITE", "SCOPE_DT_CLIENT_ANALYTICS_WRITE", "SCOPE_GARMINPAY_READ",
+        "SCOPE_GARMINPAY_WRITE", "SCOPE_GCOFFER_READ", "SCOPE_GCOFFER_WRITE", "SCOPE_GHS_SAMD",
+        "SCOPE_GHS_UPLOAD", "SCOPE_GOLF_API_READ", "SCOPE_GOLF_API_WRITE", "SCOPE_INSIGHTS_READ",
+        "SCOPE_INSIGHTS_WRITE", "SCOPE_PRODUCT_SEARCH_READ", "ROLE_CONNECTUSER", "ROLE_FITNESS_USER",
+        "ROLE_WELLNESS_USER", "ROLE_OUTDOOR_USER", "ROLE_CONNECT_2_USER", "ROLE_TACX_APP_USER"],
+        "nameApproved": true, "userProfileFullName": "Matin Tamizi", "makeGolfScorecardsPrivate":
+        true, "allowGolfLiveScoring": false, "allowGolfScoringByConnections": true,
+        "userLevel": 3, "userPoint": 117, "levelUpdateDate": "2020-12-12T15:20:38.0",
+        "levelIsViewed": false, "levelPointThreshold": 140, "userPointOffset": 0,
+        "userPro": false}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 7f12d00c9e4f46c8-DFW
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Fri, 04 Aug 2023 00:51:34 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=SXM84DDSSI7c2TJJIKh4622LJWgHbCgtQVtcjQc4SQGNDgPqWUJh7vb%2FX%2FdHtnARXtM3%2FXoDj%2FsE0xyvVmQn8pWqyjKc1ZHrpqhNKFluwNgtDZlMCAXkhD%2BMfw0D%2B0%2FAMRlortyIeA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, no-store, private
+      pragma:
+      - no-cache
+      set-cookie:
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+    method: GET
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-20
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1626758400000, "userProfilePK": 2591602, "calendarDate":
@@ -42,7 +130,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd166f9f9f155e-QRO
+      - 7f12d00e988e478e-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -50,20 +138,26 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:26 GMT
+      - Fri, 04 Aug 2023 00:51:34 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=dD4eO7TmfpPHQF4rU8yUd3aBikbc16LUFpExZmFSBbQLnnRyOSyJRF3M47FWbCQ6mdLZq2kjMZnzKAyyyhsUMum6XHCt6zDdXtttH7rxuoSd6xAJM3jb6qAgYpkAw8s6rK4LcQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=qtSiA5VrDrG458hymR1BvS6PbA4aF2F7Zp8gLXC14T8J6biYe7%2F4mCla4JfoukylEE5VCzRscZy8mQr4HsyKhfwgOJJHG6AUz2IFkxK67ubouyhHv%2BklbNorsLXmJNd0U%2F2oJlsUyA%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
       - no-cache
       set-cookie:
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
       - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
         Secure
       - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
@@ -89,16 +183,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-19
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-19
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1626671040000, "userProfilePK": 2591602, "calendarDate":
@@ -121,7 +211,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd16712d03b6ee-QRO
+      - 7f12d010fb38475d-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -129,15 +219,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:26 GMT
+      - Fri, 04 Aug 2023 00:51:35 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=V32F2QUrmMKnElYCDuDM5nkMXYdpf0PGcSTNowIElKEmoJY%2BvoMJrcJMOy0xuJ3mZnAg0tvyvmU%2ByE7EMD3%2BKniPIQk7LMUqs2kmY6VCOpZwLVIK10Qcu1LdOmitL%2BtF0QaZQA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=eMCF23SNhpZfXvBbLwLcJ9MqtbFnMA33hH1OpHo5ovJI6rdsD3OtmN%2B5b7hyZkJyp5FX0Ds7lKVwYs3Ud%2Fr%2BYE2WrzgB%2FbGmlicEKi9VCJtbosDTBM06mYeypjMcvhmsg4Fr%2BIb42g%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -172,16 +264,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-18
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-18
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1626588480000, "userProfilePK": 2591602, "calendarDate":
@@ -204,7 +292,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd16727c52154a-QRO
+      - 7f12d01359034768-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -212,15 +300,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:27 GMT
+      - Fri, 04 Aug 2023 00:51:35 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=gZL4F1vBdhtncBy6BvcPV2TQ5%2BEQ2241ugVEuQgq09qnw21Lv3ECcJms1BkUZO5tLb3rid5ktcMNAtPgA3iafmCZ7%2FhEEX7Q8LP2E90ptvg5MXO3iRaB2mXa%2Fspte%2FO9niJz%2BQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=TXemOIhT3MxW7TfPvgRX0yMbVWTXPkmn85pRv1GiXohXOs5Avj6jNNkdiQqvBt2PwcowVugQWUAINg3UGxGJAyBkW6%2FxX3%2BL2aW%2BIeeImK9jqnGw6ESTwT6qEbldai7bo%2FYhBP56bg%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -255,16 +345,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-17
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-17
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1626500220000, "userProfilePK": 2591602, "calendarDate":
@@ -287,7 +373,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd1674c9c7b6e8-QRO
+      - 7f12d0159ef14674-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -295,15 +381,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:27 GMT
+      - Fri, 04 Aug 2023 00:51:36 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=pjd8iyQKzHmVbze2Qi%2BZWWM3wHOrlpxObEjC62wFrv3DdABNkdu48tuGHQkbZ5KlxG4C1YAFXaLdwT%2F8he2nElODD2verOoYFd5fntxxwqiq2ArVirtaiNeZ8PtTuebYReOsPA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=pgCdzfoVvNSHnKtFrRCTKSmhU4%2FVIzENX16OwPCShsXegufDPs6hW9OpOIwGlqmP4FyxW7VLkin9TZWyS63O4DmdOWaFTa6etMtM2VNTjPcQOmgmDAF%2Faci1ms5YINMIVZOqBTBf7g%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -338,16 +426,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-16
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-16
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1626411660000, "userProfilePK": 2591602, "calendarDate":
@@ -370,7 +454,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd16762e62b6e1-QRO
+      - 7f12d017ccd34781-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -378,15 +462,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:27 GMT
+      - Fri, 04 Aug 2023 00:51:36 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=dP%2BK3t%2FrtdWxzxjMbY0us0vjDRPLuHs3jxTk6lbYiA2FwepP6kJZLrBUhUYcrlcHyPG2o%2BQeqMpNwtBmXJH7kPOITCC0EmFlRsosgPeRL%2BFaZewWC6jc5WHSDpnHMOsyV3wWJQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=PXKVOL42vgqaWu%2FW6x7DQt2xfGvtmaKmyjWzK0jnNbPqyqaBSDbvQPZBnSZRbCF17pdhhpMq8ddERaKeIqHWpRqiTkbaVfAGAuyiozyYpzYIVA%2BGDq0PDth6ViV6jLYOLQpdMz4Rmw%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -421,16 +507,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-15
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-15
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1626327960000, "userProfilePK": 2591602, "calendarDate":
@@ -453,7 +535,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd16776ff1155e-QRO
+      - 7f12d01a1b48474f-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -461,15 +543,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:27 GMT
+      - Fri, 04 Aug 2023 00:51:36 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=pa7hKrryiemKn7D0gnR37UEPA5asOQJr1pwzjEna6o1biiFVqJa7RGj9N9oahX2nLhYNGaxgwHntdcbzf5VEBv7tkkyxFZx4rI4%2BlfH0sequK3M4%2FlXYokO6vvuDpNS6lSQjtg%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=7pid3UMIAFp8WbajCLUNaip8agbChk73kXWIofcrPjIMGcGwu0q%2FJ%2BFOWWDHRZy9hO4C23PT21nXDuHclg2GxeNQoUn%2FTyJ6mFnRZ4E7TNXWcz%2FE7q%2FaT%2FU7mz1eaqnjNtrEbOiNwg%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -504,16 +588,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-14
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-14
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1626238140000, "userProfilePK": 2591602, "calendarDate":
@@ -536,7 +616,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd16793b3a154d-QRO
+      - 7f12d01b9805b6e2-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -544,15 +624,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:28 GMT
+      - Fri, 04 Aug 2023 00:51:37 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=xgtj4kMVeoq28Bgd%2F9XXlV4GhbnqE77BST%2FhdXYvNoRQDzu7RbYVAaFK%2F%2B3UR1ouZgA9itWCWWkqbC9%2FryjgSM1s00ewcAUnmVHcXUUt1xAgJawxdZgG5%2FFCa2WQUuGRKAJl0w%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Kyp6FBYtZ7PEJETr2dOApNJqD8zsoYXCD6nit72%2BXd%2BD5ByvfeBC7Js6udY8%2BWbmvD7BIRzuGzKP8qIb2wTZnWrM0cRyE8EBj1OXeBqrhqRhCXezZO5WvVUtx%2FnJPz1RxVKMarAyBw%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -587,16 +669,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-13
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-13
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1626148140000, "userProfilePK": 2591602, "calendarDate":
@@ -619,7 +697,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd167aabb0154a-QRO
+      - 7f12d01d0a15b6e7-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -627,15 +705,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:28 GMT
+      - Fri, 04 Aug 2023 00:51:37 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=tisGfCnIWmSCDBeGYENr%2FGHXQaIU5XwcMxPWhu2vVgWQ9Cc%2FBLjF1Qcp%2B4oqJPkj7htri5N1cxS3JWltS4RHH2%2FUhAuPpzXgk4WrqAgSpZiBGFribmxwkeOHzKjqeUEZtVzmxw%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=y4bDuYdVHk6b%2BsQI8TbaQoTcbx51Nw7VwXcB5iGvCMvSLgBfvJh7qTCBNkidlGE%2F4soACLsKxG4PiEXrU2qtwBS%2BJPrTaN3nfWP3gYHPWEfRkHi8utIwFfKHUhvKUz6mUHHaH7QxGA%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -670,16 +750,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-12
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-12
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1626066900000, "userProfilePK": 2591602, "calendarDate":
@@ -702,7 +778,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd167bd81b1547-QRO
+      - 7f12d01f7ba3486f-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -710,15 +786,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:28 GMT
+      - Fri, 04 Aug 2023 00:51:37 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=nnhmzIMmMQbjUsBoiHas4%2Bw7wLktd22dg303MfeAHKsgtODydTWZPwNztsXK%2FWvxqNkVeH6J2ji9TchH2LHnBkp7Btc435YfjQMw3QFOTBMwBtNudk0CPamAHl1H65MXEiTcig%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=wOEZYLrzX36T%2FP7LxIeWv3eOi1vIUblM%2FgAatvAZazruO53bb5VxxKqNMb5b%2Ff7yjGyC7ptcMwg2Ofv4VkUbgZf6BfNcb4IVTiB9FO9Epgq9SxCi9yoR66qF86NSRCpg28Bf3pMG0g%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -753,16 +831,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-11
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-11
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1625978160000, "userProfilePK": 2591602, "calendarDate":
@@ -785,7 +859,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd167d3f3e154d-QRO
+      - 7f12d0216eee1549-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -793,15 +867,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:28 GMT
+      - Fri, 04 Aug 2023 00:51:37 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=130%2FNxYNoZbWxZw%2BbhTpWEF0v%2BPL4jJHPs5iFCeeLdmG%2FiEPfI9xj2W4zpc%2BmpwejTM1PLhuUjB%2Buhc%2FZJMIfe7GK8kjafBs8nbqFg0RpRBL121zdFmFGDfg8JnVFBLrra5y5Q%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=gsvldxh95pVQcbIzp28v%2B00WIXTcbzySNXlBT%2F92sEN77RYrooXBcU8S9v9rBMgG2V57ftUfxVYWnAkJTzJ6wa2CZJcMPcM9%2Bh0ZjLu%2F55iWgwfDvEQayV3F4JKWVVWn%2FjY3JEmcxw%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -836,16 +912,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-10
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-10
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1625903640000, "userProfilePK": 2591602, "calendarDate":
@@ -868,7 +940,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd167e9fa3154a-QRO
+      - 7f12d022b923b6e1-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -876,15 +948,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:28 GMT
+      - Fri, 04 Aug 2023 00:51:38 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=SRqmaA8aflzo%2B4kFJZYYmmNKk2vWcHtukZ49FDCNdz01QQVi6FNl9exkxXLk8B3jtSynpmdD3%2BByou0Tpd2kJh90UQdsNYRIzoVaA3uSckHSk3KullpvzweDl79IkTDtxGzAjw%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=jwsKC6MCMrJ5RC7h9NCaWM8LwMQI3SpxYgNIg3BRnMXEXPTshhGu2SJHrgtz2ZjNePcrnFqVntqx9x2Cfb4j5h2jJfINkVo4nV9vfPpgBMxL2pxQSBlyvUuxYZs%2BnpQe96jRDbXqqg%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -919,16 +993,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-09
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-09
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1625809560000, "userProfilePK": 2591602, "calendarDate":
@@ -951,7 +1021,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd167fdafc1557-QRO
+      - 7f12d0252f7a485c-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -959,15 +1029,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:29 GMT
+      - Fri, 04 Aug 2023 00:51:38 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=P%2FiLgCqeTSrNi6P%2F8mDMMHdPJaenrfRx4cxHimAzdQlyIqSN1iB47ZgWZ0SQ812uU9NK4lTpFZq6Dbiy0J7KbnU6aUFUOzxnSPZvWrOBgNcaIVxCjsl09sUXneIsWXf43qwoww%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=zJ7oFbt70uWJOtt0%2B55RGhnCh0nOCnaB7qloify9Lx9Akj3hgV6D0dtKKNC%2FQIX6NJk0cbokv2wHKdoDEW%2Bt7Ndw5hRotoDOtPV06jAS6zNdlHsxnr5WMZjC%2FvF0FkwbMxBKhOCqgg%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -1002,16 +1074,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-08
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-08
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1625721060000, "userProfilePK": 2591602, "calendarDate":
@@ -1034,7 +1102,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd1682c817155f-QRO
+      - 7f12d026af141559-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -1042,15 +1110,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:29 GMT
+      - Fri, 04 Aug 2023 00:51:38 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=OHlhL0xeORPEm9DFLbYhOgU2Zr6rHvf7KxDJf8SZXdkOmJPxnzRKnuDqcZznjoghoZh84bE%2Bby6onATK33UST5YaR7NKgTzTJgPPAV06bZ24rAIQ5qNVLh9%2FyQ6RWJJd%2FCKG1Q%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=iHZXPfdqlhB0eilEpnFUAr3NMskgS%2FSt1zCZBj0L69StSyKWg2e%2BkZ%2FZQ9Gbn3aF0e%2FOTHL0CmzFKHOncpvBcOjQntvUH%2BfiavmAt7aHfn1hLQOw4R9gTtx37%2BsM3Ao0qfsS3Bn8hQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -1085,16 +1155,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-07
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-07
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1625633700000, "userProfilePK": 2591602, "calendarDate":
@@ -1117,7 +1183,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd16841968155f-QRO
+      - 7f12d027fd801556-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -1125,15 +1191,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:29 GMT
+      - Fri, 04 Aug 2023 00:51:39 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=2pRek2wXAdMBeNVlKjRxXcSMbbeDVfLegzTwPL7FIAwr3rnJhJWbw7dxkbdCZhTZIZHznky%2FExbUf1B2nSSC7naZivBVQQ5oUT%2Bhp1o%2BTUOIW2gp6D4Jc6bcsZwfQDl%2FkHX%2BGg%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=ifg072PLpOiN5JuUhMzuqqfl1ndTjmx9TCZJvjoUZCgjUArPdYpQe4alkOSXspvKFXzekP10ke1p37u0XDB2jcVtpQeo3NfeBhyVUgKIwAG5t5EZOqVWD%2B9xsLMqXJihPoRTnuMdRg%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -1168,16 +1236,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-06
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-06
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1625543220000, "userProfilePK": 2591602, "calendarDate":
@@ -1200,7 +1264,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd16855fd1154b-QRO
+      - 7f12d02a7fc2b6e2-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -1208,15 +1272,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:30 GMT
+      - Fri, 04 Aug 2023 00:51:39 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=ISOxj2CL9i8mMf0veqqOK4JwQx2h3RYWhGWvOT1TqJpAI2BIfdf4gKojXmhg6Z%2FfYTy3Feb7uawJHdKzVvLOSEQLDG3N6RKPG66m%2BSVWtpguw8GtbbjE%2B5Mp2EUXNdSfxSvdJw%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=sJt1xIs%2BBX85Utg6JZC%2BvLjLKrO%2F2KUG3p4NU3yPZPDZhTP24CkFrQGvhKLElwF4cZ9lLOMZkB3fCIPi71OCE%2B9hibWbSxdUVUoLhcWKSPqGWALrPm2tLAy8v%2FcNtQy0uZ8VW6aqEg%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -1231,10 +1297,6 @@ interactions:
       - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
         Secure
       - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
         Secure
     status:
       code: 200
@@ -1251,16 +1313,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-05
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-05
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1625454360000, "userProfilePK": 2591602, "calendarDate":
@@ -1283,7 +1341,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd168698e1154b-QRO
+      - 7f12d02c2b211559-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -1291,22 +1349,22 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:30 GMT
+      - Fri, 04 Aug 2023 00:51:39 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=ccgRr0MfDX31%2Fez%2B0MQvghj6sTQxRqQyCkYrKv6zk202kGaXHKni1dqw7lypYlJwdMTjsbybYnB1haKtDZTD2eXJ7dSLh2gXqTbGxB3i5C8IOLtwJSysEy5R6CVuX57ahBxRLQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=nMs9WRQTY82z8VC93fcCUPrzj%2B%2Fgph7yvVyZmb7YdU48ItUVbvLzI56jo3qT5a2nGser8F7ONUa54J3KOXm%2BmmNwDzStOyGVNNqZULYQow%2BBzf3eazZF%2BjRb3wOxyBmh7dNxswXptw%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
       - no-cache
       set-cookie:
-      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
       - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
         Secure
       - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
@@ -1334,16 +1392,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-04
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-04
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1625377380000, "userProfilePK": 2591602, "calendarDate":
@@ -1366,7 +1420,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd1687e9911549-QRO
+      - 7f12d02d8920b6e5-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -1374,15 +1428,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:30 GMT
+      - Fri, 04 Aug 2023 00:51:39 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=j8n0pEOa6blnbYHgUH2nLfNjxITyiTPPKVTPd%2F%2FY%2B7lA%2FAoVaEMEe6wU8trJRacZU%2ByGD70ttDS7cbN7VyMKNTCQSsgaYNyR4fCwocXjmeEy%2BzixHjY%2BqvkFnC8lHVy1V%2BP9Xg%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=OYnt5vplcguEr%2BMWMZrvvk0GYMP69QkpAj3VQB224nl7BED1UgTx6xl4cREfj7qvsK3c5FoCnCxzTUzuiz76EESc1Fzj1A1FzXo50JchiAGhlwo0PzigjF4iFd2TbIqTpkroihax6A%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -1417,16 +1473,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-03
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-03
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1625287440000, "userProfilePK": 2591602, "calendarDate":
@@ -1449,7 +1501,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd16893bc5b6e8-QRO
+      - 7f12d02fdea8479f-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -1457,15 +1509,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:30 GMT
+      - Fri, 04 Aug 2023 00:51:40 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=URqzYuUCORT%2F5JQFvwZCAGJYGEiNT2cbAKjDPXiaLoDPsiu2Kg6b2HNQbvHyKFVtF16O1%2BkvCOGzHGd%2Bze6PAWQfYExaA%2BY7SrgY5HnAIAGp%2BwSLzm3nsZyyfcTyHQdA%2FFvf7w%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=2zDoFbPuDLnEVyOygcc2ffTzJmal6bNbuXT5s8sxRx1k9CXheXfQt8pHYnV1FSYeZZNxh5mCMTBxZiTME442zDoAaHyPGcsPLy8UyjKuPFwp1hm1ohIN6yfKB%2F1cQmLBe3FTPxnQKQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -1500,16 +1554,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-02
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-02
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1625199840000, "userProfilePK": 2591602, "calendarDate":
@@ -1532,7 +1582,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd168a7bbc155e-QRO
+      - 7f12d0323b94477e-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -1540,15 +1590,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:30 GMT
+      - Fri, 04 Aug 2023 00:51:40 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=5RP3yU27xbdQIFHdAHxr3sf9ZzY1trqkX3%2Bh4vf9BSBGjbbgbDCdcw8fiYFbIfWS2wrVuPcuB2tw4fU%2BQLsMuJTYhL5XBBIFliALE56EfA677mVWZKKlahF7nv4AY4S7kc2NTA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=GZsQF5tWMyKsN8SH%2Fm9w1R1dbJa%2BGtdX1pKGeCnk7vedyBCwc1XRmF%2FhhO%2B55KOuwMRMelQdt9ztchI7Oe770%2FxMjmdnEk1tOU0Ut%2FrXqE%2B4%2Bfe8yUp5cOmgNyi2T4ZX4yZZqZZgQQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -1583,16 +1635,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-01
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-01
   response:
     body:
       string: '{"dailySleepDTO": {"id": 1625121120000, "userProfilePK": 2591602, "calendarDate":
@@ -1615,7 +1663,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7edd168bcd341549-QRO
+      - 7f12d03468604648-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -1623,15 +1671,17 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 28 Jul 2023 12:22:31 GMT
+      - Fri, 04 Aug 2023 00:51:40 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=ci9vTJfRpbpvcu8QB4N4cidFSkj8rkU9XQbrYwYOgkAdEENJzNVWMVTt8%2BBpRVkoj8X2MrFNSjD1sztgeqtu%2BhEC3lUstQL30spOCZzRdhHukaAXiWindpBBhY5KvjVonDgoBA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=mt8J8CRV5GtFo8E8D26OaBraXA6evjbJYOOVglh7eOBYQxrZMo8A5evAgOGF7%2BJXYx2OQEw4ewL4vDmEFd7sp8XDG9OgCJjPDmAAtcbpRQrWW%2BYIBZ3gljamEq0T1dDz03YQTb4u%2BQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:

@@ -10,18 +10,11 @@ interactions:
       - Bearer SANITIZED
       Connection:
       - keep-alive
-      Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; SESSIONID=SANITIZED; __cflb=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
-      referer:
-      - https://connect.garmin.com/modern
     method: GET
-    uri: https://connect.garmin.com/usersummary-service/stats/stress/daily/2023-06-23/2023-07-20
+    uri: https://connectapi.garmin.com/usersummary-service/stats/stress/daily/2023-06-23/2023-07-20
   response:
     body:
       string: '[{"calendarDate": "2023-06-23", "values": {"highStressDuration": 9240,
@@ -94,7 +87,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7eccdeb048f1b6ed-QRO
+      - 7f12d03b8f8e486a-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -102,188 +95,17 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Wed, 26 Jul 2023 13:08:11 GMT
+      - Fri, 04 Aug 2023 00:51:42 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=jaHIJ3CLqonHnTQERKInyRWAbXSQ5a796nB56DHpgzvERpTC%2BoDJddrYCr4kCiad4ampkoqA4UoSU7%2BJr1h9YmADDZWdYA6mIRumJ449%2FIgQRk4cAf25Gg0syDMkqzCXwRKsaQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      cache-control:
-      - no-cache, no-store, private
-      pragma:
-      - no-cache
-      set-cookie:
-      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Authorization:
-      - Bearer SANITIZED
-      Connection:
-      - keep-alive
-      Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BTa=SANITIZED; SESSIONID=SANITIZED;
-        SameSite=SANITIZED; __cflb=SANITIZED
-      User-Agent:
-      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
-        (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
-      referer:
-      - https://connect.garmin.com/modern
-    method: GET
-    uri: https://connect.garmin.com/usersummary-service/stats/stress/daily/2023-06-21/2023-06-22
-  response:
-    body:
-      string: '[{"calendarDate": "2023-06-21", "values": {"highStressDuration": 4320,
-        "lowStressDuration": 22800, "overallStressLevel": 37, "restStressDuration":
-        25560, "mediumStressDuration": 10260}}, {"calendarDate": "2023-06-22", "values":
-        {"highStressDuration": 7980, "lowStressDuration": 9780, "overallStressLevel":
-        38, "restStressDuration": 31320, "mediumStressDuration": 9060}}]'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 7eccdeb13b5a154a-QRO
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Wed, 26 Jul 2023 13:08:11 GMT
-      NEL:
-      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=bfFxwlsYBZJ15pMqQjuHuw9LQmdV%2BKckntPAseQBjpK4tIQYNtWOpkS3br5%2BxNwYwuAxlXPxQN0Snwx9Ohvdu%2FfDXfGA8H%2F5w8twDPBNAPOnyZqamzqN30raXtCshvfK3iE3iw%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=BERTpEHuqB%2BDZLiqEhGk77xxsyqjMxPXrvRbfc2BElLQto%2FDk%2BsTuC%2BFsFZcCfNcogMQohkfFoC034IZwevw%2FJ6v9FuqVZ48RSC7FyzcUoSRTu24U3yR2dX5Pl49uMLKe1cQHM%2B8Zw%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
-      cache-control:
-      - no-cache, no-store, private
-      pragma:
-      - no-cache
-      set-cookie:
-      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Authorization:
-      - Bearer SANITIZED
-      Connection:
-      - keep-alive
-      Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; SESSIONID=SANITIZED; __cflb=SANITIZED
-      User-Agent:
-      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
-        (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
-    method: GET
-    uri: https://connect.garmin.com/usersummary-service/stats/stress/daily/2023-07-01/2023-07-20
-  response:
-    body:
-      string: '[{"calendarDate": "2023-07-01", "values": {"highStressDuration": 1680,
-        "lowStressDuration": 21780, "overallStressLevel": 35, "restStressDuration":
-        27780, "mediumStressDuration": 12660}}, {"calendarDate": "2023-07-02", "values":
-        {"highStressDuration": 3600, "lowStressDuration": 11580, "overallStressLevel":
-        29, "restStressDuration": 39840, "mediumStressDuration": 7740}}, {"calendarDate":
-        "2023-07-03", "values": {"highStressDuration": 3060, "lowStressDuration":
-        16680, "overallStressLevel": 32, "restStressDuration": 34080, "mediumStressDuration":
-        11460}}, {"calendarDate": "2023-07-04", "values": {"highStressDuration": 2640,
-        "lowStressDuration": 21420, "overallStressLevel": 34, "restStressDuration":
-        27600, "mediumStressDuration": 10860}}, {"calendarDate": "2023-07-05", "values":
-        {"highStressDuration": 2940, "lowStressDuration": 20040, "overallStressLevel":
-        37, "restStressDuration": 25200, "mediumStressDuration": 15120}}, {"calendarDate":
-        "2023-07-06", "values": {"highStressDuration": 6900, "lowStressDuration":
-        11400, "overallStressLevel": 49, "restStressDuration": 10440, "mediumStressDuration":
-        14520}}, {"calendarDate": "2023-07-07", "values": {"highStressDuration": 3600,
-        "lowStressDuration": 15600, "overallStressLevel": 33, "restStressDuration":
-        29280, "mediumStressDuration": 9000}}, {"calendarDate": "2023-07-08", "values":
-        {"highStressDuration": 240, "lowStressDuration": 18540, "overallStressLevel":
-        27, "restStressDuration": 41340, "mediumStressDuration": 5340}}, {"calendarDate":
-        "2023-07-09", "values": {"highStressDuration": 3780, "lowStressDuration":
-        6600, "overallStressLevel": 27, "restStressDuration": 36420, "mediumStressDuration":
-        5820}}, {"calendarDate": "2023-07-10", "values": {"highStressDuration": 2220,
-        "lowStressDuration": 20880, "overallStressLevel": 31, "restStressDuration":
-        39000, "mediumStressDuration": 10080}}, {"calendarDate": "2023-07-11", "values":
-        {"highStressDuration": 960, "lowStressDuration": 10560, "overallStressLevel":
-        26, "restStressDuration": 25380, "mediumStressDuration": 3480}}, {"calendarDate":
-        "2023-07-12", "values": {"highStressDuration": 2520, "lowStressDuration":
-        13560, "overallStressLevel": 38, "restStressDuration": 17940, "mediumStressDuration":
-        10920}}, {"calendarDate": "2023-07-13", "values": {"highStressDuration": 2880,
-        "lowStressDuration": 10140, "overallStressLevel": 33, "restStressDuration":
-        30960, "mediumStressDuration": 8760}}, {"calendarDate": "2023-07-14", "values":
-        {"highStressDuration": 6000, "lowStressDuration": 15660, "overallStressLevel":
-        38, "restStressDuration": 27360, "mediumStressDuration": 9480}}, {"calendarDate":
-        "2023-07-15", "values": {"highStressDuration": 3660, "lowStressDuration":
-        18480, "overallStressLevel": 35, "restStressDuration": 26760, "mediumStressDuration":
-        8220}}, {"calendarDate": "2023-07-16", "values": {"highStressDuration": 300,
-        "lowStressDuration": 29280, "overallStressLevel": 30, "restStressDuration":
-        34980, "mediumStressDuration": 5760}}, {"calendarDate": "2023-07-17", "values":
-        {"highStressDuration": 1500, "lowStressDuration": 18780, "overallStressLevel":
-        32, "restStressDuration": 27420, "mediumStressDuration": 9300}}, {"calendarDate":
-        "2023-07-18", "values": {"highStressDuration": 600, "lowStressDuration": 30660,
-        "overallStressLevel": 31, "restStressDuration": 32820, "mediumStressDuration":
-        7260}}, {"calendarDate": "2023-07-19", "values": {"highStressDuration": 3180,
-        "lowStressDuration": 13680, "overallStressLevel": 34, "restStressDuration":
-        32340, "mediumStressDuration": 14100}}, {"calendarDate": "2023-07-20", "values":
-        {"highStressDuration": 2880, "lowStressDuration": 21780, "overallStressLevel":
-        38, "restStressDuration": 26580, "mediumStressDuration": 18240}}]'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 7ed2ed9f9ad11557-QRO
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 27 Jul 2023 06:46:57 GMT
-      NEL:
-      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=F6J3Cx66L3558iSrTAoLep292sWL%2FbRLWt0G37bJSbs357rop1C7EdOVGMIqtHzz4KlaiN1zKYk5X93%2BXhh9UzlbEY%2BIQ1YP0xW5TvGSEN9hqesSO%2FK28wHR8dtJ%2B64DJiqeqQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -299,6 +121,7 @@ interactions:
         Secure
       - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
         Secure
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
     status:
       code: 200
       message: OK
@@ -314,329 +137,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/usersummary-service/stats/stress/daily/2023-06-21/2023-06-30
-  response:
-    body:
-      string: '[{"calendarDate": "2023-06-21", "values": {"highStressDuration": 4320,
-        "lowStressDuration": 22800, "overallStressLevel": 37, "restStressDuration":
-        25560, "mediumStressDuration": 10260}}, {"calendarDate": "2023-06-22", "values":
-        {"highStressDuration": 7980, "lowStressDuration": 9780, "overallStressLevel":
-        38, "restStressDuration": 31320, "mediumStressDuration": 9060}}, {"calendarDate":
-        "2023-06-23", "values": {"highStressDuration": 9240, "lowStressDuration":
-        11280, "overallStressLevel": 43, "restStressDuration": 25440, "mediumStressDuration":
-        12000}}, {"calendarDate": "2023-06-24", "values": {"highStressDuration": 420,
-        "lowStressDuration": 25440, "overallStressLevel": 31, "restStressDuration":
-        29640, "mediumStressDuration": 10800}}, {"calendarDate": "2023-06-25", "values":
-        {"highStressDuration": 180, "lowStressDuration": 27660, "overallStressLevel":
-        25, "restStressDuration": 36720, "mediumStressDuration": 2160}}, {"calendarDate":
-        "2023-06-26", "values": {"highStressDuration": 6420, "lowStressDuration":
-        11580, "overallStressLevel": 38, "restStressDuration": 27840, "mediumStressDuration":
-        16140}}, {"calendarDate": "2023-06-27", "values": {"highStressDuration": 1260,
-        "lowStressDuration": 23100, "overallStressLevel": 31, "restStressDuration":
-        35100, "mediumStressDuration": 8520}}, {"calendarDate": "2023-06-28", "values":
-        {"highStressDuration": 780, "lowStressDuration": 18360, "overallStressLevel":
-        28, "restStressDuration": 37800, "mediumStressDuration": 8760}}, {"calendarDate":
-        "2023-06-29", "values": {"highStressDuration": 3660, "lowStressDuration":
-        14760, "overallStressLevel": 33, "restStressDuration": 27420, "mediumStressDuration":
-        10200}}, {"calendarDate": "2023-06-30", "values": {"highStressDuration": 10260,
-        "lowStressDuration": 11400, "overallStressLevel": 45, "restStressDuration":
-        22980, "mediumStressDuration": 15900}}]'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 7ed2eda0dc87b6e5-QRO
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 27 Jul 2023 06:46:57 GMT
-      NEL:
-      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=BNs9ChW9a%2Bl40IQBXb%2BWeP5bwhGGM84q0n5pbB%2BcA9S%2FB8ZGrhjkSXhp08JjRYKIKDpPLtHc6PWWwx2p59mPYMktMGJl8tsaCB7ezkKuuyZ8sLJ4LPDbWy3G1oH8pWn2yk05Vg%3D%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      cache-control:
-      - no-cache, no-store, private
-      pragma:
-      - no-cache
-      set-cookie:
-      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Authorization:
-      - Bearer SANITIZED
-      Connection:
-      - keep-alive
-      Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; SESSIONID=SANITIZED; __cflb=SANITIZED
-      User-Agent:
-      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
-        (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
-    method: GET
-    uri: https://connect.garmin.com/usersummary-service/stats/stress/daily/2023-06-11/2023-06-30
-  response:
-    body:
-      string: '[{"calendarDate": "2023-06-11", "values": {"highStressDuration": 1140,
-        "lowStressDuration": 12780, "overallStressLevel": 20, "restStressDuration":
-        44100, "mediumStressDuration": 5040}}, {"calendarDate": "2023-06-12", "values":
-        {"highStressDuration": 2520, "lowStressDuration": 18300, "overallStressLevel":
-        30, "restStressDuration": 38820, "mediumStressDuration": 10920}}, {"calendarDate":
-        "2023-06-13", "values": {"highStressDuration": 720, "lowStressDuration": 15780,
-        "overallStressLevel": 26, "restStressDuration": 42780, "mediumStressDuration":
-        7080}}, {"calendarDate": "2023-06-14", "values": {"highStressDuration": 4440,
-        "lowStressDuration": 17700, "overallStressLevel": 38, "restStressDuration":
-        27660, "mediumStressDuration": 18600}}, {"calendarDate": "2023-06-15", "values":
-        {"highStressDuration": 900, "lowStressDuration": 25500, "overallStressLevel":
-        33, "restStressDuration": 27780, "mediumStressDuration": 10440}}, {"calendarDate":
-        "2023-06-16", "values": {"highStressDuration": 3540, "lowStressDuration":
-        16860, "overallStressLevel": 31, "restStressDuration": 41280, "mediumStressDuration":
-        6780}}, {"calendarDate": "2023-06-17", "values": {"highStressDuration": 1860,
-        "lowStressDuration": 16140, "overallStressLevel": 33, "restStressDuration":
-        35640, "mediumStressDuration": 14700}}, {"calendarDate": "2023-06-18", "values":
-        {"highStressDuration": 300, "lowStressDuration": 25200, "overallStressLevel":
-        29, "restStressDuration": 40020, "mediumStressDuration": 7620}}, {"calendarDate":
-        "2023-06-19", "values": {"highStressDuration": 6540, "lowStressDuration":
-        14640, "overallStressLevel": 33, "restStressDuration": 32700, "mediumStressDuration":
-        6780}}, {"calendarDate": "2023-06-20", "values": {"highStressDuration": 7620,
-        "lowStressDuration": 12360, "overallStressLevel": 38, "restStressDuration":
-        24660, "mediumStressDuration": 8400}}, {"calendarDate": "2023-06-21", "values":
-        {"highStressDuration": 4320, "lowStressDuration": 22800, "overallStressLevel":
-        37, "restStressDuration": 25560, "mediumStressDuration": 10260}}, {"calendarDate":
-        "2023-06-22", "values": {"highStressDuration": 7980, "lowStressDuration":
-        9780, "overallStressLevel": 38, "restStressDuration": 31320, "mediumStressDuration":
-        9060}}, {"calendarDate": "2023-06-23", "values": {"highStressDuration": 9240,
-        "lowStressDuration": 11280, "overallStressLevel": 43, "restStressDuration":
-        25440, "mediumStressDuration": 12000}}, {"calendarDate": "2023-06-24", "values":
-        {"highStressDuration": 420, "lowStressDuration": 25440, "overallStressLevel":
-        31, "restStressDuration": 29640, "mediumStressDuration": 10800}}, {"calendarDate":
-        "2023-06-25", "values": {"highStressDuration": 180, "lowStressDuration": 27660,
-        "overallStressLevel": 25, "restStressDuration": 36720, "mediumStressDuration":
-        2160}}, {"calendarDate": "2023-06-26", "values": {"highStressDuration": 6420,
-        "lowStressDuration": 11580, "overallStressLevel": 38, "restStressDuration":
-        27840, "mediumStressDuration": 16140}}, {"calendarDate": "2023-06-27", "values":
-        {"highStressDuration": 1260, "lowStressDuration": 23100, "overallStressLevel":
-        31, "restStressDuration": 35100, "mediumStressDuration": 8520}}, {"calendarDate":
-        "2023-06-28", "values": {"highStressDuration": 780, "lowStressDuration": 18360,
-        "overallStressLevel": 28, "restStressDuration": 37800, "mediumStressDuration":
-        8760}}, {"calendarDate": "2023-06-29", "values": {"highStressDuration": 3660,
-        "lowStressDuration": 14760, "overallStressLevel": 33, "restStressDuration":
-        27420, "mediumStressDuration": 10200}}, {"calendarDate": "2023-06-30", "values":
-        {"highStressDuration": 10260, "lowStressDuration": 11400, "overallStressLevel":
-        45, "restStressDuration": 22980, "mediumStressDuration": 15900}}]'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 7ed2f3d50dffb6e1-QRO
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 27 Jul 2023 06:51:11 GMT
-      NEL:
-      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=QrDtfIuway6cau5K1pcV%2F63JLX1K26vF1pGUixwuLkMvSegb01cQutF6mcJlOk9trtHfzKfeFDZ2xEhktofPxxhmIo8DwVFICrG1a%2FFJu39SwOkeRk0W3btwpkRZPJPJ3Ybytg%3D%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      cache-control:
-      - no-cache, no-store, private
-      pragma:
-      - no-cache
-      set-cookie:
-      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Authorization:
-      - Bearer SANITIZED
-      Connection:
-      - keep-alive
-      Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
-      User-Agent:
-      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
-        (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
-    method: GET
-    uri: https://connect.garmin.com/usersummary-service/stats/stress/daily/2023-05-22/2023-06-10
-  response:
-    body:
-      string: '[{"calendarDate": "2023-05-22", "values": {"highStressDuration": 900,
-        "lowStressDuration": 8880, "overallStressLevel": 21, "restStressDuration":
-        38820, "mediumStressDuration": 2520}}, {"calendarDate": "2023-05-23", "values":
-        {"highStressDuration": 3180, "lowStressDuration": 16500, "overallStressLevel":
-        28, "restStressDuration": 35880, "mediumStressDuration": 5520}}, {"calendarDate":
-        "2023-05-24", "values": {"highStressDuration": 3060, "lowStressDuration":
-        15660, "overallStressLevel": 32, "restStressDuration": 37740, "mediumStressDuration":
-        10440}}, {"calendarDate": "2023-05-25", "values": {"highStressDuration": 1740,
-        "lowStressDuration": 12000, "overallStressLevel": 27, "restStressDuration":
-        37140, "mediumStressDuration": 4200}}, {"calendarDate": "2023-05-26", "values":
-        {"highStressDuration": 1740, "lowStressDuration": 21240, "overallStressLevel":
-        31, "restStressDuration": 34980, "mediumStressDuration": 9120}}, {"calendarDate":
-        "2023-05-27", "values": {"highStressDuration": 7020, "lowStressDuration":
-        9360, "overallStressLevel": 37, "restStressDuration": 26460, "mediumStressDuration":
-        8640}}, {"calendarDate": "2023-05-28", "values": {"highStressDuration": null,
-        "lowStressDuration": 12780, "overallStressLevel": 21, "restStressDuration":
-        56220, "mediumStressDuration": 180}}, {"calendarDate": "2023-05-29", "values":
-        {"highStressDuration": 540, "lowStressDuration": 21300, "overallStressLevel":
-        27, "restStressDuration": 50520, "mediumStressDuration": 5280}}, {"calendarDate":
-        "2023-05-30", "values": {"highStressDuration": 180, "lowStressDuration": 24360,
-        "overallStressLevel": 27, "restStressDuration": 39840, "mediumStressDuration":
-        5340}}, {"calendarDate": "2023-05-31", "values": {"highStressDuration": 5100,
-        "lowStressDuration": 12060, "overallStressLevel": 32, "restStressDuration":
-        36180, "mediumStressDuration": 5400}}, {"calendarDate": "2023-06-01", "values":
-        {"highStressDuration": 2640, "lowStressDuration": 18840, "overallStressLevel":
-        31, "restStressDuration": 37320, "mediumStressDuration": 9900}}, {"calendarDate":
-        "2023-06-02", "values": {"highStressDuration": 1500, "lowStressDuration":
-        9960, "overallStressLevel": 23, "restStressDuration": 39900, "mediumStressDuration":
-        2760}}, {"calendarDate": "2023-06-03", "values": {"highStressDuration": 2160,
-        "lowStressDuration": 15480, "overallStressLevel": 30, "restStressDuration":
-        26460, "mediumStressDuration": 4620}}, {"calendarDate": "2023-06-04", "values":
-        {"highStressDuration": 480, "lowStressDuration": 10020, "overallStressLevel":
-        22, "restStressDuration": 49560, "mediumStressDuration": 1620}}, {"calendarDate":
-        "2023-06-05", "values": {"highStressDuration": 1440, "lowStressDuration":
-        8160, "overallStressLevel": 23, "restStressDuration": 50520, "mediumStressDuration":
-        2880}}, {"calendarDate": "2023-06-06", "values": {"highStressDuration": 1620,
-        "lowStressDuration": 15540, "overallStressLevel": 25, "restStressDuration":
-        45360, "mediumStressDuration": 4680}}, {"calendarDate": "2023-06-07", "values":
-        {"highStressDuration": 1560, "lowStressDuration": 13740, "overallStressLevel":
-        25, "restStressDuration": 43740, "mediumStressDuration": 3900}}, {"calendarDate":
-        "2023-06-08", "values": {"highStressDuration": 360, "lowStressDuration": 10320,
-        "overallStressLevel": 22, "restStressDuration": 37800, "mediumStressDuration":
-        4440}}, {"calendarDate": "2023-06-09", "values": {"highStressDuration": 2100,
-        "lowStressDuration": 19080, "overallStressLevel": 30, "restStressDuration":
-        39360, "mediumStressDuration": 7740}}, {"calendarDate": "2023-06-10", "values":
-        {"highStressDuration": null, "lowStressDuration": 12120, "overallStressLevel":
-        20, "restStressDuration": 51660, "mediumStressDuration": 1260}}]'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 7ed2f3d5eb5e1556-QRO
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 27 Jul 2023 06:51:11 GMT
-      NEL:
-      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=u0Q%2BOWsUp5XoU6AJjs9X0sjOInmZTRQEQHzfn%2B18%2BTXvzCCKiYIO%2Flyqj2xLtAfTA6sjjh1A0nAfiBuS%2F9RInxyIQ0ZfBMAxA5qAzqUVutBI3ZDrWG8Oq7cTxkk8jY5IPztbzA%3D%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      cache-control:
-      - no-cache, no-store, private
-      pragma:
-      - no-cache
-      set-cookie:
-      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Authorization:
-      - Bearer SANITIZED
-      Connection:
-      - keep-alive
-      Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; SESSIONID=SANITIZED; __cflb=SANITIZED
-      User-Agent:
-      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
-        (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
-    method: GET
-    uri: https://connect.garmin.com/usersummary-service/stats/stress/daily/2023-05-26/2023-06-22
+    uri: https://connectapi.garmin.com/usersummary-service/stats/stress/daily/2023-05-26/2023-06-22
   response:
     body:
       string: '[{"calendarDate": "2023-05-26", "values": {"highStressDuration": 1740,
@@ -709,7 +215,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7ed2f779bff7154d-QRO
+      - 7f12d03d8e964602-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -717,20 +223,26 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 27 Jul 2023 06:53:40 GMT
+      - Fri, 04 Aug 2023 00:51:42 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=piBqINALDlvgKl5d%2Bj4BMvEqCH%2FRQSvNpALjKjdZNgU0s%2BkcBeOzqB74E5%2B8iggh70ZELiIqyjDPutLbmu1Qgd9CaIlTlXb8QUigNPa1lmfPGmUfVq1IYT00lqmVtpUmkF22fA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=QBphPm99T4N17cU9pbYKHd%2F%2BMXM7nwVEAbMOB4nD6j8Xv3e6LJvtq3FRYMbI57vtXLtKQWS7%2Ba37G1TyRPbCpbId1T1zPYKLsHvjIHLd4raCjlJ4%2B2sMQC7E3X5opXM%2BIB%2Fgx0FASg%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
       - no-cache
       set-cookie:
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
       - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
         Secure
       - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
@@ -756,16 +268,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/usersummary-service/stats/stress/daily/2023-05-22/2023-05-25
+    uri: https://connectapi.garmin.com/usersummary-service/stats/stress/daily/2023-05-22/2023-05-25
   response:
     body:
       string: '[{"calendarDate": "2023-05-22", "values": {"highStressDuration": 900,
@@ -782,7 +290,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7ed2f77aa80eb6e7-QRO
+      - 7f12d03ecf18b6e8-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -790,15 +298,17 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 27 Jul 2023 06:53:40 GMT
+      - Fri, 04 Aug 2023 00:51:42 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=i23SiMEFLbfc5%2F9UGXRWASpL0lXX2ZXCAh6F4emwhIpa%2B3ZDIyvPDdnH8HgdbgMbnd5YUg3uAcmnrBNce5lxDh%2FG2%2FyDlJLGBTzsFC21oSrjNWzSlYNL8hSNnZKzBAC0z%2BuR7g%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=GFvmMbPz3eT7acfhWlyOtjmmkXfG1ZYIF2lJFhEV2xbWSfeeqzCL2WEBHWpADXUSaxE%2F1HpDGCQX%2FJWb2w4jYJ4QkFHvjLH3jHdabz6VnGLBlTYjlEcpsFo%2FsrDbdtw6zkI1TgXVzQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:

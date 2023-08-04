@@ -1,11 +1,19 @@
 import time
-from dataclasses import dataclass
+from datetime import datetime
 
-from . import sso
+from pydantic.dataclasses import dataclass
 
 
 @dataclass
-class AuthToken:
+class OAuth1Token:
+    oauth_token: str
+    oauth_token_secret: str
+    mfa_token: str
+    mfa_expiration_timestamp: datetime
+
+
+@dataclass
+class OAuth2Token:
     scope: str
     jti: str
     token_type: str
@@ -15,18 +23,6 @@ class AuthToken:
     expires_at: int
     refresh_token_expires_in: int
     refresh_token_expires_at: int
-    username: str
-
-    @classmethod
-    def login(cls, *args, **kwargs) -> "AuthToken":
-        return cls(**sso.login(*args, **kwargs))
-
-    def refresh(self, **kwargs):
-        if self.refresh_expired:
-            token = sso.exchange(**kwargs)
-        else:
-            token = sso.refresh(self.refresh_token, **kwargs)
-        self.__dict__.update(token)
 
     @property
     def expired(self):

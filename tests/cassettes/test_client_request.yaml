@@ -300,7 +300,7 @@ interactions:
         c0132\" href=\"https://itunes.apple.com/us/app/garmin-connect-mobile/id583446403?mt=8&amp;amp;uo=4\"
         title=\"Garmin Connect Mobile\" target=\"itunes_store\"></a></div></div></div><div
         class=\"c014\"><script type=\"text/javascript\" style=\"display:none\">\n//<![CDATA[\nwindow.__mirage2
-        = {petok:\"V9h.0isjHs2kr_LmLrW.hUFt5mTB3VynL.2ppatrpEU-1800-0\"};\n//]]>\n</script>\n<script
+        = {petok:\"y6pOYB4GoEuWpWlDYMol.kVrhYUDaf6dHn8FxaoQHM8-1800-0\"};\n//]]>\n</script>\n<script
         type=\"text/javascript\" src=\"https://ajax.cloudflare.com/cdn-cgi/scripts/04b3eb47/cloudflare-static/mirage2.min.js\"></script>\n<img
         data-cfsrc=\"/static/screen-phone-myday-717fec02a4d8eea2690241774363b357.png\"
         class=\"c017\" alt=\"\" style=\"display:none;visibility:hidden;\" /><noscript><img
@@ -370,15 +370,15 @@ interactions:
         async=\"\"></script><script src=\"/app-949317601b74f8af13e9.js\" async=\"\"></script><script
         src=\"/styles-2ed6c2e7b748a8320e46.js\" async=\"\"></script><script src=\"/framework-f3ec01444cccc4b4057e.js\"
         async=\"\"></script><script src=\"/webpack-runtime-5df688dd07b59ccf541d.js\"
-        async=\"\"></script><script defer src=\"https://static.cloudflareinsights.com/beacon.min.js/v2cb3a2ab87c5498db5ce7e6608cf55231689030342039\"
-        integrity=\"sha512-DI3rPuZDcpH/mSGyN22erN5QFnhl760f50/te7FTIYxodEF8jJnSFnfnmG/c+osmIQemvUrnBtxnMpNdzvx1/g==\"
-        data-cf-beacon='{\"rayId\":\"7eab42d69a97b6e8\",\"version\":\"2023.4.0\",\"b\":1,\"token\":\"1bd18b8f69214e379ef7bd34509191ae\",\"si\":100}'
+        async=\"\"></script><script defer src=\"https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854\"
+        integrity=\"sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==\"
+        data-cf-beacon='{\"rayId\":\"7f0ee80fca96154a\",\"version\":\"2023.7.0\",\"b\":1,\"token\":\"1bd18b8f69214e379ef7bd34509191ae\",\"si\":100}'
         crossorigin=\"anonymous\"></script>\n</body></html>"
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7eab42d69a97b6e8-QRO
+      - 7f0ee80fca96154a-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -386,24 +386,23 @@ interactions:
       Content-Type:
       - text/html; charset=UTF-8
       Date:
-      - Sat, 22 Jul 2023 11:14:37 GMT
+      - Thu, 03 Aug 2023 13:28:55 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=eGdZ5FmBzpES0Ej3Cn%2BpAGuid6j1UJnMvFUHc0Gb3heNOLv0wG5jHC2XRfiiip9S0iIjyWBh48qZCOwIXuGQud9K69y2Up4qcjjo7yV0YM0hXlZ2iXLxMsVWEmlogCD1upIPVQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=pBhM%2FFYBcODg%2FPIna39iyE9lAG%2BDKwwlec%2FLBrLJv6uI1Oh03efBEQDeNQPAgyjUSUPf96sdG75o2goOlnGkTY8%2FQpPnO5quPWlTXL9DuQP%2F2W8Yn3uECo5%2FAsbsupzUx0pbXA%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:
-      - __cflb=02DiuJLbVZHipNWxN8xk76RcdLU1TyEEwicRTP4G4S9tY; SameSite=None; Secure;
-        path=/; expires=Sun, 23-Jul-23 10:14:37 GMT; HttpOnly
-      - _cfuvid=.KxliIcXLtxacMxq2J79PSNV1LjufvpEeDoWeyeFYKg-1690024477284-0-604800000;
-        path=/; domain=.connect.garmin.com; HttpOnly; Secure; SameSite=None
+      - __cflb=SANITIZED; SameSite=SANITIZED; Secure; path=SANITIZED; expires=SANITIZED;
+        HttpOnly
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
       Transfer-Encoding:
       - chunked
       cache-control:
       - no-cache
       last-modified:
-      - Wed, 24 May 2023 14:23:16 GMT
+      - Wed, 24 May 2023 14:26:45 GMT
       x-frame-options:
       - deny
     status:
@@ -416,35 +415,28 @@ interactions:
       - '*/*'
       Accept-Encoding:
       - gzip, deflate
-      Authorization:
-      - None
       Connection:
       - keep-alive
-      Cookie:
-      - _cfuvid=.KxliIcXLtxacMxq2J79PSNV1LjufvpEeDoWeyeFYKg-1690024477284-0-604800000;
-        __cflb=02DiuJLbVZHipNWxN8xk76RcdLU1TyEEwicRTP4G4S9tY
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/
+    uri: https://connectapi.garmin.com/
   response:
     body:
       string: "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html;
         charset=UTF-8\"><title>Not Found</title></head>\n<body>\n    <div class=\"headerContainer\">\n
         \       <h2 class=\"page-title\">Page Not Found</h2>\n\n        <p>We're sorry.
         The page you're looking for does not exist.</p>\n    </div>\n<script defer
-        src=\"https://static.cloudflareinsights.com/beacon.min.js/v2cb3a2ab87c5498db5ce7e6608cf55231689030342039\"
-        integrity=\"sha512-DI3rPuZDcpH/mSGyN22erN5QFnhl760f50/te7FTIYxodEF8jJnSFnfnmG/c+osmIQemvUrnBtxnMpNdzvx1/g==\"
-        data-cf-beacon='{\"rayId\":\"7eab42d7ccb61556\",\"version\":\"2023.4.0\",\"b\":1,\"token\":\"1bd18b8f69214e379ef7bd34509191ae\",\"si\":100}'
+        src=\"https://static.cloudflareinsights.com/beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854\"
+        integrity=\"sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==\"
+        data-cf-beacon='{\"rayId\":\"7f0ee8119bcb155f\",\"version\":\"2023.7.0\",\"b\":1,\"token\":\"dfcba71ff1d44ca3956104d931b99217\",\"si\":100}'
         crossorigin=\"anonymous\"></script>\n</body>\n</html>"
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7eab42d7ccb61556-QRO
+      - 7f0ee8119bcb155f-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -452,15 +444,19 @@ interactions:
       Content-Type:
       - text/html
       Date:
-      - Sat, 22 Jul 2023 11:14:37 GMT
+      - Thu, 03 Aug 2023 13:28:55 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=quZV5JXfabHTtSYAxGoVYmutTxWgWC7JWUdSrp6VQ%2FSRlJE6mrw1IdalKQisPuyO7ID6xwqbvgu1jcUAqwYgFns%2BJ7IUuGAz4GTF6QD5SSa%2FQf27rWcFf5b4sznm5yBmDatwtQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=QIDnUWv2zs9Snb92gU%2BaTTvPJVmZifjxFWfJbPr3Ua7lsSIF3HLhgED53f7VE7jV9ucgR6Z9e41tBz6gqv%2Fmc4IMZ7fEvhPpMJ%2B1kz1AKfl4Ey0Gis1E5D2umJ0UbLSGo7gQ%2BjPxaw%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache
     status:

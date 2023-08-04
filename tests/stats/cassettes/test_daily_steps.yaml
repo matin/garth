@@ -10,16 +10,11 @@ interactions:
       - Bearer SANITIZED
       Connection:
       - keep-alive
-      Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; SESSIONID=SANITIZED; __cflb=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
     method: GET
-    uri: https://connect.garmin.com/usersummary-service/stats/steps/daily/2023-07-01/2023-07-20
+    uri: https://connectapi.garmin.com/usersummary-service/stats/steps/daily/2023-07-01/2023-07-20
   response:
     body:
       string: '[{"calendarDate": "2023-07-01", "totalSteps": 12413, "totalDistance":
@@ -50,7 +45,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7ee7370f48edb6e7-QRO
+      - 7f12d0361f51b6ee-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -58,15 +53,17 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 29 Jul 2023 17:52:20 GMT
+      - Fri, 04 Aug 2023 00:51:41 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=BuaovcAR78Kybq5pFV6t8GIMQCw8fYThEA0qGvQ%2B6yrTkPo%2F7yoBFkmtI1%2B%2BC0qTZ%2Bqp3QwVJFEjRVmktBhZmzRyV5Fd9CpbnOnkBxqnBhdlSDhox1YYGbh9Z0SOzATk%2F80I7w%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=bzh%2FUoGEfIajBdQR5MV3QW0RLYZzm5KVdFbwvpMqO9thm%2FwjZKTcc%2FouaGofuuNQmFoGl%2FTksvg%2BtFeTKq3Nt78N%2BaIJVDV3FIetTmEZlwD083NaVOvpEMEwaB80srEQbZuua1khiw%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -82,6 +79,7 @@ interactions:
         Secure
       - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
         Secure
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
     status:
       code: 200
       message: OK

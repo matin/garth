@@ -1,17 +1,37 @@
 import re
 import time
 from typing import Optional
+from urllib.parse import parse_qs
+
+import requests
+from requests_oauthlib import OAuth1Session
 
 from . import http
+from .auth_tokens import OAuth1Token, OAuth2Token
 from .exc import GarthException
 
 CSRF_RE = re.compile(r'name="_csrf"\s+value="(.+?)"')
 TITLE_RE = re.compile(r"<title>(.+?)</title>")
+OAUTH_CONSUMER_URL = "https://thegarth.s3.amazonaws.com/oauth_consumer.json"
+OAUTH_CONSUMER: str | None = None
+USER_AGENT = {"User-Agent": "com.garmin.android.apps.connectmobile"}
+
+
+class GarminOAuth1Session(OAuth1Session):
+    def __init__(self, **kwargs):
+        global OAUTH_CONSUMER
+        if not OAUTH_CONSUMER:
+            OAUTH_CONSUMER = requests.get(OAUTH_CONSUMER_URL).json()
+        super().__init__(
+            OAUTH_CONSUMER["consumer_key"],
+            OAUTH_CONSUMER["consumer_secret"],
+            **kwargs,
+        )
 
 
 def login(
     email: str, password: str, /, client: Optional["http.Client"] = None
-) -> dict:
+) -> tuple[OAuth1Token, OAuth2Token]:
     client = client or http.client
 
     # Define params based on domain
@@ -61,28 +81,52 @@ def login(
     # Handle MFA
     if "MFA" in title:
         handle_mfa(client, SIGNIN_PARAMS)
+        title = get_title(client.last_resp.text)
 
-    assert get_title(client.last_resp.text) == "Success"
+    assert title == "Success"
 
     # Parse ticket
     m = re.search(r'embed\?ticket=([^"]+)"', client.last_resp.text)
     assert m
     ticket = m.group(1)
 
-    # Exchange SSO Ticket for Connect Token
-    client.get(
-        "connect",
-        "/modern",
-        params=dict(ticket=ticket),
-        referrer=True,
-    )
-    m = re.search(r'userName":"(.+?)"', client.last_resp.text)
-    assert m
-    username = m.group(1)
-    token = exchange(client)
-    token["username"] = username
+    oauth1 = get_oauth1_token(ticket, client=client)
+    oauth2 = exchange(oauth1, client=client)
 
-    return token
+    return OAuth1Token(**oauth1), OAuth2Token(**oauth2)
+
+
+def get_oauth1_token(ticket: str, /, client: "http.Client") -> dict:
+    sess = GarminOAuth1Session()
+    resp = sess.get(
+        f"https://connectapi.{client.domain}/oauth-service/oauth/"
+        f"preauthorized?ticket={ticket}&login-url="
+        f"https://sso.{client.domain}/sso/embed&accepts-mfa-tokens=true",
+        headers=USER_AGENT,
+    )
+    resp.raise_for_status()
+    parsed = parse_qs(resp.text)
+    return {k: v[0] for k, v in parsed.items()}
+
+
+def exchange(oauth1: dict, /, client: Optional["http.Client"] = None) -> dict:
+    client = client or http.client
+    sess = GarminOAuth1Session(
+        resource_owner_key=oauth1["oauth_token"],
+        resource_owner_secret=oauth1["oauth_token_secret"],
+    )
+    token = sess.post(
+        "https://connectapi.garmin.com/oauth-service/oauth/exchange/user/2.0",
+        headers=USER_AGENT
+        | {"Content-Type": "application/x-www-form-urlencoded"},
+    ).json()
+
+    return set_expirations(token)
+
+
+def refresh(_, client: Optional["http.Client"] = None) -> dict:
+    client = client or http.client
+    return {}
 
 
 def handle_mfa(client: "http.Client", signin_params: dict) -> None:
@@ -100,31 +144,6 @@ def handle_mfa(client: "http.Client", signin_params: dict) -> None:
             "fromPage": "setupEnterMfaCode",
         },
     )
-
-
-def exchange(client: Optional["http.Client"] = None) -> dict:
-    client = client or http.client
-    token = client.post(
-        "connect",
-        "/modern/di-oauth/exchange",
-        referrer=f"https://connect.{client.domain}/modern",
-    ).json()
-    token["username"] = client.username
-    return set_expirations(token)
-
-
-def refresh(
-    refresh_token: str, /, client: Optional["http.Client"] = None
-) -> dict:
-    client = client or http.client
-
-    token = client.post(
-        "connect",
-        "/services/auth/token/refresh",
-        json=dict(refresh_token=refresh_token),
-    ).json()
-    token["username"] = client.username
-    return set_expirations(token)
 
 
 def set_expirations(token: dict) -> dict:

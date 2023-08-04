@@ -10,18 +10,11 @@ interactions:
       - Bearer SANITIZED
       Connection:
       - keep-alive
-      Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; SESSIONID=SANITIZED; __cflb=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
-      referer:
-      - https://connect.garmin.com/modern
     method: GET
-    uri: https://connect.garmin.com/hrv-service/hrv/daily/1990-06-23/1990-07-20
+    uri: https://connectapi.garmin.com/hrv-service/hrv/daily/1990-06-23/1990-07-20
   response:
     body:
       string: ''
@@ -29,17 +22,19 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7eeada555aec1549-QRO
+      - 7f12d0009fb71556-QRO
       Connection:
       - keep-alive
       Date:
-      - Sun, 30 Jul 2023 04:28:05 GMT
+      - Fri, 04 Aug 2023 00:51:32 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=00ZtxKNG%2FkY4gW1qvZVf65fk9HnJ19yGPKbRdhkbY5dtlfARJQrijEaEep2JZ77RkL0A2Gcuw3yicW5S0Qc2LMra290MyZiVpgo%2FAT45%2F5iv4PnvbiiwrsNIIU7zWqANM1Yixw%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Rtks48zaXzNg0K9c8L5w7UaDVLx4fUwxanI2aMQtUuzIq7%2FEg%2F3tYRlfBLxbkZgQptFoiz3CS%2B8rKHWzqq7ayFvLe0k2kEynQKwSjY5I%2FDlesB7kjUKuXxwh%2B3qW7JMMoW6BK9ybRQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -52,6 +47,7 @@ interactions:
       - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
       - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
       - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
     status:
       code: 204
       message: No Content

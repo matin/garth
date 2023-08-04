@@ -10,18 +10,11 @@ interactions:
       - Bearer SANITIZED
       Connection:
       - keep-alive
-      Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; SESSIONID=SANITIZED; __cflb=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
-      referer:
-      - https://connect.garmin.com/modern
     method: GET
-    uri: https://connect.garmin.com/hrv-service/hrv/daily/2023-06-23/2023-07-20
+    uri: https://connectapi.garmin.com/hrv-service/hrv/daily/2023-06-23/2023-07-20
   response:
     body:
       string: '{"hrvSummaries": [{"calendarDate": "2023-06-23", "weeklyAvg": 40, "lastNightAvg":
@@ -128,7 +121,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7eea6de40d71154b-QRO
+      - 7f12cffc4ea3b6e1-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -136,15 +129,17 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 30 Jul 2023 03:14:03 GMT
+      - Fri, 04 Aug 2023 00:51:31 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=4%2BSr4bvy4L0EBSuy3eTWeR8mskAypElz%2BwCvCzC9FeteZ7RLo6dCT0%2B4pkBmVsEFEeibMR11sdCpvJMUJgSdqOvasoKGcZnCq3iof8V5t187cJWlgI9%2BojWYQmJZwo53v%2BKCZQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=2qwUnXfm51mWjJY2ho0q0lhgcjKqNZIHMND%2F3pcFJs8BsJFIXzgvLZIVnVro%2Fl1%2BmXxg4txzEdRTUKUbedJs19kiYjjaUqbGOdl%2FA7w3NYWk3hlzD5bzjzJzovpCZi3rG9ckt3TzyQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -156,6 +151,7 @@ interactions:
         Secure
       - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
       - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
     status:
       code: 200
       message: OK
@@ -171,18 +167,12 @@ interactions:
       Connection:
       - keep-alive
       Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED;
-        SESSIONID=SANITIZED; SameSite=SANITIZED; __cflb=SANITIZED
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
-      referer:
-      - https://connect.garmin.com/modern
     method: GET
-    uri: https://connect.garmin.com/hrv-service/hrv/daily/2023-06-11/2023-06-22
+    uri: https://connectapi.garmin.com/hrv-service/hrv/daily/2023-06-11/2023-06-22
   response:
     body:
       string: '{"hrvSummaries": [{"calendarDate": "2023-06-11", "weeklyAvg": 43, "lastNightAvg":
@@ -232,7 +222,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7eea6de5ffeab6eb-QRO
+      - 7f12cffd58bdb6e1-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -240,15 +230,17 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sun, 30 Jul 2023 03:14:04 GMT
+      - Fri, 04 Aug 2023 00:51:32 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=4Jv%2F76K2RWd2Ny26Bb3bIrP6O%2BHdA0OjBbDGk00wjH7qr9lqN7vpIHdYEhgkeztUdNLvYME9%2FLeAS%2BJjNpSeBZqyB7p48907Qa%2Bn3yX62AbFBo1LdJYpKpO%2Fdz5O%2BwLuhnK%2FHA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=0NCR775bJt1JRqheSkoCuFTz1b0iStwJxkS5KYP46xKe8WcWO56WI81lN9h62gaiKEiVtpV1Mrlkr4oRqMEm8XwiPMrJ8kF6OFxD8%2F6t%2B7DK0QOI6An3R2EzrBEfW40UaG6qbLitvg%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:

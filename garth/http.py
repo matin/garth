@@ -1,13 +1,12 @@
 import json
 import os
-import pickle
-from dataclasses import asdict
 
 from requests import Response, Session
 from requests.adapters import HTTPAdapter, Retry
-from requests.cookies import RequestsCookieJar
 
-from .auth_token import AuthToken
+from . import sso
+from .auth_tokens import OAuth1Token, OAuth2Token
+from .utils import asdict
 
 USER_AGENT = {
     "User-Agent": (
@@ -21,7 +20,8 @@ class Client:
     sess: Session
     last_resp: Response
     domain: str = "garmin.com"
-    auth_token: AuthToken | None = None
+    oauth1_token: OAuth1Token | None = None
+    oauth2_token: OAuth2Token | None = None
     timeout: int = 10
     retries: int = 3
     status_forcelist: tuple[int, ...] = (408, 429, 500, 502, 503, 504)
@@ -42,8 +42,8 @@ class Client:
     def configure(
         self,
         /,
-        auth_token: AuthToken | None = None,
-        cookies: RequestsCookieJar | None = None,
+        oauth1_token: OAuth1Token | None = None,
+        oauth2_token: OAuth2Token | None = None,
         domain: str | None = None,
         proxies: dict | None = None,
         ssl_verify: bool | None = None,
@@ -52,10 +52,10 @@ class Client:
         status_forcelist: tuple[int, ...] | None = None,
         backoff_factor: float | None = None,
     ):
-        if auth_token is not None:
-            self.auth_token = auth_token
-        if cookies is not None:
-            self.sess.cookies = cookies
+        if oauth1_token is not None:
+            self.oauth1_token = oauth1_token
+        if oauth2_token is not None:
+            self.oauth2_token = oauth2_token
         if domain:
             self.domain = domain
         if proxies is not None:
@@ -81,7 +81,11 @@ class Client:
 
     @property
     def username(self) -> str | None:
-        return self.auth_token.username if self.auth_token else None
+        if not self._username:
+            self._username = self.connectapi(
+                "/userprofile-service/socialProfile"
+            )["userName"]
+        return self._username
 
     def request(
         self,
@@ -100,10 +104,7 @@ class Client:
         elif referrer:
             headers["referer"] = referrer
         if api:
-            if self.auth_token and self.auth_token.expired:
-                self.auth_token.refresh(client=self)
-            headers["Authorization"] = str(self.auth_token)
-            headers["di-backend"] = f"connectapi.{self.domain}"
+            headers["Authorization"] = str(self.oauth2_token)
         self.last_resp = self.sess.request(
             method,
             url,
@@ -121,10 +122,10 @@ class Client:
         return self.request("POST", *args, **kwargs)
 
     def login(self, *args):
-        self.auth_token = AuthToken.login(*args, client=self)
+        self.oauth1_token, self.oauth2_token = sso.login(*args, client=self)
 
     def connectapi(self, path: str, **kwargs):
-        resp = self.get("connect", path, api=True, **kwargs)
+        resp = self.get("connectapi", path, api=True, **kwargs)
         if resp.status_code == 204:
             rv = None
         else:
@@ -133,18 +134,21 @@ class Client:
 
     def dump(self, dir_path: str):
         dir_path = os.path.expanduser(dir_path)
-        with open(os.path.join(dir_path, "cookies.pickle"), "wb") as f:
-            pickle.dump(self.sess.cookies, f)
-        with open(os.path.join(dir_path, "auth_token.json"), "w") as f:
-            json.dump(asdict(self.auth_token) if self.auth_token else {}, f)
+        os.makedirs(dir_path, exist_ok=True)
+        with open(os.path.join(dir_path, "oauth1_token.json"), "w") as f:
+            if self.oauth1_token:
+                json.dump(asdict(self.oauth1_token), f, indent=4)
+        with open(os.path.join(dir_path, "oauth2_token.json"), "w") as f:
+            if self.oauth2_token:
+                json.dump(asdict(self.oauth2_token), f, indent=4)
 
     def load(self, dir_path: str):
         dir_path = os.path.expanduser(dir_path)
-        with open(os.path.join(dir_path, "cookies.pickle"), "rb") as f:
-            cookies = pickle.load(f)
-        with open(os.path.join(dir_path, "auth_token.json")) as f:
-            auth_token = AuthToken(**json.load(f))
-        self.configure(auth_token=auth_token, cookies=cookies)
+        with open(os.path.join(dir_path, "oauth1_token.json")) as f:
+            oauth1 = OAuth1Token(**json.load(f))
+        with open(os.path.join(dir_path, "oauth2_token.json")) as f:
+            oauth2 = OAuth2Token(**json.load(f))
+        self.configure(oauth1_token=oauth1, oauth2_token=oauth2)
 
 
 client = Client()

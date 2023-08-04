@@ -52,7 +52,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7f12d0081a724797-DFW
+      - 7f12d41c38a11557-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -60,11 +60,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 04 Aug 2023 00:51:33 GMT
+      - Fri, 04 Aug 2023 00:54:20 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=7Jm3%2BQkQNnW8yDQr8zz%2FW93FRmApY0UugFBzK5SgwmO8atpbxSWdU7uz2UcLfuGZajQJkLQ28E%2FBQ7f0ki9S6f2eY3EDSfVn7CNNgmuZdvo38guNpuMK5guqKP3cYIQy4fF5GLPHUQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=G2IB1TvEJWwpf1qx1pmxuSXoRW%2FSZEU8HyTOlPTBTCyG2dipRZTZe8A9ulowoM3j%2F6hYqLLs1uU2ifU%2FnZpB2j2uzj6ePqBlmx4IjtlABarp0HGJAvv98zpC%2F5t8DFDPLSS58dBYsA%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
@@ -87,87 +87,6 @@ interactions:
       - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
         Secure
       - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
-    status:
-      code: 200
-      message: OK
-- request:
-    body: null
-    headers:
-      Accept:
-      - '*/*'
-      Accept-Encoding:
-      - gzip, deflate
-      Authorization:
-      - Bearer SANITIZED
-      Connection:
-      - keep-alive
-      Cookie:
-      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
-      User-Agent:
-      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
-        (KHTML, like Gecko) Mobile/15E148
-    method: GET
-    uri: https://connectapi.garmin.com/wellness-service/wellness/dailySleepData/mtamizi?nonSleepBufferMinutes=60&date=2021-07-20
-  response:
-    body:
-      string: '{"dailySleepDTO": {"id": 1626758400000, "userProfilePK": 2591602, "calendarDate":
-        "2021-07-20", "sleepTimeSeconds": 25740, "napTimeSeconds": 0, "sleepWindowConfirmed":
-        true, "sleepWindowConfirmationType": "enhanced_confirmed_final", "sleepStartTimestampGMT":
-        1626758400000, "sleepEndTimestampGMT": 1626785940000, "sleepStartTimestampLocal":
-        1626740400000, "sleepEndTimestampLocal": 1626767940000, "autoSleepStartTimestampGMT":
-        null, "autoSleepEndTimestampGMT": null, "sleepQualityTypePK": null, "sleepResultTypePK":
-        null, "unmeasurableSleepSeconds": 0, "deepSleepSeconds": 4440, "lightSleepSeconds":
-        18720, "remSleepSeconds": 2580, "awakeSleepSeconds": 1800, "deviceRemCapable":
-        true, "retro": false, "sleepFromDevice": true, "averageSpO2Value": 92.0, "lowestSpO2Value":
-        84, "highestSpO2Value": 100, "averageSpO2HRSleep": 51.0, "averageRespirationValue":
-        15.0, "lowestRespirationValue": 8.0, "highestRespirationValue": 18.0, "sleepVersion":
-        1}, "sleepMovement": [], "remSleepData": true, "sleepLevels": [], "wellnessSpO2SleepSummaryDTO":
-        {"userProfilePk": 2591602, "deviceId": 3329978681, "sleepMeasurementStartGMT":
-        "2021-07-20T05:21:00.0", "sleepMeasurementEndGMT": "2021-07-20T12:56:00.0",
-        "alertThresholdValue": null, "numberOfEventsBelowThreshold": null, "durationOfEventsBelowThreshold":
-        null, "averageSPO2": 92.0, "averageSpO2HR": 51.0, "lowestSPO2": 84}}'
-    headers:
-      CF-Cache-Status:
-      - DYNAMIC
-      CF-RAY:
-      - 7f12d0093b58b6e2-QRO
-      Connection:
-      - keep-alive
-      Content-Encoding:
-      - gzip
-      Content-Type:
-      - application/json;charset=UTF-8
-      Date:
-      - Fri, 04 Aug 2023 00:51:34 GMT
-      NEL:
-      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
-      Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=asU9NqPsuSmxxN96St1ca3wY06WSkANwfXch1MOBitkjzSuq45fyuSUC%2BXGE%2F7S9FHwRT13HYOi%2FDLINfwbYmWT9Vrwld3zjhkDxpGkSP2EsN7vdWSKXrF23uV3RSIoBkU9JthnrZQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
-      Server:
-      - cloudflare
-      Transfer-Encoding:
-      - chunked
-      alt-svc:
-      - h3=":443"; ma=86400
-      cache-control:
-      - no-cache, no-store, private
-      pragma:
-      - no-cache
-      set-cookie:
-      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
-      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
     status:
       code: 200
       message: OK

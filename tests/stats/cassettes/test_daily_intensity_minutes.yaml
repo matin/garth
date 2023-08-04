@@ -10,18 +10,11 @@ interactions:
       - Bearer SANITIZED
       Connection:
       - keep-alive
-      Cookie:
-      - JWT_FGP=SANITIZED; _cfuvid=SANITIZED; GARMIN-SSO=SANITIZED; GARMIN-SSO-CUST-GUID=SANITIZED;
-        GARMIN-SSO-GUID=SANITIZED; GarminNoCache=SANITIZED; SESSIONID=SANITIZED; __cflb=SANITIZED
       User-Agent:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
-      di-backend:
-      - connectapi.garmin.com
-      referer:
-      - https://connect.garmin.com/modern
     method: GET
-    uri: https://connect.garmin.com/usersummary-service/stats/im/daily/2023-07-01/2023-07-20
+    uri: https://connectapi.garmin.com/usersummary-service/stats/im/daily/2023-07-01/2023-07-20
   response:
     body:
       string: '[{"calendarDate": "2023-07-01", "weeklyGoal": 150, "moderateValue":
@@ -52,7 +45,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7ee92bb1799b4636-DFW
+      - 7f12d0031b5247fd-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -60,15 +53,17 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Sat, 29 Jul 2023 23:34:06 GMT
+      - Fri, 04 Aug 2023 00:51:33 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=3bJmnY%2FRk1xU%2BQfwwKbmIo6tmq5qdR%2F%2BRsyvVIFwX6TBo%2FQeE3BW7dSCCc1wS%2BAvMZoLIc9zSdNZIEj9emCIhHlV76RkZ5Z6KwYYXf4qhlv3DyV7qd8TdNUkKv40gnes%2Bs6RpQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=9im50IutY9DBaURoxea2zvLVuniHkDcSgeUppPhyVdmW%2FDSA3THWATEIui7XNQQxyQo08JOtLQ5MRRM1%2F6faiOqzehpRUM3EJ3eDtkXNQwLBUlFZ%2B3ldpbg%2FNfHDN%2BXb3rjJU1YjJg%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
       - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
       cache-control:
       - no-cache, no-store, private
       pragma:
@@ -82,8 +77,7 @@ interactions:
         Secure
       - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
         Secure
-      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
-        Secure
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
     status:
       code: 200
       message: OK

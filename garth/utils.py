@@ -1,5 +1,7 @@
+import dataclasses
 import re
-from datetime import date, timedelta
+import typing
+from datetime import date, datetime, timedelta
 from typing import Any
 
 CAMEL_TO_SNAKE = re.compile(
@@ -43,3 +45,20 @@ def date_range(date_: date | str, days: int):
     date_ = date_ if isinstance(date_, date) else date.fromisoformat(date_)
     for day in range(days):
         yield date_ - timedelta(days=day)
+
+
+def asdict(obj):
+    if dataclasses.is_dataclass(obj):
+        result = {}
+        for field in dataclasses.fields(obj):
+            value = getattr(obj, field.name)
+            result[field.name] = asdict(value)
+        return result
+
+    if isinstance(obj, typing.List):
+        return [asdict(v) for v in obj]
+
+    if isinstance(obj, (datetime, date)):
+        return obj.isoformat()
+
+    return obj
