@@ -13,7 +13,7 @@ from .exc import GarthException
 CSRF_RE = re.compile(r'name="_csrf"\s+value="(.+?)"')
 TITLE_RE = re.compile(r"<title>(.+?)</title>")
 OAUTH_CONSUMER_URL = "https://thegarth.s3.amazonaws.com/oauth_consumer.json"
-OAUTH_CONSUMER: str | None = None
+OAUTH_CONSUMER: dict[str, str] = {}
 USER_AGENT = {"User-Agent": "com.garmin.android.apps.connectmobile"}
 
 
