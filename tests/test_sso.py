@@ -16,6 +16,18 @@ def test_login_email_password_fail(client: Client):
 
 
 @pytest.mark.vcr
+def test_login_success(client: Client):
+    oauth1, oauth2 = sso.login(
+        "user@example.com", "correct_password", client=client
+    )
+
+    assert oauth1
+    assert isinstance(oauth1, OAuth1Token)
+    assert oauth2
+    assert isinstance(oauth2, OAuth2Token)
+
+
+@pytest.mark.vcr
 def test_login_success_mfa(monkeypatch, client: Client):
     def mock_input(_):
         return "327751"
