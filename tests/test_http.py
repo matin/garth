@@ -1,8 +1,21 @@
+import tempfile
+
 import pytest
 from requests import HTTPError
 
 from garth.auth_tokens import OAuth2Token
 from garth.http import Client
+
+
+def test_dump_and_load(authed_client: Client):
+    with tempfile.TemporaryDirectory() as tempdir:
+        authed_client.dump(tempdir)
+
+        new_client = Client()
+        new_client.load(tempdir)
+
+        assert new_client.oauth1_token == authed_client.oauth1_token
+        assert new_client.oauth2_token == authed_client.oauth2_token
 
 
 def test_configure_oauth2_token(client: Client, oauth2_token: OAuth2Token):
