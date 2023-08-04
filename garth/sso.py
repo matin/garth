@@ -93,10 +93,10 @@ def login(
     oauth1 = get_oauth1_token(ticket, client=client)
     oauth2 = exchange(oauth1, client=client)
 
-    return OAuth1Token(**oauth1), OAuth2Token(**oauth2)
+    return oauth1, oauth2
 
 
-def get_oauth1_token(ticket: str, /, client: "http.Client") -> dict:
+def get_oauth1_token(ticket: str, /, client: "http.Client") -> OAuth1Token:
     sess = GarminOAuth1Session()
     resp = sess.get(
         f"https://connectapi.{client.domain}/oauth-service/oauth/"
@@ -106,14 +106,17 @@ def get_oauth1_token(ticket: str, /, client: "http.Client") -> dict:
     )
     resp.raise_for_status()
     parsed = parse_qs(resp.text)
-    return {k: v[0] for k, v in parsed.items()}
+    token = {k: v[0] for k, v in parsed.items()}
+    return OAuth1Token(**token)  # type: ignore
 
 
-def exchange(oauth1: dict, /, client: Optional["http.Client"] = None) -> dict:
+def exchange(
+    oauth1: OAuth1Token, /, client: Optional["http.Client"] = None
+) -> OAuth2Token:
     client = client or http.client
     sess = GarminOAuth1Session(
-        resource_owner_key=oauth1["oauth_token"],
-        resource_owner_secret=oauth1["oauth_token_secret"],
+        resource_owner_key=oauth1.oauth_token,
+        resource_owner_secret=oauth1.oauth_token_secret,
     )
     token = sess.post(
         "https://connectapi.garmin.com/oauth-service/oauth/exchange/user/2.0",
@@ -121,7 +124,7 @@ def exchange(oauth1: dict, /, client: Optional["http.Client"] = None) -> dict:
         | {"Content-Type": "application/x-www-form-urlencoded"},
     ).json()
 
-    return set_expirations(token)
+    return OAuth2Token(**set_expirations(token))
 
 
 def refresh(_, client: Optional["http.Client"] = None) -> dict:

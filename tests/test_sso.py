@@ -43,11 +43,11 @@ def test_set_expirations(oauth2_token_dict: dict):
     )
 
 
-@pytest.mark.skip("Need to set auth_client")
 @pytest.mark.vcr
 def test_exchange(authed_client: Client):
-    token = sso.exchange({}, authed_client)
-    oauth2_token = OAuth2Token(**token)
+    assert authed_client.oauth1_token
+    oauth1_token = authed_client.oauth1_token
+    oauth2_token = sso.exchange(oauth1_token, client=authed_client)
     assert not oauth2_token.expired
     assert not oauth2_token.refresh_expired
     assert oauth2_token.token_type.title() == "Bearer"
