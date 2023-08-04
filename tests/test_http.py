@@ -78,7 +78,7 @@ def test_client_request(client: Client):
 
 
 @pytest.mark.vcr
-def test_login_success(monkeypatch, client: Client):
+def test_login_success_mfa(monkeypatch, client: Client):
     def mock_input(_):
         return "327751"
 

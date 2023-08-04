@@ -90,13 +90,13 @@ def login(
     assert m
     ticket = m.group(1)
 
-    oauth1 = get_oauth1_token(ticket, client=client)
-    oauth2 = exchange(oauth1, client=client)
+    oauth1 = get_oauth1_token(ticket, client)
+    oauth2 = exchange(oauth1, client)
 
     return oauth1, oauth2
 
 
-def get_oauth1_token(ticket: str, /, client: "http.Client") -> OAuth1Token:
+def get_oauth1_token(ticket: str, client: "http.Client") -> OAuth1Token:
     sess = GarminOAuth1Session()
     resp = sess.get(
         f"https://connectapi.{client.domain}/oauth-service/oauth/"
@@ -110,10 +110,7 @@ def get_oauth1_token(ticket: str, /, client: "http.Client") -> OAuth1Token:
     return OAuth1Token(**token)  # type: ignore
 
 
-def exchange(
-    oauth1: OAuth1Token, /, client: Optional["http.Client"] = None
-) -> OAuth2Token:
-    client = client or http.client
+def exchange(oauth1: OAuth1Token, client: "http.Client") -> OAuth2Token:
     sess = GarminOAuth1Session(
         resource_owner_key=oauth1.oauth_token,
         resource_owner_secret=oauth1.oauth_token_secret,
@@ -133,7 +130,7 @@ def handle_mfa(client: "http.Client", signin_params: dict) -> None:
     client.post(
         "sso",
         "/sso/verifyMFA/loginEnterMfaCode",
-        params=signin_params | dict(rememberMyBrowserChecked="true"),
+        params=signin_params | dict(embedWidget="true"),
         referrer=True,
         data={
             "mfa-code": mfa_code,
