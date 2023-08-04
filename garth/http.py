@@ -101,8 +101,6 @@ class Client:
         url = f"https://{subdomain}.{self.domain}{path}"
         if referrer is True and self.last_resp:
             headers["referer"] = self.last_resp.url
-        elif referrer:
-            headers["referer"] = referrer
         if api:
             headers["Authorization"] = str(self.oauth2_token)
         self.last_resp = self.sess.request(
