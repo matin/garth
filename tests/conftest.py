@@ -102,9 +102,6 @@ def sanitize_response(response):
             sanitized_cookies = [sanitize_cookie(cookie) for cookie in cookies]
             response["headers"][key] = sanitized_cookies
 
-    if "body" not in response and response["body"]["string"]:
-        return response
-
     body = response["body"]["string"].decode("utf8")
     patterns = [
         "oauth_token=[^&]*",
