@@ -26,7 +26,8 @@ daily sleep quality in 28-day pages, but that doesn't show details. Using
 day with enough detail to product a stacked bar graph of the daily sleep
 stages.
 
-![Sleep stages over 90 days](https://github.com/matin/garth/assets/98985/2e43d68e-b882-4a5e-839a-a1326ed7c61e)
+![Sleep stages over 90 days](https://github.com/matin/garth/assets/98985/ba678baf-0c8a-4907-aa91-be43beec3090)
+
 
 ## Background
 
