@@ -127,11 +127,6 @@ def exchange(
     return OAuth2Token(**set_expirations(token))
 
 
-def refresh(_, client: Optional["http.Client"] = None) -> dict:
-    client = client or http.client
-    return {}
-
-
 def handle_mfa(client: "http.Client", signin_params: dict) -> None:
     csrf_token = get_csrf_token(client.last_resp.text)
     mfa_code = input("Enter MFA code: ")

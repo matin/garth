@@ -54,19 +54,6 @@ def test_exchange(authed_client: Client):
     assert authed_client.oauth2_token != oauth2_token
 
 
-@pytest.mark.skip("Need to set auth_client")
-@pytest.mark.vcr
-def test_refresh(authed_client: Client):
-    assert authed_client.oauth2_token is not None
-    refresh_token = authed_client.oauth2_token.refresh_token
-    token = sso.refresh(refresh_token, authed_client)
-    oauth2_token = OAuth2Token(**token)
-    assert not oauth2_token.expired
-    assert not oauth2_token.refresh_expired
-    assert oauth2_token.token_type.title() == "Bearer"
-    assert authed_client.oauth2_token != oauth2_token
-
-
 def test_get_csrf_token():
     html = """
     <html>

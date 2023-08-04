@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime
 
 from garth.utils import (
     asdict,
@@ -25,12 +25,41 @@ def test_format_end_date():
     assert format_end_date(date(2021, 1, 1)) == date(2021, 1, 1)
 
 
-def test_asdict():
-    @dataclass
-    class Foo:
-        a: int
-        b: int
-        c: date
+@dataclass
+class AsDictTestClass:
+    name: str
+    age: int
+    birth_date: date
 
-    foo = Foo(1, 2, date(2021, 1, 1))
-    assert asdict(foo) == {"a": 1, "b": 2, "c": "2021-01-01"}
+
+def test_asdict():
+    # Test for dataclass instance
+    instance = AsDictTestClass("Test", 20, date.today())
+    assert asdict(instance) == {
+        "name": "Test",
+        "age": 20,
+        "birth_date": date.today().isoformat(),
+    }
+
+    # Test for list of dataclass instances
+    instances = [
+        AsDictTestClass("Test1", 20, date.today()),
+        AsDictTestClass("Test2", 30, date.today()),
+    ]
+    expected_output = [
+        {"name": "Test1", "age": 20, "birth_date": date.today().isoformat()},
+        {"name": "Test2", "age": 30, "birth_date": date.today().isoformat()},
+    ]
+    assert asdict(instances) == expected_output
+
+    # Test for date instance
+    assert asdict(date.today()) == date.today().isoformat()
+
+    # Test for datetime instance
+    now = datetime.now()
+    assert asdict(now) == now.isoformat()
+
+    # Test for regular types
+    assert asdict("Test") == "Test"
+    assert asdict(123) == 123
+    assert asdict(None) is None
