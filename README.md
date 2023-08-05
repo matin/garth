@@ -30,7 +30,7 @@ stages.
 
 ## Background
 
-Garth is meant for personal use and follows the philosiphy that your data is
+Garth is meant for personal use and follows the philosophy that your data is
 your data. You should be able to download it and analyze it in the way that
 you'd like. In my case, that means processing with Google Colab, Pandas,
 Matplotlib, etc.
