@@ -135,7 +135,7 @@ interactions:
         \       No  true/false (Default value is false)                      Whether
         the \"Remember My Browser\" check box feature is checked by default.\n\tconsentTypeIds\t\t\t\t\tNo\tconsent_types
         ids\t\t \t\t\t\t\t\t\t\t multiple consent types ids can be passed as consentTypeIds=type1&consentTypeIds=type2\n\t</pre>\n</div>\n\n\n\t<script>(function(){var
-        js = \"window['__CF$cv$params']={r:'7f19f84d2d2047a4'};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/invisible.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
+        js = \"window['__CF$cv$params']={r:'7f1ab7623b3fb6e7'};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/invisible.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
         _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position
         = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility
         = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi =
@@ -159,7 +159,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7f19f84d2d2047a4-DFW
+      - 7f1ab7623b3fb6e7-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -169,11 +169,11 @@ interactions:
       Content-Type:
       - text/html;charset=UTF-8
       Date:
-      - Fri, 04 Aug 2023 21:42:23 GMT
+      - Fri, 04 Aug 2023 23:52:50 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=zvXYngpt%2FM66%2Fz9gI0xFgQkzoTIocpc3OGEfkncJ37tBwN57jD%2B09JoWPKA%2BcR75KbtbFv7%2FwUMueVpsMUkKalOfkWJqWd9CZJvR9dmZYBgUP2HbcZR8pURmJPN48%2F9J"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=2LVP2GabW9hmt5SBQnKTrfufR7w71BaCLIDcRhywiSOOr5b3PEve8VCtlRnsv2tTDexPlZTbqE7wSYqfWb930CvAm0jIkAoRp6eYCk3UEsby5uzXR%2FCpflPnA6NCPzN2"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:
@@ -187,13 +187,13 @@ interactions:
       Transfer-Encoding:
       - chunked
       X-Application-Context:
-      - casServer:cloud,prod,prod-US_1102:5
+      - casServer:cloud,prod,prod-US_1102:3
       X-B3-Traceid:
-      - 6ca6b8ec7d365a895ef418b6319455ad
+      - 30468320ec0db9e4756d98413af1080c
       X-Robots-Tag:
       - noindex
       X-Vcap-Request-Id:
-      - ce3465b6-c1f7-4274-7cea-5812380e0fc9
+      - c63525bc-37d7-440c-6740-36a6129fe4ca
     status:
       code: 200
       message: OK
@@ -214,7 +214,7 @@ interactions:
       referer:
       - https://sso.garmin.com/sso/embed?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso
     method: GET
-    uri: https://sso.garmin.com/sso/signin?id=gauth-widget&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+    uri: https://sso.garmin.com/sso/signin?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
   response:
     body:
       string: "<!DOCTYPE html>\n<html lang=\"en\" class=\"no-js\">\n    <head>\n        <meta
@@ -236,12 +236,12 @@ interactions:
         \       <script type=\"text/javascript\" src=\"/sso/js/login.js?20211102\"></script>\n
         \       <script type=\"text/javascript\" src=\"/sso/js/reCaptchaUtil.js?20230706\"></script>\n\n
         \       <script>\n            var recaptchaSiteKey = null;\n            var
-        reCaptchaURL = \"\\\\\\/reCaptcha?id=gauth-widget\\u0026service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\\u0026source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\\u0026redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\\u0026redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\\u0026gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\";\n
+        reCaptchaURL = \"\\\\\\/sso\\\\\\/reCaptcha?id=gauth-widget\\u0026embedWidget=true\\u0026gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\\u0026service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\\u0026source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\\u0026redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\\u0026redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\";\n
         \           var isRecaptchaEnabled = null;\n            var recaptchaToken
         = null;            \n        </script>\n        <script type=\"text/javascript\">\n
         \           var parent_url      = \"https:\\/\\/sso.garmin.com\\/sso\\/embed\";\n
         \           var status \t\t\t= \"\";\n\t\t\tvar result          = \"\";\n\t\t\tvar
-        clientId\t\t= '';\n\t\t\tvar embedWidget \t= false;\n\t\t\tvar isUsernameDefined
+        clientId\t\t= '';\n\t\t\tvar embedWidget \t= true;\n\t\t\tvar isUsernameDefined
         = (false == true) || (false == true);\n\n            // Gigya callback to
         SocialSignInController for brand new social network users redirects to this
         page\n            // to popup Create or Link Social Account page, but has
@@ -252,14 +252,14 @@ interactions:
         + 3, parent_url.length);\n            if (parent_hostname.indexOf(\"/\") !=
         -1) {\n                parent_hostname = parent_hostname.substring(0, parent_hostname.indexOf(\"/\"));\n
         \           }\n            var parentHost      \t   = parent_scheme + \"://\"
-        + parent_hostname;\n\t\t\tvar createAccountConfigURL = '\\/createNewAccount?id%3Dgauth-widget%26service%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26source%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26redirectAfterAccountLoginUrl%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26redirectAfterAccountCreationUrl%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26gauthHost%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed';\n
-        \           var socialConfigURL        = 'https://sso.garmin.com/sso/socialSignIn?id%3Dgauth-widget%26service%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26source%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26redirectAfterAccountLoginUrl%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26redirectAfterAccountCreationUrl%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26gauthHost%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed';\n
+        + parent_hostname;\n\t\t\tvar createAccountConfigURL = '\\/sso\\/createNewAccount?id%3Dgauth-widget%26embedWidget%3Dtrue%26gauthHost%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26service%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26source%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26redirectAfterAccountLoginUrl%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26redirectAfterAccountCreationUrl%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed';\n
+        \           var socialConfigURL        = 'https://sso.garmin.com/sso/socialSignIn?id%3Dgauth-widget%26embedWidget%3Dtrue%26gauthHost%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26service%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26source%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26redirectAfterAccountLoginUrl%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26redirectAfterAccountCreationUrl%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed';\n
         \           var gigyaURL               = \"https://cdns.gigya.com/js/gigya.js?apiKey=2_R3ZGY8Bqlwwk3_63knoD9wA_m-Y19mAgW61bF_s5k9gymYnMEAtMrJiF5MjF-U7B\";\n\n
         \           if (createAccountConfigURL.indexOf('%253A%252F%252F') != -1) {\n
         \           \tcreateAccountConfigURL = decodeURIComponent(createAccountConfigURL);\n
-        \           }\n            consoleInfo('signin.html embedWidget: false, createAccountConfigURL:
-        \\/createNewAccount?id%3Dgauth-widget%26service%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26source%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26redirectAfterAccountLoginUrl%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26redirectAfterAccountCreationUrl%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26gauthHost%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed,
-        socialEnabled: true, gigyaSupported: true, socialConfigURL(): https://sso.garmin.com/sso/socialSignIn?id%3Dgauth-widget%26service%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26source%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26redirectAfterAccountLoginUrl%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26redirectAfterAccountCreationUrl%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26gauthHost%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed');\n\n
+        \           }\n            consoleInfo('signin.html embedWidget: true, createAccountConfigURL:
+        \\/sso\\/createNewAccount?id%3Dgauth-widget%26embedWidget%3Dtrue%26gauthHost%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26service%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26source%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26redirectAfterAccountLoginUrl%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26redirectAfterAccountCreationUrl%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed,
+        socialEnabled: true, gigyaSupported: true, socialConfigURL(): https://sso.garmin.com/sso/socialSignIn?id%3Dgauth-widget%26embedWidget%3Dtrue%26gauthHost%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26service%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26source%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26redirectAfterAccountLoginUrl%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26redirectAfterAccountCreationUrl%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed');\n\n
         \           if (socialConfigURL.indexOf('%3A%2F%2F') != -1) {\n            \tsocialConfigURL
         = decodeURIComponent(socialConfigURL);\n            }\n\n            if( status
         != null && status != ''){\n            \tsend({'status':status});\n            }\n\n
@@ -283,7 +283,7 @@ interactions:
         \   <body>\n\n        <!-- begin GAuth component -->\n        <div id=\"GAuth-component\">\n
         \           <!-- begin login component-->\n            <div id=\"login-component\"
         class=\"blueForm-basic\">\n               <input type=\"hidden\" id=\"queryString\"
-        value=\"id=gauth-widget&amp;service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\"
+        value=\"id=gauth-widget&amp;embedWidget=true&amp;gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\"
         />\n\t     \t   <input type=\"hidden\" id=\"contextPath\" value=\"/sso\" />\n
         \               <!-- begin login form -->\n                <div id=\"login-state-default\">\n
         \                   <h2>Sign In</h2>\n\n                    <form method=\"post\"
@@ -310,8 +310,8 @@ interactions:
         spellcheck=\"false\" autocorrect=\"off\" autocapitalize=\"off\" />\n                             <strong
         id=\"capslock-warning\" class=\"information\" title=\"Caps lock is on.\" style=\"display:
         none;\">Caps lock is on.</strong>\n\t\t\t\t\t    </div>\n                        <input
-        type=\"hidden\" name=\"embed\" value=\"false\"/>\n                        <input
-        type=\"hidden\" name=\"_csrf\" value=\"8FD1312E0D2A8A6D81CFF06E3ECFC06500351F8735530EBCE4F75FCB1A63EF6E8444F31A1CB9774C56E57C2C363807E8FF33\"
+        type=\"hidden\" name=\"embed\" value=\"true\"/>\n                        <input
+        type=\"hidden\" name=\"_csrf\" value=\"1C8FCC7A63FC636522294F8278D7F1DD08E00C5FDA8FD253ED93797BAAC97E0712C42221A1929E2CA3C92B0BDEB4E2B649AB\"
         />\n                        <button type=\"submit\" id=\"login-btn-signin\"
         class=\"btn1\" accesskey=\"l\">Sign In</button>\n                        \n\n\n
         \                       <!-- The existence of the \"rememberme\" parameter
@@ -337,7 +337,7 @@ interactions:
         \                   send({'openLiteBox':'createAccountLink', 'popupUrl': createAccountConfigURL,
         'popupTitle':'Create An Account', 'clientId':clientId});\n\t                });\n
         \               }\n            });\n        </script>\n    <script>(function(){var
-        js = \"window['__CF$cv$params']={r:'7f19f84e7fa8b6e8'};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/invisible.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
+        js = \"window['__CF$cv$params']={r:'7f1ab763ff104638'};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/invisible.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
         _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position
         = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility
         = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi =
@@ -361,7 +361,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 7f19f84e7fa8b6e8-QRO
+      - 7f1ab763ff104638-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -371,11 +371,11 @@ interactions:
       Content-Type:
       - text/html;charset=UTF-8
       Date:
-      - Fri, 04 Aug 2023 21:42:23 GMT
+      - Fri, 04 Aug 2023 23:52:50 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=vC5EgD2UglMkkfFYe73MTEAE%2Ba%2BwXEfO1fjtmIdd0szIyodAnJpcate6PdHLtQdup9QOd%2F3QsAS5I0UwloNcZnT3gCBvs%2BOglqOmgC2YYJhOHmbrNHAlh%2FhQdk0Bc4XV"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=InGlT5Ba%2BLzBdhsvcSmMDu1seTTKlDJttidNDvQWf5dZERrhqMuAJmGifn%2B%2BLFBS6LdcnNZlh5IMqBzzjLxv07sgGjOoo3gQ5%2B1DRGkqwoNMlL2nZHpsp5zUYUBHbJEu"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:
@@ -388,18 +388,18 @@ interactions:
       Vary:
       - Accept-Encoding
       X-Application-Context:
-      - casServer:cloud,prod,prod-US_1102:7
+      - casServer:cloud,prod,prod-US_1102:6
       X-B3-Traceid:
-      - 23e25790497950af53ad870cb9a288b8
+      - 35d11ea88e42f34d4dc08e3fd5b3c746
       X-Robots-Tag:
       - noindex
       X-Vcap-Request-Id:
-      - 0790e6ab-9635-4d69-6b8a-244cf044e56c
+      - 32e1f3d1-8f80-459d-4d11-24978e412e76
     status:
       code: 200
       message: OK
 - request:
-    body: username=SANITIZED&password=SANITIZED&embed=true&_csrf=8FD1312E0D2A8A6D81CFF06E3ECFC06500351F8735530EBCE4F75FCB1A63EF6E8444F31A1CB9774C56E57C2C363807E8FF33
+    body: username=SANITIZED&password=SANITIZED&embed=true&_csrf=1C8FCC7A63FC636522294F8278D7F1DD08E00C5FDA8FD253ED93797BAAC97E0712C42221A1929E2CA3C92B0BDEB4E2B649AB
     headers:
       Accept:
       - '*/*'
@@ -408,7 +408,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '177'
+      - '175'
       Content-Type:
       - application/x-www-form-urlencoded
       Cookie:
@@ -418,9 +418,9 @@ interactions:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
       referer:
-      - https://sso.garmin.com/sso/signin?id=gauth-widget&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+      - https://sso.garmin.com/sso/signin?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
     method: POST
-    uri: https://sso.garmin.com/sso/signin?id=gauth-widget&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+    uri: https://sso.garmin.com/sso/signin?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
   response:
     body:
       string: ''
@@ -437,7 +437,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 7f19f84fd8d5154b-QRO
+      - 7f1ab7662ddd466c-DFW
       Connection:
       - keep-alive
       Content-Language:
@@ -445,13 +445,13 @@ interactions:
       Content-Length:
       - '0'
       Date:
-      - Fri, 04 Aug 2023 21:42:25 GMT
+      - Fri, 04 Aug 2023 23:52:52 GMT
       Location:
-      - https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+      - https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=tFguDXcU1G6XJJv%2BBcpNv3veY3trRFFdHZIhw4TIp60D4GyisC1Rp3K1v%2Bj%2Fcq4FuGh4LJaZA8UQLxCLAuJfHezU7jFSlTbZvV2qXbNxQ%2F7n0OtnJh2FuSrZzYLtIXUZ"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=D5dkx%2FVxJjYHbG1%2FNq3RBFEq8YUEKSo7qugL9FcLf2UEQ4z1aHxGMK%2Fbbneme%2F6a%2FwwL98wB0UditbK7NZ8dntggx6%2BRhz2DPmgxQs9zzzeFeBQjJDEPQPtaBU7S5rkP"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:
@@ -461,13 +461,13 @@ interactions:
       Vary:
       - Accept-Encoding
       X-Application-Context:
-      - casServer:cloud,prod,prod-US_1102:7
+      - casServer:cloud,prod,prod-US_1102:6
       X-B3-Traceid:
-      - 2306946bb772deae0299aca0881a0afe
+      - 5d4f16564994c09e767aeb869d1f3119
       X-Robots-Tag:
       - noindex
       X-Vcap-Request-Id:
-      - 90ed387d-cabf-4049-4122-09090680db2b
+      - 9d4da862-8730-4cff-7595-709476e1f004
     status:
       code: 302
       message: Found
@@ -487,9 +487,9 @@ interactions:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
       referer:
-      - https://sso.garmin.com/sso/signin?id=gauth-widget&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+      - https://sso.garmin.com/sso/signin?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
     method: GET
-    uri: https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+    uri: https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
   response:
     body:
       string: "<!DOCTYPE html>\n<html lang=\"en\" class=\"no-js\">\n\n<head>\n    <script
@@ -503,13 +503,13 @@ interactions:
         \   <script type=\"text/javascript\" src=\"/sso/js/consoleUtils.js?20210319\"></script>\n
         \   <script type=\"text/javascript\" src=\"/sso/js/setupMfaRequiredView.js?20210319\"></script>\n
         \   <script type=\"text/javascript\" src=\"/sso/js/enterMfaCode.js?20230127\"></script>\n
-        \   <script type=\"text/javascript\">\n        var embedWidget = \"\";\n        if
-        (embedWidget == \"\") {\n            embedWidget = \"\";\n        }\n        embedWidget
-        = (embedWidget == \"true\");\n        var parent_url = \"https:\\/\\/sso.garmin.com\\/sso\\/embed\";\n
-        \       window.onload = function() {\n            ifrememberMyBrowserChecked();\n
-        \       };\n\n        jQuery(document).ready( function() {\n            if
-        (!embedWidget) {\n                send({'gauthHeight': jQuery(\"#GAuth-component\").height()});\n
-        \           }\n            jQuery(\"#mfa-verification-code-submit\").click(function(){\n
+        \   <script type=\"text/javascript\">\n        var embedWidget = \"true\";\n
+        \       if (embedWidget == \"\") {\n            embedWidget = \"\";\n        }\n
+        \       embedWidget = (embedWidget == \"true\");\n        var parent_url =
+        \"https:\\/\\/sso.garmin.com\\/sso\\/embed\";\n        window.onload = function()
+        {\n            ifrememberMyBrowserChecked();\n        };\n\n        jQuery(document).ready(
+        function() {\n            if (!embedWidget) {\n                send({'gauthHeight':
+        jQuery(\"#GAuth-component\").height()});\n            }\n            jQuery(\"#mfa-verification-code-submit\").click(function(){\n
         \               if (!validateMfaCodeAndPrivacyConsents()){\n                    return
         false;\n                }\n                jQuery('#submit-mfa-verification-code-form').submit();\n
         \               return false;\n            });\n        });\n        var customerGuid
@@ -522,7 +522,7 @@ interactions:
         content=\"IE=edge;\" />\n    <link href=\"/sso/css/GAuth.css?20170505\" rel=\"stylesheet\"
         type=\"text/css\" media=\"all\" />\n    <link rel=\"stylesheet\" href=\"\"
         />\n</head>\n\n<body>\n    <div id=\"GAuth-component\">\n        <h2 id=\"enter-mfa-code-h2\">Enter
-        security code</h2>\n        <input type=\"hidden\" id=\"queryString\" value=\"id=gauth-widget&amp;service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\"
+        security code</h2>\n        <input type=\"hidden\" id=\"queryString\" value=\"id=gauth-widget&amp;embedWidget=true&amp;gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\"
         />\n        <input type=\"hidden\" id=\"contextPath\" value=\"/sso\" />\n\n
         \       <div id=\"login-component\" class=\"blueForm-basic\">\n            <div
         id=\"login-state-verifymfa\">\n                <td>\n                    \n
@@ -553,14 +553,14 @@ interactions:
         \                       <br>\n                            \n                        <br/>\n
         \                       <button type=\"submit\" id=\"mfa-verification-code-submit\"
         class=\"btn1\">Next</button>\n                    </div>\n                    <input
-        type=\"hidden\" name=\"embed\"            value=\"\"/>\n                    <input
-        type=\"hidden\" name=\"_csrf\"            value=\"F9C17B99B345D1989FF8805BC611547BEC7C8F3C4C3DD4EC32AB8B766A27731265986903FD84CB56F1A1CA270D1D598F1D6F\"
+        type=\"hidden\" name=\"embed\"            value=\"true\"/>\n                    <input
+        type=\"hidden\" name=\"_csrf\"            value=\"E68248EA7D89A572B43FA93876000B651D682EE3C8FACF219078E0889281085C27FD2600FBD9258E298F7831374801807F43\"
         />\n                    <input type=\"hidden\" name=\"fromPage\"            value=\"setupEnterMfaCode\"/>\n
         \                   <br/>\n                </form>\n            </div>\n            <div
         class=\"clearfix\"></div> <!-- Ensure that GAuth-component div's height is
         computed correctly. -->\n        </div>\n    </div>\n    <script type=\"text/javascript\">\n
         \       resizePageOnLoad(jQuery(\"#GAuth-component\").height());\n    </script>\n<script>(function(){var
-        js = \"window['__CF$cv$params']={r:'7f19f85a8a0846d4'};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/invisible.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
+        js = \"window['__CF$cv$params']={r:'7f1ab76f0ae0b6e8'};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/invisible.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
         _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position
         = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility
         = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi =
@@ -584,7 +584,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7f19f85a8a0846d4-DFW
+      - 7f1ab76f0ae0b6e8-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -594,11 +594,11 @@ interactions:
       Content-Type:
       - text/html;charset=UTF-8
       Date:
-      - Fri, 04 Aug 2023 21:42:25 GMT
+      - Fri, 04 Aug 2023 23:52:52 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=vlAIfwLdw1RDwdV2miJoXWzSRPUIP0vka2ZV3M%2BpTKxZz%2F2bv%2FBHlFw0eOQ767Weo7hVAd9dM0d9VkbqussSgEMIYQ268IuyC8EfS2AzRvnQYhcWPAvkZuw%2Fxl6HzYh9"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Z674tWLGWzudE9EHjoD2Z6WbD8HDVo49caoIX27DFUAbHcDvQkq1YV2kHZT1WRLpY6RDovvNsT3g3bwVsVUAamdC1GbBu3kPl%2FzQWfVGg0dSInr76rWCXemH9T29xIA6"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:
@@ -607,18 +607,18 @@ interactions:
       Transfer-Encoding:
       - chunked
       X-Application-Context:
-      - casServer:cloud,prod,prod-US_1102:7
+      - casServer:cloud,prod,prod-US_1102:6
       X-B3-Traceid:
-      - 0a3e2d17f07851c273668f7d119fdd2e
+      - 259b6899c5257de0216d0d08074c00d2
       X-Robots-Tag:
       - noindex
       X-Vcap-Request-Id:
-      - be07a1e9-4b86-4a15-4a39-c26e2e86dd49
+      - 1ab5c70b-d4dd-41bd-5f84-72c19a3cb327
     status:
       code: 200
       message: OK
 - request:
-    body: mfa-code=195893&embed=true&_csrf=F9C17B99B345D1989FF8805BC611547BEC7C8F3C4C3DD4EC32AB8B766A27731265986903FD84CB56F1A1CA270D1D598F1D6F&fromPage=setupEnterMfaCode
+    body: mfa-code=536947&embed=true&_csrf=E68248EA7D89A572B43FA93876000B651D682EE3C8FACF219078E0889281085C27FD2600FBD9258E298F7831374801807F43&fromPage=setupEnterMfaCode
     headers:
       Accept:
       - '*/*'
@@ -637,9 +637,9 @@ interactions:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
       referer:
-      - https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+      - https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
     method: POST
-    uri: https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&embedWidget=true
+    uri: https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
   response:
     body:
       string: ''
@@ -656,7 +656,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7f19f8c8aff41557-QRO
+      - 7f1ab7bd5ebb1557-QRO
       Connection:
       - keep-alive
       Content-Language:
@@ -664,26 +664,26 @@ interactions:
       Content-Length:
       - '0'
       Date:
-      - Fri, 04 Aug 2023 21:42:44 GMT
+      - Fri, 04 Aug 2023 23:53:05 GMT
       Location:
-      - https://sso.garmin.com/sso/login?logintoken=PFID9Y5XoQ&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&locale=en&embed=true&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&embedWidget=true
+      - https://sso.garmin.com/sso/login?logintoken=utu1SKtOQl&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&locale=en&embed=true&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&embedWidget=true
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=cUvppW2Waaho4sVepx4f%2BpBXljwio9Mr5vgx73I%2F2Z0A8qBX1eiBnQz%2Fi24%2BbKl74JW8QBFec2n4hSbX2xJgLE9ud3f1xdREl9jbvaIngvRcXsD4cUuqoLgm%2BP1f4iof"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=U97OXuKEiYsMFcDJXk9DZ26CaUwPfYd4Ypq5EWk01J4r7y09A%2BTldx7kc8vMVaYWd2aEPW5LO0Qajmhr1krffmftuwF%2B8uTYggV8Tsj%2BG7ShUQTM3x4OmNs%2FX2uA8MSB"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:
       - org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
         Path=SANITIZED
       X-Application-Context:
-      - casServer:cloud,prod,prod-US_1102:7
+      - casServer:cloud,prod,prod-US_1102:6
       X-B3-Traceid:
-      - 0339eee8eb299f1c0626712d33b7683c
+      - 4a38b2c7a5d3f6d03e7da32cf647e89c
       X-Robots-Tag:
       - noindex
       X-Vcap-Request-Id:
-      - 013c5c74-8192-4e87-7be3-d293d92aa83e
+      - 41369645-9bd5-40ee-7061-27eb8e5f7c53
     status:
       code: 302
       message: Found
@@ -703,9 +703,9 @@ interactions:
       - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
         (KHTML, like Gecko) Mobile/15E148
       referer:
-      - https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+      - https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
     method: GET
-    uri: https://sso.garmin.com/sso/login?logintoken=PFID9Y5XoQ&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&locale=en&embed=true&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&embedWidget=true
+    uri: https://sso.garmin.com/sso/login?logintoken=utu1SKtOQl&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&locale=en&embed=true&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&embedWidget=true
   response:
     body:
       string: "<!DOCTYPE html>\n<html class=\"no-js\">\n\t<head>\n\t\t<title>Success</title>\n\t\t<meta
@@ -720,8 +720,8 @@ interactions:
         redirectAfterAccountCreationUrl = \"\";\n\t\t\tvar consumeServiceTicket         \t
         \ = \"true\";\n\t\t\tvar service_url                  \t  = \"https:\\/\\/sso.garmin.com\\/sso\\/embed\";\n\t\t\tvar
         parent_url                   \t  = \"https:\\/\\/sso.garmin.com\\/sso\\/embed\";\n\t\t\tvar
-        response_url                 \t  = \"https:\\/\\/sso.garmin.com\\/sso\\/embed?ticket=ST-2438674-btozWOKhrVdRH4PKUwah-cas\";\n\t\t\tvar
-        logintoken                   \t  = \"PFID9Y5XoQ\";\n\t\t\tvar socialLogin
+        response_url                 \t  = \"https:\\/\\/sso.garmin.com\\/sso\\/embed?ticket=ST-2493679-FvaBwl5Of6mdyXQlO9as-cas\";\n\t\t\tvar
+        logintoken                   \t  = \"utu1SKtOQl\";\n\t\t\tvar socialLogin
         \                  \t  = \"\";\n\t\t\tvar performMFACheck                 =
         \"\";\n\n\t\t\t// Decode url if it's encoded unnecessarily (which is happening
         when SSO GAuth logins redisplay the login page due to session timeouts.)\n\t\t\tif
@@ -814,7 +814,7 @@ interactions:
         type=\"text/javascript\">\n\t\t\tjQuery(document).ready(function(){\n\t\t\t\tvar
         service = \"https:\\/\\/sso.garmin.com\\/sso\\/embed\";\n\t\t\t\tconsoleInfo(\"casEmbedSuccess.html:
         ready, calling redirect('\" + service + \"')...\");\n\t\t\t\tredirect(service);\n\t\t\t});\n\t\t</script>\n\t<script>(function(){var
-        js = \"window['__CF$cv$params']={r:'7f19f8d24c9745e8'};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/invisible.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
+        js = \"window['__CF$cv$params']={r:'7f1ab7c10bbeb6ed'};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/invisible.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
         _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position
         = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility
         = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi =
@@ -838,7 +838,7 @@ interactions:
       CF-Cache-Status:
       - DYNAMIC
       CF-Ray:
-      - 7f19f8d24c9745e8-DFW
+      - 7f1ab7c10bbeb6ed-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -848,11 +848,11 @@ interactions:
       Content-Type:
       - text/html;charset=UTF-8
       Date:
-      - Fri, 04 Aug 2023 21:42:45 GMT
+      - Fri, 04 Aug 2023 23:53:05 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=mkKV3UBsbSn3e2rQHCFQRE14OiBbFa6u7cpCIcXy3QvaEvbDu8dCCamDRgjKkU%2FElrNOIvq2IG3JogUVOk2XT6UoxD4O59Nk0XIMOi4wHBKjb1GrAc5I34cz7VNebdaf"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=2G4DISzhJxQTgPyt928sxPIrBCPiA02sPpyxNjBdGaTUYporonO0fXu9kxF1WtUS3WHigdl6xSpPYoIOpH23NIG2DJ%2FGpIDERYsg1WmeSMrFUNlNSW5ve7NWz18Wx8er"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:
@@ -885,13 +885,13 @@ interactions:
       Vary:
       - Accept-Encoding
       X-Application-Context:
-      - casServer:cloud,prod,prod-US_1102:7
+      - casServer:cloud,prod,prod-US_1102:6
       X-B3-Traceid:
-      - 782920201f8436216612583f8f870378
+      - 10dc5ed9527183de031b6e923d04a154
       X-Robots-Tag:
       - noindex
       X-Vcap-Request-Id:
-      - c796ecd4-094e-4657-479b-b1ab8bc1b185
+      - dba4714d-cf7a-42d4-5798-347cf492ac0b
     status:
       code: 200
       message: OK
@@ -919,7 +919,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 04 Aug 2023 21:42:47 GMT
+      - Fri, 04 Aug 2023 23:53:07 GMT
       ETag:
       - '"20240b1013cb35419bb5b2cff1407a4e"'
       Last-Modified:
@@ -927,9 +927,9 @@ interactions:
       Server:
       - AmazonS3
       x-amz-id-2:
-      - cBp5mKgmX+Tjt0vISDuygu6J3/f6qZBCBlJCFl1gmUtHNNKgCK2hu4TiOCmoyIX+Hx16w5mDCeA=
+      - q9jx2xc+YzHSK2IvG72GFo56Z//9aHcYSWRv/OvLL8wTMIgeFztRORDZolSbiqd2zAut1xN2ftA=
       x-amz-request-id:
-      - WTDF5S9E2EP14K4Z
+      - Y0VP24YYF9QFEK8Y
       x-amz-server-side-encryption:
       - AES256
     status:
@@ -953,16 +953,16 @@ interactions:
       - !!binary |
         Y29tLmdhcm1pbi5hbmRyb2lkLmFwcHMuY29ubmVjdG1vYmlsZQ==
     method: GET
-    uri: https://connectapi.garmin.com/oauth-service/oauth/preauthorized?ticket=ST-2438674-btozWOKhrVdRH4PKUwah-cas&login-url=https://sso.garmin.com/sso/embed&accepts-mfa-tokens=true
+    uri: https://connectapi.garmin.com/oauth-service/oauth/preauthorized?ticket=ST-2493679-FvaBwl5Of6mdyXQlO9as-cas&login-url=https://sso.garmin.com/sso/embed&accepts-mfa-tokens=true
   response:
     body:
       string: oauth_token=SANITIZED&oauth_token_secret=SANITIZED&mfa_token=SANITIZED&mfa_expiration_timestamp=2024-08-03
-        21:42:45.000
+        23:53:05.000
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7f19f8daecc2155f-QRO
+      - 7f1ab7c79948480a-DFW
       Connection:
       - keep-alive
       Content-Encoding:
@@ -970,11 +970,11 @@ interactions:
       Content-Type:
       - text/plain;charset=utf-8
       Date:
-      - Fri, 04 Aug 2023 21:42:46 GMT
+      - Fri, 04 Aug 2023 23:53:06 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=AwBdGlGunrRQ4HgAAKD04iQqlLixnUaZ%2BIiNeadv9QCozM%2FwAoeCZ8YyQrD7x2J1c1JpLNaGsq8EDNxKrFCxQNh9tCgG4rt7GL7skaSruW%2BcEiDbenbXD8UlQDGQFx4yHcZcEW8nDg%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=4p0O390qlFhl9RxlYgnDW%2BkNgLiQW%2Buoz%2F%2BItcaWI%2FHremxMaUd6SuAKOLzOW1WFr1SXsLyt%2F0pA1HuXSdhii6hz%2BqetK8pN285CuX1l5oERPJ7r5PD1KX7c6q89IgKVoHqULiHzoQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:
@@ -987,7 +987,7 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: mfa_token=MFA-1536-goMvl9PeE1QlH6JSJX1f5hqZk4ccycCbkdy6nxF3WTOg5inTfx-cas
+    body: mfa_token=MFA-1571-OjGRdKOuYI3OmN2fCGvPI24f9eulUGVrnCWafAcktRfTSbx3q3-cas
     headers:
       Accept:
       - !!binary |
@@ -1017,12 +1017,12 @@ interactions:
         GARMINPAY_READ DT_CLIENT_ANALYTICS_WRITE GOLF_API_WRITE INSIGHTS_WRITE PRODUCT_SEARCH_READ
         GCOFFER_READ CONNECT_READ ATP_WRITE", "jti": "SANITIZED", "access_token":
         "SANITIZED", "token_type": "Bearer", "refresh_token": "SANITIZED", "expires_in":
-        86606, "refresh_token_expires_in": 2591999}'
+        68725, "refresh_token_expires_in": 2591999}'
     headers:
       CF-Cache-Status:
       - DYNAMIC
       CF-RAY:
-      - 7f19f8de88e8b6e2-QRO
+      - 7f1ab7cb49d0b6ed-QRO
       Connection:
       - keep-alive
       Content-Encoding:
@@ -1030,11 +1030,11 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 04 Aug 2023 21:42:47 GMT
+      - Fri, 04 Aug 2023 23:53:07 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=%2Bvsjzm2UP5VPvfHrSEgS%2FMFxJs3GC4%2FoPObBG3tEuBguxri1QtILCfVGEjYpJA09T8cTXeSsVkZcSCc2Kf6PtL4luax0IhsRSKPsBrCR1FYBrMCpKHInwe3m%2FX5mUKL%2FlNn4Q42ilg%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=Y7WspgfIFSb%2BebaZ2ILsben4mjQds8FLY5dLlbmXTp3vbU8ngdeqQhotPZWT3c0OdC1s%2Bp0uNU2VL1RHXbBnQQeSQTyIVOSERIZlqxSdwpbPCGJwl7KByUE7WcepidmqKO4fR%2FKUVg%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:

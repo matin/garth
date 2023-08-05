@@ -80,7 +80,7 @@ class Client:
         self.sess.mount("https://", adapter)
 
     @property
-    def username(self) -> str | None:
+    def username(self):
         if not self._username:
             self._username = self.connectapi(
                 "/userprofile-service/socialProfile"
@@ -97,7 +97,7 @@ class Client:
         referrer: str | bool = False,
         headers: dict = {},
         **kwargs,
-    ):
+    ) -> Response:
         url = f"https://{subdomain}.{self.domain}{path}"
         if referrer is True and self.last_resp:
             headers["referer"] = self.last_resp.url
@@ -113,10 +113,10 @@ class Client:
         self.last_resp.raise_for_status()
         return self.last_resp
 
-    def get(self, *args, **kwargs):
+    def get(self, *args, **kwargs) -> Response:
         return self.request("GET", *args, **kwargs)
 
-    def post(self, *args, **kwargs):
+    def post(self, *args, **kwargs) -> Response:
         return self.request("POST", *args, **kwargs)
 
     def login(self, *args):

@@ -30,7 +30,7 @@ def test_login_success(client: Client):
 @pytest.mark.vcr
 def test_login_success_mfa(monkeypatch, client: Client):
     def mock_input(_):
-        return "327751"
+        return "671091"
 
     monkeypatch.setattr("builtins.input", mock_input)
     oauth1, oauth2 = sso.login(

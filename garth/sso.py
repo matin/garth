@@ -42,13 +42,12 @@ def login(
         embedWidget="true",
         gauthHost=SSO,
     )
-    SIGNIN_PARAMS = dict(
-        id="gauth-widget",
+    SIGNIN_PARAMS = SSO_EMBED_PARAMS | dict(
+        gauthHost=SSO_EMBED,
         service=SSO_EMBED,
         source=SSO_EMBED,
         redirectAfterAccountLoginUrl=SSO_EMBED,
         redirectAfterAccountCreationUrl=SSO_EMBED,
-        gauthHost=SSO_EMBED,
     )
 
     # Set cookies
@@ -132,7 +131,7 @@ def handle_mfa(client: "http.Client", signin_params: dict) -> None:
     client.post(
         "sso",
         "/sso/verifyMFA/loginEnterMfaCode",
-        params=signin_params | dict(embedWidget="true"),
+        params=signin_params,
         referrer=True,
         data={
             "mfa-code": mfa_code,
