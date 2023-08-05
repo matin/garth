@@ -82,9 +82,9 @@ class Client:
     @property
     def username(self):
         if not self._username:
-            self._username = self.connectapi(
-                "/userprofile-service/socialProfile"
-            )["userName"]
+            profile = self.connectapi("/userprofile-service/socialProfile")
+            assert isinstance(profile, dict)
+            self._username = profile["userName"]
         return self._username
 
     def request(
