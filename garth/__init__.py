@@ -1,4 +1,4 @@
-from .http import client
+from .http import Client, client
 from .stats import (
     DailyHRV,
     DailyIntensityMinutes,
@@ -13,6 +13,7 @@ from .stats import (
 from .version import __version__
 
 __all__ = [
+    "Client",
     "DailyHRV",
     "DailyIntensityMinutes",
     "DailySleep",
