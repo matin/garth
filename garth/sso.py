@@ -116,7 +116,7 @@ def exchange(oauth1: OAuth1Token, client: "http.Client") -> OAuth2Token:
     )
     data = dict(mfa_token=oauth1.mfa_token) if oauth1.mfa_token else {}
     token = sess.post(
-        "https://connectapi.garmin.com/oauth-service/oauth/exchange/user/2.0",
+        f"https://connectapi.{client.domain}/oauth-service/oauth/exchange/user/2.0",
         headers=USER_AGENT
         | {"Content-Type": "application/x-www-form-urlencoded"},
         data=data,

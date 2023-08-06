@@ -46,6 +46,8 @@ tools like Cloudscraper. Garth, in comparison:
 1. Uses OAuth1 and OAuth2 token authentication after initial login
 1. OAuth tokens survive for a year
 1. Supports MFA
+1. Auto-refresh of OAuth2 token when expired
+1. OAuth1 token is valid for one year
 1. Works on Google Colab
 1. Uses Pydantic dataclasses to validate and simplify use of data
 1. Full test coverage

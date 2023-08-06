@@ -1,4 +1,5 @@
 import tempfile
+import time
 
 import pytest
 from requests import HTTPError
@@ -127,3 +128,14 @@ def test_connectapi(authed_client: Client):
         "restStressDuration",
         "mediumStressDuration",
     ]
+
+
+@pytest.mark.vcr
+def test_refresh_oauth2_token(authed_client: Client):
+    assert authed_client.oauth2_token
+    authed_client.oauth2_token.expires_at = int(time.time())
+    assert authed_client.oauth2_token.expired
+    profile = authed_client.connectapi("/userprofile-service/socialProfile")
+    assert profile
+    assert isinstance(profile, dict)
+    assert profile["userName"]

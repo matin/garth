@@ -102,6 +102,9 @@ class Client:
         if referrer is True and self.last_resp:
             headers["referer"] = self.last_resp.url
         if api:
+            assert self.oauth1_token and self.oauth2_token
+            if self.oauth2_token.expired:
+                self.refresh_oauth2()
             headers["Authorization"] = str(self.oauth2_token)
         self.last_resp = self.sess.request(
             method,
@@ -121,6 +124,12 @@ class Client:
 
     def login(self, *args):
         self.oauth1_token, self.oauth2_token = sso.login(*args, client=self)
+
+    def refresh_oauth2(self):
+        assert self.oauth1_token
+        # There is a way to perform a refresh of an OAuth2 token, but it
+        # appears even Garmin uses this approach when the OAuth2 is expired
+        self.oauth2_token = sso.exchange(self.oauth1_token, self)
 
     def connectapi(self, path: str, **kwargs):
         resp = self.get("connectapi", path, api=True, **kwargs)
