@@ -17,7 +17,7 @@ available.
 
 ![Stress: Garph of 28-day rolling average](https://github.com/matin/garth/assets/98985/868ecf25-4644-4879-b28f-ed0706a9e7b9)
 
-### [Sleep stages over 90 days](https://colab.research.google.com/github/matin/garth/blob/main/colabs/sleep.ipynb)
+### [Sleep analysis over 90 days](https://colab.research.google.com/github/matin/garth/blob/main/colabs/sleep.ipynb)
 
 The Garmin Connect app only shows a maximum of seven days for sleep
 stages—making it hard to see trends. The Connect API supports retrieving
@@ -27,6 +27,13 @@ day with enough detail to product a stacked bar graph of the daily sleep
 stages.
 
 ![Sleep stages over 90 days](https://github.com/matin/garth/assets/98985/ba678baf-0c8a-4907-aa91-be43beec3090)
+
+One specific graph that's useful but not available in the Connect app is
+sleep start and end times over an extended period. This provides context
+to the sleep hours and stages.
+
+![Sleep times over 90 days](https://github.com/matin/garth/assets/98985/c5583b9e-ab8a-4b5c-bfe6-1cb0ca95d1de)
+
 
 ## Background
 
