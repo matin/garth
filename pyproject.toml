@@ -18,9 +18,6 @@ classifiers = [
     "Operating System :: Microsoft :: Windows",
     "Operating System :: POSIX :: Linux",
 ]
-packages = [
-    { include = "garth" },
-]
 
 [build-system]
 requires = ["pdm-backend"]
