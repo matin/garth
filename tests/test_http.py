@@ -2,9 +2,9 @@ import tempfile
 import time
 
 import pytest
-from requests import HTTPError
 
 from garth.auth_tokens import OAuth2Token
+from garth.exc import GarthHTTPError
 from garth.http import Client
 
 
@@ -87,7 +87,7 @@ def test_client_request(client: Client):
     resp = client.request("GET", "connect", "/")
     assert resp.ok
 
-    with pytest.raises(HTTPError):
+    with pytest.raises(GarthHTTPError):
         client.request("GET", "connectapi", "/")
 
 

@@ -1,17 +1,16 @@
 import time
 
 import pytest
-from requests import HTTPError
 
 from garth import sso
 from garth.auth_tokens import OAuth1Token, OAuth2Token
-from garth.exc import GarthException
+from garth.exc import GarthException, GarthHTTPError
 from garth.http import Client
 
 
 @pytest.mark.vcr
 def test_login_email_password_fail(client: Client):
-    with pytest.raises(HTTPError):
+    with pytest.raises(GarthHTTPError):
         sso.login("user@example.com", "wrong_p@ssword", client=client)
 
 

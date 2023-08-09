@@ -1,11 +1,12 @@
 import json
 import os
 
-from requests import Response, Session
+from requests import HTTPError, Response, Session
 from requests.adapters import HTTPAdapter, Retry
 
 from . import sso
 from .auth_tokens import OAuth1Token, OAuth2Token
+from .exc import GarthHTTPError
 from .utils import asdict
 
 USER_AGENT = {
@@ -113,7 +114,13 @@ class Client:
             timeout=self.timeout,
             **kwargs,
         )
-        self.last_resp.raise_for_status()
+        try:
+            self.last_resp.raise_for_status()
+        except HTTPError as e:
+            raise GarthHTTPError(
+                msg="Error in request",
+                error=e,
+            )
         return self.last_resp
 
     def get(self, *args, **kwargs) -> Response:
