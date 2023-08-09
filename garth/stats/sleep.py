@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date, datetime, timedelta, timezone
 from typing import ClassVar, Optional
 
 from pydantic.dataclasses import dataclass
@@ -79,6 +79,26 @@ class DailySleepDTO:
     age_group: Optional[str] = None
     sleep_score_feedback: Optional[str] = None
     sleep_score_insight: Optional[str] = None
+
+    def _get_localized_datetime(
+        self, gmt_timestamp: int, local_timestamp: int
+    ) -> datetime:
+        local_diff = local_timestamp - gmt_timestamp
+        local_offset = timezone(timedelta(milliseconds=local_diff))
+        gmt_time = datetime.fromtimestamp(gmt_timestamp / 1000, timezone.utc)
+        return gmt_time.astimezone(local_offset)
+
+    @property
+    def sleep_start(self) -> datetime:
+        return self._get_localized_datetime(
+            self.sleep_start_timestamp_gmt, self.sleep_start_timestamp_local
+        )
+
+    @property
+    def sleep_end(self) -> datetime:
+        return self._get_localized_datetime(
+            self.sleep_end_timestamp_gmt, self.sleep_end_timestamp_local
+        )
 
 
 @dataclass(frozen=True)

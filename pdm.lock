@@ -6,7 +6,7 @@ groups = ["default", "linting", "testing", "dev"]
 cross_platform = true
 static_urls = false
 lock_version = "4.3"
-content_hash = "sha256:31665b9e1614d60cd040d039f85d4203d808b345e2917e12d5226c04e9c2f1b9"
+content_hash = "sha256:c5b50be36c8b8613bb0bfbf31c3be849caca6f1a3de919aa2cbf20488b94871a"
 
 [[package]]
 name = "annotated-types"
@@ -1281,15 +1281,6 @@ summary = "Traitlets Python configuration system"
 files = [
     {file = "traitlets-5.9.0-py3-none-any.whl", hash = "sha256:9e6ec080259b9a5940c797d58b613b5e31441c2257b87c2e795c5228ae80d2d8"},
     {file = "traitlets-5.9.0.tar.gz", hash = "sha256:f6cde21a9c68cf756af02035f72d5a723bf607e862e7be33ece505abf4a3bad9"},
-]
-
-[[package]]
-name = "types-pytz"
-version = "2023.3.0.0"
-summary = "Typing stubs for pytz"
-files = [
-    {file = "types-pytz-2023.3.0.0.tar.gz", hash = "sha256:ecdc70d543aaf3616a7e48631543a884f74205f284cefd6649ddf44c6a820aac"},
-    {file = "types_pytz-2023.3.0.0-py3-none-any.whl", hash = "sha256:4fc2a7fbbc315f0b6630e0b899fd6c743705abe1094d007b0e612d10da15e0f3"},
 ]
 
 [[package]]
