@@ -1,6 +1,7 @@
 from datetime import date, datetime
 from typing import ClassVar, Optional
 
+import pytz
 from pydantic.dataclasses import dataclass
 
 from .. import http
@@ -80,6 +81,33 @@ class DailySleepDTO:
     sleep_score_feedback: Optional[str] = None
     sleep_score_insight: Optional[str] = None
 
+    def __post_init__(self):
+        # Calculate timezone offset in minutes from the sleep_start_timestamps
+        timedelta_offset_start = (
+            self.sleep_start_timestamp_local - self.sleep_start_timestamp_gmt
+        )
+        offset_minutes_start = int(timedelta_offset_start.total_seconds() / 60)
+        fixed_tz_start = pytz.FixedOffset(offset_minutes_start)
+
+        # Calculate timezone offset in minutes from the sleep_end_timestamps
+        timedelta_offset_end = (
+            self.sleep_end_timestamp_local - self.sleep_end_timestamp_gmt
+        )
+        offset_minutes_end = int(timedelta_offset_end.total_seconds() / 60)
+        fixed_tz_end = pytz.FixedOffset(offset_minutes_end)
+
+        # Use object.__setattr__ since the dataclass is frozen
+        object.__setattr__(
+            self,
+            "sleep_start_timestamp_local",
+            self.sleep_start_timestamp_local.replace(tzinfo=fixed_tz_start),
+        )
+        object.__setattr__(
+            self,
+            "sleep_end_timestamp_local",
+            self.sleep_end_timestamp_local.replace(tzinfo=fixed_tz_end),
+        )
+
 
 @dataclass(frozen=True)
 class SleepMovement:
@@ -101,6 +129,7 @@ class SleepData:
             f"nonSleepBufferMinutes=60&date={day}"
         )
         sleep_data = client.connectapi(path)
+        assert sleep_data
         sleep_data = camel_to_snake_dict(sleep_data)
         return cls(**sleep_data)
 

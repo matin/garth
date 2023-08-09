@@ -57,6 +57,7 @@ linting = [
     "mypy",
     "isort",
     "types-requests",
+    "types-pytz",
 ]
 testing = [
     "coverage",
