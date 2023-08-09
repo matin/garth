@@ -87,8 +87,9 @@ def test_client_request(client: Client):
     resp = client.request("GET", "connect", "/")
     assert resp.ok
 
-    with pytest.raises(GarthHTTPError):
+    with pytest.raises(GarthHTTPError) as e:
         client.request("GET", "connectapi", "/")
+        assert str(e)
 
 
 @pytest.mark.vcr
