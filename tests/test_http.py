@@ -89,7 +89,7 @@ def test_client_request(client: Client):
 
     with pytest.raises(GarthHTTPError) as e:
         client.request("GET", "connectapi", "/")
-        assert str(e)
+    assert "404" in str(e.value)
 
 
 @pytest.mark.vcr
