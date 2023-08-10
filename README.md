@@ -34,7 +34,6 @@ to the sleep hours and stages.
 
 ![Sleep times over 90 days](https://github.com/matin/garth/assets/98985/c5583b9e-ab8a-4b5c-bfe6-1cb0ca95d1de)
 
-
 ## Background
 
 Garth is meant for personal use and follows the philosophy that your data is
