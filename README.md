@@ -66,7 +66,7 @@ are other libraries that will meet your needs. There's no intetion to backport.
 
 ### JSON vs HTML
 
-Using `garth.connectapi()` allows you to make requests routed to the Connect API
+Using `garth.connectapi()` allows you to make requests to the Connect API
 and receive JSON vs needing to parse HTML. You can use the same endpoints the
 mobile app uses.
 
@@ -115,12 +115,11 @@ garth.configure(proxies={"https": "http://localhost:8888"}, ssl_verify=False)
 ```python
 import garth
 from garth import GarthException
-from requests import HTTPError
 
 garth.resume("~/.garth")
 try:
-    garth.client.auth_token.refresh()
-except (GarthException, HTTPError):
+    garth.client.username
+except GarthException:
     # Session is expired. You'll need to log in again
 ```
 
