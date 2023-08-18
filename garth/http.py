@@ -27,7 +27,7 @@ class Client:
     retries: int = 3
     status_forcelist: tuple[int, ...] = (408, 429, 500, 502, 503, 504)
     backoff_factor: float = 0.5
-    _username: str | None = None
+    _profile: dict | None = None
 
     def __init__(self, session: Session | None = None, **kwargs):
         self.sess = session if session else Session()
@@ -82,11 +82,12 @@ class Client:
 
     @property
     def username(self):
-        if not self._username:
-            profile = self.connectapi("/userprofile-service/socialProfile")
-            assert isinstance(profile, dict)
-            self._username = profile["userName"]
-        return self._username
+        if not self._profile:
+            self._profile = self.connectapi(
+                "/userprofile-service/socialProfile"
+            )
+            assert isinstance(self._profile, dict)
+        return self._profile["userName"]
 
     def request(
         self,
