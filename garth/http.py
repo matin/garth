@@ -81,13 +81,17 @@ class Client:
         self.sess.mount("https://", adapter)
 
     @property
-    def username(self):
+    def profile(self):
         if not self._profile:
             self._profile = self.connectapi(
                 "/userprofile-service/socialProfile"
             )
             assert isinstance(self._profile, dict)
-        return self._profile["userName"]
+        return self._profile
+
+    @property
+    def username(self):
+        return self.profile["userName"]
 
     def request(
         self,
