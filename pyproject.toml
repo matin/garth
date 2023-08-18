@@ -18,6 +18,7 @@ classifiers = [
     "Operating System :: Microsoft :: Windows",
     "Operating System :: POSIX :: Linux",
 ]
+keywords = ["garmin connect", "garmin"]
 
 [build-system]
 requires = ["pdm-backend"]
