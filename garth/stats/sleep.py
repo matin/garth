@@ -114,7 +114,9 @@ class SleepData:
     sleep_movement: list[SleepMovement]
 
     @classmethod
-    def get(cls, day: date | str, *, client: Optional[http.Client] = None):
+    def get(
+        cls, day: date | str, *, client: Optional[http.Client] = None
+    ) -> Optional["SleepData"]:
         client = client or http.client
         path = (
             f"/wellness-service/wellness/dailySleepData/{client.username}?"
@@ -123,7 +125,10 @@ class SleepData:
         sleep_data = client.connectapi(path)
         assert sleep_data
         sleep_data = camel_to_snake_dict(sleep_data)
-        return cls(**sleep_data)
+        assert isinstance(sleep_data, dict)
+        return (
+            cls(**sleep_data) if sleep_data["daily_sleep_dto"]["id"] else None
+        )
 
     @classmethod
     def list(
@@ -135,9 +140,10 @@ class SleepData:
     ):
         client = client or http.client
         end = format_end_date(end)
-        sleep_data = [
-            cls.get(date_, client=client) for date_ in date_range(end, days)
-        ]
+        sleep_data = []
+        for date_ in date_range(end, days):
+            if day := cls.get(date_, client=client):
+                sleep_data.append(day)
         return sorted(
             sleep_data, key=lambda x: x.daily_sleep_dto.calendar_date
         )

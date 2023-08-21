@@ -18,6 +18,7 @@ def test_daily_sleep(authed_client: Client):
 @pytest.mark.vcr
 def test_sleep_data_get(authed_client: Client):
     sleep_data = SleepData.get("2021-07-20", client=authed_client)
+    assert sleep_data
     assert sleep_data.daily_sleep_dto.calendar_date == date(2021, 7, 20)
     assert sleep_data.daily_sleep_dto.sleep_start
     assert sleep_data.daily_sleep_dto.sleep_end
