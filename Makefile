@@ -66,10 +66,10 @@ all: lint typecheck codespell testcov
 
 .PHONY: clean  ## Clear local caches and build artifacts
 clean:
-	rm -rf `find . -name __pycache__`
-	rm -f `find . -type f -name '*.py[co]'`
-	rm -f `find . -type f -name '*~'`
-	rm -f `find . -type f -name '.*~'`
+	find . -type d -name __pycache__ -exec rm -r {} +
+	find . -type f -name '*.py[co]' -exec rm -f {} +
+	find . -type f -name '*~' -exec rm -f {} +
+	find . -type f -name '.*~' -exec rm -f {} +
 	rm -rf .cache
 	rm -rf .pytest_cache
 	rm -rf .ruff_cache
@@ -84,6 +84,7 @@ clean:
 	rm -rf docs/.changelog.md docs/.version.md docs/.tmp_schema_mappings.html
 	rm -rf fastapi/test.db
 	rm -rf coverage.xml
+
 
 .PHONY: help  ## Display this message
 help:
