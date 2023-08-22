@@ -1,3 +1,4 @@
+from .data import SleepData
 from .http import Client, client
 from .stats import (
     DailyHRV,
@@ -5,7 +6,6 @@ from .stats import (
     DailySleep,
     DailySteps,
     DailyStress,
-    SleepData,
     WeeklyIntensityMinutes,
     WeeklySteps,
     WeeklyStress,
