@@ -1,3 +1,4 @@
+from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime, timedelta, timezone
 from typing import Optional
 
@@ -5,6 +6,8 @@ from pydantic.dataclasses import dataclass
 
 from .. import http
 from ..utils import camel_to_snake_dict, date_range, format_end_date
+
+MAX_WORKERS = 10
 
 
 @dataclass(frozen=True)
@@ -126,13 +129,21 @@ class SleepData:
         days: int = 1,
         *,
         client: http.Client | None = None,
+        max_workers: int = MAX_WORKERS,
     ):
         client = client or http.client
         end = format_end_date(end)
         sleep_data = []
-        for date_ in date_range(end, days):
+
+        def fetch_date(date_):
             if day := cls.get(date_, client=client):
-                sleep_data.append(day)
+                return day
+
+        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+            dates = date_range(end, days)
+            sleep_data = list(executor.map(fetch_date, dates))
+            sleep_data = [day for day in sleep_data if day is not None]
+
         return sorted(
             sleep_data, key=lambda x: x.daily_sleep_dto.calendar_date
         )

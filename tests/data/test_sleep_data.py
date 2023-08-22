@@ -19,6 +19,6 @@ def test_sleep_data_get(authed_client: Client):
 def test_sleep_data_list(authed_client: Client):
     end = date(2021, 7, 20)
     days = 20
-    sleep_data = SleepData.list(end, days, client=authed_client)
+    sleep_data = SleepData.list(end, days, client=authed_client, max_workers=1)
     assert sleep_data[-1].daily_sleep_dto.calendar_date == end
     assert len(sleep_data) == days
