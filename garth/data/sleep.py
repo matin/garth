@@ -139,7 +139,7 @@ class SleepData:
             if day := cls.get(date_, client=client):
                 return day
 
-        with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
             dates = date_range(end, days)
             sleep_data = list(executor.map(fetch_date, dates))
             sleep_data = [day for day in sleep_data if day is not None]
