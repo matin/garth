@@ -45,7 +45,9 @@ class Stats:
         start = end - timedelta(**{period_type: period - 1})
         path = cls._path.format(start=start, end=end, period=period)
         page_dirs = client.connectapi(path)
-        if page_dirs and "values" in page_dirs[0]:
+        if not page_dirs:
+            return []
+        if "values" in page_dirs[0]:
             page_dirs = [stat | stat.pop("values") for stat in page_dirs]
         page_dirs = [camel_to_snake_dict(stat) for stat in page_dirs]
         return [cls(**stat) for stat in page_dirs]
