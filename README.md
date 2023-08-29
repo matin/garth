@@ -507,5 +507,5 @@ SleepData(
 sleep data over several nights
 
 ```python
-garth.SleepData.get(end="2023-07-20", days=30)
+garth.SleepData.list("2023-07-20", 30)
 ```
