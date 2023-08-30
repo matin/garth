@@ -356,6 +356,59 @@ garth.DailyHRV.list(period=2)
 ]
 ```
 
+Detailed HRV data
+
+```python
+garth.HRVData.get("2023-07-20")
+```
+
+```python
+HRVData(
+    user_profile_pk=2591602,
+    hrv_summary=HRVSummary(
+        calendar_date=datetime.date(2023, 7, 20),
+        weekly_avg=39,
+        last_night_avg=42,
+        last_night_5_min_high=66,
+        baseline=Baseline(
+            low_upper=36,
+            balanced_low=39,
+            balanced_upper=52,
+            marker_value=0.25
+        ),
+        status='BALANCED',
+        feedback_phrase='HRV_BALANCED_7',
+        create_time_stamp=datetime.datetime(2023, 7, 20, 12, 14, 11, 898000)
+    ),
+    hrv_readings=[
+        HRVReading(
+            hrv_value=54,
+            reading_time_gmt=datetime.datetime(2023, 7, 20, 5, 29, 48),
+            reading_time_local=datetime.datetime(2023, 7, 19, 23, 29, 48)
+        ),
+        HRVReading(
+            hrv_value=56,
+            reading_time_gmt=datetime.datetime(2023, 7, 20, 5, 34, 48),
+            reading_time_local=datetime.datetime(2023, 7, 19, 23, 34, 48)
+        ),
+        # ... truncated for brevity
+        HRVReading(
+            hrv_value=38,
+            reading_time_gmt=datetime.datetime(2023, 7, 20, 12, 9, 48),
+            reading_time_local=datetime.datetime(2023, 7, 20, 6, 9, 48)
+        )
+    ],
+    start_timestamp_gmt=datetime.datetime(2023, 7, 20, 5, 25),
+    end_timestamp_gmt=datetime.datetime(2023, 7, 20, 12, 9, 48),
+    start_timestamp_local=datetime.datetime(2023, 7, 19, 23, 25),
+    end_timestamp_local=datetime.datetime(2023, 7, 20, 6, 9, 48),
+    sleep_start_timestamp_gmt=datetime.datetime(2023, 7, 20, 5, 25),
+    sleep_end_timestamp_gmt=datetime.datetime(2023, 7, 20, 12, 11),
+    sleep_start_timestamp_local=datetime.datetime(2023, 7, 19, 23, 25),
+    sleep_end_timestamp_local=datetime.datetime(2023, 7, 20, 6, 11)
+)
+```
+
 ### Sleep
 
 Daily sleep quality
@@ -494,7 +547,7 @@ SleepData(
             end_gmt=datetime.datetime(2023, 7, 20, 4, 27),
             activity_level=5.318763075304898
         ),
-        ...,
+        # ... truncated for brevity
         SleepMovement(
             start_gmt=datetime.datetime(2023, 7, 20, 13, 10),
             end_gmt=datetime.datetime(2023, 7, 20, 13, 11),
