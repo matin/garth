@@ -107,12 +107,16 @@ class SleepData:
 
     @classmethod
     def get(
-        cls, day: date | str, *, client: Optional[http.Client] = None
+        cls,
+        day: date | str,
+        *,
+        buffer_minutes: int = 60,
+        client: Optional[http.Client] = None,
     ) -> Optional["SleepData"]:
         client = client or http.client
         path = (
             f"/wellness-service/wellness/dailySleepData/{client.username}?"
-            f"nonSleepBufferMinutes=60&date={day}"
+            f"nonSleepBufferMinutes={buffer_minutes}&date={day}"
         )
         sleep_data = client.connectapi(path)
         assert sleep_data

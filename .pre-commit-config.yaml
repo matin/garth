@@ -20,7 +20,7 @@ repos:
 - repo: local
   hooks:
   - id: lint
-    name: Lint
+    name: lint
     entry: make lint
     types: [python]
     language: system
