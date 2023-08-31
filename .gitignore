@@ -32,6 +32,7 @@ _build/
 /coverage.lcov
 .coverage
 test.py
+/coverage/
 
 # Documentation files
 /docs/changelog.md
