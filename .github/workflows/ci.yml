@@ -68,7 +68,11 @@ jobs:
           pdm use -f $PYTHON
           pdm install -G testing
 
-      - run: mkdir coverage
+      - name: create coverage dir
+        run: |
+          mkdir coverage
+          chmod 777 coverage
+          pwd
 
       - name: test
         run: make testcov
