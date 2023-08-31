@@ -73,7 +73,6 @@ jobs:
           mkdir coverage
           chmod 777 coverage
           ls -l coverage
-          pwd
 
       - name: test
         run: make testcov
