@@ -16,6 +16,7 @@ repos:
   - id: codespell
     additional_dependencies:
       - tomli
+    exclude: 'cassettes/'
 
 - repo: local
   hooks:

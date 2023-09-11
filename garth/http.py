@@ -151,6 +151,10 @@ class Client:
             rv = resp.json()
         return rv
 
+    def download(self, path: str, **kwargs) -> bytes:
+        resp = self.get("connectapi", path, api=True, **kwargs)
+        return resp.content
+
     def dump(self, dir_path: str):
         dir_path = os.path.expanduser(dir_path)
         os.makedirs(dir_path, exist_ok=True)

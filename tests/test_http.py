@@ -140,3 +140,13 @@ def test_refresh_oauth2_token(authed_client: Client):
     assert profile
     assert isinstance(profile, dict)
     assert profile["userName"]
+
+
+@pytest.mark.vcr
+def test_download(authed_client: Client):
+    downloaded = authed_client.download(
+        "/download-service/files/activity/11998957007"
+    )
+    assert downloaded
+    zip_magic_number = b"\x50\x4B\x03\x04"
+    assert downloaded[:4] == zip_magic_number

@@ -105,31 +105,35 @@ def sanitize_response(response):
             sanitized_cookies = [sanitize_cookie(cookie) for cookie in cookies]
             response["headers"][key] = sanitized_cookies
 
-    body = response["body"]["string"].decode("utf8")
-    patterns = [
-        "oauth_token=[^&]*",
-        "oauth_token_secret=[^&]*",
-        "mfa_token=[^&]*",
-    ]
-    for pattern in patterns:
-        body = re.sub(pattern, pattern.split("=")[0] + "=SANITIZED", body)
     try:
-        body_json = json.loads(body)
-    except json.JSONDecodeError:
+        body = response["body"]["string"].decode("utf8")
+    except UnicodeDecodeError:
         pass
     else:
-        for field in [
-            "access_token",
-            "refresh_token",
-            "jti",
-            "consumer_key",
-            "consumer_secret",
-        ]:
-            if field in body_json:
-                body_json[field] = "SANITIZED"
+        patterns = [
+            "oauth_token=[^&]*",
+            "oauth_token_secret=[^&]*",
+            "mfa_token=[^&]*",
+        ]
+        for pattern in patterns:
+            body = re.sub(pattern, pattern.split("=")[0] + "=SANITIZED", body)
+        try:
+            body_json = json.loads(body)
+        except json.JSONDecodeError:
+            pass
+        else:
+            for field in [
+                "access_token",
+                "refresh_token",
+                "jti",
+                "consumer_key",
+                "consumer_secret",
+            ]:
+                if field in body_json:
+                    body_json[field] = "SANITIZED"
 
-        body = json.dumps(body_json)
-    response["body"]["string"] = body.encode("utf8")
+            body = json.dumps(body_json)
+        response["body"]["string"] = body.encode("utf8")
 
     return response
 
