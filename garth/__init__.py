@@ -34,7 +34,8 @@ __all__ = [
 ]
 
 configure = client.configure
-login = client.login
 connectapi = client.connectapi
+download = client.download
+login = client.login
 save = client.dump
 resume = client.load
