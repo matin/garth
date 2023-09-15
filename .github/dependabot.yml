@@ -1,0 +1,17 @@
+version: 2
+updates:
+- package-ecosystem: "github-actions"
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "20:00"
+    timezone: "America/Mexico_City"
+  open-pull-requests-limit: 5
+
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "20:00"
+    timezone: "America/Mexico_City"
+  open-pull-requests-limit: 5
