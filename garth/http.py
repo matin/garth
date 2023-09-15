@@ -1,6 +1,6 @@
 import json
 import os
-from typing import Dict, Optional, Tuple
+from typing import Dict, Optional, Tuple, Union
 
 from requests import HTTPError, Response, Session
 from requests.adapters import HTTPAdapter, Retry
@@ -101,7 +101,7 @@ class Client:
         path: str,
         /,
         api: bool = False,
-        referrer: str | bool = False,
+        referrer: Union[str, bool] = False,
         headers: dict = {},
         **kwargs,
     ) -> Response:

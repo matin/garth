@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from typing import Optional
+from typing import Optional, Union
 
 from pydantic.dataclasses import dataclass
 
@@ -50,7 +50,7 @@ class HRVData:
 
     @classmethod
     def get(
-        cls, day: date | str, *, client: Optional[http.Client] = None
+        cls, day: Union[date, str], *, client: Optional[http.Client] = None
     ) -> Optional["HRVData"]:
         client = client or http.client
         path = f"/hrv-service/hrv/{day}"

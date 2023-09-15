@@ -1,6 +1,6 @@
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime, timedelta, timezone
-from typing import Optional
+from typing import Optional, Union
 
 from pydantic.dataclasses import dataclass
 
@@ -108,7 +108,7 @@ class SleepData:
     @classmethod
     def get(
         cls,
-        day: date | str,
+        day: Union[date, str],
         *,
         buffer_minutes: int = 60,
         client: Optional[http.Client] = None,
@@ -129,10 +129,10 @@ class SleepData:
     @classmethod
     def list(
         cls,
-        end: date | str | None = None,
+        end: Union[date, str, None] = None,
         days: int = 1,
         *,
-        client: http.Client | None = None,
+        client: Optional[http.Client] = None,
         max_workers: int = MAX_WORKERS,
     ):
         client = client or http.client
