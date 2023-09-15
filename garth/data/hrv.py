@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from typing import Optional
+from typing import List, Optional, Union
 
 from pydantic.dataclasses import dataclass
 
@@ -38,7 +38,7 @@ class HRVReading:
 class HRVData:
     user_profile_pk: int
     hrv_summary: HRVSummary
-    hrv_readings: list[HRVReading]
+    hrv_readings: List[HRVReading]
     start_timestamp_gmt: datetime
     end_timestamp_gmt: datetime
     start_timestamp_local: datetime
@@ -50,7 +50,7 @@ class HRVData:
 
     @classmethod
     def get(
-        cls, day: date | str, *, client: Optional[http.Client] = None
+        cls, day: Union[date, str], *, client: Optional[http.Client] = None
     ) -> Optional["HRVData"]:
         client = client or http.client
         path = f"/hrv-service/hrv/{day}"

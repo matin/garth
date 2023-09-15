@@ -55,8 +55,6 @@ interactions:
       - 7f12d00c9e4f46c8-DFW
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -133,8 +131,6 @@ interactions:
       - 7f12d00e988e478e-DFW
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -214,8 +210,6 @@ interactions:
       - 7f12d010fb38475d-DFW
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -295,8 +289,6 @@ interactions:
       - 7f12d01359034768-DFW
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -376,8 +368,6 @@ interactions:
       - 7f12d0159ef14674-DFW
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -457,8 +447,6 @@ interactions:
       - 7f12d017ccd34781-DFW
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -538,8 +526,6 @@ interactions:
       - 7f12d01a1b48474f-DFW
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -619,8 +605,6 @@ interactions:
       - 7f12d01b9805b6e2-QRO
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -700,8 +684,6 @@ interactions:
       - 7f12d01d0a15b6e7-QRO
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -781,8 +763,6 @@ interactions:
       - 7f12d01f7ba3486f-DFW
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -862,8 +842,6 @@ interactions:
       - 7f12d0216eee1549-QRO
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -943,8 +921,6 @@ interactions:
       - 7f12d022b923b6e1-QRO
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -1024,8 +1000,6 @@ interactions:
       - 7f12d0252f7a485c-DFW
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -1105,8 +1079,6 @@ interactions:
       - 7f12d026af141559-QRO
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -1186,8 +1158,6 @@ interactions:
       - 7f12d027fd801556-QRO
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -1267,8 +1237,6 @@ interactions:
       - 7f12d02a7fc2b6e2-QRO
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -1344,8 +1312,6 @@ interactions:
       - 7f12d02c2b211559-QRO
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -1423,8 +1389,6 @@ interactions:
       - 7f12d02d8920b6e5-QRO
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -1504,8 +1468,6 @@ interactions:
       - 7f12d02fdea8479f-DFW
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -1585,8 +1547,6 @@ interactions:
       - 7f12d0323b94477e-DFW
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:
@@ -1666,8 +1626,6 @@ interactions:
       - 7f12d03468604648-DFW
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:

@@ -90,8 +90,6 @@ interactions:
       - 7f12d03b8f8e486a-DFW
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
@@ -218,8 +216,6 @@ interactions:
       - 7f12d03d8e964602-DFW
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
@@ -293,8 +289,6 @@ interactions:
       - 7f12d03ecf18b6e8-QRO
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:

@@ -1,5 +1,6 @@
 import json
 import os
+from typing import Dict, Optional, Tuple, Union
 
 from requests import HTTPError, Response, Session
 from requests.adapters import HTTPAdapter, Retry
@@ -21,15 +22,15 @@ class Client:
     sess: Session
     last_resp: Response
     domain: str = "garmin.com"
-    oauth1_token: OAuth1Token | None = None
-    oauth2_token: OAuth2Token | None = None
+    oauth1_token: Optional[OAuth1Token] = None
+    oauth2_token: Optional[OAuth2Token] = None
     timeout: int = 10
     retries: int = 3
-    status_forcelist: tuple[int, ...] = (408, 429, 500, 502, 503, 504)
+    status_forcelist: Tuple[int, ...] = (408, 429, 500, 502, 503, 504)
     backoff_factor: float = 0.5
-    _profile: dict | None = None
+    _profile: Optional[Dict] = None
 
-    def __init__(self, session: Session | None = None, **kwargs):
+    def __init__(self, session: Optional[Session] = None, **kwargs):
         self.sess = session if session else Session()
         self.sess.headers.update(USER_AGENT)
         self.configure(
@@ -43,15 +44,15 @@ class Client:
     def configure(
         self,
         /,
-        oauth1_token: OAuth1Token | None = None,
-        oauth2_token: OAuth2Token | None = None,
-        domain: str | None = None,
-        proxies: dict | None = None,
-        ssl_verify: bool | None = None,
-        timeout: int | None = None,
-        retries: int | None = None,
-        status_forcelist: tuple[int, ...] | None = None,
-        backoff_factor: float | None = None,
+        oauth1_token: Optional[OAuth1Token] = None,
+        oauth2_token: Optional[OAuth2Token] = None,
+        domain: Optional[str] = None,
+        proxies: Optional[Dict] = None,
+        ssl_verify: Optional[bool] = None,
+        timeout: Optional[int] = None,
+        retries: Optional[int] = None,
+        status_forcelist: Optional[Tuple[int, ...]] = None,
+        backoff_factor: Optional[float] = None,
     ):
         if oauth1_token is not None:
             self.oauth1_token = oauth1_token
@@ -100,7 +101,7 @@ class Client:
         path: str,
         /,
         api: bool = False,
-        referrer: str | bool = False,
+        referrer: Union[str, bool] = False,
         headers: dict = {},
         **kwargs,
     ) -> Response:

@@ -381,8 +381,6 @@ interactions:
       - 7f0ee80fca96154a-QRO
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - text/html; charset=UTF-8
       Date:
@@ -439,8 +437,6 @@ interactions:
       - 7f0ee8119bcb155f-QRO
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - text/html
       Date:

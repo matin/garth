@@ -135,8 +135,6 @@ interactions:
       - 7fea5791ac5b155e-QRO
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
