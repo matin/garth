@@ -124,8 +124,6 @@ interactions:
       - 7f12cffc4ea3b6e1-QRO
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
@@ -225,8 +223,6 @@ interactions:
       - 7f12cffd58bdb6e1-QRO
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:

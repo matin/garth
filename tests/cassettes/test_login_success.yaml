@@ -162,8 +162,6 @@ interactions:
       - 7f1ac05c5db34620-DFW
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Language:
       - en
       Content-Type:
@@ -364,8 +362,6 @@ interactions:
       - 7f1ac05e69e44796-DFW
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Language:
       - en
       Content-Type:
@@ -557,8 +553,6 @@ interactions:
       - 7f1ac060fe1846d4-DFW
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Language:
       - en
       Content-Type:
@@ -681,8 +675,6 @@ interactions:
       - 7f1ac06849351556-QRO
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - text/plain;charset=utf-8
       Date:
@@ -742,8 +734,6 @@ interactions:
       - 7f1ac06b2ea41547-QRO
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:

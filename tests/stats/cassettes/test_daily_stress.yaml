@@ -71,8 +71,6 @@ interactions:
       - 7f12d0397ff347ab-DFW
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:

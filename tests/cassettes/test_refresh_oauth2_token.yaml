@@ -78,8 +78,6 @@ interactions:
       - 7f27f6bfcef57ea5-LAX
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
@@ -159,8 +157,6 @@ interactions:
       - 7f27f6cc6d8ecfb4-SJC
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json;charset=UTF-8
       Date:

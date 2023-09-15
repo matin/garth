@@ -144,8 +144,6 @@ interactions:
       - 7f12d0372c6bb6e8-QRO
       Connection:
       - keep-alive
-      Content-Encoding:
-      - gzip
       Content-Type:
       - application/json
       Date:
