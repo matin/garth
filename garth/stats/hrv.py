@@ -1,5 +1,5 @@
 from datetime import date, datetime, timedelta
-from typing import ClassVar, Optional, Union
+from typing import ClassVar, List, Optional, Union
 
 from pydantic.dataclasses import dataclass
 
@@ -36,7 +36,7 @@ class DailyHRV:
         period: int = 28,
         *,
         client: Optional[http.Client] = None,
-    ) -> list["DailyHRV"]:
+    ) -> List["DailyHRV"]:
         client = client or http.client
         end = format_end_date(end)
 

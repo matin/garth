@@ -1,6 +1,6 @@
 import re
 import time
-from typing import Optional
+from typing import Dict, Optional, Tuple
 from urllib.parse import parse_qs
 
 import requests
@@ -13,7 +13,7 @@ from .exc import GarthException
 CSRF_RE = re.compile(r'name="_csrf"\s+value="(.+?)"')
 TITLE_RE = re.compile(r"<title>(.+?)</title>")
 OAUTH_CONSUMER_URL = "https://thegarth.s3.amazonaws.com/oauth_consumer.json"
-OAUTH_CONSUMER: dict[str, str] = {}
+OAUTH_CONSUMER: Dict[str, str] = {}
 USER_AGENT = {"User-Agent": "com.garmin.android.apps.connectmobile"}
 
 
@@ -31,7 +31,7 @@ class GarminOAuth1Session(OAuth1Session):
 
 def login(
     email: str, password: str, /, client: Optional["http.Client"] = None
-) -> tuple[OAuth1Token, OAuth2Token]:
+) -> Tuple[OAuth1Token, OAuth2Token]:
     client = client or http.client
 
     # Define params based on domain
@@ -42,13 +42,16 @@ def login(
         embedWidget="true",
         gauthHost=SSO,
     )
-    SIGNIN_PARAMS = SSO_EMBED_PARAMS | dict(
-        gauthHost=SSO_EMBED,
-        service=SSO_EMBED,
-        source=SSO_EMBED,
-        redirectAfterAccountLoginUrl=SSO_EMBED,
-        redirectAfterAccountCreationUrl=SSO_EMBED,
-    )
+    SIGNIN_PARAMS = {
+        **SSO_EMBED_PARAMS,
+        **dict(
+            gauthHost=SSO_EMBED,
+            service=SSO_EMBED,
+            source=SSO_EMBED,
+            redirectAfterAccountLoginUrl=SSO_EMBED,
+            redirectAfterAccountCreationUrl=SSO_EMBED,
+        ),
+    }
 
     # Set cookies
     client.get("sso", "/sso/embed", params=SSO_EMBED_PARAMS)
@@ -117,8 +120,10 @@ def exchange(oauth1: OAuth1Token, client: "http.Client") -> OAuth2Token:
     data = dict(mfa_token=oauth1.mfa_token) if oauth1.mfa_token else {}
     token = sess.post(
         f"https://connectapi.{client.domain}/oauth-service/oauth/exchange/user/2.0",
-        headers=USER_AGENT
-        | {"Content-Type": "application/x-www-form-urlencoded"},
+        headers={
+            **USER_AGENT,
+            **{"Content-Type": "application/x-www-form-urlencoded"},
+        },
         data=data,
     ).json()
 

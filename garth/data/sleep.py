@@ -1,6 +1,6 @@
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime, timedelta, timezone
-from typing import Optional, Union
+from typing import List, Optional, Union
 
 from pydantic.dataclasses import dataclass
 
@@ -103,7 +103,7 @@ class SleepMovement:
 @dataclass(frozen=True)
 class SleepData:
     daily_sleep_dto: DailySleepDTO
-    sleep_movement: list[SleepMovement]
+    sleep_movement: List[SleepMovement]
 
     @classmethod
     def get(
