@@ -58,12 +58,6 @@ tools like Cloudscraper. Garth, in comparison:
 1. Uses Pydantic dataclasses to validate and simplify use of data
 1. Full test coverage
 
-### Python 3.10+
-
-Google Colab, currently, uses 3.10. We should take advantage of all the goodies
-that come along with it. If you need to use an earlier version of Python, there
-are other libraries that will meet your needs. There's no intetion to backport.
-
 ### JSON vs HTML
 
 Using `garth.connectapi()` allows you to make requests to the Connect API
