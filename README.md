@@ -51,7 +51,7 @@ works on [Google Colab](https://colab.research.google.com/) and doesn't require
 tools like Cloudscraper. Garth, in comparison:
 
 1. Uses OAuth1 and OAuth2 token authentication after initial login
-1. OAuth1 tokens survive for a year
+1. OAuth1 token survive for a year
 1. Supports MFA
 1. Auto-refresh of OAuth2 token when expired
 1. Works on Google Colab
