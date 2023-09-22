@@ -18,7 +18,7 @@ USER_AGENT = {"User-Agent": "com.garmin.android.apps.connectmobile"}
 
 
 class GarminOAuth1Session(OAuth1Session):
-    def __init__(self, /, proxies: dict = {}, verify: bool = False, **kwargs):
+    def __init__(self, /, proxies: dict = {}, verify: bool = True, **kwargs):
         global OAUTH_CONSUMER
         if not OAUTH_CONSUMER:
             OAUTH_CONSUMER = requests.get(OAUTH_CONSUMER_URL).json()
