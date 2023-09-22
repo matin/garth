@@ -14,11 +14,17 @@ requires-python = ">=3.9"
 readme = "README.md"
 license = {text = "MIT"}
 classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
     "Operating System :: MacOS :: MacOS X",
     "Operating System :: Microsoft :: Windows",
     "Operating System :: POSIX :: Linux",
+    "Operating System :: OS Independent",
 ]
-keywords = ["garmin connect", "garmin"]
+keywords = ["garmin", "garmin api", "garmin connect", "garmin sso"]
 
 [build-system]
 requires = ["pdm-backend"]
