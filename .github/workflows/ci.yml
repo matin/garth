@@ -46,7 +46,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu, macos, windows]
-        python-version: ['3.9', '3.10', '3.11', '3.12.0-rc.3']
+        python-version: ['3.9', '3.10', '3.11']
 
     env:
       PYTHON: ${{ matrix.python-version }}
@@ -61,7 +61,7 @@ jobs:
       - uses: pdm-project/setup-pdm@v3
         with:
           python-version: ${{ matrix.python-version }}
-          allow-python-prereleases: true
+          cache: true
 
       - name: install
         run: |
