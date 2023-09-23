@@ -62,7 +62,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: true
-          allow-prereleases: true
+          allow-python-prereleases: true
 
       - name: install
         run: |
