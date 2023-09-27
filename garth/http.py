@@ -167,7 +167,7 @@ class Client:
             if self.oauth2_token:
                 json.dump(asdict(self.oauth2_token), f, indent=4)
 
-    def dump_to_string(self) -> str:
+    def dumps(self) -> str:
         r = []
         r.append(asdict(self.oauth1_token))
         r.append(asdict(self.oauth2_token))
@@ -182,7 +182,7 @@ class Client:
             oauth2 = OAuth2Token(**json.load(f))
         self.configure(oauth1_token=oauth1, oauth2_token=oauth2)
 
-    def load_from_string(self, s: str):
+    def loads(self, s: str):
         oauth1, oauth2 = json.loads(base64.b64decode(s))
         self.configure(
             oauth1_token=OAuth1Token(**oauth1),

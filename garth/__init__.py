@@ -40,6 +40,4 @@ connectapi = client.connectapi
 download = client.download
 login = client.login
 save = client.dump
-save_to_string = client.dump_to_string
 resume = client.load
-resume_from_string = client.load_from_string

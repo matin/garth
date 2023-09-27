@@ -5,12 +5,12 @@ on:
     branches:
       - main
     tags:
-      - '**'
+      - "**"
   pull_request: {}
 
 env:
   COLUMNS: 150
-  PDM_DEPS: 'urllib3<2,git+https://github.com/adriangb/findpython.git@version-timeout-env'
+  PDM_DEPS: "urllib3<2,git+https://github.com/adriangb/findpython.git@version-timeout-env"
   FINDPYTHON_GET_VERSION_TIMEOUT: 30
 
 jobs:
@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.9', '3.10', '3.11']
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
     steps:
       - uses: actions/checkout@v4
 
@@ -46,7 +46,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu, macos, windows]
-        python-version: ['3.9', '3.10', '3.11']
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
 
     env:
       PYTHON: ${{ matrix.python-version }}

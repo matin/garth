@@ -19,6 +19,14 @@ def test_dump_and_load(authed_client: Client):
         assert new_client.oauth2_token == authed_client.oauth2_token
 
 
+def test_dumps_and_loads(authed_client: Client):
+    s = authed_client.dumps()
+    new_client = Client()
+    new_client.loads(s)
+    assert new_client.oauth1_token == authed_client.oauth1_token
+    assert new_client.oauth2_token == authed_client.oauth2_token
+
+
 def test_configure_oauth2_token(client: Client, oauth2_token: OAuth2Token):
     assert client.oauth2_token is None
     client.configure(oauth2_token=oauth2_token)
