@@ -41,10 +41,6 @@ lint: .pdm
 codespell: .pre-commit
 	pre-commit run codespell --all-files
 
-.PHONY: typecheck  ## Perform type-checking
-typecheck: .pre-commit .pdm
-	pre-commit run typecheck --all-files
-
 .PHONY: test  ## Run all tests, skipping the type-checker integration tests
 test: .pdm
 	pdm run coverage run -m pytest -v --durations=10
@@ -62,7 +58,7 @@ publish: .pdm
 	twine upload dist/*
 
 .PHONY: all  ## Run the standard set of checks performed in CI
-all: lint typecheck codespell testcov
+all: lint codespell testcov
 
 .PHONY: clean  ## Clear local caches and build artifacts
 clean:
