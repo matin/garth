@@ -76,6 +76,15 @@ the Connect API.
 python -m pip install garth
 ```
 
+### Clone, setup environment and run tests
+
+```bash
+gh repo clone matin/garth
+cd garth
+pip install -U pdm
+make
+```
+
 ### Authenticate and save session
 
 ```python
