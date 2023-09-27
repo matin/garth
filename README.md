@@ -81,9 +81,10 @@ python -m pip install garth
 ```bash
 gh repo clone matin/garth
 cd garth
-pip install -U pdm
 make
 ```
+
+Use `make help` to see all the options.
 
 ### Authenticate and save session
 
