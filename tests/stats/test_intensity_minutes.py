@@ -22,6 +22,8 @@ def test_weekly_intensity_minutes(authed_client: Client):
     weekly_im = WeeklyIntensityMinutes.list(end, weeks, client=authed_client)
     assert len(weekly_im) == weeks
     assert (
-        weekly_im[-1].calendar_date.isocalendar().week
-        == end.isocalendar().week
+        weekly_im[-1].calendar_date.isocalendar()[
+            1
+        ]  # in python3.9+ [1] can be .week
+        == end.isocalendar()[1]
     )
