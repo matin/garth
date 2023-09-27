@@ -30,7 +30,9 @@ __all__ = [
     "connectapi",
     "login",
     "resume",
+    "loads",
     "save",
+    "dumps",
 ]
 
 configure = client.configure

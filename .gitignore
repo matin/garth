@@ -47,3 +47,4 @@ test.py
 /worktrees/
 .pdm-python
 tmp/
+.pdm.toml

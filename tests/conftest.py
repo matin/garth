@@ -67,9 +67,8 @@ def authed_client(
         client.load(os.environ["GARTH_HOME"])
     except KeyError:
         client.configure(oauth1_token=oauth1_token, oauth2_token=oauth2_token)
-    else:
-        assert client.oauth2_token
-        assert not client.oauth2_token.expired
+    assert client.oauth2_token
+    assert not client.oauth2_token.expired
     return client
 
 
