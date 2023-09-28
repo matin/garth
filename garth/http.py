@@ -110,8 +110,8 @@ class Client:
         if referrer is True and self.last_resp:
             headers["referer"] = self.last_resp.url
         if api:
-            assert self.oauth1_token and self.oauth2_token
-            if self.oauth2_token.expired:
+            assert self.oauth1_token
+            if not self.oauth2_token or self.oauth2_token.expired:
                 self.refresh_oauth2()
             headers["Authorization"] = str(self.oauth2_token)
         self.last_resp = self.sess.request(
