@@ -4,6 +4,7 @@ from typing import Dict, Optional, Tuple
 from urllib.parse import parse_qs
 
 import requests
+from requests import Session
 from requests_oauthlib import OAuth1Session
 
 from . import http
@@ -18,7 +19,12 @@ USER_AGENT = {"User-Agent": "com.garmin.android.apps.connectmobile"}
 
 
 class GarminOAuth1Session(OAuth1Session):
-    def __init__(self, /, proxies: dict = {}, verify: bool = True, **kwargs):
+    def __init__(
+        self,
+        /,
+        parent: Optional[Session] = None,
+        **kwargs,
+    ):
         global OAUTH_CONSUMER
         if not OAUTH_CONSUMER:
             OAUTH_CONSUMER = requests.get(OAUTH_CONSUMER_URL).json()
@@ -27,8 +33,10 @@ class GarminOAuth1Session(OAuth1Session):
             OAUTH_CONSUMER["consumer_secret"],
             **kwargs,
         )
-        self.proxies = proxies
-        self.verify = verify
+        if parent is not None:
+            self.mount("https://", parent.adapters["https://"])
+            self.proxies = parent.proxies
+            self.verify = parent.verify
 
 
 def login(
@@ -101,10 +109,7 @@ def login(
 
 
 def get_oauth1_token(ticket: str, client: "http.Client") -> OAuth1Token:
-    sess = GarminOAuth1Session(
-        proxies=client.sess.proxies,  # type: ignore
-        verify=client.sess.verify,  # type: ignore
-    )
+    sess = GarminOAuth1Session(parent=client.sess)
     resp = sess.get(
         f"https://connectapi.{client.domain}/oauth-service/oauth/"
         f"preauthorized?ticket={ticket}&login-url="
@@ -121,8 +126,7 @@ def exchange(oauth1: OAuth1Token, client: "http.Client") -> OAuth2Token:
     sess = GarminOAuth1Session(
         resource_owner_key=oauth1.oauth_token,
         resource_owner_secret=oauth1.oauth_token_secret,
-        proxies=client.sess.proxies,  # type: ignore
-        verify=client.sess.verify,  # type: ignore
+        parent=client.sess,
     )
     data = dict(mfa_token=oauth1.mfa_token) if oauth1.mfa_token else {}
     token = sess.post(
