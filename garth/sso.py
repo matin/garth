@@ -133,7 +133,6 @@ def exchange(oauth1: OAuth1Token, client: "http.Client") -> OAuth2Token:
         },
         data=data,
     ).json()
-
     return OAuth2Token(**set_expirations(token))
 
 
