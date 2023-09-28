@@ -115,6 +115,7 @@ def get_oauth1_token(ticket: str, client: "http.Client") -> OAuth1Token:
         f"preauthorized?ticket={ticket}&login-url="
         f"https://sso.{client.domain}/sso/embed&accepts-mfa-tokens=true",
         headers=USER_AGENT,
+        timeout=client.timeout,
     )
     resp.raise_for_status()
     parsed = parse_qs(resp.text)
@@ -136,6 +137,7 @@ def exchange(oauth1: OAuth1Token, client: "http.Client") -> OAuth2Token:
             **{"Content-Type": "application/x-www-form-urlencoded"},
         },
         data=data,
+        timeout=client.timeout,
     ).json()
     return OAuth2Token(**set_expirations(token))
 
