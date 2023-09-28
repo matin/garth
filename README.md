@@ -81,6 +81,7 @@ python -m pip install garth
 ```bash
 gh repo clone matin/garth
 cd garth
+make install
 make
 ```
 
