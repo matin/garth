@@ -178,7 +178,7 @@ stress =  garth.connectapi("/usersummary-service/stats/stress/weekly/2023-07-05/
 
 ```python
 with open("12129115726_ACTIVITY.fit", "rb") as f:
-    uploaded = authed_client.upload(f)
+    uploaded = garth.client.upload(f)
 ```
 
 ```python
