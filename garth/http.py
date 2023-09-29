@@ -138,6 +138,9 @@ class Client:
     def post(self, *args, **kwargs) -> Response:
         return self.request("POST", *args, **kwargs)
 
+    def delete(self, *args, **kwargs) -> Response:
+        return self.request("DELETE", *args, **kwargs)
+
     def login(self, *args):
         self.oauth1_token, self.oauth2_token = sso.login(*args, client=self)
 

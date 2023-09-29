@@ -166,3 +166,18 @@ def test_upload(authed_client: Client):
     with open(fpath, "rb") as f:
         uploaded = authed_client.upload(f)
     assert uploaded
+
+
+@pytest.mark.vcr
+def test_delete(authed_client: Client):
+    activity_id = "12135235656"
+    path = f"/activity-service/activity/{activity_id}"
+    assert authed_client.connectapi(path)
+    authed_client.delete(
+        "connectapi",
+        path,
+        api=True,
+    )
+    with pytest.raises(GarthHTTPError) as e:
+        authed_client.connectapi(path)
+    assert "404" in str(e.value)
