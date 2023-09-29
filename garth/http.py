@@ -1,7 +1,7 @@
 import base64
 import json
 import os
-from typing import Dict, Optional, Tuple, Union
+from typing import IO, Any, Dict, Optional, Tuple, Union
 
 from requests import HTTPError, Response, Session
 from requests.adapters import HTTPAdapter, Retry
@@ -156,6 +156,17 @@ class Client:
     def download(self, path: str, **kwargs) -> bytes:
         resp = self.get("connectapi", path, api=True, **kwargs)
         return resp.content
+
+    def upload(self, fp: IO[bytes]) -> Dict[str, Any]:
+        fname = os.path.basename(fp.name)
+        files = {"file": (fname, fp)}
+        resp = self.post(
+            "connectapi",
+            "/upload-service/upload",
+            api=True,
+            files=files,
+        )
+        return resp.json()
 
     def dump(self, dir_path: str):
         dir_path = os.path.expanduser(dir_path)

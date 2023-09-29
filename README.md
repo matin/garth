@@ -174,6 +174,33 @@ stress =  garth.connectapi("/usersummary-service/stats/stress/weekly/2023-07-05/
 }
 ```
 
+## Upload
+
+```python
+with open("12129115726_ACTIVITY.fit", "rb") as f:
+    uploaded = authed_client.upload(f)
+```
+
+```python
+{
+    'detailedImportResult': {
+        'uploadId': 212157427938,
+        'uploadUuid': {
+            'uuid': '6e56051d-1dd4-4f2c-b8ba-00a1a7d82eb3'
+        },
+        'owner': 2591602,
+        'fileSize': 5289,
+        'processingTime': 36,
+        'creationDate': '2023-09-29 01:58:19.113 GMT',
+        'ipAddress': None,
+        'fileName': '12129115726_ACTIVITY.fit',
+        'report': None,
+        'successes': [],
+        'failures': []
+    }
+}
+```
+
 ## Stats resources
 
 ### Stress
