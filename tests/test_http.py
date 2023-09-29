@@ -162,7 +162,7 @@ def test_download(authed_client: Client):
 
 @pytest.mark.vcr
 def test_upload(authed_client: Client):
-    fname = "tests/12129115726_ACTIVITY.fit"
-    with open(fname, "rb") as f:
+    fpath = "tests/12129115726_ACTIVITY.fit"
+    with open(fpath, "rb") as f:
         uploaded = authed_client.upload(f)
     assert uploaded
