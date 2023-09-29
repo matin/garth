@@ -158,3 +158,11 @@ def test_download(authed_client: Client):
     assert downloaded
     zip_magic_number = b"\x50\x4B\x03\x04"
     assert downloaded[:4] == zip_magic_number
+
+
+@pytest.mark.vcr
+def test_upload(authed_client: Client):
+    fname = "tests/12129115726_ACTIVITY.fit"
+    with open(fname, "rb") as f:
+        uploaded = authed_client.upload(f)
+    assert uploaded
