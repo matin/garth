@@ -157,12 +157,14 @@ class Client:
         resp = self.get("connectapi", path, api=True, **kwargs)
         return resp.content
 
-    def upload(self, fp: IO[bytes]) -> Dict[str, Any]:
+    def upload(
+        self, fp: IO[bytes], /, path: str = "/upload-service/upload"
+    ) -> Dict[str, Any]:
         fname = os.path.basename(fp.name)
         files = {"file": (fname, fp)}
         resp = self.post(
             "connectapi",
-            "/upload-service/upload",
+            path,
             api=True,
             files=files,
         )
