@@ -2,6 +2,7 @@ import base64
 import json
 import os
 from typing import IO, Any, Dict, Optional, Tuple, Union
+from urllib.parse import urljoin
 
 from requests import HTTPError, Response, Session
 from requests.adapters import HTTPAdapter, Retry
@@ -106,7 +107,8 @@ class Client:
         headers: dict = {},
         **kwargs,
     ) -> Response:
-        url = f"https://{subdomain}.{self.domain}{path}"
+        url = f"https://{subdomain}.{self.domain}"
+        url = urljoin(url, path)
         if referrer is True and self.last_resp:
             headers["referer"] = self.last_resp.url
         if api:
