@@ -181,3 +181,29 @@ def test_delete(authed_client: Client):
     with pytest.raises(GarthHTTPError) as e:
         authed_client.connectapi(path)
     assert "404" in str(e.value)
+
+
+def test_put(authed_client: Client):
+    data = [
+        {
+            "changeState": "CHANGED",
+            "trainingMethod": "HR_RESERVE",
+            "lactateThresholdHeartRateUsed": 170,
+            "maxHeartRateUsed": 185,
+            "restingHrAutoUpdateUsed": False,
+            "sport": "DEFAULT",
+            "zone1Floor": 130,
+            "zone2Floor": 140,
+            "zone3Floor": 150,
+            "zone4Floor": 160,
+            "zone5Floor": 170,
+        }
+    ]
+    path = "/biometric-service/heartRateZones"
+    authed_client.put(
+        "connectapi",
+        path,
+        api=True,
+        json=data,
+    )
+    assert authed_client.connectapi(path)
