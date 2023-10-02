@@ -35,6 +35,26 @@ to the sleep hours and stages.
 
 ![Sleep times over 90 days](https://github.com/matin/garth/assets/98985/c5583b9e-ab8a-4b5c-bfe6-1cb0ca95d1de)
 
+### [ChatGPT analysis of Garmin stats](https://colab.research.google.com/github/matin/garth/blob/main/colabs/chatgpt_analysis_of_stats.ipynb)
+
+ChatGPT's Advanced Data Analysis took can provide incredible insight
+into the data in a way that's much simpler than using Pandas and Matplotlib.
+
+Start by using the linked Colab to download a CSV of the last three years
+of your stats, and upload the CSV to ChatGPT.
+
+Here's the outputs of the following prompts:
+
+How do I sleep on different days of the week?
+
+<img width="600" alt="image" src="https://github.com/matin/garth/assets/98985/b7507459-2482-43d6-bf55-c3a1f756facb">
+
+On what days do I exercise the most?
+
+<img width="600" alt="image" src="https://github.com/matin/garth/assets/98985/11294be2-8e1a-4fed-a489-13420765aada">
+
+Magic!
+
 ## Background
 
 Garth is meant for personal use and follows the philosophy that your data is
