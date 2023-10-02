@@ -183,6 +183,7 @@ def test_delete(authed_client: Client):
     assert "404" in str(e.value)
 
 
+@pytest.mark.vcr
 def test_put(authed_client: Client):
     data = [
         {
