@@ -135,7 +135,7 @@ except GarthException:
 ```python
 sleep = garth.connectapi(
     f"/wellness-service/wellness/dailySleepData/{garth.client.username}",
-    params={"date": "2023-07-05", "nonSleepBufferMinutes": 60),
+    params={"date": "2023-07-05", "nonSleepBufferMinutes": 60},
 )
 list(sleep.keys())
 ```
