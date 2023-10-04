@@ -30,14 +30,13 @@ __all__ = [
     "connectapi",
     "login",
     "resume",
-    "loads",
     "save",
-    "dumps",
 ]
 
 configure = client.configure
 connectapi = client.connectapi
 download = client.download
 login = client.login
-save = client.dump
 resume = client.load
+save = client.dump
+upload = client.upload
