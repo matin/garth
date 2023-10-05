@@ -11,6 +11,7 @@ class OAuth1Token:
     oauth_token_secret: str
     mfa_token: Optional[str] = None
     mfa_expiration_timestamp: Optional[datetime] = None
+    domain: Optional[str] = None
 
 
 @dataclass

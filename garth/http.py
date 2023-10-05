@@ -201,13 +201,16 @@ class Client:
             oauth1 = OAuth1Token(**json.load(f))
         with open(os.path.join(dir_path, "oauth2_token.json")) as f:
             oauth2 = OAuth2Token(**json.load(f))
-        self.configure(oauth1_token=oauth1, oauth2_token=oauth2)
+        self.configure(
+            oauth1_token=oauth1, oauth2_token=oauth2, domain=oauth1.domain
+        )
 
     def loads(self, s: str):
         oauth1, oauth2 = json.loads(base64.b64decode(s))
         self.configure(
             oauth1_token=OAuth1Token(**oauth1),
             oauth2_token=OAuth2Token(**oauth2),
+            domain=oauth1.get("domain"),
         )
 
 

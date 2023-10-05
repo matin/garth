@@ -27,6 +27,7 @@ def oauth1_token_dict() -> dict:
         oauth_token_secret="49919d7c4c8241ac93fb4345886fbcea",
         mfa_token="ab316f8640f3491f999f3298f3d6f1bb",
         mfa_expiration_timestamp="2023-08-02 05:56:10.000",
+        domain="garmin.com",
     )
 
 
