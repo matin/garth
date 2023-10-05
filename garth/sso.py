@@ -120,7 +120,7 @@ def get_oauth1_token(ticket: str, client: "http.Client") -> OAuth1Token:
     resp.raise_for_status()
     parsed = parse_qs(resp.text)
     token = {k: v[0] for k, v in parsed.items()}
-    return OAuth1Token(**token)  # type: ignore
+    return OAuth1Token(domain=client.domain, **token)  # type: ignore
 
 
 def exchange(oauth1: OAuth1Token, client: "http.Client") -> OAuth2Token:
