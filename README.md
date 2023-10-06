@@ -609,7 +609,7 @@ SleepData(
 )
 ```
 
-sleep data over several nights
+List sleep data over several nights.
 
 ```python
 garth.SleepData.list("2023-07-20", 30)

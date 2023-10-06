@@ -28,9 +28,11 @@ __all__ = [
     "client",
     "configure",
     "connectapi",
+    "download",
     "login",
     "resume",
     "save",
+    "upload",
 ]
 
 configure = client.configure
