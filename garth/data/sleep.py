@@ -103,7 +103,7 @@ class SleepMovement:
 @dataclass(frozen=True)
 class SleepData:
     daily_sleep_dto: DailySleepDTO
-    sleep_movement: List[SleepMovement]
+    sleep_movement: Optional[List[SleepMovement]] = None
 
     @classmethod
     def get(
