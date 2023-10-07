@@ -1,0 +1,162 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+    method: GET
+    uri: https://connectapi.garmin.com/hrv-service/hrv/2023-07-20
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA52aXU/bMBSG/4uvA/LxRxLnjg00LgAh6LiZJhRa01ZNP5S0IIT636cUiiizd975
+        ksT49WMnT46TvopN59vrdvk4bfz1TFTKOsqlysSkfbrdzOd1+yKqVzGsG78Y1e1pvfaiEkoqfSSL
+        IyVFJp69nzUvJ09jUWmXiabu1lfT8WS9O2LUpyP2cro4n44nosrzTDzUnW+mC9/33yyff65WvhWV
+        3p1p6sXQjy6Wz2997g+8t7EqE/O6nfn2rm42XlTyWNltJrp1vd50ohLfTi5Orr6fnYpMPHo/eqiH
+        s+tJW3f92M9v7u735+8LkYlh6+u1H0zn/nZdz1cHeANSFZmK6Lh0pdjupuXG16PpYtyJ6tdr//f7
+        GKzJRPt2qu/rx+XgsCdpK+UqUx73c/ap4cVyWDefmpIbKP3RdJsdZORshjZwxr7plwziM3AOHeaQ
+        bIbBOUyYw/IZOIdxiRkW57CpHBbnsEEOo5mMvJIIR99UfjT9wgFkODzDJWYQzkFBDkN8Bs5B4fUo
+        2AyFc6gwh+UzcI6wr3TJZmicI+wrza+5xjl06v1hcI6wr4zjM3AOk8phcY6wr4Br1+IcNu26KnBf
+        UcRX2vEZDs9wSddugfuKYr4CMnCOiK8sm6FwjrCvdM5n4BwqzbsF7iuK+MrwHBrn0GnPwQL3FUV8
+        pfk1NzhH2FeKv88tzhH2lZZ8Bs6R6KsS95WK+Ip9fpS4r1TEV+y1W+K+UhFfaeIzcI6wrxQ/Vwrn
+        iPhK8Rk4R9hXqmAzNM6hU9dD4xw67TlY4r5SMV/x62FwDpN6XVmcw6Z5t8R9pWK+4pzocF/pWH2l
+        +AyHZ4Q5CjaDcI5IfcXPFeEcYV+xtajDfaVj+0F+rhTOodLqRIf7Kvb+iq13He6r2Psr1okO95VO
+        ra8c7qvY+yvg2rU4R2Q/aPgMnCPiK2auSOK+MrH6SvMZDs8I1+2GzSCcI+wrW/AZOEfYV3nOZiic
+        I+wrW/IZOEfYVzmxGRrn0Env4UjivjKx/aBiMwzOYVLvD4NzmKQ6kSTuKxOrr/g1tzhH2FfEZRDu
+        K5tYXxHhvrKx+qpkMwjniOwHgQycI20/SIT7ysb2gzyHwjnS9oNEuK9sbD8o+QycQyd9VyPCfWVj
+        9ZXmM3COtPqKCPeVjdVX/H1ucQ6b9L2WFO6rPOarks9weMae4/fuZwHtum/a9d/3gx/mbSXlrmO/
+        GMVbHgzhsNfIV/xgv/8ecSa6xvvV7X8MevcPZ8zIe9/LWP/c8P9KCDPsM7Z/ALlCPuhYIgAA
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 812800c81f4c479e-DFW
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 07 Oct 2023 17:53:20 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=1efXaZ9bQvYJF8jZkRNJeCENTFUGwDN6ljNCY3V9t8M17uF6Eq4aI4bI%2BrhUvg2sw5dEWCCf7SVlDKE0sYvbYE1MtrVNYOqposaDhcgu3w7t9t1Vpz1Lher36IKgicfzMAEw5RmXtw%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, no-store, private
+      pragma:
+      - no-cache
+      set-cookie:
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - _cfuvid=SANITIZED; ADRUM_BT1=SANITIZED; ADRUM_BTa=SANITIZED; SameSite=SANITIZED
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+    method: GET
+    uri: https://connectapi.garmin.com/hrv-service/hrv/2023-07-19
+  response:
+    body:
+      string: !!binary |
+        H4sIAAAAAAAAA52aUW/TPBSG/4uvw+Rz7JPUuRsf6ONioIn14wYhFFqzVUu7Ke2Y0LT//qmFTVT4
+        cF58ucTz68eOn9pOHtzdNk/n083X1ZjPr13Pkqj13Lir6dvF3Xo9TN9d/+AWw5g3y2F6Neyy6x17
+        Di9894KSa9x9ztfj99Nvl64PqXHjsN29W11e7Q5XYvjlirxdbd6sLq9c3/rGfRm2eVxt8r7+8eb+
+        v9vbPLk+tPs747BZ5OXZzf2POp8u/Cwj3Lj1MF3n6cMw3mXX+xOWx8Ztd8Pubut69/L07PTdP69f
+        ucZ9zXn5ZVhcn19Nw3bf9jfvP3x+uv85usYtpjzs8ny1zhe7YX17hDen2MfQU3sSUnSPh255n4fl
+        anO5df3Hh/3fP9sQuXHTj1v7uv59Oz+uyUsfUh9nJ94dFTy7WQzjr0Vncw7PRR+bv8yIEc54Knqc
+        EcTOwDlimcObGYJzSJmjtTNwDilyhJmR0fYe4khz75+LHmdwZ2ckPKPIwcnMIJyDyuMBZOAcVB6P
+        YGYwzsFlDrYzcA4uz49oZgScI5SfK/vZDThH2VdAX0WcQ/GVzRFxjkpftaCvDhlS+1wJziF186PD
+        fUWKr5CMhGeUOTozg3AOqvv96HBfkeYrm4NxjrKvxOZgnIPr5keH+4oUX0WbI+AcyvpqZmZEnKPs
+        KyQD54i181xwjkpfdbivSPOVNeYz3Fes+CqSnZHwjLp5PsN9xZqv2M7AOcq+EruvGOeo9NUM9xVr
+        vrI5As6h+Moe84BzKOurZGZEnKPsK/F2Bs6hrK9sDsE5pJZDcA6pmx8J91VQfCViZyQ8o8zRmRmE
+        c1DdeCTcV0HxVbT7inEOrluXJNxXQfPVzMwIOIfiq2Rn4BxlXwmbGRHniLXPVcQ5Yi2H4BxlX7U2
+        h+Aciq+M54o87quo+SrYGQnPqBoP8rivouIra49DHvdV1Hxl9xXjHFx1XkIe91VUfBWimRFwjlC1
+        PyeP+ypq+0E7I+IcdftB8rivouIrFjNDcI6yr9juK8E5yr5ia54T7ivR9oOdnZHwjKrzEiLcV1Lr
+        K8J9Jdp+MJgZjHNw1XsDItxXovhK7DEPOEfZV2I/uwHnqFtfEeG+ksr3g0S4r0Q7v7IzBOeQut9B
+        wn0liq+sNTUx7qtWO2/v7IyEZ1TtP4hxX7XafjDYGThHpa8Y91WrnV+JnYFzcNW5DzHuq1ZbX0U7
+        A+eoez9IjPuq1dZX9phHnOPZV58On5tMu33R7f67EeWDD+8PFefNUi951ITjWtWvQwr1/rnFjduO
+        Od9e/EWjD//w2mi5UB9Fq99q/m8JZYanjMf/AU1pYOmwJAAA
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 812800c8f836479e-DFW
+      Connection:
+      - keep-alive
+      Content-Encoding:
+      - gzip
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 07 Oct 2023 17:53:20 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v3?s=aYF7%2Fjff6q%2BSW3DoLj4L0k%2BOVpTIJg1uTyZAJlPPxWfk8qcKnyoYSbdeMeFKDwiveT57hbjuS7p2fiY%2FKfvkmhY4ie2PKVugdBz29e64xajlg0jA3eE5e9fSMkV%2BZHMbJkLa4r%2BPOw%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cache-control:
+      - no-cache, no-store, private
+      pragma:
+      - no-cache
+      set-cookie:
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED
+    status:
+      code: 200
+      message: OK
+version: 1
