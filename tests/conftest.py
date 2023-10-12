@@ -1,3 +1,5 @@
+import gzip
+import io
 import json
 import os
 import re
@@ -103,6 +105,17 @@ def sanitize_request(request):
 
 
 def sanitize_response(response):
+    try:
+        encoding = response["headers"].pop("Content-Encoding")
+    except KeyError:
+        ...
+    else:
+        if encoding[0] == "gzip":
+            body = response["body"]["string"]
+            buffer = io.BytesIO(body)
+            body = gzip.GzipFile(fileobj=buffer).read()
+            response["body"]["string"] = body
+
     for key in ["set-cookie", "Set-Cookie"]:
         if key in response["headers"]:
             cookies = response["headers"][key]

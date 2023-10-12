@@ -77,5 +77,4 @@ class UserProfile:
         client = client or http.client
         profile = client.connectapi("/userprofile-service/socialProfile")
         assert isinstance(profile, dict)
-        profile = camel_to_snake_dict(profile)
-        return cls(**profile)
+        return cls(**camel_to_snake_dict(profile))

@@ -10,7 +10,7 @@ from .stats import (
     WeeklySteps,
     WeeklyStress,
 )
-from .users import UserProfile
+from .users import UserProfile, UserSettings
 from .version import __version__
 
 __all__ = [
@@ -23,6 +23,7 @@ __all__ = [
     "HRVData",
     "SleepData",
     "UserProfile",
+    "UserSettings",
     "WeeklyIntensityMinutes",
     "WeeklySteps",
     "WeeklyStress",
