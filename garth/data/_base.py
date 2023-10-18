@@ -10,10 +10,6 @@ MAX_WORKERS = 10
 
 class Data:
     @classmethod
-    def get(cls, *_, **__):
-        raise NotImplementedError
-
-    @classmethod
     def list(
         cls,
         end: Union[date, str, None] = None,
