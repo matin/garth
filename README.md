@@ -201,6 +201,10 @@ with open("12129115726_ACTIVITY.fit", "rb") as f:
     uploaded = garth.client.upload(f)
 ```
 
+Note: Garmin doesn't accept uploads of _structured_ FIT files as outlined in
+[this conversation](https://github.com/matin/garth/issues/27). FIT files
+generated from workouts are accepted without issues.
+
 ```python
 {
     'detailedImportResult': {
