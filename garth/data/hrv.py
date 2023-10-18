@@ -5,6 +5,7 @@ from pydantic.dataclasses import dataclass
 
 from .. import http
 from ..utils import camel_to_snake_dict
+from ._base import Data
 
 
 @dataclass(frozen=True)
@@ -35,7 +36,7 @@ class HRVReading:
 
 
 @dataclass(frozen=True)
-class HRVData:
+class HRVData(Data):
     user_profile_pk: int
     hrv_summary: HRVSummary
     hrv_readings: List[HRVReading]
@@ -60,3 +61,8 @@ class HRVData:
         hrv_data = camel_to_snake_dict(hrv_data)
         assert isinstance(hrv_data, dict)
         return cls(**hrv_data)
+
+    @classmethod
+    def list(cls, *args, **kwargs):
+        data = super().list(*args, **kwargs)
+        return sorted(data, key=lambda d: d.hrv_summary.calendar_date)
