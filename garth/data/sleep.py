@@ -47,9 +47,9 @@ class DailySleepDTO:
     deep_sleep_seconds: int
     light_sleep_seconds: int
     rem_sleep_seconds: int
-    awake_sleep_seconds: int
     device_rem_capable: bool
     retro: bool
+    awake_sleep_seconds: Optional[int] = None
     sleep_from_device: Optional[bool] = None
     sleep_version: Optional[int] = None
     awake_count: Optional[int] = None
