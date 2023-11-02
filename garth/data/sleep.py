@@ -43,13 +43,13 @@ class DailySleepDTO:
     sleep_end_timestamp_gmt: int
     sleep_start_timestamp_local: int
     sleep_end_timestamp_local: int
-    unmeasurable_sleep_seconds: int
-    deep_sleep_seconds: int
-    light_sleep_seconds: int
-    rem_sleep_seconds: int
-    awake_sleep_seconds: int
     device_rem_capable: bool
     retro: bool
+    unmeasurable_sleep_seconds: Optional[int] = None
+    deep_sleep_seconds: Optional[int] = None
+    light_sleep_seconds: Optional[int] = None
+    rem_sleep_seconds: Optional[int] = None
+    awake_sleep_seconds: Optional[int] = None
     sleep_from_device: Optional[bool] = None
     sleep_version: Optional[int] = None
     awake_count: Optional[int] = None
