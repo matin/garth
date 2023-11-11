@@ -116,6 +116,11 @@ class Client:
             if not self.oauth2_token or self.oauth2_token.expired:
                 self.refresh_oauth2()
             headers["Authorization"] = str(self.oauth2_token)
+
+            if method in ["PUT", "DELETE"]:
+                headers["X-Http-Method-Override"] = method
+                method = "POST"
+
         self.last_resp = self.sess.request(
             method,
             url,
