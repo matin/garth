@@ -154,7 +154,14 @@ class Client:
         self.oauth2_token = sso.exchange(self.oauth1_token, self)
 
     def connectapi(self, path: str, **kwargs):
-        resp = self.get("connectapi", path, api=True, **kwargs)
+        method = kwargs.get("method", "GET").lower()
+        kwargs.pop("method", None)
+        if method not in ["get", "post", "delete", "put"]:
+            raise TypeError(f"Invalid HTTP method: '{method}'")
+
+        reqMethod = getattr(self, method)
+        resp = reqMethod("connectapi", path, api=True, **kwargs)
+
         if resp.status_code == 204:
             rv = None
         else:

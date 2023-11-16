@@ -184,6 +184,18 @@ def test_delete(authed_client: Client):
 
 
 @pytest.mark.vcr
+def test_delete_api(authed_client: Client):
+    activity_id = "12135235656"
+    path = f"/activity-service/activity/{activity_id}"
+    assert authed_client.connectapi(path)
+    authed_client.connectapi(path, method="DELETE")
+
+    with pytest.raises(GarthHTTPError) as e:
+        authed_client.connectapi(path)
+    assert "404" in str(e.value)
+
+
+@pytest.mark.vcr
 def test_put(authed_client: Client):
     data = [
         {
@@ -207,4 +219,26 @@ def test_put(authed_client: Client):
         api=True,
         json=data,
     )
+    assert authed_client.connectapi(path)
+
+
+@pytest.mark.vcr
+def test_put_api(authed_client: Client):
+    data = [
+        {
+            "changeState": "CHANGED",
+            "trainingMethod": "HR_RESERVE",
+            "lactateThresholdHeartRateUsed": 170,
+            "maxHeartRateUsed": 185,
+            "restingHrAutoUpdateUsed": False,
+            "sport": "DEFAULT",
+            "zone1Floor": 130,
+            "zone2Floor": 140,
+            "zone3Floor": 150,
+            "zone4Floor": 160,
+            "zone5Floor": 170,
+        }
+    ]
+    path = "/biometric-service/heartRateZones"
+    authed_client.connectapi(path, json=data, method="PUT")
     assert authed_client.connectapi(path)
