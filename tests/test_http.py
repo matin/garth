@@ -90,6 +90,18 @@ def test_backoff_factor(client: Client):
     )
 
 
+def test_pool_connections(client: Client):
+    client.configure(
+        pool_connections=99,
+        pool_maxsize=99,
+    )
+    assert client.pool_connections == 99
+    assert client.pool_maxsize == 99
+    adapter = client.sess.adapters["https://"]
+    assert adapter._pool_connections == 99
+    assert adapter._pool_maxsize == 99
+
+
 @pytest.mark.vcr
 def test_client_request(client: Client):
     resp = client.request("GET", "connect", "/")
