@@ -30,6 +30,8 @@ class Client:
     retries: int = 3
     status_forcelist: Tuple[int, ...] = (408, 429, 500, 502, 503, 504)
     backoff_factor: float = 0.5
+    pool_connections: int = 10
+    pool_maxsize: int = 10
     _profile: Optional[Dict] = None
 
     def __init__(self, session: Optional[Session] = None, **kwargs):
@@ -55,6 +57,8 @@ class Client:
         retries: Optional[int] = None,
         status_forcelist: Optional[Tuple[int, ...]] = None,
         backoff_factor: Optional[float] = None,
+        pool_connections: Optional[int] = None,
+        pool_maxsize: Optional[int] = None,
     ):
         if oauth1_token is not None:
             self.oauth1_token = oauth1_token
@@ -74,13 +78,21 @@ class Client:
             self.status_forcelist = status_forcelist
         if backoff_factor is not None:
             self.backoff_factor = backoff_factor
+        if pool_connections is not None:
+            self.pool_connections = pool_connections
+        if pool_maxsize is not None:
+            self.pool_maxsize = pool_maxsize
 
         retry = Retry(
             total=self.retries,
             status_forcelist=self.status_forcelist,
             backoff_factor=self.backoff_factor,
         )
-        adapter = HTTPAdapter(max_retries=retry)
+        adapter = HTTPAdapter(
+            max_retries=retry,
+            pool_connections=self.pool_connections,
+            pool_maxsize=self.pool_maxsize,
+        )
         self.sess.mount("https://", adapter)
 
     @property
