@@ -128,7 +128,7 @@ terminal. You can provide your own handler. The handler should return the
 MFA code through your custom prompt.
 
 ```python
-garth.login(email, password, mfa_handler=lambda: input("Enter MFA code: "))
+garth.login(email, password, prompt_mfa=lambda: input("Enter MFA code: "))
 ```
 
 ### Configure
