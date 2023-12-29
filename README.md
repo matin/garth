@@ -121,6 +121,15 @@ garth.login(email, password)
 garth.save("~/.garth")
 ```
 
+### Custom MFA handler
+
+There's already a default MFA handler that prompts for the code in the
+terminal. You can provide your own handler.
+
+```python
+garth.login(email, password, mfa_handler=lambda: input("Enter MFA code: "))
+```
+
 ### Configure
 
 #### Set domain for China

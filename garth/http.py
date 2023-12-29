@@ -156,8 +156,10 @@ class Client:
     def put(self, *args, **kwargs) -> Response:
         return self.request("PUT", *args, **kwargs)
 
-    def login(self, *args):
-        self.oauth1_token, self.oauth2_token = sso.login(*args, client=self)
+    def login(self, *args, **kwargs):
+        self.oauth1_token, self.oauth2_token = sso.login(
+            *args, **kwargs, client=self
+        )
 
     def refresh_oauth2(self):
         assert self.oauth1_token
