@@ -48,7 +48,6 @@ test.py
 .pdm-python
 tmp/
 .pdm.toml
-pdm.lock
 
 # exclude saved oauth tokens
 oauth*_token.json
