@@ -20,7 +20,7 @@ class Baseline:
 class HRVSummary:
     calendar_date: date
     weekly_avg: int
-    last_night_avg: int
+    last_night_avg: Optional[int]
     last_night_5_min_high: int
     baseline: Baseline
     status: str
