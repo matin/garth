@@ -165,8 +165,8 @@ class Client:
         # appears even Garmin uses this approach when the OAuth2 is expired
         self.oauth2_token = sso.exchange(self.oauth1_token, self)
 
-    def connectapi(self, path: str, **kwargs):
-        resp = self.get("connectapi", path, api=True, **kwargs)
+    def connectapi(self, path: str, method="GET", **kwargs):
+        resp = self.request(method, "connectapi", path, api=True, **kwargs)
         if resp.status_code == 204:
             rv = None
         else:
@@ -182,13 +182,11 @@ class Client:
     ) -> Dict[str, Any]:
         fname = os.path.basename(fp.name)
         files = {"file": (fname, fp)}
-        resp = self.post(
-            "connectapi",
+        return self.connectapi(
             path,
-            api=True,
+            method="POST",
             files=files,
         )
-        return resp.json()
 
     def dump(self, dir_path: str):
         dir_path = os.path.expanduser(dir_path)
