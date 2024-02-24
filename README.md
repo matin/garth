@@ -139,7 +139,7 @@ garth.configure(proxies={"https": "http://localhost:8888"}, ssl_verify=False)
 
 ```python
 import garth
-from garth import GarthException
+from garth.exc import GarthException
 
 garth.resume("~/.garth")
 try:
