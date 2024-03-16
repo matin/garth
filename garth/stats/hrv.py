@@ -12,15 +12,15 @@ class HRVBaseline:
     low_upper: int
     balanced_low: int
     balanced_upper: int
-    marker_value: float
+    marker_value: Optional[float]
 
 
 @dataclass(frozen=True)
 class DailyHRV:
     calendar_date: date
-    weekly_avg: int
-    last_night_avg: int
-    last_night_5_min_high: int
+    weekly_avg: Optional[int]
+    last_night_avg: Optional[int]
+    last_night_5_min_high: Optional[int]
     baseline: HRVBaseline
     status: str
     feedback_phrase: str
