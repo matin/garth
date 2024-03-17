@@ -1,4 +1,4 @@
-from typing import ClassVar
+from typing import ClassVar, Optional
 
 from pydantic.dataclasses import dataclass
 
@@ -7,7 +7,7 @@ from ._base import Stats
 
 @dataclass(frozen=True)
 class DailySleep(Stats):
-    value: int
+    value: Optional[int]
 
     _path: ClassVar[
         str
