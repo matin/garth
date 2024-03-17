@@ -121,6 +121,16 @@ garth.login(email, password)
 garth.save("~/.garth")
 ```
 
+### Custom MFA handler
+
+There's already a default MFA handler that prompts for the code in the
+terminal. You can provide your own handler. The handler should return the
+MFA code through your custom prompt.
+
+```python
+garth.login(email, password, prompt_mfa=lambda: input("Enter MFA code: "))
+```
+
 ### Configure
 
 #### Set domain for China

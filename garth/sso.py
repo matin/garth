@@ -1,6 +1,6 @@
 import re
 import time
-from typing import Dict, Optional, Tuple
+from typing import Callable, Dict, Optional, Tuple
 from urllib.parse import parse_qs
 
 import requests
@@ -40,7 +40,11 @@ class GarminOAuth1Session(OAuth1Session):
 
 
 def login(
-    email: str, password: str, /, client: Optional["http.Client"] = None
+    email: str,
+    password: str,
+    /,
+    client: Optional["http.Client"] = None,
+    prompt_mfa: Callable = lambda: input("MFA code: "),
 ) -> Tuple[OAuth1Token, OAuth2Token]:
     client = client or http.client
 
@@ -92,7 +96,7 @@ def login(
 
     # Handle MFA
     if "MFA" in title:
-        handle_mfa(client, SIGNIN_PARAMS)
+        handle_mfa(client, SIGNIN_PARAMS, prompt_mfa)
         title = get_title(client.last_resp.text)
 
     assert title == "Success"
@@ -142,9 +146,11 @@ def exchange(oauth1: OAuth1Token, client: "http.Client") -> OAuth2Token:
     return OAuth2Token(**set_expirations(token))
 
 
-def handle_mfa(client: "http.Client", signin_params: dict) -> None:
+def handle_mfa(
+    client: "http.Client", signin_params: dict, prompt_mfa: Callable
+) -> None:
     csrf_token = get_csrf_token(client.last_resp.text)
-    mfa_code = input("Enter MFA code: ")
+    mfa_code = prompt_mfa()
     client.post(
         "sso",
         "/sso/verifyMFA/loginEnterMfaCode",
