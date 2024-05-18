@@ -1,0 +1,1144 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+    method: GET
+    uri: https://sso.garmin.com/sso/embed?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso
+  response:
+    body:
+      string: "<html>\n\t<head>\n\t    <title>GAuth Embedded Version</title>\n\t    <meta
+        http-equiv=\"X-UA-Compatible\" content=\"IE=edge;\" />\n\t    <style type=\"text/css\">\n\t
+        \   \t#gauth-widget {border: none !important;}\n\t    </style>\n\t</head>\n\t<body>\n\t\t<script
+        type=\"text/javascript\" src=\"/sso/js/jquery/3.7.1/jquery.min.js?20210319\"></script>\n\n<div>\n\t<pre>\n\t<span>ERROR:
+        clientId parameter must be specified!!!</span>\n\n\t<span >Usage: https://sso.garmin.com/sso/embed?clientId=&lt;clientId&gt;&amp;locale=&lt;locale&gt;...</span>\n\n\tRequest
+        parameter configuration options:\n\n\tNAME                           REQ  VALUES
+        \                                                  DESCRIPTION\n\t------------------
+        \            ---  -------------------------------------------------------
+        \ ---------------------------------------------------------------------------------------------------\n\tclientId
+        \                      Yes  \"MY_GARMIN\"/\"BUY_GARMIN\"/\"FLY_GARMIN\"/                   Client
+        identifier for your web application\n\t                                    \"RMA\"/\"GarminConnect\"/\"OpenCaching\"/etc\n\tlocale
+        \                        Yes  \"en\", \"bg\", \"cs\", \"da\", \"de\", \"es\",
+        \"el\", \"fr\", \"hr\",    User's current locale, to display the GAuth login
+        widget internationalized properly.\n\t                                    \"in\",
+        \"it\", \"iw\", \"hu\", \"ms\", \"nb\", \"nl\", \"no\", \"pl\",    (All the
+        currently supported locales are listed in the Values section.)\n\t                                    \"pt\",
+        \"pt_BR\", \"ru\", \"sk\", \"sl\", \"fi\", \"sv\", \"tr\",\n\t                                    \"uk\",
+        \"th\", \"ja\", \"ko\", \"zh_TW\", \"zh\", \"vi_VN\"\n\tcssUrl                          No
+        \ Absolute URL to custom CSS file.                         Use custom CSS
+        styling for the GAuth login widget.\n\treauth                          No
+        \ true/false (Default value is false)                      Specify true if
+        you want to ensure that the GAuth login widget shows up,\n\t                                                                                             even
+        if the SSO infrastructure remembers the user and would immediately log them
+        in.\n\t                                                                                             This
+        is useful if you know a user is logged on, but want a different user to be
+        allowed to logon.\n\tinitialFocus                    No  true/false (Default
+        value is true)                       If you don't want the GAuth login widget
+        to autofocus in it's \"Email or Username\" field upon initial loading,\n\t
+        \                                                                                            then
+        specify this option and set it to false.\n\trememberMeShown                 No
+        \ true/false (Default value is false)                      Whether the \"Remember
+        Me\" check box is shown in the GAuth login widget.\n\trememberMeChecked               No
+        \ true/false (Default value is false)                      Whether the \"Remember
+        Me\" check box feature is checked by default.\n\tcreateAccountShown              No
+        \ true/false (Default value is true)                       Whether the \"Don't
+        have an account? Create One\" link is shown in the GAuth login widget.\n\tsocialEnabled
+        \                  No  true/false (Default value is false)                       If
+        set to false, do not show any social sign in elements or allow social sign
+        ins.\n\tlockToEmailAddress              No  Email address to pre-load and
+        lock.                      If specified, the specified email address will
+        be pre-loaded in the main \"Email\" field in the SSO login form,\n\t                                                                                             as
+        well as in in the \"Email Address\" field in the \"Forgot Password?\" password
+        reset form,\n\t                                                                                             and
+        both fields will be disabled so they can't be changed.\n\t                                                                                             (If
+        for some reason you want to force re-authentications for a known customer
+        account, you can make use of this option.)\n\topenCreateAccount               No
+        \ true/false (Default value is false)                      If set to true,
+        immediately display the the account creation screen.\n\tdisplayNameShown                No
+        \ true/false (Default value is false)                      If set to true,
+        show the \"Display Name\" field on the account creation screen, to allow the
+        user\n\t                                                                                             to
+        set their central MyGarmin display name upon account creation.\n\tglobalOptInShown
+        \               No  true/false (Default value is false)                      Whether
+        the \"Global Opt-In\" check box is shown on the create account & create social
+        account screens.\n\t                                                                                             If
+        set to true these screens will show a \"Sign Up For Email\" check box with
+        accompanying text\n\t                                                                                             \"I
+        would also like to receive email about promotions and new products.\"\n\t
+        \                                                                                            If
+        checked, the Customer 2.0 account that is created will have it's global opt-in
+        flag set to true,\n\t                                                                                             and
+        Garmin email communications will be allowed.\n\tglobalOptInChecked              No
+        \ true/false (Default value is false)                      Whether the \"Global
+        Opt-In\" check box is checked by default.\n\tconsumeServiceTicket            No
+        \ true/false (Default value is true)                       IF you don't specify
+        a redirectAfterAccountLoginUrl AND you set this to false, the GAuth login
+        widget\n\t                                                                                             will
+        NOT consume the service ticket assigned and will not seamlessly log you into
+        your webapp.\n\t                                                                                             It
+        will send a SUCCESS JavaScript event with the service ticket and service url
+        you can take\n\t                                                                                             and
+        explicitly validate against the SSO infrastructure yourself.\n\t                                                                                             (By
+        using casClient's SingleSignOnUtils.authenticateServiceTicket() utility method,\n\t
+        \                                                                                            or
+        calling web service customerWebServices_v1.2 AccountManagementService.authenticateServiceTicket().)\n\tmobile
+        \                         No  true/false (Default value is false)                      Setting
+        to true will cause mobile friendly views to be shown instead of the tradition
+        screens.\n\ttermsOfUseUrl                   No  Absolute URL to your custom
+        terms of use URL.            If not specified, defaults to http://www.garmin.com/terms\n\tprivacyStatementUrl
+        \            No  Absolute URL to your custom privacy statement URL.       If
+        not specified, defaults to http://www.garmin.com/privacy\n\tproductSupportUrl
+        \              No  Absolute URL to your custom product support URL.         If
+        not specified, defaults to http://www.garmin.com/us/support/contact\n\tgenerateExtraServiceTicket
+        \     No  true/false (Default value is false)                      If set
+        to true, generate an extra unconsumed service ticket.\n\t\t                                                                                     (The
+        service ticket validation response will include the extra service ticket.)\n\tgenerateTwoExtraServiceTickets
+        \ No  true/false (Default value is false)                      If set to true,
+        generate two extra unconsumed service tickets.\n\t\t\t\t\t\t\t\t\t \t\t\t
+        \    (The service ticket validation response will include the extra service
+        tickets.)\n\tgenerateNoServiceTicket         No  true/false (Default value
+        is false)                      If you don't want SSO to generate a service
+        ticket at all when logging in to the GAuth login widget.\n                                                                                                     (Useful
+        when allowing logins to static sites that are not SSO enabled and can't consume
+        the service ticket.)\n\tconnectLegalTerms               No  true/false (Default
+        value is false)                      Whether to show the connectLegalTerms
+        on the create account page\n\tshowTermsOfUse                  No  true/false
+        (Default value is false)                      Whether to show the showTermsOfUse
+        on the create account page\n\tshowPrivacyPolicy               No  true/false
+        (Default value is false)                      Whether to show the showPrivacyPolicy
+        on the create account page\n\tshowConnectLegalAge             No  true/false
+        (Default value is false)                      Whether to show the showConnectLegalAge
+        on the create account page\n\tlocationPromptShown             No  true/false
+        (Default value is false)                      If set to true, ask the customer
+        during account creation to verify their country of residence.\n\tshowPassword
+        \                   No  true/false (Default value is true)                       If
+        set to false, mobile version for createAccount and login screens would hide
+        the password\n\tuseCustomHeader                 No  true/false (Default value
+        is false)                      If set to true, the \"Sign in\" text will be
+        replaced by custom text. Contact CDS team to set the i18n text for your client
+        id.\n\tmfaRequired                     No  true/false (Default value is false)
+        \                     Require multi factor authentication for all authenticating
+        users.\n\tperformMFACheck                 No  true/false (Default value is
+        false)                      If set to true, ask the logged in user to pass
+        a multi factor authentication check. (Only valid for an already logged in
+        user.)\n\trememberMyBrowserShown          No  true/false (Default value is
+        false)                      Whether the \"Remember My Browser\" check box
+        is shown in the GAuth login widget MFA verification screen.\n\trememberMyBrowserChecked
+        \       No  true/false (Default value is false)                      Whether
+        the \"Remember My Browser\" check box feature is checked by default.\n\tconsentTypeIds\t\t\t\t\tNo\tconsent_types
+        ids\t\t \t\t\t\t\t\t\t\t multiple consent types ids can be passed as consentTypeIds=type1&consentTypeIds=type2\n\t</pre>\n</div>\n\n\n\t<script>(function(){if
+        (!document.body) return;var js = \"window['__CF$cv$params']={r:'885f8004ea726458',t:'MTcxNjA3MzYxMS4xNDMwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
+        _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position
+        = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility
+        = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi =
+        _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj =
+        _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if
+        (document.readyState !== 'loading') {handler();} else if (window.addEventListener)
+        {document.addEventListener('DOMContentLoaded', handler);} else {var prev =
+        document.onreadystatechange || function () {};document.onreadystatechange
+        = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange
+        = prev;handler();}};}})();</script></body>\n</html>\n"
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type,
+        Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - https://www.garmin.com
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 885f8004ea726458-SJC
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Type:
+      - text/html;charset=UTF-8
+      Date:
+      - Sat, 18 May 2024 23:06:51 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=leV6Y6Xwx9UQbmOXLu4nP3NDkujz32au4KjL%2FEobMvNsGNEqpuDPAQwMlfd2c%2BqzAkRK%2BY68TK78djHo8FbAUN7ljszDtl7Xwtfy%2FFi9%2FeRkqpZz8rFnSpCrTMhnst61"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        Path=SANITIZED
+      - __cf_bm=SANITIZED; path=SANITIZED; expires=SANITIZED; domain=SANITIZED; HttpOnly;
+        Secure; SameSite=SANITIZED
+      - __cflb=SANITIZED; SameSite=SANITIZED; Secure; path=SANITIZED; expires=SANITIZED;
+        HttpOnly
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      X-Application-Context:
+      - casServer:cloud,prod,prod-US_1102:6
+      X-B3-Traceid:
+      - 2d9933cce4506f224c1357749fe86b50
+      X-Robots-Tag:
+      - noindex
+      X-Vcap-Request-Id:
+      - 3f00a490-dad0-4e7e-4358-9db9cce59f9c
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Cookie:
+      - ADRUM_BTa=SANITIZED; SameSite=SANITIZED; ADRUM_BT1=SANITIZED; org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        __cflb=SANITIZED; __cf_bm=SANITIZED; _cfuvid=SANITIZED
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+      referer:
+      - https://sso.garmin.com/sso/embed?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso
+    method: GET
+    uri: https://sso.garmin.com/sso/signin?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+  response:
+    body:
+      string: "<!DOCTYPE html>\n<html lang=\"en\" class=\"no-js\">\n    <head>\n        <meta
+        http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n        <meta
+        name=\"viewport\" content=\"width=device-width\" />\n        <meta http-equiv=\"X-UA-Compatible\"
+        content=\"IE=edge;\" />\n        <title>GARMIN Authentication Application</title>\n
+        \       <link href=\"/sso/css/GAuth.css?20210406\" rel=\"stylesheet\" type=\"text/css\"
+        media=\"all\" />\n\n\t    <link rel=\"stylesheet\" href=\"\"/>\n\n        <script
+        type=\"text/javascript\" src=\"/sso/js/jquery/3.7.1/jquery.min.js?20210319\"></script>\n
+        \       <script type=\"text/javascript\">jQuery.noConflict();</script>\n\t\t<script
+        type=\"text/javascript\" src=\"/sso/js/jquery-validate/1.16.0/jquery.validate.min.js?20210319\"></script>\n
+        \       <script type=\"text/javascript\" src=\"/sso/js/jsUtils.js?20210406\"></script>\n
+        \       <script type=\"text/javascript\" src=\"/sso/js/json2.js\"></script>\n
+        \       <script type=\"text/javascript\" src=\"/sso/js/consoleUtils.js?20210319\"></script>\n
+        \       <script type=\"text/javascript\" src=\"/sso/js/postmessage.js?20210319\"></script>\n
+        \       <script type=\"text/javascript\" src=\"/sso/js/popupWindow.js\"></script>\n
+        \       <script type=\"text/javascript\" src=\"/sso/js/base.js?20231020\"></script>\n\t\t<script
+        type=\"text/javascript\" src=\"/sso/js/gigyaUtils.js?20210319\"></script>\n
+        \       <script type=\"text/javascript\" src=\"/sso/js/login.js?20211102\"></script>\n
+        \       <script type=\"text/javascript\" src=\"/sso/js/reCaptchaUtil.js?20230706\"></script>\n\n
+        \       <script>\n            var recaptchaSiteKey = null;\n            var
+        reCaptchaURL = \"\\\\\\/sso\\\\\\/reCaptcha?id=gauth-widget\\u0026embedWidget=true\\u0026gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\\u0026service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\\u0026source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\\u0026redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\\u0026redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\";\n
+        \           var isRecaptchaEnabled = null;\n            var recaptchaToken
+        = null;            \n        </script>\n        <script type=\"text/javascript\">\n
+        \           var parent_url      = \"https:\\/\\/sso.garmin.com\\/sso\\/embed\";\n
+        \           var status \t\t\t= \"\";\n\t\t\tvar result          = \"\";\n\t\t\tvar
+        clientId\t\t= '';\n\t\t\tvar embedWidget \t= true;\n\t\t\tvar isUsernameDefined
+        = (false == true) || (false == true);\n\n            // Gigya callback to
+        SocialSignInController for brand new social network users redirects to this
+        page\n            // to popup Create or Link Social Account page, but has
+        a possibly mangled source parameter\n            // where \"?\" is set as
+        \"<QM>\", so translate it back to \"?\" here.\n            parent_url = parent_url.replace('<QM>',
+        '?');\n            var parent_scheme   = parent_url.substring(0, parent_url.indexOf(\"://\"));\n
+        \           var parent_hostname = parent_url.substring(parent_scheme.length
+        + 3, parent_url.length);\n            if (parent_hostname.indexOf(\"/\") !=
+        -1) {\n                parent_hostname = parent_hostname.substring(0, parent_hostname.indexOf(\"/\"));\n
+        \           }\n            var parentHost      \t   = parent_scheme + \"://\"
+        + parent_hostname;\n\t\t\tvar createAccountConfigURL = '\\/sso\\/createNewAccount?id%3Dgauth-widget%26embedWidget%3Dtrue%26gauthHost%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26service%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26source%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26redirectAfterAccountLoginUrl%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26redirectAfterAccountCreationUrl%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed';\n
+        \           var socialConfigURL        = 'https://sso.garmin.com/sso/socialSignIn?id%3Dgauth-widget%26embedWidget%3Dtrue%26gauthHost%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26service%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26source%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26redirectAfterAccountLoginUrl%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26redirectAfterAccountCreationUrl%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed';\n
+        \           var gigyaURL               = \"https://cdns.gigya.com/js/gigya.js?apiKey=2_R3ZGY8Bqlwwk3_63knoD9wA_m-Y19mAgW61bF_s5k9gymYnMEAtMrJiF5MjF-U7B\";\n\n
+        \           if (createAccountConfigURL.indexOf('%253A%252F%252F') != -1) {\n
+        \           \tcreateAccountConfigURL = decodeURIComponent(createAccountConfigURL);\n
+        \           }\n            consoleInfo('signin.html embedWidget: true, createAccountConfigURL:
+        \\/sso\\/createNewAccount?id%3Dgauth-widget%26embedWidget%3Dtrue%26gauthHost%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26service%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26source%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26redirectAfterAccountLoginUrl%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26redirectAfterAccountCreationUrl%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed,
+        socialEnabled: true, gigyaSupported: true, socialConfigURL(): https://sso.garmin.com/sso/socialSignIn?id%3Dgauth-widget%26embedWidget%3Dtrue%26gauthHost%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26service%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26source%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26redirectAfterAccountLoginUrl%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26redirectAfterAccountCreationUrl%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed');\n\n
+        \           if (socialConfigURL.indexOf('%3A%2F%2F') != -1) {\n            \tsocialConfigURL
+        = decodeURIComponent(socialConfigURL);\n            }\n\n            if( status
+        != null && status != ''){\n            \tsend({'status':status});\n            }\n\n
+        \           jQuery(document).ready( function(){\n\n\n                consoleInfo(\"signin.html:
+        setting field validation rules...\");\n\n                jQuery(\"#username\").rules(\"add\",{\n
+        \                   required: true,\n                    messages: {\n                        required:
+        \ \"Email is required.\"\n                }});\n\n                jQuery(\"#password\").rules(\"add\",
+        {\n                    required: true,\n                    messages: {\n
+        \                       required:  \"Password is required.\"\n                    }\n
+        \               });\n\n                consoleInfo(\"signin.html: done setting
+        field validation rules...\");\n\n            });\n\n            XD.receiveMessage(function(m){\n
+        \               consoleInfo(\"signin.html: \" + m.data + \" received on \"
+        + window.location.host);\n                 if (m && m.data) {\n                     var
+        md = m.data;\n                     if (typeof(md) === 'string') {\n                         md
+        = JSON.parse(m.data);\n                     }\n                     if (md.setUsername)
+        {\n                         consoleInfo(\"signin.html: Setting username \\\"\"
+        + md.username + \"\\\"...\");\n                         jQuery(\"#signInWithDiffLink\").click();
+        // Ensure the normal login form is shown.\n                         jQuery(\"#username\").val(md.username);\n
+        \                        jQuery(\"#password\").focus();\n                     }\n
+        \                }\n             }, parentHost);\n        </script>\n    </head>\n
+        \   <body>\n\n        <!-- begin GAuth component -->\n        <div id=\"GAuth-component\">\n
+        \           <!-- begin login component-->\n            <div id=\"login-component\"
+        class=\"blueForm-basic\">\n               <input type=\"hidden\" id=\"queryString\"
+        value=\"id=gauth-widget&amp;embedWidget=true&amp;gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\"
+        />\n\t     \t   <input type=\"hidden\" id=\"contextPath\" value=\"/sso\" />\n
+        \               <!-- begin login form -->\n                <div id=\"login-state-default\">\n
+        \                   <h2>Sign In</h2>\n\n                    <form method=\"post\"
+        id=\"login-form\">\n\n                        <div class=\"form-alert\">\n\t\t\t\t\t\t\t\n
+        \                           \n                            \n                            \n
+        \                           \n                            \n                            \n\n
+        \                           <div id=\"username-error\" style=\"display:none;\"></div>\n
+        \                           <div id=\"password-error\" style=\"display:none;\"></div>\n
+        \                       </div>\n                        <div class=\"textfield\">\n\t\t\t\t\t\t\t<label
+        for=\"username\">Email</label>\n                           \t\t<!-- If the
+        lockToEmailAddress parameter is specified then we want to mark the field as
+        readonly,\n                           \t\tpreload the email address, and disable
+        the other input so that null isn't sent to the server. We'll\n                           \t\talso
+        style the field to have a darker grey background and disable the mouse pointer\n
+        \                          \t\t -->\n\t\t\t\t\t\t\t    \n\t\t\t\t\t\t\t\t<!--
+        If the lockToEmailAddress parameter is NOT specified then keep the existing
+        functionality and disable the readonly input field\n\t\t\t\t\t\t\t     -->\n\t\t\t\t\t\t\t
+        \   <input class=\"login_email\" name=\"username\" id=\"username\" value=\"\"
+        type=\"email\" spellcheck=\"false\" autocorrect=\"off\" autocapitalize=\"off\"/>\n\n
+        \                       </div>\n\n                        <div class=\"textfield\">\n
+        \                           <label for=\"password\">Password</label>\n                            <a
+        id=\"loginforgotpassword\" class=\"login-forgot-password\" style=\"cursor:pointer\">(Forgot?)</a>\n
+        \                           <input type=\"password\" name=\"password\" id=\"password\"
+        spellcheck=\"false\" autocorrect=\"off\" autocapitalize=\"off\" />\n                             <strong
+        id=\"capslock-warning\" class=\"information\" title=\"Caps lock is on.\" style=\"display:
+        none;\">Caps lock is on.</strong>\n\t\t\t\t\t    </div>\n                        <input
+        type=\"hidden\" name=\"embed\" value=\"true\"/>\n                        <input
+        type=\"hidden\" name=\"_csrf\" value=\"6A05676EA0C052B46099B517C6C2A45EEC33FB655FDC59F45AFA9DDB77DF239208A8E88677D859E7C9D52FB2B9D9ABB78615\"
+        />\n                        <button type=\"submit\" id=\"login-btn-signin\"
+        class=\"btn1\" accesskey=\"l\">Sign In</button>\n                        \n\n\n
+        \                       <!-- The existence of the \"rememberme\" parameter
+        at all will remember the user! -->\n                        \n\n                    </form>\n
+        \               </div>\n                <!-- end login form -->\n\n                <!--
+        begin Create Account message -->\n\t            <div id=\"login-create-account\">\n\t
+        \               \n\t            </div>\n\t            <!-- end Create Account
+        message -->\n\n\t            <!-- begin Social Sign In component -->\n\t            <div
+        id=\"SSI-component\">\n                    \n\n\t\t\t\t\t\n\t            </div>\n\t
+        \           <!-- end Social Sign In component -->\n                <div class=\"clearfix\"></div>
+        <!-- Ensure that GAuth-component div's height is computed correctly. -->\n
+        \           </div>\n            <!-- end login component-->\n\n\t\t</div>\n\t\t<!--
+        end GAuth component -->\n\n        <script type=\"text/javascript\">\n            jQuery(document).ready(function(){\n
+        \           \tresizePageOnLoad(jQuery(\"#GAuth-component\").height());\n\n\t\t
+        \       if(isUsernameDefined == true){\n\t\t            // If the user's login
+        just failed, redisplay the email/username specified, and focus them in the
+        password field.\n\t\t            jQuery(\"#password\").focus();\n\t\t        }
+        else if(false == true && result != \"PASSWORD_RESET_RESULT\"){\n                    //
+        Otherwise focus them in the username field of the login dialog.\n                    jQuery(\"#username\").focus();\n
+        \               }\n\n                // Scroll to top of iframe to fix problem
+        where Firefox 3.0-3.6 browsers initially show top of iframe cutoff.\n                location.href=\"#\";\n\n
+        \               if(!embedWidget){\n                \tjQuery('.createAccountLink').click(function(){\n\t
+        \                   send({'openLiteBox':'createAccountLink', 'popupUrl': createAccountConfigURL,
+        'popupTitle':'Create An Account', 'clientId':clientId});\n\t                });\n
+        \               }\n            });\n        </script>\n    <script>(function(){if
+        (!document.body) return;var js = \"window['__CF$cv$params']={r:'885f8005caf76458',t:'MTcxNjA3MzYxMS41NzYwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
+        _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position
+        = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility
+        = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi =
+        _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj =
+        _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if
+        (document.readyState !== 'loading') {handler();} else if (window.addEventListener)
+        {document.addEventListener('DOMContentLoaded', handler);} else {var prev =
+        document.onreadystatechange || function () {};document.onreadystatechange
+        = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange
+        = prev;handler();}};}})();</script></body>\n</html>\n"
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type,
+        Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - https://www.garmin.com
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 885f8005caf76458-SJC
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Type:
+      - text/html;charset=UTF-8
+      Date:
+      - Sat, 18 May 2024 23:06:51 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=FLNsqi36rD1PwNz8ZbQvJ8SLTSTWz1bPt%2FZJTXrm4FQXSABX3lNrctFB3Nm5Sy9oAHxSMyjG5IEFmoaldGzXu9bgyIIIJoli5lwIg35tUfWtAUK3y1%2BIcA%2BfJ6iXfDju"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        Path=SANITIZED
+      - SESSION=SANITIZED; Path=SANITIZED; Secure; HttpOnly
+      - __VCAP_ID__=SANITIZED; Path=SANITIZED; HttpOnly; Secure
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Application-Context:
+      - casServer:cloud,prod,prod-US_1102:7
+      X-B3-Traceid:
+      - 0e12aedefdb2d3524dc4688d21d92602
+      X-Robots-Tag:
+      - noindex
+      X-Vcap-Request-Id:
+      - b8117c93-abda-4804-6063-19bd83c0cf5e
+    status:
+      code: 200
+      message: OK
+- request:
+    body: username=SANITIZED&password=SANITIZED&embed=true&_csrf=6A05676EA0C052B46099B517C6C2A45EEC33FB655FDC59F45AFA9DDB77DF239208A8E88677D859E7C9D52FB2B9D9ABB78615
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '177'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Cookie:
+      - SESSION=SANITIZED; SameSite=SANITIZED; org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        __cflb=SANITIZED; ADRUM_BTa=SANITIZED; ADRUM_BT1=SANITIZED; __VCAP_ID__=SANITIZED;
+        __cf_bm=SANITIZED; _cfuvid=SANITIZED
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+      referer:
+      - https://sso.garmin.com/sso/signin?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+    method: POST
+    uri: https://sso.garmin.com/sso/signin?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+  response:
+    body:
+      string: ''
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type,
+        Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - https://www.garmin.com
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 885f80089caf6458-SJC
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '0'
+      Date:
+      - Sat, 18 May 2024 23:06:53 GMT
+      Location:
+      - https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=WmrHYyb9y9r9QiYdX9Abx1ms4DMjor35KGA0eoc5RiV3dUTCU%2F9k3qtEuCuQ906X19BhLZET%2FHb9CluX2vbLBBeSLpEsdRPE%2Fjj610XV24s5si3nCgVCOHea7DMKRV18"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        Path=SANITIZED
+      - ADRUM_BTs=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - __cfruid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Vary:
+      - Accept-Encoding
+      X-Application-Context:
+      - casServer:cloud,prod,prod-US_1102:7
+      X-B3-Traceid:
+      - 292509ba8d11ebdc3d012dfab3c88ea8
+      X-Robots-Tag:
+      - noindex
+      X-Vcap-Request-Id:
+      - 408a7c53-5d79-4e24-45ac-3981a357cda5
+    status:
+      code: 302
+      message: Found
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Cookie:
+      - SESSION=SANITIZED; SameSite=SANITIZED; org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        __cflb=SANITIZED; __VCAP_ID__=SANITIZED; ADRUM_BTa=SANITIZED; ADRUM_BT1=SANITIZED;
+        ADRUM_BTs=SANITIZED; __cf_bm=SANITIZED; _cfuvid=SANITIZED; __cfruid=SANITIZED
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+      referer:
+      - https://sso.garmin.com/sso/signin?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+    method: GET
+    uri: https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+  response:
+    body:
+      string: "<!DOCTYPE html>\n<html lang=\"en\" class=\"no-js\">\n\n<head>\n    <script
+        type=\"text/javascript\" src=\"/sso/js/jquery/3.7.1/jquery.min.js?20210319\"></script>\n
+        \   <script type=\"text/javascript\">jQuery.noConflict();</script>\n    <script
+        type=\"text/javascript\" src=\"/sso/js/jquery-validate/1.16.0/jquery.validate.min.js?20210319\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/base.js?20231020\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/jsUtils.js?20210406\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/json2.js\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/postmessage.js?20210319\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/consoleUtils.js?20210319\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/setupMfaRequiredView.js?20210319\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/enterMfaCode.js?20230127\"></script>\n
+        \   <script type=\"text/javascript\">\n        var embedWidget = \"true\";\n
+        \       if (embedWidget == \"\") {\n            embedWidget = \"\";\n        }\n
+        \       embedWidget = (embedWidget == \"true\");\n        var parent_url =
+        \"https:\\/\\/sso.garmin.com\\/sso\\/embed\";\n        window.onload = function()
+        {\n            ifrememberMyBrowserChecked();\n        };\n\n        jQuery(document).ready(
+        function() {\n            if (!embedWidget) {\n                send({'gauthHeight':
+        jQuery(\"#GAuth-component\").height()});\n            }\n            jQuery(\"#mfa-verification-code-submit\").click(function(){\n
+        \               if (!validateMfaCodeAndPrivacyConsents()){\n                    return
+        false;\n                }\n                jQuery('#submit-mfa-verification-code-form').submit();\n
+        \               return false;\n            });\n        });\n        var customerGuid
+        = \"0690cc1d-d23d-4412-b027-80fd4ed1c0f6\";\n        var mfaMethod = \"email\";\n
+        \       var locale = \"\";\n        var clientId = \"\";\n        var codeSentTo
+        = \"mt*****@gmail.com\";\n    </script>\n    <meta charset=\"utf-8\">\n    <title>Enter
+        MFA code for login</title>\n    <meta name=\"description\" content=\"\">\n
+        \   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n
+        \   <meta http-equiv=\"cleartype\" content=\"on\">\n    <meta http-equiv=\"X-UA-Compatible\"
+        content=\"IE=edge;\" />\n    <link href=\"/sso/css/GAuth.css?20170505\" rel=\"stylesheet\"
+        type=\"text/css\" media=\"all\" />\n    <link rel=\"stylesheet\" href=\"\"
+        />\n</head>\n\n<body>\n    <div id=\"GAuth-component\">\n        <h2 id=\"enter-mfa-code-h2\">Enter
+        security code</h2>\n        <input type=\"hidden\" id=\"queryString\" value=\"id=gauth-widget&amp;embedWidget=true&amp;gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\"
+        />\n        <input type=\"hidden\" id=\"contextPath\" value=\"/sso\" />\n\n
+        \       <div id=\"login-component\" class=\"blueForm-basic\">\n            <div
+        id=\"login-state-verifymfa\">\n                <td>\n                    \n
+        \                   <span >Code sent to <b>mt*****@gmail.com</b></span>\n
+        \               </td>\n                <form id=\"submit-mfa-verification-code-form\"
+        name=\"submit-mfa-verification-code-form\" method=\"post\" novalidate=\"novalidate\">\n
+        \                   <div class=\"blueForm-v2\">\n                        <div
+        class=\"form-alert\">\n                            <div id=\"genericError\"
+        class=\"error\" hidden>An unexpected error has occurred.</div>\n                            <div
+        id=\"codeSentAttention\" class=\"attention\" hidden>A new code has been sent.
+        You can request another code in 30 seconds.</div>\n                            \n
+        \                           \n                            <div id=\"maxLimit\"
+        class=\"error\" hidden=\"hidden\">You have reached the maximum amount of codes
+        requested. Please use a code you&#39;ve received or wait 24 hours and try
+        again.</div>\n                            \n                        </div>\n
+        \                       <div class=\"formTextField\">\n                            <div
+        class=\"mfaFormLabel\">\n                                <label>\n                                    <span>Security
+        code</span>\n                                    <br/>\n                                    <input
+        type=\"number\" pattern=\"[0-9]*\" inputmode=\"numeric\" maxlength=\"6\" id=\"mfa-code\"
+        name=\"mfa-code\" autofocus oninput=\"validateMfaCodeAndPrivacyConsents()\"/>\n
+        \                               </label>\n                            </div>\n
+        \                       </div>\n                        <br><br>\n                        <div>\n
+        \                           <a href=\"https://support.garmin.com/en-US/?faq=uGHS8ZqOIhA0usBzBMdJu7\"
+        target=\"_blank\" id=\"havingTrouble\">Get help</a><br>\n                        </div>\n
+        \                       <div id=\"requestNewCodeWrapper\" class=\"requestNewCode\">\n
+        \                           <a href=\"#\" id=\"newCode\">Request a new code</a>\n
+        \                       </div>\n                        \n                        \n
+        \                       <br>\n                            \n                        <br/>\n
+        \                       <button type=\"submit\" id=\"mfa-verification-code-submit\"
+        class=\"btn1\">Next</button>\n                    </div>\n                    <input
+        type=\"hidden\" name=\"embed\"            value=\"true\"/>\n                    <input
+        type=\"hidden\" name=\"_csrf\"            value=\"F359B26A20FD789AF8E7C7B2759C9319B70867BA1012DEBCFFCBECC41F6F1EBA66C09B686F3399137D074A67351872C572D2\"
+        />\n                    <input type=\"hidden\" name=\"fromPage\"            value=\"setupEnterMfaCode\"/>\n
+        \                   <br/>\n                </form>\n            </div>\n            <div
+        class=\"clearfix\"></div> <!-- Ensure that GAuth-component div's height is
+        computed correctly. -->\n        </div>\n    </div>\n    <script type=\"text/javascript\">\n
+        \       resizePageOnLoad(jQuery(\"#GAuth-component\").height());\n    </script>\n<script>(function(){if
+        (!document.body) return;var js = \"window['__CF$cv$params']={r:'885f8011ba966458',t:'MTcxNjA3MzYxMy4yMjgwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
+        _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position
+        = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility
+        = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi =
+        _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj =
+        _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if
+        (document.readyState !== 'loading') {handler();} else if (window.addEventListener)
+        {document.addEventListener('DOMContentLoaded', handler);} else {var prev =
+        document.onreadystatechange || function () {};document.onreadystatechange
+        = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange
+        = prev;handler();}};}})();</script></body>\n</html>"
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type,
+        Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - https://www.garmin.com
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 885f8011ba966458-SJC
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Type:
+      - text/html;charset=UTF-8
+      Date:
+      - Sat, 18 May 2024 23:06:53 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=GlwlyK%2BzKjmmM1t2Yd%2BeLaDHiZb%2BX36orkn1foFEjInoXl3iMY6iULlUhcIlXeW828GlVDCw1u2wPI%2BkN%2Ft9ZPHqTerH1xyxse5pAeXJe%2B7r6q%2FNvCK%2By0vZKS7qFCHz"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTs=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        Path=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      X-Application-Context:
+      - casServer:cloud,prod,prod-US_1102:7
+      X-B3-Traceid:
+      - 053ae3f95f8e12db7e4c12688f1900c8
+      X-Robots-Tag:
+      - noindex
+      X-Vcap-Request-Id:
+      - 33a6629e-38d6-4f7a-7fb1-4cbf079564dc
+    status:
+      code: 200
+      message: OK
+- request:
+    body: mfa-code=031174&embed=true&_csrf=F359B26A20FD789AF8E7C7B2759C9319B70867BA1012DEBCFFCBECC41F6F1EBA66C09B686F3399137D074A67351872C572D2&fromPage=setupEnterMfaCode
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '160'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Cookie:
+      - SESSION=SANITIZED; SameSite=SANITIZED; org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        __cflb=SANITIZED; __VCAP_ID__=SANITIZED; ADRUM_BTa=SANITIZED; ADRUM_BT1=SANITIZED;
+        __cf_bm=SANITIZED; _cfuvid=SANITIZED; __cfruid=SANITIZED
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+      referer:
+      - https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+    method: POST
+    uri: https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+  response:
+    body:
+      string: ''
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type,
+        Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - https://www.garmin.com
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 885f806faae46458-SJC
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '0'
+      Date:
+      - Sat, 18 May 2024 23:07:09 GMT
+      Location:
+      - https://sso.garmin.com/sso/login?logintoken=sk5h46m9um&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&locale=en&embed=true&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&embedWidget=true
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=Z9su3v5oNghi3A%2BQ6ICZYDdECWmF1Y%2But4yg8MFKy6E8fbPovvl4xAf0fuFCzxkF8W255wOKgDBleJG8p8WXkjAyfMNR5Yoi1BzSAcA5CrQBLcVSTnHDW8takinxqNl6"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        Path=SANITIZED
+      - ADRUM_BTs=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      X-Application-Context:
+      - casServer:cloud,prod,prod-US_1102:7
+      X-B3-Traceid:
+      - 7ffc6d7faa21e767344034b533fdbefe
+      X-Robots-Tag:
+      - noindex
+      X-Vcap-Request-Id:
+      - 8ca5ae05-6703-490b-4663-2249172c2c4c
+    status:
+      code: 302
+      message: Found
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      Cookie:
+      - SESSION=SANITIZED; SameSite=SANITIZED; org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        __cflb=SANITIZED; __VCAP_ID__=SANITIZED; ADRUM_BTa=SANITIZED; ADRUM_BT1=SANITIZED;
+        ADRUM_BTs=SANITIZED; __cf_bm=SANITIZED; _cfuvid=SANITIZED; __cfruid=SANITIZED
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+      referer:
+      - https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+    method: GET
+    uri: https://sso.garmin.com/sso/login?logintoken=sk5h46m9um&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&locale=en&embed=true&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&embedWidget=true
+  response:
+    body:
+      string: "<!DOCTYPE html>\n<html class=\"no-js\">\n\t<head>\n\t\t<title>Success</title>\n\t\t<meta
+        charset=\"utf-8\">\n\t\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge;\"
+        />\n\t\t<meta name=\"description\" content=\"\">\n\t\t<meta name=\"viewport\"
+        content=\"width=device-width, initial-scale=1\">\n\t\t<meta http-equiv=\"cleartype\"
+        content=\"on\">\n\t\t<script type=\"text/javascript\" src=\"/sso/js/jquery/3.7.1/jquery.min.js?20210319\"></script>\n\t\t<script
+        type=\"text/javascript\">jQuery.noConflict();</script>\n\t\t<script type=\"text/javascript\"
+        src=\"/sso/js/json2.js\"></script>\n\t\t<script type=\"text/javascript\" src=\"/sso/js/consoleUtils.js?20210319\"></script>\n\t\t<script
+        type=\"text/javascript\" src=\"/sso/js/postmessage.js?20210319\"></script>\n\t\t<script
+        type=\"text/javascript\">\n\t\t\tvar redirectAfterAccountLoginUrl \t  = \"https:\\/\\/sso.garmin.com\\/sso\\/embed\";\n\t\t\tvar
+        redirectAfterAccountCreationUrl = \"\";\n\t\t\tvar consumeServiceTicket         \t
+        \ = \"true\";\n\t\t\tvar service_url                  \t  = \"https:\\/\\/sso.garmin.com\\/sso\\/embed\";\n\t\t\tvar
+        parent_url                   \t  = \"https:\\/\\/sso.garmin.com\\/sso\\/embed\";\n\t\t\tvar
+        response_url                 \t  = \"https:\\/\\/sso.garmin.com\\/sso\\/embed?ticket=ST-2880693-KiRaqzeMsV5dxDhQuf2n-cas\";\n\t\t\tvar
+        logintoken                   \t  = \"sk5h46m9um\";\n\t\t\tvar socialLogin
+        \                  \t  = \"\";\n\t\t\tvar performMFACheck                 =
+        \"\";\n\n\t\t\t// Decode url if it's encoded unnecessarily (which is happening
+        when SSO GAuth logins redisplay the login page due to session timeouts.)\n\t\t\tif
+        (response_url.indexOf('%3A%2F%2F') != -1) {\n\t\t\t\tresponse_url = decodeURIComponent(response_url);\n\t\t\t}\n\t\t\tresponse_url
+        = response_url.replace(new RegExp(\"&amp;\", 'g'),\"&\");\n\n\t\t\tvar service_ticket
+        = response_url.substring(response_url.indexOf('ticket=') + 7, response_url.length);\n\n\t\t\tif
+        (redirectAfterAccountLoginUrl) {\n\t\t\t\tconsoleInfo('casEmbedSuccess.html:
+        redirectAfterAccountLoginUrl: [' + redirectAfterAccountLoginUrl + ']');\n\t\t\t}\n\t\t\tconsoleInfo('casEmbedSuccess.html:
+        consumeServiceTicket:         [' + consumeServiceTicket + ']');\n\t\t\tconsoleInfo('casEmbedSuccess.html:
+        service_url:                  [' + service_url + ']');\n\t\t\tconsoleInfo('casEmbedSuccess.html:
+        parent_url:                   [' + parent_url + ']');\n\t\t\tconsoleInfo('casEmbedSuccess.html:
+        response_url:                 [' + response_url + ']');\n\t\t\tconsoleInfo('casEmbedSuccess.html:
+        service_ticket:               [' + service_ticket + ']');\n\t\t\tif (logintoken)
+        {\n\t\t\t\tconsoleInfo('casEmbedSuccess.html: logintoken:                   ['
+        + logintoken + ']');\n\t\t\t}\n\t\t\tif (socialLogin) {\n\t\t\t\tconsoleInfo('casEmbedSuccess.html:
+        socialLogin:                   [' + socialLogin + ']');\n\t\t\t}\n\n\t\t\tfunction
+        send(msg) {\n\t\t\t\tconsoleInfo('casEmbedSuccess.html: send(): Calling XD.postMessage(msg:['
+        + JSON.stringify(msg) + '], target_url:[' + parent_url + '])...');\n\t\t\t\tXD.postMessage(msg,
+        parent_url, parent);\n\t\t\t\treturn false;\n\t\t\t}\n\n\t\t\tfunction redirect(target){\n\t\t\t\tvar
+        embedWidget = \"true\";\n\t\t\t\tif (embedWidget != 'true') {\n\t\t\t\t\tif
+        (logintoken || socialLogin) {\n\t\t\t\t\t\t//  Tell parent to close opened
+        Gauth lite box.\n\t\t\t\t\t\tsend({'closeLiteBox':'1'});\n\t\t\t\t\t} else
+        {\n\t\t\t\t\t\t// Tell parent to resize Gauth widget's height to just that
+        of the loading icon.\n\t\t\t\t\t\tsend({'gauthHeight':jQuery(\"#GAuth-component\").height()});\n\t\t\t\t\t}\n\t\t\t\t}\n\n\t\t\t\tif
+        (window.opener != null && window.opener.parent && window.opener.parent.frameElement)
+        {\n\t\t\t\t\tconsoleInfo('casEmbedSuccess.html: frameElement detected:        ['
+        + window.opener.parent.frameElement + ']');\n\t\t\t\t\tvar iframeParent =
+        window.opener.parent;\n\t\t\t\t\tiframeParent.location.href = target;\n\t\t\t\t\twindow.close();\n\t\t\t\t}
+        else {\n\t\t\t\t\t// If the \"redirectAfterAccountLoginUrl\" GAuth config
+        parameter was specified,\n\t\t\t\t\t// a full page refresh upon logon was
+        requested, so redirect the parent window upon login.\n\t\t\t\t\tif (redirectAfterAccountLoginUrl
+        || redirectAfterAccountCreationUrl || (socialLogin && socialLogin === 'true')
+        || (performMFACheck && performMFACheck === 'true')) {\n\n\t\t\t\t\t\tif (embedWidget
+        != 'true') {\n\t\t\t\t\t\t\tsend({'status':'SUCCESS', 'successDetails':'Login
+        Successful'});\n\t\t\t\t\t\t}\n\n\t\t\t\t\t\t// Redirect parent of login iframe
+        to requested service URL with ?ST=<Service Ticket ID> appended,\n\t\t\t\t\t\t//
+        so the webapp can validate the service ticket and log the user on to the webapp.\n\t\t\t\t\t\tconsoleInfo('casEmbedSuccess.html:
+        Calling parent.location.href = [' + response_url + '];...');\n\t\t\t\t\t\ttop.location.href
+        = response_url;\n\n\t\t\t\t\t// Else if GAuth was configured not to consume
+        the service ticket, send the service ticket and service url.\n\t\t\t\t\t//
+        It's then up to the parent page to hide the GAuth widget and validate the
+        service ticket.\n\t\t\t\t\t} else if (consumeServiceTicket == 'false') {\n\n\t\t\t\t\t\tsend({'status':'SUCCESS',
+        'successDetails':'Login Successful', 'serviceTicket':service_ticket, 'serviceUrl':service_url});\n\n\t\t\t\t\t}
+        else {\n\t\t\t\t\t\t// Else consume the service ticket and log the user into
+        the parent webapp, by making a JSONP request to the response url.\n\t\t\t\t\t\t//
+        This service ticket request to the parent webapp will return a small amount
+        of JSON that we\n\t\t\t\t\t\t// can send in the success event to the parent
+        page to notify them of successful logon\n\t\t\t\t\t\t// It's then up to the
+        parent page to hide the GAuth widget and do whatever it wants.\n\t\t\t\t\t\tconsoleInfo('casEmbedSuccess.html:
+        Loading ajax jsonp URL: [' + response_url + ']');\n\t\t\t\t\t\tjQuery.ajax({\n\t\t\t\t\t\t\ttype:
+        \"REDIRECT\",\n\t\t\t\t\t\t\turl: response_url,\n\t\t\t\t\t\t\tdataType: 'jsonp',\n\t\t\t\t\t\t\terror:
+        function(xhr, status, error) {\n\t\t\t\t\t\t\t\tconsoleError('casEmbedSuccess.html:
+        Error loading ajax jsonp URL: [' + response_url + ']! Error: ' + error);\n\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\tsuccess:
+        function( data, status, xhr ) {\n\t\t\t\t\t\t\t\tconsoleInfo('casEmbedSuccess.html:
+        success loading ajax jsonp url. data: [' + data + ']');\n\t\t\t\t\t\t\t\tvar
+        userdata = data;\n\t\t\t\t\t\t\t\tif (typeof(userdata) === 'string') {\n\t\t\t\t\t\t\t\t\tuserdata
+        = JSON.parse(data);\n\t\t\t\t\t\t\t\t}\n\t\t\t\t\t\t\t\tconsoleInfo('casGenericRedirect.jsp:
+        customerId: ['            + userdata.customerId\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t+
+        '], username: ['               + userdata.username\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t+
+        '], rememberMe: ['             + userdata.rememberMe\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t+
+        '], password: ['               + userdata.password\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t+
+        '], email: ['                  + userdata.email\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t+
+        '], displayName: ['            + userdata.displayName\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t+
+        '], firstName: ['              + userdata.firstName\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t+
+        '], lastName: ['               + userdata.lastName\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t+
+        '], localePreference: ['       + userdata.localePreference\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t+
+        '], addressLine1: ['           + userdata.addressLine1\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t+
+        '], addressLine2: ['           + userdata.addressLine2\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t+
+        '], cityName: ['               + userdata.cityName\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t+
+        '], state: ['                  + userdata.state\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t+
+        '], postalCode: ['             + userdata.postalCode\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t+
+        '], country: ['                + userdata.country\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t+
+        '], passwordChangeRequired: [' + userdata.passwordChangeRequired\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t+
+        '], lastLogin: ['              + userdata.lastLogin\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t+
+        '], erpCustomerNumber: ['      + userdata.erpCustomerNumber\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t+
+        ']');\n\t\t\t\t\t\t\t\tsend({'status'                 : 'SUCCESS',\n\t\t\t\t\t\t\t\t\t\t\t'successDetails'
+        \        : 'Login Successful',\n\t\t\t\t\t\t\t\t\t\t\t'customerId'             :
+        userdata.customerId,\n\t\t\t\t\t\t\t\t\t\t\t'username'               : userdata.username,\n\t\t\t\t\t\t\t\t\t\t\t'rememberMe'
+        \            : userdata.rememberMe,\n\t\t\t\t\t\t\t\t\t\t\t'password'               :
+        userdata.password,\n\t\t\t\t\t\t\t\t\t\t\t'email'                  : userdata.email,\n\t\t\t\t\t\t\t\t\t\t\t'displayName'
+        \           : userdata.displayName,\n\t\t\t\t\t\t\t\t\t\t\t'firstName'              :
+        userdata.firstName,\n\t\t\t\t\t\t\t\t\t\t\t'lastName'               : userdata.lastName,\n\t\t\t\t\t\t\t\t\t\t\t'localePreference'
+        \      : userdata.localePreference,\n\t\t\t\t\t\t\t\t\t\t\t'addressLine1'
+        \          : userdata.addressLine1,\n\t\t\t\t\t\t\t\t\t\t\t'addressLine2'
+        \          : userdata.addressLine2,\n\t\t\t\t\t\t\t\t\t\t\t'cityName'               :
+        userdata.cityName,\n\t\t\t\t\t\t\t\t\t\t\t'state'                  : userdata.state,\n\t\t\t\t\t\t\t\t\t\t\t'postalCode'
+        \            : userdata.postalCode,\n\t\t\t\t\t\t\t\t\t\t\t'country'                :
+        userdata.country,\n\t\t\t\t\t\t\t\t\t\t\t'passwordChangeRequired' : userdata.passwordChangeRequired,\n\t\t\t\t\t\t\t\t\t\t\t'lastLogin'
+        \             : userdata.lastLogin,\n\t\t\t\t\t\t\t\t\t\t\t'erpCustomerNumber'
+        \     : userdata.erpCustomerNumber\n\t\t\t\t\t\t\t\t});\n\t\t\t\t\t\t\t}\n\t\t\t\t\t\t});\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t</script>\n\t</head>\n\t<body>\n\t\t<div
+        id=\"GAuth-component\">\n\t\t\t<img src='/sso/images/ajax-loader.gif' class=\"loaderImage\"/>\n\t\t</div>\n\t\t<script
+        type=\"text/javascript\">\n\t\t\tjQuery(document).ready(function(){\n\t\t\t\tvar
+        service = \"https:\\/\\/sso.garmin.com\\/sso\\/embed\";\n\t\t\t\tconsoleInfo(\"casEmbedSuccess.html:
+        ready, calling redirect('\" + service + \"')...\");\n\t\t\t\tredirect(service);\n\t\t\t});\n\t\t</script>\n\t<script>(function(){if
+        (!document.body) return;var js = \"window['__CF$cv$params']={r:'885f807a798f6458',t:'MTcxNjA3MzYzMC4yNDMwMDA='};_cpo=document.createElement('script');_cpo.nonce='',_cpo.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js',document.getElementsByTagName('head')[0].appendChild(_cpo);\";var
+        _0xh = document.createElement('iframe');_0xh.height = 1;_0xh.width = 1;_0xh.style.position
+        = 'absolute';_0xh.style.top = 0;_0xh.style.left = 0;_0xh.style.border = 'none';_0xh.style.visibility
+        = 'hidden';document.body.appendChild(_0xh);function handler() {var _0xi =
+        _0xh.contentDocument || _0xh.contentWindow.document;if (_0xi) {var _0xj =
+        _0xi.createElement('script');_0xj.innerHTML = js;_0xi.getElementsByTagName('head')[0].appendChild(_0xj);}}if
+        (document.readyState !== 'loading') {handler();} else if (window.addEventListener)
+        {document.addEventListener('DOMContentLoaded', handler);} else {var prev =
+        document.onreadystatechange || function () {};document.onreadystatechange
+        = function (e) {prev(e);if (document.readyState !== 'loading') {document.onreadystatechange
+        = prev;handler();}};}})();</script></body>\n</html>\n"
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type,
+        Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - https://www.garmin.com
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 885f807a798f6458-SJC
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Type:
+      - text/html;charset=UTF-8
+      Date:
+      - Sat, 18 May 2024 23:07:10 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=%2BIryBqMGtox%2FO4kcpIZSmiAox8EiYnyZzVo21bRFPYoG3z55sU%2FRilzKvgzm1Lz4vnpRfq95ReP4CB%2FfdT8MZLAKScd1oXuVFkSGyH5FUNy0ukp4u%2BdCHBoek2em5ZKO"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTs=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BTa=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - SameSite=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - ADRUM_BT1=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED;
+        Secure
+      - org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        Path=SANITIZED
+      - CASTGC=SANITIZED; Path=SANITIZED; Secure; HttpOnly
+      - CASTGC=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED; Secure;
+        HttpOnly
+      - GARMIN-SSO=SANITIZED; Domain=SANITIZED; Path=SANITIZED; Secure
+      - GARMIN-SSO=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Domain=SANITIZED;
+        Path=SANITIZED; Secure
+      - GarminNoCache=SANITIZED; Domain=SANITIZED; Path=SANITIZED; Secure
+      - GarminNoCache=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Domain=SANITIZED;
+        Path=SANITIZED; Secure
+      - GarminBuyCacheKey=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Domain=SANITIZED;
+        Path=SANITIZED
+      - GarminBuyCacheKey=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Domain=SANITIZED;
+        Path=SANITIZED
+      - GARMIN-SSO-GUID=SANITIZED; Domain=SANITIZED; Path=SANITIZED; Secure
+      - GARMIN-SSO-GUID=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Domain=SANITIZED;
+        Path=SANITIZED; Secure
+      - GARMIN-SSO-CUST-GUID=SANITIZED; Domain=SANITIZED; Path=SANITIZED; Secure
+      - GARMIN-SSO-CUST-GUID=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Domain=SANITIZED;
+        Path=SANITIZED; Secure
+      - CASTGC=SANITIZED; Path=SANITIZED; Secure; HttpOnly
+      - CASTGC=SANITIZED; Max-Age=SANITIZED; Expires=SANITIZED; Path=SANITIZED; Secure;
+        HttpOnly
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Application-Context:
+      - casServer:cloud,prod,prod-US_1102:7
+      X-B3-Traceid:
+      - 73ac58f7d75cf14d3a193f80a80de7c4
+      X-Robots-Tag:
+      - noindex
+      X-Vcap-Request-Id:
+      - 8a5e2efc-6afb-4e33-6af7-749b362d7ccc
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.31.0
+    method: GET
+    uri: https://thegarth.s3.amazonaws.com/oauth_consumer.json
+  response:
+    body:
+      string: '{"consumer_key": "SANITIZED", "consumer_secret": "SANITIZED"}'
+    headers:
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '124'
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 18 May 2024 23:07:11 GMT
+      ETag:
+      - '"20240b1013cb35419bb5b2cff1407a4e"'
+      Last-Modified:
+      - Thu, 03 Aug 2023 00:16:11 GMT
+      Server:
+      - AmazonS3
+      x-amz-id-2:
+      - D+vayHnIRE0uWnxaF05fd9oQB97vhdZ0StVTzhaS6ZRFuaSuH1/TrjuZzUtbCr4OVFH7Y/v3N8Y=
+      x-amz-request-id:
+      - HWNTPEH1EE6FQV9C
+      x-amz-server-side-encryption:
+      - AES256
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - !!binary |
+        Ki8q
+      Accept-Encoding:
+      - !!binary |
+        Z3ppcCwgZGVmbGF0ZQ==
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - !!binary |
+        a2VlcC1hbGl2ZQ==
+      User-Agent:
+      - !!binary |
+        Y29tLmdhcm1pbi5hbmRyb2lkLmFwcHMuY29ubmVjdG1vYmlsZQ==
+    method: GET
+    uri: https://connectapi.garmin.com/oauth-service/oauth/preauthorized?ticket=ST-2880693-KiRaqzeMsV5dxDhQuf2n-cas&login-url=https://sso.garmin.com/sso/embed&accepts-mfa-tokens=true
+  response:
+    body:
+      string: oauth_token=SANITIZED&oauth_token_secret=SANITIZED&mfa_token=SANITIZED&mfa_expiration_timestamp=2025-05-18
+        23:07:10.000
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 885f807f58f87abb-SJC
+      Connection:
+      - keep-alive
+      Content-Type:
+      - text/plain;charset=utf-8
+      Date:
+      - Sat, 18 May 2024 23:07:11 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=gydJyUavxu3CnI02qEtNbuKEkdFnWDcsQrqtjfD3deM%2FETziKx1L74yS6OaEMlCAgyb%2BsJ6%2FeCT1W7rzNdw0SVb5pfbdinq9CEqlgrLaT4tavojdxmQ03xF%2BnZw5BfV9P2cRFPel4w%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+    status:
+      code: 200
+      message: OK
+- request:
+    body: mfa_token=MFA-6241-G7vU5YelBHqKji22WwcN6eSqnrkQ6NR0wmtibCo3cOcrlcpDbR-cas
+    headers:
+      Accept:
+      - !!binary |
+        Ki8q
+      Accept-Encoding:
+      - !!binary |
+        Z3ppcCwgZGVmbGF0ZQ==
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - !!binary |
+        a2VlcC1hbGl2ZQ==
+      Content-Length:
+      - '73'
+      Content-Type:
+      - !!binary |
+        YXBwbGljYXRpb24veC13d3ctZm9ybS11cmxlbmNvZGVk
+      User-Agent:
+      - !!binary |
+        Y29tLmdhcm1pbi5hbmRyb2lkLmFwcHMuY29ubmVjdG1vYmlsZQ==
+    method: POST
+    uri: https://connectapi.garmin.com/oauth-service/oauth/exchange/user/2.0
+  response:
+    body:
+      string: '{"scope": "COMMUNITY_COURSE_READ GARMINPAY_WRITE GOLF_API_READ ATP_READ
+        GHS_SAMD GHS_UPLOAD INSIGHTS_READ COMMUNITY_COURSE_WRITE CONNECT_WRITE GCOFFER_WRITE
+        GARMINPAY_READ DT_CLIENT_ANALYTICS_WRITE GOLF_API_WRITE INSIGHTS_WRITE PRODUCT_SEARCH_READ
+        OMT_SUBSCRIPTION_READ GCOFFER_READ CONNECT_READ ATP_WRITE", "jti": "SANITIZED",
+        "access_token": "SANITIZED", "token_type": "Bearer", "refresh_token": "SANITIZED",
+        "expires_in": 100707, "refresh_token_expires_in": 2591999}'
+    headers:
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-RAY:
+      - 885f80825b227abb-SJC
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 18 May 2024 23:07:11 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=thPZw5vQz%2BHsts6LehoIFSICQ3kxVMYW%2FNd0THiPD%2Bp1y%2FfOMDhpMV8TAWVttLf%2BDMHnx%2FLXs71C6vsZDbhy7tngsRgIHDxay8WzP6kT8cFecEyP4JHHOBYnkATs5Fe1QWdLw5vVEg%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+version: 1

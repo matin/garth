@@ -1,3 +1,4 @@
+import asyncio
 import re
 import time
 from typing import Callable, Dict, Optional, Tuple
@@ -150,7 +151,10 @@ def handle_mfa(
     client: "http.Client", signin_params: dict, prompt_mfa: Callable
 ) -> None:
     csrf_token = get_csrf_token(client.last_resp.text)
-    mfa_code = prompt_mfa()
+    if asyncio.iscoroutinefunction(prompt_mfa):
+        mfa_code = asyncio.run(prompt_mfa())
+    else:
+        mfa_code = prompt_mfa()
     client.post(
         "sso",
         "/sso/verifyMFA/loginEnterMfaCode",
