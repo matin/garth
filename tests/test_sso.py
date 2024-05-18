@@ -48,7 +48,7 @@ def test_login_success_mfa_async(monkeypatch, client: Client):
         return "031174"
 
     async def prompt_mfa():
-        return "031174"
+        return input("MFA code: ")
 
     monkeypatch.setattr("builtins.input", mock_input)
     oauth1, oauth2 = sso.login(
