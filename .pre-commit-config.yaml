@@ -2,7 +2,7 @@ exclude: '.*\.ipynb$'
 
 repos:
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v4.3.0
+  rev: v4.6.0
   hooks:
   - id: check-yaml
     args: ['--unsafe']
@@ -11,12 +11,20 @@ repos:
   - id: trailing-whitespace
 
 - repo: https://github.com/codespell-project/codespell
-  rev: v2.2.4
+  rev: v2.2.6
   hooks:
   - id: codespell
     additional_dependencies:
       - tomli
     exclude: 'cassettes/'
+
+- repo: https://github.com/markdownlint/markdownlint
+  rev: v0.13.0
+  hooks:
+    - id: markdownlint
+      args:
+        - --rule
+        - "MD033:allowed_elements=img"
 
 - repo: local
   hooks:
