@@ -6,8 +6,6 @@ from pydantic.dataclasses import dataclass
 from .. import http
 from ..utils import camel_to_snake_dict, format_end_date
 
-BASE_PATH = "/usersummary-service/stats/stress"
-
 
 @dataclass(frozen=True)
 class Stats:

@@ -1,5 +1,6 @@
 __all__ = [
     "DailyHRV",
+    "DainlyHydration",
     "DailyIntensityMinutes",
     "DailySleep",
     "DailySteps",
