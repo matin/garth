@@ -1,4 +1,4 @@
-# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json # Schema for CodeRabbit configurations
 language: "en-US"
 early_access: true
 reviews:
