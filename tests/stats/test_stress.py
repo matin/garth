@@ -6,7 +6,7 @@ from garth import DailyStress, WeeklyStress
 from garth.http import Client
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_daily_stress(authed_client: Client):
     end = date(2023, 7, 20)
     days = 20
@@ -15,7 +15,7 @@ def test_daily_stress(authed_client: Client):
     assert len(daily_stress) == days
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_daily_stress_pagination(authed_client: Client):
     end = date(2023, 7, 20)
     days = 60
@@ -23,7 +23,7 @@ def test_daily_stress_pagination(authed_client: Client):
     assert len(daily_stress) == days
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_weekly_stress(authed_client: Client):
     end = date(2023, 7, 20)
     weeks = 52
@@ -32,7 +32,7 @@ def test_weekly_stress(authed_client: Client):
     assert weekly_stress[-1].calendar_date == end - timedelta(days=6)
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_weekly_stress_pagination(authed_client: Client):
     end = date(2023, 7, 20)
     weeks = 60
@@ -41,7 +41,7 @@ def test_weekly_stress_pagination(authed_client: Client):
     assert weekly_stress[-1].calendar_date == end - timedelta(days=6)
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_weekly_stress_beyond_data(authed_client: Client):
     end = date(2023, 7, 20)
     weeks = 1000

@@ -6,7 +6,7 @@ from garth import DailySleep
 from garth.http import Client
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_daily_sleep(authed_client: Client):
     end = date(2023, 7, 20)
     days = 20

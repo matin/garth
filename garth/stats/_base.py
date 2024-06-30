@@ -1,12 +1,10 @@
 from datetime import date, timedelta
-from typing import ClassVar, List, Optional, Union
+from typing import ClassVar, List, Optional, Type, Union
 
 from pydantic.dataclasses import dataclass
 
 from .. import http
 from ..utils import camel_to_snake_dict, format_end_date
-
-BASE_PATH = "/usersummary-service/stats/stress"
 
 
 @dataclass(frozen=True)
@@ -18,7 +16,7 @@ class Stats:
 
     @classmethod
     def list(
-        cls,
+        cls: Type["Stats"],
         end: Union[date, str, None] = None,
         period: int = 1,
         *,
@@ -32,7 +30,7 @@ class Stats:
             page = cls.list(end, cls._page_size, client=client)
             if not page:
                 return []
-            page = (
+            return (
                 cls.list(
                     end - timedelta(**{period_type: cls._page_size}),
                     period - cls._page_size,
@@ -40,7 +38,6 @@ class Stats:
                 )
                 + page
             )
-            return page
 
         start = end - timedelta(**{period_type: period - 1})
         path = cls._path.format(start=start, end=end, period=period)
