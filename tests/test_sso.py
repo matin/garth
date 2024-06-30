@@ -8,13 +8,13 @@ from garth.exc import GarthException, GarthHTTPError
 from garth.http import Client
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_login_email_password_fail(client: Client):
     with pytest.raises(GarthHTTPError):
         sso.login("user@example.com", "wrong_p@ssword", client=client)
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_login_success(client: Client):
     oauth1, oauth2 = sso.login(
         "user@example.com", "correct_password", client=client
@@ -26,7 +26,7 @@ def test_login_success(client: Client):
     assert isinstance(oauth2, OAuth2Token)
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_login_success_mfa(monkeypatch, client: Client):
     def mock_input(_):
         return "671091"
@@ -42,7 +42,7 @@ def test_login_success_mfa(monkeypatch, client: Client):
     assert isinstance(oauth2, OAuth2Token)
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_login_success_mfa_async(monkeypatch, client: Client):
     def mock_input(_):
         return "031174"
@@ -77,7 +77,7 @@ def test_set_expirations(oauth2_token_dict: dict):
     )
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_exchange(authed_client: Client):
     assert authed_client.oauth1_token
     oauth1_token = authed_client.oauth1_token

@@ -6,7 +6,7 @@ from garth import HRVData
 from garth.http import Client
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_hrv_data_get(authed_client: Client):
     hrv_data = HRVData.get("2023-07-20", client=authed_client)
     assert hrv_data
@@ -16,7 +16,7 @@ def test_hrv_data_get(authed_client: Client):
     assert HRVData.get("2021-07-20", client=authed_client) is None
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_hrv_data_list(authed_client: Client):
     days = 2
     end = date(2023, 7, 20)

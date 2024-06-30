@@ -6,7 +6,7 @@ from garth import DailyIntensityMinutes, WeeklyIntensityMinutes
 from garth.http import Client
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_daily_intensity_minutes(authed_client: Client):
     end = date(2023, 7, 20)
     days = 20
@@ -15,7 +15,7 @@ def test_daily_intensity_minutes(authed_client: Client):
     assert len(daily_im) == days
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_weekly_intensity_minutes(authed_client: Client):
     end = date(2023, 7, 20)
     weeks = 12

@@ -102,7 +102,7 @@ def test_pool_connections(client: Client):
     assert adapter._pool_maxsize == 99
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_client_request(client: Client):
     resp = client.request("GET", "connect", "/")
     assert resp.ok
@@ -112,7 +112,7 @@ def test_client_request(client: Client):
     assert "404" in str(e.value)
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_login_success_mfa(monkeypatch, client: Client):
     def mock_input(_):
         return "327751"
@@ -126,14 +126,14 @@ def test_login_success_mfa(monkeypatch, client: Client):
     assert client.oauth2_token
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_username(authed_client: Client):
     assert authed_client._profile is None
     assert authed_client.username
     assert authed_client._profile
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_connectapi(authed_client: Client):
     stress = authed_client.connectapi(
         "/usersummary-service/stats/stress/daily/2023-07-21/2023-07-21"
@@ -151,7 +151,7 @@ def test_connectapi(authed_client: Client):
     ]
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_refresh_oauth2_token(authed_client: Client):
     assert authed_client.oauth2_token
     authed_client.oauth2_token.expires_at = int(time.time())
@@ -162,7 +162,7 @@ def test_refresh_oauth2_token(authed_client: Client):
     assert profile["userName"]
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_download(authed_client: Client):
     downloaded = authed_client.download(
         "/download-service/files/activity/11998957007"
@@ -172,7 +172,7 @@ def test_download(authed_client: Client):
     assert downloaded[:4] == zip_magic_number
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_upload(authed_client: Client):
     fpath = "tests/12129115726_ACTIVITY.fit"
     with open(fpath, "rb") as f:
@@ -180,7 +180,7 @@ def test_upload(authed_client: Client):
     assert uploaded
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_delete(authed_client: Client):
     activity_id = "12135235656"
     path = f"/activity-service/activity/{activity_id}"
@@ -195,7 +195,7 @@ def test_delete(authed_client: Client):
     assert "404" in str(e.value)
 
 
-@pytest.mark.vcr
+@pytest.mark.vcr()
 def test_put(authed_client: Client):
     data = [
         {
