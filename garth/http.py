@@ -181,7 +181,7 @@ class Client:
 
     def upload(
         self, fp: IO[bytes], /, path: str = "/upload-service/upload"
-    ) -> Dict[str, Any]:
+    ) -> Optional[Dict[str, Any]]:
         fname = os.path.basename(fp.name)
         files = {"file": (fname, fp)}
         return self.connectapi(
