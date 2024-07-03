@@ -163,8 +163,6 @@ class Client:
 
     def refresh_oauth2(self):
         assert self.oauth1_token
-        # There is a way to perform a refresh of an OAuth2 token, but it
-        # appears even Garmin uses this approach when the OAuth2 is expired
         self.oauth2_token = sso.exchange(self.oauth1_token, self)
 
     def connectapi(self, path: str, method="GET", **kwargs):
