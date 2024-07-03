@@ -135,14 +135,17 @@ class Client:
             timeout=self.timeout,
             **kwargs,
         )
+        self.handle_http_error(self.last_resp)
+        return self.last_resp
+
+    def handle_http_error(self, response: Response):
         try:
-            self.last_resp.raise_for_status()
+            response.raise_for_status()
         except HTTPError as e:
             raise GarthHTTPError(
                 msg="Error in request",
                 error=e,
             )
-        return self.last_resp
 
     def get(self, *args, **kwargs) -> Response:
         return self.request("GET", *args, **kwargs)
