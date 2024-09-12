@@ -63,6 +63,22 @@ def test_login_success_mfa_async(monkeypatch, client: Client):
     assert oauth2
     assert isinstance(oauth2, OAuth2Token)
 
+@pytest.mark.vcr
+def test_login_success_split_mfa(monkeypatch, client: Client):
+
+    client, asks_for_mfa = sso.login_mfa(
+        "user@example.com", "correct_password", client=client
+    )
+
+    assert asks_for_mfa is True
+
+    oauth1, oauth2 = sso.login_complete("134123", client)
+    
+
+    assert oauth1
+    assert isinstance(oauth1, OAuth1Token)
+    assert oauth2
+    assert isinstance(oauth2, OAuth2Token)
 
 def test_set_expirations(oauth2_token_dict: dict):
     token = sso.set_expirations(oauth2_token_dict)

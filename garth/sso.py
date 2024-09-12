@@ -47,26 +47,43 @@ def login(
     client: Optional["http.Client"] = None,
     prompt_mfa: Callable = lambda: input("MFA code: "),
 ) -> Tuple[OAuth1Token, OAuth2Token]:
+    client, SIGNIN_PARAMS, title = login_auth_internal(email, password, client)
+
+    # Handle MFA
+    if "MFA" in title:
+        handle_mfa(client, prompt_mfa)
+        title = get_title(client.last_resp.text)
+
+    return finish_login_internal(client, title)
+
+def login_mfa(
+    email: str,
+    password: str,
+    /,
+    client: Optional["http.Client"] = None,
+    ) -> Tuple[http.Client, bool]:
+    client, SIGNIN_PARAMS, title = login_auth_internal(email, password, client)
+
+    asks_for_mfa = "MFA" in title
+    return client, asks_for_mfa
+
+def login_complete(
+    mfa_code: str,
+    /,
+    client: http.Client
+) -> Tuple[OAuth1Token, OAuth2Token]:
+    csrf_token = get_csrf_token(client.last_resp.text)
+
+    handle_mfa_internal(client, csrf_token, mfa_code)
+    title = get_title(client.last_resp.text)
+    return finish_login_internal(client, title)
+
+
+def login_auth_internal(email, password, client):
     client = client or http.client
 
     # Define params based on domain
-    SSO = f"https://sso.{client.domain}/sso"
-    SSO_EMBED = f"{SSO}/embed"
-    SSO_EMBED_PARAMS = dict(
-        id="gauth-widget",
-        embedWidget="true",
-        gauthHost=SSO,
-    )
-    SIGNIN_PARAMS = {
-        **SSO_EMBED_PARAMS,
-        **dict(
-            gauthHost=SSO_EMBED,
-            service=SSO_EMBED,
-            source=SSO_EMBED,
-            redirectAfterAccountLoginUrl=SSO_EMBED,
-            redirectAfterAccountCreationUrl=SSO_EMBED,
-        ),
-    }
+    SSO_EMBED_PARAMS, SIGNIN_PARAMS = define_params(client)
 
     # Set cookies
     client.get("sso", "/sso/embed", params=SSO_EMBED_PARAMS)
@@ -94,12 +111,30 @@ def login(
         ),
     )
     title = get_title(client.last_resp.text)
+    return client,SIGNIN_PARAMS,title
 
-    # Handle MFA
-    if "MFA" in title:
-        handle_mfa(client, SIGNIN_PARAMS, prompt_mfa)
-        title = get_title(client.last_resp.text)
+def define_params(client):
+    SSO = f"https://sso.{client.domain}/sso"
+    SSO_EMBED = f"{SSO}/embed"
+    SSO_EMBED_PARAMS = dict(
+        id="gauth-widget",
+        embedWidget="true",
+        gauthHost=SSO,
+    )
+    SIGNIN_PARAMS = {
+        **SSO_EMBED_PARAMS,
+        **dict(
+            gauthHost=SSO_EMBED,
+            service=SSO_EMBED,
+            source=SSO_EMBED,
+            redirectAfterAccountLoginUrl=SSO_EMBED,
+            redirectAfterAccountCreationUrl=SSO_EMBED,
+        ),
+    }
+    
+    return SSO_EMBED_PARAMS,SIGNIN_PARAMS
 
+def finish_login_internal(client, title) -> Tuple[OAuth1Token, OAuth2Token]: 
     assert title == "Success"
 
     # Parse ticket
@@ -111,6 +146,9 @@ def login(
     oauth2 = exchange(oauth1, client)
 
     return oauth1, oauth2
+
+
+
 
 
 def get_oauth1_token(ticket: str, client: "http.Client") -> OAuth1Token:
@@ -148,17 +186,22 @@ def exchange(oauth1: OAuth1Token, client: "http.Client") -> OAuth2Token:
 
 
 def handle_mfa(
-    client: "http.Client", signin_params: dict, prompt_mfa: Callable
+    client: "http.Client", prompt_mfa: Callable
 ) -> None:
     csrf_token = get_csrf_token(client.last_resp.text)
     if asyncio.iscoroutinefunction(prompt_mfa):
         mfa_code = asyncio.run(prompt_mfa())
     else:
         mfa_code = prompt_mfa()
+    handle_mfa_internal(client, csrf_token, mfa_code)
+
+def handle_mfa_internal(client, csrf_token, mfa_code):
+    # Define params based on domain
+    SSO_EMBED_PARAMS, SIGNIN_PARAMS = define_params(client)
     client.post(
         "sso",
         "/sso/verifyMFA/loginEnterMfaCode",
-        params=signin_params,
+        params=SIGNIN_PARAMS,
         referrer=True,
         data={
             "mfa-code": mfa_code,
