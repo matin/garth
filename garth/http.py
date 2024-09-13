@@ -1,6 +1,7 @@
 import base64
 import json
 import os
+import http
 from typing import IO, Any, Dict, Optional, Tuple, Union
 from urllib.parse import urljoin
 
@@ -158,6 +159,19 @@ class Client:
 
     def login(self, *args, **kwargs):
         self.oauth1_token, self.oauth2_token = sso.login(
+            *args, **kwargs, client=self
+        )
+
+    def login_mfa(self, *args, **kwargs) -> Tuple[http.Client, bool]:
+        client, asks_for_mfa = sso.login_mfa(
+            *args, **kwargs, client=self
+        )
+
+        return client, asks_for_mfa
+
+
+    def login_complete(self, *args, **kwargs):
+        self.oauth1_token, self.oauth2_token = sso.login_complete(
             *args, **kwargs, client=self
         )
 

@@ -54,7 +54,7 @@ def login(
         handle_mfa(client, prompt_mfa)
         title = get_title(client.last_resp.text)
 
-    return finish_login_internal(client, title)
+    return finish_login_internal(client, title) 
 
 def login_mfa(
     email: str,
