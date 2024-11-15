@@ -73,7 +73,7 @@ jobs:
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}-with-deps
 
       - name: upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/coverage.xml
