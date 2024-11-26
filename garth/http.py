@@ -13,10 +13,7 @@ from .exc import GarthHTTPError
 from .utils import asdict
 
 USER_AGENT = {
-    "User-Agent": (
-        "Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) "
-        "AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
-    ),
+"User-Agent": ("GCM-iOS-5.7.2.1"),
 }
 
 
