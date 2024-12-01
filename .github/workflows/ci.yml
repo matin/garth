@@ -45,7 +45,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu, macos, windows]
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.9", "3.10", "3.11"]
 
     env:
       PYTHON: ${{ matrix.python-version }}
@@ -73,9 +73,8 @@ jobs:
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}-with-deps
 
       - name: upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/coverage.xml
           flags: unittests
           name: codecov-umbrella
