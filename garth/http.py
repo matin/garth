@@ -13,7 +13,7 @@ from .exc import GarthHTTPError
 from .utils import asdict
 
 USER_AGENT = {
-"User-Agent": "GCM-iOS-5.7.2.1",
+    "User-Agent": "GCM-iOS-5.7.2.1",
 }
 
 
