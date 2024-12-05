@@ -2,6 +2,7 @@ from .data import HRVData, SleepData
 from .http import Client, client
 from .stats import (
     DailyHRV,
+    DailyHydration,
     DailyIntensityMinutes,
     DailySleep,
     DailySteps,
@@ -16,6 +17,7 @@ from .version import __version__
 __all__ = [
     "Client",
     "DailyHRV",
+    "DailyHydration",
     "DailyIntensityMinutes",
     "DailySleep",
     "DailySteps",
