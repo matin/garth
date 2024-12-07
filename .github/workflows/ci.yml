@@ -10,7 +10,6 @@ on:
 
 env:
   COLUMNS: 150
-  FINDPYTHON_GET_VERSION_TIMEOUT: 30
 
 jobs:
   lint:
@@ -23,15 +22,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: pdm-project/setup-pdm@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          cache: true
+          cache: 'pip'
 
-      - name: install
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Install dependencies
         run: |
-          pdm use -f $PYTHON
-          pdm install -G linting
+          uv pip install -e ".[linting]"
 
       - uses: pre-commit/action@v3.0.1
         with:
@@ -50,22 +51,23 @@ jobs:
     env:
       PYTHON: ${{ matrix.python-version }}
       OS: ${{ matrix.os }}
-      DEPS: yes
 
     runs-on: ${{ matrix.os }}-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - uses: pdm-project/setup-pdm@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          cache: true
+          cache: 'pip'
 
-      - name: install
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Install dependencies
         run: |
-          pdm use -f $PYTHON
-          pdm install -G testing
+          uv pip install -e ".[testing]"
 
       - name: test
         run: make testcov

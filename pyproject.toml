@@ -28,27 +28,13 @@ classifiers = [
 keywords = ["garmin", "garmin api", "garmin connect", "garmin sso"]
 
 [build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.pytest.ini_options]
-addopts = "--ignore=__pypackages__ --ignore-glob=*.yaml"
+[tool.hatch.version]
+path = "garth/version.py"
 
-[tool.mypy]
-ignore_missing_imports = true
-
-[tool.isort]
-multi_line_output = 3
-include_trailing_comma = true
-force_grid_wrap = 0
-use_parentheses = true
-line_length = 79
-known_first_party = "garth"
-
-[tool.pdm]
-version = { source = "file", path = "garth/version.py" }
-
-[tool.pdm.dev-dependencies]
+[project.optional-dependencies]
 dev = [
     "ipython",
     "ipdb",
@@ -68,3 +54,17 @@ testing = [
     "pytest",
     "pytest-vcr",
 ]
+
+[tool.pytest.ini_options]
+addopts = "--ignore=__pypackages__ --ignore-glob=*.yaml"
+
+[tool.mypy]
+ignore_missing_imports = true
+
+[tool.isort]
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+line_length = 79
+known_first_party = "garth"
