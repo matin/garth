@@ -16,7 +16,7 @@ install: .uv .pre-commit
 	uv pip install -e ".[dev,linting,testing]"
 	pre-commit install --install-hooks
 
-.PHONY: sync  ## Sync dependencies with requirements files
+.PHONY: sync  ## Sync dependencies and lockfiles
 sync: .uv
 	uv sync
 
