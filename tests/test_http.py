@@ -64,8 +64,11 @@ def test_configure_retry(client: Client):
     adapter = client.sess.adapters["https://"]
     assert isinstance(adapter, HTTPAdapter)
     assert adapter.max_retries.total == client.retries
+
     client.configure(retries=99)
     assert client.retries == 99
+    adapter = client.sess.adapters["https://"]
+    assert isinstance(adapter, HTTPAdapter)
     assert adapter.max_retries.total == 99
 
 
@@ -74,8 +77,11 @@ def test_configure_status_forcelist(client: Client):
     adapter = client.sess.adapters["https://"]
     assert isinstance(adapter, HTTPAdapter)
     assert adapter.max_retries.status_forcelist == client.status_forcelist
+
     client.configure(status_forcelist=(200, 201, 202))
     assert client.status_forcelist == (200, 201, 202)
+    adapter = client.sess.adapters["https://"]
+    assert isinstance(adapter, HTTPAdapter)
     assert adapter.max_retries.status_forcelist == client.status_forcelist
 
 
@@ -84,8 +90,11 @@ def test_configure_backoff_factor(client: Client):
     adapter = client.sess.adapters["https://"]
     assert isinstance(adapter, HTTPAdapter)
     assert adapter.max_retries.backoff_factor == client.backoff_factor
+
     client.configure(backoff_factor=0.99)
     assert client.backoff_factor == 0.99
+    adapter = client.sess.adapters["https://"]
+    assert isinstance(adapter, HTTPAdapter)
     assert adapter.max_retries.backoff_factor == client.backoff_factor
 
 
