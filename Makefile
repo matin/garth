@@ -18,18 +18,18 @@ install: .uv .pre-commit
 
 .PHONY: sync  ## Sync dependencies with requirements files
 sync: .uv
-	uv pip sync -e ".[dev,linting,testing]"
+	uv sync
 
 .PHONY: format  ## Auto-format python source files
 format: .uv
 	uv run isort $(sources)
 	uv run black -l 79 $(sources)
-	uv run ruff --fix $(sources)
+	uv run ruff check --fix $(sources)
 
 .PHONY: lint  ## Lint python source files
 lint: .uv
 	uv run isort --check-only $(sources)
-	uv run ruff $(sources)
+	uv run ruff check $(sources)
 	uv run black -l 79 $(sources) --check --diff
 	uv run mypy $(sources)
 
