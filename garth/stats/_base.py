@@ -1,5 +1,5 @@
 from datetime import date, timedelta
-from typing import ClassVar, List, Optional, Union
+from typing import ClassVar, List
 
 from pydantic.dataclasses import dataclass
 
@@ -20,10 +20,10 @@ class Stats:
     @classmethod
     def list(
         cls,
-        end: Union[date, str, None] = None,
+        end: date | str | None = None,
         period: int = 1,
         *,
-        client: Optional[http.Client] = None,
+        client: http.Client | None = None,
     ) -> List["Stats"]:
         client = client or http.client
         end = format_end_date(end)

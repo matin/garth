@@ -1,5 +1,5 @@
 from datetime import date, datetime, timedelta
-from typing import ClassVar, List, Optional, Union
+from typing import ClassVar, List
 
 from pydantic.dataclasses import dataclass
 
@@ -12,15 +12,15 @@ class HRVBaseline:
     low_upper: int
     balanced_low: int
     balanced_upper: int
-    marker_value: Optional[float]
+    marker_value: float | None
 
 
 @dataclass(frozen=True)
 class DailyHRV:
     calendar_date: date
-    weekly_avg: Optional[int]
-    last_night_avg: Optional[int]
-    last_night_5_min_high: Optional[int]
+    weekly_avg: int | None
+    last_night_avg: int | None
+    last_night_5_min_high: int | None
     baseline: HRVBaseline
     status: str
     feedback_phrase: str
@@ -32,10 +32,10 @@ class DailyHRV:
     @classmethod
     def list(
         cls,
-        end: Union[date, str, None] = None,
+        end: date | str | None = None,
         period: int = 28,
         *,
-        client: Optional[http.Client] = None,
+        client: http.Client | None = None,
     ) -> List["DailyHRV"]:
         client = client or http.client
         end = format_end_date(end)
