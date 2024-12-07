@@ -183,7 +183,7 @@ def test_download(authed_client: Client):
         "/download-service/files/activity/11998957007"
     )
     assert downloaded
-    zip_magic_number = b"\x50\x4B\x03\x04"
+    zip_magic_number = b"\x50\x4b\x03\x04"
     assert downloaded[:4] == zip_magic_number
 
 

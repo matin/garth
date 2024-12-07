@@ -12,6 +12,7 @@ from . import http
 from .auth_tokens import OAuth1Token, OAuth2Token
 from .exc import GarthException
 
+
 CSRF_RE = re.compile(r'name="_csrf"\s+value="(.+?)"')
 TITLE_RE = re.compile(r"<title>(.+?)</title>")
 OAUTH_CONSUMER_URL = "https://thegarth.s3.amazonaws.com/oauth_consumer.json"

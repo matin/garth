@@ -4,6 +4,7 @@ from pydantic.dataclasses import dataclass
 
 from ._base import Stats
 
+
 BASE_PATH = "/usersummary-service/stats/steps"
 
 

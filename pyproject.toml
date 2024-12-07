@@ -43,10 +43,8 @@ dev = [
     "matplotlib",
 ]
 linting = [
-    "black",
     "ruff",
     "mypy",
-    "isort",
     "types-requests",
 ]
 testing = [
@@ -61,10 +59,22 @@ addopts = "--ignore=__pypackages__ --ignore-glob=*.yaml"
 [tool.mypy]
 ignore_missing_imports = true
 
-[tool.isort]
-multi_line_output = 3
-include_trailing_comma = true
-force_grid_wrap = 0
-use_parentheses = true
-line_length = 79
-known_first_party = "garth"
+[tool.ruff]
+line-length = 79
+indent-width = 4
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.ruff.lint.isort]
+known-first-party = ["garth"]
+combine-as-imports = true
+lines-after-imports = 2

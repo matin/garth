@@ -13,6 +13,7 @@ from .stats import (
 from .users import UserProfile, UserSettings
 from .version import __version__
 
+
 __all__ = [
     "Client",
     "DailyHRV",
