@@ -112,7 +112,9 @@ def test_configure_pool_connections(client: Client):
     assert client.pool_connections == 99
     adapter = client.sess.adapters["https://"]
     assert isinstance(adapter, HTTPAdapter)
-    assert getattr(adapter, '_pool_connections', None) == 99, "Pool connections not properly configured"
+    assert (
+        getattr(adapter, "_pool_connections", None) == 99
+    ), "Pool connections not properly configured"
 
 
 @pytest.mark.vcr
