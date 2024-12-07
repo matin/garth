@@ -23,7 +23,6 @@ repos:
   hooks:
     - id: markdownlint-cli2
 
-
 - repo: local
   hooks:
   - id: lint
