@@ -61,5 +61,8 @@ class DailyHRV:
         if daily_hrv is None:
             return []
         daily_hrv = camel_to_snake_dict(daily_hrv)["hrv_summaries"]
-        assert daily_hrv
+        if not isinstance(daily_hrv, list) or not all(
+            isinstance(hrv, dict) for hrv in daily_hrv
+        ):
+            return []
         return [cls(**hrv) for hrv in daily_hrv]
