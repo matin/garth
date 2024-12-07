@@ -2,6 +2,7 @@ import tempfile
 import time
 
 import pytest
+from requests.adapters import HTTPAdapter
 
 from garth.auth_tokens import OAuth2Token
 from garth.exc import GarthHTTPError
@@ -60,46 +61,60 @@ def test_configure_timeout(client: Client):
 
 def test_configure_retry(client: Client):
     assert client.retries == 3
-    assert client.sess.adapters["https://"].max_retries.total == client.retries
+    adapter = client.sess.adapters["https://"]
+    assert isinstance(adapter, HTTPAdapter)
+    assert adapter.max_retries.total == client.retries
+
     client.configure(retries=99)
     assert client.retries == 99
-    assert client.sess.adapters["https://"].max_retries.total == 99
+    adapter = client.sess.adapters["https://"]
+    assert isinstance(adapter, HTTPAdapter)
+    assert adapter.max_retries.total == 99
 
 
 def test_configure_status_forcelist(client: Client):
     assert client.status_forcelist == (408, 429, 500, 502, 503, 504)
-    assert (
-        client.sess.adapters["https://"].max_retries.status_forcelist
-        == client.status_forcelist
-    )
+    adapter = client.sess.adapters["https://"]
+    assert isinstance(adapter, HTTPAdapter)
+    assert adapter.max_retries.status_forcelist == client.status_forcelist
+
     client.configure(status_forcelist=(200, 201, 202))
     assert client.status_forcelist == (200, 201, 202)
+    adapter = client.sess.adapters["https://"]
+    assert isinstance(adapter, HTTPAdapter)
+    assert adapter.max_retries.status_forcelist == client.status_forcelist
 
 
-def test_backoff_factor(client: Client):
+def test_configure_backoff_factor(client: Client):
     assert client.backoff_factor == 0.5
-    assert (
-        client.sess.adapters["https://"].max_retries.backoff_factor
-        == client.backoff_factor
-    )
+    adapter = client.sess.adapters["https://"]
+    assert isinstance(adapter, HTTPAdapter)
+    assert adapter.max_retries.backoff_factor == client.backoff_factor
+
     client.configure(backoff_factor=0.99)
     assert client.backoff_factor == 0.99
-    assert (
-        client.sess.adapters["https://"].max_retries.backoff_factor
-        == client.backoff_factor
-    )
+    adapter = client.sess.adapters["https://"]
+    assert isinstance(adapter, HTTPAdapter)
+    assert adapter.max_retries.backoff_factor == client.backoff_factor
 
 
-def test_pool_connections(client: Client):
-    client.configure(
-        pool_connections=99,
-        pool_maxsize=99,
-    )
-    assert client.pool_connections == 99
+def test_configure_pool_maxsize(client: Client):
+    assert client.pool_maxsize == 10
+    client.configure(pool_maxsize=99)
     assert client.pool_maxsize == 99
     adapter = client.sess.adapters["https://"]
-    assert adapter._pool_connections == 99
-    assert adapter._pool_maxsize == 99
+    assert isinstance(adapter, HTTPAdapter)
+    assert adapter.poolmanager.connection_pool_kw["maxsize"] == 99
+
+
+def test_configure_pool_connections(client: Client):
+    client.configure(pool_connections=99)
+    assert client.pool_connections == 99
+    adapter = client.sess.adapters["https://"]
+    assert isinstance(adapter, HTTPAdapter)
+    assert (
+        getattr(adapter, "_pool_connections", None) == 99
+    ), "Pool connections not properly configured"
 
 
 @pytest.mark.vcr

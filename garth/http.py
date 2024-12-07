@@ -12,9 +12,7 @@ from .auth_tokens import OAuth1Token, OAuth2Token
 from .exc import GarthHTTPError
 from .utils import asdict
 
-USER_AGENT = {
-    "User-Agent": "GCM-iOS-5.7.2.1",
-}
+USER_AGENT = {"User-Agent": "GCM-iOS-5.7.2.1"}
 
 
 class Client:

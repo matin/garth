@@ -18,13 +18,11 @@ repos:
       - tomli
     exclude: 'cassettes/'
 
-- repo: https://github.com/markdownlint/markdownlint
-  rev: v0.13.0
+- repo: https://github.com/DavidAnson/markdownlint-cli2
+  rev: v0.12.1
   hooks:
-    - id: markdownlint
-      args:
-        - --rule
-        - "MD033:allowed_elements=img"
+    - id: markdownlint-cli2
+
 
 - repo: local
   hooks:

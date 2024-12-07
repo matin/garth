@@ -9,7 +9,7 @@ from ._base import Stats
 class DailySleep(Stats):
     value: Optional[int]
 
-    _path: ClassVar[
-        str
-    ] = "/wellness-service/stats/daily/sleep/score/{start}/{end}"
+    _path: ClassVar[str] = (
+        "/wellness-service/stats/daily/sleep/score/{start}/{end}"
+    )
     _page_size: ClassVar[int] = 28
