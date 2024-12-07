@@ -3,6 +3,7 @@ import re
 from datetime import date, datetime, timedelta
 from typing import Any, Dict, List, Union
 
+
 CAMEL_TO_SNAKE = re.compile(
     r"((?<=[a-z0-9])[A-Z]|(?!^)[A-Z](?=[a-z])|(?<=[a-zA-Z])[0-9])"
 )

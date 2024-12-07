@@ -5,6 +5,7 @@ from typing import Optional, Union
 from .. import http
 from ..utils import date_range, format_end_date
 
+
 MAX_WORKERS = 10
 
 

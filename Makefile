@@ -22,15 +22,13 @@ sync: .uv
 
 .PHONY: format  ## Auto-format python source files
 format: .uv
-	uv run isort $(sources)
-	uv run black -l 79 $(sources)
+	uv run ruff format $(sources)
 	uv run ruff check --fix $(sources)
 
 .PHONY: lint  ## Lint python source files
 lint: .uv
-	uv run isort --check-only $(sources)
+	uv run ruff format --check $(sources)
 	uv run ruff check $(sources)
-	uv run black -l 79 $(sources) --check --diff
 	uv run mypy $(sources)
 
 .PHONY: codespell  ## Use Codespell to do spellchecking
