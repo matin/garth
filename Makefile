@@ -75,7 +75,6 @@ clean:
 	rm -rf docs/.changelog.md docs/.version.md docs/.tmp_schema_mappings.html
 	rm -rf fastapi/test.db
 	rm -rf coverage.xml
-	rm -rf __pypackages__
 
 .PHONY: help  ## Display this message
 help:
