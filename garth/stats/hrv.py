@@ -1,5 +1,5 @@
 from datetime import date, datetime, timedelta
-from typing import ClassVar, List, Optional, Union
+from typing import Any, ClassVar, cast
 
 from pydantic.dataclasses import dataclass
 
@@ -12,15 +12,15 @@ class HRVBaseline:
     low_upper: int
     balanced_low: int
     balanced_upper: int
-    marker_value: Optional[float]
+    marker_value: float | None
 
 
 @dataclass(frozen=True)
 class DailyHRV:
     calendar_date: date
-    weekly_avg: Optional[int]
-    last_night_avg: Optional[int]
-    last_night_5_min_high: Optional[int]
+    weekly_avg: int | None
+    last_night_avg: int | None
+    last_night_5_min_high: int | None
     baseline: HRVBaseline
     status: str
     feedback_phrase: str
@@ -32,11 +32,11 @@ class DailyHRV:
     @classmethod
     def list(
         cls,
-        end: Union[date, str, None] = None,
+        end: date | str | None = None,
         period: int = 28,
         *,
-        client: Optional[http.Client] = None,
-    ) -> List["DailyHRV"]:
+        client: http.Client | None = None,
+    ) -> list["DailyHRV"]:
         client = client or http.client
         end = format_end_date(end)
 
@@ -57,9 +57,9 @@ class DailyHRV:
 
         start = end - timedelta(days=period - 1)
         path = cls._path.format(start=start, end=end)
-        daily_hrv = client.connectapi(path)
-        if daily_hrv is None:
+        response = client.connectapi(path)
+        if response is None:
             return []
-        daily_hrv = camel_to_snake_dict(daily_hrv)["hrv_summaries"]
-        assert daily_hrv
+        daily_hrv = camel_to_snake_dict(response)["hrv_summaries"]
+        daily_hrv = cast(list[dict[str, Any]], daily_hrv)
         return [cls(**hrv) for hrv in daily_hrv]

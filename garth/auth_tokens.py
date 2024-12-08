@@ -1,6 +1,5 @@
 import time
 from datetime import datetime
-from typing import Optional
 
 from pydantic.dataclasses import dataclass
 
@@ -9,9 +8,9 @@ from pydantic.dataclasses import dataclass
 class OAuth1Token:
     oauth_token: str
     oauth_token_secret: str
-    mfa_token: Optional[str] = None
-    mfa_expiration_timestamp: Optional[datetime] = None
-    domain: Optional[str] = None
+    mfa_token: str | None = None
+    mfa_expiration_timestamp: datetime | None = None
+    domain: str | None = None
 
 
 @dataclass
