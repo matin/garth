@@ -36,7 +36,7 @@ class HRVReading:
 
 
 @dataclass(frozen=True)
-class HRVData(Data):
+class HRVData(Data["HRVData"]):
     user_profile_pk: int
     hrv_summary: HRVSummary
     hrv_readings: List[HRVReading]
@@ -63,6 +63,6 @@ class HRVData(Data):
         return cls(**hrv_data)
 
     @classmethod
-    def list(cls, *args, **kwargs):
+    def list(cls, *args, **kwargs) -> list["HRVData"]:
         data = super().list(*args, **kwargs)
         return sorted(data, key=lambda d: d.hrv_summary.calendar_date)
