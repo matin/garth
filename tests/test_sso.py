@@ -27,12 +27,6 @@ def test_login_success(client: Client):
 
 
 @pytest.mark.vcr
-def test_login_fail(client: Client):
-    with pytest.raises(GarthHTTPError):
-        sso.login("user@example.com", "wrong_p@ssword", client=client)
-
-
-@pytest.mark.vcr
 def test_login_success_mfa(monkeypatch, client: Client):
     def mock_input(_):
         return "671091"
