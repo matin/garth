@@ -1,7 +1,7 @@
 import base64
 import json
 import os
-from typing import IO, Any, Dict, Tuple, Union
+from typing import IO, Any, Dict, Tuple
 from urllib.parse import urljoin
 
 from requests import HTTPError, Response, Session
@@ -111,7 +111,7 @@ class Client:
         path: str,
         /,
         api: bool = False,
-        referrer: Union[str, bool] = False,
+        referrer: str | bool = False,
         headers: dict = {},
         **kwargs,
     ) -> Response:
