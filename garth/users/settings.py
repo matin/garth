@@ -1,5 +1,5 @@
 from datetime import date
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 from pydantic.dataclasses import dataclass
 
@@ -14,7 +14,7 @@ class PowerFormat:
     min_fraction: int
     max_fraction: int
     grouping_used: bool
-    display_format: Optional[str]
+    display_format: str | None
 
 
 @dataclass
@@ -43,33 +43,33 @@ class UserData:
     time_format: str
     birth_date: date
     measurement_system: str
-    activity_level: Optional[str]
+    activity_level: str | None
     handedness: str
     power_format: PowerFormat
     heart_rate_format: PowerFormat
     first_day_of_week: FirstDayOfWeek
-    vo_2_max_running: Optional[float]
-    vo_2_max_cycling: Optional[float]
-    lactate_threshold_speed: Optional[float]
-    lactate_threshold_heart_rate: Optional[float]
-    dive_number: Optional[int]
+    vo_2_max_running: float | None
+    vo_2_max_cycling: float | None
+    lactate_threshold_speed: float | None
+    lactate_threshold_heart_rate: float | None
+    dive_number: int | None
     intensity_minutes_calc_method: str
     moderate_intensity_minutes_hr_zone: int
     vigorous_intensity_minutes_hr_zone: int
     hydration_measurement_unit: str
-    hydration_containers: List[Dict[str, Optional[float]]]
+    hydration_containers: List[Dict[str, float | None]]
     hydration_auto_goal_enabled: bool
-    firstbeat_max_stress_score: Optional[float]
-    firstbeat_cycling_lt_timestamp: Optional[int]
-    firstbeat_running_lt_timestamp: Optional[int]
+    firstbeat_max_stress_score: float | None
+    firstbeat_cycling_lt_timestamp: int | None
+    firstbeat_running_lt_timestamp: int | None
     threshold_heart_rate_auto_detected: bool
-    ftp_auto_detected: Optional[bool]
-    training_status_paused_date: Optional[str]
-    weather_location: Optional[WeatherLocation]
+    ftp_auto_detected: bool | None
+    training_status_paused_date: str | None
+    weather_location: WeatherLocation | None
     golf_distance_unit: str
-    golf_elevation_unit: Optional[str]
-    golf_speed_unit: Optional[str]
-    external_bottom_time: Optional[float]
+    golf_elevation_unit: str | None
+    golf_speed_unit: str | None
+    external_bottom_time: float | None
 
 
 @dataclass
@@ -85,11 +85,11 @@ class UserSettings:
     id: int
     user_data: UserData
     user_sleep: UserSleep
-    connect_date: Optional[str]
-    source_type: Optional[str]
+    connect_date: str | None
+    source_type: str | None
 
     @classmethod
-    def get(cls, /, client: Optional[http.Client] = None):
+    def get(cls, /, client: http.Client | None = None):
         client = client or http.client
         settings = client.connectapi(
             "/userprofile-service/userprofile/user-settings"

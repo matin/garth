@@ -1,5 +1,5 @@
 from datetime import date, timedelta
-from typing import ClassVar, List, Optional, Union
+from typing import ClassVar, List
 
 from pydantic.dataclasses import dataclass
 
@@ -20,10 +20,10 @@ class Stats:
     @classmethod
     def list(
         cls,
-        end: Union[date, str, None] = None,
+        end: date | str | None = None,
         period: int = 1,
         *,
-        client: Optional[http.Client] = None,
+        client: http.Client | None = None,
     ) -> List["Stats"]:
         client = client or http.client
         end = format_end_date(end)
@@ -46,6 +46,13 @@ class Stats:
         start = end - timedelta(**{period_type: period - 1})
         path = cls._path.format(start=start, end=end, period=period)
         page_dirs = client.connectapi(path)
+        if (
+            not page_dirs
+            or not isinstance(page_dirs, list)
+            or len(page_dirs) == 0
+        ):
+            return []
+        page_dirs = [d for d in page_dirs if isinstance(d, dict)]
         if not page_dirs:
             return []
         if "values" in page_dirs[0]:
