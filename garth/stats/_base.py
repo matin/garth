@@ -50,9 +50,7 @@ class Stats:
         ):
             return []
         page_dirs = [d for d in page_dirs if isinstance(d, dict)]
-        if not page_dirs:
-            return []
-        if "values" in page_dirs[0]:
+        if page_dirs and "values" in page_dirs[0]:
             page_dirs = [{**stat, **stat.pop("values")} for stat in page_dirs]
         page_dirs = [camel_to_snake_dict(stat) for stat in page_dirs]
         return [cls(**stat) for stat in page_dirs]

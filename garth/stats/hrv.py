@@ -1,5 +1,5 @@
 from datetime import date, datetime, timedelta
-from typing import ClassVar, List
+from typing import Any, ClassVar, cast
 
 from pydantic.dataclasses import dataclass
 
@@ -36,7 +36,7 @@ class DailyHRV:
         period: int = 28,
         *,
         client: http.Client | None = None,
-    ) -> List["DailyHRV"]:
+    ) -> list["DailyHRV"]:
         client = client or http.client
         end = format_end_date(end)
 
@@ -57,12 +57,9 @@ class DailyHRV:
 
         start = end - timedelta(days=period - 1)
         path = cls._path.format(start=start, end=end)
-        daily_hrv = client.connectapi(path)
-        if daily_hrv is None:
+        response = client.connectapi(path)
+        if response is None:
             return []
-        daily_hrv = camel_to_snake_dict(daily_hrv)["hrv_summaries"]
-        if not isinstance(daily_hrv, list) or not all(
-            isinstance(hrv, dict) for hrv in daily_hrv
-        ):
-            return []
+        daily_hrv = camel_to_snake_dict(response)["hrv_summaries"]
+        daily_hrv = cast(list[dict[str, Any]], daily_hrv)
         return [cls(**hrv) for hrv in daily_hrv]
