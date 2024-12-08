@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from typing import List, Optional, Union
+from typing import List
 
 from pydantic.dataclasses import dataclass
 
@@ -20,7 +20,7 @@ class Baseline:
 class HRVSummary:
     calendar_date: date
     weekly_avg: int
-    last_night_avg: Optional[int]
+    last_night_avg: int | None
     last_night_5_min_high: int
     baseline: Baseline
     status: str
@@ -51,8 +51,8 @@ class HRVData(Data):
 
     @classmethod
     def get(
-        cls, day: Union[date, str], *, client: Optional[http.Client] = None
-    ) -> Optional["HRVData"]:
+        cls, day: date | str, *, client: http.Client | None = None
+    ) -> "HRVData | None":
         client = client or http.client
         path = f"/hrv-service/hrv/{day}"
         hrv_data = client.connectapi(path)

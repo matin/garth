@@ -1,4 +1,4 @@
-from typing import ClassVar, Optional
+from typing import ClassVar
 
 from pydantic.dataclasses import dataclass
 
@@ -11,8 +11,8 @@ BASE_PATH = "/usersummary-service/stats/im"
 @dataclass(frozen=True)
 class DailyIntensityMinutes(Stats):
     weekly_goal: int
-    moderate_value: Optional[int] = 0
-    vigorous_value: Optional[int] = 0
+    moderate_value: int | None = 0
+    vigorous_value: int | None = 0
 
     _path: ClassVar[str] = f"{BASE_PATH}/daily/{{start}}/{{end}}"
     _page_size: ClassVar[int] = 28
@@ -21,8 +21,8 @@ class DailyIntensityMinutes(Stats):
 @dataclass(frozen=True)
 class WeeklyIntensityMinutes(Stats):
     weekly_goal: int
-    moderate_value: Optional[int] = 0
-    vigorous_value: Optional[int] = 0
+    moderate_value: int | None = 0
+    vigorous_value: int | None = 0
 
     _path: ClassVar[str] = f"{BASE_PATH}/weekly/{{start}}/{{end}}"
     _page_size: ClassVar[int] = 52
