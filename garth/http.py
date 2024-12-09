@@ -28,7 +28,7 @@ class Client:
     backoff_factor: float = 0.5
     pool_connections: int = 10
     pool_maxsize: int = 10
-    _profile: Dict[str, Any] | None = None
+    _social_profile: Dict[str, Any] | None = None
 
     def __init__(self, session: Session | None = None, **kwargs):
         self.sess = session if session else Session()
@@ -92,19 +92,19 @@ class Client:
         self.sess.mount("https://", adapter)
 
     @property
-    def profile(self):
-        if not self._profile:
-            self._profile = self.connectapi(
+    def social_profile(self):
+        if not self._social_profile:
+            self._social_profile = self.connectapi(
                 "/userprofile-service/socialProfile"
             )
             assert isinstance(
-                self._profile, dict
+                self._social_profile, dict
             ), "No profile from connectapi"
-        return self._profile
+        return self._social_profile
 
     @property
     def username(self):
-        return self.profile["userName"]
+        return self.social_profile["userName"]
 
     def request(
         self,
