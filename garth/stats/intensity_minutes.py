@@ -11,8 +11,8 @@ BASE_PATH = "/usersummary-service/stats/im"
 @dataclass(frozen=True)
 class DailyIntensityMinutes(Stats):
     weekly_goal: int
-    moderate_value: int | None = 0
-    vigorous_value: int | None = 0
+    moderate_value: int | None = None
+    vigorous_value: int | None = None
 
     _path: ClassVar[str] = f"{BASE_PATH}/daily/{{start}}/{{end}}"
     _page_size: ClassVar[int] = 28
@@ -21,8 +21,8 @@ class DailyIntensityMinutes(Stats):
 @dataclass(frozen=True)
 class WeeklyIntensityMinutes(Stats):
     weekly_goal: int
-    moderate_value: int | None = 0
-    vigorous_value: int | None = 0
+    moderate_value: int | None = None
+    vigorous_value: int | None = None
 
     _path: ClassVar[str] = f"{BASE_PATH}/weekly/{{start}}/{{end}}"
     _page_size: ClassVar[int] = 52
