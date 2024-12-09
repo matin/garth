@@ -97,7 +97,9 @@ class Client:
             self._profile = self.connectapi(
                 "/userprofile-service/socialProfile"
             )
-            assert isinstance(self._profile, dict)
+            assert isinstance(
+                self._profile, dict
+            ), "No profile from connectapi"
         return self._profile
 
     @property
@@ -120,7 +122,9 @@ class Client:
         if referrer is True and self.last_resp:
             headers["referer"] = self.last_resp.url
         if api:
-            assert self.oauth1_token
+            assert (
+                self.oauth1_token
+            ), "OAuth1 token is required for API requests"
             if not self.oauth2_token or self.oauth2_token.expired:
                 self.refresh_oauth2()
             headers["Authorization"] = str(self.oauth2_token)
@@ -158,7 +162,7 @@ class Client:
         )
 
     def refresh_oauth2(self):
-        assert self.oauth1_token
+        assert self.oauth1_token, "OAuth1 token is required for OAuth2 refresh"
         # There is a way to perform a refresh of an OAuth2 token, but it
         # appears even Garmin uses this approach when the OAuth2 is expired
         self.oauth2_token = sso.exchange(self.oauth1_token, self)
@@ -185,7 +189,7 @@ class Client:
             method="POST",
             files=files,
         )
-        assert result is not None
+        assert result is not None, "No result from upload"
         return result
 
     def dump(self, dir_path: str):
