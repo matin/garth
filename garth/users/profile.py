@@ -14,11 +14,11 @@ class UserProfile:
     display_name: str
     full_name: str
     user_name: str
-    profile_image_uuid: str
-    profile_image_url_large: str
-    profile_image_url_medium: str
-    profile_image_url_small: str
-    location: str
+    profile_image_uuid: str | None
+    profile_image_url_large: str | None
+    profile_image_url_medium: str | None
+    profile_image_url_small: str | None
+    location: str | None
     facebook_url: str | None
     twitter_url: str | None
     personal_website: str | None
