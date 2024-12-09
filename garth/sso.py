@@ -100,15 +100,12 @@ def login(
     if "MFA" in title:
         handle_mfa(client, SIGNIN_PARAMS, prompt_mfa)
         title = get_title(client.last_resp.text)
-    elif title != "Success":
-        raise GarthException(f"Unexpected title: {title}")
 
     assert title == "Success"
 
     # Parse ticket
     m = re.search(r'embed\?ticket=([^"]+)"', client.last_resp.text)
-    if not m:
-        raise GarthException("Could not find ticket in response")
+    assert m
     ticket = m.group(1)
 
     oauth1 = get_oauth1_token(ticket, client)
