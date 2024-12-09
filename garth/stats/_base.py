@@ -43,11 +43,7 @@ class Stats:
         start = end - timedelta(**{period_type: period - 1})
         path = cls._path.format(start=start, end=end, period=period)
         page_dirs = client.connectapi(path)
-        if (
-            not page_dirs
-            or not isinstance(page_dirs, list)
-            or len(page_dirs) == 0
-        ):
+        if not isinstance(page_dirs, list) or not page_dirs:
             return []
         page_dirs = [d for d in page_dirs if isinstance(d, dict)]
         if page_dirs and "values" in page_dirs[0]:
