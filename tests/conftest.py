@@ -113,12 +113,8 @@ def sanitize_response(response):
         if encoding[0] == "gzip":
             body = response["body"]["string"]
             buffer = io.BytesIO(body)
-            try:
-                body = gzip.GzipFile(fileobj=buffer).read()
-            except gzip.BadGzipFile:
-                ...
-            else:
-                response["body"]["string"] = body
+            body = gzip.GzipFile(fileobj=buffer).read()
+            response["body"]["string"] = body
 
     for key in ["set-cookie", "Set-Cookie"]:
         if key in response["headers"]:
