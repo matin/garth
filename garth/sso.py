@@ -1,7 +1,7 @@
 import asyncio
 import re
 import time
-from typing import Callable, Dict, Optional, Tuple
+from typing import Callable, Dict, Tuple
 from urllib.parse import parse_qs
 
 import requests
@@ -24,7 +24,7 @@ class GarminOAuth1Session(OAuth1Session):
     def __init__(
         self,
         /,
-        parent: Optional[Session] = None,
+        parent: Session | None = None,
         **kwargs,
     ):
         global OAUTH_CONSUMER
@@ -45,7 +45,7 @@ def login(
     email: str,
     password: str,
     /,
-    client: Optional["http.Client"] = None,
+    client: "http.Client | None" = None,
     prompt_mfa: Callable = lambda: input("MFA code: "),
 ) -> Tuple[OAuth1Token, OAuth2Token]:
     client = client or http.client
@@ -101,11 +101,11 @@ def login(
         handle_mfa(client, SIGNIN_PARAMS, prompt_mfa)
         title = get_title(client.last_resp.text)
 
-    assert title == "Success"
+    assert title == "Success", f"Unexpected title: {title}"
 
     # Parse ticket
     m = re.search(r'embed\?ticket=([^"]+)"', client.last_resp.text)
-    assert m
+    assert m, "Couldn't find ticket in response"
     ticket = m.group(1)
 
     oauth1 = get_oauth1_token(ticket, client)

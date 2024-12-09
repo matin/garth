@@ -1,4 +1,4 @@
-from typing import ClassVar, Optional
+from typing import ClassVar
 
 from pydantic.dataclasses import dataclass
 
@@ -11,10 +11,10 @@ BASE_PATH = "/usersummary-service/stats/stress"
 @dataclass(frozen=True)
 class DailyStress(Stats):
     overall_stress_level: int
-    rest_stress_duration: Optional[int] = 0
-    low_stress_duration: Optional[int] = 0
-    medium_stress_duration: Optional[int] = 0
-    high_stress_duration: Optional[int] = 0
+    rest_stress_duration: int | None = None
+    low_stress_duration: int | None = None
+    medium_stress_duration: int | None = None
+    high_stress_duration: int | None = None
 
     _path: ClassVar[str] = f"{BASE_PATH}/daily/{{start}}/{{end}}"
     _page_size: ClassVar[int] = 28

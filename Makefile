@@ -17,7 +17,7 @@ install: .uv .pre-commit
 	pre-commit install --install-hooks
 
 .PHONY: sync  ## Sync dependencies and lockfiles
-sync: .uv
+sync: .uv clean
 	uv sync
 
 .PHONY: format  ## Auto-format python source files
@@ -73,6 +73,7 @@ clean:
 	rm -rf docs/.changelog.md docs/.version.md docs/.tmp_schema_mappings.html
 	rm -rf fastapi/test.db
 	rm -rf coverage.xml
+	rm -rf __pypackages__ uv.lock
 
 .PHONY: help  ## Display this message
 help:

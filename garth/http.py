@@ -1,7 +1,7 @@
 import base64
 import json
 import os
-from typing import IO, Any, Dict, Optional, Tuple, Union
+from typing import IO, Any, Dict, Tuple
 from urllib.parse import urljoin
 
 from requests import HTTPError, Response, Session
@@ -20,17 +20,17 @@ class Client:
     sess: Session
     last_resp: Response
     domain: str = "garmin.com"
-    oauth1_token: Optional[OAuth1Token] = None
-    oauth2_token: Optional[OAuth2Token] = None
+    oauth1_token: OAuth1Token | None = None
+    oauth2_token: OAuth2Token | None = None
     timeout: int = 10
     retries: int = 3
     status_forcelist: Tuple[int, ...] = (408, 429, 500, 502, 503, 504)
     backoff_factor: float = 0.5
     pool_connections: int = 10
     pool_maxsize: int = 10
-    _profile: Optional[Dict] = None
+    _profile: Dict[str, Any] | None = None
 
-    def __init__(self, session: Optional[Session] = None, **kwargs):
+    def __init__(self, session: Session | None = None, **kwargs):
         self.sess = session if session else Session()
         self.sess.headers.update(USER_AGENT)
         self.configure(
@@ -44,17 +44,17 @@ class Client:
     def configure(
         self,
         /,
-        oauth1_token: Optional[OAuth1Token] = None,
-        oauth2_token: Optional[OAuth2Token] = None,
-        domain: Optional[str] = None,
-        proxies: Optional[Dict] = None,
-        ssl_verify: Optional[bool] = None,
-        timeout: Optional[int] = None,
-        retries: Optional[int] = None,
-        status_forcelist: Optional[Tuple[int, ...]] = None,
-        backoff_factor: Optional[float] = None,
-        pool_connections: Optional[int] = None,
-        pool_maxsize: Optional[int] = None,
+        oauth1_token: OAuth1Token | None = None,
+        oauth2_token: OAuth2Token | None = None,
+        domain: str | None = None,
+        proxies: Dict[str, str] | None = None,
+        ssl_verify: bool | None = None,
+        timeout: int | None = None,
+        retries: int | None = None,
+        status_forcelist: Tuple[int, ...] | None = None,
+        backoff_factor: float | None = None,
+        pool_connections: int | None = None,
+        pool_maxsize: int | None = None,
     ):
         if oauth1_token is not None:
             self.oauth1_token = oauth1_token
@@ -97,7 +97,9 @@ class Client:
             self._profile = self.connectapi(
                 "/userprofile-service/socialProfile"
             )
-            assert isinstance(self._profile, dict)
+            assert isinstance(
+                self._profile, dict
+            ), "No profile from connectapi"
         return self._profile
 
     @property
@@ -111,7 +113,7 @@ class Client:
         path: str,
         /,
         api: bool = False,
-        referrer: Union[str, bool] = False,
+        referrer: str | bool = False,
         headers: dict = {},
         **kwargs,
     ) -> Response:
@@ -120,7 +122,9 @@ class Client:
         if referrer is True and self.last_resp:
             headers["referer"] = self.last_resp.url
         if api:
-            assert self.oauth1_token
+            assert (
+                self.oauth1_token
+            ), "OAuth1 token is required for API requests"
             if not self.oauth2_token or self.oauth2_token.expired:
                 self.refresh_oauth2()
             headers["Authorization"] = str(self.oauth2_token)
@@ -158,18 +162,18 @@ class Client:
         )
 
     def refresh_oauth2(self):
-        assert self.oauth1_token
+        assert self.oauth1_token, "OAuth1 token is required for OAuth2 refresh"
         # There is a way to perform a refresh of an OAuth2 token, but it
         # appears even Garmin uses this approach when the OAuth2 is expired
         self.oauth2_token = sso.exchange(self.oauth1_token, self)
 
-    def connectapi(self, path: str, method="GET", **kwargs):
+    def connectapi(
+        self, path: str, method="GET", **kwargs
+    ) -> Dict[str, Any] | None:
         resp = self.request(method, "connectapi", path, api=True, **kwargs)
         if resp.status_code == 204:
-            rv = None
-        else:
-            rv = resp.json()
-        return rv
+            return None
+        return resp.json()
 
     def download(self, path: str, **kwargs) -> bytes:
         resp = self.get("connectapi", path, api=True, **kwargs)
@@ -180,11 +184,13 @@ class Client:
     ) -> Dict[str, Any]:
         fname = os.path.basename(fp.name)
         files = {"file": (fname, fp)}
-        return self.connectapi(
+        result = self.connectapi(
             path,
             method="POST",
             files=files,
         )
+        assert result is not None, "No result from upload"
+        return result
 
     def dump(self, dir_path: str):
         dir_path = os.path.expanduser(dir_path)
