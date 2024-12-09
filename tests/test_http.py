@@ -1,5 +1,6 @@
 import tempfile
 import time
+from typing import Any, cast
 
 import pytest
 from requests.adapters import HTTPAdapter
@@ -143,15 +144,18 @@ def test_login_success_mfa(monkeypatch, client: Client):
 
 @pytest.mark.vcr
 def test_username(authed_client: Client):
-    assert authed_client._profile is None
+    assert authed_client._social_profile is None
     assert authed_client.username
-    assert authed_client._profile
+    assert authed_client._social_profile
 
 
 @pytest.mark.vcr
 def test_connectapi(authed_client: Client):
-    stress = authed_client.connectapi(
-        "/usersummary-service/stats/stress/daily/2023-07-21/2023-07-21"
+    stress = cast(
+        list[dict[str, Any]],
+        authed_client.connectapi(
+            "/usersummary-service/stats/stress/daily/2023-07-21/2023-07-21"
+        ),
     )
     assert stress
     assert isinstance(stress, list)
