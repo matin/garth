@@ -1,5 +1,6 @@
 import tempfile
 import time
+from typing import Any, cast
 
 import pytest
 from requests.adapters import HTTPAdapter
@@ -150,8 +151,11 @@ def test_username(authed_client: Client):
 
 @pytest.mark.vcr
 def test_connectapi(authed_client: Client):
-    stress = authed_client.connectapi(
-        "/usersummary-service/stats/stress/daily/2023-07-21/2023-07-21"
+    stress = cast(
+        list[dict[str, Any]],
+        authed_client.connectapi(
+            "/usersummary-service/stats/stress/daily/2023-07-21/2023-07-21"
+        ),
     )
     assert stress
     assert isinstance(stress, list)
