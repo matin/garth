@@ -21,7 +21,7 @@ class DailyHRV:
     weekly_avg: int | None
     last_night_avg: int | None
     last_night_5_min_high: int | None
-    baseline: HRVBaseline
+    baseline: HRVBaseline | None
     status: str
     feedback_phrase: str
     create_time_stamp: datetime
