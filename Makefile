@@ -47,10 +47,6 @@ testcov: test
 	@echo "building coverage xml"
 	@uv run coverage xml -o coverage/coverage.xml
 
-.PHONY: publish  ## Publish to PyPi
-publish: .uv
-	uv publish
-
 .PHONY: all  ## Run the standard set of checks performed in CI
 all: lint codespell testcov
 
