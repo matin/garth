@@ -18,6 +18,7 @@ install: .uv .pre-commit
 
 .PHONY: sync  ## Sync dependencies and lockfiles
 sync: .uv clean
+	uv pip install -e . --force-reinstall
 	uv sync
 
 .PHONY: format  ## Auto-format python source files
