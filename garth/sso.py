@@ -41,13 +41,52 @@ class GarminOAuth1Session(OAuth1Session):
             self.verify = parent.verify
 
 
+def _complete_login(
+    client: "http.Client", html: str
+) -> Tuple[OAuth1Token, OAuth2Token]:
+    """Complete the login process after successful authentication.
+
+    Args:
+        client: The HTTP client
+        html: The HTML response containing the ticket
+
+    Returns:
+        Tuple[OAuth1Token, OAuth2Token]: The OAuth tokens
+    """
+    # Parse ticket
+    m = re.search(r'embed\?ticket=([^"]+)"', html)
+    assert m, "Couldn't find ticket in response"
+    ticket = m.group(1)
+
+    oauth1 = get_oauth1_token(ticket, client)
+    oauth2 = exchange(oauth1, client)
+
+    return oauth1, oauth2
+
+
 def login(
     email: str,
     password: str,
     /,
     client: "http.Client | None" = None,
-    prompt_mfa: Callable = lambda: input("MFA code: "),
-) -> Tuple[OAuth1Token, OAuth2Token]:
+    prompt_mfa: Callable | None = lambda: input("MFA code: "),
+    return_on_mfa: bool = False,
+) -> Tuple[OAuth1Token, OAuth2Token] | dict:
+    """Login to Garmin Connect.
+
+    Args:
+        email: Garmin account email
+        password: Garmin account password
+        client: Optional HTTP client to use
+        prompt_mfa: Callable that prompts for MFA code. Returns on MFA if None.
+        return_on_mfa: If True, returns dict with MFA info instead of prompting
+
+    Returns:
+        If return_on_mfa=False (default):
+            Tuple[OAuth1Token, OAuth2Token]: OAuth tokens after login
+        If return_on_mfa=True and MFA required:
+            dict: Contains needs_mfa and client_state for resume_login()
+    """
     client = client or http.client
 
     # Define params based on domain
@@ -98,28 +137,33 @@ def login(
 
     # Handle MFA
     if "MFA" in title:
+        if return_on_mfa or prompt_mfa is None:
+            return {
+                "needs_mfa": True,
+                "client_state": {
+                    "csrf_token": csrf_token,
+                    "signin_params": SIGNIN_PARAMS,
+                    "client": client,
+                },
+            }
+
         handle_mfa(client, SIGNIN_PARAMS, prompt_mfa)
         title = get_title(client.last_resp.text)
 
     assert title == "Success", f"Unexpected title: {title}"
-
-    # Parse ticket
-    m = re.search(r'embed\?ticket=([^"]+)"', client.last_resp.text)
-    assert m, "Couldn't find ticket in response"
-    ticket = m.group(1)
-
-    oauth1 = get_oauth1_token(ticket, client)
-    oauth2 = exchange(oauth1, client)
-
-    return oauth1, oauth2
+    return _complete_login(client, client.last_resp.text)
 
 
 def get_oauth1_token(ticket: str, client: "http.Client") -> OAuth1Token:
     sess = GarminOAuth1Session(parent=client.sess)
+    base_url = f"https://connectapi.{client.domain}/oauth-service/oauth/"
+    login_url = f"https://sso.{client.domain}/sso/embed"
+    url = (
+        f"{base_url}preauthorized?ticket={ticket}&login-url={login_url}"
+        "&accepts-mfa-tokens=true"
+    )
     resp = sess.get(
-        f"https://connectapi.{client.domain}/oauth-service/oauth/"
-        f"preauthorized?ticket={ticket}&login-url="
-        f"https://sso.{client.domain}/sso/embed&accepts-mfa-tokens=true",
+        url,
         headers=USER_AGENT,
         timeout=client.timeout,
     )
@@ -136,12 +180,15 @@ def exchange(oauth1: OAuth1Token, client: "http.Client") -> OAuth2Token:
         parent=client.sess,
     )
     data = dict(mfa_token=oauth1.mfa_token) if oauth1.mfa_token else {}
+    base_url = f"https://connectapi.{client.domain}/oauth-service/oauth/"
+    url = f"{base_url}exchange/user/2.0"
+    headers = {
+        **USER_AGENT,
+        **{"Content-Type": "application/x-www-form-urlencoded"},
+    }
     token = sess.post(
-        f"https://connectapi.{client.domain}/oauth-service/oauth/exchange/user/2.0",
-        headers={
-            **USER_AGENT,
-            **{"Content-Type": "application/x-www-form-urlencoded"},
-        },
+        url,
+        headers=headers,
         data=data,
         timeout=client.timeout,
     ).json()
@@ -190,3 +237,37 @@ def get_title(html: str) -> str:
     if not m:
         raise GarthException("Couldn't find title")
     return m.group(1)
+
+
+def resume_login(
+    client_state: dict, mfa_code: str
+) -> Tuple[OAuth1Token, OAuth2Token]:
+    """Complete login after MFA code is provided.
+
+    Args:
+        client_state: The client state from login() when MFA was needed
+        mfa_code: The MFA code provided by the user
+
+    Returns:
+        Tuple[OAuth1Token, OAuth2Token]: The OAuth tokens after login
+    """
+    client = client_state["client"]
+    signin_params = client_state["signin_params"]
+    csrf_token = client_state["csrf_token"]
+
+    client.post(
+        "sso",
+        "/sso/verifyMFA/loginEnterMfaCode",
+        params=signin_params,
+        referrer=True,
+        data={
+            "mfa-code": mfa_code,
+            "embed": "true",
+            "_csrf": csrf_token,
+            "fromPage": "setupEnterMfaCode",
+        },
+    )
+
+    title = get_title(client.last_resp.text)
+    assert title == "Success", f"Unexpected title: {title}"
+    return _complete_login(client, client.last_resp.text)

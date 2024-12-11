@@ -64,6 +64,33 @@ def test_login_success_mfa_async(monkeypatch, client: Client):
     assert isinstance(oauth2, OAuth2Token)
 
 
+@pytest.mark.vcr
+def test_login_return_on_mfa(client: Client):
+    result = sso.login(
+        "user@example.com",
+        "correct_password",
+        client=client,
+        return_on_mfa=True,
+    )
+
+    assert isinstance(result, dict)
+    assert result["needs_mfa"] is True
+    assert "client_state" in result
+    assert "csrf_token" in result["client_state"]
+    assert "signin_params" in result["client_state"]
+    assert "client" in result["client_state"]
+
+    code = "123456"  # obtain from custom login
+
+    # test resuming the login
+    oauth1, oauth2 = sso.resume_login(result["client_state"], code)
+
+    assert oauth1
+    assert isinstance(oauth1, OAuth1Token)
+    assert oauth2
+    assert isinstance(oauth2, OAuth2Token)
+
+
 def test_set_expirations(oauth2_token_dict: dict):
     token = sso.set_expirations(oauth2_token_dict)
     assert (
