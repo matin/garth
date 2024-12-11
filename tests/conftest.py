@@ -115,7 +115,7 @@ def sanitize_response(response):
             buffer = io.BytesIO(body)
             try:
                 body = gzip.GzipFile(fileobj=buffer).read()
-            except gzip.BadGzipFile:
+            except gzip.BadGzipFile:  # pragma: no cover
                 ...
             else:
                 response["body"]["string"] = body
