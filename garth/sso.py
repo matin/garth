@@ -55,7 +55,10 @@ def _complete_login(
     """
     # Parse ticket
     m = re.search(r'embed\?ticket=([^"]+)"', html)
-    assert m, "Couldn't find ticket in response"
+    if not m:
+        raise GarthException(
+            "Couldn't find ticket in response"
+        )  # pragma: no cover
     ticket = m.group(1)
 
     oauth1 = get_oauth1_token(ticket, client)
@@ -150,7 +153,8 @@ def login(
         handle_mfa(client, SIGNIN_PARAMS, prompt_mfa)
         title = get_title(client.last_resp.text)
 
-    assert title == "Success", f"Unexpected title: {title}"
+    if title != "Success":
+        raise GarthException(f"Unexpected title: {title}")  # pragma: no cover
     return _complete_login(client, client.last_resp.text)
 
 
@@ -269,5 +273,6 @@ def resume_login(
     )
 
     title = get_title(client.last_resp.text)
-    assert title == "Success", f"Unexpected title: {title}"
+    if title != "Success":
+        raise GarthException(f"Unexpected title: {title}")  # pragma: no cover
     return _complete_login(client, client.last_resp.text)
