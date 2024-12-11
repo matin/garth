@@ -1,8 +1,12 @@
 # Garth
 
-[![CI](https://github.com/matin/garth/workflows/CI/badge.svg?event=push)](https://github.com/matin/garth/actions/workflows/ci.yml?query=event%3Apush+branch%3Amain+workflow%3ACI)
-[![codecov](https://codecov.io/gh/matin/garth/branch/main/graph/badge.svg?token=0EFFYJNFIL)](https://codecov.io/gh/matin/garth)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/garth)](https://pypistats.org/packages/garth)
+[![CI](https://github.com/matin/garth/workflows/CI/badge.svg?event=push)](
+    https://github.com/matin/garth/actions/workflows/ci.yml?query=event%3Apush+branch%3Amain+workflow%3ACI)
+[![codecov](
+    https://codecov.io/gh/matin/garth/branch/main/graph/badge.svg?token=0EFFYJNFIL)](
+    https://codecov.io/gh/matin/garth)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/garth)](
+    https://pypistats.org/packages/garth)
 
 Garmin SSO auth + Connect Python client
 
@@ -16,7 +20,8 @@ individual days and the trend. The Colab retrieves up to three years of daily
 data. If there's less than three years of data, it retrieves whatever is
 available.
 
-![Stress: Garph of 28-day rolling average](https://github.com/matin/garth/assets/98985/868ecf25-4644-4879-b28f-ed0706a9e7b9)
+![Stress: Garph of 28-day rolling average](
+    https://github.com/matin/garth/assets/98985/868ecf25-4644-4879-b28f-ed0706a9e7b9)
 
 ### [Sleep analysis over 90 days](https://colab.research.google.com/github/matin/garth/blob/main/colabs/sleep.ipynb)
 
@@ -27,13 +32,15 @@ daily sleep quality in 28-day pages, but that doesn't show details. Using
 day with enough detail to product a stacked bar graph of the daily sleep
 stages.
 
-![Sleep stages over 90 days](https://github.com/matin/garth/assets/98985/ba678baf-0c8a-4907-aa91-be43beec3090)
+![Sleep stages over 90 days](
+    https://github.com/matin/garth/assets/98985/ba678baf-0c8a-4907-aa91-be43beec3090)
 
 One specific graph that's useful but not available in the Connect app is
 sleep start and end times over an extended period. This provides context
 to the sleep hours and stages.
 
-![Sleep times over 90 days](https://github.com/matin/garth/assets/98985/c5583b9e-ab8a-4b5c-bfe6-1cb0ca95d1de)
+![Sleep times over 90 days](
+    https://github.com/matin/garth/assets/98985/c5583b9e-ab8a-4b5c-bfe6-1cb0ca95d1de)
 
 ### [ChatGPT analysis of Garmin stats](https://colab.research.google.com/github/matin/garth/blob/main/colabs/chatgpt_analysis_of_stats.ipynb)
 
@@ -123,12 +130,20 @@ garth.save("~/.garth")
 
 ### Custom MFA handler
 
-There's already a default MFA handler that prompts for the code in the
-terminal. You can provide your own handler. The handler should return the
-MFA code through your custom prompt.
+By default, MFA will prompt for the code in the terminal. You can provide your
+own handler:
 
 ```python
 garth.login(email, password, prompt_mfa=lambda: input("Enter MFA code: "))
+```
+
+For advanced use cases (like async handling), MFA can be handled separately:
+
+```python
+result = garth.login(email, password, return_on_mfa=True)
+if isinstance(result, dict):  # MFA is required
+    mfa_code = "123456"  # Get this from your custom MFA flow
+    oauth1, oauth2 = garth.resume_login(result['client_state'], mfa_code)
 ```
 
 ### Configure
@@ -188,7 +203,7 @@ list(sleep.keys())
 ### Stats
 
 ```python
-stress =  garth.connectapi("/usersummary-service/stats/stress/weekly/2023-07-05/52")
+stress = garth.connectapi("/usersummary-service/stats/stress/weekly/2023-07-05/52")
 ```
 
 ```json
