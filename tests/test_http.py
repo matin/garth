@@ -144,9 +144,17 @@ def test_login_success_mfa(monkeypatch, client: Client):
 
 @pytest.mark.vcr
 def test_username(authed_client: Client):
-    assert authed_client._social_profile is None
+    assert authed_client._user_profile is None
     assert authed_client.username
-    assert authed_client._social_profile
+    assert authed_client._user_profile
+
+
+@pytest.mark.vcr
+def test_profile_alias(authed_client: Client):
+    assert authed_client._user_profile is None
+    profile = authed_client.profile
+    assert profile == authed_client.user_profile
+    assert authed_client._user_profile is not None
 
 
 @pytest.mark.vcr
