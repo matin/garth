@@ -1,4 +1,5 @@
 __all__ = [
+    "Activity",
     "BodyBatteryData",
     "BodyBatteryEvent",
     "BodyBatteryReading",
@@ -12,6 +13,7 @@ __all__ = [
     "WeightData",
 ]
 
+from .activity import Activity
 from .body_battery import (
     BodyBatteryData,
     BodyBatteryEvent,
