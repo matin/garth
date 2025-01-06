@@ -193,6 +193,12 @@ class Client:
     ) -> Dict[str, Any]:
         """Upload FIT file to Garmin Connect.
 
+        If ``return_id`` is true, the upload function will perform a retry loop
+        (up to five times) to poll if Garmin Connect has finished assigning an
+        ID number to the activity. This can add up to 7.5 seconds of waiting
+        for the request to finish (though typically it takes about 1.5
+        seconds).
+
         Args:
             fp: open file pointer to FIT file
             path: the API endpoint to use
@@ -218,7 +224,6 @@ class Client:
             files=files,
         )
         result = None if resp.status_code == 204 else resp.json()
-        assert result is not None, "No result from upload"
         if result is None:
             raise GarthHTTPError(
                 msg=(

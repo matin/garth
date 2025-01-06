@@ -258,7 +258,7 @@ be contained within the resulting dictionary at
 
 > [!NOTE]  
 > Since this process waits for processing on the Garmin Connect server, be aware that
-> that it can make the upload process can take up to a few seconds longer than usual.
+> it can make the upload process can take up to a few seconds longer than usual.
 
 ```python
 with open("12129115726_ACTIVITY.fit", "rb") as f:
