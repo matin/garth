@@ -250,6 +250,69 @@ generated from workouts are accepted without issues.
 }
 ```
 
+Using the `return_id` flag will make the code wait for Garmin to return
+its internal identifier for the newly created activity, which can
+be used for other methods such as renaming. The "internal ID" will
+be contained within the resulting dictionary at
+`result["detailedImportResult"]["successes"][0]["internalId"]`:
+
+```python
+with open("12129115726_ACTIVITY.fit", "rb") as f:
+    uploaded = garth.client.upload(f, return_id=True)
+```
+
+```python
+{
+    'detailedImportResult': {
+        'uploadId': 212157427938,
+        'uploadUuid': {
+            'uuid': '6e56051d-1dd4-4f2c-b8ba-00a1a7d82eb3'
+        },
+        'owner': 2591602,
+        'fileSize': 5289,
+        'processingTime': 36,
+        'creationDate': '2023-09-29 01:58:19.113 GMT',
+        'ipAddress': None,
+        'fileName': '12129115726_ACTIVITY.fit',
+        'report': None,
+        'successes': [
+            {
+                'internalId': 17123456789,
+                'externalId': None,
+                'messages': None
+            }
+        ],
+        'failures': []
+    }
+}
+```
+
+## Renaming an activity
+
+Using the "internal activity id" from above, an activity can be renamed using the
+`rename` method. This snippet shows an example of uploading an activity, fetching its
+id number, and then renaming it on Garmin Connect:
+
+```python
+import garth
+from garth.exc import GarthException
+
+garth.resume(".garth")
+try:
+    garth.client.username
+except GarthException:
+    # Session is expired. You'll need to log in again
+    garth.login("email", "password")
+    garth.save(".garth")
+
+with open("your_fit_file.fit", "rb") as fp:
+    response = garth.client.upload(fp, return_id=True)
+
+id_num = response["detailedImportResult"]["successes"][0]["internalId"]
+garth.client.rename(id_num, "A better title than 'Virtual Cycling'")
+```
+
+
 ## Stats resources
 
 ### Stress
