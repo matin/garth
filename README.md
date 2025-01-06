@@ -256,6 +256,10 @@ be used for other methods such as renaming. The "internal ID" will
 be contained within the resulting dictionary at
 `result["detailedImportResult"]["successes"][0]["internalId"]`:
 
+> [!NOTE]  
+> Since this process waits for processing on the Garmin Connect server, be aware that
+> that it can make the upload process can take up to a few seconds longer than usual.
+
 ```python
 with open("12129115726_ACTIVITY.fit", "rb") as f:
     uploaded = garth.client.upload(f, return_id=True)
@@ -289,9 +293,9 @@ with open("12129115726_ACTIVITY.fit", "rb") as f:
 
 ## Renaming an activity
 
-Using the "internal activity id" from above, an activity can be renamed using the
-`rename` method. This snippet shows an example of uploading an activity, fetching its
-id number, and then renaming it on Garmin Connect:
+Using the "internal activity id" from above, an activity can be renamed
+using the `rename` method. This snippet shows an example of uploading an
+activity, fetching its id number, and then renaming it on Garmin Connect:
 
 ```python
 import garth
@@ -311,7 +315,6 @@ with open("your_fit_file.fit", "rb") as fp:
 id_num = response["detailedImportResult"]["successes"][0]["internalId"]
 garth.client.rename(id_num, "A better title than 'Virtual Cycling'")
 ```
-
 
 ## Stats resources
 

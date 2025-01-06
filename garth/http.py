@@ -207,7 +207,7 @@ class Client:
             ``result["detailedImportResult"]["successes"][0]["internalId"]``
         
         Raises:
-            ``AssertionErrror`` if the upload request returns no response
+            ``GarthHTTPError`` if the upload request returns no response
         """
         fname = os.path.basename(fp.name)
         files = {"file": (fname, fp)}
@@ -219,6 +219,14 @@ class Client:
         )
         result = None if resp.status_code == 204 else resp.json()
         assert result is not None, "No result from upload"
+        if result is None:
+            raise GarthHTTPError(
+                msg=(
+                    "Upload did not have expected status code of 204 "
+                    f"(was: {resp.status_code})"
+                ),
+                error=HTTPError(),
+            )
 
         if return_id:
             tries = 0
@@ -241,7 +249,6 @@ class Client:
                     if id_resp.status_code == 202:
                         continue
                     elif id_resp.status_code == 201:
-                        print(id_resp.json()["detailedImportResult"])
                         result["detailedImportResult"]["successes"] = \
                             id_resp.json()["detailedImportResult"]["successes"]
                         break
@@ -256,7 +263,7 @@ class Client:
             activity_id: the internal Garmin Connect activity id number
             new_title: the new title to use for the activity
         Raises:
-            ``AssertionErrror`` if the rename request has an unexpected status
+            ``GarthHTTPError`` if the rename request has an unexpected status
         """
         response = self.request(
             "POST",
@@ -274,7 +281,14 @@ class Client:
                 "content-type": "application/json"
             }
         )
-        assert response.status_code == 204, "Unexpected status from rename"
+        if response.status_code != 204:
+            raise GarthHTTPError(
+                msg=(
+                    "Rename did not have expected status code 204 "
+                    f"(was: {response.status_code})"
+                ),
+                error=HTTPError(),
+            )
 
     def dump(self, dir_path: str):
         dir_path = os.path.expanduser(dir_path)
