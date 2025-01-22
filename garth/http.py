@@ -161,16 +161,14 @@ class Client:
         return self.request("PUT", *args, **kwargs)
 
     def login(self, *args, **kwargs):
-        oauth1, oauth2 = sso.login(
+        self.oauth1_token, self.oauth2_token = sso.login(
             *args, **kwargs, client=self
         )
-        self.oauth1_token = oauth1
-        self.oauth2_token = oauth2
-        return oauth1, oauth2
+        return self.oauth1_token, self.oauth2_token
     
     def resume_login(self, *args, **kwargs):
         self.oauth1_token, self.oauth2_token = sso.resume_login(
-            *args, **kwargs, # client=self
+            *args, **kwargs
         )
         return self.oauth1_token, self.oauth2_token
     
