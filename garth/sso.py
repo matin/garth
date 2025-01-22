@@ -1,7 +1,7 @@
 import asyncio
 import re
 import time
-from typing import Callable, Dict, Tuple
+from typing import Callable, Dict, Tuple, Literal
 from urllib.parse import parse_qs
 
 import requests
@@ -74,7 +74,7 @@ def login(
     client: "http.Client | None" = None,
     prompt_mfa: Callable | None = lambda: input("MFA code: "),
     return_on_mfa: bool = False,
-) -> Tuple[OAuth1Token, OAuth2Token] | dict:
+) -> Tuple[OAuth1Token, OAuth2Token] | Tuple[Literal["needs_mfa"], dict]:
     """Login to Garmin Connect.
 
     Args:
