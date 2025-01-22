@@ -161,10 +161,19 @@ class Client:
         return self.request("PUT", *args, **kwargs)
 
     def login(self, *args, **kwargs):
-        self.oauth1_token, self.oauth2_token = sso.login(
+        oauth1, oauth2 = sso.login(
             *args, **kwargs, client=self
         )
-
+        self.oauth1_token = oauth1
+        self.oauth2_token = oauth2
+        return oauth1, oauth2
+    
+    def resume_login(self, *args, **kwargs):
+        self.oauth1_token, self.oauth2_token = sso.resume_login(
+            *args, **kwargs, # client=self
+        )
+        return self.oauth1_token, self.oauth2_token
+    
     def refresh_oauth2(self):
         assert self.oauth1_token, "OAuth1 token is required for OAuth2 refresh"
         # There is a way to perform a refresh of an OAuth2 token, but it

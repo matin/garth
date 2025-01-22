@@ -141,13 +141,10 @@ def login(
     # Handle MFA
     if "MFA" in title:
         if return_on_mfa or prompt_mfa is None:
-            return {
-                "needs_mfa": True,
-                "client_state": {
-                    "csrf_token": csrf_token,
-                    "signin_params": SIGNIN_PARAMS,
-                    "client": client,
-                },
+            return "needs_mfa", {
+                "csrf_token": csrf_token,
+                "signin_params": SIGNIN_PARAMS,
+                "client": client,
             }
 
         handle_mfa(client, SIGNIN_PARAMS, prompt_mfa)
