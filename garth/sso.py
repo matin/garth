@@ -1,7 +1,7 @@
 import asyncio
 import re
 import time
-from typing import Callable, Dict, Tuple, Literal
+from typing import Callable, Dict, Literal, Tuple
 from urllib.parse import parse_qs
 
 import requests
