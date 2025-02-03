@@ -417,7 +417,6 @@ wheels = [
 
 [[package]]
 name = "garth"
-version = "0.5.2"
 source = { editable = "." }
 dependencies = [
     { name = "pydantic" },
@@ -499,7 +498,7 @@ name = "ipykernel"
 version = "6.29.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "appnope", marker = "platform_system == 'Darwin'" },
+    { name = "appnope", marker = "sys_platform == 'darwin'" },
     { name = "comm" },
     { name = "debugpy" },
     { name = "ipython" },
@@ -1336,7 +1335,7 @@ version = "1.0.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "pytest" },
-    { name = "vcrpy", version = "5.1.0", source = { registry = "https://pypi.org/simple" }, marker = "platform_python_implementation == 'PyPy' or python_full_version >= '3.11'" },
+    { name = "vcrpy", version = "5.1.0", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.11' or platform_python_implementation == 'PyPy'" },
     { name = "vcrpy", version = "6.0.2", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.11' and platform_python_implementation != 'PyPy'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/1a/60/104c619483c1a42775d3f8b27293f1ecfc0728014874d065e68cb9702d49/pytest-vcr-1.0.2.tar.gz", hash = "sha256:23ee51b75abbcc43d926272773aae4f39f93aceb75ed56852d0bf618f92e1896", size = 3810 }
@@ -1692,9 +1691,9 @@ resolution-markers = [
     "python_full_version >= '3.12'",
 ]
 dependencies = [
-    { name = "pyyaml", marker = "platform_python_implementation == 'PyPy' or python_full_version >= '3.11'" },
-    { name = "wrapt", marker = "platform_python_implementation == 'PyPy' or python_full_version >= '3.11'" },
-    { name = "yarl", marker = "platform_python_implementation == 'PyPy' or python_full_version >= '3.11'" },
+    { name = "pyyaml", marker = "python_full_version >= '3.11' or platform_python_implementation == 'PyPy'" },
+    { name = "wrapt", marker = "python_full_version >= '3.11' or platform_python_implementation == 'PyPy'" },
+    { name = "yarl", marker = "python_full_version >= '3.11' or platform_python_implementation == 'PyPy'" },
 ]
 sdist = { url = "https://files.pythonhosted.org/packages/a5/ea/a166a3cce4ac5958ba9bbd9768acdb1ba38ae17ff7986da09fa5b9dbc633/vcrpy-5.1.0.tar.gz", hash = "sha256:bbf1532f2618a04f11bce2a99af3a9647a32c880957293ff91e0a5f187b6b3d2", size = 84576 }
 wheels = [
