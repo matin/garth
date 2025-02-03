@@ -247,3 +247,18 @@ def test_put(authed_client: Client):
         json=data,
     )
     assert authed_client.connectapi(path)
+
+
+@pytest.mark.vcr
+def test_resume_login(client: Client):
+    client.oauth1_token, client.oauth2_token = client.login(
+        "user@example.com", "correct_password"
+    )
+    assert client.oauth1_token
+    assert client.oauth2_token
+    client.oauth1_token, client.oauth2_token = None, None
+    assert client.oauth1_token is None
+    assert client.oauth2_token is None
+    client.resume_login("user@example.com", "correct_password")
+    assert client.oauth1_token
+    assert client.oauth2_token
