@@ -1,6 +1,7 @@
 import base64
 import json
 import os
+from time import sleep
 from typing import IO, Any, Dict, Tuple
 from urllib.parse import urljoin
 
@@ -191,17 +192,115 @@ class Client:
         return resp.content
 
     def upload(
-        self, fp: IO[bytes], /, path: str = "/upload-service/upload"
+        self,
+        fp: IO[bytes],
+        /,
+        path: str = "/upload-service/upload",
+        return_id: bool = False,
     ) -> Dict[str, Any]:
+        """Upload FIT file to Garmin Connect.
+
+        If ``return_id`` is true, the upload function will perform a retry loop
+        (up to five times) to poll if Garmin Connect has finished assigning an
+        ID number to the activity. This can add up to 7.5 seconds of waiting
+        for the request to finish (though typically it takes about 1.5
+        seconds).
+
+        Args:
+            fp: open file pointer to FIT file
+            path: the API endpoint to use
+            return_id: Whether to return the Garmin internal activity ID
+                (default: ``False``). This requires polling to see if Garmin
+                Connect has finished processing the activity, so setting this
+                option to ``True`` may introduce some delay
+
+        Returns:
+            response dictionary with single key ``"detailedImportResult"``. If
+            ``return_id=True``, will contain the identifier at the path
+            ``result["detailedImportResult"]["successes"][0]["internalId"]``
+        
+        Raises:
+            ``GarthHTTPError`` if the upload request returns no response
+        """
         fname = os.path.basename(fp.name)
         files = {"file": (fname, fp)}
-        result = self.connectapi(
+        resp = self.request(
+            "POST",
+            "connectapi",
             path,
-            method="POST",
             files=files,
         )
-        assert result is not None, "No result from upload"
+        result = None if resp.status_code == 204 else resp.json()
+        if result is None:
+            raise GarthHTTPError(
+                msg=(
+                    "Upload did not have expected status code of 204 "
+                    f"(was: {resp.status_code})"
+                ),
+                error=HTTPError(),
+            )
+
+        if return_id:
+            tries = 0
+            # get internal activity ID from garmin connect, try five
+            # times with increasing waits (it takes some time for Garmin
+            # connect to return an ID)
+            while tries < 5:
+                wait = (tries + 1) * 0.5
+                sleep(wait)
+                if "location" in resp.headers:
+                    id_resp = self.request(
+                        "GET",
+                        "connectapi",
+                        resp.headers["location"].replace(
+                            "https://connectapi.garmin.com",
+                            "",
+                        ),
+                        api=True
+                    )
+                    if id_resp.status_code == 202:
+                        continue
+                    elif id_resp.status_code == 201:
+                        result["detailedImportResult"]["successes"] = \
+                            id_resp.json()["detailedImportResult"]["successes"]
+                        break
         return result
+
+    def rename(
+        self, activity_id: int, new_title: str 
+    ):
+        """Rename an activity on Garmin Connect.
+
+        Args:
+            activity_id: the internal Garmin Connect activity id number
+            new_title: the new title to use for the activity
+        Raises:
+            ``GarthHTTPError`` if the rename request has an unexpected status
+        """
+        response = self.request(
+            "POST",
+            "connect",
+            f"/activity-service/activity/{activity_id}",
+            api=True,
+            json = {
+                "activityId": activity_id,
+                "activityName": new_title
+            },
+            headers = {
+                "accept": "application/json, text/javascript, */*; q=0.01",
+                "di-backend": "connectapi.garmin.com",
+                "x-http-method-override": "PUT",
+                "content-type": "application/json"
+            }
+        )
+        if response.status_code != 204:
+            raise GarthHTTPError(
+                msg=(
+                    "Rename did not have expected status code 204 "
+                    f"(was: {response.status_code})"
+                ),
+                error=HTTPError(),
+            )
 
     def dump(self, dir_path: str):
         dir_path = os.path.expanduser(dir_path)
