@@ -1,4 +1,5 @@
 version = 1
+revision = 1
 requires-python = ">=3.10"
 resolution-markers = [
     "python_full_version < '3.11' and platform_python_implementation == 'PyPy'",
@@ -410,7 +411,6 @@ wheels = [
 
 [[package]]
 name = "garth"
-version = "0.5.3"
 source = { editable = "." }
 dependencies = [
     { name = "pydantic" },
@@ -454,6 +454,7 @@ requires-dist = [
     { name = "ruff", marker = "extra == 'linting'" },
     { name = "types-requests", marker = "extra == 'linting'" },
 ]
+provides-extras = ["dev", "linting", "testing"]
 
 [[package]]
 name = "idna"
@@ -492,7 +493,7 @@ name = "ipykernel"
 version = "6.29.5"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
-    { name = "appnope", marker = "platform_system == 'Darwin'" },
+    { name = "appnope", marker = "sys_platform == 'darwin'" },
     { name = "comm" },
     { name = "debugpy" },
     { name = "ipython" },
