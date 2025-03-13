@@ -249,7 +249,7 @@ def test_put(authed_client: Client):
     assert authed_client.connectapi(path)
 
 
-@pytest.mark.vcr(record_mode="once")
+@pytest.mark.vcr
 def test_resume_login(client: Client):
     result = client.login(
         "example@example.com",
