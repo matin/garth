@@ -73,17 +73,19 @@ def test_login_return_on_mfa(client: Client):
         return_on_mfa=True,
     )
 
-    assert isinstance(result, dict)
-    assert result["needs_mfa"] is True
-    assert "client_state" in result
-    assert "csrf_token" in result["client_state"]
-    assert "signin_params" in result["client_state"]
-    assert "client" in result["client_state"]
+    assert isinstance(result, tuple)
+    result_type, client_state = result
+
+    assert isinstance(client_state, dict)
+    assert result_type == "needs_mfa"
+    assert "csrf_token" in client_state
+    assert "signin_params" in client_state
+    assert "client" in client_state
 
     code = "123456"  # obtain from custom login
 
     # test resuming the login
-    oauth1, oauth2 = sso.resume_login(result["client_state"], code)
+    oauth1, oauth2 = sso.resume_login(client_state, code)
 
     assert oauth1
     assert isinstance(oauth1, OAuth1Token)

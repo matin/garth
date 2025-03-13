@@ -5,7 +5,7 @@ from typing import Any, cast
 import pytest
 from requests.adapters import HTTPAdapter
 
-from garth.auth_tokens import OAuth2Token
+from garth.auth_tokens import OAuth1Token, OAuth2Token
 from garth.exc import GarthHTTPError
 from garth.http import Client
 
@@ -251,14 +251,29 @@ def test_put(authed_client: Client):
 
 @pytest.mark.vcr(record_mode="once")
 def test_resume_login(client: Client):
-    client.oauth1_token, client.oauth2_token = client.login(
-        "user@example.com", "correct_password"
+    result = client.login(
+        "example@example.com",
+        "correct_password",
+        return_on_mfa=True,
     )
-    assert client.oauth1_token
-    assert client.oauth2_token
-    client.oauth1_token, client.oauth2_token = None, None
-    assert client.oauth1_token is None
-    assert client.oauth2_token is None
-    client.resume_login("user@example.com", "correct_password")
-    assert client.oauth1_token
-    assert client.oauth2_token
+
+    assert isinstance(result, tuple)
+    result_type, client_state = result
+
+    assert isinstance(client_state, dict)
+    assert result_type == "needs_mfa"
+    assert "csrf_token" in client_state
+    assert "signin_params" in client_state
+    assert "client" in client_state
+
+    code = "123456"  # obtain from custom login
+    # from getpass import getpass
+    # code = getpass()
+
+    # test resuming the login
+    oauth1, oauth2 = client.resume_login(client_state, code)
+
+    assert oauth1
+    assert isinstance(oauth1, OAuth1Token)
+    assert oauth2
+    assert isinstance(oauth2, OAuth2Token)
