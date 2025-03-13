@@ -5,7 +5,7 @@ from typing import Any, cast
 import pytest
 from requests.adapters import HTTPAdapter
 
-from garth.auth_tokens import OAuth2Token
+from garth.auth_tokens import OAuth1Token, OAuth2Token
 from garth.exc import GarthHTTPError
 from garth.http import Client
 
@@ -113,9 +113,9 @@ def test_configure_pool_connections(client: Client):
     assert client.pool_connections == 99
     adapter = client.sess.adapters["https://"]
     assert isinstance(adapter, HTTPAdapter)
-    assert (
-        getattr(adapter, "_pool_connections", None) == 99
-    ), "Pool connections not properly configured"
+    assert getattr(adapter, "_pool_connections", None) == 99, (
+        "Pool connections not properly configured"
+    )
 
 
 @pytest.mark.vcr
@@ -247,3 +247,31 @@ def test_put(authed_client: Client):
         json=data,
     )
     assert authed_client.connectapi(path)
+
+
+@pytest.mark.vcr
+def test_resume_login(client: Client):
+    result = client.login(
+        "example@example.com",
+        "correct_password",
+        return_on_mfa=True,
+    )
+
+    assert isinstance(result, tuple)
+    result_type, client_state = result
+
+    assert isinstance(client_state, dict)
+    assert result_type == "needs_mfa"
+    assert "csrf_token" in client_state
+    assert "signin_params" in client_state
+    assert "client" in client_state
+
+    code = "123456"  # obtain from custom login
+
+    # test resuming the login
+    oauth1, oauth2 = client.resume_login(client_state, code)
+
+    assert oauth1
+    assert isinstance(oauth1, OAuth1Token)
+    assert oauth2
+    assert isinstance(oauth2, OAuth2Token)

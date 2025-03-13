@@ -97,9 +97,9 @@ class Client:
             self._user_profile = self.connectapi(
                 "/userprofile-service/socialProfile"
             )
-            assert isinstance(
-                self._user_profile, dict
-            ), "No profile from connectapi"
+            assert isinstance(self._user_profile, dict), (
+                "No profile from connectapi"
+            )
         return self._user_profile
 
     @property
@@ -126,9 +126,9 @@ class Client:
         if referrer is True and self.last_resp:
             headers["referer"] = self.last_resp.url
         if api:
-            assert (
-                self.oauth1_token
-            ), "OAuth1 token is required for API requests"
+            assert self.oauth1_token, (
+                "OAuth1 token is required for API requests"
+            )
             if not self.oauth2_token or self.oauth2_token.expired:
                 self.refresh_oauth2()
             headers["Authorization"] = str(self.oauth2_token)
@@ -164,6 +164,13 @@ class Client:
         self.oauth1_token, self.oauth2_token = sso.login(
             *args, **kwargs, client=self
         )
+        return self.oauth1_token, self.oauth2_token
+
+    def resume_login(self, *args, **kwargs):
+        self.oauth1_token, self.oauth2_token = sso.resume_login(
+            *args, **kwargs
+        )
+        return self.oauth1_token, self.oauth2_token
 
     def refresh_oauth2(self):
         assert self.oauth1_token, "OAuth1 token is required for OAuth2 refresh"

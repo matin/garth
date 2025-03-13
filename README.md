@@ -140,10 +140,10 @@ garth.login(email, password, prompt_mfa=lambda: input("Enter MFA code: "))
 For advanced use cases (like async handling), MFA can be handled separately:
 
 ```python
-result = garth.login(email, password, return_on_mfa=True)
-if isinstance(result, dict):  # MFA is required
+result1, result2 = garth.login(email, password, return_on_mfa=True)
+if result1 == "needs_mfa":  # MFA is required
     mfa_code = "123456"  # Get this from your custom MFA flow
-    oauth1, oauth2 = garth.resume_login(result['client_state'], mfa_code)
+    oauth1, oauth2 = garth.resume_login(result2, mfa_code)
 ```
 
 ### Configure
