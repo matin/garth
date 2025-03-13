@@ -33,6 +33,35 @@ def camel_to_snake_dict(camel_dict: Dict[str, Any]) -> Dict[str, Any]:
     return snake_dict
 
 
+def remove_dto(key: str) -> str:
+    if key.endswith("_dto"):
+        return key[: -len("_dto")]
+    elif key.endswith("DTO"):
+        return key[: -len("DTO")]
+    else:
+        return key
+
+
+def remove_dto_from_dict(input_dict: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Removes `DTO` suffix from dictionary keys. Different API endpoints give
+    back different key names, e.g. "activityTypeDTO" instead of "activityType".
+    """
+    output_dict: Dict[str, Any] = {}
+    for k, v in input_dict.items():
+        new_key = remove_dto(k)
+        if isinstance(v, dict):
+            output_dict[new_key] = remove_dto_from_dict(v)
+        elif isinstance(v, list):
+            output_dict[new_key] = [
+                remove_dto_from_dict(i) if isinstance(i, dict) else i
+                for i in v
+            ]
+        else:
+            output_dict[new_key] = v
+    return output_dict
+
+
 def format_end_date(end: Union[date, str, None]) -> date:
     if end is None:
         end = date.today()
