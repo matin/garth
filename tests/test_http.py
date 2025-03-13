@@ -267,8 +267,6 @@ def test_resume_login(client: Client):
     assert "client" in client_state
 
     code = "123456"  # obtain from custom login
-    # from getpass import getpass
-    # code = getpass()
 
     # test resuming the login
     oauth1, oauth2 = client.resume_login(client_state, code)
