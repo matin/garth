@@ -10,8 +10,8 @@ BASE_PATH = "/usersummary-service/stats/steps"
 
 @dataclass(frozen=True)
 class DailySteps(Stats):
-    total_steps: int
-    total_distance: int
+    total_steps: int | None
+    total_distance: int | None
     step_goal: int
 
     _path: ClassVar[str] = f"{BASE_PATH}/daily/{{start}}/{{end}}"
