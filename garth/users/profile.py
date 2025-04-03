@@ -14,7 +14,7 @@ class UserProfile:
     display_name: str
     full_name: str
     user_name: str
-    profile_image_type: str | None
+    profile_image_uuid: str | None
     profile_image_url_large: str | None
     profile_image_url_medium: str | None
     profile_image_url_small: str | None
