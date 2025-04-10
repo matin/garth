@@ -190,12 +190,14 @@ def exchange(oauth1: OAuth1Token, client: "http.Client") -> OAuth2Token:
         **USER_AGENT,
         **{"Content-Type": "application/x-www-form-urlencoded"},
     }
-    token = sess.post(
+    resp = sess.post(
         url,
         headers=headers,
         data=data,
         timeout=client.timeout,
-    ).json()
+    )
+    resp.raise_for_status()
+    token = resp.json()
     return OAuth2Token(**set_expirations(token))
 
 
