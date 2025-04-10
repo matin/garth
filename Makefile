@@ -17,9 +17,10 @@ install: .uv .pre-commit
 	pre-commit install --install-hooks
 
 .PHONY: sync  ## Sync dependencies and lockfiles
-sync: .uv clean
+sync: .uv .pre-commit clean
 	uv pip install -e . --force-reinstall
 	uv sync
+	pre-commit run --all-files || (echo "Running pre-commit hook fixes..." && pre-commit run --all-files)
 
 .PHONY: format  ## Auto-format python source files
 format: .uv
