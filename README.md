@@ -5,6 +5,9 @@
 [![codecov](
     https://codecov.io/gh/matin/garth/branch/main/graph/badge.svg?token=0EFFYJNFIL)](
     https://codecov.io/gh/matin/garth)
+[![PyPI version](
+    https://img.shields.io/pypi/v/garth.svg?logo=python&logoColor=brightgreen&color=brightgreen)](
+    https://pypi.org/project/garth/)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/garth)](
     https://pypistats.org/packages/garth)
 
