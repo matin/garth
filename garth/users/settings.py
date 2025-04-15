@@ -107,4 +107,4 @@ class UserSettings:
             data['user_sleep_windows'] = [
                 UserSleepWindow(**window) for window in data['user_sleep_windows']
             ]
-        return data
+        return cls(**data)
