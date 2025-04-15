@@ -81,10 +81,17 @@ class UserSleep:
 
 
 @dataclass
+class UserSleepWindow:
+    sleep_window_frequency: str
+    start_sleep_time_seconds_from_midnight: int
+    end_sleep_time_seconds_from_midnight: int
+
+@dataclass
 class UserSettings:
     id: int
     user_data: UserData
     user_sleep: UserSleep
+    user_sleep_windows: List[UserSleepWindow]
     connect_date: str | None
     source_type: str | None
 
@@ -95,4 +102,9 @@ class UserSettings:
             "/userprofile-service/userprofile/user-settings"
         )
         assert isinstance(settings, dict)
-        return cls(**camel_to_snake_dict(settings))
+        data = camel_to_snake_dict(settings)
+        if 'user_sleep_windows' in data:
+            data['user_sleep_windows'] = [
+                UserSleepWindow(**window) for window in data['user_sleep_windows']
+            ]
+        return data
