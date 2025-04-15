@@ -27,12 +27,12 @@ class FirstDayOfWeek:
 
 @dataclass
 class WeatherLocation:
-    use_fixed_location: bool
-    latitude: float
-    longitude: float
-    location_name: str
-    iso_country_code: str
-    postal_code: str
+    use_fixed_location: bool | None
+    latitude: float | None
+    longitude: float | None
+    location_name: str | None
+    iso_country_code: str | None
+    postal_code: str | None
 
 
 @dataclass
@@ -66,7 +66,7 @@ class UserData:
     ftp_auto_detected: bool | None
     training_status_paused_date: str | None
     weather_location: WeatherLocation | None
-    golf_distance_unit: str
+    golf_distance_unit: str | None
     golf_elevation_unit: str | None
     golf_speed_unit: str | None
     external_bottom_time: float | None
