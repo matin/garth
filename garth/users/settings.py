@@ -91,7 +91,7 @@ class UserSettings:
     id: int
     user_data: UserData
     user_sleep: UserSleep
-    user_sleep_windows: List[UserSleepWindow]
+    user_sleep_windows: List[UserSleepWindow] | None
     connect_date: str | None
     source_type: str | None
 
