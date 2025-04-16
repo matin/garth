@@ -104,9 +104,9 @@ class UserSettings:
         )
         assert isinstance(settings, dict)
         data = camel_to_snake_dict(settings)
-        if 'user_sleep_windows' in data:
-            data['user_sleep_windows'] = [
-                UserSleepWindow(**window) 
-                for window in data['user_sleep_windows']
+        if "user_sleep_windows" in data:
+            data["user_sleep_windows"] = [
+                UserSleepWindow(**window)
+                for window in data["user_sleep_windows"]
             ]
         return cls(**data)
