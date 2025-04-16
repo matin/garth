@@ -86,6 +86,7 @@ class UserSleepWindow:
     start_sleep_time_seconds_from_midnight: int
     end_sleep_time_seconds_from_midnight: int
 
+
 @dataclass
 class UserSettings:
     id: int
