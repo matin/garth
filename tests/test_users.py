@@ -11,6 +11,6 @@ def test_user_profile(authed_client: Client):
 
 
 @pytest.mark.vcr
-def test_user_setttings(authed_client: Client):
+def test_user_settings(authed_client: Client):
     settings = UserSettings.get(client=authed_client)
     assert settings.user_data
