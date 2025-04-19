@@ -36,9 +36,9 @@ interactions:
         "trainingStatusPausedDate": null, "weatherLocation": null, "golfDistanceUnit":
         "statute_us", "golfElevationUnit": null, "golfSpeedUnit": null, "externalBottomTime":
         null}, "userSleep": {"sleepTime": 80400, "defaultSleepTime": false, "wakeTime":
-        24000, "defaultWakeTime": false}, "connectDate": null, "sourceType": null}
-        "userSleepWindows": [{"sleepWindowFrequency": "SUNDAY", 
-        "startSleepTimeSecondsFromMidnight": 77400, 
+        24000, "defaultWakeTime": false}, "connectDate": null, "sourceType": null},
+        "userSleepWindows": [{"sleepWindowFrequency": "SUNDAY",
+        "startSleepTimeSecondsFromMidnight": 77400,
         "endSleepTimeSecondsFromMidnight": 19800},
         {"sleepWindowFrequency": "MONDAY",
         "startSleepTimeSecondsFromMidnight": 77400,
