@@ -2,6 +2,7 @@ from datetime import date
 from typing import Dict, List
 
 from pydantic.dataclasses import dataclass
+from typing import List, Optional
 
 from .. import http
 from ..utils import camel_to_snake_dict
@@ -92,9 +93,9 @@ class UserSettings:
     id: int
     user_data: UserData
     user_sleep: UserSleep
-    user_sleep_windows: List[UserSleepWindow] | None
     connect_date: str | None
     source_type: str | None
+    user_sleep_windows: Optional[List[UserSleepWindow]] = None
 
     @classmethod
     def get(cls, /, client: http.Client | None = None):
