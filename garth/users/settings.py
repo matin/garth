@@ -1,8 +1,7 @@
 from datetime import date
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from pydantic.dataclasses import dataclass
-from typing import List, Optional
 
 from .. import http
 from ..utils import camel_to_snake_dict
