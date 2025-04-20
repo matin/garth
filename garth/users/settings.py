@@ -1,5 +1,5 @@
 from datetime import date
-from typing import Dict, List, Optional
+from typing import Dict, List
 
 from pydantic.dataclasses import dataclass
 
@@ -94,7 +94,7 @@ class UserSettings:
     user_sleep: UserSleep
     connect_date: str | None
     source_type: str | None
-    user_sleep_windows: Optional[List[UserSleepWindow]] = None
+    user_sleep_windows: List[UserSleepWindow] | None = None
 
     @classmethod
     def get(cls, /, client: http.Client | None = None):
