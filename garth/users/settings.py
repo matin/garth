@@ -57,7 +57,7 @@ class UserData:
     moderate_intensity_minutes_hr_zone: int
     vigorous_intensity_minutes_hr_zone: int
     hydration_measurement_unit: str
-    hydration_containers: List[Dict[str, float | None]]
+    hydration_containers: List[Dict[str, float | str | None]]
     hydration_auto_goal_enabled: bool
     firstbeat_max_stress_score: float | None
     firstbeat_cycling_lt_timestamp: int | None
@@ -104,9 +104,4 @@ class UserSettings:
         )
         assert isinstance(settings, dict)
         data = camel_to_snake_dict(settings)
-        if "user_sleep_windows" in data:
-            data["user_sleep_windows"] = [
-                UserSleepWindow(**window)
-                for window in data["user_sleep_windows"]
-            ]
         return cls(**data)
