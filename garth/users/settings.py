@@ -27,12 +27,12 @@ class FirstDayOfWeek:
 
 @dataclass
 class WeatherLocation:
-    use_fixed_location: bool
-    latitude: float
-    longitude: float
-    location_name: str
-    iso_country_code: str
-    postal_code: str
+    use_fixed_location: bool | None
+    latitude: float | None
+    longitude: float | None
+    location_name: str | None
+    iso_country_code: str | None
+    postal_code: str | None
 
 
 @dataclass
@@ -57,7 +57,7 @@ class UserData:
     moderate_intensity_minutes_hr_zone: int
     vigorous_intensity_minutes_hr_zone: int
     hydration_measurement_unit: str
-    hydration_containers: List[Dict[str, float | None]]
+    hydration_containers: List[Dict[str, float | str | None]]
     hydration_auto_goal_enabled: bool
     firstbeat_max_stress_score: float | None
     firstbeat_cycling_lt_timestamp: int | None
@@ -66,7 +66,7 @@ class UserData:
     ftp_auto_detected: bool | None
     training_status_paused_date: str | None
     weather_location: WeatherLocation | None
-    golf_distance_unit: str
+    golf_distance_unit: str | None
     golf_elevation_unit: str | None
     golf_speed_unit: str | None
     external_bottom_time: float | None
@@ -81,12 +81,20 @@ class UserSleep:
 
 
 @dataclass
+class UserSleepWindow:
+    sleep_window_frequency: str
+    start_sleep_time_seconds_from_midnight: int
+    end_sleep_time_seconds_from_midnight: int
+
+
+@dataclass
 class UserSettings:
     id: int
     user_data: UserData
     user_sleep: UserSleep
     connect_date: str | None
     source_type: str | None
+    user_sleep_windows: List[UserSleepWindow] | None = None
 
     @classmethod
     def get(cls, /, client: http.Client | None = None):
@@ -95,4 +103,5 @@ class UserSettings:
             "/userprofile-service/userprofile/user-settings"
         )
         assert isinstance(settings, dict)
-        return cls(**camel_to_snake_dict(settings))
+        data = camel_to_snake_dict(settings)
+        return cls(**data)
