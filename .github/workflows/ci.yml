@@ -11,6 +11,12 @@ on:
 env:
   COLUMNS: 150
 
+permissions:
+  contents: read
+  pull-requests: read
+  checks: write
+  statuses: write
+
 jobs:
   lint:
     runs-on: ubuntu-latest
