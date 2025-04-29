@@ -74,6 +74,13 @@ indent-style = "space"
 skip-magic-trailing-comma = false
 line-ending = "auto"
 
+[dependency-groups]
+linting = [
+    "mypy>=1.13.0",
+    "ruff>=0.8.2",
+    "types-requests>=2.32.0.20241016",
+]
+
 [tool.ruff.lint.isort]
 known-first-party = ["garth"]
 combine-as-imports = true
