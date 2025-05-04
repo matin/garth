@@ -32,7 +32,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.hatch.version]
-path = "garth/version.py"
+path = "src/garth/version.py"
 
 [project.optional-dependencies]
 dev = [

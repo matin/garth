@@ -1,7 +1,7 @@
 # Based on Makefile for pydantic (github.com/pydantic/pydantic/blob/main/Makefile)
 
 .DEFAULT_GOAL := all
-sources = garth tests
+sources = src tests
 
 .PHONY: .uv  ## Check that uv is installed
 .uv:
