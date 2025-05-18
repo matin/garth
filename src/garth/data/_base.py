@@ -3,8 +3,9 @@ from concurrent.futures import ThreadPoolExecutor
 from datetime import date
 from typing import List
 
+from typing_extensions import Self
+
 from .. import http
-from ..typing import Self
 from ..utils import date_range, format_end_date
 
 

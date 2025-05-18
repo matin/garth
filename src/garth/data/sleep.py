@@ -2,9 +2,9 @@ from datetime import date, datetime, timedelta, timezone
 from typing import List, Optional, Union
 
 from pydantic.dataclasses import dataclass
+from typing_extensions import Self
 
 from .. import http
-from ..typing import Self
 from ..utils import camel_to_snake_dict
 from ._base import Data
 

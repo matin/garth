@@ -2,9 +2,9 @@ from datetime import date
 from typing import Dict, List
 
 from pydantic.dataclasses import dataclass
+from typing_extensions import Self
 
 from .. import http
-from ..typing import Self
 from ..utils import camel_to_snake_dict
 
 
