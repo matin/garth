@@ -78,3 +78,6 @@ line-ending = "auto"
 known-first-party = ["garth"]
 combine-as-imports = true
 lines-after-imports = 2
+
+[project.scripts]
+garth = "garth.cli:main"

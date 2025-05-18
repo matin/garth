@@ -1,7 +1,7 @@
 from datetime import date, datetime
-from typing import List
 
 from pydantic.dataclasses import dataclass
+from typing_extensions import Self
 
 from .. import http
 from ..utils import camel_to_snake_dict
@@ -36,10 +36,10 @@ class HRVReading:
 
 
 @dataclass
-class HRVData(Data["HRVData"]):
+class HRVData(Data):
     user_profile_pk: int
     hrv_summary: HRVSummary
-    hrv_readings: List[HRVReading]
+    hrv_readings: list[HRVReading]
     start_timestamp_gmt: datetime
     end_timestamp_gmt: datetime
     start_timestamp_local: datetime
@@ -52,7 +52,7 @@ class HRVData(Data["HRVData"]):
     @classmethod
     def get(
         cls, day: date | str, *, client: http.Client | None = None
-    ) -> "HRVData | None":
+    ) -> Self | None:
         client = client or http.client
         path = f"/hrv-service/hrv/{day}"
         hrv_data = client.connectapi(path)
@@ -63,6 +63,6 @@ class HRVData(Data["HRVData"]):
         return cls(**hrv_data)
 
     @classmethod
-    def list(cls, *args, **kwargs) -> list["HRVData"]:
+    def list(cls, *args, **kwargs) -> list[Self]:
         data = super().list(*args, **kwargs)
         return sorted(data, key=lambda d: d.hrv_summary.calendar_date)

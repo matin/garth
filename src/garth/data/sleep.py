@@ -1,7 +1,8 @@
 from datetime import date, datetime, timedelta, timezone
-from typing import List, Optional, Union
+from typing import Optional, Union
 
 from pydantic.dataclasses import dataclass
+from typing_extensions import Self
 
 from .. import http
 from ..utils import camel_to_snake_dict
@@ -101,7 +102,7 @@ class SleepMovement:
 @dataclass
 class SleepData(Data):
     daily_sleep_dto: DailySleepDTO
-    sleep_movement: Optional[List[SleepMovement]] = None
+    sleep_movement: Optional[list[SleepMovement]] = None
 
     @classmethod
     def get(
@@ -110,7 +111,7 @@ class SleepData(Data):
         *,
         buffer_minutes: int = 60,
         client: Optional[http.Client] = None,
-    ) -> Optional["SleepData"]:
+    ) -> Optional[Self]:
         client = client or http.client
         path = (
             f"/wellness-service/wellness/dailySleepData/{client.username}?"
@@ -125,6 +126,6 @@ class SleepData(Data):
         )
 
     @classmethod
-    def list(cls, *args, **kwargs) -> List["SleepData"]:
+    def list(cls, *args, **kwargs) -> list[Self]:
         data = super().list(*args, **kwargs)
         return sorted(data, key=lambda x: x.daily_sleep_dto.calendar_date)

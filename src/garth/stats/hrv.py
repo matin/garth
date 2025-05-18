@@ -2,6 +2,7 @@ from datetime import date, datetime, timedelta
 from typing import Any, ClassVar, cast
 
 from pydantic.dataclasses import dataclass
+from typing_extensions import Self
 
 from .. import http
 from ..utils import camel_to_snake_dict, format_end_date
@@ -36,7 +37,7 @@ class DailyHRV:
         period: int = 28,
         *,
         client: http.Client | None = None,
-    ) -> list["DailyHRV"]:
+    ) -> list[Self]:
         client = client or http.client
         end = format_end_date(end)
 

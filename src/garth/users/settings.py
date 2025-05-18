@@ -1,7 +1,8 @@
 from datetime import date
-from typing import Dict, List
+from typing import Dict
 
 from pydantic.dataclasses import dataclass
+from typing_extensions import Self
 
 from .. import http
 from ..utils import camel_to_snake_dict
@@ -57,7 +58,7 @@ class UserData:
     moderate_intensity_minutes_hr_zone: int
     vigorous_intensity_minutes_hr_zone: int
     hydration_measurement_unit: str
-    hydration_containers: List[Dict[str, float | str | None]]
+    hydration_containers: list[Dict[str, float | str | None]]
     hydration_auto_goal_enabled: bool
     firstbeat_max_stress_score: float | None
     firstbeat_cycling_lt_timestamp: int | None
@@ -94,10 +95,10 @@ class UserSettings:
     user_sleep: UserSleep
     connect_date: str | None
     source_type: str | None
-    user_sleep_windows: List[UserSleepWindow] | None = None
+    user_sleep_windows: list[UserSleepWindow] | None = None
 
     @classmethod
-    def get(cls, /, client: http.Client | None = None):
+    def get(cls, /, client: http.Client | None = None) -> Self:
         client = client or http.client
         settings = client.connectapi(
             "/userprofile-service/userprofile/user-settings"
