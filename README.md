@@ -13,6 +13,14 @@
 
 Garmin SSO auth + Connect Python client
 
+## Garmin Connect MCP Server
+
+[`garth-mcp-server`](https://github.com/matin/garth-mcp-server) is in early development.
+Contributions are greatly appreciated.
+
+To generate your `GARTH_TOKEN`, use `uvx garth login`.
+For China, do `uvx garth --domain garmin.cn login`.
+
 ## Google Colabs
 
 ### [Stress: 28-day rolling average](https://colab.research.google.com/github/matin/garth/blob/main/colabs/stress.ipynb)
