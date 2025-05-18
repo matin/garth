@@ -5,7 +5,7 @@ from pydantic.dataclasses import dataclass
 from ._base import Stats
 
 
-@dataclass(frozen=True)
+@dataclass
 class DailySleep(Stats):
     value: int | None
 

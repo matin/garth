@@ -8,7 +8,7 @@ from ._base import Stats
 BASE_PATH = "/usersummary-service/stats/im"
 
 
-@dataclass(frozen=True)
+@dataclass
 class DailyIntensityMinutes(Stats):
     weekly_goal: int
     moderate_value: int | None = None
@@ -18,7 +18,7 @@ class DailyIntensityMinutes(Stats):
     _page_size: ClassVar[int] = 28
 
 
-@dataclass(frozen=True)
+@dataclass
 class WeeklyIntensityMinutes(Stats):
     weekly_goal: int
     moderate_value: int | None = None

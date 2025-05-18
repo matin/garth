@@ -7,7 +7,7 @@ from .. import http
 from ..utils import camel_to_snake_dict, format_end_date
 
 
-@dataclass(frozen=True)
+@dataclass
 class Stats:
     calendar_date: date
 

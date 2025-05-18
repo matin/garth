@@ -8,7 +8,7 @@ from ..utils import camel_to_snake_dict
 from ._base import Data
 
 
-@dataclass(frozen=True)
+@dataclass
 class Baseline:
     low_upper: int
     balanced_low: int
@@ -16,7 +16,7 @@ class Baseline:
     marker_value: float
 
 
-@dataclass(frozen=True)
+@dataclass
 class HRVSummary:
     calendar_date: date
     weekly_avg: int
@@ -28,14 +28,14 @@ class HRVSummary:
     create_time_stamp: datetime
 
 
-@dataclass(frozen=True)
+@dataclass
 class HRVReading:
     hrv_value: int
     reading_time_gmt: datetime
     reading_time_local: datetime
 
 
-@dataclass(frozen=True)
+@dataclass
 class HRVData(Data["HRVData"]):
     user_profile_pk: int
     hrv_summary: HRVSummary

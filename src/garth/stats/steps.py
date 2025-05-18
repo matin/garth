@@ -8,7 +8,7 @@ from ._base import Stats
 BASE_PATH = "/usersummary-service/stats/steps"
 
 
-@dataclass(frozen=True)
+@dataclass
 class DailySteps(Stats):
     total_steps: int | None
     total_distance: int | None
@@ -18,7 +18,7 @@ class DailySteps(Stats):
     _page_size: ClassVar[int] = 28
 
 
-@dataclass(frozen=True)
+@dataclass
 class WeeklySteps(Stats):
     total_steps: int
     average_steps: float
