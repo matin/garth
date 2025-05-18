@@ -1,5 +1,5 @@
 from datetime import date, timedelta
-from typing import ClassVar, List
+from typing import ClassVar
 
 from pydantic.dataclasses import dataclass
 from typing_extensions import Self
@@ -22,7 +22,7 @@ class Stats:
         period: int = 1,
         *,
         client: http.Client | None = None,
-    ) -> List[Self]:
+    ) -> list[Self]:
         client = client or http.client
         end = format_end_date(end)
         period_type = "days" if "daily" in cls._path else "weeks"

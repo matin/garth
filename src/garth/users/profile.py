@@ -1,5 +1,3 @@
-from typing import List
-
 from pydantic.dataclasses import dataclass
 from typing_extensions import Self
 
@@ -26,10 +24,10 @@ class UserProfile:
     motivation: str | None
     bio: str | None
     primary_activity: str | None
-    favorite_activity_types: List[str]
+    favorite_activity_types: list[str]
     running_training_speed: float
     cycling_training_speed: float
-    favorite_cycling_activity_types: List[str]
+    favorite_cycling_activity_types: list[str]
     cycling_classification: str | None
     cycling_max_avg_power: float
     swimming_training_speed: float
@@ -59,7 +57,7 @@ class UserProfile:
     other_activity: str | None
     other_primary_activity: str | None
     other_motivation: str | None
-    user_roles: List[str]
+    user_roles: list[str]
     name_approved: bool
     user_profile_full_name: str
     make_golf_scorecards_private: bool

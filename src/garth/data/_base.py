@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date
-from typing import List
 
 from typing_extensions import Self
 
@@ -27,7 +26,7 @@ class Data(ABC):
         *,
         client: http.Client | None = None,
         max_workers: int = MAX_WORKERS,
-    ) -> List[Self]:
+    ) -> list[Self]:
         client = client or http.client
         end = format_end_date(end)
 

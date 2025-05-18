@@ -1,5 +1,4 @@
 from datetime import date, datetime
-from typing import List
 
 from pydantic.dataclasses import dataclass
 from typing_extensions import Self
@@ -40,7 +39,7 @@ class HRVReading:
 class HRVData(Data):
     user_profile_pk: int
     hrv_summary: HRVSummary
-    hrv_readings: List[HRVReading]
+    hrv_readings: list[HRVReading]
     start_timestamp_gmt: datetime
     end_timestamp_gmt: datetime
     start_timestamp_local: datetime

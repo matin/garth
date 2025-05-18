@@ -1,5 +1,5 @@
 from datetime import date, datetime, timedelta, timezone
-from typing import List, Optional, Union
+from typing import Optional, Union
 
 from pydantic.dataclasses import dataclass
 from typing_extensions import Self
@@ -102,7 +102,7 @@ class SleepMovement:
 @dataclass
 class SleepData(Data):
     daily_sleep_dto: DailySleepDTO
-    sleep_movement: Optional[List[SleepMovement]] = None
+    sleep_movement: Optional[list[SleepMovement]] = None
 
     @classmethod
     def get(
@@ -126,6 +126,6 @@ class SleepData(Data):
         )
 
     @classmethod
-    def list(cls, *args, **kwargs) -> List[Self]:
+    def list(cls, *args, **kwargs) -> list[Self]:
         data = super().list(*args, **kwargs)
         return sorted(data, key=lambda x: x.daily_sleep_dto.calendar_date)
