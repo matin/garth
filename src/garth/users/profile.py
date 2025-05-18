@@ -6,7 +6,7 @@ from .. import http
 from ..utils import camel_to_snake_dict
 
 
-@dataclass(frozen=True)
+@dataclass
 class UserProfile:
     id: int
     profile_id: int

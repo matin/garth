@@ -8,7 +8,7 @@ from ..utils import camel_to_snake_dict
 from ._base import Data
 
 
-@dataclass(frozen=True)
+@dataclass
 class Score:
     qualifier_key: str
     optimal_start: Optional[float] = None
@@ -18,7 +18,7 @@ class Score:
     ideal_end_in_seconds: Optional[float] = None
 
 
-@dataclass(frozen=True)
+@dataclass
 class SleepScores:
     total_duration: Score
     stress: Score
@@ -30,7 +30,7 @@ class SleepScores:
     deep_percentage: Score
 
 
-@dataclass(frozen=True)
+@dataclass
 class DailySleepDTO:
     id: int
     user_profile_pk: int
@@ -91,14 +91,14 @@ class DailySleepDTO:
         )
 
 
-@dataclass(frozen=True)
+@dataclass
 class SleepMovement:
     start_gmt: datetime
     end_gmt: datetime
     activity_level: float
 
 
-@dataclass(frozen=True)
+@dataclass
 class SleepData(Data):
     daily_sleep_dto: DailySleepDTO
     sleep_movement: Optional[List[SleepMovement]] = None
@@ -125,6 +125,6 @@ class SleepData(Data):
         )
 
     @classmethod
-    def list(cls, *args, **kwargs):
+    def list(cls, *args, **kwargs) -> List["SleepData"]:
         data = super().list(*args, **kwargs)
         return sorted(data, key=lambda x: x.daily_sleep_dto.calendar_date)

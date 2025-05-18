@@ -3,14 +3,14 @@ from dataclasses import dataclass
 from requests import HTTPError
 
 
-@dataclass(frozen=True)
+@dataclass
 class GarthException(Exception):
     """Base exception for all garth exceptions."""
 
     msg: str
 
 
-@dataclass(frozen=True)
+@dataclass
 class GarthHTTPError(GarthException):
     error: HTTPError
 

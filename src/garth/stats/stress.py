@@ -8,7 +8,7 @@ from ._base import Stats
 BASE_PATH = "/usersummary-service/stats/stress"
 
 
-@dataclass(frozen=True)
+@dataclass
 class DailyStress(Stats):
     overall_stress_level: int
     rest_stress_duration: int | None = None
@@ -20,7 +20,7 @@ class DailyStress(Stats):
     _page_size: ClassVar[int] = 28
 
 
-@dataclass(frozen=True)
+@dataclass
 class WeeklyStress(Stats):
     value: int
 

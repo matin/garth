@@ -7,7 +7,7 @@ from .. import http
 from ..utils import camel_to_snake_dict, format_end_date
 
 
-@dataclass(frozen=True)
+@dataclass
 class HRVBaseline:
     low_upper: int
     balanced_low: int
@@ -15,7 +15,7 @@ class HRVBaseline:
     marker_value: float | None
 
 
-@dataclass(frozen=True)
+@dataclass
 class DailyHRV:
     calendar_date: date
     weekly_avg: int | None
