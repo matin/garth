@@ -132,6 +132,10 @@ class Client:
             if not self.oauth2_token or self.oauth2_token.expired:
                 self.refresh_oauth2()
             headers["Authorization"] = str(self.oauth2_token)
+        
+        print(f'[debug] Request: {method} {url}')
+        print(f'[debug] Headers: {headers}')
+        print(f'[debug] kwargs: {kwargs}')
         self.last_resp = self.sess.request(
             method,
             url,
