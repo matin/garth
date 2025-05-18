@@ -4,6 +4,7 @@ from typing import Dict, List
 from pydantic.dataclasses import dataclass
 
 from .. import http
+from ..typing import Self
 from ..utils import camel_to_snake_dict
 
 
@@ -97,7 +98,7 @@ class UserSettings:
     user_sleep_windows: List[UserSleepWindow] | None = None
 
     @classmethod
-    def get(cls, /, client: http.Client | None = None):
+    def get(cls, /, client: http.Client | None = None) -> Self:
         client = client or http.client
         settings = client.connectapi(
             "/userprofile-service/userprofile/user-settings"

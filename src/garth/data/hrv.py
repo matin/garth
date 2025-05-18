@@ -4,6 +4,7 @@ from typing import List
 from pydantic.dataclasses import dataclass
 
 from .. import http
+from ..typing import Self
 from ..utils import camel_to_snake_dict
 from ._base import Data
 
@@ -36,7 +37,7 @@ class HRVReading:
 
 
 @dataclass
-class HRVData(Data["HRVData"]):
+class HRVData(Data):
     user_profile_pk: int
     hrv_summary: HRVSummary
     hrv_readings: List[HRVReading]
@@ -52,7 +53,7 @@ class HRVData(Data["HRVData"]):
     @classmethod
     def get(
         cls, day: date | str, *, client: http.Client | None = None
-    ) -> "HRVData | None":
+    ) -> Self | None:
         client = client or http.client
         path = f"/hrv-service/hrv/{day}"
         hrv_data = client.connectapi(path)
@@ -63,6 +64,6 @@ class HRVData(Data["HRVData"]):
         return cls(**hrv_data)
 
     @classmethod
-    def list(cls, *args, **kwargs) -> list["HRVData"]:
+    def list(cls, *args, **kwargs) -> List[Self]:
         data = super().list(*args, **kwargs)
         return sorted(data, key=lambda d: d.hrv_summary.calendar_date)

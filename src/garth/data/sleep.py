@@ -4,6 +4,7 @@ from typing import List, Optional, Union
 from pydantic.dataclasses import dataclass
 
 from .. import http
+from ..typing import Self
 from ..utils import camel_to_snake_dict
 from ._base import Data
 
@@ -110,7 +111,7 @@ class SleepData(Data):
         *,
         buffer_minutes: int = 60,
         client: Optional[http.Client] = None,
-    ) -> Optional["SleepData"]:
+    ) -> Optional[Self]:
         client = client or http.client
         path = (
             f"/wellness-service/wellness/dailySleepData/{client.username}?"
@@ -125,6 +126,6 @@ class SleepData(Data):
         )
 
     @classmethod
-    def list(cls, *args, **kwargs) -> List["SleepData"]:
+    def list(cls, *args, **kwargs) -> List[Self]:
         data = super().list(*args, **kwargs)
         return sorted(data, key=lambda x: x.daily_sleep_dto.calendar_date)

@@ -3,6 +3,7 @@ from typing import List
 from pydantic.dataclasses import dataclass
 
 from .. import http
+from ..typing import Self
 from ..utils import camel_to_snake_dict
 
 
@@ -73,7 +74,7 @@ class UserProfile:
     user_pro: bool
 
     @classmethod
-    def get(cls, /, client: http.Client | None = None):
+    def get(cls, /, client: http.Client | None = None) -> Self:
         client = client or http.client
         profile = client.connectapi("/userprofile-service/socialProfile")
         assert isinstance(profile, dict)

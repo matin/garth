@@ -4,6 +4,7 @@ from typing import ClassVar, List
 from pydantic.dataclasses import dataclass
 
 from .. import http
+from ..typing import Self
 from ..utils import camel_to_snake_dict, format_end_date
 
 
@@ -21,7 +22,7 @@ class Stats:
         period: int = 1,
         *,
         client: http.Client | None = None,
-    ) -> List["Stats"]:
+    ) -> List[Self]:
         client = client or http.client
         end = format_end_date(end)
         period_type = "days" if "daily" in cls._path else "weeks"
