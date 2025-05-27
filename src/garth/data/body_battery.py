@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import date, datetime, timedelta
+from functools import cached_property
 from typing import Any, List
 
 from pydantic.dataclasses import dataclass
@@ -53,13 +54,13 @@ class DailyBodyBatteryStress:
     stress_chart_y_axis_origin: int
     stress_values_array: List[List[int]]
     body_battery_values_array: List[List[Any]]
-    
-    @property
+
+    @cached_property
     def body_battery_readings(self) -> List[BodyBatteryReading]:
         """Convert body battery values array to structured readings."""
         if not self.body_battery_values_array:
             return []
-        
+
         readings = []
         for values in self.body_battery_values_array:
             if len(values) >= 4:
@@ -70,13 +71,13 @@ class DailyBodyBatteryStress:
                     version=values[3]
                 ))
         return readings
-    
+
     @property
     def stress_readings(self) -> List[StressReading]:
         """Convert stress values array to structured readings."""
         if not self.stress_values_array:
             return []
-        
+
         readings = []
         for values in self.stress_values_array:
             if len(values) >= 2:
@@ -85,25 +86,25 @@ class DailyBodyBatteryStress:
                     stress_level=values[1]
                 ))
         return readings
-    
+
     @property
     def current_body_battery(self) -> int | None:
         """Get the latest Body Battery level."""
         readings = self.body_battery_readings
         return readings[-1].level if readings else None
-    
+
     @property
     def max_body_battery(self) -> int | None:
         """Get the maximum Body Battery level for the day."""
         readings = self.body_battery_readings
         return max(reading.level for reading in readings) if readings else None
-    
+
     @property
     def min_body_battery(self) -> int | None:
         """Get the minimum Body Battery level for the day."""
         readings = self.body_battery_readings
         return min(reading.level for reading in readings) if readings else None
-    
+
     @property
     def body_battery_change(self) -> int | None:
         """Calculate the Body Battery change for the day."""
@@ -122,13 +123,13 @@ class DailyBodyBatteryStress:
         """Get complete Body Battery and stress data for a specific date."""
         client = client or http.client
         date_str = format_end_date(date_str)
-        
+
         path = f"/wellness-service/wellness/dailyStress/{date_str}"
         response = client.connectapi(path)
-        
+
         if not isinstance(response, dict):
             return None
-        
+
         # Parse timestamps
         start_gmt = datetime.fromisoformat(
             response.get("startTimestampGMT", "").replace("Z", "+00:00")
@@ -142,7 +143,7 @@ class DailyBodyBatteryStress:
         end_local = datetime.fromisoformat(
             response.get("endTimestampLocal", "").replace("Z", "+00:00")
         )
-        
+
         return cls(
             user_profile_pk=response.get("userProfilePK", 0),
             calendar_date=response.get("calendarDate", ""),
@@ -152,13 +153,21 @@ class DailyBodyBatteryStress:
             end_timestamp_local=end_local,
             max_stress_level=response.get("maxStressLevel", 0),
             avg_stress_level=response.get("avgStressLevel", 0),
-            stress_chart_value_offset=response.get("stressChartValueOffset", 0),
-            stress_chart_y_axis_origin=response.get("stressChartYAxisOrigin", 0),
-            stress_values_array=response.get("stressValuesArray", []),
-            body_battery_values_array=response.get("bodyBatteryValuesArray", [])
+            stress_chart_value_offset=response.get(
+                "stressChartValueOffset", 0
+            ),
+            stress_chart_y_axis_origin=response.get(
+                "stressChartYAxisOrigin", 0
+            ),
+            stress_values_array=response.get(
+                "stressValuesArray", []
+            ),
+            body_battery_values_array=response.get(
+                "bodyBatteryValuesArray", []
+            )
         )
 
-    @classmethod  
+    @classmethod
     def list(
         cls,
         end: date | str | None = None,
@@ -169,13 +178,13 @@ class DailyBodyBatteryStress:
         """Get Body Battery and stress data for multiple days."""
         end_date = format_end_date(end)
         all_data = []
-        
+
         for i in range(period):
             date_to_fetch = end_date - timedelta(days=i)
             data = cls.get(date_to_fetch, client=client)
             if data:
                 all_data.append(data)
-        
+
         return all_data
 
 
@@ -189,13 +198,13 @@ class BodyBatteryData:
     average_stress: float | None = None
     stress_values_array: List[List[int]] | None = None
     body_battery_values_array: List[List[Any]] | None = None
-    
+
     @property
     def body_battery_readings(self) -> List[BodyBatteryReading]:
         """Convert body battery values array to structured readings."""
         if not self.body_battery_values_array:
             return []
-        
+
         readings = []
         for values in self.body_battery_values_array:
             if len(values) >= 4:
@@ -206,19 +215,19 @@ class BodyBatteryData:
                     version=values[3]
                 ))
         return readings
-    
+
     @property
     def current_level(self) -> int | None:
         """Get the latest Body Battery level."""
         readings = self.body_battery_readings
         return readings[-1].level if readings else None
-    
+
     @property
     def max_level(self) -> int | None:
         """Get the maximum Body Battery level for the day."""
         readings = self.body_battery_readings
         return max(reading.level for reading in readings) if readings else None
-    
+
     @property
     def min_level(self) -> int | None:
         """Get the minimum Body Battery level for the day."""
@@ -235,13 +244,13 @@ class BodyBatteryData:
         """Get Body Battery events for a specific date."""
         client = client or http.client
         date_str = format_end_date(date_str)
-        
+
         path = f"/wellness-service/wellness/bodyBattery/events/{date_str}"
         response = client.connectapi(path)
-        
+
         if not isinstance(response, list):
             return []
-        
+
         events = []
         for item in response:
             # Parse event data
@@ -262,7 +271,7 @@ class BodyBatteryData:
                     feedback_type=event_data.get("feedbackType", ""),
                     short_feedback=event_data.get("shortFeedback", "")
                 )
-            
+
             events.append(cls(
                 event=event,
                 activity_name=item.get("activityName"),
@@ -272,10 +281,10 @@ class BodyBatteryData:
                 stress_values_array=item.get("stressValuesArray"),
                 body_battery_values_array=item.get("bodyBatteryValuesArray")
             ))
-        
+
         return events
 
-    @classmethod  
+    @classmethod
     def list(
         cls,
         end: date | str | None = None,
@@ -286,10 +295,10 @@ class BodyBatteryData:
         """Get Body Battery data for multiple days."""
         end_date = format_end_date(end)
         all_events = []
-        
+
         for i in range(period):
             date_to_fetch = end_date - timedelta(days=i)
             events = cls.get(date_to_fetch, client=client)
             all_events.extend(events)
-        
+
         return all_events
