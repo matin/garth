@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from datetime import date, datetime
-from typing import Any, ClassVar, Dict, List
+from datetime import date, datetime, timedelta
+from typing import Any, List
 
 from pydantic.dataclasses import dataclass
 from typing_extensions import Self
@@ -130,10 +130,18 @@ class DailyBodyBatteryStress:
             return None
         
         # Parse timestamps
-        start_gmt = datetime.fromisoformat(response.get("startTimestampGMT", "").replace("Z", "+00:00"))
-        end_gmt = datetime.fromisoformat(response.get("endTimestampGMT", "").replace("Z", "+00:00"))
-        start_local = datetime.fromisoformat(response.get("startTimestampLocal", "").replace("Z", "+00:00"))
-        end_local = datetime.fromisoformat(response.get("endTimestampLocal", "").replace("Z", "+00:00"))
+        start_gmt = datetime.fromisoformat(
+            response.get("startTimestampGMT", "").replace("Z", "+00:00")
+        )
+        end_gmt = datetime.fromisoformat(
+            response.get("endTimestampGMT", "").replace("Z", "+00:00")
+        )
+        start_local = datetime.fromisoformat(
+            response.get("startTimestampLocal", "").replace("Z", "+00:00")
+        )
+        end_local = datetime.fromisoformat(
+            response.get("endTimestampLocal", "").replace("Z", "+00:00")
+        )
         
         return cls(
             user_profile_pk=response.get("userProfilePK", 0),
@@ -159,8 +167,6 @@ class DailyBodyBatteryStress:
         client: http.Client | None = None,
     ) -> List[Self]:
         """Get Body Battery and stress data for multiple days."""
-        from datetime import timedelta
-        
         end_date = format_end_date(end)
         all_data = []
         
@@ -245,10 +251,13 @@ class BodyBatteryData:
                 event = BodyBatteryEvent(
                     event_type=event_data.get("eventType", ""),
                     event_start_time_gmt=datetime.fromisoformat(
-                        event_data.get("eventStartTimeGmt", "").replace("Z", "+00:00")
+                        event_data.get("eventStartTimeGmt", "")
+                        .replace("Z", "+00:00")
                     ),
                     timezone_offset=event_data.get("timezoneOffset", 0),
-                    duration_in_milliseconds=event_data.get("durationInMilliseconds", 0),
+                    duration_in_milliseconds=event_data.get(
+                        "durationInMilliseconds", 0
+                    ),
                     body_battery_impact=event_data.get("bodyBatteryImpact", 0),
                     feedback_type=event_data.get("feedbackType", ""),
                     short_feedback=event_data.get("shortFeedback", "")
@@ -275,8 +284,6 @@ class BodyBatteryData:
         client: http.Client | None = None,
     ) -> List[Self]:
         """Get Body Battery data for multiple days."""
-        from datetime import timedelta
-        
         end_date = format_end_date(end)
         all_events = []
         
