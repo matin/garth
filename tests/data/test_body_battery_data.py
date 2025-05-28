@@ -114,8 +114,9 @@ def test_daily_body_battery_stress_get_no_data(authed_client: Client):
 def test_daily_body_battery_stress_list(authed_client: Client):
     days = 3
     end = date(2023, 7, 20)
+    # Use max_workers=1 to avoid VCR issues with concurrent requests
     daily_data_list = DailyBodyBatteryStress.list(
-        end, days, client=authed_client
+        end, days, client=authed_client, max_workers=1
     )
     assert isinstance(daily_data_list, list)
     assert (
