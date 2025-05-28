@@ -19,10 +19,10 @@ interactions:
     body:
       string: '[{"event": {"eventType": "sleep", "eventStartTimeGmt": "2023-07-19T21:30:00.000",
         "timezoneOffset": -25200000, "durationInMilliseconds": 28800000, "bodyBatteryImpact": 35,
-        "feedbackType": "good_sleep", "shortFeedback": "Good sleep restored your Body Battery"}, 
+        "feedbackType": "good_sleep", "shortFeedback": "Good sleep restored your Body Battery"},
         "activityName": null, "activityType": null, "activityId": null, "averageStress": 15.5,
-        "stressValuesArray": [[1689811800000, 12], [1689812100000, 18], [1689812400000, 15]], 
-        "bodyBatteryValuesArray": [[1689811800000, "charging", 45, 1.0], [1689812100000, "charging", 48, 1.0], 
+        "stressValuesArray": [[1689811800000, 12], [1689812100000, 18], [1689812400000, 15]],
+        "bodyBatteryValuesArray": [[1689811800000, "charging", 45, 1.0], [1689812100000, "charging", 48, 1.0],
         [1689812400000, "charging", 52, 1.0], [1689840600000, "draining", 85, 1.0]]}]'
     headers:
       Content-Type:

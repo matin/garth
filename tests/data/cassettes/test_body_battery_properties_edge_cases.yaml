@@ -17,7 +17,7 @@ interactions:
     uri: https://connectapi.garmin.com/wellness-service/wellness/dailyStress/2023-07-20
   response:
     body:
-      string: '{"userProfilePK": 2591602, "calendarDate": "2023-07-20", 
+      string: '{"userProfilePK": 2591602, "calendarDate": "2023-07-20",
         "startTimestampGMT": "2023-07-20T06:00:00.000Z", "endTimestampGMT": "2023-07-21T05:59:59.999Z",
         "startTimestampLocal": "2023-07-19T23:00:00.000Z", "endTimestampLocal": "2023-07-20T22:59:59.999Z",
         "maxStressLevel": 0, "avgStressLevel": 0, "stressChartValueOffset": 0, "stressChartYAxisOrigin": 0,
