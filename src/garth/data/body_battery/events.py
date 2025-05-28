@@ -1,6 +1,7 @@
 from datetime import date, datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor
 from typing import Any
+import logging
 
 from pydantic.dataclasses import dataclass
 from typing_extensions import Self
@@ -72,17 +73,20 @@ class BodyBatteryData:
         date_str = format_end_date(date_str)
 
         path = f"/wellness-service/wellness/bodyBattery/events/{date_str}"
-        response = client.connectapi(path)
+        try:
+            response = client.connectapi(path)
+        except Exception as e:
+            logging.warning(f"Failed to fetch Body Battery events: {e}")
+            return []
 
         if not isinstance(response, list):
             return []
 
         events = []
         for item in response:
-            # Parse event data
-            event_data = item.get("event")
-            event = None
-            if event_data:
+            try:
+                # Parse event data
+                event_data = item.get("event")
                 event = BodyBatteryEvent(
                     event_type=event_data.get("eventType", ""),
                     event_start_time_gmt=datetime.fromisoformat(
@@ -99,19 +103,22 @@ class BodyBatteryData:
                     short_feedback=event_data.get("shortFeedback", ""),
                 )
 
-            events.append(
-                cls(
-                    event=event,
-                    activity_name=item.get("activityName"),
-                    activity_type=item.get("activityType"),
-                    activity_id=item.get("activityId"),
-                    average_stress=item.get("averageStress"),
-                    stress_values_array=item.get("stressValuesArray"),
-                    body_battery_values_array=item.get(
-                        "bodyBatteryValuesArray"
-                    ),
+                events.append(
+                    cls(
+                        event=event,
+                        activity_name=item.get("activityName"),
+                        activity_type=item.get("activityType"),
+                        activity_id=item.get("activityId"),
+                        average_stress=item.get("averageStress"),
+                        stress_values_array=item.get("stressValuesArray"),
+                        body_battery_values_array=item.get(
+                            "bodyBatteryValuesArray"
+                        ),
+                    )
                 )
-            )
+            except Exception as e:
+                logging.warning(f"Failed to parse Body Battery event: {e}")
+                continue
 
         return events
 
