@@ -299,35 +299,37 @@ def test_body_battery_data_get_mixed_valid_invalid():
 def test_body_battery_data_get_unexpected_error():
     """Test handling of unexpected errors during object creation."""
     mock_client = MagicMock()
-    
+
     # Create a special object that raises an exception when accessed
     class ExceptionRaisingDict(dict):
         def get(self, key, default=None):
             if key == "activityName":
                 raise RuntimeError("Unexpected error during object creation")
             return super().get(key, default)
-    
+
     # Create mock data with problematic item
-    mock_response_item = ExceptionRaisingDict({
-        "event": {
-            "eventType": "sleep",
-            "eventStartTimeGmt": "2023-07-20T10:00:00.000Z",
-            "timezoneOffset": -25200000,
-            "durationInMilliseconds": 28800000,
-            "bodyBatteryImpact": 35,
-            "feedbackType": "good_sleep",
-            "shortFeedback": "Good sleep"
-        },
-        "activityName": None,
-        "activityType": None,
-        "activityId": None,
-        "averageStress": 15.5,
-        "stressValuesArray": [[1689811800000, 12]],
-        "bodyBatteryValuesArray": [[1689811800000, "charging", 45, 1.0]]
-    })
-    
+    mock_response_item = ExceptionRaisingDict(
+        {
+            "event": {
+                "eventType": "sleep",
+                "eventStartTimeGmt": "2023-07-20T10:00:00.000Z",
+                "timezoneOffset": -25200000,
+                "durationInMilliseconds": 28800000,
+                "bodyBatteryImpact": 35,
+                "feedbackType": "good_sleep",
+                "shortFeedback": "Good sleep",
+            },
+            "activityName": None,
+            "activityType": None,
+            "activityId": None,
+            "averageStress": 15.5,
+            "stressValuesArray": [[1689811800000, 12]],
+            "bodyBatteryValuesArray": [[1689811800000, "charging", 45, 1.0]],
+        }
+    )
+
     mock_client.connectapi.return_value = [mock_response_item]
-    
+
     result = BodyBatteryData.get("2023-07-20", client=mock_client)
     # Should handle unexpected errors and return empty list
     assert result == []
