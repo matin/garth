@@ -37,7 +37,8 @@ def parse_body_battery_readings(
                     version=values[3],
                 )
             )
-    return readings
+    # Sort readings by timestamp to ensure chronological order
+    return sorted(readings, key=lambda reading: reading.timestamp)
 
 
 def parse_stress_readings(
@@ -51,4 +52,5 @@ def parse_stress_readings(
             readings.append(
                 StressReading(timestamp=values[0], stress_level=values[1])
             )
-    return readings
+    # Sort readings by timestamp to ensure chronological order
+    return sorted(readings, key=lambda reading: reading.timestamp)
