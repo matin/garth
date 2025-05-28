@@ -1,4 +1,5 @@
 from datetime import date
+from unittest.mock import MagicMock
 
 import pytest
 
@@ -146,3 +147,141 @@ def test_body_battery_properties_edge_cases(authed_client: Client):
 
         if not daily_data.stress_values_array:
             assert daily_data.stress_readings == []
+
+
+# Error handling tests for BodyBatteryData.get()
+def test_body_battery_data_get_api_error():
+    """Test handling of API errors."""
+    mock_client = MagicMock()
+    mock_client.connectapi.side_effect = Exception("API Error")
+    
+    result = BodyBatteryData.get("2023-07-20", client=mock_client)
+    assert result == []
+
+
+def test_body_battery_data_get_invalid_response():
+    """Test handling of non-list responses."""
+    mock_client = MagicMock()
+    mock_client.connectapi.return_value = {"error": "Invalid response"}
+    
+    result = BodyBatteryData.get("2023-07-20", client=mock_client)
+    assert result == []
+
+
+def test_body_battery_data_get_missing_event_data():
+    """Test handling of items with missing event data."""
+    mock_client = MagicMock()
+    mock_client.connectapi.return_value = [
+        {"activityName": "Test", "averageStress": 25}  # Missing "event" key
+    ]
+    
+    result = BodyBatteryData.get("2023-07-20", client=mock_client)
+    assert len(result) == 1
+    assert result[0].event is None
+
+
+def test_body_battery_data_get_missing_event_start_time():
+    """Test handling of event data missing eventStartTimeGmt."""
+    mock_client = MagicMock()
+    mock_client.connectapi.return_value = [
+        {
+            "event": {"eventType": "sleep"},  # Missing eventStartTimeGmt
+            "activityName": "Test",
+            "averageStress": 25
+        }
+    ]
+    
+    result = BodyBatteryData.get("2023-07-20", client=mock_client)
+    assert result == []  # Should skip invalid items
+
+
+def test_body_battery_data_get_invalid_datetime_format():
+    """Test handling of invalid datetime format."""
+    mock_client = MagicMock()
+    mock_client.connectapi.return_value = [
+        {
+            "event": {
+                "eventType": "sleep",
+                "eventStartTimeGmt": "invalid-date"
+            },
+            "activityName": "Test",
+            "averageStress": 25
+        }
+    ]
+    
+    result = BodyBatteryData.get("2023-07-20", client=mock_client)
+    assert result == []  # Should skip invalid items
+
+
+def test_body_battery_data_get_invalid_field_types():
+    """Test handling of invalid field types."""
+    mock_client = MagicMock()
+    mock_client.connectapi.return_value = [
+        {
+            "event": {
+                "eventType": "sleep",
+                "eventStartTimeGmt": "2023-07-20T10:00:00.000Z",
+                "timezoneOffset": "invalid",  # Should be number
+                "durationInMilliseconds": "invalid",  # Should be number
+                "bodyBatteryImpact": "invalid"  # Should be number
+            },
+            "activityName": "Test",
+            "averageStress": "invalid",  # Should be number
+            "stressValuesArray": "invalid",  # Should be list
+            "bodyBatteryValuesArray": "invalid"  # Should be list
+        }
+    ]
+    
+    result = BodyBatteryData.get("2023-07-20", client=mock_client)
+    assert len(result) == 1
+    # Should handle invalid types gracefully
+
+
+def test_body_battery_data_get_validation_error():
+    """Test handling of validation errors during object creation."""
+    mock_client = MagicMock()
+    mock_client.connectapi.return_value = [
+        {
+            "event": {
+                "eventType": "sleep",
+                "eventStartTimeGmt": "2023-07-20T10:00:00.000Z"
+                # Missing required fields for BodyBatteryEvent
+            },
+            # Missing required fields for BodyBatteryData
+        }
+    ]
+    
+    BodyBatteryData.get("2023-07-20", client=mock_client)
+    # Should handle validation errors and continue processing
+
+
+def test_body_battery_data_get_mixed_valid_invalid():
+    """Test processing with mix of valid and invalid items."""
+    mock_client = MagicMock()
+    mock_client.connectapi.return_value = [
+        {
+            "event": {
+                "eventType": "sleep",
+                "eventStartTimeGmt": "2023-07-20T10:00:00.000Z",
+                "timezoneOffset": -25200000,
+                "durationInMilliseconds": 28800000,
+                "bodyBatteryImpact": 35,
+                "feedbackType": "good_sleep",
+                "shortFeedback": "Good sleep"
+            },
+            "activityName": None,
+            "activityType": None,
+            "activityId": None,
+            "averageStress": 15.5,
+            "stressValuesArray": [[1689811800000, 12]],
+            "bodyBatteryValuesArray": [[1689811800000, "charging", 45, 1.0]]
+        },
+        {
+            # Invalid - missing eventStartTimeGmt
+            "event": {"eventType": "sleep"},
+            "activityName": "Test"
+        }
+    ]
+    
+    BodyBatteryData.get("2023-07-20", client=mock_client)
+    # Should process valid items and skip invalid ones
