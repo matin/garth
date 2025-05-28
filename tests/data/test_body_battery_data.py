@@ -67,20 +67,20 @@ def test_daily_body_battery_stress_get(authed_client: Client):
         assert isinstance(stress_readings, list)
 
         if stress_readings:
-            reading = stress_readings[0]
-            assert hasattr(reading, "timestamp")
-            assert hasattr(reading, "stress_level")
+            stress_reading = stress_readings[0]
+            assert hasattr(stress_reading, "timestamp")
+            assert hasattr(stress_reading, "stress_level")
 
         # Test body battery readings property
         bb_readings = daily_data.body_battery_readings
         assert isinstance(bb_readings, list)
 
         if bb_readings:
-            reading = bb_readings[0]
-            assert hasattr(reading, "timestamp")
-            assert hasattr(reading, "status")
-            assert hasattr(reading, "level")
-            assert hasattr(reading, "version")
+            bb_reading = bb_readings[0]
+            assert hasattr(bb_reading, "timestamp")
+            assert hasattr(bb_reading, "status")
+            assert hasattr(bb_reading, "level")
+            assert hasattr(bb_reading, "version")
 
             # Test computed properties
             assert (
