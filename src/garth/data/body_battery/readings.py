@@ -46,6 +46,7 @@ def parse_stress_readings(
     """Convert stress values array to structured readings."""
     readings = []
     for values in stress_values_array or []:
+        # Each reading requires 2 values: timestamp, stress_level
         if len(values) >= 2:
             readings.append(
                 StressReading(timestamp=values[0], stress_level=values[1])
