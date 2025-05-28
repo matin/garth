@@ -30,9 +30,15 @@ def test_body_battery_data_get(authed_client: Client):
             assert hasattr(reading, "version")
 
             # Test level properties
-            assert event.current_level is not None or event.current_level == 0
-            assert event.max_level is not None or event.max_level == 0
-            assert event.min_level is not None or event.min_level == 0
+            assert event.current_level is not None and isinstance(
+                event.current_level, int
+            )
+            assert event.max_level is not None and isinstance(
+                event.max_level, int
+            )
+            assert event.min_level is not None and isinstance(
+                event.min_level, int
+            )
 
 
 @pytest.mark.vcr
@@ -84,17 +90,14 @@ def test_daily_body_battery_stress_get(authed_client: Client):
             assert hasattr(bb_reading, "version")
 
             # Test computed properties
-            assert (
-                daily_data.current_body_battery is not None
-                or daily_data.current_body_battery == 0
+            assert daily_data.current_body_battery is not None and isinstance(
+                daily_data.current_body_battery, int
             )
-            assert (
-                daily_data.max_body_battery is not None
-                or daily_data.max_body_battery == 0
+            assert daily_data.max_body_battery is not None and isinstance(
+                daily_data.max_body_battery, int
             )
-            assert (
-                daily_data.min_body_battery is not None
-                or daily_data.min_body_battery == 0
+            assert daily_data.min_body_battery is not None and isinstance(
+                daily_data.min_body_battery, int
             )
 
             # Test body battery change
@@ -154,7 +157,7 @@ def test_body_battery_data_get_api_error():
     """Test handling of API errors."""
     mock_client = MagicMock()
     mock_client.connectapi.side_effect = Exception("API Error")
-    
+
     result = BodyBatteryData.get("2023-07-20", client=mock_client)
     assert result == []
 
@@ -163,7 +166,7 @@ def test_body_battery_data_get_invalid_response():
     """Test handling of non-list responses."""
     mock_client = MagicMock()
     mock_client.connectapi.return_value = {"error": "Invalid response"}
-    
+
     result = BodyBatteryData.get("2023-07-20", client=mock_client)
     assert result == []
 
@@ -174,7 +177,7 @@ def test_body_battery_data_get_missing_event_data():
     mock_client.connectapi.return_value = [
         {"activityName": "Test", "averageStress": 25}  # Missing "event" key
     ]
-    
+
     result = BodyBatteryData.get("2023-07-20", client=mock_client)
     assert len(result) == 1
     assert result[0].event is None
@@ -187,10 +190,10 @@ def test_body_battery_data_get_missing_event_start_time():
         {
             "event": {"eventType": "sleep"},  # Missing eventStartTimeGmt
             "activityName": "Test",
-            "averageStress": 25
+            "averageStress": 25,
         }
     ]
-    
+
     result = BodyBatteryData.get("2023-07-20", client=mock_client)
     assert result == []  # Should skip invalid items
 
@@ -202,13 +205,13 @@ def test_body_battery_data_get_invalid_datetime_format():
         {
             "event": {
                 "eventType": "sleep",
-                "eventStartTimeGmt": "invalid-date"
+                "eventStartTimeGmt": "invalid-date",
             },
             "activityName": "Test",
-            "averageStress": 25
+            "averageStress": 25,
         }
     ]
-    
+
     result = BodyBatteryData.get("2023-07-20", client=mock_client)
     assert result == []  # Should skip invalid items
 
@@ -223,15 +226,15 @@ def test_body_battery_data_get_invalid_field_types():
                 "eventStartTimeGmt": "2023-07-20T10:00:00.000Z",
                 "timezoneOffset": "invalid",  # Should be number
                 "durationInMilliseconds": "invalid",  # Should be number
-                "bodyBatteryImpact": "invalid"  # Should be number
+                "bodyBatteryImpact": "invalid",  # Should be number
             },
             "activityName": "Test",
             "averageStress": "invalid",  # Should be number
             "stressValuesArray": "invalid",  # Should be list
-            "bodyBatteryValuesArray": "invalid"  # Should be list
+            "bodyBatteryValuesArray": "invalid",  # Should be list
         }
     ]
-    
+
     result = BodyBatteryData.get("2023-07-20", client=mock_client)
     assert len(result) == 1
     # Should handle invalid types gracefully
@@ -244,15 +247,19 @@ def test_body_battery_data_get_validation_error():
         {
             "event": {
                 "eventType": "sleep",
-                "eventStartTimeGmt": "2023-07-20T10:00:00.000Z"
+                "eventStartTimeGmt": "2023-07-20T10:00:00.000Z",
                 # Missing required fields for BodyBatteryEvent
             },
             # Missing required fields for BodyBatteryData
         }
     ]
-    
-    BodyBatteryData.get("2023-07-20", client=mock_client)
+
+    result = BodyBatteryData.get("2023-07-20", client=mock_client)
     # Should handle validation errors and continue processing
+    assert isinstance(result, list)
+    assert len(result) == 1  # Should create object with missing fields as None
+    assert result[0].event is not None  # Event should be created
+    assert result[0].activity_name is None  # Missing fields should be None
 
 
 def test_body_battery_data_get_mixed_valid_invalid():
@@ -267,21 +274,60 @@ def test_body_battery_data_get_mixed_valid_invalid():
                 "durationInMilliseconds": 28800000,
                 "bodyBatteryImpact": 35,
                 "feedbackType": "good_sleep",
-                "shortFeedback": "Good sleep"
+                "shortFeedback": "Good sleep",
             },
             "activityName": None,
             "activityType": None,
             "activityId": None,
             "averageStress": 15.5,
             "stressValuesArray": [[1689811800000, 12]],
-            "bodyBatteryValuesArray": [[1689811800000, "charging", 45, 1.0]]
+            "bodyBatteryValuesArray": [[1689811800000, "charging", 45, 1.0]],
         },
         {
             # Invalid - missing eventStartTimeGmt
             "event": {"eventType": "sleep"},
-            "activityName": "Test"
-        }
+            "activityName": "Test",
+        },
     ]
-    
-    BodyBatteryData.get("2023-07-20", client=mock_client)
+
+    result = BodyBatteryData.get("2023-07-20", client=mock_client)
     # Should process valid items and skip invalid ones
+    assert len(result) == 1  # Only the valid item should be processed
+    assert result[0].event is not None
+
+
+def test_body_battery_data_get_unexpected_error():
+    """Test handling of unexpected errors during object creation."""
+    mock_client = MagicMock()
+    
+    # Create a special object that raises an exception when accessed
+    class ExceptionRaisingDict(dict):
+        def get(self, key, default=None):
+            if key == "activityName":
+                raise RuntimeError("Unexpected error during object creation")
+            return super().get(key, default)
+    
+    # Create mock data with problematic item
+    mock_response_item = ExceptionRaisingDict({
+        "event": {
+            "eventType": "sleep",
+            "eventStartTimeGmt": "2023-07-20T10:00:00.000Z",
+            "timezoneOffset": -25200000,
+            "durationInMilliseconds": 28800000,
+            "bodyBatteryImpact": 35,
+            "feedbackType": "good_sleep",
+            "shortFeedback": "Good sleep"
+        },
+        "activityName": None,
+        "activityType": None,
+        "activityId": None,
+        "averageStress": 15.5,
+        "stressValuesArray": [[1689811800000, 12]],
+        "bodyBatteryValuesArray": [[1689811800000, "charging", 45, 1.0]]
+    })
+    
+    mock_client.connectapi.return_value = [mock_response_item]
+    
+    result = BodyBatteryData.get("2023-07-20", client=mock_client)
+    # Should handle unexpected errors and return empty list
+    assert result == []
