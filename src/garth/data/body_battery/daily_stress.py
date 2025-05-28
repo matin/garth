@@ -1,33 +1,19 @@
-from __future__ import annotations
-
 from datetime import date, datetime
 from functools import cached_property
-from typing import Any, List
+from typing import Any
 
 from pydantic.dataclasses import dataclass
 from typing_extensions import Self
 
-from .. import http
-from ..utils import camel_to_snake_dict, format_end_date
-from ._base import Data
-
-
-@dataclass
-class BodyBatteryReading:
-    """Individual Body Battery reading."""
-
-    timestamp: int
-    status: str
-    level: int
-    version: float
-
-
-@dataclass
-class StressReading:
-    """Individual stress reading."""
-
-    timestamp: int
-    stress_level: int
+from ... import http
+from ...utils import camel_to_snake_dict, format_end_date
+from .._base import Data
+from .readings import (
+    BodyBatteryReading,
+    StressReading,
+    parse_body_battery_readings,
+    parse_stress_readings,
+)
 
 
 @dataclass
@@ -44,36 +30,18 @@ class DailyBodyBatteryStress(Data):
     avg_stress_level: int
     stress_chart_value_offset: int
     stress_chart_y_axis_origin: int
-    stress_values_array: List[List[int]]
-    body_battery_values_array: List[List[Any]]
+    stress_values_array: list[list[int]]
+    body_battery_values_array: list[list[Any]]
 
     @cached_property
-    def body_battery_readings(self) -> List[BodyBatteryReading]:
+    def body_battery_readings(self) -> list[BodyBatteryReading]:
         """Convert body battery values array to structured readings."""
-        readings = []
-        for values in self.body_battery_values_array or []:
-            # Each reading requires 4 values: timestamp, status, level, version
-            if len(values) >= 4:
-                readings.append(
-                    BodyBatteryReading(
-                        timestamp=values[0],
-                        status=values[1],
-                        level=values[2],
-                        version=values[3],
-                    )
-                )
-        return readings
+        return parse_body_battery_readings(self.body_battery_values_array)
 
     @property
-    def stress_readings(self) -> List[StressReading]:
+    def stress_readings(self) -> list[StressReading]:
         """Convert stress values array to structured readings."""
-        readings = []
-        for values in self.stress_values_array or []:
-            if len(values) >= 2:
-                readings.append(
-                    StressReading(timestamp=values[0], stress_level=values[1])
-                )
-        return readings
+        return parse_stress_readings(self.stress_values_array)
 
     @property
     def current_body_battery(self) -> int | None:
@@ -104,7 +72,7 @@ class DailyBodyBatteryStress(Data):
     @classmethod
     def get(
         cls,
-        day: date | str,
+        day: date | str | None = None,
         *,
         client: http.Client | None = None,
     ) -> Self | None:

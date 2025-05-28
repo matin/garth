@@ -1,14 +1,15 @@
-from __future__ import annotations
-
 from datetime import date, datetime, timedelta
-from typing import Any, List
+from concurrent.futures import ThreadPoolExecutor
+from typing import Any
 
 from pydantic.dataclasses import dataclass
 from typing_extensions import Self
 
-from .. import http
-from ..utils import format_end_date
-from .daily_body_battery_stress import BodyBatteryReading
+from ... import http
+from ...utils import date_range, format_end_date
+from .readings import BodyBatteryReading, parse_body_battery_readings
+
+MAX_WORKERS = 10
 
 
 @dataclass
@@ -33,25 +34,13 @@ class BodyBatteryData:
     activity_type: str | None = None
     activity_id: str | None = None
     average_stress: float | None = None
-    stress_values_array: List[List[int]] | None = None
-    body_battery_values_array: List[List[Any]] | None = None
+    stress_values_array: list[list[int]] | None = None
+    body_battery_values_array: list[list[Any]] | None = None
 
     @property
-    def body_battery_readings(self) -> List[BodyBatteryReading]:
+    def body_battery_readings(self) -> list[BodyBatteryReading]:
         """Convert body battery values array to structured readings."""
-        readings = []
-        for values in self.body_battery_values_array or []:
-            # Each reading requires 4 values: timestamp, status, level, version
-            if len(values) >= 4:
-                readings.append(
-                    BodyBatteryReading(
-                        timestamp=values[0],
-                        status=values[1],
-                        level=values[2],
-                        version=values[3],
-                    )
-                )
-        return readings
+        return parse_body_battery_readings(self.body_battery_values_array)
 
     @property
     def current_level(self) -> int | None:
@@ -77,7 +66,7 @@ class BodyBatteryData:
         date_str: str | date | None = None,
         *,
         client: http.Client | None = None,
-    ) -> List[Self]:
+    ) -> list[Self]:
         """Get Body Battery events for a specific date."""
         client = client or http.client
         date_str = format_end_date(date_str)
@@ -130,17 +119,24 @@ class BodyBatteryData:
     def list(
         cls,
         end: date | str | None = None,
-        period: int = 1,
+        days: int = 1,
         *,
         client: http.Client | None = None,
-    ) -> List[Self]:
+        max_workers: int = MAX_WORKERS,
+    ) -> list[Self]:
         """Get Body Battery data for multiple days."""
-        end_date = format_end_date(end)
-        all_events = []
+        client = client or http.client
+        end = format_end_date(end)
 
-        for i in range(period):
-            date_to_fetch = end_date - timedelta(days=i)
-            events = cls.get(date_to_fetch, client=client)
-            all_events.extend(events)
+        def fetch_date(date_):
+            events = cls.get(date_, client=client)
+            return events if events else []
+
+        dates = date_range(end, days)
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            all_events_lists = list(executor.map(fetch_date, dates))
+            all_events = []
+            for events_list in all_events_lists:
+                all_events.extend(events_list)
 
         return all_events
