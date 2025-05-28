@@ -1,6 +1,6 @@
 __all__ = [
     "BodyBatteryData",
-    "BodyBatteryEvent", 
+    "BodyBatteryEvent",
     "BodyBatteryReading",
     "DailyBodyBatteryStress",
     "StressReading",

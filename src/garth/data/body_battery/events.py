@@ -1,7 +1,7 @@
-from datetime import date, datetime
-from concurrent.futures import ThreadPoolExecutor
-from typing import Any
 import logging
+from concurrent.futures import ThreadPoolExecutor
+from datetime import date, datetime
+from typing import Any
 
 from pydantic.dataclasses import dataclass
 from typing_extensions import Self
@@ -9,6 +9,7 @@ from typing_extensions import Self
 from ... import http
 from ...utils import date_range, format_end_date
 from .readings import BodyBatteryReading, parse_body_battery_readings
+
 
 MAX_WORKERS = 10
 
@@ -87,7 +88,7 @@ class BodyBatteryData:
             try:
                 # Parse event data with validation
                 event_data = item.get("event")
-                
+
                 # Validate event_data exists before accessing properties
                 if event_data is None:
                     logging.warning(f"Missing event data in item: {item}")
@@ -96,33 +97,53 @@ class BodyBatteryData:
                     # Validate and parse datetime with explicit error handling
                     event_start_time_str = event_data.get("eventStartTimeGmt")
                     if not event_start_time_str:
-                        logging.error(f"Missing eventStartTimeGmt in event data: {event_data}")
-                        raise ValueError("eventStartTimeGmt is required but missing")
-                    
+                        logging.error(
+                            f"Missing eventStartTimeGmt in event data: "
+                            f"{event_data}"
+                        )
+                        raise ValueError(
+                            "eventStartTimeGmt is required but missing"
+                        )
+
                     try:
                         event_start_time_gmt = datetime.fromisoformat(
                             event_start_time_str.replace("Z", "+00:00")
                         )
                     except (ValueError, AttributeError) as e:
-                        logging.error(f"Invalid datetime format '{event_start_time_str}': {e}")
-                        raise ValueError(f"Invalid eventStartTimeGmt format: {event_start_time_str}") from e
-                    
+                        logging.error(
+                            f"Invalid datetime format "
+                            f"'{event_start_time_str}': {e}"
+                        )
+                        raise ValueError(
+                            f"Invalid eventStartTimeGmt format: "
+                            f"{event_start_time_str}"
+                        ) from e
+
                     # Validate numeric fields
                     timezone_offset = event_data.get("timezoneOffset", 0)
                     if not isinstance(timezone_offset, (int, float)):
-                        logging.warning(f"Invalid timezone_offset type: {type(timezone_offset)}, using 0")
+                        logging.warning(
+                            f"Invalid timezone_offset type: "
+                            f"{type(timezone_offset)}, using 0"
+                        )
                         timezone_offset = 0
-                    
+
                     duration_ms = event_data.get("durationInMilliseconds", 0)
                     if not isinstance(duration_ms, (int, float)):
-                        logging.warning(f"Invalid durationInMilliseconds type: {type(duration_ms)}, using 0")
+                        logging.warning(
+                            f"Invalid durationInMilliseconds type: "
+                            f"{type(duration_ms)}, using 0"
+                        )
                         duration_ms = 0
-                    
+
                     battery_impact = event_data.get("bodyBatteryImpact", 0)
                     if not isinstance(battery_impact, (int, float)):
-                        logging.warning(f"Invalid bodyBatteryImpact type: {type(battery_impact)}, using 0")
+                        logging.warning(
+                            f"Invalid bodyBatteryImpact type: "
+                            f"{type(battery_impact)}, using 0"
+                        )
                         battery_impact = 0
-                    
+
                     event = BodyBatteryEvent(
                         event_type=event_data.get("eventType", ""),
                         event_start_time_gmt=event_start_time_gmt,
@@ -135,21 +156,36 @@ class BodyBatteryData:
 
                 # Validate data arrays
                 stress_values = item.get("stressValuesArray")
-                if stress_values is not None and not isinstance(stress_values, list):
-                    logging.warning(f"Invalid stressValuesArray type: {type(stress_values)}, using None")
+                if stress_values is not None and not isinstance(
+                    stress_values, list
+                ):
+                    logging.warning(
+                        f"Invalid stressValuesArray type: "
+                        f"{type(stress_values)}, using None"
+                    )
                     stress_values = None
-                
-                battery_values = item.get("bodyBatteryValuesArray") 
-                if battery_values is not None and not isinstance(battery_values, list):
-                    logging.warning(f"Invalid bodyBatteryValuesArray type: {type(battery_values)}, using None")
+
+                battery_values = item.get("bodyBatteryValuesArray")
+                if battery_values is not None and not isinstance(
+                    battery_values, list
+                ):
+                    logging.warning(
+                        f"Invalid bodyBatteryValuesArray type: "
+                        f"{type(battery_values)}, using None"
+                    )
                     battery_values = None
-                
+
                 # Validate average_stress
                 avg_stress = item.get("averageStress")
-                if avg_stress is not None and not isinstance(avg_stress, (int, float)):
-                    logging.warning(f"Invalid averageStress type: {type(avg_stress)}, using None")
+                if avg_stress is not None and not isinstance(
+                    avg_stress, (int, float)
+                ):
+                    logging.warning(
+                        f"Invalid averageStress type: "
+                        f"{type(avg_stress)}, using None"
+                    )
                     avg_stress = None
-                
+
                 events.append(
                     cls(
                         event=event,
@@ -161,14 +197,21 @@ class BodyBatteryData:
                         body_battery_values_array=battery_values,
                     )
                 )
-                
+
             except ValueError as e:
                 # Re-raise validation errors with context
-                logging.error(f"Data validation error for Body Battery event item {item}: {e}")
+                logging.error(
+                    f"Data validation error for Body Battery event item "
+                    f"{item}: {e}"
+                )
                 continue
             except Exception as e:
                 # Log unexpected errors with full context
-                logging.error(f"Unexpected error parsing Body Battery event item {item}: {e}", exc_info=True)
+                logging.error(
+                    f"Unexpected error parsing Body Battery event item "
+                    f"{item}: {e}",
+                    exc_info=True,
+                )
                 continue
 
         # Log summary of data quality issues
@@ -176,8 +219,11 @@ class BodyBatteryData:
         parsed_events = len(events)
         if parsed_events < total_items:
             skipped = total_items - parsed_events
-            logging.info(f"Body Battery events parsing: {parsed_events}/{total_items} successful, {skipped} skipped due to data issues")
-        
+            logging.info(
+                f"Body Battery events parsing: {parsed_events}/{total_items} "
+                f"successful, {skipped} skipped due to data issues"
+            )
+
         return events
 
     @classmethod
