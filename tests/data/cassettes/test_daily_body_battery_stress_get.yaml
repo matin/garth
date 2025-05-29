@@ -1,0 +1,41 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+    method: GET
+    uri: https://connectapi.garmin.com/wellness-service/wellness/dailyStress/2023-07-20
+  response:
+    body:
+      string: '{"userProfilePK": 2591602, "calendarDate": "2023-07-20",
+        "startTimestampGMT": "2023-07-20T06:00:00.000Z", "endTimestampGMT": "2023-07-21T05:59:59.999Z",
+        "startTimestampLocal": "2023-07-19T23:00:00.000Z", "endTimestampLocal": "2023-07-20T22:59:59.999Z",
+        "maxStressLevel": 85, "avgStressLevel": 25, "stressChartValueOffset": 0, "stressChartYAxisOrigin": 0,
+        "stressValuesArray": [[1689811800000, 12], [1689812100000, 18], [1689812400000, 15],
+        [1689815700000, 45], [1689819300000, 85], [1689822900000, 35], [1689826500000, 20],
+        [1689830100000, 15], [1689833700000, 25], [1689837300000, 30]],
+        "bodyBatteryValuesArray": [[1689811800000, "charging", 45, 1.0], [1689812100000, "charging", 48, 1.0],
+        [1689812400000, "charging", 52, 1.0], [1689815700000, "charging", 65, 1.0],
+        [1689819300000, "draining", 85, 1.0], [1689822900000, "draining", 75, 1.0],
+        [1689826500000, "draining", 65, 1.0], [1689830100000, "draining", 55, 1.0],
+        [1689833700000, "draining", 45, 1.0], [1689837300000, "draining", 35, 1.0],
+        [1689840900000, "draining", 25, 1.0]]}'
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Thu, 20 Jul 2023 12:00:00 GMT
+    status:
+      code: 200
+      message: OK
+version: 1

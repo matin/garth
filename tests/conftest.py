@@ -143,15 +143,16 @@ def sanitize_response(response):
         except json.JSONDecodeError:
             pass
         else:
-            for field in [
-                "access_token",
-                "refresh_token",
-                "jti",
-                "consumer_key",
-                "consumer_secret",
-            ]:
-                if field in body_json:
-                    body_json[field] = "SANITIZED"
+            if body_json and isinstance(body_json, dict):
+                for field in [
+                    "access_token",
+                    "refresh_token",
+                    "jti",
+                    "consumer_key",
+                    "consumer_secret",
+                ]:
+                    if field in body_json:
+                        body_json[field] = "SANITIZED"
 
             body = json.dumps(body_json)
         response["body"]["string"] = body.encode("utf8")

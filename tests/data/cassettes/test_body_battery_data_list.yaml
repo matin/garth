@@ -1,0 +1,90 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+    method: GET
+    uri: https://connectapi.garmin.com/wellness-service/wellness/bodyBattery/events/2023-07-20
+  response:
+    body:
+      string: '[{"event": {"eventType": "sleep", "eventStartTimeGmt": "2023-07-19T21:30:00.000",
+        "timezoneOffset": -25200000, "durationInMilliseconds": 28800000, "bodyBatteryImpact": 35,
+        "feedbackType": "good_sleep", "shortFeedback": "Good sleep restored your Body Battery"},
+        "activityName": null, "activityType": null, "activityId": null, "averageStress": 15.5,
+        "stressValuesArray": [[1689811800000, 12], [1689812100000, 18]],
+        "bodyBatteryValuesArray": [[1689811800000, "charging", 45, 1.0], [1689840600000, "draining", 85, 1.0]]}]'
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Thu, 20 Jul 2023 12:00:00 GMT
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+    method: GET
+    uri: https://connectapi.garmin.com/wellness-service/wellness/bodyBattery/events/2023-07-19
+  response:
+    body:
+      string: '[]'
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Thu, 19 Jul 2023 12:00:00 GMT
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - Mozilla/5.0 (iPhone; CPU iPhone OS 16_5 like Mac OS X) AppleWebKit/605.1.15
+        (KHTML, like Gecko) Mobile/15E148
+    method: GET
+    uri: https://connectapi.garmin.com/wellness-service/wellness/bodyBattery/events/2023-07-18
+  response:
+    body:
+      string: '[{"event": null, "activityName": "Running", "activityType": "running",
+        "activityId": "12345", "averageStress": 45.2, "stressValuesArray": [],
+        "bodyBatteryValuesArray": [[1689667200000, "draining", 75, 1.0], [1689670800000, "draining", 65, 1.0]]}]'
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Tue, 18 Jul 2023 12:00:00 GMT
+    status:
+      code: 200
+      message: OK
+version: 1

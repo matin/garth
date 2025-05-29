@@ -34,25 +34,6 @@ build-backend = "hatchling.build"
 [tool.hatch.version]
 path = "src/garth/version.py"
 
-[project.optional-dependencies]
-dev = [
-    "ipython",
-    "ipdb",
-    "ipykernel",
-    "pandas",
-    "matplotlib",
-]
-linting = [
-    "ruff",
-    "mypy",
-    "types-requests",
-]
-testing = [
-    "coverage",
-    "pytest",
-    "pytest-vcr",
-]
-
 [tool.pytest.ini_options]
 addopts = "--ignore=__pypackages__ --ignore-glob=*.yaml"
 
@@ -73,6 +54,25 @@ quote-style = "double"
 indent-style = "space"
 skip-magic-trailing-comma = false
 line-ending = "auto"
+
+[dependency-groups]
+dev = [
+    "ipython",
+    "ipdb",
+    "ipykernel",
+    "pandas",
+    "matplotlib",
+]
+linting = [
+    "ruff",
+    "mypy",
+    "types-requests",
+]
+testing = [
+    "coverage",
+    "pytest",
+    "pytest-vcr",
+]
 
 [tool.ruff.lint.isort]
 known-first-party = ["garth"]
