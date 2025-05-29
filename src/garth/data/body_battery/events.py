@@ -1,5 +1,4 @@
 import logging
-from concurrent.futures import ThreadPoolExecutor
 from datetime import date, datetime
 from typing import Any
 
@@ -7,7 +6,8 @@ from pydantic.dataclasses import dataclass
 from typing_extensions import Self
 
 from ... import http
-from ...utils import date_range, format_end_date
+from ...utils import format_end_date
+from .._base import Data
 from .readings import BodyBatteryReading, parse_body_battery_readings
 
 
@@ -28,7 +28,7 @@ class BodyBatteryEvent:
 
 
 @dataclass
-class BodyBatteryData:
+class BodyBatteryData(Data):
     """Legacy Body Battery events data (sleep events only)."""
 
     event: BodyBatteryEvent | None = None
@@ -225,29 +225,3 @@ class BodyBatteryData:
             )
 
         return events
-
-    @classmethod
-    def list(
-        cls,
-        end: date | str | None = None,
-        days: int = 1,
-        *,
-        client: http.Client | None = None,
-        max_workers: int = MAX_WORKERS,
-    ) -> list[Self]:
-        """Get Body Battery data for multiple days."""
-        client = client or http.client
-        end = format_end_date(end)
-
-        def fetch_date(date_):
-            events = cls.get(date_, client=client)
-            return events if events else []
-
-        dates = date_range(end, days)
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            all_events_lists = list(executor.map(fetch_date, dates))
-            all_events = []
-            for events_list in all_events_lists:
-                all_events.extend(events_list)
-
-        return all_events
