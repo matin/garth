@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date
+from itertools import chain
 
 from typing_extensions import Self
 
@@ -39,4 +40,8 @@ class Data(ABC):
             data = list(executor.map(fetch_date, dates))
             data = [day for day in data if day is not None]
 
-        return data
+        return list(
+            chain.from_iterable(
+                day if isinstance(day, list) else [day] for day in data
+            )
+        )
