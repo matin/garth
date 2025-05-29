@@ -14,7 +14,7 @@ sources = src tests
 .PHONY: install  ## Install the package, dependencies, and pre-commit for local development
 install: .uv .pre-commit
 	uv pip install -e .
-	uv pip install -r <(uv pip compile --group dev --group linting --group testing)
+	uv pip install --group dev --group linting --group testing
 	pre-commit install --install-hooks
 
 .PHONY: sync  ## Sync dependencies and lockfiles
