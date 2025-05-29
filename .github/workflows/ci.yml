@@ -36,7 +36,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          uv pip install --system -e ".[linting]"
+          uv pip install --system -e .
+          uv pip install --system --group linting
 
       - uses: pre-commit/action@v3.0.1
         with:
@@ -69,7 +70,8 @@ jobs:
 
       - name: Install dependencies
         run: |
-          uv pip install --system -e ".[testing]"
+          uv pip install --system -e .
+          uv pip install --system --group testing
 
       - name: test
         run: make testcov

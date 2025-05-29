@@ -34,9 +34,6 @@ build-backend = "hatchling.build"
 [tool.hatch.version]
 path = "src/garth/version.py"
 
-[project.optional-dependencies]
-# (moved to [dependency-groups])
-
 [tool.pytest.ini_options]
 addopts = "--ignore=__pypackages__ --ignore-glob=*.yaml"
 
