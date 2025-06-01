@@ -654,6 +654,80 @@ List sleep data over several nights.
 ```python
 garth.SleepData.list("2023-07-20", 30)
 ```
+### Body Battery
+
+Body Battery event data (legacy API for sleep-related Body Battery impacts)
+
+```python
+garth.BodyBatteryData.get("2023-07-20")
+```
+
+```python
+[
+    BodyBatteryData(
+        event=BodyBatteryEvent(
+            event_type='SLEEP',
+            event_start_time_gmt=datetime.datetime(2023, 7, 20, 5, 25),
+            timezone_offset=-21600000,
+            duration_in_milliseconds=24660000,
+            body_battery_impact=42,
+            feedback_type='POSITIVE',
+            short_feedback='Good sleep recharged your Body Battery'
+        ),
+        activity_name=None,
+        activity_type=None,
+        activity_id=None,
+        average_stress=17,
+        stress_values_array=[[1689830700000, 18], [1689830760000, 16], ...],
+        body_battery_values_array=[[1689830700000, 'charged', 58, 2.0], ...]
+    )
+]
+```
+
+List Body Battery events over several days
+
+```python
+garth.BodyBatteryData.list("2023-07-20", 7)
+```
+
+Daily Body Battery and stress data (modern API)
+
+```python
+garth.DailyBodyBatteryStress.get("2023-07-20")
+```
+
+```python
+DailyBodyBatteryStress(
+    user_profile_pk=2591602,
+    calendar_date=datetime.date(2023, 7, 20),
+    start_timestamp_gmt=datetime.datetime(2023, 7, 20, 0, 0),
+    end_timestamp_gmt=datetime.datetime(2023, 7, 20, 23, 59, 59),
+    start_timestamp_local=datetime.datetime(2023, 7, 19, 18, 0),
+    end_timestamp_local=datetime.datetime(2023, 7, 20, 17, 59, 59),
+    max_stress_level=65,
+    avg_stress_level=22,
+    stress_chart_value_offset=0,
+    stress_chart_y_axis_origin=0,
+    stress_values_array=[[1689811200000, 25], [1689811800000, 18], ...],
+    body_battery_values_array=[[1689811200000, 'charged', 85, 2.0], ...]
+)
+```
+
+Access computed properties for current, max, min Body Battery levels
+
+```python
+daily_data = garth.DailyBodyBatteryStress.get("2023-07-20")
+print(f"Current: {daily_data.current_body_battery}")    # Latest Body Battery level
+print(f"Max: {daily_data.max_body_battery}")            # Highest level of the day  
+print(f"Min: {daily_data.min_body_battery}")            # Lowest level of the day
+print(f"Change: {daily_data.body_battery_change}")      # Net change for the day
+```
+
+List daily Body Battery data over several days
+
+```python
+garth.DailyBodyBatteryStress.list("2023-07-20", 30)
+```
 
 ## User
 
