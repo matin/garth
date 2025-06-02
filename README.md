@@ -305,6 +305,105 @@ WeeklyStress.list("2023-07-23", 2)
 ]
 ```
 
+### Body Battery
+
+Daily Body Battery and stress data
+
+```python
+garth.DailyBodyBatteryStress.get("2023-07-20")
+```
+
+```python
+DailyBodyBatteryStress(
+    user_profile_pk=2591602,
+    calendar_date=datetime.date(2023, 7, 20),
+    start_timestamp_gmt=datetime.datetime(2023, 7, 20, 6, 0),
+    end_timestamp_gmt=datetime.datetime(2023, 7, 21, 5, 59, 59, 999000),
+    start_timestamp_local=datetime.datetime(2023, 7, 19, 23, 0),
+    end_timestamp_local=datetime.datetime(2023, 7, 20, 22, 59, 59, 999000),
+    max_stress_level=85,
+    avg_stress_level=25,
+    stress_chart_value_offset=0,
+    stress_chart_y_axis_origin=0,
+    stress_values_array=[
+        [1689811800000, 12], [1689812100000, 18], [1689812400000, 15],
+        [1689815700000, 45], [1689819300000, 85], [1689822900000, 35],
+        [1689826500000, 20], [1689830100000, 15], [1689833700000, 25],
+        [1689837300000, 30]
+    ],
+    body_battery_values_array=[
+        [1689811800000, 'charging', 45, 1.0], [1689812100000, 'charging', 48, 1.0],
+        [1689812400000, 'charging', 52, 1.0], [1689815700000, 'charging', 65, 1.0],
+        [1689819300000, 'draining', 85, 1.0], [1689822900000, 'draining', 75, 1.0],
+        [1689826500000, 'draining', 65, 1.0], [1689830100000, 'draining', 55, 1.0],
+        [1689833700000, 'draining', 45, 1.0], [1689837300000, 'draining', 35, 1.0],
+        [1689840900000, 'draining', 25, 1.0]
+    ]
+)
+
+# Access derived properties
+daily_bb = garth.DailyBodyBatteryStress.get("2023-07-20")
+daily_bb.current_body_battery  # 25 (last reading)
+daily_bb.max_body_battery      # 85
+daily_bb.min_body_battery      # 25
+daily_bb.body_battery_change   # -20 (45 -> 25)
+
+# Access structured readings
+for reading in daily_bb.body_battery_readings:
+    print(f"Level: {reading.level}, Status: {reading.status}")
+    # Level: 45, Status: charging
+    # Level: 48, Status: charging
+    # ... etc
+
+for reading in daily_bb.stress_readings:
+    print(f"Stress: {reading.stress_level}")
+    # Stress: 12
+    # Stress: 18
+    # ... etc
+```
+
+Body Battery events (sleep events)
+
+```python
+garth.BodyBatteryData.get("2023-07-20")
+```
+
+```python
+[
+    BodyBatteryData(
+        event=BodyBatteryEvent(
+            event_type='sleep',
+            event_start_time_gmt=datetime.datetime(2023, 7, 19, 21, 30),
+            timezone_offset=-25200000,
+            duration_in_milliseconds=28800000,
+            body_battery_impact=35,
+            feedback_type='good_sleep',
+            short_feedback='Good sleep restored your Body Battery'
+        ),
+        activity_name=None,
+        activity_type=None,
+        activity_id=None,
+        average_stress=15.5,
+        stress_values_array=[
+            [1689811800000, 12], [1689812100000, 18], [1689812400000, 15]
+        ],
+        body_battery_values_array=[
+            [1689811800000, 'charging', 45, 1.0],
+            [1689812100000, 'charging', 48, 1.0],
+            [1689812400000, 'charging', 52, 1.0],
+            [1689840600000, 'draining', 85, 1.0]
+        ]
+    )
+]
+
+# Access convenience properties on each event
+events = garth.BodyBatteryData.get("2023-07-20")
+event = events[0]
+event.current_level    # 85 (last reading)
+event.max_level        # 85
+event.min_level        # 45
+```
+
 ### Steps
 
 Daily steps

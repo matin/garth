@@ -59,7 +59,7 @@ def test_daily_body_battery_stress_get(authed_client: Client):
     if daily_data:
         # Test basic structure
         assert daily_data.user_profile_pk
-        assert daily_data.calendar_date == "2023-07-20"
+        assert daily_data.calendar_date == date(2023, 7, 20)
         assert daily_data.start_timestamp_gmt
         assert daily_data.end_timestamp_gmt
 
@@ -130,7 +130,7 @@ def test_daily_body_battery_stress_list(authed_client: Client):
     # Test that each item is correct type
     for daily_data in daily_data_list:
         assert isinstance(daily_data, DailyBodyBatteryStress)
-        assert daily_data.calendar_date
+        assert isinstance(daily_data.calendar_date, date)
         assert daily_data.user_profile_pk
 
 

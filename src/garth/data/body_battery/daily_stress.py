@@ -21,7 +21,7 @@ class DailyBodyBatteryStress(Data):
     """Complete daily Body Battery and stress data."""
 
     user_profile_pk: int
-    calendar_date: str
+    calendar_date: date
     start_timestamp_gmt: datetime
     end_timestamp_gmt: datetime
     start_timestamp_local: datetime
