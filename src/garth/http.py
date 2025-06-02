@@ -1,7 +1,7 @@
 import base64
 import json
 import os
-from typing import IO, Any, Dict, Tuple
+from typing import IO, Any, Dict, Literal, Tuple
 from urllib.parse import urljoin
 
 from requests import HTTPError, Response, Session
@@ -20,8 +20,8 @@ class Client:
     sess: Session
     last_resp: Response
     domain: str = "garmin.com"
-    oauth1_token: OAuth1Token | None = None
-    oauth2_token: OAuth2Token | None = None
+    oauth1_token: OAuth1Token | Literal["needs_mfa"] | None = None
+    oauth2_token: OAuth2Token | dict[str, Any] | None = None
     timeout: int = 10
     retries: int = 3
     status_forcelist: Tuple[int, ...] = (408, 429, 500, 502, 503, 504)
@@ -129,9 +129,13 @@ class Client:
             assert self.oauth1_token, (
                 "OAuth1 token is required for API requests"
             )
-            if not self.oauth2_token or self.oauth2_token.expired:
+            if not self.oauth2_token or (
+                isinstance(self.oauth2_token, OAuth2Token)
+                and self.oauth2_token.expired
+            ):
                 self.refresh_oauth2()
-            headers["Authorization"] = str(self.oauth2_token)
+            if isinstance(self.oauth2_token, OAuth2Token):
+                headers["Authorization"] = str(self.oauth2_token)
         self.last_resp = self.sess.request(
             method,
             url,
@@ -173,7 +177,9 @@ class Client:
         return self.oauth1_token, self.oauth2_token
 
     def refresh_oauth2(self):
-        assert self.oauth1_token, "OAuth1 token is required for OAuth2 refresh"
+        assert self.oauth1_token and isinstance(
+            self.oauth1_token, OAuth1Token
+        ), "OAuth1 token is required for OAuth2 refresh"
         # There is a way to perform a refresh of an OAuth2 token, but it
         # appears even Garmin uses this approach when the OAuth2 is expired
         self.oauth2_token = sso.exchange(self.oauth1_token, self)

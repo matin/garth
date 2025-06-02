@@ -180,7 +180,9 @@ def test_connectapi(authed_client: Client):
 
 @pytest.mark.vcr
 def test_refresh_oauth2_token(authed_client: Client):
-    assert authed_client.oauth2_token
+    assert authed_client.oauth2_token and isinstance(
+        authed_client.oauth2_token, OAuth2Token
+    )
     authed_client.oauth2_token.expires_at = int(time.time())
     assert authed_client.oauth2_token.expired
     profile = authed_client.connectapi("/userprofile-service/socialProfile")
