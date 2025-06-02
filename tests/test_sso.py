@@ -108,7 +108,9 @@ def test_set_expirations(oauth2_token_dict: dict):
 
 @pytest.mark.vcr
 def test_exchange(authed_client: Client):
-    assert authed_client.oauth1_token
+    assert authed_client.oauth1_token and isinstance(
+        authed_client.oauth1_token, OAuth1Token
+    )
     oauth1_token = authed_client.oauth1_token
     oauth2_token = sso.exchange(oauth1_token, client=authed_client)
     assert not oauth2_token.expired
