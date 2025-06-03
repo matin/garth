@@ -41,32 +41,6 @@ class GarminOAuth1Session(OAuth1Session):
             self.verify = parent.verify
 
 
-def _complete_login(
-    client: "http.Client", html: str
-) -> Tuple[OAuth1Token, OAuth2Token]:
-    """Complete the login process after successful authentication.
-
-    Args:
-        client: The HTTP client
-        html: The HTML response containing the ticket
-
-    Returns:
-        Tuple[OAuth1Token, OAuth2Token]: The OAuth tokens
-    """
-    # Parse ticket
-    m = re.search(r'embed\?ticket=([^"]+)"', html)
-    if not m:
-        raise GarthException(
-            "Couldn't find ticket in response"
-        )  # pragma: no cover
-    ticket = m.group(1)
-
-    oauth1 = get_oauth1_token(ticket, client)
-    oauth2 = exchange(oauth1, client)
-
-    return oauth1, oauth2
-
-
 def login(
     email: str,
     password: str,
@@ -145,7 +119,6 @@ def login(
     if "MFA" in title:
         if return_on_mfa or prompt_mfa is None:
             return "needs_mfa", {
-                "csrf_token": csrf_token,
                 "signin_params": SIGNIN_PARAMS,
                 "client": client,
             }
@@ -154,8 +127,8 @@ def login(
         title = get_title(client.last_resp.text)
 
     if title != "Success":
-        raise GarthException(f"Unexpected title: {title}")  # pragma: no cover
-    return _complete_login(client, client.last_resp.text)
+        raise GarthException(f"Unexpected title: {title}")
+    return _complete_login(client)
 
 
 def get_oauth1_token(ticket: str, client: "http.Client") -> OAuth1Token:
@@ -259,22 +232,28 @@ def resume_login(
     """
     client = client_state["client"]
     signin_params = client_state["signin_params"]
-    csrf_token = client_state["csrf_token"]
+    handle_mfa(client, signin_params, lambda: mfa_code)
+    return _complete_login(client)
 
-    client.post(
-        "sso",
-        "/sso/verifyMFA/loginEnterMfaCode",
-        params=signin_params,
-        referrer=True,
-        data={
-            "mfa-code": mfa_code,
-            "embed": "true",
-            "_csrf": csrf_token,
-            "fromPage": "setupEnterMfaCode",
-        },
-    )
 
-    title = get_title(client.last_resp.text)
-    if title != "Success":
-        raise GarthException(f"Unexpected title: {title}")  # pragma: no cover
-    return _complete_login(client, client.last_resp.text)
+def _complete_login(client: "http.Client") -> Tuple[OAuth1Token, OAuth2Token]:
+    """Complete the login process after successful authentication.
+
+    Args:
+        client: The HTTP client
+
+    Returns:
+        Tuple[OAuth1Token, OAuth2Token]: The OAuth tokens
+    """
+    # Parse ticket
+    m = re.search(r'embed\?ticket=([^"]+)"', client.last_resp.text)
+    if not m:
+        raise GarthException(
+            "Couldn't find ticket in response"
+        )  # pragma: no cover
+    ticket = m.group(1)
+
+    oauth1 = get_oauth1_token(ticket, client)
+    oauth2 = exchange(oauth1, client)
+
+    return oauth1, oauth2

@@ -78,7 +78,6 @@ def test_login_return_on_mfa(client: Client):
 
     assert isinstance(client_state, dict)
     assert result_type == "needs_mfa"
-    assert "csrf_token" in client_state
     assert "signin_params" in client_state
     assert "client" in client_state
 
