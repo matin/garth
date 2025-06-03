@@ -1,0 +1,749 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+      referer:
+      - https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+    method: GET
+    uri: https://sso.garmin.com/sso/embed?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso
+  response:
+    body:
+      string: "<html>\n\t<head>\n\t    <title>GAuth Embedded Version</title>\n\t    <meta
+        http-equiv=\"X-UA-Compatible\" content=\"IE=edge;\" />\n\t    <style type=\"text/css\">\n\t
+        \   \t#gauth-widget {border: none !important;}\n\t    </style>\n\t</head>\n\t<body>\n\t\t<script
+        type=\"text/javascript\" src=\"/sso/js/jquery/3.7.1/jquery.min.js?20210319\"></script>\n\n<div>\n\t<pre>\n\t<span>ERROR:
+        clientId parameter must be specified!!!</span>\n\n\t<span >Usage: https://sso.garmin.com/sso/embed?clientId=&lt;clientId&gt;&amp;locale=&lt;locale&gt;...</span>\n\n\tRequest
+        parameter configuration options:\n\n\tNAME                           REQ  VALUES
+        \                                                  DESCRIPTION\n\t------------------
+        \            ---  -------------------------------------------------------
+        \ ---------------------------------------------------------------------------------------------------\n\tclientId
+        \                      Yes  \"MY_GARMIN\"/\"BUY_GARMIN\"/\"FLY_GARMIN\"/                   Client
+        identifier for your web application\n\t                                    \"RMA\"/\"GarminConnect\"/\"OpenCaching\"/etc\n\tlocale
+        \                        Yes  \"en\", \"bg\", \"cs\", \"da\", \"de\", \"es\",
+        \"el\", \"fr\", \"hr\",    User's current locale, to display the GAuth login
+        widget internationalized properly.\n\t                                    \"in\",
+        \"it\", \"iw\", \"hu\", \"ms\", \"nb\", \"nl\", \"no\", \"pl\",    (All the
+        currently supported locales are listed in the Values section.)\n\t                                    \"pt\",
+        \"pt_BR\", \"ru\", \"sk\", \"sl\", \"fi\", \"sv\", \"tr\",\n\t                                    \"uk\",
+        \"th\", \"ja\", \"ko\", \"zh_TW\", \"zh\", \"vi_VN\"\n\tcssUrl                          No
+        \ Absolute URL to custom CSS file.                         Use custom CSS
+        styling for the GAuth login widget.\n\treauth                          No
+        \ true/false (Default value is false)                      Specify true if
+        you want to ensure that the GAuth login widget shows up,\n\t                                                                                             even
+        if the SSO infrastructure remembers the user and would immediately log them
+        in.\n\t                                                                                             This
+        is useful if you know a user is logged on, but want a different user to be
+        allowed to logon.\n\tinitialFocus                    No  true/false (Default
+        value is true)                       If you don't want the GAuth login widget
+        to autofocus in it's \"Email or Username\" field upon initial loading,\n\t
+        \                                                                                            then
+        specify this option and set it to false.\n\trememberMeShown                 No
+        \ true/false (Default value is false)                      Whether the \"Remember
+        Me\" check box is shown in the GAuth login widget.\n\trememberMeChecked               No
+        \ true/false (Default value is false)                      Whether the \"Remember
+        Me\" check box feature is checked by default.\n\tcreateAccountShown              No
+        \ true/false (Default value is true)                       Whether the \"Don't
+        have an account? Create One\" link is shown in the GAuth login widget.\n\tsocialEnabled
+        \                  No  true/false (Default value is false)                       If
+        set to false, do not show any social sign in elements or allow social sign
+        ins.\n\tlockToEmailAddress              No  Email address to pre-load and
+        lock.                      If specified, the specified email address will
+        be pre-loaded in the main \"Email\" field in the SSO login form,\n\t                                                                                             as
+        well as in in the \"Email Address\" field in the \"Forgot Password?\" password
+        reset form,\n\t                                                                                             and
+        both fields will be disabled so they can't be changed.\n\t                                                                                             (If
+        for some reason you want to force re-authentications for a known customer
+        account, you can make use of this option.)\n\topenCreateAccount               No
+        \ true/false (Default value is false)                      If set to true,
+        immediately display the the account creation screen.\n\tdisplayNameShown                No
+        \ true/false (Default value is false)                      If set to true,
+        show the \"Display Name\" field on the account creation screen, to allow the
+        user\n\t                                                                                             to
+        set their central MyGarmin display name upon account creation.\n\tglobalOptInShown
+        \               No  true/false (Default value is false)                      Whether
+        the \"Global Opt-In\" check box is shown on the create account & create social
+        account screens.\n\t                                                                                             If
+        set to true these screens will show a \"Sign Up For Email\" check box with
+        accompanying text\n\t                                                                                             \"I
+        would also like to receive email about promotions and new products.\"\n\t
+        \                                                                                            If
+        checked, the Customer 2.0 account that is created will have it's global opt-in
+        flag set to true,\n\t                                                                                             and
+        Garmin email communications will be allowed.\n\tglobalOptInChecked              No
+        \ true/false (Default value is false)                      Whether the \"Global
+        Opt-In\" check box is checked by default.\n\tconsumeServiceTicket            No
+        \ true/false (Default value is true)                       IF you don't specify
+        a redirectAfterAccountLoginUrl AND you set this to false, the GAuth login
+        widget\n\t                                                                                             will
+        NOT consume the service ticket assigned and will not seamlessly log you into
+        your webapp.\n\t                                                                                             It
+        will send a SUCCESS JavaScript event with the service ticket and service url
+        you can take\n\t                                                                                             and
+        explicitly validate against the SSO infrastructure yourself.\n\t                                                                                             (By
+        using casClient's SingleSignOnUtils.authenticateServiceTicket() utility method,\n\t
+        \                                                                                            or
+        calling web service customerWebServices_v1.2 AccountManagementService.authenticateServiceTicket().)\n\tmobile
+        \                         No  true/false (Default value is false)                      Setting
+        to true will cause mobile friendly views to be shown instead of the tradition
+        screens.\n\ttermsOfUseUrl                   No  Absolute URL to your custom
+        terms of use URL.            If not specified, defaults to http://www.garmin.com/terms\n\tprivacyStatementUrl
+        \            No  Absolute URL to your custom privacy statement URL.       If
+        not specified, defaults to http://www.garmin.com/privacy\n\tproductSupportUrl
+        \              No  Absolute URL to your custom product support URL.         If
+        not specified, defaults to http://www.garmin.com/us/support/contact\n\tgenerateExtraServiceTicket
+        \     No  true/false (Default value is false)                      If set
+        to true, generate an extra unconsumed service ticket.\n\t\t                                                                                     (The
+        service ticket validation response will include the extra service ticket.)\n\tgenerateTwoExtraServiceTickets
+        \ No  true/false (Default value is false)                      If set to true,
+        generate two extra unconsumed service tickets.\n\t\t\t\t\t\t\t\t\t \t\t\t
+        \    (The service ticket validation response will include the extra service
+        tickets.)\n\tgenerateNoServiceTicket         No  true/false (Default value
+        is false)                      If you don't want SSO to generate a service
+        ticket at all when logging in to the GAuth login widget.\n                                                                                                     (Useful
+        when allowing logins to static sites that are not SSO enabled and can't consume
+        the service ticket.)\n\tconnectLegalTerms               No  true/false (Default
+        value is false)                      Whether to show the connectLegalTerms
+        on the create account page\n\tshowTermsOfUse                  No  true/false
+        (Default value is false)                      Whether to show the showTermsOfUse
+        on the create account page\n\tshowPrivacyPolicy               No  true/false
+        (Default value is false)                      Whether to show the showPrivacyPolicy
+        on the create account page\n\tshowConnectLegalAge             No  true/false
+        (Default value is false)                      Whether to show the showConnectLegalAge
+        on the create account page\n\tlocationPromptShown             No  true/false
+        (Default value is false)                      If set to true, ask the customer
+        during account creation to verify their country of residence.\n\tshowPassword
+        \                   No  true/false (Default value is true)                       If
+        set to false, mobile version for createAccount and login screens would hide
+        the password\n\tuseCustomHeader                 No  true/false (Default value
+        is false)                      If set to true, the \"Sign in\" text will be
+        replaced by custom text. Contact CDS team to set the i18n text for your client
+        id.\n\tmfaRequired                     No  true/false (Default value is false)
+        \                     Require multi factor authentication for all authenticating
+        users.\n\tperformMFACheck                 No  true/false (Default value is
+        false)                      If set to true, ask the logged in user to pass
+        a multi factor authentication check. (Only valid for an already logged in
+        user.)\n\trememberMyBrowserShown          No  true/false (Default value is
+        false)                      Whether the \"Remember My Browser\" check box
+        is shown in the GAuth login widget MFA verification screen.\n\trememberMyBrowserChecked
+        \       No  true/false (Default value is false)                      Whether
+        the \"Remember My Browser\" check box feature is checked by default.\n\tconsentTypeIds\t\t\t\t\tNo\tconsent_types
+        ids\t\t \t\t\t\t\t\t\t\t multiple consent types ids can be passed as consentTypeIds=type1&consentTypeIds=type2\n\t</pre>\n</div>\n\n\n\t<script>(function(){function
+        c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML=\"window.__CF$cv$params={r:'949c83cf2bfb5e42',t:'MTc0ODkyNTY1Mi4wMDAwMDA='};var
+        a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);\";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var
+        a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else
+        if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var
+        e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>\n</html>\n"
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type,
+        Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - https://www.garmin.com
+      CF-RAY:
+      - 949c83cf2bfb5e42-QRO
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Type:
+      - text/html;charset=UTF-8
+      Date:
+      - Tue, 03 Jun 2025 04:40:52 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=cwd6V1kar7GXC7ImUBfvrwg3vgZw4sMdraKN0bkZjRt%2Bsu4gSDU%2Bv0N%2BSUhVzY7ZkTgMTuIkEmTRl7ywQ5Z%2FAD3BUh03xdXX%2B2qCgU0plnOrl93fBAlMcDC9U%2FMRzoHW"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        Path=SANITIZED
+      - __cf_bm=SANITIZED; path=SANITIZED; expires=SANITIZED; domain=SANITIZED; HttpOnly;
+        Secure; SameSite=SANITIZED
+      - __cflb=SANITIZED; SameSite=SANITIZED; Secure; path=SANITIZED; expires=SANITIZED;
+        HttpOnly
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      X-Application-Context:
+      - casServer:cloud,prod,prod-US_Olathe:3
+      X-B3-Traceid:
+      - 85cea212845648ad7fbb7b5ad97acb70
+      X-Robots-Tag:
+      - noindex
+      X-Vcap-Request-Id:
+      - 85cea212-8456-48ad-7fbb-7b5ad97acb70
+      cf-cache-status:
+      - DYNAMIC
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        __cflb=SANITIZED; __cf_bm=SANITIZED; _cfuvid=SANITIZED
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+      referer:
+      - https://sso.garmin.com/sso/embed?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso
+    method: GET
+    uri: https://sso.garmin.com/sso/signin?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+  response:
+    body:
+      string: "<!DOCTYPE html>\n<html lang=\"en\" class=\"no-js\">\n    <head>\n        <meta
+        http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />\n        <meta
+        name=\"viewport\" content=\"width=device-width\" />\n        <meta http-equiv=\"X-UA-Compatible\"
+        content=\"IE=edge;\" />\n        <title>GARMIN Authentication Application</title>\n
+        \       <link href=\"/sso/css/GAuth.css?20210406\" rel=\"stylesheet\" type=\"text/css\"
+        media=\"all\" />\n\n\t    <link rel=\"stylesheet\" href=\"\"/>\n\n        <script
+        type=\"text/javascript\" src=\"/sso/js/jquery/3.7.1/jquery.min.js?20210319\"></script>\n
+        \       <script type=\"text/javascript\">jQuery.noConflict();</script>\n\t\t<script
+        type=\"text/javascript\" src=\"/sso/js/jquery-validate/1.16.0/jquery.validate.min.js?20210319\"></script>\n
+        \       <script type=\"text/javascript\" src=\"/sso/js/jsUtils.js?20210406\"></script>\n
+        \       <script type=\"text/javascript\" src=\"/sso/js/json2.js\"></script>\n
+        \       <script type=\"text/javascript\" src=\"/sso/js/consoleUtils.js?20210319\"></script>\n
+        \       <script type=\"text/javascript\" src=\"/sso/js/postmessage.js?20210319\"></script>\n
+        \       <script type=\"text/javascript\" src=\"/sso/js/popupWindow.js\"></script>\n
+        \       <script type=\"text/javascript\" src=\"/sso/js/base.js?20231020\"></script>\n\t\t<script
+        type=\"text/javascript\" src=\"/sso/js/gigyaUtils.js?20210319\"></script>\n
+        \       <script type=\"text/javascript\" src=\"/sso/js/login.js?20211102\"></script>\n
+        \       <script type=\"text/javascript\" src=\"/sso/js/reCaptchaUtil.js?20230706\"></script>\n\n
+        \       <script>\n            var recaptchaSiteKey = null;\n            var
+        reCaptchaURL = \"\\\\\\/sso\\\\\\/reCaptcha?id=gauth-widget\\u0026embedWidget=true\\u0026gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\\u0026service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\\u0026source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\\u0026redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\\u0026redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\";\n
+        \           var isRecaptchaEnabled = null;\n            var recaptchaToken
+        = null;            \n        </script>\n        <script type=\"text/javascript\">\n
+        \           var parent_url      = \"https:\\/\\/sso.garmin.com\\/sso\\/embed\";\n
+        \           var status \t\t\t= \"\";\n\t\t\tvar result          = \"\";\n\t\t\tvar
+        clientId\t\t= '';\n\t\t\tvar embedWidget \t= true;\n\t\t\tvar isUsernameDefined
+        = (false == true) || (false == true);\n\n            // Gigya callback to
+        SocialSignInController for brand new social network users redirects to this
+        page\n            // to popup Create or Link Social Account page, but has
+        a possibly mangled source parameter\n            // where \"?\" is set as
+        \"<QM>\", so translate it back to \"?\" here.\n            parent_url = parent_url.replace('<QM>',
+        '?');\n            var parent_scheme   = parent_url.substring(0, parent_url.indexOf(\"://\"));\n
+        \           var parent_hostname = parent_url.substring(parent_scheme.length
+        + 3, parent_url.length);\n            if (parent_hostname.indexOf(\"/\") !=
+        -1) {\n                parent_hostname = parent_hostname.substring(0, parent_hostname.indexOf(\"/\"));\n
+        \           }\n            var parentHost      \t   = parent_scheme + \"://\"
+        + parent_hostname;\n\t\t\tvar createAccountConfigURL = '\\/sso\\/createNewAccount?id%3Dgauth-widget%26embedWidget%3Dtrue%26gauthHost%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26service%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26source%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26redirectAfterAccountLoginUrl%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26redirectAfterAccountCreationUrl%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed';\n
+        \           var socialConfigURL        = 'https://sso.garmin.com/sso/socialSignIn?id%3Dgauth-widget%26embedWidget%3Dtrue%26gauthHost%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26service%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26source%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26redirectAfterAccountLoginUrl%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26redirectAfterAccountCreationUrl%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed';\n
+        \           var gigyaURL               = \"https://cdns.gigya.com/js/gigya.js?apiKey=2_R3ZGY8Bqlwwk3_63knoD9wA_m-Y19mAgW61bF_s5k9gymYnMEAtMrJiF5MjF-U7B\";\n\n
+        \           if (createAccountConfigURL.indexOf('%253A%252F%252F') != -1) {\n
+        \           \tcreateAccountConfigURL = decodeURIComponent(createAccountConfigURL);\n
+        \           }\n            consoleInfo('signin.html embedWidget: true, createAccountConfigURL:
+        \\/sso\\/createNewAccount?id%3Dgauth-widget%26embedWidget%3Dtrue%26gauthHost%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26service%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26source%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26redirectAfterAccountLoginUrl%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed%26redirectAfterAccountCreationUrl%3Dhttps%253A%252F%252Fsso.garmin.com%252Fsso%252Fembed,
+        socialEnabled: true, gigyaSupported: true, socialConfigURL(): https://sso.garmin.com/sso/socialSignIn?id%3Dgauth-widget%26embedWidget%3Dtrue%26gauthHost%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26service%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26source%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26redirectAfterAccountLoginUrl%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed%26redirectAfterAccountCreationUrl%3Dhttps%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed');\n\n
+        \           if (socialConfigURL.indexOf('%3A%2F%2F') != -1) {\n            \tsocialConfigURL
+        = decodeURIComponent(socialConfigURL);\n            }\n\n            if( status
+        != null && status != ''){\n            \tsend({'status':status});\n            }\n\n
+        \           jQuery(document).ready( function(){\n\n\n                consoleInfo(\"signin.html:
+        setting field validation rules...\");\n\n                jQuery(\"#username\").rules(\"add\",{\n
+        \                   required: true,\n                    messages: {\n                        required:
+        \ \"Email is required.\"\n                }});\n\n                jQuery(\"#password\").rules(\"add\",
+        {\n                    required: true,\n                    messages: {\n
+        \                       required:  \"Password is required.\"\n                    }\n
+        \               });\n\n                consoleInfo(\"signin.html: done setting
+        field validation rules...\");\n\n            });\n\n            XD.receiveMessage(function(m){\n
+        \               consoleInfo(\"signin.html: \" + m.data + \" received on \"
+        + window.location.host);\n                 if (m && m.data) {\n                     var
+        md = m.data;\n                     if (typeof(md) === 'string') {\n                         md
+        = JSON.parse(m.data);\n                     }\n                     if (md.setUsername)
+        {\n                         consoleInfo(\"signin.html: Setting username \\\"\"
+        + md.username + \"\\\"...\");\n                         jQuery(\"#signInWithDiffLink\").click();
+        // Ensure the normal login form is shown.\n                         jQuery(\"#username\").val(md.username);\n
+        \                        jQuery(\"#password\").focus();\n                     }\n
+        \                }\n             }, parentHost);\n        </script>\n    </head>\n
+        \   <body>\n\n        <!-- begin GAuth component -->\n        <div id=\"GAuth-component\">\n
+        \           <!-- begin login component-->\n            <div id=\"login-component\"
+        class=\"blueForm-basic\">\n               <input type=\"hidden\" id=\"queryString\"
+        value=\"id=gauth-widget&amp;embedWidget=true&amp;gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\"
+        />\n\t     \t   <input type=\"hidden\" id=\"contextPath\" value=\"/sso\" />\n
+        \               <!-- begin login form -->\n                <div id=\"login-state-default\">\n
+        \                   <h2>Sign In</h2>\n\n                    <form method=\"post\"
+        id=\"login-form\">\n\n                        <div class=\"form-alert\">\n\t\t\t\t\t\t\t\n
+        \                           \n                            \n                            \n
+        \                           \n                            \n                            \n\n
+        \                           <div id=\"username-error\" style=\"display:none;\"></div>\n
+        \                           <div id=\"password-error\" style=\"display:none;\"></div>\n
+        \                       </div>\n                        <div class=\"textfield\">\n\t\t\t\t\t\t\t<label
+        for=\"username\">Email</label>\n                           \t\t<!-- If the
+        lockToEmailAddress parameter is specified then we want to mark the field as
+        readonly,\n                           \t\tpreload the email address, and disable
+        the other input so that null isn't sent to the server. We'll\n                           \t\talso
+        style the field to have a darker grey background and disable the mouse pointer\n
+        \                          \t\t -->\n\t\t\t\t\t\t\t    \n\t\t\t\t\t\t\t\t<!--
+        If the lockToEmailAddress parameter is NOT specified then keep the existing
+        functionality and disable the readonly input field\n\t\t\t\t\t\t\t     -->\n\t\t\t\t\t\t\t
+        \   <input class=\"login_email\" name=\"username\" id=\"username\" value=\"\"
+        type=\"email\" spellcheck=\"false\" autocorrect=\"off\" autocapitalize=\"off\"/>\n\n
+        \                       </div>\n\n                        <div class=\"textfield\">\n
+        \                           <label for=\"password\">Password</label>\n                            <a
+        id=\"loginforgotpassword\" class=\"login-forgot-password\" style=\"cursor:pointer\">(Forgot?)</a>\n
+        \                           <input type=\"password\" name=\"password\" id=\"password\"
+        spellcheck=\"false\" autocorrect=\"off\" autocapitalize=\"off\" />\n                             <strong
+        id=\"capslock-warning\" class=\"information\" title=\"Caps lock is on.\" style=\"display:
+        none;\">Caps lock is on.</strong>\n\t\t\t\t\t    </div>\n                        <input
+        type=\"hidden\" name=\"embed\" value=\"true\"/>\n                        <input
+        type=\"hidden\" name=\"_csrf\" value=\"90280BE13709DE2C0CF38CAB2A77E3FC82F62894F2396D07630AD246706B197735797D02C4592A6D5AB3B8BF1F3B80460522\"
+        />\n                        <button type=\"submit\" id=\"login-btn-signin\"
+        class=\"btn1\" accesskey=\"l\">Sign In</button>\n                        \n\n\n
+        \                       <!-- The existence of the \"rememberme\" parameter
+        at all will remember the user! -->\n                        \n\n                    </form>\n
+        \               </div>\n                <!-- end login form -->\n\n                <!--
+        begin Create Account message -->\n\t            <div id=\"login-create-account\">\n\t
+        \               \n\t            </div>\n\t            <!-- end Create Account
+        message -->\n\n\t            <!-- begin Social Sign In component -->\n\t            <div
+        id=\"SSI-component\">\n                    \n\n\t\t\t\t\t\n\t            </div>\n\t
+        \           <!-- end Social Sign In component -->\n                <div class=\"clearfix\"></div>
+        <!-- Ensure that GAuth-component div's height is computed correctly. -->\n
+        \           </div>\n            <!-- end login component-->\n\n\t\t</div>\n\t\t<!--
+        end GAuth component -->\n\n        <script type=\"text/javascript\">\n            jQuery(document).ready(function(){\n
+        \           \tresizePageOnLoad(jQuery(\"#GAuth-component\").height());\n\n\t\t
+        \       if(isUsernameDefined == true){\n\t\t            // If the user's login
+        just failed, redisplay the email/username specified, and focus them in the
+        password field.\n\t\t            jQuery(\"#password\").focus();\n\t\t        }
+        else if(false == true && result != \"PASSWORD_RESET_RESULT\"){\n                    //
+        Otherwise focus them in the username field of the login dialog.\n                    jQuery(\"#username\").focus();\n
+        \               }\n\n                // Scroll to top of iframe to fix problem
+        where Firefox 3.0-3.6 browsers initially show top of iframe cutoff.\n                location.href=\"#\";\n\n
+        \               if(!embedWidget){\n                \tjQuery('.createAccountLink').click(function(){\n\t
+        \                   send({'openLiteBox':'createAccountLink', 'popupUrl': createAccountConfigURL,
+        'popupTitle':'Create An Account', 'clientId':clientId});\n\t                });\n
+        \               }\n            });\n        </script>\n    <script>(function(){function
+        c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML=\"window.__CF$cv$params={r:'949c83d17d414f14',t:'MTc0ODkyNTY1Mi4wMDAwMDA='};var
+        a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);\";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var
+        a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else
+        if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var
+        e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>\n</html>\n"
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type,
+        Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - https://www.garmin.com
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 949c83d17d414f14-QRO
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Type:
+      - text/html;charset=UTF-8
+      Date:
+      - Tue, 03 Jun 2025 04:40:52 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=REffANT2%2FfOZY9xYp%2FXinxsCOsc73u6TBWc0qVetJyK9oQhy63N6Qk3fNr5TDiEV9JM9RIKw5uZhoVeBr7vDZK1f0UsNdTsjHdr19V0Lnt%2FCqbU6Y3MTWpcTaQYMqUIo"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        Path=SANITIZED
+      - SESSION=SANITIZED; Path=SANITIZED; Secure; HttpOnly
+      - __VCAP_ID__=SANITIZED; Path=SANITIZED; HttpOnly; Secure
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      X-Application-Context:
+      - casServer:cloud,prod,prod-US_Olathe:6
+      X-B3-Traceid:
+      - 77e60c0ac1d641c074820aac41fbde80
+      X-Robots-Tag:
+      - noindex
+      X-Vcap-Request-Id:
+      - 77e60c0a-c1d6-41c0-7482-0aac41fbde80
+    status:
+      code: 200
+      message: OK
+- request:
+    body: username=SANITIZED&password=SANITIZED&embed=true&_csrf=90280BE13709DE2C0CF38CAB2A77E3FC82F62894F2396D07630AD246706B197735797D02C4592A6D5AB3B8BF1F3B80460522
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '177'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Cookie:
+      - SESSION=SANITIZED; org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        __cflb=SANITIZED; __VCAP_ID__=SANITIZED; __cf_bm=SANITIZED; _cfuvid=SANITIZED
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+      referer:
+      - https://sso.garmin.com/sso/signin?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+    method: POST
+    uri: https://sso.garmin.com/sso/signin?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+  response:
+    body:
+      string: ''
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type,
+        Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - https://www.garmin.com
+      CF-Cache-Status:
+      - DYNAMIC
+      CF-Ray:
+      - 949c83d32cf657bd-QRO
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Length:
+      - '0'
+      Date:
+      - Tue, 03 Jun 2025 04:40:54 GMT
+      Location:
+      - https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=8rQsZTg41dTwDgWNQriYHPcbY3UG6NQ0v%2FN6zaizxXzpDFLJALfe7s%2BopIWHB0dvU9WeEEUreQPI2Wlkgz2Gp6z9fx51UvQZtS3N2hIGKyEW7QNno8eCyuMyHYGXjJOx"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        Path=SANITIZED
+      - __cfruid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Vary:
+      - Accept-Encoding
+      X-Application-Context:
+      - casServer:cloud,prod,prod-US_Olathe:6
+      X-B3-Traceid:
+      - 1da874cc48894fdf4e1ac9d9e8e269c8
+      X-Robots-Tag:
+      - noindex
+      X-Vcap-Request-Id:
+      - 1da874cc-4889-4fdf-4e1a-c9d9e8e269c8
+    status:
+      code: 302
+      message: Found
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - SESSION=SANITIZED; org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        __cflb=SANITIZED; __VCAP_ID__=SANITIZED; __cf_bm=SANITIZED; _cfuvid=SANITIZED;
+        __cfruid=SANITIZED
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+      referer:
+      - https://sso.garmin.com/sso/signin?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+    method: GET
+    uri: https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+  response:
+    body:
+      string: "<!DOCTYPE html>\n<html lang=\"en\" class=\"no-js\">\n\n<head>\n    <script
+        type=\"text/javascript\" src=\"/sso/js/jquery/3.7.1/jquery.min.js?20210319\"></script>\n
+        \   <script type=\"text/javascript\">jQuery.noConflict();</script>\n    <script
+        type=\"text/javascript\" src=\"/sso/js/jquery-validate/1.16.0/jquery.validate.min.js?20210319\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/base.js?20231020\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/jsUtils.js?20210406\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/json2.js\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/postmessage.js?20210319\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/consoleUtils.js?20210319\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/setupMfaRequiredView.js?20210319\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/enterMfaCode.js?20230127\"></script>\n
+        \   <script type=\"text/javascript\">\n        var embedWidget = \"true\";\n
+        \       if (embedWidget == \"\") {\n            embedWidget = \"\";\n        }\n
+        \       embedWidget = (embedWidget == \"true\");\n        var parent_url =
+        \"https:\\/\\/sso.garmin.com\\/sso\\/embed\";\n        window.onload = function()
+        {\n            ifrememberMyBrowserChecked();\n        };\n\n        jQuery(document).ready(
+        function() {\n            if (!embedWidget) {\n                send({'gauthHeight':
+        jQuery(\"#GAuth-component\").height()});\n            }\n            jQuery(\"#mfa-verification-code-submit\").click(function(){\n
+        \               if (!validateMfaCodeAndPrivacyConsents()){\n                    return
+        false;\n                }\n                jQuery('#submit-mfa-verification-code-form').submit();\n
+        \               return false;\n            });\n        });\n        var customerGuid
+        = \"0690cc1d-d23d-4412-b027-80fd4ed1c0f6\";\n        var mfaMethod = \"email\";\n
+        \       var locale = \"\";\n        var clientId = \"\";\n        var codeSentTo
+        = \"mt*****@gmail.com\";\n    </script>\n    <meta charset=\"utf-8\">\n    <title>Enter
+        MFA code for login</title>\n    <meta name=\"description\" content=\"\">\n
+        \   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n
+        \   <meta http-equiv=\"cleartype\" content=\"on\">\n    <meta http-equiv=\"X-UA-Compatible\"
+        content=\"IE=edge;\" />\n    <link href=\"/sso/css/GAuth.css?20170505\" rel=\"stylesheet\"
+        type=\"text/css\" media=\"all\" />\n    <link rel=\"stylesheet\" href=\"\"
+        />\n</head>\n\n<body>\n    <div id=\"GAuth-component\">\n        <h2 id=\"enter-mfa-code-h2\">Enter
+        security code</h2>\n        <input type=\"hidden\" id=\"queryString\" value=\"id=gauth-widget&amp;embedWidget=true&amp;gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\"
+        />\n        <input type=\"hidden\" id=\"contextPath\" value=\"/sso\" />\n\n
+        \       <div id=\"login-component\" class=\"blueForm-basic\">\n            <div
+        id=\"login-state-verifymfa\">\n                <td>\n                    \n
+        \                   <span >Code sent to <b>mt*****@gmail.com</b></span>\n
+        \               </td>\n                <form id=\"submit-mfa-verification-code-form\"
+        name=\"submit-mfa-verification-code-form\" method=\"post\" novalidate=\"novalidate\">\n
+        \                   <div class=\"blueForm-v2\">\n                        <div
+        class=\"form-alert\">\n                            <div id=\"genericError\"
+        class=\"error\" hidden>An unexpected error has occurred.</div>\n                            <div
+        id=\"codeSentAttention\" class=\"attention\" hidden>A new code has been sent.
+        You can request another code in 30 seconds.</div>\n                            \n
+        \                           \n                            <div id=\"maxLimit\"
+        class=\"error\" hidden=\"hidden\">You have reached the maximum amount of codes
+        requested. Please use a code you&#39;ve received or wait 24 hours and try
+        again.</div>\n                            \n                        </div>\n
+        \                       <div class=\"formTextField\">\n                            <div
+        class=\"mfaFormLabel\">\n                                <label>\n                                    <span>Security
+        code</span>\n                                    <br/>\n                                    <input
+        type=\"number\" pattern=\"[0-9]*\" inputmode=\"numeric\" maxlength=\"6\" id=\"mfa-code\"
+        name=\"mfa-code\" autofocus oninput=\"validateMfaCodeAndPrivacyConsents()\"/>\n
+        \                               </label>\n                            </div>\n
+        \                       </div>\n                        <br><br>\n                        <div>\n
+        \                           <a href=\"https://support.garmin.com/en-US/?faq=uGHS8ZqOIhA0usBzBMdJu7\"
+        target=\"_blank\" id=\"havingTrouble\">Get help</a><br>\n                        </div>\n
+        \                       <div id=\"requestNewCodeWrapper\" class=\"requestNewCode\">\n
+        \                           <a href=\"#\" id=\"newCode\">Request a new code</a>\n
+        \                       </div>\n                        \n                        \n
+        \                       <br>\n                            \n                        <br/>\n
+        \                       <button type=\"submit\" id=\"mfa-verification-code-submit\"
+        class=\"btn1\">Next</button>\n                    </div>\n                    <input
+        type=\"hidden\" name=\"embed\"            value=\"true\"/>\n                    <input
+        type=\"hidden\" name=\"_csrf\"            value=\"9AF199177EE70FB2511C2DE25FE2780DEF8327EDCA5AB81C391FAF6E419E83EDF20E1EE31B76E282D8AA46124E3DC5EB1391\"
+        />\n                    <input type=\"hidden\" name=\"fromPage\"            value=\"setupEnterMfaCode\"/>\n
+        \                   <br/>\n                </form>\n            </div>\n            <div
+        class=\"clearfix\"></div> <!-- Ensure that GAuth-component div's height is
+        computed correctly. -->\n        </div>\n    </div>\n    <script type=\"text/javascript\">\n
+        \       resizePageOnLoad(jQuery(\"#GAuth-component\").height());\n    </script>\n<script>(function(){function
+        c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML=\"window.__CF$cv$params={r:'949c83da2a5ac1ca',t:'MTc0ODkyNTY1NC4wMDAwMDA='};var
+        a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);\";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var
+        a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else
+        if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var
+        e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>\n</html>"
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type,
+        Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - https://www.garmin.com
+      CF-RAY:
+      - 949c83da2a5ac1ca-QRO
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Type:
+      - text/html;charset=UTF-8
+      Date:
+      - Tue, 03 Jun 2025 04:40:54 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=BrVkK9BHKPEC700UIxYqeYMAufPXrsMtXb56Z5naqivj9pfj%2FKyqvweC0oLp4v4n%2BecNLLGdP4o5WUnke2Iu62u0i0gzh9hqR49I8mYeEw6ABEfR8ZFJbx0waSuNNous"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        Path=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      X-Application-Context:
+      - casServer:cloud,prod,prod-US_Olathe:6
+      X-B3-Traceid:
+      - acd069da786e436a7d98ba4e5220bcfc
+      X-Robots-Tag:
+      - noindex
+      X-Vcap-Request-Id:
+      - acd069da-786e-436a-7d98-ba4e5220bcfc
+      cf-cache-status:
+      - DYNAMIC
+    status:
+      code: 200
+      message: OK
+- request:
+    body: mfa-code=123456&embed=true&_csrf=9AF199177EE70FB2511C2DE25FE2780DEF8327EDCA5AB81C391FAF6E419E83EDF20E1EE31B76E282D8AA46124E3DC5EB1391&fromPage=setupEnterMfaCode
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '160'
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Cookie:
+      - SESSION=SANITIZED; org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        __cflb=SANITIZED; __VCAP_ID__=SANITIZED; __cf_bm=SANITIZED; _cfuvid=SANITIZED;
+        __cfruid=SANITIZED
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+      referer:
+      - https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+    method: POST
+    uri: https://sso.garmin.com/sso/verifyMFA/loginEnterMfaCode?id=gauth-widget&embedWidget=true&gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed
+  response:
+    body:
+      string: "<!DOCTYPE html>\n<html lang=\"en\" class=\"no-js\">\n\n<head>\n    <script
+        type=\"text/javascript\" src=\"/sso/js/jquery/3.7.1/jquery.min.js?20210319\"></script>\n
+        \   <script type=\"text/javascript\">jQuery.noConflict();</script>\n    <script
+        type=\"text/javascript\" src=\"/sso/js/jquery-validate/1.16.0/jquery.validate.min.js?20210319\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/base.js?20231020\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/jsUtils.js?20210406\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/json2.js\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/postmessage.js?20210319\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/consoleUtils.js?20210319\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/setupMfaRequiredView.js?20210319\"></script>\n
+        \   <script type=\"text/javascript\" src=\"/sso/js/enterMfaCode.js?20230127\"></script>\n
+        \   <script type=\"text/javascript\">\n        var embedWidget = \"true\";\n
+        \       if (embedWidget == \"\") {\n            embedWidget = \"\";\n        }\n
+        \       embedWidget = (embedWidget == \"true\");\n        var parent_url =
+        \"https:\\/\\/sso.garmin.com\\/sso\\/embed\";\n        window.onload = function()
+        {\n            ifrememberMyBrowserChecked();\n        };\n\n        jQuery(document).ready(
+        function() {\n            if (!embedWidget) {\n                send({'gauthHeight':
+        jQuery(\"#GAuth-component\").height()});\n            }\n            jQuery(\"#mfa-verification-code-submit\").click(function(){\n
+        \               if (!validateMfaCodeAndPrivacyConsents()){\n                    return
+        false;\n                }\n                jQuery('#submit-mfa-verification-code-form').submit();\n
+        \               return false;\n            });\n        });\n        var customerGuid
+        = \"0690cc1d-d23d-4412-b027-80fd4ed1c0f6\";\n        var mfaMethod = \"email\";\n
+        \       var locale = \"\";\n        var clientId = \"\";\n        var codeSentTo
+        = \"mt*****@gmail.com\";\n    </script>\n    <meta charset=\"utf-8\">\n    <title>Enter
+        MFA code for login</title>\n    <meta name=\"description\" content=\"\">\n
+        \   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n
+        \   <meta http-equiv=\"cleartype\" content=\"on\">\n    <meta http-equiv=\"X-UA-Compatible\"
+        content=\"IE=edge;\" />\n    <link href=\"/sso/css/GAuth.css?20170505\" rel=\"stylesheet\"
+        type=\"text/css\" media=\"all\" />\n    <link rel=\"stylesheet\" href=\"\"
+        />\n</head>\n\n<body>\n    <div id=\"GAuth-component\">\n        <h2 id=\"enter-mfa-code-h2\">Enter
+        security code</h2>\n        <input type=\"hidden\" id=\"queryString\" value=\"id=gauth-widget&amp;embedWidget=true&amp;gauthHost=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;service=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;source=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;redirectAfterAccountLoginUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed&amp;redirectAfterAccountCreationUrl=https%3A%2F%2Fsso.garmin.com%2Fsso%2Fembed\"
+        />\n        <input type=\"hidden\" id=\"contextPath\" value=\"/sso\" />\n\n
+        \       <div id=\"login-component\" class=\"blueForm-basic\">\n            <div
+        id=\"login-state-verifymfa\">\n                <td>\n                    \n
+        \                   <span >Code sent to <b>mt*****@gmail.com</b></span>\n
+        \               </td>\n                <form id=\"submit-mfa-verification-code-form\"
+        name=\"submit-mfa-verification-code-form\" method=\"post\" novalidate=\"novalidate\">\n
+        \                   <div class=\"blueForm-v2\">\n                        <div
+        class=\"form-alert\">\n                            <div id=\"genericError\"
+        class=\"error\" hidden>An unexpected error has occurred.</div>\n                            <div
+        id=\"codeSentAttention\" class=\"attention\" hidden>A new code has been sent.
+        You can request another code in 30 seconds.</div>\n                            <div
+        id=\"invalidCode\" class=\"error\">Invalid code. Please enter a valid code.</div>\n
+        \                           \n                            <div id=\"maxLimit\"
+        class=\"error\" hidden=\"hidden\">You have reached the maximum amount of codes
+        requested. Please use a code you&#39;ve received or wait 24 hours and try
+        again.</div>\n                            \n                        </div>\n
+        \                       <div class=\"formTextField\">\n                            <div
+        class=\"mfaFormLabel\">\n                                <label>\n                                    <span>Security
+        code</span>\n                                    <br/>\n                                    <input
+        type=\"number\" pattern=\"[0-9]*\" inputmode=\"numeric\" maxlength=\"6\" id=\"mfa-code\"
+        name=\"mfa-code\" autofocus oninput=\"validateMfaCodeAndPrivacyConsents()\"/>\n
+        \                               </label>\n                            </div>\n
+        \                       </div>\n                        <br><br>\n                        <div>\n
+        \                           <a href=\"https://support.garmin.com/en-US/?faq=uGHS8ZqOIhA0usBzBMdJu7\"
+        target=\"_blank\" id=\"havingTrouble\">Get help</a><br>\n                        </div>\n
+        \                       <div id=\"requestNewCodeWrapper\" class=\"requestNewCode\">\n
+        \                           <a href=\"#\" id=\"newCode\">Request a new code</a>\n
+        \                       </div>\n                        \n                        \n
+        \                       <br>\n                            \n                        <br/>\n
+        \                       <button type=\"submit\" id=\"mfa-verification-code-submit\"
+        class=\"btn1\">Next</button>\n                    </div>\n                    <input
+        type=\"hidden\" name=\"embed\"            value=\"true\"/>\n                    <input
+        type=\"hidden\" name=\"_csrf\"            value=\"\" />\n                    <input
+        type=\"hidden\" name=\"fromPage\"            value=\"setupEnterMfaCode\"/>\n
+        \                   <br/>\n                </form>\n            </div>\n            <div
+        class=\"clearfix\"></div> <!-- Ensure that GAuth-component div's height is
+        computed correctly. -->\n        </div>\n    </div>\n    <script type=\"text/javascript\">\n
+        \       resizePageOnLoad(jQuery(\"#GAuth-component\").height());\n    </script>\n<script>(function(){function
+        c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML=\"window.__CF$cv$params={r:'949c83dc9aa555c3',t:'MTc0ODkyNTY1NC4wMDAwMDA='};var
+        a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);\";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var
+        a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else
+        if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var
+        e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>\n</html>"
+    headers:
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Headers:
+      - Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type,
+        Access-Control-Request-Method, Access-Control-Request-Headers
+      Access-Control-Allow-Methods:
+      - GET,POST,OPTIONS
+      Access-Control-Allow-Origin:
+      - https://www.garmin.com
+      CF-RAY:
+      - 949c83dc9aa555c3-QRO
+      Connection:
+      - keep-alive
+      Content-Language:
+      - en
+      Content-Type:
+      - text/html;charset=UTF-8
+      Date:
+      - Tue, 03 Jun 2025 04:40:54 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=WVjXMWAY7m%2FICrofTUaszDZoZ1kIv1%2BQTcx49UDCpdhESBjLNt9LucYPatIj%2BHOhRkqNPuM%2F65Tz1kTrR4naiCX0yEAOcMcEAh1yxyiX%2BlU7qvovsvWodipj8YHB19mH"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - org.springframework.web.servlet.i18n.CookieLocaleResolver.LOCALE=SANITIZED;
+        Path=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      X-Application-Context:
+      - casServer:cloud,prod,prod-US_Olathe:6
+      X-B3-Traceid:
+      - 104ac62c483244cf73fb9266e97d22bb
+      X-Robots-Tag:
+      - noindex
+      X-Vcap-Request-Id:
+      - 104ac62c-4832-44cf-73fb-9266e97d22bb
+      cf-cache-status:
+      - DYNAMIC
+    status:
+      code: 200
+      message: OK
+version: 1

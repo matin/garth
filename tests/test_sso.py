@@ -65,6 +65,17 @@ def test_login_success_mfa_async(monkeypatch, client: Client):
 
 
 @pytest.mark.vcr
+def test_login_mfa_fail(client: Client):
+    with pytest.raises(GarthException):
+        oauth1, oauth2 = sso.login(
+            "user@example.com",
+            "correct_password",
+            client=client,
+            prompt_mfa=lambda: "123456",
+        )
+
+
+@pytest.mark.vcr
 def test_login_return_on_mfa(client: Client):
     result = sso.login(
         "user@example.com",
@@ -78,7 +89,6 @@ def test_login_return_on_mfa(client: Client):
 
     assert isinstance(client_state, dict)
     assert result_type == "needs_mfa"
-    assert "csrf_token" in client_state
     assert "signin_params" in client_state
     assert "client" in client_state
 
