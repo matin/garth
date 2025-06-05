@@ -1,0 +1,50 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/usersummary-service/stats/hydration/daily/2024-06-29/2024-06-29
+  response:
+    body:
+      string: '[{"calendarDate": "2024-06-29", "valueInML": 1750.0, "goalInML": 2800.0}]'
+    headers:
+      CF-RAY:
+      - 94b18a3ecfb934a7-QRO
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 05 Jun 2025 17:55:17 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=Fj%2FXgrWJs%2FS1mgUePurhEKyb3GueFKdLEDdkAVqNKT%2ByACTJn5%2Fi%2B2%2FsDOOh95cibWQYcDIAGM40K0XxrSBItFfY5ZW24CwXjHLIg%2FkvAB1JJwMiyAdhLIpXjUfVdyXoQ4tdKQcy0Q%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+version: 1
