@@ -1,5 +1,6 @@
 __all__ = [
     "DailyHRV",
+    "DailyHydration",
     "DailyIntensityMinutes",
     "DailySleep",
     "DailySteps",
@@ -10,6 +11,7 @@ __all__ = [
 ]
 
 from .hrv import DailyHRV
+from .hydration import DailyHydration
 from .intensity_minutes import DailyIntensityMinutes, WeeklyIntensityMinutes
 from .sleep import DailySleep
 from .steps import DailySteps, WeeklySteps
