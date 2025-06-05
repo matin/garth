@@ -404,6 +404,24 @@ event.max_level        # 85
 event.min_level        # 45
 ```
 
+### Hydration
+
+Daily hydration data
+
+```python
+garth.DailyHydration.list(period=2)
+```
+
+```python
+[
+    DailyHydration(
+        calendar_date=datetime.date(2024, 6, 29),
+        value_in_ml=1750.0,
+        goal_in_ml=2800.0
+    )
+]
+```
+
 ### Steps
 
 Daily steps
