@@ -20,7 +20,7 @@ jobs:
         with:
           python-version: "3.13"
 
-      - uses: ./.github/actions/setup-uv
+      - uses: astral-sh/setup-uv@v6
 
       - name: Build package
         run: |
