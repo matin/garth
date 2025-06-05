@@ -66,7 +66,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - uses: ./.github/actions/setup-uv
+      - uses: astral-sh/setup-uv@v6
 
       - name: Install dependencies
         run: |
