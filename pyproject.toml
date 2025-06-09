@@ -27,6 +27,12 @@ classifiers = [
 ]
 keywords = ["garmin", "garmin api", "garmin connect", "garmin sso"]
 
+[project.urls]
+"Homepage" = "https://github.com/matin/garth"
+"Repository" = "https://github.com/matin/garth"
+"Issues" = "https://github.com/matin/garth/issues"
+"Changelog" = "https://github.com/matin/garth/releases"
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
