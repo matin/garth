@@ -129,17 +129,10 @@ class Client:
             assert self.oauth1_token, (
                 "OAuth1 token is required for API requests"
             )
-            if self.oauth2_token:
-                if hasattr(self.oauth2_token, "expired"):
-                    if not self.oauth2_token.expired:
-                        pass  # Token is valid, continue
-                    else:
-                        self.refresh_oauth2()
-                else:
-                    # Token doesn't have expired property, refresh to be safe
-                    self.refresh_oauth2()
-            else:
-                # No token at all
+            if (
+                not isinstance(self.oauth2_token, OAuth2Token)
+                or self.oauth2_token.expired
+            ):
                 self.refresh_oauth2()
             if isinstance(self.oauth2_token, OAuth2Token):
                 headers["Authorization"] = str(self.oauth2_token)
