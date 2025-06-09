@@ -130,7 +130,7 @@ class Client:
                 "OAuth1 token is required for API requests"
             )
             if not self.oauth2_token or (
-                isinstance(self.oauth2_token, OAuth2Token)
+                hasattr(self.oauth2_token, "expired")
                 and self.oauth2_token.expired
             ):
                 self.refresh_oauth2()
