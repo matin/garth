@@ -129,9 +129,9 @@ class Client:
             assert self.oauth1_token, (
                 "OAuth1 token is required for API requests"
             )
-            if not self.oauth2_token or (
-                isinstance(self.oauth2_token, OAuth2Token)
-                and self.oauth2_token.expired
+            if (
+                not isinstance(self.oauth2_token, OAuth2Token)
+                or self.oauth2_token.expired
             ):
                 self.refresh_oauth2()
             if isinstance(self.oauth2_token, OAuth2Token):
