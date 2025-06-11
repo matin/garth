@@ -79,7 +79,7 @@ class WeeklyTrainingStatus(Stats):
         return [cls(**item) for item in converted_data]
 
     @classmethod
-    def _extract_weekly_training_data(cls, response: dict) -> list[dict]:
+    def _extract_weekly_training_data(cls, response: dict):
         """Extract training data from the weekly API response structure."""
         data_section = response.get("weeklyTrainingStatus", {})
         if not isinstance(data_section, dict):
