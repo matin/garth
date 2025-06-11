@@ -1,11 +1,7 @@
-from datetime import date, timedelta
 from typing import ClassVar
 
 from pydantic.dataclasses import dataclass
-from typing_extensions import Self
 
-from ... import http
-from ...utils import camel_to_snake_dict, format_end_date
 from .._base import Stats
 
 
@@ -41,46 +37,11 @@ class MonthlyTrainingStatus(Stats):
     _page_size: ClassVar[int] = 12
 
     @classmethod
-    def list(
-        cls,
-        end: date | str | None = None,
-        period: int = 1,
-        *,
-        client: http.Client | None = None,
-    ) -> list[Self]:
-        client = client or http.client
-        end = format_end_date(end)
-        period_type = "weeks"
-
-        if period > cls._page_size:
-            page = cls.list(end, cls._page_size, client=client)
-            if not page:
-                return []
-            remaining_page = cls.list(
-                end - timedelta(**{period_type: cls._page_size}),
-                period - cls._page_size,
-                client=client,
-            )
-            return remaining_page + page
-
-        start = end - timedelta(**{period_type: period - 1})
-        path = cls._path.format(start=start, end=end)
-        response = client.connectapi(path)
+    def _parse_response(cls, response):
+        """Extract training data from the monthly API response structure."""
         if not isinstance(response, dict):
             return []
 
-        # Extract training data from the nested response structure
-        training_data = cls._extract_monthly_training_data(response)
-        if not training_data:
-            return []
-
-        # Convert to snake_case and create instances
-        converted_data = [camel_to_snake_dict(item) for item in training_data]
-        return [cls(**item) for item in converted_data]
-
-    @classmethod
-    def _extract_monthly_training_data(cls, response: dict):
-        """Extract training data from the monthly API response structure."""
         data_section = response.get("monthlyTrainingStatus", {})
         if not isinstance(data_section, dict):
             return []
