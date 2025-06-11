@@ -66,7 +66,7 @@ def test_monthly_training_status_no_data(authed_client: Client):
 
 
 def test_training_status_extract_data_error_cases():
-    """Test error handling in _extract_training_data methods."""
+    """Test error handling in _parse_response methods."""
     from garth.stats.training_status import (
         DailyTrainingStatus,
         MonthlyTrainingStatus,
@@ -74,20 +74,20 @@ def test_training_status_extract_data_error_cases():
     )
 
     # Test daily endpoint error cases
-    result = DailyTrainingStatus._extract_daily_training_data({})
+    result = DailyTrainingStatus._parse_response({})
     assert result == []
 
-    result = DailyTrainingStatus._extract_daily_training_data(
+    result = DailyTrainingStatus._parse_response(
         {"mostRecentTrainingStatus": "not a dict"}
     )
     assert result == []
 
-    result = DailyTrainingStatus._extract_daily_training_data(
+    result = DailyTrainingStatus._parse_response(
         {"mostRecentTrainingStatus": {"payload": "not a dict"}}
     )
     assert result == []
 
-    result = DailyTrainingStatus._extract_daily_training_data(
+    result = DailyTrainingStatus._parse_response(
         {
             "mostRecentTrainingStatus": {
                 "payload": {"latestTrainingStatusData": "not a dict"}
@@ -97,39 +97,39 @@ def test_training_status_extract_data_error_cases():
     assert result == []
 
     # Test weekly endpoint error cases
-    result = WeeklyTrainingStatus._extract_weekly_training_data({})
+    result = WeeklyTrainingStatus._parse_response({})
     assert result == []
 
-    result = WeeklyTrainingStatus._extract_weekly_training_data(
+    result = WeeklyTrainingStatus._parse_response(
         {"weeklyTrainingStatus": "not a dict"}
     )
     assert result == []
 
-    result = WeeklyTrainingStatus._extract_weekly_training_data(
+    result = WeeklyTrainingStatus._parse_response(
         {"weeklyTrainingStatus": {"payload": "not a dict"}}
     )
     assert result == []
 
-    result = WeeklyTrainingStatus._extract_weekly_training_data(
+    result = WeeklyTrainingStatus._parse_response(
         {"weeklyTrainingStatus": {"payload": {"reportData": "not a dict"}}}
     )
     assert result == []
 
     # Test monthly endpoint error cases
-    result = MonthlyTrainingStatus._extract_monthly_training_data({})
+    result = MonthlyTrainingStatus._parse_response({})
     assert result == []
 
-    result = MonthlyTrainingStatus._extract_monthly_training_data(
+    result = MonthlyTrainingStatus._parse_response(
         {"monthlyTrainingStatus": "not a dict"}
     )
     assert result == []
 
-    result = MonthlyTrainingStatus._extract_monthly_training_data(
+    result = MonthlyTrainingStatus._parse_response(
         {"monthlyTrainingStatus": {"payload": "not a dict"}}
     )
     assert result == []
 
-    result = MonthlyTrainingStatus._extract_monthly_training_data(
+    result = MonthlyTrainingStatus._parse_response(
         {"monthlyTrainingStatus": {"payload": {"reportData": "not a dict"}}}
     )
     assert result == []
