@@ -62,68 +62,75 @@ def test_monthly_training_status_no_data(authed_client: Client):
         end, 1, client=authed_client
     )
     # Should return empty list if no data
-    assert isinstance(monthly_training_status, list)
+    assert monthly_training_status == []
 
 
 def test_training_status_extract_data_error_cases():
-    """Test error handling in _extract_training_data method."""
-    from garth.stats.training_status import DailyTrainingStatus
+    """Test error handling in _extract_training_data methods."""
+    from garth.stats.training_status import (
+        DailyTrainingStatus,
+        MonthlyTrainingStatus,
+        WeeklyTrainingStatus,
+    )
 
-    # Test with non-dict response
-    result = DailyTrainingStatus._extract_training_data("not a dict", "key")
+    # Test daily endpoint error cases
+    result = DailyTrainingStatus._extract_daily_training_data({})
     assert result == []
 
-    # Test with missing data section
-    result = DailyTrainingStatus._extract_training_data({}, "missingKey")
-    assert result == []
-
-    # Test with non-dict data section
-    result = DailyTrainingStatus._extract_training_data(
-        {"key": "not a dict"}, "key"
+    result = DailyTrainingStatus._extract_daily_training_data(
+        {"mostRecentTrainingStatus": "not a dict"}
     )
     assert result == []
 
-    # Test with missing payload
-    result = DailyTrainingStatus._extract_training_data(
-        {"mostRecentTrainingStatus": {}}, "mostRecentTrainingStatus"
+    result = DailyTrainingStatus._extract_daily_training_data(
+        {"mostRecentTrainingStatus": {"payload": "not a dict"}}
     )
     assert result == []
 
-    # Test with non-dict payload
-    result = DailyTrainingStatus._extract_training_data(
-        {"mostRecentTrainingStatus": {"payload": "not a dict"}},
-        "mostRecentTrainingStatus",
-    )
-    assert result == []
-
-    # Test daily endpoint with missing latestTrainingStatusData
-    result = DailyTrainingStatus._extract_training_data(
-        {"mostRecentTrainingStatus": {"payload": {}}},
-        "mostRecentTrainingStatus",
-    )
-    assert result == []
-
-    # Test daily endpoint with non-dict latestTrainingStatusData
-    result = DailyTrainingStatus._extract_training_data(
+    result = DailyTrainingStatus._extract_daily_training_data(
         {
             "mostRecentTrainingStatus": {
                 "payload": {"latestTrainingStatusData": "not a dict"}
             }
-        },
-        "mostRecentTrainingStatus",
+        }
     )
     assert result == []
 
-    # Test weekly/monthly endpoint with missing reportData
-    result = DailyTrainingStatus._extract_training_data(
-        {"weeklyTrainingStatus": {"payload": {}}}, "weeklyTrainingStatus"
+    # Test weekly endpoint error cases
+    result = WeeklyTrainingStatus._extract_weekly_training_data({})
+    assert result == []
+
+    result = WeeklyTrainingStatus._extract_weekly_training_data(
+        {"weeklyTrainingStatus": "not a dict"}
     )
     assert result == []
 
-    # Test weekly/monthly endpoint with non-dict reportData
-    result = DailyTrainingStatus._extract_training_data(
-        {"weeklyTrainingStatus": {"payload": {"reportData": "not a dict"}}},
-        "weeklyTrainingStatus",
+    result = WeeklyTrainingStatus._extract_weekly_training_data(
+        {"weeklyTrainingStatus": {"payload": "not a dict"}}
+    )
+    assert result == []
+
+    result = WeeklyTrainingStatus._extract_weekly_training_data(
+        {"weeklyTrainingStatus": {"payload": {"reportData": "not a dict"}}}
+    )
+    assert result == []
+
+    # Test monthly endpoint error cases
+    result = MonthlyTrainingStatus._extract_monthly_training_data({})
+    assert result == []
+
+    result = MonthlyTrainingStatus._extract_monthly_training_data(
+        {"monthlyTrainingStatus": "not a dict"}
+    )
+    assert result == []
+
+    result = MonthlyTrainingStatus._extract_monthly_training_data(
+        {"monthlyTrainingStatus": {"payload": "not a dict"}}
+    )
+    assert result == []
+
+    result = MonthlyTrainingStatus._extract_monthly_training_data(
+        {"monthlyTrainingStatus": {"payload": {"reportData": "not a dict"}}}
     )
     assert result == []
 
@@ -132,7 +139,11 @@ def test_training_status_list_error_cases():
     """Test error handling in list method."""
     from unittest.mock import Mock
 
-    from garth.stats.training_status import DailyTrainingStatus
+    from garth.stats.training_status import (
+        DailyTrainingStatus,
+        MonthlyTrainingStatus,
+        WeeklyTrainingStatus,
+    )
 
     # Test with non-dict response from connectapi
     mock_client = Mock()
@@ -141,9 +152,89 @@ def test_training_status_list_error_cases():
     result = DailyTrainingStatus.list(date(2025, 6, 11), 1, client=mock_client)
     assert result == []
 
-    # Test pagination when first page is empty
-    mock_client.connectapi.return_value = {}
-    result = DailyTrainingStatus.list(
-        date(2025, 6, 11), 50, client=mock_client
+    result = WeeklyTrainingStatus.list(
+        date(2025, 6, 11), 1, client=mock_client
     )
     assert result == []
+
+    result = MonthlyTrainingStatus.list(
+        date(2025, 6, 11), 1, client=mock_client
+    )
+    assert result == []
+
+    # Test with empty response
+    mock_client.connectapi.return_value = {}
+    result = DailyTrainingStatus.list(date(2025, 6, 11), 1, client=mock_client)
+    assert result == []
+
+    result = WeeklyTrainingStatus.list(
+        date(2025, 6, 11), 1, client=mock_client
+    )
+    assert result == []
+
+    result = MonthlyTrainingStatus.list(
+        date(2025, 6, 11), 1, client=mock_client
+    )
+    assert result == []
+
+
+def test_training_status_pagination_edge_cases():
+    """Test pagination edge cases."""
+    from unittest.mock import Mock
+
+    from garth.stats.training_status import (
+        MonthlyTrainingStatus,
+        WeeklyTrainingStatus,
+    )
+
+    # Test monthly pagination when first page is empty
+    mock_client = Mock()
+    mock_client.connectapi.return_value = {}
+
+    result = MonthlyTrainingStatus.list(
+        date(2025, 6, 11), 15, client=mock_client
+    )
+    assert result == []
+
+    # Test weekly pagination when first page is empty
+    result = WeeklyTrainingStatus.list(
+        date(2025, 6, 11), 60, client=mock_client
+    )
+    assert result == []
+
+    # Test monthly pagination with data to trigger remaining_page call
+    mock_response = {
+        "monthlyTrainingStatus": {
+            "payload": {
+                "reportData": {
+                    "device1": [
+                        {
+                            "calendarDate": "2025-01-01",
+                            "sinceDate": "2025-01-01",
+                            "trainingStatus": 1,
+                            "acuteTrainingLoadDTO": {
+                                "dailyTrainingLoadAcute": 50
+                            },
+                        }
+                    ]
+                }
+            }
+        }
+    }
+
+    def mock_connectapi_side_effect(path):
+        # First call returns data, subsequent calls return empty
+        if hasattr(mock_connectapi_side_effect, "call_count"):
+            mock_connectapi_side_effect.call_count += 1
+            return {}
+        else:
+            mock_connectapi_side_effect.call_count = 1
+            return mock_response
+
+    mock_client.connectapi.side_effect = mock_connectapi_side_effect
+
+    # Test with period > page_size to trigger pagination logic
+    result = MonthlyTrainingStatus.list(
+        date(2025, 6, 11), 15, client=mock_client
+    )
+    assert len(result) == 1

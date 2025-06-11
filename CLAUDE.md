@@ -98,3 +98,7 @@ When adding new stats endpoints (like training status):
 - All optional fields default to `None` in dataclasses
 - Custom parsing logic in training status module shows how to handle complex
   nested API responses
+
+### Code Quality Guidelines
+
+- never use `# type: ignore`
