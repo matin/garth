@@ -66,7 +66,7 @@ class DailyTrainingStatus(Stats):
         return [cls(**item) for item in converted_data]
 
     @classmethod
-    def _extract_daily_training_data(cls, response: dict) -> list[dict]:
+    def _extract_daily_training_data(cls, response: dict):
         """Extract training data from the daily API response structure."""
         data_section = response.get("mostRecentTrainingStatus", {})
         if not isinstance(data_section, dict):

@@ -79,7 +79,7 @@ class MonthlyTrainingStatus(Stats):
         return [cls(**item) for item in converted_data]
 
     @classmethod
-    def _extract_monthly_training_data(cls, response: dict) -> list[dict]:
+    def _extract_monthly_training_data(cls, response: dict):
         """Extract training data from the monthly API response structure."""
         data_section = response.get("monthlyTrainingStatus", {})
         if not isinstance(data_section, dict):
