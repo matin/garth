@@ -81,16 +81,13 @@ def login(
         embedWidget="true",
         gauthHost=SSO,
     )
-    SIGNIN_PARAMS = {
-        **SSO_EMBED_PARAMS,
-        **dict(
-            gauthHost=SSO_EMBED,
-            service=SSO_EMBED,
-            source=SSO_EMBED,
-            redirectAfterAccountLoginUrl=SSO_EMBED,
-            redirectAfterAccountCreationUrl=SSO_EMBED,
-        ),
-    }
+    SIGNIN_PARAMS = SSO_EMBED_PARAMS | dict(
+        gauthHost=SSO_EMBED,
+        service=SSO_EMBED,
+        source=SSO_EMBED,
+        redirectAfterAccountLoginUrl=SSO_EMBED,
+        redirectAfterAccountCreationUrl=SSO_EMBED,
+    )
 
     # Set cookies
     client.get("sso", "/sso/embed", params=SSO_EMBED_PARAMS)

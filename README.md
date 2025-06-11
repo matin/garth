@@ -618,6 +618,121 @@ HRVData(
 )
 ```
 
+### Training Status
+
+Daily training status
+
+```python
+garth.DailyTrainingStatus.list(period=1)
+```
+
+```python
+[
+    DailyTrainingStatus(
+        calendar_date=datetime.date(2025, 6, 11),
+        since_date="2025-05-31",
+        weekly_training_load=None,
+        training_status=7,
+        timestamp=1749643909000,
+        device_id=3469703076,
+        load_tunnel_min=None,
+        load_tunnel_max=None,
+        load_level_trend=None,
+        sport="RUNNING",
+        sub_sport="GENERIC",
+        fitness_trend_sport="RUNNING",
+        fitness_trend=2,
+        training_status_feedback_phrase="PRODUCTIVE_6",
+        training_paused=False,
+        primary_training_device=True,
+        acwr_percent=57,
+        acwr_status="OPTIMAL",
+        acwr_status_feedback="FEEDBACK_3",
+        daily_training_load_acute=399,
+        max_training_load_chronic=450.0,
+        min_training_load_chronic=240.0,
+        daily_training_load_chronic=300,
+        daily_acute_chronic_workload_ratio=1.3
+    )
+]
+```
+
+Weekly training status
+
+```python
+garth.WeeklyTrainingStatus.list(period=4)
+```
+
+```python
+[
+    WeeklyTrainingStatus(
+        calendar_date=datetime.date(2025, 5, 21),
+        since_date=None,
+        weekly_training_load=None,
+        training_status=4,
+        timestamp=1747839970000,
+        device_id=3469703076,
+        load_tunnel_min=None,
+        load_tunnel_max=None,
+        load_level_trend=None,
+        sport="RUNNING",
+        sub_sport="GENERIC",
+        fitness_trend_sport="RUNNING",
+        fitness_trend=2,
+        training_status_feedback_phrase="MAINTAINING_2",
+        training_paused=False,
+        primary_training_device=True,
+        acwr_percent=42,
+        acwr_status="OPTIMAL",
+        acwr_status_feedback="FEEDBACK_2",
+        daily_training_load_acute=224,
+        max_training_load_chronic=328.5,
+        min_training_load_chronic=175.20000000000002,
+        daily_training_load_chronic=219,
+        daily_acute_chronic_workload_ratio=1.0
+    ),
+    # ... more entries
+]
+```
+
+Monthly training status
+
+```python
+garth.MonthlyTrainingStatus.list(period=6)
+```
+
+```python
+[
+    MonthlyTrainingStatus(
+        calendar_date=datetime.date(2025, 1, 1),
+        since_date=None,
+        weekly_training_load=None,
+        training_status=4,
+        timestamp=1735743916000,
+        device_id=3469703076,
+        load_tunnel_min=None,
+        load_tunnel_max=None,
+        load_level_trend=None,
+        sport="RUNNING",
+        sub_sport="GENERIC",
+        fitness_trend_sport="RUNNING",
+        fitness_trend=2,
+        training_status_feedback_phrase="MAINTAINING_3",
+        training_paused=False,
+        primary_training_device=True,
+        acwr_percent=29,
+        acwr_status="LOW",
+        acwr_status_feedback="FEEDBACK_1",
+        daily_training_load_acute=160,
+        max_training_load_chronic=328.5,
+        min_training_load_chronic=175.20000000000002,
+        daily_training_load_chronic=219,
+        daily_acute_chronic_workload_ratio=0.7
+    ),
+    # ... more entries
+]
+```
+
 ### Sleep
 
 Daily sleep quality
