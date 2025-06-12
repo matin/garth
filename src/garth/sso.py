@@ -76,20 +76,20 @@ def login(
     # Define params based on domain
     SSO = f"https://sso.{client.domain}/sso"
     SSO_EMBED = f"{SSO}/embed"
-    SSO_EMBED_PARAMS = dict(
-        id="gauth-widget",
-        embedWidget="true",
-        gauthHost=SSO,
-    )
+    SSO_EMBED_PARAMS = {
+        "id": "gauth-widget",
+        "embedWidget": "true",
+        "gauthHost": SSO,
+    }
     SIGNIN_PARAMS = {
         **SSO_EMBED_PARAMS,
-        **dict(
-            gauthHost=SSO_EMBED,
-            service=SSO_EMBED,
-            source=SSO_EMBED,
-            redirectAfterAccountLoginUrl=SSO_EMBED,
-            redirectAfterAccountCreationUrl=SSO_EMBED,
-        ),
+        **{
+            "gauthHost": SSO_EMBED,
+            "service": SSO_EMBED,
+            "source": SSO_EMBED,
+            "redirectAfterAccountLoginUrl": SSO_EMBED,
+            "redirectAfterAccountCreationUrl": SSO_EMBED,
+        },
     }
 
     # Set cookies
@@ -110,12 +110,12 @@ def login(
         "/sso/signin",
         params=SIGNIN_PARAMS,
         referrer=True,
-        data=dict(
-            username=email,
-            password=password,
-            embed="true",
-            _csrf=csrf_token,
-        ),
+        data={
+            "username": email,
+            "password": password,
+            "embed": "true",
+            "_csrf": csrf_token,
+        },
     )
     title = get_title(client.last_resp.text)
 
@@ -160,7 +160,7 @@ def exchange(oauth1: OAuth1Token, client: http.Client) -> OAuth2Token:
         resource_owner_secret=oauth1.oauth_token_secret,
         parent=client.sess,
     )
-    data = dict(mfa_token=oauth1.mfa_token) if oauth1.mfa_token else {}
+    data = {"mfa_token": oauth1.mfa_token} if oauth1.mfa_token else {}
     base_url = f"https://connectapi.{client.domain}/oauth-service/oauth/"
     url = f"{base_url}exchange/user/2.0"
     headers = {

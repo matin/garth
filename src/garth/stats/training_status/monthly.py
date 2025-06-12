@@ -1,3 +1,4 @@
+from datetime import date, datetime
 from typing import ClassVar
 
 from pydantic.dataclasses import dataclass
@@ -7,10 +8,10 @@ from .._base import Stats
 
 @dataclass
 class MonthlyTrainingStatus(Stats):
-    since_date: str | None = None
+    since_date: date | None = None
     weekly_training_load: int | None = None
     training_status: int | None = None
-    timestamp: int | None = None
+    timestamp: datetime | None = None
     device_id: int | None = None
     load_tunnel_min: int | None = None
     load_tunnel_max: int | None = None
