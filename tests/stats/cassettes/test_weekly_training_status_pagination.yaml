@@ -5,7 +5,7 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Authorization:
       - Bearer SANITIZED
       Connection:
@@ -3078,7 +3078,7 @@ interactions:
         1.3}, "primaryTrainingDevice": true}]}}, "successful": true}}'
     headers:
       CF-RAY:
-      - 94e675345da5d87a-QRO
+      - 9baeb8f7eeb7b488-QRO
       Cache-Control:
       - no-cache, no-store, private
       Connection:
@@ -3086,11 +3086,11 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 12 Jun 2025 04:03:21 GMT
+      - Thu, 08 Jan 2026 21:17:36 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=HY1jwwtU%2BrupkKu9yfpS4vR87EkLSQ26EutuG92yRRuS2qCmuTy0FCfTibSpCkrN%2BGWPpcFRsDUcwGiCF30q9LoLwDzfJM%2F11aWmYUCsjyhfGN5J7Bq8iuooL7mOMqBuOjvtaaEDHg%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=a38nGzKJruhK8f%2FsDOYkzPxBOYVK4kEF%2BfXS7Ygk4w%2FT%2BmQYRk8kpfWXwyc5UdkjZcb19K%2BwvxN5x1a%2Frc1wh%2BzqsLGo3lVlhd2Rs%2BDy0b3ubDsSkMSF%2BlRDlif1teebAUaDDXme%2FQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:
@@ -3112,7 +3112,7 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Authorization:
       - Bearer SANITIZED
       Connection:
@@ -3549,7 +3549,7 @@ interactions:
         "successful": true}}'
     headers:
       CF-RAY:
-      - 94e6753a6935d87a-QRO
+      - 9baeb8ff0a474f01-DFW
       Cache-Control:
       - no-cache, no-store, private
       Connection:
@@ -3557,11 +3557,11 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 12 Jun 2025 04:03:21 GMT
+      - Thu, 08 Jan 2026 21:17:36 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=JJyPWBnAN984dijZPPKrOqtcYuXzQ7ARUA5gTQWmkFiNb1Y8Jb%2FGOAxLrPsOG7AXFYiAy2UxwoqohocZYDFph%2BjQpFH4M4dhzP2a20fvGyzM7k%2Fnt%2Fx1LSq6APvzMFK0X0t7V%2Fuk7A%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=VtXFCEyJmufZgrINueYtmeYyHc7OyTZflJ3umRhZX6um1lfz7Atsnb%2BwOWfGVassUwwQcLm%2Bp3IJNpISkA2xrBEr3nJeESObW4y0ads97XOX%2B7VXX%2BZJOMBGABNEqzgTNvBAOTrbPg%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:

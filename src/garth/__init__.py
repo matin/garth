@@ -43,7 +43,7 @@ __all__ = [
     "DailyTrainingStatus",
     "GarminScoresData",
     "HRVData",
-    "MonthlyTrainingReadinessData",
+    "MorningTrainingReadinessData",
     "MonthlyTrainingStatus",
     "SleepData",
     "UserProfile",

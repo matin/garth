@@ -5,7 +5,7 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Authorization:
       - Bearer SANITIZED
       Connection:
@@ -26,7 +26,7 @@ interactions:
         "allMetrics": {"metricsMap": {}}, "groupedMetrics": null}, "successful": true}}'
     headers:
       CF-RAY:
-      - 94e6753c4b1a4a44-QRO
+      - 9baeb900cd31c7d1-QRO
       Cache-Control:
       - no-cache, no-store, private
       Connection:
@@ -34,11 +34,11 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 12 Jun 2025 04:03:21 GMT
+      - Thu, 08 Jan 2026 21:17:36 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=fFqkNPsmiEEUHWF5N1JI%2FSIPQGmMCVmt0wnq%2FSQed84dP%2BBI4rgjWB7HMp3xc02UO%2Fh6dX1uh5PXGIw59buHa2QA%2BoORIvra%2B2bmgEEOZfiMBcFVEefjwbv4vZv6gqYZcgfW6BQ7gw%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=LVVZtGmIxcCBfhgm6EGqDA5nZwEWDTc23hlBw4HyTRXnVxRK8LNDUoie7QFQajmrBwJlItOJvqOaYAbAZzuAl28nkY%2FX%2BdHTDYc3eJCen9JeG5Dfb%2FmkGc736a0Nuwg%2F8nKRf08hcA%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:
