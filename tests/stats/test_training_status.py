@@ -19,6 +19,13 @@ def test_daily_training_status(authed_client: Client):
     assert len(daily_training_status) == 1
     assert daily_training_status[0].calendar_date == end
     assert daily_training_status[0].training_status is not None
+    # Verify datetime types
+    if daily_training_status[0].since_date is not None:
+        assert isinstance(daily_training_status[0].since_date, date)
+    if daily_training_status[0].timestamp is not None:
+        from datetime import datetime
+
+        assert isinstance(daily_training_status[0].timestamp, datetime)
 
 
 @pytest.mark.vcr
@@ -227,9 +234,8 @@ def test_training_status_pagination_edge_cases():
         if hasattr(mock_connectapi_side_effect, "call_count"):
             mock_connectapi_side_effect.call_count += 1
             return {}
-        else:
-            mock_connectapi_side_effect.call_count = 1
-            return mock_response
+        mock_connectapi_side_effect.call_count = 1
+        return mock_response
 
     mock_client.connectapi.side_effect = mock_connectapi_side_effect
 
