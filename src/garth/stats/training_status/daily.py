@@ -36,6 +36,7 @@ class DailyTrainingStatus(Stats):
         "/mobile-gateway/usersummary/trainingstatus/latest/{end}"
     )
     _page_size: ClassVar[int] = 28
+    _period_type: ClassVar[str] = "days"
 
     @classmethod
     def _parse_response(cls, response):

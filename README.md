@@ -623,7 +623,7 @@ HRVData(
 Daily training status
 
 ```python
-garth.DailyTrainingStatus.list(period=1)
+garth.DailyTrainingStatus.list("2025-06-11", 1)
 ```
 
 ```python
@@ -660,7 +660,7 @@ garth.DailyTrainingStatus.list(period=1)
 Weekly training status
 
 ```python
-garth.WeeklyTrainingStatus.list(period=4)
+garth.WeeklyTrainingStatus.list("2025-06-11", 4)
 ```
 
 ```python
@@ -698,7 +698,7 @@ garth.WeeklyTrainingStatus.list(period=4)
 Monthly training status
 
 ```python
-garth.MonthlyTrainingStatus.list(period=6)
+garth.MonthlyTrainingStatus.list("2025-06-11", 6)
 ```
 
 ```python

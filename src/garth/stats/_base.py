@@ -14,6 +14,7 @@ class Stats:
 
     _path: ClassVar[str]
     _page_size: ClassVar[int]
+    _period_type: ClassVar[str | None] = None
 
     @classmethod
     def list(
@@ -25,7 +26,9 @@ class Stats:
     ) -> list[Self]:
         client = client or http.client
         end = format_end_date(end)
-        period_type = "days" if "daily" in cls._path else "weeks"
+        period_type = cls._period_type or (
+            "days" if "daily" in cls._path else "weeks"
+        )
 
         if period > cls._page_size:
             page = cls.list(end, cls._page_size, client=client)

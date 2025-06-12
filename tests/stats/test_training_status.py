@@ -185,6 +185,48 @@ def test_training_status_list_error_cases():
     assert result == []
 
 
+def test_daily_training_status_period_type():
+    """Test that daily training status uses correct period type (days)."""
+    from unittest.mock import Mock, patch
+
+    from garth.stats.training_status import DailyTrainingStatus
+
+    mock_client = Mock()
+    mock_client.connectapi.return_value = {
+        "mostRecentTrainingStatus": {
+            "payload": {
+                "latestTrainingStatusData": {
+                    "device1": {
+                        "calendarDate": "2025-06-09",
+                        "trainingStatus": 1,
+                    }
+                }
+            }
+        }
+    }
+
+    # Test that period type is correctly set to "days"
+    # Note: Daily training status only uses {end} in path, so it calls the same
+    # "latest" endpoint regardless of period, but the _period_type ensures
+    # date calculations use days instead of weeks
+    assert DailyTrainingStatus._period_type == "days"
+
+    # Test single day request works
+    with patch("garth.stats._base.format_end_date") as mock_format:
+        mock_format.return_value = date(2025, 6, 11)
+
+        result = DailyTrainingStatus.list(
+            date(2025, 6, 11), 1, client=mock_client
+        )
+
+        # Should call the latest endpoint with the end date
+        expected_path = (
+            "/mobile-gateway/usersummary/trainingstatus/latest/2025-06-11"
+        )
+        mock_client.connectapi.assert_called_with(expected_path)
+        assert len(result) == 1
+
+
 def test_training_status_pagination_edge_cases():
     """Test pagination edge cases."""
     from unittest.mock import Mock
