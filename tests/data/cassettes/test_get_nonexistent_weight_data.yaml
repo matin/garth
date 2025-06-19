@@ -1,0 +1,53 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/weight-service/weight/dayview/2020-01-01
+  response:
+    body:
+      string: '{"startDate": "2020-01-01", "endDate": "2020-01-01", "dateWeightList":
+        [], "totalAverage": {"from": 1577836800000, "until": 1577923199999, "weight":
+        null, "bmi": null, "bodyFat": null, "bodyWater": null, "boneMass": null, "muscleMass":
+        null, "physiqueRating": null, "visceralFat": null, "metabolicAge": null}}'
+    headers:
+      CF-RAY:
+      - 950644801ca4d9f7-QRO
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 16 Jun 2025 00:42:29 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=BJIcx9Zh1zt1cLoKMZAVgYYQfsvpXBQP04VMD2f4iMyfjHCnNu5Sh%2BdA7NcZ2FkaJ7%2Bxw8up1nDASiKuMf8XqsAi1BYG2kqRNBvEQQEkvhY0L63y%2BXwDbb%2BUcurig3gGRUI3oNq%2F8II2iL62j6q0iLJ9pA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+version: 1
