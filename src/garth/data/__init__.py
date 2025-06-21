@@ -6,6 +6,7 @@ __all__ = [
     "HRVData",
     "SleepData",
     "StressReading",
+    "WeightData",
 ]
 
 from .body_battery import (
@@ -17,3 +18,4 @@ from .body_battery import (
 )
 from .hrv import HRVData
 from .sleep import SleepData
+from .weight import WeightData

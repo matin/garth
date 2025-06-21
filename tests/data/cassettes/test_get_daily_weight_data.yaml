@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/weight-service/weight/dayview/2025-06-15
+  response:
+    body:
+      string: '{"startDate": "2025-06-15", "endDate": "2025-06-15", "dateWeightList":
+        [{"samplePk": 1749996902851, "date": 1749975276000, "calendarDate": "2025-06-15",
+        "weight": 59720.0, "bmi": 22.799999237060547, "bodyFat": 19.3, "bodyWater":
+        58.9, "boneMass": 3539, "muscleMass": 26979, "physiqueRating": null, "visceralFat":
+        null, "metabolicAge": null, "sourceType": "INDEX_SCALE", "timestampGMT": 1749996876000,
+        "weightDelta": 200.00000000000284}], "totalAverage": {"from": 1749945600000,
+        "until": 1750031999999, "weight": 59720.0, "bmi": 22.799999237060547, "bodyFat":
+        19.3, "bodyWater": 58.9, "boneMass": 3539, "muscleMass": 26979, "physiqueRating":
+        null, "visceralFat": null, "metabolicAge": null}}'
+    headers:
+      CF-RAY:
+      - 9505ceb74f5fd875-QRO
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Sun, 15 Jun 2025 23:22:05 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=UH9A8geP4FHMJjd6y07FBmPslL9A%2B3JKPZa2WHai0fGEwDokhD2YqXsG155VIgSjGPY8Av3IYcI%2B%2FH%2B38GY15TN4THIsNucuROuGSc3NlFY1c%2BmSER4pGCfCqwF1BH1cmMr%2Fu8TKFKFjkS8bzk1P%2FM4l%2Bg%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+version: 1

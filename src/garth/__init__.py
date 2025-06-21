@@ -1,4 +1,10 @@
-from .data import BodyBatteryData, DailyBodyBatteryStress, HRVData, SleepData
+from .data import (
+    BodyBatteryData,
+    DailyBodyBatteryStress,
+    HRVData,
+    SleepData,
+    WeightData,
+)
 from .http import Client, client
 from .stats import (
     DailyHRV,
@@ -27,6 +33,7 @@ __all__ = [
     "DailyStress",
     "HRVData",
     "SleepData",
+    "WeightData",
     "UserProfile",
     "UserSettings",
     "WeeklyIntensityMinutes",
