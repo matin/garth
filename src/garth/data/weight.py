@@ -1,7 +1,7 @@
-from datetime import date as date_, datetime, timedelta, timezone
+from datetime import date, datetime, timedelta
 from itertools import chain
 
-from pydantic import Field
+from pydantic import Field, ValidationInfo, field_validator
 from pydantic.dataclasses import dataclass
 from typing_extensions import Self
 
@@ -17,12 +17,13 @@ from ._base import MAX_WORKERS, Data
 @dataclass
 class WeightData(Data):
     sample_pk: int
-    calendar_date: date_
-    weight: float
+    calendar_date: date
+    weight: int
     source_type: str
-    timestamp_gmt: int
     weight_delta: float
-    timestamp: int = Field(..., alias="date")
+    timestamp_gmt: int
+    datetime_utc: datetime = Field(..., alias="timestamp_gmt")
+    datetime_local: datetime = Field(..., alias="date")
     bmi: float | None = None
     body_fat: float | None = None
     body_water: float | None = None
@@ -32,17 +33,14 @@ class WeightData(Data):
     visceral_fat: float | None = None
     metabolic_age: int | None = None
 
-    @property
-    def datetime_local(self) -> datetime:
-        return get_localized_datetime(self.timestamp_gmt, self.timestamp)
-
-    @property
-    def datetime_utc(self) -> datetime:
-        return datetime.fromtimestamp(self.timestamp_gmt / 1000, timezone.utc)
+    @field_validator("datetime_local", mode="before")
+    @classmethod
+    def to_localized_datetime(cls, v: int, info: ValidationInfo) -> datetime:
+        return get_localized_datetime(info.data["timestamp_gmt"], v)
 
     @classmethod
     def get(
-        cls, day: date_ | str, *, client: http.Client | None = None
+        cls, day: date | str, *, client: http.Client | None = None
     ) -> Self | None:
         client = client or http.client
         path = f"/weight-service/weight/dayview/{day}"
@@ -59,7 +57,7 @@ class WeightData(Data):
     @classmethod
     def list(
         cls,
-        end: date_ | str | None = None,
+        end: date | str | None = None,
         days: int = 1,
         *,
         client: http.Client | None = None,
@@ -80,4 +78,4 @@ class WeightData(Data):
             cls(**camel_to_snake_dict(weight_data))
             for weight_data in weight_metrics
         )
-        return sorted(weight_data_list, key=lambda d: d.timestamp_gmt)
+        return sorted(weight_data_list, key=lambda d: d.datetime_utc)

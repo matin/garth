@@ -51,7 +51,7 @@ def test_weight_data_list(authed_client: Client):
     assert len(weight_data) == 4
     assert all(isinstance(data, WeightData) for data in weight_data)
     assert all(
-        weight_data[i].timestamp_gmt <= weight_data[i + 1].timestamp_gmt
+        weight_data[i].datetime_utc <= weight_data[i + 1].datetime_utc
         for i in range(len(weight_data) - 1)
     )
 
