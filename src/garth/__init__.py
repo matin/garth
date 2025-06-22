@@ -13,9 +13,12 @@ from .stats import (
     DailySleep,
     DailySteps,
     DailyStress,
+    DailyTrainingStatus,
+    MonthlyTrainingStatus,
     WeeklyIntensityMinutes,
     WeeklySteps,
     WeeklyStress,
+    WeeklyTrainingStatus,
 )
 from .users import UserProfile, UserSettings
 from .version import __version__
@@ -31,7 +34,9 @@ __all__ = [
     "DailySleep",
     "DailySteps",
     "DailyStress",
+    "DailyTrainingStatus",
     "HRVData",
+    "MonthlyTrainingStatus",
     "SleepData",
     "WeightData",
     "UserProfile",
@@ -39,6 +44,7 @@ __all__ = [
     "WeeklyIntensityMinutes",
     "WeeklySteps",
     "WeeklyStress",
+    "WeeklyTrainingStatus",
     "__version__",
     "client",
     "configure",
