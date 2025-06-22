@@ -1,0 +1,249 @@
+interactions:
+- request:
+    body: mfa_token=SANITIZED
+    headers:
+      Accept:
+        SANITIZED
+      Accept-Encoding:
+        SANITIZED
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+        SANITIZED
+      Content-Length:
+      - '74'
+      Content-Type:
+        SANITIZED
+      User-Agent:
+        SANITIZED
+    method: POST
+    uri: https://connectapi.garmin.com/oauth-service/oauth/exchange/user/2.0
+  response:
+    body:
+      string: '{"scope": "COMMUNITY_COURSE_READ GARMINPAY_WRITE GOLF_API_READ ATP_READ
+        GHS_SAMD GHS_UPLOAD INSIGHTS_READ DIVE_API_READ COMMUNITY_COURSE_WRITE CONNECT_WRITE
+        GCOFFER_WRITE DI_OAUTH_2_AUTHORIZATION_CODE_CREATE GARMINPAY_READ DT_CLIENT_ANALYTICS_WRITE
+        GOLF_API_WRITE INSIGHTS_WRITE PRODUCT_SEARCH_READ OMT_CAMPAIGN_READ OMT_SUBSCRIPTION_READ
+        GCOFFER_READ CONNECT_READ ATP_WRITE", "jti": "SANITIZED", "access_token":
+        "SANITIZED", "token_type": "bearer", "refresh_token": "SANITIZED", "expires_in":
+        85485, "refresh_token_expires_in": 2591999}'
+    headers:
+      CF-RAY:
+      - 955ee726bce5f97a-PRG
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 26 Jun 2025 18:52:39 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=bU4uRlPHuPWH6Z3VELFfhhA%2BKaRUn6O%2BBuZBTcZi2xnwTj8e6JN0yS6zlyUPrmPVzOzGuAcdLbvaQwHZM%2FaCmofSjO3t0NNSLQl3a%2Fnzf3vIkPALtIGVadIApflaCZCvU5wOOrzudw%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/usersummary-service/usersummary/daily/?calendarDate=2025-06-14
+  response:
+    body:
+      string: '{"userProfileId": 131234790, "totalKilocalories": 2252.0, "activeKilocalories":
+        99.0, "bmrKilocalories": 2153.0, "wellnessKilocalories": 2252.0, "burnedKilocalories":
+        null, "consumedKilocalories": null, "remainingKilocalories": null, "totalSteps":
+        5459, "netCalorieGoal": null, "totalDistanceMeters": 4471, "wellnessDistanceMeters":
+        4471, "wellnessActiveKilocalories": 99.0, "netRemainingKilocalories": 99.0,
+        "userDailySummaryId": 131234790, "calendarDate": "2025-06-14", "rule": {"typeId":
+        2, "typeKey": "private"}, "uuid": "4105036b11f04b97a38c9e3823efd9ba", "dailyStepGoal":
+        10000, "wellnessStartTimeGmt": "2025-06-13T22:00:00.0", "wellnessStartTimeLocal":
+        "2025-06-14T00:00:00.0", "wellnessEndTimeGmt": "2025-06-14T22:00:00.0", "wellnessEndTimeLocal":
+        "2025-06-15T00:00:00.0", "durationInMilliseconds": 86400000, "wellnessDescription":
+        null, "highlyActiveSeconds": 345, "activeSeconds": 3828, "sedentarySeconds":
+        53385, "sleepingSeconds": 28842, "includesWellnessData": true, "includesActivityData":
+        false, "includesCalorieConsumedData": false, "privacyProtected": false, "moderateIntensityMinutes":
+        0, "vigorousIntensityMinutes": 0, "floorsAscendedInMeters": 13.146, "floorsDescendedInMeters":
+        27.014, "floorsAscended": 4.31299, "floorsDescended": 8.86286, "intensityMinutesGoal":
+        150, "userFloorsAscendedGoal": 10, "minHeartRate": 49, "maxHeartRate": 104,
+        "restingHeartRate": 51, "lastSevenDaysAvgRestingHeartRate": 50, "source":
+        "GARMIN", "averageStressLevel": 24, "maxStressLevel": 99, "stressDuration":
+        21840, "restStressDuration": 52080, "activityStressDuration": 6000, "uncategorizedStressDuration":
+        6300, "totalStressDuration": 86220, "lowStressDuration": 17880, "mediumStressDuration":
+        3720, "highStressDuration": 240, "stressPercentage": 25.33, "restStressPercentage":
+        60.4, "activityStressPercentage": 6.96, "uncategorizedStressPercentage": 7.31,
+        "lowStressPercentage": 20.74, "mediumStressPercentage": 4.31, "highStressPercentage":
+        0.28, "stressQualifier": "BALANCED", "measurableAwakeDuration": 51180, "measurableAsleepDuration":
+        28740, "lastSyncTimestampGMT": null, "minAvgHeartRate": 50, "maxAvgHeartRate":
+        101, "bodyBatteryChargedValue": 60, "bodyBatteryDrainedValue": 57, "bodyBatteryHighestValue":
+        92, "bodyBatteryLowestValue": 32, "bodyBatteryMostRecentValue": 35, "bodyBatteryDuringSleep":
+        65, "bodyBatteryAtWakeTime": 92, "bodyBatteryVersion": 3.0, "abnormalHeartRateAlertsCount":
+        null, "averageSpo2": null, "lowestSpo2": null, "latestSpo2": null, "latestSpo2ReadingTimeGmt":
+        null, "latestSpo2ReadingTimeLocal": null, "averageMonitoringEnvironmentAltitude":
+        269.0, "restingCaloriesFromActivity": null, "bodyBatteryDynamicFeedbackEvent":
+        {"eventTimestampGmt": "2025-06-14T19:05:00", "bodyBatteryLevel": "HIGH", "feedbackShortType":
+        "SLEEP_PREPARATION_RECOVERING_AND_INACTIVE", "feedbackLongType": "SLEEP_PREPARATION_RECOVERING_AND_INACTIVE"},
+        "endOfDayBodyBatteryDynamicFeedbackEvent": {"eventTimestampGmt": "2025-06-13T22:01:58",
+        "bodyBatteryLevel": "HIGH", "feedbackShortType": "SLEEP_TIME_PASSED_RECOVERING_AND_EXERCISE",
+        "feedbackLongType": "SLEEP_TIME_PASSED_RECOVERING_AND_EXERCISE"}, "bodyBatteryActivityEventList":
+        [{"eventType": "SLEEP", "eventStartTimeGmt": "2025-06-13T20:57:15", "timezoneOffset":
+        7200000, "durationInMilliseconds": 32580000, "bodyBatteryImpact": 65, "feedbackType":
+        "NONE", "shortFeedback": "NONE", "deviceId": 3477316333, "activityName": null,
+        "activityType": null, "activityId": null, "eventUpdateTimeGmt": "2025-06-14T06:00:42"}],
+        "avgWakingRespirationValue": 14.0, "highestRespirationValue": 23.0, "lowestRespirationValue":
+        6.0, "latestRespirationValue": 11.0, "latestRespirationTimeGMT": "2025-06-14T21:57:00.0",
+        "respirationAlgorithmVersion": 200}'
+    headers:
+      CF-RAY:
+      - 955ee72c49686c11-PRG
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 26 Jun 2025 18:52:40 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=%2FsC4hVSdwrXGg6tBt9%2BNj3AD5pB0FU8GDZn1pf1tsU5GkENuwgWYJyZUbu2PPnJwUfCtHv%2FQqYK9X2bjj7m8KMPnXKl1D%2Fd86w6W%2BYKuTuYhd3moDE5bmH2RzEB9EYYEGpS12yXT7w%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - _cfuvid=SANITIZED
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/usersummary-service/usersummary/daily/?calendarDate=2025-06-13
+  response:
+    body:
+      string: '{"userProfileId": 131234790, "totalKilocalories": 2484.0, "activeKilocalories":
+        331.0, "bmrKilocalories": 2153.0, "wellnessKilocalories": 2484.0, "burnedKilocalories":
+        null, "consumedKilocalories": null, "remainingKilocalories": null, "totalSteps":
+        11400, "netCalorieGoal": null, "totalDistanceMeters": 9726, "wellnessDistanceMeters":
+        9726, "wellnessActiveKilocalories": 331.0, "netRemainingKilocalories": 331.0,
+        "userDailySummaryId": 131234790, "calendarDate": "2025-06-13", "rule": {"typeId":
+        2, "typeKey": "private"}, "uuid": "1abbdecbbef240b793f13e8b5ece8516", "dailyStepGoal":
+        10000, "wellnessStartTimeGmt": "2025-06-12T22:00:00.0", "wellnessStartTimeLocal":
+        "2025-06-13T00:00:00.0", "wellnessEndTimeGmt": "2025-06-13T22:00:00.0", "wellnessEndTimeLocal":
+        "2025-06-14T00:00:00.0", "durationInMilliseconds": 86400000, "wellnessDescription":
+        null, "highlyActiveSeconds": 2203, "activeSeconds": 6478, "sedentarySeconds":
+        48657, "sleepingSeconds": 29062, "includesWellnessData": true, "includesActivityData":
+        true, "includesCalorieConsumedData": false, "privacyProtected": false, "moderateIntensityMinutes":
+        30, "vigorousIntensityMinutes": 2, "floorsAscendedInMeters": 72.312, "floorsDescendedInMeters":
+        70.31, "floorsAscended": 23.72441, "floorsDescended": 23.06759, "intensityMinutesGoal":
+        150, "userFloorsAscendedGoal": 10, "minHeartRate": 46, "maxHeartRate": 130,
+        "restingHeartRate": 49, "lastSevenDaysAvgRestingHeartRate": 49, "source":
+        "GARMIN", "averageStressLevel": 23, "maxStressLevel": 90, "stressDuration":
+        17460, "restStressDuration": 39540, "activityStressDuration": 12660, "uncategorizedStressDuration":
+        6660, "totalStressDuration": 76320, "lowStressDuration": 13740, "mediumStressDuration":
+        3420, "highStressDuration": 300, "stressPercentage": 22.88, "restStressPercentage":
+        51.81, "activityStressPercentage": 16.59, "uncategorizedStressPercentage":
+        8.73, "lowStressPercentage": 18.0, "mediumStressPercentage": 4.48, "highStressPercentage":
+        0.39, "stressQualifier": "BALANCED", "measurableAwakeDuration": 47520, "measurableAsleepDuration":
+        22140, "lastSyncTimestampGMT": null, "minAvgHeartRate": 47, "maxAvgHeartRate":
+        127, "bodyBatteryChargedValue": 56, "bodyBatteryDrainedValue": 75, "bodyBatteryHighestValue":
+        100, "bodyBatteryLowestValue": 27, "bodyBatteryMostRecentValue": 32, "bodyBatteryDuringSleep":
+        64, "bodyBatteryAtWakeTime": 100, "bodyBatteryVersion": 3.0, "abnormalHeartRateAlertsCount":
+        null, "averageSpo2": null, "lowestSpo2": null, "latestSpo2": null, "latestSpo2ReadingTimeGmt":
+        null, "latestSpo2ReadingTimeLocal": null, "averageMonitoringEnvironmentAltitude":
+        271.0, "restingCaloriesFromActivity": 49.0, "bodyBatteryDynamicFeedbackEvent":
+        {"eventTimestampGmt": "2025-06-13T20:18:39", "bodyBatteryLevel": "HIGH", "feedbackShortType":
+        "SLEEP_PREPARATION_RECOVERING_AND_EXERCISE", "feedbackLongType": "SLEEP_PREPARATION_RECOVERING_AND_EXERCISE"},
+        "endOfDayBodyBatteryDynamicFeedbackEvent": {"eventTimestampGmt": "2025-06-12T23:30:41",
+        "bodyBatteryLevel": "HIGH", "feedbackShortType": "SLEEP_TIME_PASSED_RECOVERING_AND_INACTIVE",
+        "feedbackLongType": "SLEEP_TIME_PASSED_RECOVERING_AND_INACTIVE"}, "bodyBatteryActivityEventList":
+        [{"eventType": "SLEEP", "eventStartTimeGmt": "2025-06-12T20:04:37", "timezoneOffset":
+        7200000, "durationInMilliseconds": 32220000, "bodyBatteryImpact": 64, "feedbackType":
+        "NONE", "shortFeedback": "NONE", "deviceId": 3477316333, "activityName": null,
+        "activityType": null, "activityId": null, "eventUpdateTimeGmt": "2025-06-13T05:01:52"},
+        {"eventType": "RECOVERY", "eventStartTimeGmt": "2025-06-13T09:58:37", "timezoneOffset":
+        7200000, "durationInMilliseconds": 1800000, "bodyBatteryImpact": -1, "feedbackType":
+        "RECOVERY_BODY_BATTERY_NOT_INCREASE", "shortFeedback": "RESTFUL_PERIOD", "deviceId":
+        3477316333, "activityName": null, "activityType": null, "activityId": null,
+        "eventUpdateTimeGmt": "2025-06-13T10:32:39"}, {"eventType": "ACTIVITY", "eventStartTimeGmt":
+        "2025-06-13T15:27:33", "timezoneOffset": 7200000, "durationInMilliseconds":
+        1920000, "bodyBatteryImpact": -5, "feedbackType": "EXERCISE_TRAINING_EFFECT_2",
+        "shortFeedback": "EASY_AEROBIC", "deviceId": 3477316333, "activityName": "Velka
+        Bystrice Walking", "activityType": "walking", "activityId": 19421826073, "eventUpdateTimeGmt":
+        "2025-06-13T16:00:15"}], "avgWakingRespirationValue": 15.0, "highestRespirationValue":
+        23.0, "lowestRespirationValue": 7.0, "latestRespirationValue": 17.0, "latestRespirationTimeGMT":
+        "2025-06-13T22:00:00.0", "respirationAlgorithmVersion": 200}'
+    headers:
+      CF-RAY:
+      - 955ee734ba30f97c-PRG
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 26 Jun 2025 18:52:41 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=xBn6yhYoX%2FIDhrCQkCA817F0nVg%2FmgBgMM4cRuGURATwUjkm5ASatBFL0c2res0Jz4tubMyzEJU43XoDqLQA7jbt5p%2BveZeNb8WyPNvpXC8g%2BnpAqbRB%2Byr1vgwCkGWxWWKWqDJ2JQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+version: 1

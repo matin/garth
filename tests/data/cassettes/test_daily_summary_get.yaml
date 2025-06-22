@@ -1,0 +1,190 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.4
+    method: GET
+    uri: https://thegarth.s3.amazonaws.com/oauth_consumer.json
+  response:
+    body:
+      string: '{"consumer_key": "SANITIZED", "consumer_secret": "SANITIZED"}'
+    headers:
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '124'
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 26 Jun 2025 18:52:36 GMT
+      ETag:
+      - '"20240b1013cb35419bb5b2cff1407a4e"'
+      Last-Modified:
+      - Thu, 03 Aug 2023 00:16:11 GMT
+      Server:
+      - AmazonS3
+      x-amz-id-2:
+      - RTWpAVGYCWDkDgqeEDZsptAkXHB0ipd9MhTdzZyaR64r7Z+lxxH5UxbyWNhP8GvUAn+/p6PiVbQ=
+      x-amz-request-id:
+      - NA5TN0K7755C4962
+      x-amz-server-side-encryption:
+      - AES256
+    status:
+      code: 200
+      message: OK
+- request:
+    body: mfa_token=SANITIZED
+    headers:
+      Accept:
+        SANITIZED
+      Accept-Encoding:
+        SANITIZED
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+        SANITIZED
+      Content-Length:
+      - '74'
+      Content-Type:
+        SANITIZED
+      User-Agent:
+        SANITIZED
+    method: POST
+    uri: https://connectapi.garmin.com/oauth-service/oauth/exchange/user/2.0
+  response:
+    body:
+      string: '{"scope": "COMMUNITY_COURSE_READ GARMINPAY_WRITE GOLF_API_READ ATP_READ
+        GHS_SAMD GHS_UPLOAD INSIGHTS_READ DIVE_API_READ COMMUNITY_COURSE_WRITE CONNECT_WRITE
+        GCOFFER_WRITE DI_OAUTH_2_AUTHORIZATION_CODE_CREATE GARMINPAY_READ DT_CLIENT_ANALYTICS_WRITE
+        GOLF_API_WRITE INSIGHTS_WRITE PRODUCT_SEARCH_READ OMT_CAMPAIGN_READ OMT_SUBSCRIPTION_READ
+        GCOFFER_READ CONNECT_READ ATP_WRITE", "jti": "SANITIZED", "access_token":
+        "SANITIZED", "token_type": "bearer", "refresh_token": "SANITIZED", "expires_in":
+        81790, "refresh_token_expires_in": 2591999}'
+    headers:
+      CF-RAY:
+      - 955ee7171d5adeac-PRG
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 26 Jun 2025 18:52:36 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=ipX%2B9mw2Ga1fBlMpBcgrUhttLC%2BxSnXeulR%2FkPRXg59RkcSpbza6D3qlD%2F2kMV%2BQg7cxAne%2FqIfTH6DiJcXp%2BY8YEeUAs7VNMAfmsngGRyUbeiaUrGU8u5D6RTtcRRhGDrVNd8TYQQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/usersummary-service/usersummary/daily/?calendarDate=2025-06-14
+  response:
+    body:
+      string: '{"userProfileId": 131234790, "totalKilocalories": 2252.0, "activeKilocalories":
+        99.0, "bmrKilocalories": 2153.0, "wellnessKilocalories": 2252.0, "burnedKilocalories":
+        null, "consumedKilocalories": null, "remainingKilocalories": null, "totalSteps":
+        5459, "netCalorieGoal": null, "totalDistanceMeters": 4471, "wellnessDistanceMeters":
+        4471, "wellnessActiveKilocalories": 99.0, "netRemainingKilocalories": 99.0,
+        "userDailySummaryId": 131277828, "calendarDate": "2025-06-14", "rule": {"typeId":
+        2, "typeKey": "private"}, "uuid": "4105036b11f04b97a38c9e3823efd9ba", "dailyStepGoal":
+        10000, "wellnessStartTimeGmt": "2025-06-13T22:00:00.0", "wellnessStartTimeLocal":
+        "2025-06-14T00:00:00.0", "wellnessEndTimeGmt": "2025-06-14T22:00:00.0", "wellnessEndTimeLocal":
+        "2025-06-15T00:00:00.0", "durationInMilliseconds": 86400000, "wellnessDescription":
+        null, "highlyActiveSeconds": 345, "activeSeconds": 3828, "sedentarySeconds":
+        53385, "sleepingSeconds": 28842, "includesWellnessData": true, "includesActivityData":
+        false, "includesCalorieConsumedData": false, "privacyProtected": false, "moderateIntensityMinutes":
+        0, "vigorousIntensityMinutes": 0, "floorsAscendedInMeters": 13.146, "floorsDescendedInMeters":
+        27.014, "floorsAscended": 4.31299, "floorsDescended": 8.86286, "intensityMinutesGoal":
+        150, "userFloorsAscendedGoal": 10, "minHeartRate": 49, "maxHeartRate": 104,
+        "restingHeartRate": 51, "lastSevenDaysAvgRestingHeartRate": 50, "source":
+        "GARMIN", "averageStressLevel": 24, "maxStressLevel": 99, "stressDuration":
+        21840, "restStressDuration": 52080, "activityStressDuration": 6000, "uncategorizedStressDuration":
+        6300, "totalStressDuration": 86220, "lowStressDuration": 17880, "mediumStressDuration":
+        3720, "highStressDuration": 240, "stressPercentage": 25.33, "restStressPercentage":
+        60.4, "activityStressPercentage": 6.96, "uncategorizedStressPercentage": 7.31,
+        "lowStressPercentage": 20.74, "mediumStressPercentage": 4.31, "highStressPercentage":
+        0.28, "stressQualifier": "BALANCED", "measurableAwakeDuration": 51180, "measurableAsleepDuration":
+        28740, "lastSyncTimestampGMT": null, "minAvgHeartRate": 50, "maxAvgHeartRate":
+        101, "bodyBatteryChargedValue": 60, "bodyBatteryDrainedValue": 57, "bodyBatteryHighestValue":
+        92, "bodyBatteryLowestValue": 32, "bodyBatteryMostRecentValue": 35, "bodyBatteryDuringSleep":
+        65, "bodyBatteryAtWakeTime": 92, "bodyBatteryVersion": 3.0, "abnormalHeartRateAlertsCount":
+        null, "averageSpo2": null, "lowestSpo2": null, "latestSpo2": null, "latestSpo2ReadingTimeGmt":
+        null, "latestSpo2ReadingTimeLocal": null, "averageMonitoringEnvironmentAltitude":
+        269.0, "restingCaloriesFromActivity": null, "bodyBatteryDynamicFeedbackEvent":
+        {"eventTimestampGmt": "2025-06-14T19:05:00", "bodyBatteryLevel": "HIGH", "feedbackShortType":
+        "SLEEP_PREPARATION_RECOVERING_AND_INACTIVE", "feedbackLongType": "SLEEP_PREPARATION_RECOVERING_AND_INACTIVE"},
+        "endOfDayBodyBatteryDynamicFeedbackEvent": {"eventTimestampGmt": "2025-06-13T22:01:58",
+        "bodyBatteryLevel": "HIGH", "feedbackShortType": "SLEEP_TIME_PASSED_RECOVERING_AND_EXERCISE",
+        "feedbackLongType": "SLEEP_TIME_PASSED_RECOVERING_AND_EXERCISE"}, "bodyBatteryActivityEventList":
+        [{"eventType": "SLEEP", "eventStartTimeGmt": "2025-06-13T20:57:15", "timezoneOffset":
+        7200000, "durationInMilliseconds": 32580000, "bodyBatteryImpact": 65, "feedbackType":
+        "NONE", "shortFeedback": "NONE", "deviceId": 3477316333, "activityName": null,
+        "activityType": null, "activityId": null, "eventUpdateTimeGmt": "2025-06-14T06:00:42"}],
+        "avgWakingRespirationValue": 14.0, "highestRespirationValue": 23.0, "lowestRespirationValue":
+        6.0, "latestRespirationValue": 11.0, "latestRespirationTimeGMT": "2025-06-14T21:57:00.0",
+        "respirationAlgorithmVersion": 200}'
+    headers:
+      CF-RAY:
+      - 955ee71dbb930d40-PRG
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 26 Jun 2025 18:52:37 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=ZkLP3dMkECmIUoOk34%2FLNFXfBDaA0VejL1RUtR887d3A%2BYeCk4GJC7ESgAxgLkZ3L2Q3QBTw1k0Msj2krFpKy1CssiKqQSZRkx8AuufKCO5iuDsy9HOa89W%2BqP5RxYloZjHi%2B3t1nw%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+version: 1
