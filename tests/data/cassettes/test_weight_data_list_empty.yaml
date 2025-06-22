@@ -1,0 +1,61 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/weight-service/weight/range/2019-12-18/2020-01-01?includeAll=true
+  response:
+    body:
+      string: '{"dailyWeightSummaries": [], "totalAverage": {"from": 1576627200000,
+        "until": 1577923199999, "weight": null, "bmi": null, "bodyFat": null, "bodyWater":
+        null, "boneMass": null, "muscleMass": null, "physiqueRating": null, "visceralFat":
+        null, "metabolicAge": null}, "previousDateWeight": {"samplePk": null, "date":
+        null, "calendarDate": null, "weight": null, "bmi": null, "bodyFat": null,
+        "bodyWater": null, "boneMass": null, "muscleMass": null, "physiqueRating":
+        null, "visceralFat": null, "metabolicAge": null, "sourceType": null, "timestampGMT":
+        null, "weightDelta": null}, "nextDateWeight": {"samplePk": null, "date": null,
+        "calendarDate": null, "weight": null, "bmi": null, "bodyFat": null, "bodyWater":
+        null, "boneMass": null, "muscleMass": null, "physiqueRating": null, "visceralFat":
+        null, "metabolicAge": null, "sourceType": null, "timestampGMT": null, "weightDelta":
+        null}}'
+    headers:
+      CF-RAY:
+      - 95065fe3afea2fde-QRO
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 16 Jun 2025 01:01:11 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=YZscbyvERqaC8NIT00%2Fv%2FV3X%2BSEXE8LosKNrrmILOYZWBqF906BX31WBG9C5u4NtRh73%2BRPj2OyWX%2FgtYZcd9QricbIkwL8Np9kXdKtPcufnwwAg7odFD4X4JnUeS0d%2BEk1u5Kb2VAIyW4O%2BxfR1FNVErw%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+version: 1

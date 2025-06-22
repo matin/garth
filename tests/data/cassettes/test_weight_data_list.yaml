@@ -1,0 +1,97 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/weight-service/weight/range/2025-06-01/2025-06-15?includeAll=true
+  response:
+    body:
+      string: '{"dailyWeightSummaries": [{"summaryDate": "2025-06-15", "numOfWeightEntries":
+        1, "minWeight": 59720.0, "maxWeight": 59720.0, "latestWeight": {"samplePk":
+        1749996902851, "date": 1749975276000, "calendarDate": "2025-06-15", "weight":
+        59720.0, "bmi": 22.799999237060547, "bodyFat": 19.3, "bodyWater": 58.9, "boneMass":
+        3539, "muscleMass": 26979, "physiqueRating": null, "visceralFat": null, "metabolicAge":
+        null, "sourceType": "INDEX_SCALE", "timestampGMT": 1749996876000, "weightDelta":
+        200.00000000000284}, "allWeightMetrics": [{"samplePk": 1749996902851, "date":
+        1749975276000, "calendarDate": "2025-06-15", "weight": 59720.0, "bmi": 22.799999237060547,
+        "bodyFat": 19.3, "bodyWater": 58.9, "boneMass": 3539, "muscleMass": 26979,
+        "physiqueRating": null, "visceralFat": null, "metabolicAge": null, "sourceType":
+        "INDEX_SCALE", "timestampGMT": 1749996876000, "weightDelta": 200.00000000000284}]},
+        {"summaryDate": "2025-06-14", "numOfWeightEntries": 2, "minWeight": 59130.0,
+        "maxWeight": 59500.0, "latestWeight": {"samplePk": 1749948744411, "date":
+        1749927125175, "calendarDate": "2025-06-14", "weight": 59500.0, "bmi": null,
+        "bodyFat": null, "bodyWater": null, "boneMass": null, "muscleMass": null,
+        "physiqueRating": null, "visceralFat": null, "metabolicAge": null, "sourceType":
+        "MANUAL", "timestampGMT": 1749948725175, "weightDelta": 299.99999999999716},
+        "allWeightMetrics": [{"samplePk": 1749948744411, "date": 1749927125175, "calendarDate":
+        "2025-06-14", "weight": 59500.0, "bmi": null, "bodyFat": null, "bodyWater":
+        null, "boneMass": null, "muscleMass": null, "physiqueRating": null, "visceralFat":
+        null, "metabolicAge": null, "sourceType": "MANUAL", "timestampGMT": 1749948725175,
+        "weightDelta": 399.9999999999986}, {"samplePk": 1749909217098, "date": 1749887580000,
+        "calendarDate": "2025-06-14", "weight": 59130.0, "bmi": 22.5, "bodyFat": 20.3,
+        "bodyWater": 58.2, "boneMass": 3430, "muscleMass": 26840, "physiqueRating":
+        null, "visceralFat": null, "metabolicAge": null, "sourceType": "INDEX_SCALE",
+        "timestampGMT": 1749909180000, "weightDelta": -100.00000000000142}]}, {"summaryDate":
+        "2025-06-07", "numOfWeightEntries": 1, "minWeight": 59189.0, "maxWeight":
+        59189.0, "latestWeight": {"samplePk": 1749307692871, "date": 1749286058000,
+        "calendarDate": "2025-06-07", "weight": 59189.0, "bmi": 22.600000381469727,
+        "bodyFat": 20.0, "bodyWater": 58.4, "boneMass": 3450, "muscleMass": 26850,
+        "physiqueRating": null, "visceralFat": null, "metabolicAge": null, "sourceType":
+        "INDEX_SCALE", "timestampGMT": 1749307658000, "weightDelta": 500.0}, "allWeightMetrics":
+        [{"samplePk": 1749307692871, "date": 1749286058000, "calendarDate": "2025-06-07",
+        "weight": 59189.0, "bmi": 22.600000381469727, "bodyFat": 20.0, "bodyWater":
+        58.4, "boneMass": 3450, "muscleMass": 26850, "physiqueRating": null, "visceralFat":
+        null, "metabolicAge": null, "sourceType": "INDEX_SCALE", "timestampGMT": 1749307658000,
+        "weightDelta": 500.0}]}], "totalAverage": {"from": 1748736000000, "until":
+        1750031999999, "weight": 59469.666666666664, "bmi": 22.699999809265137, "bodyFat":
+        19.7, "bodyWater": 58.7, "boneMass": 3494, "muscleMass": 26914, "physiqueRating":
+        null, "visceralFat": null, "metabolicAge": null}, "previousDateWeight": {"samplePk":
+        1748709464191, "date": 1748687805000, "calendarDate": "2025-05-31", "weight":
+        58700.0, "bmi": 22.399999618530273, "bodyFat": 20.7, "bodyWater": 57.9, "boneMass":
+        3369, "muscleMass": 26729, "physiqueRating": null, "visceralFat": null, "metabolicAge":
+        null, "sourceType": "INDEX_SCALE", "timestampGMT": 1748709405000, "weightDelta":
+        null}, "nextDateWeight": {"samplePk": null, "date": null, "calendarDate":
+        null, "weight": null, "bmi": null, "bodyFat": null, "bodyWater": null, "boneMass":
+        null, "muscleMass": null, "physiqueRating": null, "visceralFat": null, "metabolicAge":
+        null, "sourceType": null, "timestampGMT": null, "weightDelta": null}}'
+    headers:
+      CF-RAY:
+      - 95064b68690b1f84-QRO
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 16 Jun 2025 00:47:12 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=9ExXlb7xohhNWV42MyBDMFTW8fcvDW7s7NvGZZsQ7QjtfUyT%2FYq2LTKDwbG1mdwpyUYacYYBjzSOZNw3Tu8MfsrfLBPOgWE4LsgwmirKigo5mVi5%2FJqIfZgyWULExMxPoeX88D%2B6iXcluwUE8dlp4VL2yA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+version: 1

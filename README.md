@@ -772,6 +772,139 @@ List sleep data over several nights.
 garth.SleepData.list("2023-07-20", 30)
 ```
 
+### Weight
+
+Retrieve the latest weight measurement and body composition data for a given
+date.
+
+**Note**: Weight, weight delta, bone mass, and muscle mass values are measured
+in grams
+
+```python
+garth.WeightData.get("2025-06-01")
+```
+
+```python
+WeightData(
+    sample_pk=1749996902851,
+    calendar_date=datetime.date(2025, 6, 15),
+    weight=59720,
+    source_type='INDEX_SCALE',
+    weight_delta=200.00000000000284,
+    timestamp_gmt=1749996876000,
+    datetime_utc=datetime.datetime(2025, 6, 15, 14, 14, 36, tzinfo=TzInfo(UTC)),
+    datetime_local=datetime.datetime(
+        2025, 6, 15, 8, 14, 36,
+        tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=64800))
+    ),
+    bmi=22.799999237060547,
+    body_fat=19.3,
+    body_water=58.9,
+    bone_mass=3539,
+    muscle_mass=26979,
+    physique_rating=None,
+    visceral_fat=None,
+    metabolic_age=None
+)
+```
+
+Get weight entries for a date range.
+
+```python
+garth.WeightData.list("2025-06-01", 30)
+```
+
+```python
+[
+    WeightData(
+        sample_pk=1749307692871,
+        calendar_date=datetime.date(2025, 6, 7),
+        weight=59189,
+        source_type='INDEX_SCALE',
+        weight_delta=500.0,
+        timestamp_gmt=1749307658000,
+        datetime_utc=datetime.datetime(2025, 6, 7, 14, 47, 38, tzinfo=TzInfo(UTC)),
+        datetime_local=datetime.datetime(
+            2025, 6, 7, 8, 47, 38,
+            tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=64800))
+        ),
+        bmi=22.600000381469727,
+        body_fat=20.0,
+        body_water=58.4,
+        bone_mass=3450,
+        muscle_mass=26850,
+        physique_rating=None,
+        visceral_fat=None,
+        metabolic_age=None
+    ),
+    WeightData(
+        sample_pk=1749909217098,
+        calendar_date=datetime.date(2025, 6, 14),
+        weight=59130,
+        source_type='INDEX_SCALE',
+        weight_delta=-100.00000000000142,
+        timestamp_gmt=1749909180000,
+        datetime_utc=datetime.datetime(2025, 6, 14, 13, 53, tzinfo=TzInfo(UTC)),
+        datetime_local=datetime.datetime(
+            2025, 6, 14, 7, 53,
+            tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=64800))
+        ),
+        bmi=22.5,
+        body_fat=20.3,
+        body_water=58.2,
+        bone_mass=3430,
+        muscle_mass=26840,
+        physique_rating=None,
+        visceral_fat=None,
+        metabolic_age=None
+    ),
+    WeightData(
+        sample_pk=1749948744411,
+        calendar_date=datetime.date(2025, 6, 14),
+        weight=59500,
+        source_type='MANUAL',
+        weight_delta=399.9999999999986,
+        timestamp_gmt=1749948725175,
+        datetime_utc=datetime.datetime(
+            2025, 6, 15, 0, 52, 5, 175000, tzinfo=TzInfo(UTC)
+        ),
+        datetime_local=datetime.datetime(
+            2025, 6, 14, 18, 52, 5, 175000,
+            tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=64800))
+        ),
+        bmi=None,
+        body_fat=None,
+        body_water=None,
+        bone_mass=None,
+        muscle_mass=None,
+        physique_rating=None,
+        visceral_fat=None,
+        metabolic_age=None
+    ),
+    WeightData(
+        sample_pk=1749996902851,
+        calendar_date=datetime.date(2025, 6, 15),
+        weight=59720,
+        source_type='INDEX_SCALE',
+        weight_delta=200.00000000000284,
+        timestamp_gmt=1749996876000,
+        datetime_utc=datetime.datetime(2025, 6, 15, 14, 14, 36, tzinfo=TzInfo(UTC)),
+        datetime_local=datetime.datetime(
+            2025, 6, 15, 8, 14, 36,
+            tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=64800))
+        ),
+        bmi=22.799999237060547,
+        body_fat=19.3,
+        body_water=58.9,
+        bone_mass=3539,
+        muscle_mass=26979,
+        physique_rating=None,
+        visceral_fat=None,
+        metabolic_age=None
+    )
+]
+```
+
 ## User
 
 ### UserProfile
