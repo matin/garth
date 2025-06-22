@@ -781,7 +781,7 @@ date.
 in grams
 
 ```python
-garth.Weight.get("2025-06-01")
+garth.WeightData.get("2025-06-01")
 ```
 
 ```python
@@ -811,7 +811,7 @@ WeightData(
 Get weight entries for a date range.
 
 ```python
-garth.Weight.list("2025-06-01", 30)
+garth.WeightData.list("2025-06-01", 30)
 ```
 
 ```python
