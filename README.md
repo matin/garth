@@ -905,6 +905,79 @@ garth.WeightData.list("2025-06-01", 30)
 ]
 ```
 
+### Additional Garmin Scores
+
+Retrieve additional Garmin Scores for a given date.
+
+```python
+garth.GarminScoresData.get("2025-07-07")
+```
+
+```python
+GarminScoresData(
+    user_profile_pk=131234790,
+    calendar_date=datetime.date(2025, 7, 7),
+    endurance_score=4820,
+    endurance_classification=1,
+    endurance_classification_lower_limit_elite=8800,
+    endurance_classification_lower_limit_superior=8100,
+    endurance_classification_lower_limit_expert=7300,
+    endurance_classification_lower_limit_well_trained=6600,
+    endurance_classification_lower_limit_trained=5800,
+    endurance_classification_lower_limit_intermediate=5100,
+    hill_score=20,
+    hill_endurance_score=15,
+    hill_strength_score=2,
+    vo_2_max=48.0,
+    vo_2_max_precise_value=48.0
+)
+```
+
+Retrieve additional Garmin Scores for a list of dates.
+
+```python
+garth.GarminScoresData.list("2025-07-07", 2)
+```
+
+```python
+[
+    GarminScoresData(
+        user_profile_pk=131234790,
+        calendar_date=datetime.date(2025, 7, 6),
+        endurance_score=4820,
+        endurance_classification=1,
+        endurance_classification_lower_limit_elite=8800,
+        endurance_classification_lower_limit_superior=8100,
+        endurance_classification_lower_limit_expert=7300,
+        endurance_classification_lower_limit_well_trained=6600,
+        endurance_classification_lower_limit_trained=5800,
+        endurance_classification_lower_limit_intermediate=5100,
+        hill_score=20,
+        hill_endurance_score=15,
+        hill_strength_score=2,
+        vo_2_max=48.0,
+        vo_2_max_precise_value=48.0
+    ),
+    GarminScoresData(
+        user_profile_pk=131234790,
+        calendar_date=datetime.date(2025, 7, 7),
+        endurance_score=4820,
+        endurance_classification=1,
+        endurance_classification_lower_limit_elite=8800,
+        endurance_classification_lower_limit_superior=8100,
+        endurance_classification_lower_limit_expert=7300,
+        endurance_classification_lower_limit_well_trained=6600,
+        endurance_classification_lower_limit_trained=5800,
+        endurance_classification_lower_limit_intermediate=5100,
+        hill_score=20,
+        hill_endurance_score=15,
+        hill_strength_score=2,
+        vo_2_max=48.0,
+        vo_2_max_precise_value=48.0
+    )
+]
+```
+
 ## User
 
 ### UserProfile
