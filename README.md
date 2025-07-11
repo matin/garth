@@ -978,6 +978,94 @@ garth.GarminScoresData.list("2025-07-07", 2)
 ]
 ```
 
+### Morning Training Readiness
+
+Retrieve the Morning Training Readiness evaluation for a given date.
+
+```python
+garth.MorningTrainingReadinessData.get("2025-07-07")
+```
+
+```python
+MorningTrainingReadinessData(
+    user_profile_pk=131234790,
+    calendar_date=datetime.date(2025, 7, 7),
+    score=100,
+    recovery_time=1.0,
+    recovery_time_factor_feedback='GOOD',
+    recovery_time_factor_percent=99,
+    acute_load=20,
+    hrv_factor_feedback='GOOD',
+    hrv_factor_percent=92,
+    hrv_weekly_average=53,
+    sleep_history_factor_feedback='VERY_GOOD',
+    sleep_history_factor_percent=92,
+    sleep_score=80,
+    sleep_score_factor_feedback='GOOD',
+    sleep_score_factor_percent=70,
+    stress_history_factor_feedback='GOOD',
+    stress_history_factor_percent=72,
+    feedback_short='READY_FOR_ACTION',
+    timestamp=datetime.datetime(2025, 7, 7, 4, 0, 25),
+    timestamp_local=datetime.datetime(2025, 7, 7, 6, 0, 25)
+)
+```
+
+Retrieve Morning Training Readiness for a list of dates.
+
+```python
+garth.MorningTrainingReadinessData.list("2025-07-07", 2)
+```
+
+```python
+[
+    MorningTrainingReadinessData(
+        user_profile_pk=131234790,
+        calendar_date=datetime.date(2025, 7, 6),
+        score=100,
+        recovery_time=0.0,
+        recovery_time_factor_feedback='VERY_GOOD',
+        recovery_time_factor_percent=100,
+        acute_load=24,
+        hrv_factor_feedback='GOOD',
+        hrv_factor_percent=89,
+        hrv_weekly_average=53,
+        sleep_history_factor_feedback='VERY_GOOD',
+        sleep_history_factor_percent=92,
+        sleep_score=91,
+        sleep_score_factor_feedback='VERY_GOOD',
+        sleep_score_factor_percent=91,
+        stress_history_factor_feedback='GOOD',
+        stress_history_factor_percent=79,
+        feedback_short='READY_FOR_ACTION',
+        timestamp=datetime.datetime(2025, 7, 6, 5, 59, 18),
+        timestamp_local=datetime.datetime(2025, 7, 6, 7, 59, 18)
+    ),
+    MorningTrainingReadinessData(
+        user_profile_pk=131234790,
+        calendar_date=datetime.date(2025, 7, 7),
+        score=100,
+        recovery_time=1.0,
+        recovery_time_factor_feedback='GOOD',
+        recovery_time_factor_percent=99,
+        acute_load=20,
+        hrv_factor_feedback='GOOD',
+        hrv_factor_percent=92,
+        hrv_weekly_average=53,
+        sleep_history_factor_feedback='VERY_GOOD',
+        sleep_history_factor_percent=92,
+        sleep_score=80,
+        sleep_score_factor_feedback='GOOD',
+        sleep_score_factor_percent=70,
+        stress_history_factor_feedback='GOOD',
+        stress_history_factor_percent=72,
+        feedback_short='READY_FOR_ACTION',
+        timestamp=datetime.datetime(2025, 7, 7, 4, 0, 25),
+        timestamp_local=datetime.datetime(2025, 7, 7, 6, 0, 25)
+    )
+]
+```
+
 ## User
 
 ### UserProfile

@@ -1,0 +1,188 @@
+interactions:
+- request:
+    body: mfa_token=SANITIZED
+    headers:
+      Accept:
+        SANITIZED
+      Accept-Encoding:
+        SANITIZED
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+        SANITIZED
+      Content-Length:
+      - '74'
+      Content-Type:
+        SANITIZED
+      User-Agent:
+        SANITIZED
+    method: POST
+    uri: https://connectapi.garmin.com/oauth-service/oauth/exchange/user/2.0
+  response:
+    body:
+      string: '{"scope": "COMMUNITY_COURSE_READ GARMINPAY_WRITE GOLF_API_READ ATP_READ
+        GHS_SAMD GHS_UPLOAD INSIGHTS_READ DIVE_API_READ COMMUNITY_COURSE_WRITE CONNECT_WRITE
+        GCOFFER_WRITE DI_OAUTH_2_AUTHORIZATION_CODE_CREATE GARMINPAY_READ DT_CLIENT_ANALYTICS_WRITE
+        GOLF_API_WRITE INSIGHTS_WRITE PRODUCT_SEARCH_READ OMT_CAMPAIGN_READ OMT_SUBSCRIPTION_READ
+        GCOFFER_READ CONNECT_READ ATP_WRITE", "jti": "SANITIZED", "access_token":
+        "SANITIZED", "token_type": "bearer", "refresh_token": "SANITIZED", "expires_in":
+        92485, "refresh_token_expires_in": 2591999}'
+    headers:
+      CF-RAY:
+      - 95ca388d9f20b38b-PRG
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 09 Jul 2025 19:27:50 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=6LN7EEa4Cz1%2BqVVODej2nD1Ydhi8pOPc7boWcCvIq0dJqBNY6mvZrlRT9%2BMSLMq86WBvFtDWJ%2FBC8CmBa037DhFgvv4%2BjDm4Z5dh6Fu6unhK9q4THs6ydjVKgUpl5OT%2FnOQwKeXAnw%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/metrics-service/metrics/trainingreadiness/2025-07-07
+  response:
+    body:
+      string: '[{"userProfilePK": 131234790, "calendarDate": "2025-07-07", "timestamp":
+        "2025-07-07T17:43:54.0", "timestampLocal": "2025-07-07T19:43:54.0", "deviceId":
+        3477316333, "level": "PRIME", "feedbackLong": "PRIME_RT_HIGHEST_SS_AVAILABLE_ACWR_POS",
+        "feedbackShort": "READY_FOR_ACTION", "score": 100, "sleepScore": 80, "sleepScoreFactorPercent":
+        70, "sleepScoreFactorFeedback": "GOOD", "recoveryTime": 1, "recoveryTimeFactorPercent":
+        99, "recoveryTimeFactorFeedback": "GOOD", "acwrFactorPercent": 100, "acwrFactorFeedback":
+        "VERY_GOOD", "acuteLoad": 20, "stressHistoryFactorPercent": 72, "stressHistoryFactorFeedback":
+        "GOOD", "hrvFactorPercent": 92, "hrvFactorFeedback": "GOOD", "hrvWeeklyAverage":
+        53, "sleepHistoryFactorPercent": 92, "sleepHistoryFactorFeedback": "VERY_GOOD",
+        "validSleep": true, "inputContext": "AFTER_POST_EXERCISE_RESET", "primaryActivityTracker":
+        true, "recoveryTimeChangePhrase": "REACHED_ZERO"}, {"userProfilePK": 131234790,
+        "calendarDate": "2025-07-07", "timestamp": "2025-07-07T04:00:25.0", "timestampLocal":
+        "2025-07-07T06:00:25.0", "deviceId": 3477316333, "level": "PRIME", "feedbackLong":
+        "PRIME_RT_HIGHEST_SS_AVAILABLE_ACWR_POS", "feedbackShort": "READY_FOR_ACTION",
+        "score": 100, "sleepScore": 80, "sleepScoreFactorPercent": 70, "sleepScoreFactorFeedback":
+        "GOOD", "recoveryTime": 1, "recoveryTimeFactorPercent": 99, "recoveryTimeFactorFeedback":
+        "GOOD", "acwrFactorPercent": 100, "acwrFactorFeedback": "VERY_GOOD", "acuteLoad":
+        20, "stressHistoryFactorPercent": 72, "stressHistoryFactorFeedback": "GOOD",
+        "hrvFactorPercent": 92, "hrvFactorFeedback": "GOOD", "hrvWeeklyAverage": 53,
+        "sleepHistoryFactorPercent": 92, "sleepHistoryFactorFeedback": "VERY_GOOD",
+        "validSleep": true, "inputContext": "AFTER_WAKEUP_RESET", "primaryActivityTracker":
+        true, "recoveryTimeChangePhrase": "NO_CHANGE_SLEEP"}, {"userProfilePK": 131234790,
+        "calendarDate": "2025-07-07", "timestamp": "2025-07-06T22:39:28.0", "timestampLocal":
+        "2025-07-07T00:39:28.0", "deviceId": 3477316333, "level": "HIGH", "feedbackLong":
+        "HIGH_RT_AVAILABLE_SS_UNKNOWN_ACWR_POS", "feedbackShort": "WELL_RECOVERED",
+        "score": 94, "sleepScore": null, "sleepScoreFactorPercent": 0, "sleepScoreFactorFeedback":
+        "NONE", "recoveryTime": 0, "recoveryTimeFactorPercent": 100, "recoveryTimeFactorFeedback":
+        "VERY_GOOD", "acwrFactorPercent": 100, "acwrFactorFeedback": "VERY_GOOD",
+        "acuteLoad": 24, "stressHistoryFactorPercent": 79, "stressHistoryFactorFeedback":
+        "GOOD", "hrvFactorPercent": 87, "hrvFactorFeedback": "GOOD", "hrvWeeklyAverage":
+        53, "sleepHistoryFactorPercent": 92, "sleepHistoryFactorFeedback": "VERY_GOOD",
+        "validSleep": false, "inputContext": "UPDATE_REALTIME_VARIABLES", "primaryActivityTracker":
+        true, "recoveryTimeChangePhrase": null}]'
+    headers:
+      CF-RAY:
+      - 95ca3893bbf8b391-PRG
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Wed, 09 Jul 2025 19:27:50 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=Jjp7S6%2B4LEL1U7TCN6nbivRy55BkoF4oDVVGEY4G57y5VRyUUKAmulca9ZuF9lRAWPQrL1GVYkoS2ejn0HMVHHVXoMxVfPDx6ccbyjIAFSRauTsBdTsnh1MHYE7q3e3jQPIQuNVvzg%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - _cfuvid=SANITIZED
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/metrics-service/metrics/trainingreadiness/2024-07-07
+  response:
+    body:
+      string: '[]'
+    headers:
+      CF-RAY:
+      - 95ca38960a7eb380-PRG
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Wed, 09 Jul 2025 19:27:50 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=cmP7MAp6eVfqucUPfk81%2BXJi%2F8cBsreNYg%2BARnXAh8wzpE5nrQkt7cz9notfNjl2leE2ZgMuT6OIYfpexAuZOq9hW8mEbjgZu1xWLIY17guAyjaC0OgLjXZ8EThiobfCq%2FSChceHOA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+version: 1
