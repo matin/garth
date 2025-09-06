@@ -74,7 +74,7 @@ def test_configure_retry(client: Client):
 
 
 def test_configure_status_forcelist(client: Client):
-    assert client.status_forcelist == (408, 429, 500, 502, 503, 504)
+    assert client.status_forcelist == (408, 500, 502, 503, 504)
     adapter = client.sess.adapters["https://"]
     assert isinstance(adapter, HTTPAdapter)
     assert adapter.max_retries.status_forcelist == client.status_forcelist
