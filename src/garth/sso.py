@@ -127,7 +127,7 @@ def login(
         title = get_title(client.last_resp.text)
 
     if title != "Success":
-        raise GarthException(f"Unexpected title: {title}")
+        raise GarthException("MFA verification failed")
     return _complete_login(client)
 
 
@@ -195,6 +195,9 @@ def handle_mfa(
         },
     )
 
+    title = get_title(client.last_resp.text)
+    if title != "Success":
+        raise GarthException("MFA verification failed")
 
 def set_expirations(token: dict) -> dict:
     token["expires_at"] = int(time.time() + token["expires_in"])
