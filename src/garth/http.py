@@ -1,7 +1,7 @@
 import base64
 import json
 import os
-from typing import IO, Any, Dict, List, Literal, Tuple
+from typing import IO, Any, Dict, Literal, Tuple
 from urllib.parse import urljoin
 
 from requests import HTTPError, Response, Session
@@ -185,7 +185,7 @@ class Client:
 
     def connectapi(
         self, path: str, method="GET", **kwargs
-    ) -> Dict[str, Any] | List[Dict[str, Any]] | None:
+    ) -> dict[str, Any] | list[dict[str, Any]] | None:
         resp = self.request(method, "connectapi", path, api=True, **kwargs)
         if resp.status_code == 204:
             return None
