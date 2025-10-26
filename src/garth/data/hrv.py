@@ -58,8 +58,8 @@ class HRVData(Data):
         hrv_data = client.connectapi(path)
         if not hrv_data:
             return None
-        hrv_data = camel_to_snake_dict(hrv_data)
         assert isinstance(hrv_data, dict)
+        hrv_data = camel_to_snake_dict(hrv_data)
         return cls(**hrv_data)
 
     @classmethod

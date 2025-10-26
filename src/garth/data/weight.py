@@ -45,7 +45,9 @@ class WeightData(Data):
         client = client or http.client
         path = f"/weight-service/weight/dayview/{day}"
         data = client.connectapi(path)
-        day_weight_list = data["dateWeightList"] if data else []
+        if not data or not isinstance(data, dict):
+            return None
+        day_weight_list = data["dateWeightList"]
 
         if not day_weight_list:
             return None
@@ -70,7 +72,9 @@ class WeightData(Data):
         data = client.connectapi(
             f"/weight-service/weight/range/{start}/{end}?includeAll=true"
         )
-        weight_summaries = data["dailyWeightSummaries"] if data else []
+        if not data or not isinstance(data, dict):
+            return []
+        weight_summaries = data["dailyWeightSummaries"]
         weight_metrics = chain.from_iterable(
             summary["allWeightMetrics"] for summary in weight_summaries
         )
