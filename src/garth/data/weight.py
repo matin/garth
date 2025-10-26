@@ -72,7 +72,7 @@ class WeightData(Data):
             f"/weight-service/weight/range/{start}/{end}?includeAll=true"
         )
         assert isinstance(data, dict)
-        weight_summaries = data["dailyWeightSummaries"]
+        weight_summaries = data["dailyWeightSummaries"] if data else []
         weight_metrics = chain.from_iterable(
             summary["allWeightMetrics"] for summary in weight_summaries
         )
