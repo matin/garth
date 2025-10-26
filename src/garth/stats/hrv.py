@@ -61,6 +61,7 @@ class DailyHRV:
         response = client.connectapi(path)
         if response is None:
             return []
+        assert isinstance(response, dict)
         daily_hrv = camel_to_snake_dict(response)["hrv_summaries"]
         daily_hrv = cast(list[dict[str, Any]], daily_hrv)
         return [cls(**hrv) for hrv in daily_hrv]

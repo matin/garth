@@ -206,6 +206,7 @@ class Client:
             files=files,
         )
         assert result is not None, "No result from upload"
+        assert isinstance(result, dict)
         return result
 
     def dump(self, dir_path: str):
