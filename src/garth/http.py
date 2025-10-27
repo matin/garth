@@ -185,7 +185,7 @@ class Client:
 
     def connectapi(
         self, path: str, method="GET", **kwargs
-    ) -> Dict[str, Any] | None:
+    ) -> dict[str, Any] | list[dict[str, Any]] | None:
         resp = self.request(method, "connectapi", path, api=True, **kwargs)
         if resp.status_code == 204:
             return None
@@ -206,6 +206,7 @@ class Client:
             files=files,
         )
         assert result is not None, "No result from upload"
+        assert isinstance(result, dict)
         return result
 
     def dump(self, dir_path: str):

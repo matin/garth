@@ -58,8 +58,10 @@ class HRVData(Data):
         hrv_data = client.connectapi(path)
         if not hrv_data:
             return None
+        assert isinstance(hrv_data, dict), (
+            f"Expected dict from {path}, got {type(hrv_data).__name__}"
+        )
         hrv_data = camel_to_snake_dict(hrv_data)
-        assert isinstance(hrv_data, dict)
         return cls(**hrv_data)
 
     @classmethod

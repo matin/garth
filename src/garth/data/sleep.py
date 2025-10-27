@@ -111,8 +111,10 @@ class SleepData(Data):
         )
         sleep_data = client.connectapi(path)
         assert sleep_data
+        assert isinstance(sleep_data, dict), (
+            f"Expected dict from {path}, got {type(sleep_data).__name__}"
+        )
         sleep_data = camel_to_snake_dict(sleep_data)
-        assert isinstance(sleep_data, dict)
         return (
             cls(**sleep_data) if sleep_data["daily_sleep_dto"]["id"] else None
         )
