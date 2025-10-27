@@ -185,11 +185,7 @@ class Client:
 
     def connectapi(
         self, path: str, method="GET", **kwargs
-<<<<<<< HEAD
     ) -> dict[str, Any] | list[dict[str, Any]] | None:
-=======
-    ) -> dict[str, Any] | None:
->>>>>>> 89e2476 (enforcing modern python syntax)
         resp = self.request(method, "connectapi", path, api=True, **kwargs)
         if resp.status_code == 204:
             return None
