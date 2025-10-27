@@ -1,7 +1,7 @@
 import dataclasses
 import re
 from datetime import date, datetime, timedelta, timezone
-from typing import Any, Dict, List, Union
+from typing import Any
 
 
 CAMEL_TO_SNAKE = re.compile(
@@ -14,12 +14,12 @@ def camel_to_snake(camel_str: str) -> str:
     return snake_str.lower()
 
 
-def camel_to_snake_dict(camel_dict: Dict[str, Any]) -> Dict[str, Any]:
+def camel_to_snake_dict(camel_dict: dict[str, Any]) -> dict[str, Any]:
     """
     Converts a dictionary's keys from camel case to snake case. This version
     handles nested dictionaries and lists.
     """
-    snake_dict: Dict[str, Any] = {}
+    snake_dict: dict[str, Any] = {}
     for k, v in camel_dict.items():
         new_key = camel_to_snake(k)
         if isinstance(v, dict):
@@ -33,7 +33,7 @@ def camel_to_snake_dict(camel_dict: Dict[str, Any]) -> Dict[str, Any]:
     return snake_dict
 
 
-def format_end_date(end: Union[date, str, None]) -> date:
+def format_end_date(end: date | str | None) -> date:
     if end is None:
         end = date.today()
     elif isinstance(end, str):
@@ -41,7 +41,7 @@ def format_end_date(end: Union[date, str, None]) -> date:
     return end
 
 
-def date_range(date_: Union[date, str], days: int):
+def date_range(date_: date | str, days: int):
     date_ = date_ if isinstance(date_, date) else date.fromisoformat(date_)
     for day in range(days):
         yield date_ - timedelta(days=day)
@@ -55,7 +55,7 @@ def asdict(obj):
             result[field.name] = asdict(value)
         return result
 
-    if isinstance(obj, List):
+    if isinstance(obj, list):
         return [asdict(v) for v in obj]
 
     if isinstance(obj, (datetime, date)):

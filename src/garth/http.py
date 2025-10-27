@@ -1,7 +1,7 @@
 import base64
 import json
 import os
-from typing import IO, Any, Dict, Literal, Tuple
+from typing import IO, Any, Literal
 from urllib.parse import urljoin
 
 from requests import HTTPError, Response, Session
@@ -24,11 +24,11 @@ class Client:
     oauth2_token: OAuth2Token | dict[str, Any] | None = None
     timeout: int = 10
     retries: int = 3
-    status_forcelist: Tuple[int, ...] = (408, 429, 500, 502, 503, 504)
+    status_forcelist: tuple[int, ...] = (408, 429, 500, 502, 503, 504)
     backoff_factor: float = 0.5
     pool_connections: int = 10
     pool_maxsize: int = 10
-    _user_profile: Dict[str, Any] | None = None
+    _user_profile: dict[str, Any] | None = None
 
     def __init__(self, session: Session | None = None, **kwargs):
         self.sess = session if session else Session()
@@ -47,11 +47,11 @@ class Client:
         oauth1_token: OAuth1Token | None = None,
         oauth2_token: OAuth2Token | None = None,
         domain: str | None = None,
-        proxies: Dict[str, str] | None = None,
+        proxies: dict[str, str] | None = None,
         ssl_verify: bool | None = None,
         timeout: int | None = None,
         retries: int | None = None,
-        status_forcelist: Tuple[int, ...] | None = None,
+        status_forcelist: tuple[int, ...] | None = None,
         backoff_factor: float | None = None,
         pool_connections: int | None = None,
         pool_maxsize: int | None = None,
@@ -197,7 +197,7 @@ class Client:
 
     def upload(
         self, fp: IO[bytes], /, path: str = "/upload-service/upload"
-    ) -> Dict[str, Any]:
+    ) -> dict[str, Any]:
         fname = os.path.basename(fp.name)
         files = {"file": (fname, fp)}
         result = self.connectapi(
