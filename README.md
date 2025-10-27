@@ -905,6 +905,127 @@ garth.WeightData.list("2025-06-01", 30)
 ]
 ```
 
+### Daily Summary
+
+Retrieve user's daily summary for given date.
+
+```python
+garth.DailySummary.get("2025-06-14")
+```
+
+```python
+DailySummary(
+    user_profile_id=131234790,
+    calendar_date=datetime.date(2025, 6, 14),
+    total_kilocalories=2252,
+    active_kilocalories=99,
+    total_steps=5459,
+    total_distance_meters=4471,
+    min_heart_rate=49,
+    max_heart_rate=104,
+    min_avg_heart_rate=50,
+    max_avg_heart_rate=101,
+    resting_heart_rate=51,
+    last_seven_days_avg_resting_heart_rate=50,
+    max_stress_level=99,
+    average_stress_level=24,
+    stress_qualifier='BALANCED',
+    body_battery_at_wake_time=92,
+    body_battery_highest_value=92,
+    body_battery_lowest_value=32,
+    moderate_intensity_minutes=0,
+    vigorous_intensity_minutes=0,
+    active_seconds=3828,
+    highly_active_seconds=345,
+    sedentary_seconds=53385,
+    sleeping_seconds=28842,
+    floors_ascended=4.31299,
+    floors_descended=8.86286,
+    average_spo_2=None,
+    lowest_spo_2=None,
+    avg_waking_respiration_value=14,
+    highest_respiration_value=23,
+    lowest_respiration_value=6
+)
+```
+
+Or get data for a certain range.
+
+```python
+garth.DailySummary.list("2025-06-14", 2)
+```
+
+```python
+[
+    DailySummary(
+        user_profile_id=131234790,
+        calendar_date=datetime.date(2025, 6, 14),
+        total_kilocalories=2252,
+        active_kilocalories=99,
+        total_steps=5459,
+        total_distance_meters=4471,
+        min_heart_rate=49,
+        max_heart_rate=104,
+        min_avg_heart_rate=50,
+        max_avg_heart_rate=101,
+        resting_heart_rate=51,
+        last_seven_days_avg_resting_heart_rate=50,
+        max_stress_level=99,
+        average_stress_level=24,
+        stress_qualifier='BALANCED',
+        body_battery_at_wake_time=92,
+        body_battery_highest_value=92,
+        body_battery_lowest_value=32,
+        moderate_intensity_minutes=0,
+        vigorous_intensity_minutes=0,
+        active_seconds=3828,
+        highly_active_seconds=345,
+        sedentary_seconds=53385,
+        sleeping_seconds=28842,
+        floors_ascended=4.31299,
+        floors_descended=8.86286,
+        average_spo_2=None,
+        lowest_spo_2=None,
+        avg_waking_respiration_value=14,
+        highest_respiration_value=23,
+        lowest_respiration_value=6
+    ),
+    DailySummary(
+        user_profile_id=131234790,
+        calendar_date=datetime.date(2025, 6, 13),
+        total_kilocalories=2484,
+        active_kilocalories=331,
+        total_steps=11400,
+        total_distance_meters=9726,
+        min_heart_rate=46,
+        max_heart_rate=130,
+        min_avg_heart_rate=47,
+        max_avg_heart_rate=127,
+        resting_heart_rate=49,
+        last_seven_days_avg_resting_heart_rate=49,
+        max_stress_level=90,
+        average_stress_level=23,
+        stress_qualifier='BALANCED',
+        body_battery_at_wake_time=100,
+        body_battery_highest_value=100,
+        body_battery_lowest_value=27,
+        moderate_intensity_minutes=30,
+        vigorous_intensity_minutes=2,
+        active_seconds=6478,
+        highly_active_seconds=2203,
+        sedentary_seconds=48657,
+        sleeping_seconds=29062,
+        floors_ascended=23.72441,
+        floors_descended=23.06759,
+        average_spo_2=None,
+        lowest_spo_2=None,
+        avg_waking_respiration_value=15,
+        highest_respiration_value=23,
+        lowest_respiration_value=7
+    )
+]
+```
+
 ## User
 
 ### UserProfile
