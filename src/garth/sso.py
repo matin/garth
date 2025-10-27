@@ -1,7 +1,8 @@
 import asyncio
 import re
 import time
-from typing import Any, Callable, Dict, Literal, Tuple
+from collections.abc import Callable
+from typing import Any, Literal
 from urllib.parse import parse_qs
 
 import requests
@@ -16,7 +17,7 @@ from .exc import GarthException
 CSRF_RE = re.compile(r'name="_csrf"\s+value="(.+?)"')
 TITLE_RE = re.compile(r"<title>(.+?)</title>")
 OAUTH_CONSUMER_URL = "https://thegarth.s3.amazonaws.com/oauth_consumer.json"
-OAUTH_CONSUMER: Dict[str, str] = {}
+OAUTH_CONSUMER: dict[str, str] = {}
 USER_AGENT = {"User-Agent": "com.garmin.android.apps.connectmobile"}
 
 
@@ -49,8 +50,8 @@ def login(
     prompt_mfa: Callable | None = lambda: input("MFA code: "),
     return_on_mfa: bool = False,
 ) -> (
-    Tuple[OAuth1Token, OAuth2Token]
-    | Tuple[Literal["needs_mfa"], dict[str, Any]]
+    tuple[OAuth1Token, OAuth2Token]
+    | tuple[Literal["needs_mfa"], dict[str, Any]]
 ):
     """Login to Garmin Connect.
 
@@ -220,7 +221,7 @@ def get_title(html: str) -> str:
 
 def resume_login(
     client_state: dict, mfa_code: str
-) -> Tuple[OAuth1Token, OAuth2Token]:
+) -> tuple[OAuth1Token, OAuth2Token]:
     """Complete login after MFA code is provided.
 
     Args:
@@ -236,7 +237,7 @@ def resume_login(
     return _complete_login(client)
 
 
-def _complete_login(client: "http.Client") -> Tuple[OAuth1Token, OAuth2Token]:
+def _complete_login(client: "http.Client") -> tuple[OAuth1Token, OAuth2Token]:
     """Complete the login process after successful authentication.
 
     Args:

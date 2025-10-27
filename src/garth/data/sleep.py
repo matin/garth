@@ -1,5 +1,4 @@
 from datetime import date, datetime
-from typing import Optional, Union
 
 from pydantic.dataclasses import dataclass
 from typing_extensions import Self
@@ -12,11 +11,11 @@ from ._base import Data
 @dataclass
 class Score:
     qualifier_key: str
-    optimal_start: Optional[float] = None
-    optimal_end: Optional[float] = None
-    value: Optional[int] = None
-    ideal_start_in_seconds: Optional[float] = None
-    ideal_end_in_seconds: Optional[float] = None
+    optimal_start: float | None = None
+    optimal_end: float | None = None
+    value: int | None = None
+    ideal_start_in_seconds: float | None = None
+    ideal_end_in_seconds: float | None = None
 
 
 @dataclass
@@ -46,30 +45,30 @@ class DailySleepDTO:
     sleep_end_timestamp_local: int
     device_rem_capable: bool
     retro: bool
-    unmeasurable_sleep_seconds: Optional[int] = None
-    deep_sleep_seconds: Optional[int] = None
-    light_sleep_seconds: Optional[int] = None
-    rem_sleep_seconds: Optional[int] = None
-    awake_sleep_seconds: Optional[int] = None
-    sleep_from_device: Optional[bool] = None
-    sleep_version: Optional[int] = None
-    awake_count: Optional[int] = None
-    sleep_scores: Optional[SleepScores] = None
-    auto_sleep_start_timestamp_gmt: Optional[int] = None
-    auto_sleep_end_timestamp_gmt: Optional[int] = None
-    sleep_quality_type_pk: Optional[int] = None
-    sleep_result_type_pk: Optional[int] = None
-    average_sp_o2_value: Optional[float] = None
-    lowest_sp_o2_value: Optional[int] = None
-    highest_sp_o2_value: Optional[int] = None
-    average_sp_o2_hr_sleep: Optional[float] = None
-    average_respiration_value: Optional[float] = None
-    lowest_respiration_value: Optional[float] = None
-    highest_respiration_value: Optional[float] = None
-    avg_sleep_stress: Optional[float] = None
-    age_group: Optional[str] = None
-    sleep_score_feedback: Optional[str] = None
-    sleep_score_insight: Optional[str] = None
+    unmeasurable_sleep_seconds: int | None = None
+    deep_sleep_seconds: int | None = None
+    light_sleep_seconds: int | None = None
+    rem_sleep_seconds: int | None = None
+    awake_sleep_seconds: int | None = None
+    sleep_from_device: bool | None = None
+    sleep_version: int | None = None
+    awake_count: int | None = None
+    sleep_scores: SleepScores | None = None
+    auto_sleep_start_timestamp_gmt: int | None = None
+    auto_sleep_end_timestamp_gmt: int | None = None
+    sleep_quality_type_pk: int | None = None
+    sleep_result_type_pk: int | None = None
+    average_sp_o2_value: float | None = None
+    lowest_sp_o2_value: int | None = None
+    highest_sp_o2_value: int | None = None
+    average_sp_o2_hr_sleep: float | None = None
+    average_respiration_value: float | None = None
+    lowest_respiration_value: float | None = None
+    highest_respiration_value: float | None = None
+    avg_sleep_stress: float | None = None
+    age_group: str | None = None
+    sleep_score_feedback: str | None = None
+    sleep_score_insight: str | None = None
 
     @property
     def sleep_start(self) -> datetime:
@@ -94,16 +93,16 @@ class SleepMovement:
 @dataclass
 class SleepData(Data):
     daily_sleep_dto: DailySleepDTO
-    sleep_movement: Optional[list[SleepMovement]] = None
+    sleep_movement: list[SleepMovement] | None = None
 
     @classmethod
     def get(
         cls,
-        day: Union[date, str],
+        day: date | str,
         *,
         buffer_minutes: int = 60,
-        client: Optional[http.Client] = None,
-    ) -> Optional[Self]:
+        client: http.Client | None = None,
+    ) -> Self | None:
         client = client or http.client
         path = (
             f"/wellness-service/wellness/dailySleepData/{client.username}?"
