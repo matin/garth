@@ -43,7 +43,7 @@ class UserData:
     time_format: str
     birth_date: date
     measurement_system: str
-    activity_level: str | None
+    activity_level: int | None
     handedness: str
     power_format: PowerFormat
     heart_rate_format: PowerFormat
