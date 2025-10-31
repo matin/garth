@@ -1,0 +1,218 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/metrics-service/metrics/hillscore?calendarDate=2025-07-07
+  response:
+    body:
+      string: '{"userProfilePK": 131234790, "deviceId": 3345342345, "calendarDate":
+        "2025-07-07", "strengthScore": 2, "enduranceScore": 15, "hillScoreClassificationId":
+        1, "overallScore": 20, "hillScoreFeedbackPhraseId": 4, "vo2Max": 48.0, "vo2MaxPreciseValue":
+        48.0, "primaryTrainingDevice": true}'
+    headers:
+      CF-RAY:
+      - 95d8ecf20c2e87f2-PRG
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Fri, 11 Jul 2025 14:17:39 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=YnQKbN9WmYtbC3r6NUY9EtTgoUdZB38k4hwvWmfnibXcoznIJRphqH2uuNnGyc9SIEjYxZPJQ9Ljq0b2YMeGXKzA%2FlnKywPKlCeiQKgkNSRSwEtYDh6ZAnlKHNIECIaumQOZkXxy5g%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - _cfuvid=SANITIZED
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/metrics-service/metrics/endurancescore?calendarDate=2025-07-07
+  response:
+    body:
+      string: '{"userProfilePK": 131234790, "deviceId": 3345342345, "calendarDate":
+        "2025-07-07", "overallScore": 4820, "classification": 1, "feedbackPhrase":
+        30, "primaryTrainingDevice": true, "gaugeLowerLimit": 3570, "classificationLowerLimitIntermediate":
+        5100, "classificationLowerLimitTrained": 5800, "classificationLowerLimitWellTrained":
+        6600, "classificationLowerLimitExpert": 7300, "classificationLowerLimitSuperior":
+        8100, "classificationLowerLimitElite": 8800, "gaugeUpperLimit": 10560, "contributors":
+        [{"activityTypeId": 9, "group": null, "contribution": 43.02}, {"activityTypeId":
+        null, "group": 0, "contribution": 26.68}, {"activityTypeId": 3, "group": null,
+        "contribution": 23.8}, {"activityTypeId": null, "group": 8, "contribution":
+        6.5}]}'
+    headers:
+      CF-RAY:
+      - 95d8ecf38d8c6e9a-PRG
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Fri, 11 Jul 2025 14:17:39 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=eFcXSVvPArNQOdtxkc1SrNfrZWCGQ1qIUK4pqvx%2FaMF2jOlJidbOCGgahNooZ0x2bWijG1xOzQ%2BUwIFmunLbYKo2lk98qO1IHRxntxtrNSoKCpyQvBoVLQYNTDrsNlPDA%2F8K%2FhSffg%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - _cfuvid=SANITIZED
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/metrics-service/metrics/hillscore?calendarDate=2025-07-06
+  response:
+    body:
+      string: '{"userProfilePK": 131234790, "deviceId": 3345342345, "calendarDate":
+        "2025-07-06", "strengthScore": 2, "enduranceScore": 15, "hillScoreClassificationId":
+        1, "overallScore": 20, "hillScoreFeedbackPhraseId": 44, "vo2Max": 48.0, "vo2MaxPreciseValue":
+        48.0, "primaryTrainingDevice": true}'
+    headers:
+      CF-RAY:
+      - 95d8ecf5081236f5-PRG
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Fri, 11 Jul 2025 14:17:39 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=zmLaM9NZTMvpMEJbNBisfOCe%2B8gDnpZNRNdTc1fPiZTj8521F8mQWVIzhozCVMNtA8xp7GXStcq5DryAa7wmnuKAJXAWwaZ63%2FooYRdDhT8lJMXxn87A8aB9DJteFgjkMlWZE1rtvg%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - _cfuvid=SANITIZED
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/metrics-service/metrics/endurancescore?calendarDate=2025-07-06
+  response:
+    body:
+      string: '{"userProfilePK": 131234790, "deviceId": 3345342345, "calendarDate":
+        "2025-07-06", "overallScore": 4820, "classification": 1, "feedbackPhrase":
+        30, "primaryTrainingDevice": true, "gaugeLowerLimit": 3570, "classificationLowerLimitIntermediate":
+        5100, "classificationLowerLimitTrained": 5800, "classificationLowerLimitWellTrained":
+        6600, "classificationLowerLimitExpert": 7300, "classificationLowerLimitSuperior":
+        8100, "classificationLowerLimitElite": 8800, "gaugeUpperLimit": 10560, "contributors":
+        [{"activityTypeId": 9, "group": null, "contribution": 43.02}, {"activityTypeId":
+        null, "group": 0, "contribution": 26.68}, {"activityTypeId": 3, "group": null,
+        "contribution": 23.8}, {"activityTypeId": null, "group": 8, "contribution":
+        6.5}]}'
+    headers:
+      CF-RAY:
+      - 95d8ecf719b62759-PRG
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Fri, 11 Jul 2025 14:17:39 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=5W7%2FRBAizPeLXbxNInT98%2FuCz4zr7XRqqsql9GNDtH6BBr5AG5IcQd715o2Ud0N%2FAJNW9hhGDPDfQFwy10mES0oT0yXWOqz4ju9aBxpPZ17dUm9uT73R04sS8gj%2Bp2r%2BetUs5wV92Q%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+version: 1
