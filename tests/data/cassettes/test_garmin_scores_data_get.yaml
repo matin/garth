@@ -1,0 +1,296 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Connection:
+      - keep-alive
+      User-Agent:
+      - python-requests/2.32.4
+    method: GET
+    uri: https://thegarth.s3.amazonaws.com/oauth_consumer.json
+  response:
+    body:
+      string: '{"consumer_key": "SANITIZED", "consumer_secret": "SANITIZED"}'
+    headers:
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '124'
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 09 Jul 2025 19:27:47 GMT
+      ETag:
+      - '"20240b1013cb35419bb5b2cff1407a4e"'
+      Last-Modified:
+      - Thu, 03 Aug 2023 00:16:11 GMT
+      Server:
+      - AmazonS3
+      x-amz-id-2:
+      - QVFDUnhgKpDHuPGkUK0v+VNiTYtqI0ekOSFgadoklEs/1Fyc0WFGR2iT5SqrxyMGLuhG3Qlb1Ro=
+      x-amz-request-id:
+      - QKJV1KSNAGJW1RP7
+      x-amz-server-side-encryption:
+      - AES256
+    status:
+      code: 200
+      message: OK
+- request:
+    body: mfa_token=SANITIZED
+    headers:
+      Accept:
+        SANITIZED
+      Accept-Encoding:
+        SANITIZED
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+        SANITIZED
+      Content-Length:
+      - '74'
+      Content-Type:
+        SANITIZED
+      User-Agent:
+        SANITIZED
+    method: POST
+    uri: https://connectapi.garmin.com/oauth-service/oauth/exchange/user/2.0
+  response:
+    body:
+      string: '{"scope": "COMMUNITY_COURSE_READ GARMINPAY_WRITE GOLF_API_READ ATP_READ
+        GHS_SAMD GHS_UPLOAD INSIGHTS_READ DIVE_API_READ COMMUNITY_COURSE_WRITE CONNECT_WRITE
+        GCOFFER_WRITE DI_OAUTH_2_AUTHORIZATION_CODE_CREATE GARMINPAY_READ DT_CLIENT_ANALYTICS_WRITE
+        GOLF_API_WRITE INSIGHTS_WRITE PRODUCT_SEARCH_READ OMT_CAMPAIGN_READ OMT_SUBSCRIPTION_READ
+        GCOFFER_READ CONNECT_READ ATP_WRITE", "jti": "SANITIZED", "access_token":
+        "SANITIZED", "token_type": "bearer", "refresh_token": "SANITIZED", "expires_in":
+        80337, "refresh_token_expires_in": 2591999}'
+    headers:
+      CF-RAY:
+      - 95ca387e9e24ae1d-PRG
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 09 Jul 2025 19:27:47 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=1tmh4uIGSf6YyhYkZM3K8UZ0zLwYjCMnwmSLsIyskyw9H%2BPWJkulc9%2FIxw%2F2hK6PLNQ4aWuVJy%2F7f9C%2BA68Cr2KtcG844TJnZG5YS6lOcCWAn%2F09%2BVzsg5NOe89u%2FkuNwlNYK1eCNw%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/metrics-service/metrics/hillscore?calendarDate=2025-07-07
+  response:
+    body:
+      string: '{"userProfilePK": 131234790, "deviceId": 3477316333, "calendarDate":
+        "2025-07-07", "strengthScore": 2, "enduranceScore": 15, "hillScoreClassificationId":
+        1, "overallScore": 20, "hillScoreFeedbackPhraseId": 4, "vo2Max": 48.0, "vo2MaxPreciseValue":
+        48.0, "primaryTrainingDevice": true}'
+    headers:
+      CF-RAY:
+      - 95ca38849951deac-PRG
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Wed, 09 Jul 2025 19:27:48 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=4VBTEfgx%2BEG4bdToqG57%2BO3p7TbQwLfg8g41nrH6l3L7x8SXYBW3G6KGJzegX3QONsOvgO6McPZcxKSUFYQmWfTVUaO%2FQgu2speZM2nNIbspqtOhQAl9LUtRE2rA%2BC0I4v%2F1vMWomA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - _cfuvid=SANITIZED
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/metrics-service/metrics/endurancescore?calendarDate=2025-07-07
+  response:
+    body:
+      string: '{"userProfilePK": 131234790, "deviceId": 3477316333, "calendarDate":
+        "2025-07-07", "overallScore": 4820, "classification": 1, "feedbackPhrase":
+        30, "primaryTrainingDevice": true, "gaugeLowerLimit": 3570, "classificationLowerLimitIntermediate":
+        5100, "classificationLowerLimitTrained": 5800, "classificationLowerLimitWellTrained":
+        6600, "classificationLowerLimitExpert": 7300, "classificationLowerLimitSuperior":
+        8100, "classificationLowerLimitElite": 8800, "gaugeUpperLimit": 10560, "contributors":
+        [{"activityTypeId": 9, "group": null, "contribution": 43.02}, {"activityTypeId":
+        null, "group": 0, "contribution": 26.68}, {"activityTypeId": 3, "group": null,
+        "contribution": 23.8}, {"activityTypeId": null, "group": 8, "contribution":
+        6.5}]}'
+    headers:
+      CF-RAY:
+      - 95ca38870b51f980-PRG
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Wed, 09 Jul 2025 19:27:48 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=ygxWYPFI%2FEhfZkO%2BY1ZsxEY0G29KRv7rVGBZBjsOzTXi96ygG1H2xMMKZSR6VEWxRFqEqMh5ba3dDludxprm%2B946DOIlXBvNCisV6pQJGBpAqO5SyFFA%2F05kspQTtPqxiU5YtcHk8A%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - _cfuvid=SANITIZED
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/metrics-service/metrics/hillscore?calendarDate=2024-07-07
+  response:
+    body:
+      string: ''
+    headers:
+      CF-RAY:
+      - 95ca3888eebe55c4-PRG
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Date:
+      - Wed, 09 Jul 2025 19:27:48 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=Jwuk0fj8CCNsh2b9LhaO%2FJcXbFctxBFCCAB70XuYDoraR%2B3NEowiPF8kguVQEZfQc1tJz%2BhJY9FdAXimgDFZ3XJetxIkW6JR%2FBX8cHh4mYf7m%2FkBubX4gObLx8ImUHJ%2BzB%2FqfH%2F7KQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 204
+      message: No Content
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - _cfuvid=SANITIZED
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/metrics-service/metrics/endurancescore?calendarDate=2024-07-07
+  response:
+    body:
+      string: ''
+    headers:
+      CF-RAY:
+      - 95ca388b7db5f96e-PRG
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Date:
+      - Wed, 09 Jul 2025 19:27:49 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=3eQRqRWO6eNs%2FCfeQ4HlowHhgesqtaI4nqsfBX%2B9KeUrxsHS7r%2BOy93I9ruZHNjKaA5PXWKYVPMmsowSbm4dgz%2FZNazrtuLJjAfgYB3X1oL19TX2WOgtWpAbswcYvx0YW9zU56EETg%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 204
+      message: No Content
+version: 1
