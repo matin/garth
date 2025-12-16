@@ -8,9 +8,9 @@ class BodyBatteryReading:
     """Individual Body Battery reading."""
 
     timestamp: int
+    version: float
     status: str | None = None
     level: int | None = None
-    version: float
 
 
 @dataclass
