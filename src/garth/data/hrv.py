@@ -20,8 +20,8 @@ class Baseline:
 class HRVSummary:
     calendar_date: date
     weekly_avg: int
-    last_night_avg: int | None
-    last_night_5_min_high: int
+    last_night_avg: int | None = None
+    last_night_5_min_high: int | None = None
     baseline: Baseline
     status: str
     feedback_phrase: str
@@ -44,10 +44,10 @@ class HRVData(Data):
     end_timestamp_gmt: datetime
     start_timestamp_local: datetime
     end_timestamp_local: datetime
-    sleep_start_timestamp_gmt: datetime
-    sleep_end_timestamp_gmt: datetime
-    sleep_start_timestamp_local: datetime
-    sleep_end_timestamp_local: datetime
+    sleep_start_timestamp_gmt: datetime | None = None
+    sleep_end_timestamp_gmt: datetime | None = None
+    sleep_start_timestamp_local: datetime | None = None
+    sleep_end_timestamp_local: datetime | None = None
 
     @classmethod
     def get(
