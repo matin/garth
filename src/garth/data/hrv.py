@@ -20,12 +20,12 @@ class Baseline:
 class HRVSummary:
     calendar_date: date
     weekly_avg: int
-    last_night_avg: int | None = None
-    last_night_5_min_high: int | None = None
     baseline: Baseline
     status: str
     feedback_phrase: str
     create_time_stamp: datetime
+    last_night_avg: int | None = None
+    last_night_5_min_high: int | None = None
 
 
 @dataclass
