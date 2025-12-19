@@ -110,16 +110,16 @@ def test_daily_body_battery_stress_get(authed_client: Client):
 def test_daily_body_battery_stress_get_no_data(authed_client: Client):
     # Test with a date that likely has no data
     daily_data = DailyBodyBatteryStress.get("2020-01-01", client=authed_client)
-    
+
     # Should return None if no data available
     assert daily_data is None or isinstance(daily_data, DailyBodyBatteryStress)
 
 
+@pytest.mark.vcr
 def test_daily_body_battery_stress_get_incomplete_data(authed_client: Client):
     daily_data = DailyBodyBatteryStress.get("2025-12-18", client=authed_client)
     assert all(r.level is not None for r in daily_data.body_battery_readings)
     assert all(r.status is not None for r in daily_data.body_battery_readings)
-
 
 
 @pytest.mark.vcr
