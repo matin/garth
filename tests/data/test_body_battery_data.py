@@ -118,6 +118,7 @@ def test_daily_body_battery_stress_get_no_data(authed_client: Client):
 @pytest.mark.vcr
 def test_daily_body_battery_stress_get_incomplete_data(authed_client: Client):
     daily_data = DailyBodyBatteryStress.get("2025-12-18", client=authed_client)
+    assert daily_data
     assert all(r.level is not None for r in daily_data.body_battery_readings)
     assert all(r.status is not None for r in daily_data.body_battery_readings)
 
