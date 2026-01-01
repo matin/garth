@@ -134,7 +134,9 @@ def login(
 
     if title != "Success":
         raise GarthException(
-            "MFA verification failed" if mfa_attempted else f"Login failed: {title}"
+            "MFA verification failed"
+            if mfa_attempted
+            else f"Login failed: {title}"
         )
     return _complete_login(client)
 
@@ -207,6 +209,7 @@ def handle_mfa(
     if title != "Success":
         raise GarthException("MFA verification failed")
 
+
 def set_expirations(token: dict) -> dict:
     token["expires_at"] = int(time.time() + token["expires_in"])
     token["refresh_token_expires_at"] = int(
@@ -245,11 +248,11 @@ def resume_login(
     signin_params = client_state["signin_params"]
     handle_mfa(client, signin_params, lambda: mfa_code)
     oauth1, oauth2 = _complete_login(client)
-    
+
     # Explicitly set tokens on the client
     client.oauth1_token = oauth1
     client.oauth2_token = oauth2
-    
+
     return oauth1, oauth2
 
 
