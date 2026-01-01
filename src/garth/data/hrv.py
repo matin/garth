@@ -20,12 +20,12 @@ class Baseline:
 class HRVSummary:
     calendar_date: date
     weekly_avg: int
-    last_night_avg: int | None
-    last_night_5_min_high: int
     baseline: Baseline
     status: str
     feedback_phrase: str
     create_time_stamp: datetime
+    last_night_avg: int | None = None
+    last_night_5_min_high: int | None = None
 
 
 @dataclass
@@ -44,10 +44,10 @@ class HRVData(Data):
     end_timestamp_gmt: datetime
     start_timestamp_local: datetime
     end_timestamp_local: datetime
-    sleep_start_timestamp_gmt: datetime
-    sleep_end_timestamp_gmt: datetime
-    sleep_start_timestamp_local: datetime
-    sleep_end_timestamp_local: datetime
+    sleep_start_timestamp_gmt: datetime | None = None
+    sleep_end_timestamp_gmt: datetime | None = None
+    sleep_start_timestamp_local: datetime | None = None
+    sleep_end_timestamp_local: datetime | None = None
 
     @classmethod
     def get(
@@ -58,8 +58,10 @@ class HRVData(Data):
         hrv_data = client.connectapi(path)
         if not hrv_data:
             return None
+        assert isinstance(hrv_data, dict), (
+            f"Expected dict from {path}, got {type(hrv_data).__name__}"
+        )
         hrv_data = camel_to_snake_dict(hrv_data)
-        assert isinstance(hrv_data, dict)
         return cls(**hrv_data)
 
     @classmethod

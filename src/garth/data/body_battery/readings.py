@@ -29,12 +29,15 @@ def parse_body_battery_readings(
     for values in body_battery_values_array or []:
         # Each reading requires 4 values: timestamp, status, level, version
         if len(values) >= 4:
+            timestamp, status, level, version, *_ = values
+            if level is None or status is None:
+                continue
             readings.append(
                 BodyBatteryReading(
-                    timestamp=values[0],
-                    status=values[1],
-                    level=values[2],
-                    version=values[3],
+                    timestamp=timestamp,
+                    status=status,
+                    level=level,
+                    version=version,
                 )
             )
     # Sort readings by timestamp to ensure chronological order

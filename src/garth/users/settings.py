@@ -1,5 +1,4 @@
 from datetime import date
-from typing import Dict
 
 from pydantic.dataclasses import dataclass
 from typing_extensions import Self
@@ -44,7 +43,7 @@ class UserData:
     time_format: str
     birth_date: date
     measurement_system: str
-    activity_level: str | None
+    activity_level: int | None
     handedness: str
     power_format: PowerFormat
     heart_rate_format: PowerFormat
@@ -58,7 +57,7 @@ class UserData:
     moderate_intensity_minutes_hr_zone: int
     vigorous_intensity_minutes_hr_zone: int
     hydration_measurement_unit: str
-    hydration_containers: list[Dict[str, float | str | None]]
+    hydration_containers: list[dict[str, float | str | None]]
     hydration_auto_goal_enabled: bool
     firstbeat_max_stress_score: float | None
     firstbeat_cycling_lt_timestamp: int | None
