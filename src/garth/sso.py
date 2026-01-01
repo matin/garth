@@ -115,6 +115,7 @@ def login(
         ),
     )
     title = get_title(client.last_resp.text)
+    mfa_attempted = False
 
     # Handle MFA
     if "MFA" in title:
@@ -124,11 +125,16 @@ def login(
                 "client": client,
             }
 
+        mfa_attempted = True
         handle_mfa(client, SIGNIN_PARAMS, prompt_mfa)
         title = get_title(client.last_resp.text)
 
     if title != "Success":
-        raise GarthException(f"Unexpected title: {title}")
+        raise GarthException(
+            "MFA verification failed"
+            if mfa_attempted
+            else f"Login failed: {title}"
+        )
     return _complete_login(client)
 
 
@@ -196,6 +202,10 @@ def handle_mfa(
         },
     )
 
+    title = get_title(client.last_resp.text)
+    if title != "Success":
+        raise GarthException("MFA verification failed")
+
 
 def set_expirations(token: dict) -> dict:
     token["expires_at"] = int(time.time() + token["expires_in"])
@@ -234,7 +244,13 @@ def resume_login(
     client = client_state["client"]
     signin_params = client_state["signin_params"]
     handle_mfa(client, signin_params, lambda: mfa_code)
-    return _complete_login(client)
+    oauth1, oauth2 = _complete_login(client)
+
+    # Explicitly set tokens on the client
+    client.oauth1_token = oauth1
+    client.oauth2_token = oauth2
+
+    return oauth1, oauth2
 
 
 def _complete_login(client: "http.Client") -> tuple[OAuth1Token, OAuth2Token]:
