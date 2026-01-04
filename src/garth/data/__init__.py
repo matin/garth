@@ -3,6 +3,7 @@ __all__ = [
     "BodyBatteryEvent",
     "BodyBatteryReading",
     "DailyBodyBatteryStress",
+    "DailySummary",
     "HRVData",
     "SleepData",
     "StressReading",
@@ -16,6 +17,7 @@ from .body_battery import (
     DailyBodyBatteryStress,
     StressReading,
 )
+from .daily_summary import DailySummary
 from .hrv import HRVData
 from .sleep import SleepData
 from .weight import WeightData
