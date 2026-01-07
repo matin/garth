@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+import builtins
 from datetime import date, datetime
 
 from pydantic.dataclasses import dataclass
@@ -93,7 +96,7 @@ class SleepMovement:
 @dataclass
 class SleepData(Data):
     daily_sleep_dto: DailySleepDTO
-    sleep_movement: list[SleepMovement] | None = None
+    sleep_movement: builtins.list[SleepMovement] | None = None
 
     @classmethod
     def get(

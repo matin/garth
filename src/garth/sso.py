@@ -1,4 +1,7 @@
+from __future__ import annotations
+
 import asyncio
+import inspect
 import re
 import time
 from collections.abc import Callable
@@ -46,7 +49,7 @@ def login(
     email: str,
     password: str,
     /,
-    client: "http.Client | None" = None,
+    client: http.Client | None = None,
     prompt_mfa: Callable | None = lambda: input("MFA code: "),
     return_on_mfa: bool = False,
 ) -> (
@@ -132,7 +135,7 @@ def login(
     return _complete_login(client)
 
 
-def get_oauth1_token(ticket: str, client: "http.Client") -> OAuth1Token:
+def get_oauth1_token(ticket: str, client: http.Client) -> OAuth1Token:
     sess = GarminOAuth1Session(parent=client.sess)
     base_url = f"https://connectapi.{client.domain}/oauth-service/oauth/"
     login_url = f"https://sso.{client.domain}/sso/embed"
@@ -151,7 +154,7 @@ def get_oauth1_token(ticket: str, client: "http.Client") -> OAuth1Token:
     return OAuth1Token(domain=client.domain, **token)  # type: ignore
 
 
-def exchange(oauth1: OAuth1Token, client: "http.Client") -> OAuth2Token:
+def exchange(oauth1: OAuth1Token, client: http.Client) -> OAuth2Token:
     sess = GarminOAuth1Session(
         resource_owner_key=oauth1.oauth_token,
         resource_owner_secret=oauth1.oauth_token_secret,
@@ -176,10 +179,10 @@ def exchange(oauth1: OAuth1Token, client: "http.Client") -> OAuth2Token:
 
 
 def handle_mfa(
-    client: "http.Client", signin_params: dict, prompt_mfa: Callable
+    client: http.Client, signin_params: dict, prompt_mfa: Callable
 ) -> None:
     csrf_token = get_csrf_token(client.last_resp.text)
-    if asyncio.iscoroutinefunction(prompt_mfa):
+    if inspect.iscoroutinefunction(prompt_mfa):
         mfa_code = asyncio.run(prompt_mfa())
     else:
         mfa_code = prompt_mfa()
@@ -237,7 +240,7 @@ def resume_login(
     return _complete_login(client)
 
 
-def _complete_login(client: "http.Client") -> tuple[OAuth1Token, OAuth2Token]:
+def _complete_login(client: http.Client) -> tuple[OAuth1Token, OAuth2Token]:
     """Complete the login process after successful authentication.
 
     Args:
