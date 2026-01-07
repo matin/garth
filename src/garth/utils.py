@@ -1,6 +1,6 @@
 import dataclasses
 import re
-from datetime import UTC, date, datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from typing import Any
 
 
@@ -69,5 +69,5 @@ def get_localized_datetime(
 ) -> datetime:
     local_diff = local_timestamp - gmt_timestamp
     local_offset = timezone(timedelta(milliseconds=local_diff))
-    gmt_time = datetime.fromtimestamp(gmt_timestamp / 1000, UTC)
+    gmt_time = datetime.fromtimestamp(gmt_timestamp / 1000, timezone.utc)
     return gmt_time.astimezone(local_offset)

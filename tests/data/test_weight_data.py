@@ -1,4 +1,4 @@
-from datetime import UTC, date, timedelta, timezone
+from datetime import date, timedelta, timezone
 
 import pytest
 
@@ -19,7 +19,7 @@ def test_get_daily_weight_data(authed_client: Client):
     assert weight_data.muscle_mass is not None
     # Timezone should match your account settings, my case is -6
     assert weight_data.datetime_local.tzinfo == timezone(timedelta(hours=-6))
-    assert weight_data.datetime_utc.tzinfo == UTC
+    assert weight_data.datetime_utc.tzinfo == timezone.utc
 
 
 @pytest.mark.vcr
