@@ -1,3 +1,6 @@
+from __future__ import annotations
+
+import builtins
 from datetime import date, datetime
 
 from pydantic.dataclasses import dataclass
@@ -39,7 +42,7 @@ class HRVReading:
 class HRVData(Data):
     user_profile_pk: int
     hrv_summary: HRVSummary
-    hrv_readings: list[HRVReading]
+    hrv_readings: builtins.list[HRVReading]
     start_timestamp_gmt: datetime
     end_timestamp_gmt: datetime
     start_timestamp_local: datetime

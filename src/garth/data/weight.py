@@ -1,9 +1,9 @@
 from datetime import date, datetime, timedelta
 from itertools import chain
+from typing import Self
 
 from pydantic import Field, ValidationInfo, field_validator
 from pydantic.dataclasses import dataclass
-from typing_extensions import Self
 
 from .. import http
 from ..utils import (

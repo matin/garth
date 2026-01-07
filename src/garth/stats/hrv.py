@@ -1,8 +1,7 @@
 from datetime import date, datetime, timedelta
-from typing import Any, ClassVar, cast
+from typing import Any, ClassVar, Self, cast
 
 from pydantic.dataclasses import dataclass
-from typing_extensions import Self
 
 from .. import http
 from ..utils import camel_to_snake_dict, format_end_date

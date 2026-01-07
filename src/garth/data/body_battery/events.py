@@ -1,9 +1,8 @@
 import logging
 from datetime import date, datetime
-from typing import Any
+from typing import Any, Self
 
 from pydantic.dataclasses import dataclass
-from typing_extensions import Self
 
 from ... import http
 from ...utils import format_end_date
