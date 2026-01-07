@@ -1,8 +1,9 @@
 import logging
 from datetime import date, datetime
-from typing import Any, Self
+from typing import Any
 
 from pydantic.dataclasses import dataclass
+from typing_extensions import Self
 
 from ... import http
 from ...utils import format_end_date
@@ -120,7 +121,7 @@ class BodyBatteryData(Data):
 
                     # Validate numeric fields
                     timezone_offset = event_data.get("timezoneOffset", 0)
-                    if not isinstance(timezone_offset, (int, float)):
+                    if not isinstance(timezone_offset, int | float):
                         logging.warning(
                             f"Invalid timezone_offset type: "
                             f"{type(timezone_offset)}, using 0"
@@ -128,7 +129,7 @@ class BodyBatteryData(Data):
                         timezone_offset = 0
 
                     duration_ms = event_data.get("durationInMilliseconds", 0)
-                    if not isinstance(duration_ms, (int, float)):
+                    if not isinstance(duration_ms, int | float):
                         logging.warning(
                             f"Invalid durationInMilliseconds type: "
                             f"{type(duration_ms)}, using 0"
@@ -136,7 +137,7 @@ class BodyBatteryData(Data):
                         duration_ms = 0
 
                     battery_impact = event_data.get("bodyBatteryImpact", 0)
-                    if not isinstance(battery_impact, (int, float)):
+                    if not isinstance(battery_impact, int | float):
                         logging.warning(
                             f"Invalid bodyBatteryImpact type: "
                             f"{type(battery_impact)}, using 0"
@@ -177,7 +178,7 @@ class BodyBatteryData(Data):
                 # Validate average_stress
                 avg_stress = item.get("averageStress")
                 if avg_stress is not None and not isinstance(
-                    avg_stress, (int, float)
+                    avg_stress, int | float
                 ):
                     logging.warning(
                         f"Invalid averageStress type: "

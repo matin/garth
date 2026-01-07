@@ -2,7 +2,8 @@ from abc import ABC, abstractmethod
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date
 from itertools import chain
-from typing import Self
+
+from typing_extensions import Self
 
 from .. import http
 from ..utils import date_range, format_end_date

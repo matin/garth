@@ -58,7 +58,7 @@ def asdict(obj):
     if isinstance(obj, list):
         return [asdict(v) for v in obj]
 
-    if isinstance(obj, (datetime, date)):
+    if isinstance(obj, datetime | date):
         return obj.isoformat()
 
     return obj

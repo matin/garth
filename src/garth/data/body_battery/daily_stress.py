@@ -1,8 +1,9 @@
 from datetime import date, datetime
 from functools import cached_property
-from typing import Any, Self
+from typing import Any
 
 from pydantic.dataclasses import dataclass
+from typing_extensions import Self
 
 from ... import http
 from ...utils import camel_to_snake_dict, format_end_date
