@@ -44,6 +44,14 @@ class GarminScoresData(Data):
 
         if not data_hill_score or not data_endurance_score:
             return None
+        assert isinstance(data_hill_score, dict), (
+            f"Expected dict from {path_hill_score}, "
+            f"got {type(data_hill_score).__name__}"
+        )
+        assert isinstance(data_endurance_score, dict), (
+            f"Expected dict from {path_endurance_score}, "
+            f"got {type(data_endurance_score).__name__}"
+        )
 
         data_hill_score = camel_to_snake_dict(data_hill_score)
         data_endurance_score = camel_to_snake_dict(data_endurance_score)

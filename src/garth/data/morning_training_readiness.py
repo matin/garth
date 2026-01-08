@@ -57,9 +57,8 @@ class MorningTrainingReadinessData(Data):
             None,
         )
 
-        # pragma: no cover
         if not morning_readiness_data:
-            return None
+            return None  # pragma: no cover
 
         morning_readiness_data = camel_to_snake_dict(morning_readiness_data)
         return cls(**morning_readiness_data)
