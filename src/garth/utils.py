@@ -33,6 +33,36 @@ def camel_to_snake_dict(camel_dict: dict[str, Any]) -> dict[str, Any]:
     return snake_dict
 
 
+def remove_dto_suffix(key: str) -> str:
+    """Remove _dto or DTO suffix from a key."""
+    if key.endswith("_dto"):
+        return key[:-4]
+    return key
+
+
+def remove_dto_suffix_from_dict(data: dict[str, Any]) -> dict[str, Any]:
+    """
+    Recursively remove _dto suffix from dictionary keys.
+
+    The activity detail endpoint returns keys like 'activity_type_dto' and
+    'summary_dto', while the list endpoint returns 'activity_type' and has
+    no summary. This function normalizes the keys for consistent field names.
+    """
+    result: dict[str, Any] = {}
+    for k, v in data.items():
+        new_key = remove_dto_suffix(k)
+        if isinstance(v, dict):
+            result[new_key] = remove_dto_suffix_from_dict(v)
+        elif isinstance(v, list):
+            result[new_key] = [
+                remove_dto_suffix_from_dict(i) if isinstance(i, dict) else i
+                for i in v
+            ]
+        else:
+            result[new_key] = v
+    return result
+
+
 def format_end_date(end: date | str | None) -> date:
     if end is None:
         end = date.today()

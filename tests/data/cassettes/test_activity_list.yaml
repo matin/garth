@@ -1,0 +1,195 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/activitylist-service/activities/search/activities?limit=3&start=0
+  response:
+    body:
+      string: '[{"activityId": 21482825013, "activityName": "Cuajimalpa de Morelos
+        - Base", "startTimeLocal": "2026-01-08 08:10:21", "startTimeGMT": "2026-01-08
+        14:10:21", "activityType": {"typeId": 6, "typeKey": "trail_running", "parentTypeId":
+        1, "isHidden": false, "restricted": false, "trimmable": true}, "eventType":
+        {"typeId": 9, "typeKey": "uncategorized", "sortOrder": 10}, "distance": 4261.18994140625,
+        "duration": 2223.326904296875, "elapsedDuration": 2225.44091796875, "movingDuration":
+        2216.0, "elevationGain": 151.0, "elevationLoss": 147.0, "averageSpeed": 1.9170000553131106,
+        "maxSpeed": 2.76200008392334, "startLatitude": 19.312051674351096, "startLongitude":
+        -99.31236407719553, "hasPolyline": true, "hasImages": false, "ownerId": 2591602,
+        "ownerDisplayName": "mtamizi", "ownerFullName": "Matin Tamizi", "ownerProfileImageUrlSmall":
+        "https://s3.amazonaws.com/garmin-connect-prod/profile_images/6302f021-0ec7-4dc9-b0c3-d5a19bc5a08c-2591602.png",
+        "ownerProfileImageUrlMedium": "https://s3.amazonaws.com/garmin-connect-prod/profile_images/685a19e9-a7be-4a11-9bf9-faca0c5d1f1a-2591602.png",
+        "ownerProfileImageUrlLarge": "https://s3.amazonaws.com/garmin-connect-prod/profile_images/73240e81-6e4d-43fc-8af8-c8f6c51b3b8f-2591602.png",
+        "calories": 390.0, "bmrCalories": 55.0, "averageHR": 142.0, "maxHR": 162.0,
+        "averageRunningCadenceInStepsPerMinute": 111.734375, "maxRunningCadenceInStepsPerMinute":
+        184.0, "steps": 5310, "userRoles": ["SCOPE_GOLF_API_READ", "SCOPE_DI_OAUTH_2_DEVICE_REVOCATION_WRITE",
+        "SCOPE_DI_OAUTH_2_CREATE_DI_USER", "SCOPE_ATP_READ", "SCOPE_DIVE_API_WRITE",
+        "SCOPE_COMMUNITY_COURSE_ADMIN_READ", "SCOPE_DIVE_API_READ", "SCOPE_DI_OAUTH_2_CLIENT_READ",
+        "SCOPE_CONNECT_WRITE", "SCOPE_COMMUNITY_COURSE_WRITE", "SCOPE_CONNECT_MCT_DAILY_LOG_READ",
+        "SCOPE_CONNECT_API_CREATE_UPDATE_USER", "SCOPE_MESSAGE_GENERATION_READ", "SCOPE_DI_OAUTH_2_CLIENT_REVOCATION_ADMIN",
+        "SCOPE_CONNECT_WEB_TEMPLATE_RENDER", "SCOPE_OMT_SUBSCRIPTION_ADMIN_READ",
+        "SCOPE_DI_OAUTH_2_MANAGED_STATUS_ADMIN_WRITE", "SCOPE_CONNECT_NON_SOCIAL_SHARED_READ",
+        "SCOPE_CONNECT_READ", "SCOPE_DI_OAUTH_2_PRERELEASE_PERMISSIONS_ADMIN_WRITE",
+        "SCOPE_DI_OAUTH_2_TOKEN_ADMIN", "ROLE_CONNECTUSER", "ROLE_FITNESS_USER", "ROLE_WELLNESS_USER",
+        "ROLE_OUTDOOR_USER", "ROLE_CONNECT_2_USER", "ROLE_DIVE_USER", "ROLE_TACX_APP_USER",
+        "ROLE_SP_FEATURE_5", "ROLE_MESSENGER_PROFILE_USER"], "privacy": {"typeId":
+        2, "typeKey": "private"}, "userPro": false, "hasVideo": false, "timeZoneId":
+        150, "beginTimestamp": 1767881421000, "sportTypeId": 1, "avgPower": 194.0,
+        "maxPower": 587.0, "aerobicTrainingEffect": 2.700000047683716, "anaerobicTrainingEffect":
+        0.0, "normPower": 226.0, "avgVerticalOscillation": 7.95, "avgGroundContactTime":
+        338.29998779296875, "avgStrideLength": 82.47999877929688, "vO2MaxValue": 45.0,
+        "avgVerticalRatio": 9.770000457763672, "workoutId": 3618356072, "deviceId":
+        3618356072, "minTemperature": 17.0, "maxTemperature": 24.0, "minElevation":
+        2999.800048828125, "maxElevation": 3145.39990234375, "maxDoubleCadence": 184.0,
+        "summarizedDiveInfo": {"summarizedDiveGases": []}, "maxVerticalSpeed": 0.8000488281250001,
+        "manufacturer": "GARMIN", "locationName": "Cuajimalpa de Morelos", "lapCount":
+        2, "endLatitude": 19.311103597283363, "endLongitude": -99.31316941045225,
+        "waterEstimated": 382.0, "trainingEffectLabel": "AEROBIC_BASE", "activityTrainingLoad":
+        50.886444091796875, "minActivityLapDuration": 3.3269999027252197, "aerobicTrainingEffectMessage":
+        "MAINTAINING_AEROBIC_BASE_7", "anaerobicTrainingEffectMessage": "NO_ANAEROBIC_BENEFIT_0",
+        "splitSummaries": [{"noOfSplits": 28, "totalAscent": 77.0, "duration": 660.1090087890625,
+        "splitType": "RWD_WALK", "numClimbSends": 0, "maxElevationGain": 20.0, "averageElevationGain":
+        3.0, "maxDistance": 142, "distance": 988.3099975585938, "averageSpeed": 1.496999979019165,
+        "maxSpeed": 2.2019999027252197, "numFalls": 0, "elevationLoss": 0.0}, {"noOfSplits":
+        1, "totalAscent": 151.0, "duration": 2223.326904296875, "splitType": "INTERVAL_ACTIVE",
+        "numClimbSends": 0, "maxElevationGain": 151.0, "averageElevationGain": 151.0,
+        "maxDistance": 4261, "distance": 4261.18994140625, "averageSpeed": 1.9170000553131104,
+        "maxSpeed": 2.76200008392334, "numFalls": 0, "elevationLoss": 147.0}, {"noOfSplits":
+        27, "totalAscent": 74.0, "duration": 1563.0260009765625, "splitType": "RWD_RUN",
+        "numClimbSends": 0, "maxElevationGain": 12.0, "averageElevationGain": 3.0,
+        "maxDistance": 2038, "distance": 3272.8798828125, "averageSpeed": 2.0940001010894775,
+        "maxSpeed": 2.76200008392334, "numFalls": 0, "elevationLoss": 147.0}], "hasSplits":
+        true, "moderateIntensityMinutes": 1, "vigorousIntensityMinutes": 35, "avgGradeAdjustedSpeed":
+        2.2239999771118164, "differenceBodyBattery": -9, "hasHeatMap": false, "fastestSplit_1000":
+        395.3139953613281, "fastestSplit_1609": 664.5800170898438, "hrTimeInZone_1":
+        376.545, "hrTimeInZone_2": 1601.888, "hrTimeInZone_3": 233.231, "hrTimeInZone_4":
+        10.999, "hrTimeInZone_5": 0.0, "powerTimeInZone_1": 518.883, "powerTimeInZone_2":
+        93.008, "powerTimeInZone_3": 40.999, "powerTimeInZone_4": 73.002, "powerTimeInZone_5":
+        39.998, "endTimeGMT": "2026-01-08 14:47:26", "qualifyingDive": false, "autoCalcCalories":
+        false, "favorite": false, "decoDive": false, "elevationCorrected": false,
+        "atpActivity": false, "purposeful": false, "manualActivity": false, "pr":
+        false, "parent": false}, {"activityId": 21461718086, "activityName": "Cuajimalpa
+        de Morelos Hiking", "startTimeLocal": "2026-01-06 07:14:18", "startTimeGMT":
+        "2026-01-06 13:14:18", "activityType": {"typeId": 3, "typeKey": "hiking",
+        "parentTypeId": 17, "isHidden": false, "restricted": false, "trimmable": true},
+        "eventType": {"typeId": 9, "typeKey": "uncategorized", "sortOrder": 10}, "distance":
+        3362.590087890625, "duration": 2145.94189453125, "elapsedDuration": 2349.037109375,
+        "movingDuration": 2114.0, "elevationGain": 143.0, "elevationLoss": 157.0,
+        "averageSpeed": 1.5670000314712524, "maxSpeed": 2.8550000190734863, "startLatitude":
+        19.312428692355752, "startLongitude": -99.31159730069339, "hasPolyline": true,
+        "hasImages": false, "ownerId": 2591602, "ownerDisplayName": "mtamizi", "ownerFullName":
+        "Matin Tamizi", "ownerProfileImageUrlSmall": "https://s3.amazonaws.com/garmin-connect-prod/profile_images/6302f021-0ec7-4dc9-b0c3-d5a19bc5a08c-2591602.png",
+        "ownerProfileImageUrlMedium": "https://s3.amazonaws.com/garmin-connect-prod/profile_images/685a19e9-a7be-4a11-9bf9-faca0c5d1f1a-2591602.png",
+        "ownerProfileImageUrlLarge": "https://s3.amazonaws.com/garmin-connect-prod/profile_images/73240e81-6e4d-43fc-8af8-c8f6c51b3b8f-2591602.png",
+        "calories": 302.0, "bmrCalories": 53.0, "averageHR": 133.0, "maxHR": 157.0,
+        "averageRunningCadenceInStepsPerMinute": 106.15625, "maxRunningCadenceInStepsPerMinute":
+        222.0, "steps": 4042, "userRoles": ["SCOPE_GOLF_API_READ", "SCOPE_DI_OAUTH_2_DEVICE_REVOCATION_WRITE",
+        "SCOPE_DI_OAUTH_2_CREATE_DI_USER", "SCOPE_ATP_READ", "SCOPE_DIVE_API_WRITE",
+        "SCOPE_COMMUNITY_COURSE_ADMIN_READ", "SCOPE_DIVE_API_READ", "SCOPE_DI_OAUTH_2_CLIENT_READ",
+        "SCOPE_CONNECT_WRITE", "SCOPE_COMMUNITY_COURSE_WRITE", "SCOPE_CONNECT_MCT_DAILY_LOG_READ",
+        "SCOPE_CONNECT_API_CREATE_UPDATE_USER", "SCOPE_MESSAGE_GENERATION_READ", "SCOPE_DI_OAUTH_2_CLIENT_REVOCATION_ADMIN",
+        "SCOPE_CONNECT_WEB_TEMPLATE_RENDER", "SCOPE_OMT_SUBSCRIPTION_ADMIN_READ",
+        "SCOPE_DI_OAUTH_2_MANAGED_STATUS_ADMIN_WRITE", "SCOPE_CONNECT_NON_SOCIAL_SHARED_READ",
+        "SCOPE_CONNECT_READ", "SCOPE_DI_OAUTH_2_PRERELEASE_PERMISSIONS_ADMIN_WRITE",
+        "SCOPE_DI_OAUTH_2_TOKEN_ADMIN", "ROLE_CONNECTUSER", "ROLE_FITNESS_USER", "ROLE_WELLNESS_USER",
+        "ROLE_OUTDOOR_USER", "ROLE_CONNECT_2_USER", "ROLE_DIVE_USER", "ROLE_TACX_APP_USER",
+        "ROLE_SP_FEATURE_5", "ROLE_MESSENGER_PROFILE_USER"], "privacy": {"typeId":
+        2, "typeKey": "private"}, "userPro": false, "hasVideo": false, "timeZoneId":
+        150, "beginTimestamp": 1767705258000, "sportTypeId": 17, "aerobicTrainingEffect":
+        2.4000000953674316, "anaerobicTrainingEffect": 0.0, "avgStrideLength": 88.22418239159332,
+        "deviceId": 3618356072, "minElevation": 2990.199951171875, "maxElevation":
+        3152.800048828125, "maxDoubleCadence": 222.0, "summarizedDiveInfo": {"summarizedDiveGases":
+        []}, "maxVerticalSpeed": 0.60009765625, "manufacturer": "GARMIN", "locationName":
+        "Cuajimalpa de Morelos", "lapCount": 2, "endLatitude": 19.312200034037232,
+        "endLongitude": -99.31180517189205, "waterEstimated": 328.0, "trainingEffectLabel":
+        "AEROBIC_BASE", "activityTrainingLoad": 37.229766845703125, "minActivityLapDuration":
+        1000.2760009765625, "aerobicTrainingEffectMessage": "MAINTAINING_AEROBIC_BASE_7",
+        "anaerobicTrainingEffectMessage": "NO_ANAEROBIC_BENEFIT_0", "splitSummaries":
+        [], "hasSplits": false, "moderateIntensityMinutes": 19, "vigorousIntensityMinutes":
+        17, "differenceBodyBattery": -4, "hasHeatMap": false, "hrTimeInZone_1": 609.999,
+        "hrTimeInZone_2": 464.306, "hrTimeInZone_3": 377.757, "hrTimeInZone_4": 0.0,
+        "hrTimeInZone_5": 0.0, "endTimeGMT": "2026-01-06 13:53:27", "qualifyingDive":
+        false, "autoCalcCalories": false, "favorite": false, "decoDive": false, "elevationCorrected":
+        false, "atpActivity": false, "purposeful": false, "manualActivity": false,
+        "pr": false, "parent": false}, {"activityId": 21419635589, "activityName":
+        "Bacalar Stand Up Paddleboarding", "startTimeLocal": "2026-01-02 07:12:43",
+        "startTimeGMT": "2026-01-02 12:12:43", "activityType": {"typeId": 239, "typeKey":
+        "stand_up_paddleboarding_v2", "parentTypeId": 228, "isHidden": false, "restricted":
+        false, "trimmable": true}, "eventType": {"typeId": 9, "typeKey": "uncategorized",
+        "sortOrder": 10}, "distance": 3196.52001953125, "duration": 3227.382080078125,
+        "elapsedDuration": 3227.382080078125, "movingDuration": 2681.0, "averageSpeed":
+        0.9900000095367432, "maxSpeed": 1.6349999904632568, "startLatitude": 18.729601185768843,
+        "startLongitude": -88.35249803960323, "hasPolyline": true, "hasImages": false,
+        "ownerId": 2591602, "ownerDisplayName": "mtamizi", "ownerFullName": "Matin
+        Tamizi", "ownerProfileImageUrlSmall": "https://s3.amazonaws.com/garmin-connect-prod/profile_images/6302f021-0ec7-4dc9-b0c3-d5a19bc5a08c-2591602.png",
+        "ownerProfileImageUrlMedium": "https://s3.amazonaws.com/garmin-connect-prod/profile_images/685a19e9-a7be-4a11-9bf9-faca0c5d1f1a-2591602.png",
+        "ownerProfileImageUrlLarge": "https://s3.amazonaws.com/garmin-connect-prod/profile_images/73240e81-6e4d-43fc-8af8-c8f6c51b3b8f-2591602.png",
+        "calories": 322.0, "bmrCalories": 79.0, "averageHR": 109.0, "maxHR": 153.0,
+        "userRoles": ["SCOPE_GOLF_API_READ", "SCOPE_DI_OAUTH_2_DEVICE_REVOCATION_WRITE",
+        "SCOPE_DI_OAUTH_2_CREATE_DI_USER", "SCOPE_ATP_READ", "SCOPE_DIVE_API_WRITE",
+        "SCOPE_COMMUNITY_COURSE_ADMIN_READ", "SCOPE_DIVE_API_READ", "SCOPE_DI_OAUTH_2_CLIENT_READ",
+        "SCOPE_CONNECT_WRITE", "SCOPE_COMMUNITY_COURSE_WRITE", "SCOPE_CONNECT_MCT_DAILY_LOG_READ",
+        "SCOPE_CONNECT_API_CREATE_UPDATE_USER", "SCOPE_MESSAGE_GENERATION_READ", "SCOPE_DI_OAUTH_2_CLIENT_REVOCATION_ADMIN",
+        "SCOPE_CONNECT_WEB_TEMPLATE_RENDER", "SCOPE_OMT_SUBSCRIPTION_ADMIN_READ",
+        "SCOPE_DI_OAUTH_2_MANAGED_STATUS_ADMIN_WRITE", "SCOPE_CONNECT_NON_SOCIAL_SHARED_READ",
+        "SCOPE_CONNECT_READ", "SCOPE_DI_OAUTH_2_PRERELEASE_PERMISSIONS_ADMIN_WRITE",
+        "SCOPE_DI_OAUTH_2_TOKEN_ADMIN", "ROLE_CONNECTUSER", "ROLE_FITNESS_USER", "ROLE_WELLNESS_USER",
+        "ROLE_OUTDOOR_USER", "ROLE_CONNECT_2_USER", "ROLE_DIVE_USER", "ROLE_TACX_APP_USER",
+        "ROLE_SP_FEATURE_5", "ROLE_MESSENGER_PROFILE_USER"], "privacy": {"typeId":
+        2, "typeKey": "private"}, "userPro": false, "hasVideo": false, "timeZoneId":
+        148, "beginTimestamp": 1767355963000, "sportTypeId": 37, "aerobicTrainingEffect":
+        1.600000023841858, "anaerobicTrainingEffect": 0.800000011920929, "strokes":
+        1483.0, "avgStrokeDistance": 205.9999942779541, "maxStrokeCadence": 61.0,
+        "deviceId": 3618356072, "summarizedDiveInfo": {"summarizedDiveGases": []},
+        "manufacturer": "GARMIN", "locationName": "Bacalar", "lapCount": 4, "endLatitude":
+        18.72972121462226, "endLongitude": -88.35265729576349, "waterEstimated": 443.0,
+        "trainingEffectLabel": "RECOVERY", "activityTrainingLoad": 24.111572265625,
+        "minActivityLapDuration": 645.72998046875, "aerobicTrainingEffectMessage":
+        "RECOVERY_5", "anaerobicTrainingEffectMessage": "NO_ANAEROBIC_BENEFIT_0",
+        "splitSummaries": [], "hasSplits": false, "moderateIntensityMinutes": 34,
+        "vigorousIntensityMinutes": 6, "differenceBodyBattery": -7, "hasHeatMap":
+        false, "hrTimeInZone_1": 507.992, "hrTimeInZone_2": 18.999, "hrTimeInZone_3":
+        7.001, "hrTimeInZone_4": 0.0, "hrTimeInZone_5": 0.0, "endTimeGMT": "2026-01-02
+        13:06:30", "qualifyingDive": false, "autoCalcCalories": false, "favorite":
+        false, "decoDive": false, "elevationCorrected": false, "atpActivity": false,
+        "purposeful": false, "manualActivity": false, "pr": false, "parent": false}]'
+    headers:
+      CF-RAY:
+      - 9baea4c13d35cc82-QRO
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Thu, 08 Jan 2026 21:03:47 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=cBIqNfQ84ku3lRzKjkLwOQXhO0Pd8ArJnFrbhZSqARaqfL8Wz29y7BMQujtI6WLrBK%2FfWAUKruW4Ouq%2BGtX8tD8ADTQCb2drA9nWWjQuRv9ke5e4aKZ22hwvvdGIOPTgo1K7GFQcnQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+version: 1

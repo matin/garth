@@ -6,6 +6,8 @@ from garth.utils import (
     camel_to_snake,
     camel_to_snake_dict,
     format_end_date,
+    remove_dto_suffix,
+    remove_dto_suffix_from_dict,
 )
 
 
@@ -63,3 +65,68 @@ def test_asdict():
     assert asdict("Test") == "Test"
     assert asdict(123) == 123
     assert asdict(None) is None
+
+
+def test_remove_dto_suffix():
+    # Keys ending with _dto should have suffix removed
+    assert remove_dto_suffix("activity_type_dto") == "activity_type"
+    assert remove_dto_suffix("summary_dto") == "summary"
+    assert remove_dto_suffix("event_type_dto") == "event_type"
+
+    # Keys not ending with _dto should be unchanged
+    assert remove_dto_suffix("activity_type") == "activity_type"
+    assert remove_dto_suffix("activity_id") == "activity_id"
+    assert remove_dto_suffix("dto_activity") == "dto_activity"
+    assert remove_dto_suffix("") == ""
+
+
+def test_remove_dto_suffix_from_dict():
+    # Simple dict with _dto keys
+    input_dict = {
+        "activity_type_dto": {"type_id": 1, "type_key": "running"},
+        "summary_dto": {"distance": 5000},
+        "activity_id": 123,
+    }
+    expected = {
+        "activity_type": {"type_id": 1, "type_key": "running"},
+        "summary": {"distance": 5000},
+        "activity_id": 123,
+    }
+    assert remove_dto_suffix_from_dict(input_dict) == expected
+
+    # Nested dict with _dto keys
+    input_dict = {
+        "outer_dto": {
+            "inner_dto": {"value": 1},
+            "other": "data",
+        }
+    }
+    expected = {
+        "outer": {
+            "inner": {"value": 1},
+            "other": "data",
+        }
+    }
+    assert remove_dto_suffix_from_dict(input_dict) == expected
+
+    # List of dicts with _dto keys
+    input_dict = {
+        "items_dto": [
+            {"item_dto": {"id": 1}},
+            {"item_dto": {"id": 2}},
+        ]
+    }
+    expected = {
+        "items": [
+            {"item": {"id": 1}},
+            {"item": {"id": 2}},
+        ]
+    }
+    assert remove_dto_suffix_from_dict(input_dict) == expected
+
+    # Empty dict
+    assert remove_dto_suffix_from_dict({}) == {}
+
+    # Dict with no _dto keys
+    input_dict = {"activity_id": 123, "name": "test"}
+    assert remove_dto_suffix_from_dict(input_dict) == input_dict
