@@ -118,7 +118,6 @@ def login(
         ),
     )
     title = get_title(client.last_resp.text)
-    mfa_attempted = False
 
     # Handle MFA
     if "MFA" in title:
@@ -128,16 +127,11 @@ def login(
                 "client": client,
             }
 
-        mfa_attempted = True
         handle_mfa(client, SIGNIN_PARAMS, prompt_mfa)
         title = get_title(client.last_resp.text)
 
     if title != "Success":
-        raise GarthException(
-            "MFA verification failed"
-            if mfa_attempted
-            else f"Login failed: {title}"
-        )
+        raise GarthException(f"Login failed: {title}")  # pragma: no cover
     return _complete_login(client)
 
 
