@@ -1,9 +1,40 @@
-from datetime import date, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 
 import pytest
 
 from garth.data import WeightData
 from garth.http import Client
+
+
+@pytest.mark.vcr
+def test_weight_data_timestamps_preserved(authed_client: Client):
+    """Test that raw timestamps are preserved and datetimes computed.
+
+    The API returns:
+    - timestampGMT: UTC timestamp in milliseconds
+    - date: local timestamp in milliseconds
+
+    These are stored as timestamp_gmt and timestamp_local (int),
+    with datetime_utc and datetime_local computed as properties.
+
+    See: https://github.com/matin/garth/issues/157
+    """
+    weight_data = WeightData.get(date(2025, 6, 15), client=authed_client)
+    assert weight_data is not None
+
+    # Raw timestamps should be preserved as int (milliseconds)
+    assert isinstance(weight_data.timestamp_gmt, int)
+    assert isinstance(weight_data.timestamp_local, int)
+    # From cassette: "timestampGMT": 1749996876000, "date": 1749975276000
+    assert weight_data.timestamp_gmt == 1749996876000
+    assert weight_data.timestamp_local == 1749975276000
+
+    # datetime_utc and datetime_local should be computed properties
+    expected_utc = datetime.fromtimestamp(
+        weight_data.timestamp_gmt / 1000, tz=timezone.utc
+    )
+    assert weight_data.datetime_utc == expected_utc
+    assert weight_data.datetime_local.tzinfo is not None
 
 
 @pytest.mark.vcr
