@@ -33,7 +33,13 @@ class GarminOAuth1Session(OAuth1Session):
     ):
         global OAUTH_CONSUMER
         if not OAUTH_CONSUMER:
-            OAUTH_CONSUMER = requests.get(OAUTH_CONSUMER_URL).json()
+            request_kwargs: dict[str, Any] = {}
+            if parent is not None:
+                request_kwargs["proxies"] = parent.proxies
+                request_kwargs["verify"] = parent.verify
+            OAUTH_CONSUMER = requests.get(
+                OAUTH_CONSUMER_URL, **request_kwargs
+            ).json()
         super().__init__(
             OAUTH_CONSUMER["consumer_key"],
             OAUTH_CONSUMER["consumer_secret"],
