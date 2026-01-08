@@ -52,7 +52,7 @@ class MorningTrainingReadinessData(Data):
             (
                 entry
                 for entry in data
-                if entry["inputContext"] == "AFTER_WAKEUP_RESET"
+                if entry.get("inputContext") == "AFTER_WAKEUP_RESET"
             ),
             None,
         )
