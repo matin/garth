@@ -1,6 +1,7 @@
 from .data import (
     BodyBatteryData,
     DailyBodyBatteryStress,
+    DailySummary,
     GarminScoresData,
     HRVData,
     MorningTrainingReadinessData,
@@ -33,6 +34,7 @@ __all__ = [
     "DailySleep",
     "DailySteps",
     "DailyStress",
+    "DailySummary",
     "GarminScoresData",
     "HRVData",
     "MorningTrainingReadinessData",
