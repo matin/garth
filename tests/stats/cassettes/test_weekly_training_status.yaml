@@ -1,0 +1,250 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/mobile-gateway/usersummary/trainingstatus/weekly/2025-05-21/2025-06-11
+  response:
+    body:
+      string: '{"vo2MaxWeeklyStatistics": {"requestUrl": "/metrics-service/metrics/maxmet/stats/daily/2025-05-21/2025-06-11",
+        "statusCode": 200, "headers": {}, "errorMessage": null, "payload": {"userProfileId":
+        2591602, "statisticsStartDate": "2025-05-21", "statisticsEndDate": "2025-06-11",
+        "allMetrics": {"metricsMap": {"ACTIVITY_VO2_MAX": [{"value": 46.0, "calendarDate":
+        "2025-05-22"}, {"value": 47.0, "calendarDate": "2025-05-30"}, {"value": 48.0,
+        "calendarDate": "2025-05-31"}, {"value": 48.0, "calendarDate": "2025-06-01"},
+        {"value": 46.0, "calendarDate": "2025-06-03"}, {"value": 46.0, "calendarDate":
+        "2025-06-05"}, {"value": 48.0, "calendarDate": "2025-06-07"}, {"value": 49.0,
+        "calendarDate": "2025-06-09"}, {"value": 47.0, "calendarDate": "2025-06-10"}]}},
+        "groupedMetrics": null}, "successful": true}, "weeklyTrainingStatus": {"requestUrl":
+        "/metrics-service/metrics/trainingstatus/weekly/mtamizi", "statusCode": 200,
+        "headers": {}, "errorMessage": null, "payload": {"userId": 2591602, "fromCalendarDate":
+        "2025-05-21", "toCalendarDate": "2025-06-11", "showSelector": false, "recordedDevices":
+        [{"deviceId": 3469703076, "imageURL": "https://res.garmin.com/en/products/010-02778-10/v/c1_01_md.png",
+        "deviceName": "fenix 7X Pro Sapphire Solar", "category": 0}], "reportData":
+        {"3469703076": [{"calendarDate": "2025-05-21", "sinceDate": null, "weeklyTrainingLoad":
+        null, "trainingStatus": 4, "timestamp": 1747839970000, "deviceId": 3469703076,
+        "loadTunnelMin": null, "loadTunnelMax": null, "loadLevelTrend": null, "sport":
+        "RUNNING", "subSport": "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend":
+        2, "trainingStatusFeedbackPhrase": "MAINTAINING_2", "trainingPaused": false,
+        "acuteTrainingLoadDTO": {"acwrPercent": 42, "acwrStatus": "OPTIMAL", "acwrStatusFeedback":
+        "FEEDBACK_2", "dailyTrainingLoadAcute": 224, "maxTrainingLoadChronic": 328.5,
+        "minTrainingLoadChronic": 175.20000000000002, "dailyTrainingLoadChronic":
+        219, "dailyAcuteChronicWorkloadRatio": 1.0}, "primaryTrainingDevice": true},
+        {"calendarDate": "2025-05-22", "sinceDate": null, "weeklyTrainingLoad": null,
+        "trainingStatus": 7, "timestamp": 1747923745000, "deviceId": 3469703076, "loadTunnelMin":
+        null, "loadTunnelMax": null, "loadLevelTrend": null, "sport": "RUNNING", "subSport":
+        "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend": 2, "trainingStatusFeedbackPhrase":
+        "PRODUCTIVE_2", "trainingPaused": false, "acuteTrainingLoadDTO": {"acwrPercent":
+        61, "acwrStatus": "OPTIMAL", "acwrStatusFeedback": "FEEDBACK_3", "dailyTrainingLoadAcute":
+        325, "maxTrainingLoadChronic": 328.5, "minTrainingLoadChronic": 175.20000000000002,
+        "dailyTrainingLoadChronic": 219, "dailyAcuteChronicWorkloadRatio": 1.4}, "primaryTrainingDevice":
+        true}, {"calendarDate": "2025-05-23", "sinceDate": null, "weeklyTrainingLoad":
+        null, "trainingStatus": 7, "timestamp": 1748012055000, "deviceId": 3469703076,
+        "loadTunnelMin": null, "loadTunnelMax": null, "loadLevelTrend": null, "sport":
+        "RUNNING", "subSport": "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend":
+        2, "trainingStatusFeedbackPhrase": "PRODUCTIVE_2", "trainingPaused": false,
+        "acuteTrainingLoadDTO": {"acwrPercent": 52, "acwrStatus": "OPTIMAL", "acwrStatusFeedback":
+        "FEEDBACK_2", "dailyTrainingLoadAcute": 281, "maxTrainingLoadChronic": 328.5,
+        "minTrainingLoadChronic": 175.20000000000002, "dailyTrainingLoadChronic":
+        219, "dailyAcuteChronicWorkloadRatio": 1.2}, "primaryTrainingDevice": true},
+        {"calendarDate": "2025-05-24", "sinceDate": null, "weeklyTrainingLoad": null,
+        "trainingStatus": 4, "timestamp": 1748097489000, "deviceId": 3469703076, "loadTunnelMin":
+        null, "loadTunnelMax": null, "loadLevelTrend": null, "sport": "RUNNING", "subSport":
+        "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend": 2, "trainingStatusFeedbackPhrase":
+        "MAINTAINING_2", "trainingPaused": false, "acuteTrainingLoadDTO": {"acwrPercent":
+        42, "acwrStatus": "OPTIMAL", "acwrStatusFeedback": "FEEDBACK_2", "dailyTrainingLoadAcute":
+        236, "maxTrainingLoadChronic": 328.5, "minTrainingLoadChronic": 175.20000000000002,
+        "dailyTrainingLoadChronic": 219, "dailyAcuteChronicWorkloadRatio": 1.0}, "primaryTrainingDevice":
+        true}, {"calendarDate": "2025-05-25", "sinceDate": null, "weeklyTrainingLoad":
+        null, "trainingStatus": 4, "timestamp": 1748186502000, "deviceId": 3469703076,
+        "loadTunnelMin": null, "loadTunnelMax": null, "loadLevelTrend": null, "sport":
+        "RUNNING", "subSport": "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend":
+        2, "trainingStatusFeedbackPhrase": "MAINTAINING_2", "trainingPaused": false,
+        "acuteTrainingLoadDTO": {"acwrPercent": 33, "acwrStatus": "OPTIMAL", "acwrStatusFeedback":
+        "FEEDBACK_2", "dailyTrainingLoadAcute": 191, "maxTrainingLoadChronic": 328.5,
+        "minTrainingLoadChronic": 175.20000000000002, "dailyTrainingLoadChronic":
+        219, "dailyAcuteChronicWorkloadRatio": 0.8}, "primaryTrainingDevice": true},
+        {"calendarDate": "2025-05-26", "sinceDate": null, "weeklyTrainingLoad": null,
+        "trainingStatus": 4, "timestamp": 1748267375000, "deviceId": 3469703076, "loadTunnelMin":
+        null, "loadTunnelMax": null, "loadLevelTrend": null, "sport": "RUNNING", "subSport":
+        "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend": 2, "trainingStatusFeedbackPhrase":
+        "MAINTAINING_2", "trainingPaused": false, "acuteTrainingLoadDTO": {"acwrPercent":
+        29, "acwrStatus": "LOW", "acwrStatusFeedback": "FEEDBACK_1", "dailyTrainingLoadAcute":
+        157, "maxTrainingLoadChronic": 328.5, "minTrainingLoadChronic": 175.20000000000002,
+        "dailyTrainingLoadChronic": 219, "dailyAcuteChronicWorkloadRatio": 0.7}, "primaryTrainingDevice":
+        true}, {"calendarDate": "2025-05-27", "sinceDate": null, "weeklyTrainingLoad":
+        null, "trainingStatus": 5, "timestamp": 1748349880000, "deviceId": 3469703076,
+        "loadTunnelMin": null, "loadTunnelMax": null, "loadLevelTrend": null, "sport":
+        "RUNNING", "subSport": "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend":
+        2, "trainingStatusFeedbackPhrase": "RECOVERY_2", "trainingPaused": false,
+        "acuteTrainingLoadDTO": {"acwrPercent": 20, "acwrStatus": "LOW", "acwrStatusFeedback":
+        "FEEDBACK_1", "dailyTrainingLoadAcute": 124, "maxTrainingLoadChronic": 328.5,
+        "minTrainingLoadChronic": 175.20000000000002, "dailyTrainingLoadChronic":
+        219, "dailyAcuteChronicWorkloadRatio": 0.5}, "primaryTrainingDevice": true},
+        {"calendarDate": "2025-05-28", "sinceDate": null, "weeklyTrainingLoad": null,
+        "trainingStatus": 5, "timestamp": 1748436628000, "deviceId": 3469703076, "loadTunnelMin":
+        null, "loadTunnelMax": null, "loadLevelTrend": null, "sport": "RUNNING", "subSport":
+        "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend": 2, "trainingStatusFeedbackPhrase":
+        "RECOVERY_2", "trainingPaused": false, "acuteTrainingLoadDTO": {"acwrPercent":
+        16, "acwrStatus": "LOW", "acwrStatusFeedback": "FEEDBACK_1", "dailyTrainingLoadAcute":
+        90, "maxTrainingLoadChronic": 328.5, "minTrainingLoadChronic": 175.20000000000002,
+        "dailyTrainingLoadChronic": 219, "dailyAcuteChronicWorkloadRatio": 0.4}, "primaryTrainingDevice":
+        true}, {"calendarDate": "2025-05-29", "sinceDate": null, "weeklyTrainingLoad":
+        null, "trainingStatus": 1, "timestamp": 1748526852000, "deviceId": 3469703076,
+        "loadTunnelMin": null, "loadTunnelMax": null, "loadLevelTrend": null, "sport":
+        "RUNNING", "subSport": "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend":
+        2, "trainingStatusFeedbackPhrase": "DETRAINING", "trainingPaused": false,
+        "acuteTrainingLoadDTO": {"acwrPercent": 8, "acwrStatus": "LOW", "acwrStatusFeedback":
+        "FEEDBACK_1", "dailyTrainingLoadAcute": 59, "maxTrainingLoadChronic": 328.5,
+        "minTrainingLoadChronic": 175.20000000000002, "dailyTrainingLoadChronic":
+        219, "dailyAcuteChronicWorkloadRatio": 0.2}, "primaryTrainingDevice": true},
+        {"calendarDate": "2025-05-30", "sinceDate": null, "weeklyTrainingLoad": null,
+        "trainingStatus": 5, "timestamp": 1748611974000, "deviceId": 3469703076, "loadTunnelMin":
+        null, "loadTunnelMax": null, "loadLevelTrend": null, "sport": "RUNNING", "subSport":
+        "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend": 2, "trainingStatusFeedbackPhrase":
+        "RECOVERY_2", "trainingPaused": false, "acuteTrainingLoadDTO": {"acwrPercent":
+        29, "acwrStatus": "LOW", "acwrStatusFeedback": "FEEDBACK_1", "dailyTrainingLoadAcute":
+        161, "maxTrainingLoadChronic": 328.5, "minTrainingLoadChronic": 175.20000000000002,
+        "dailyTrainingLoadChronic": 219, "dailyAcuteChronicWorkloadRatio": 0.7}, "primaryTrainingDevice":
+        true}, {"calendarDate": "2025-05-31", "sinceDate": null, "weeklyTrainingLoad":
+        null, "trainingStatus": 7, "timestamp": 1748697393000, "deviceId": 3469703076,
+        "loadTunnelMin": null, "loadTunnelMax": null, "loadLevelTrend": null, "sport":
+        "RUNNING", "subSport": "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend":
+        2, "trainingStatusFeedbackPhrase": "PRODUCTIVE_2", "trainingPaused": false,
+        "acuteTrainingLoadDTO": {"acwrPercent": 57, "acwrStatus": "OPTIMAL", "acwrStatusFeedback":
+        "FEEDBACK_3", "dailyTrainingLoadAcute": 288, "maxTrainingLoadChronic": 328.5,
+        "minTrainingLoadChronic": 175.20000000000002, "dailyTrainingLoadChronic":
+        219, "dailyAcuteChronicWorkloadRatio": 1.3}, "primaryTrainingDevice": true},
+        {"calendarDate": "2025-06-01", "sinceDate": null, "weeklyTrainingLoad": null,
+        "trainingStatus": 7, "timestamp": 1748798711000, "deviceId": 3469703076, "loadTunnelMin":
+        null, "loadTunnelMax": null, "loadLevelTrend": null, "sport": "RUNNING", "subSport":
+        "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend": 2, "trainingStatusFeedbackPhrase":
+        "PRODUCTIVE_6", "trainingPaused": false, "acuteTrainingLoadDTO": {"acwrPercent":
+        73, "acwrStatus": "HIGH", "acwrStatusFeedback": "FEEDBACK_4", "dailyTrainingLoadAcute":
+        361, "maxTrainingLoadChronic": 328.5, "minTrainingLoadChronic": 175.20000000000002,
+        "dailyTrainingLoadChronic": 219, "dailyAcuteChronicWorkloadRatio": 1.6}, "primaryTrainingDevice":
+        true}, {"calendarDate": "2025-06-02", "sinceDate": null, "weeklyTrainingLoad":
+        null, "trainingStatus": 7, "timestamp": 1748875213000, "deviceId": 3469703076,
+        "loadTunnelMin": null, "loadTunnelMax": null, "loadLevelTrend": null, "sport":
+        "RUNNING", "subSport": "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend":
+        2, "trainingStatusFeedbackPhrase": "PRODUCTIVE_6", "trainingPaused": false,
+        "acuteTrainingLoadDTO": {"acwrPercent": 61, "acwrStatus": "OPTIMAL", "acwrStatusFeedback":
+        "FEEDBACK_3", "dailyTrainingLoadAcute": 323, "maxTrainingLoadChronic": 328.5,
+        "minTrainingLoadChronic": 175.20000000000002, "dailyTrainingLoadChronic":
+        219, "dailyAcuteChronicWorkloadRatio": 1.4}, "primaryTrainingDevice": true},
+        {"calendarDate": "2025-06-03", "sinceDate": null, "weeklyTrainingLoad": null,
+        "trainingStatus": 7, "timestamp": 1748966341000, "deviceId": 3469703076, "loadTunnelMin":
+        null, "loadTunnelMax": null, "loadLevelTrend": null, "sport": "RUNNING", "subSport":
+        "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend": 2, "trainingStatusFeedbackPhrase":
+        "PRODUCTIVE_6", "trainingPaused": false, "acuteTrainingLoadDTO": {"acwrPercent":
+        80, "acwrStatus": "HIGH", "acwrStatusFeedback": "FEEDBACK_4", "dailyTrainingLoadAcute":
+        386, "maxTrainingLoadChronic": 328.5, "minTrainingLoadChronic": 175.20000000000002,
+        "dailyTrainingLoadChronic": 219, "dailyAcuteChronicWorkloadRatio": 1.7}, "primaryTrainingDevice":
+        true}, {"calendarDate": "2025-06-04", "sinceDate": null, "weeklyTrainingLoad":
+        null, "trainingStatus": 7, "timestamp": 1749049045000, "deviceId": 3469703076,
+        "loadTunnelMin": null, "loadTunnelMax": null, "loadLevelTrend": null, "sport":
+        "RUNNING", "subSport": "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend":
+        2, "trainingStatusFeedbackPhrase": "PRODUCTIVE_6", "trainingPaused": false,
+        "acuteTrainingLoadDTO": {"acwrPercent": 66, "acwrStatus": "HIGH", "acwrStatusFeedback":
+        "FEEDBACK_4", "dailyTrainingLoadAcute": 338, "maxTrainingLoadChronic": 328.5,
+        "minTrainingLoadChronic": 175.20000000000002, "dailyTrainingLoadChronic":
+        219, "dailyAcuteChronicWorkloadRatio": 1.5}, "primaryTrainingDevice": true},
+        {"calendarDate": "2025-06-05", "sinceDate": null, "weeklyTrainingLoad": null,
+        "trainingStatus": 7, "timestamp": 1749133954000, "deviceId": 3469703076, "loadTunnelMin":
+        null, "loadTunnelMax": null, "loadLevelTrend": null, "sport": "RUNNING", "subSport":
+        "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend": 2, "trainingStatusFeedbackPhrase":
+        "PRODUCTIVE_6", "trainingPaused": false, "acuteTrainingLoadDTO": {"acwrPercent":
+        86, "acwrStatus": "HIGH", "acwrStatusFeedback": "FEEDBACK_4", "dailyTrainingLoadAcute":
+        411, "maxTrainingLoadChronic": 340.5, "minTrainingLoadChronic": 181.60000000000002,
+        "dailyTrainingLoadChronic": 227, "dailyAcuteChronicWorkloadRatio": 1.8}, "primaryTrainingDevice":
+        true}, {"calendarDate": "2025-06-06", "sinceDate": null, "weeklyTrainingLoad":
+        null, "trainingStatus": 7, "timestamp": 1749216655000, "deviceId": 3469703076,
+        "loadTunnelMin": null, "loadTunnelMax": null, "loadLevelTrend": null, "sport":
+        "RUNNING", "subSport": "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend":
+        2, "trainingStatusFeedbackPhrase": "PRODUCTIVE_6", "trainingPaused": false,
+        "acuteTrainingLoadDTO": {"acwrPercent": 66, "acwrStatus": "HIGH", "acwrStatusFeedback":
+        "FEEDBACK_4", "dailyTrainingLoadAcute": 347, "maxTrainingLoadChronic": 339.0,
+        "minTrainingLoadChronic": 180.8, "dailyTrainingLoadChronic": 226, "dailyAcuteChronicWorkloadRatio":
+        1.5}, "primaryTrainingDevice": true}, {"calendarDate": "2025-06-07", "sinceDate":
+        null, "weeklyTrainingLoad": null, "trainingStatus": 7, "timestamp": 1749302375000,
+        "deviceId": 3469703076, "loadTunnelMin": null, "loadTunnelMax": null, "loadLevelTrend":
+        null, "sport": "RUNNING", "subSport": "GENERIC", "fitnessTrendSport": "RUNNING",
+        "fitnessTrend": 2, "trainingStatusFeedbackPhrase": "PRODUCTIVE_6", "trainingPaused":
+        false, "acuteTrainingLoadDTO": {"acwrPercent": 80, "acwrStatus": "HIGH", "acwrStatusFeedback":
+        "FEEDBACK_4", "dailyTrainingLoadAcute": 439, "maxTrainingLoadChronic": 379.5,
+        "minTrainingLoadChronic": 202.4, "dailyTrainingLoadChronic": 253, "dailyAcuteChronicWorkloadRatio":
+        1.7}, "primaryTrainingDevice": true}, {"calendarDate": "2025-06-08", "sinceDate":
+        null, "weeklyTrainingLoad": null, "trainingStatus": 7, "timestamp": 1749393406000,
+        "deviceId": 3469703076, "loadTunnelMin": null, "loadTunnelMax": null, "loadLevelTrend":
+        null, "sport": "RUNNING", "subSport": "GENERIC", "fitnessTrendSport": "RUNNING",
+        "fitnessTrend": 2, "trainingStatusFeedbackPhrase": "PRODUCTIVE_6", "trainingPaused":
+        false, "acuteTrainingLoadDTO": {"acwrPercent": 61, "acwrStatus": "OPTIMAL",
+        "acwrStatusFeedback": "FEEDBACK_3", "dailyTrainingLoadAcute": 360, "maxTrainingLoadChronic":
+        379.5, "minTrainingLoadChronic": 202.4, "dailyTrainingLoadChronic": 253, "dailyAcuteChronicWorkloadRatio":
+        1.4}, "primaryTrainingDevice": true}, {"calendarDate": "2025-06-09", "sinceDate":
+        null, "weeklyTrainingLoad": null, "trainingStatus": 7, "timestamp": 1749480750000,
+        "deviceId": 3469703076, "loadTunnelMin": null, "loadTunnelMax": null, "loadLevelTrend":
+        null, "sport": "RUNNING", "subSport": "GENERIC", "fitnessTrendSport": "RUNNING",
+        "fitnessTrend": 2, "trainingStatusFeedbackPhrase": "PRODUCTIVE_6", "trainingPaused":
+        false, "acuteTrainingLoadDTO": {"acwrPercent": 73, "acwrStatus": "HIGH", "acwrStatusFeedback":
+        "FEEDBACK_4", "dailyTrainingLoadAcute": 466, "maxTrainingLoadChronic": 430.5,
+        "minTrainingLoadChronic": 229.60000000000002, "dailyTrainingLoadChronic":
+        287, "dailyAcuteChronicWorkloadRatio": 1.6}, "primaryTrainingDevice": true},
+        {"calendarDate": "2025-06-10", "sinceDate": null, "weeklyTrainingLoad": null,
+        "trainingStatus": 7, "timestamp": 1749564402000, "deviceId": 3469703076, "loadTunnelMin":
+        null, "loadTunnelMax": null, "loadLevelTrend": null, "sport": "RUNNING", "subSport":
+        "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend": 2, "trainingStatusFeedbackPhrase":
+        "PRODUCTIVE_6", "trainingPaused": false, "acuteTrainingLoadDTO": {"acwrPercent":
+        66, "acwrStatus": "HIGH", "acwrStatusFeedback": "FEEDBACK_4", "dailyTrainingLoadAcute":
+        478, "maxTrainingLoadChronic": 454.5, "minTrainingLoadChronic": 242.4, "dailyTrainingLoadChronic":
+        303, "dailyAcuteChronicWorkloadRatio": 1.5}, "primaryTrainingDevice": true},
+        {"calendarDate": "2025-06-11", "sinceDate": null, "weeklyTrainingLoad": null,
+        "trainingStatus": 7, "timestamp": 1749643909000, "deviceId": 3469703076, "loadTunnelMin":
+        null, "loadTunnelMax": null, "loadLevelTrend": null, "sport": "RUNNING", "subSport":
+        "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend": 2, "trainingStatusFeedbackPhrase":
+        "PRODUCTIVE_6", "trainingPaused": false, "acuteTrainingLoadDTO": {"acwrPercent":
+        57, "acwrStatus": "OPTIMAL", "acwrStatusFeedback": "FEEDBACK_3", "dailyTrainingLoadAcute":
+        399, "maxTrainingLoadChronic": 450.0, "minTrainingLoadChronic": 240.0, "dailyTrainingLoadChronic":
+        300, "dailyAcuteChronicWorkloadRatio": 1.3}, "primaryTrainingDevice": true}]}},
+        "successful": true}}'
+    headers:
+      CF-RAY:
+      - 9baeb8f51b4e8727-QRO
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 08 Jan 2026 21:17:35 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=F4qdJdj6ZO8WmsaO8wxvp%2F46jmMKPkKNCk92u4sdEYuW5NIkdnlx%2BJWZ2Rgaikrmc8M1T18RA0suxBFR4IWThBi6a4XL%2FJcisqoeg0iHhvhTQyKx%2BzGeqNv81XpYRRF8JD68r2Z8fA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+version: 1

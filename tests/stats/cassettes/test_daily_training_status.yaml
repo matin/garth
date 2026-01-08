@@ -1,0 +1,95 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/mobile-gateway/usersummary/trainingstatus/latest/2025-06-11
+  response:
+    body:
+      string: '{"mostRecentHeatAltitudeAcclimation": {"requestUrl": "/metrics-service/metrics/heataltitudeacclimation/latest/2025-06-11",
+        "statusCode": 200, "headers": {}, "errorMessage": null, "payload": {"calendarDate":
+        "2025-06-11", "altitudeAcclimationDate": "2025-06-11", "previousAltitudeAcclimationDate":
+        "2025-06-10", "heatAcclimationDate": "2025-06-12", "previousHeatAcclimationDate":
+        "2025-06-12", "altitudeAcclimation": 2250, "previousAltitudeAcclimation":
+        2200, "heatAcclimationPercentage": 0, "previousHeatAcclimationPercentage":
+        0, "heatTrend": null, "altitudeTrend": "ACCLIMATIZING", "currentAltitude":
+        2231, "previousAltitude": 2252, "acclimationPercentage": 100, "previousAcclimationPercentage":
+        64, "altitudeAcclimationLocalTimestamp": "2025-06-11T00:04:16.0"}, "successful":
+        true}, "mostRecentVO2Max": {"requestUrl": "/metrics-service/metrics/maxmet/latest/2025-06-11",
+        "statusCode": 200, "headers": {}, "errorMessage": null, "payload": {"userId":
+        2591602, "generic": {"calendarDate": "2026-01-08", "vo2MaxPreciseValue": 44.5,
+        "vo2MaxValue": 45.0, "fitnessAge": null, "fitnessAgeDescription": null, "maxMetCategory":
+        0}, "cycling": null, "heatAltitudeAcclimation": {"calendarDate": "2025-06-11",
+        "altitudeAcclimationDate": "2025-06-11", "previousAltitudeAcclimationDate":
+        "2025-06-10", "heatAcclimationDate": "2025-06-12", "previousHeatAcclimationDate":
+        "2025-06-12", "altitudeAcclimation": 2250, "previousAltitudeAcclimation":
+        2200, "heatAcclimationPercentage": 0, "previousHeatAcclimationPercentage":
+        0, "heatTrend": null, "altitudeTrend": "ACCLIMATIZING", "currentAltitude":
+        2231, "previousAltitude": 2252, "acclimationPercentage": 100, "previousAcclimationPercentage":
+        64, "altitudeAcclimationLocalTimestamp": "2025-06-11T00:04:16.0"}}, "successful":
+        true}, "mostRecentTrainingLoadBalance": {"requestUrl": "/metrics-service/metrics/trainingloadbalance/latest/2025-06-11",
+        "statusCode": 200, "headers": {}, "errorMessage": null, "payload": {"userId":
+        2591602, "metricsTrainingLoadBalanceDTOMap": {"3469703076": {"calendarDate":
+        "2025-06-11", "deviceId": 3469703076, "monthlyLoadAerobicLow": 573.4651, "monthlyLoadAerobicHigh":
+        554.64087, "monthlyLoadAnaerobic": 43.52684, "monthlyLoadAerobicLowTargetMin":
+        197, "monthlyLoadAerobicLowTargetMax": 460, "monthlyLoadAerobicHighTargetMin":
+        283, "monthlyLoadAerobicHighTargetMax": 546, "monthlyLoadAnaerobicTargetMin":
+        0, "monthlyLoadAnaerobicTargetMax": 262, "trainingBalanceFeedbackPhrase":
+        "BALANCED", "primaryTrainingDevice": true}}, "recordedDevices": [{"deviceId":
+        3469703076, "imageURL": "https://res.garmin.com/en/products/010-02778-10/v/c1_01_md.png",
+        "deviceName": "fenix 7X Pro Sapphire Solar", "category": 0}]}, "successful":
+        true}, "mostRecentTrainingStatus": {"requestUrl": "/metrics-service/metrics/trainingstatus/daily/2025-06-11",
+        "statusCode": 200, "headers": {}, "errorMessage": null, "payload": {"userId":
+        2591602, "latestTrainingStatusData": {"3469703076": {"calendarDate": "2025-06-11",
+        "sinceDate": "2025-05-31", "weeklyTrainingLoad": null, "trainingStatus": 7,
+        "timestamp": 1749643909000, "deviceId": 3469703076, "loadTunnelMin": null,
+        "loadTunnelMax": null, "loadLevelTrend": null, "sport": "RUNNING", "subSport":
+        "GENERIC", "fitnessTrendSport": "RUNNING", "fitnessTrend": 2, "trainingStatusFeedbackPhrase":
+        "PRODUCTIVE_6", "trainingPaused": false, "acuteTrainingLoadDTO": {"acwrPercent":
+        57, "acwrStatus": "OPTIMAL", "acwrStatusFeedback": "FEEDBACK_3", "dailyTrainingLoadAcute":
+        399, "maxTrainingLoadChronic": 450.0, "minTrainingLoadChronic": 240.0, "dailyTrainingLoadChronic":
+        300, "dailyAcuteChronicWorkloadRatio": 1.3}, "primaryTrainingDevice": true}},
+        "recordedDevices": [{"deviceId": 3469703076, "imageURL": "https://res.garmin.com/en/products/010-02778-10/v/c1_01_md.png",
+        "deviceName": "fenix 7X Pro Sapphire Solar", "category": 0}], "showSelector":
+        false, "lastPrimarySyncDate": null}, "successful": true}}'
+    headers:
+      CF-RAY:
+      - 9baeb8f3c9cc3c25-DFW
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Thu, 08 Jan 2026 21:17:34 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=8jnczK%2BBgcOLtyqX9kNTIYGTD0rGKuyUIWZniIuwixXoj%2FO%2BnY9TeNBMP4ILutuFg4vnJsv4lmBlaEjSxjvp3iJOiB%2Bym8npr%2FcTpxUF1hDexYai6t%2FCWIgulcHPuzLPlerfBsLwaA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+version: 1

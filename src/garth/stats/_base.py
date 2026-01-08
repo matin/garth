@@ -14,6 +14,7 @@ class Stats:
 
     _path: ClassVar[str]
     _page_size: ClassVar[int]
+    _period_type: ClassVar[str | None] = None
 
     @classmethod
     def list(
@@ -25,7 +26,9 @@ class Stats:
     ) -> list[Self]:
         client = client or http.client
         end = format_end_date(end)
-        period_type = "days" if "daily" in cls._path else "weeks"
+        period_type = cls._period_type or (
+            "days" if "daily" in cls._path else "weeks"
+        )
 
         if period > cls._page_size:
             page = cls.list(end, cls._page_size, client=client)
@@ -43,11 +46,26 @@ class Stats:
 
         start = end - timedelta(**{period_type: period - 1})
         path = cls._path.format(start=start, end=end, period=period)
-        page_dirs = client.connectapi(path)
-        if not isinstance(page_dirs, list) or not page_dirs:
+        response = client.connectapi(path)
+
+        # Allow subclasses to customize response parsing
+        page_dirs = cls._parse_response(response)
+        if not page_dirs:
             return []
-        page_dirs = [d for d in page_dirs if isinstance(d, dict)]
-        if page_dirs and "values" in page_dirs[0]:
-            page_dirs = [{**stat, **stat.pop("values")} for stat in page_dirs]
+
         page_dirs = [camel_to_snake_dict(stat) for stat in page_dirs]
         return [cls(**stat) for stat in page_dirs]
+
+    @classmethod
+    def _parse_response(cls, response):
+        """Parse API response into list of stat dictionaries.
+
+        Override this method in subclasses for custom response parsing.
+        Default implementation handles standard stats API format.
+        """
+        if not isinstance(response, list) or not response:
+            return []
+        page_dirs = [d for d in response if isinstance(d, dict)]
+        if page_dirs and "values" in page_dirs[0]:
+            page_dirs = [{**stat, **stat.pop("values")} for stat in page_dirs]
+        return page_dirs
