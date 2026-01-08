@@ -50,9 +50,8 @@ class DailySummary(Data):
         path = f"/usersummary-service/usersummary/daily/?calendarDate={day}"
         daily_summary = client.connectapi(path)
 
-        # pragma: no cover
         if not daily_summary:
-            return None
+            return None  # pragma: no cover
 
         assert isinstance(daily_summary, dict), (
             f"Expected dict from {path}, got {type(daily_summary).__name__}"
