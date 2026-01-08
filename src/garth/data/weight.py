@@ -1,4 +1,4 @@
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, timedelta, timezone
 from itertools import chain
 
 from pydantic import Field, ValidationInfo, field_validator
@@ -22,7 +22,6 @@ class WeightData(Data):
     source_type: str
     weight_delta: float
     timestamp_gmt: int
-    datetime_utc: datetime = Field(..., alias="timestamp_gmt")
     datetime_local: datetime = Field(..., alias="date")
     bmi: float | None = None
     body_fat: float | None = None
@@ -37,6 +36,13 @@ class WeightData(Data):
     @classmethod
     def to_localized_datetime(cls, v: int, info: ValidationInfo) -> datetime:
         return get_localized_datetime(info.data["timestamp_gmt"], v)
+
+    @property
+    def datetime_utc(self) -> datetime:
+        """Convert timestamp_gmt to a UTC datetime."""
+        return datetime.fromtimestamp(
+            self.timestamp_gmt / 1000, tz=timezone.utc
+        )
 
     @classmethod
     def get(
