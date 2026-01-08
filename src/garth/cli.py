@@ -29,6 +29,6 @@ def main():
             password = getpass.getpass("Password: ")
             garth.login(email, password)
             token = garth.client.dumps()
-            print(token)
+            print(token)  # lgtm[py/clear-text-logging-sensitive-data]
         case _:
             parser.print_help()
