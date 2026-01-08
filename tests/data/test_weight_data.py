@@ -1,9 +1,68 @@
-from datetime import date, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 
 import pytest
 
 from garth.data import WeightData
 from garth.http import Client
+
+
+def test_weight_data_no_duplicate_alias():
+    """Test WeightData instantiation without duplicate parameter errors.
+
+    Verifies that timestamp_gmt (int) and datetime_utc (datetime) don't
+    cause Pydantic to raise: ValueError: duplicate parameter name
+
+    See: https://github.com/matin/garth/issues/157
+    """
+    # Sample data matching API response structure (after camel_to_snake_dict)
+    data = {
+        "sample_pk": 123456789,
+        "calendar_date": date(2025, 1, 15),
+        "weight": 70000,
+        "source_type": "INDEX_SCALE",
+        "weight_delta": 100.0,
+        "timestamp_gmt": 1736956800000,  # 2025-01-15 16:00:00 UTC in ms
+        "date": 1736935200000,  # Local time in ms
+    }
+
+    # This should not raise ValueError: duplicate parameter name
+    weight = WeightData(**data)
+
+    # Verify both fields are accessible and correct
+    assert weight.timestamp_gmt == 1736956800000
+    assert isinstance(weight.datetime_utc, datetime)
+    assert weight.datetime_utc.tzinfo == timezone.utc
+
+    # Verify datetime_utc is derived from timestamp_gmt correctly
+    expected_utc = datetime.fromtimestamp(
+        1736956800000 / 1000, tz=timezone.utc
+    )
+    assert weight.datetime_utc == expected_utc
+
+
+def test_weight_data_timestamp_gmt_is_int():
+    """Test that timestamp_gmt remains accessible as an integer.
+
+    This ensures that the raw timestamp from the API is preserved,
+    not overwritten by the datetime_utc alias.
+
+    See: https://github.com/matin/garth/issues/157
+    """
+    data = {
+        "sample_pk": 123456789,
+        "calendar_date": date(2025, 1, 15),
+        "weight": 70000,
+        "source_type": "INDEX_SCALE",
+        "weight_delta": 100.0,
+        "timestamp_gmt": 1736956800000,
+        "date": 1736935200000,
+    }
+
+    weight = WeightData(**data)
+
+    # timestamp_gmt should be an int, not datetime
+    assert isinstance(weight.timestamp_gmt, int)
+    assert weight.timestamp_gmt == 1736956800000
 
 
 @pytest.mark.vcr
