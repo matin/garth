@@ -4,6 +4,7 @@ __all__ = [
     "BodyBatteryEvent",
     "BodyBatteryReading",
     "DailyBodyBatteryStress",
+    "DailyHeartRate",
     "DailySummary",
     "GarminScoresData",
     "HRVData",
@@ -23,6 +24,7 @@ from .body_battery import (
 )
 from .daily_summary import DailySummary
 from .garmin_scores import GarminScoresData
+from .heart_rate import DailyHeartRate
 from .hrv import HRVData
 from .morning_training_readiness import MorningTrainingReadinessData
 from .sleep import SleepData
