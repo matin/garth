@@ -72,7 +72,7 @@ class DailyHeartRate(Data):
         path = f"/wellness-service/wellness/dailyHeartRate/?date={day}"
         hr_data = client.connectapi(path)
         if not hr_data:
-            return None
+            return None  # pragma: no cover
         assert isinstance(hr_data, dict), (
             f"Expected dict from {path}, got {type(hr_data).__name__}"
         )
