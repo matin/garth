@@ -29,7 +29,7 @@ def test_daily_heart_rate_readings(authed_client: Client):
 @pytest.mark.vcr
 def test_daily_heart_rate_list(authed_client: Client):
     hr_list = DailyHeartRate.list(
-        end="2026-01-07", days=3, client=authed_client
+        end="2026-01-07", days=3, client=authed_client, max_workers=1
     )
     assert len(hr_list) > 0
     # Should be sorted by date
