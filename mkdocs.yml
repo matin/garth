@@ -1,0 +1,57 @@
+site_name: Garth
+site_description: Garmin SSO auth + Connect Python client
+site_url: https://garth.readthedocs.io
+repo_url: https://github.com/matin/garth
+repo_name: matin/garth
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - content.code.copy
+    - content.code.annotate
+
+nav:
+  - Home: index.md
+  - Getting Started: getting-started.md
+  - Configuration: configuration.md
+  - API Reference:
+      - Connect API: api/connect-api.md
+      - Stats: api/stats.md
+      - Data: api/data.md
+      - Training Status: api/training.md
+      - Scores: api/scores.md
+      - User: api/user.md
+  - Examples: examples.md
+  - Contributing: contributing.md
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - admonition
+  - pymdownx.details
+  - tables
+  - toc:
+      permalink: true
+
+plugins:
+  - search

@@ -30,6 +30,7 @@ keywords = ["garmin", "garmin api", "garmin connect", "garmin sso"]
 
 [project.urls]
 "Homepage" = "https://github.com/matin/garth"
+"Documentation" = "https://garth.readthedocs.io"
 "Repository" = "https://github.com/matin/garth"
 "Issues" = "https://github.com/matin/garth/issues"
 "Changelog" = "https://github.com/matin/garth/releases"
@@ -79,6 +80,10 @@ testing = [
     "coverage",
     "pytest",
     "pytest-vcr",
+]
+docs = [
+    "mkdocs>=1.6",
+    "mkdocs-material>=9.5",
 ]
 
 [tool.ruff.lint.isort]
