@@ -4,9 +4,7 @@ from pydantic.dataclasses import dataclass
 from typing_extensions import Self
 
 from .. import http
-from ..utils import (
-    camel_to_snake_dict,
-)
+from ..utils import camel_to_snake_dict, format_end_date
 from ._base import Data
 
 
@@ -30,16 +28,20 @@ class GarminScoresData(Data):
 
     @classmethod
     def get(
-        cls, day: date | str, *, client: http.Client | None = None
+        cls,
+        day: date | str | None = None,
+        *,
+        client: http.Client | None = None,
     ) -> Self | None:
         client = client or http.client
+        day = format_end_date(day)
         path_hill_score = "/metrics-service/metrics/hillscore"
         path_endurance_score = "/metrics-service/metrics/endurancescore"
         data_hill_score = client.connectapi(
-            path_hill_score, params={"calendarDate": day}
+            path_hill_score, params={"calendarDate": str(day)}
         )
         data_endurance_score = client.connectapi(
-            path_endurance_score, params={"calendarDate": day}
+            path_endurance_score, params={"calendarDate": str(day)}
         )
 
         if not data_hill_score or not data_endurance_score:

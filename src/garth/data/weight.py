@@ -44,9 +44,13 @@ class WeightData(Data):
 
     @classmethod
     def get(
-        cls, day: date | str, *, client: http.Client | None = None
+        cls,
+        day: date | str | None = None,
+        *,
+        client: http.Client | None = None,
     ) -> Self | None:
         client = client or http.client
+        day = format_end_date(day)
         path = f"/weight-service/weight/dayview/{day}"
         data = client.connectapi(path)
         assert isinstance(data, dict), (

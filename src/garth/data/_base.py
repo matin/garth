@@ -16,7 +16,10 @@ class Data(ABC):
     @classmethod
     @abstractmethod
     def get(
-        cls, day: date | str, *, client: http.Client | None = None
+        cls,
+        day: date | str | None = None,
+        *,
+        client: http.Client | None = None,
     ) -> Self | list[Self] | None: ...
 
     @classmethod

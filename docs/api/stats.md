@@ -2,6 +2,13 @@
 
 Stats provide aggregated daily and weekly summaries of various health metrics.
 
+!!! tip "Date defaults to today"
+    All `.list()` methods accept an optional date parameter that defaults to
+    today if not provided:
+    ```python
+    garth.DailySteps.list(period=7)  # Last 7 days ending today
+    ```
+
 ## Stress
 
 ### Daily stress levels
