@@ -72,7 +72,7 @@ garth.DailyHydration.list(period=2)
 ### Log hydration intake
 
 ```python
-garth.DailyHydration.log(500.0)  # Log 500ml now
+garth.DailyHydration.log(500)  # Log 500ml now
 ```
 
 ```python
@@ -90,7 +90,7 @@ HydrationLogEntry(
 Log with a specific timestamp:
 
 ```python
-garth.DailyHydration.log(500.0, timestamp=datetime.datetime(2026, 1, 9, 15, 30))
+garth.DailyHydration.log(500, timestamp=datetime.datetime(2026, 1, 9, 15, 30))
 ```
 
 ## Steps
