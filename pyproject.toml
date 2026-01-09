@@ -35,6 +35,12 @@ keywords = ["garmin", "garmin api", "garmin connect", "garmin sso"]
 "Issues" = "https://github.com/matin/garth/issues"
 "Changelog" = "https://github.com/matin/garth/releases"
 
+[project.optional-dependencies]
+docs = [
+    "mkdocs>=1.6",
+    "mkdocs-material>=9.5",
+]
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
@@ -80,10 +86,6 @@ testing = [
     "coverage",
     "pytest",
     "pytest-vcr",
-]
-docs = [
-    "mkdocs>=1.6",
-    "mkdocs-material>=9.5",
 ]
 
 [tool.ruff.lint.isort]
