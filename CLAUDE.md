@@ -94,3 +94,22 @@ authentication. The codebase is organized into several key modules:
 - Comprehensive test coverage across all modules
 - Separate test directories mirroring source structure
 - Coverage reporting with HTML and XML output
+
+## Git Workflow
+
+- Always squash merge PRs and delete both remote and local branches
+- Use `gh pr merge <number> --squash --delete-branch` followed by
+  `git checkout main && git pull`
+
+## Documentation Style
+
+- Code examples in docs don't need import statements (we don't show
+  `import garth` either)
+- Keep examples concise and focused on usage
+
+## API Design Guidelines
+
+- Methods that make API calls should return Pydantic dataclasses of the
+  response for consistency
+- Use `camel_to_snake_dict()` to transform API responses before passing
+  to dataclasses
