@@ -1,4 +1,5 @@
 from datetime import date, datetime
+from unittest.mock import patch
 
 import pytest
 
@@ -26,3 +27,17 @@ def test_daily_hydration_log(authed_client: Client):
     assert entry.calendar_date == date(2026, 1, 9)
     assert entry.value_in_ml == 1000.0  # 500 existing + 500 logged
     assert entry.last_entry_timestamp_local == timestamp
+
+
+@pytest.mark.vcr
+def test_daily_hydration_log_default_timestamp(authed_client: Client):
+    frozen_time = datetime(2026, 1, 9, 15, 30, 0)
+    with patch("garth.stats.hydration.datetime") as mock_datetime:
+        mock_datetime.now.return_value = frozen_time
+        mock_datetime.side_effect = lambda *args, **kwargs: datetime(
+            *args, **kwargs
+        )
+        entry = DailyHydration.log(500.0, client=authed_client)
+    assert isinstance(entry, HydrationLogEntry)
+    assert entry.calendar_date == date(2026, 1, 9)
+    assert entry.last_entry_timestamp_local == frozen_time
