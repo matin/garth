@@ -99,7 +99,9 @@ authentication. The codebase is organized into several key modules:
 
 - Always squash merge PRs and delete both remote and local branches
 - Use `gh pr merge <number> --squash --delete-branch` followed by
-  `git checkout main && git pull`
+  `git checkout main && git pull && git branch -D <branch> 2>/dev/null || true`
+- Note: Fast-forward merges auto-delete the local branch, so the delete may
+  silently fail (which is fine)
 
 ## Documentation Style
 
