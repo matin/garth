@@ -7,8 +7,6 @@ heart rate, HRV readings, sleep stages, and weight measurements.
     All `.get()` and `.list()` methods accept an optional date parameter that
     defaults to today if not provided:
     ```python
-    from datetime import date
-
     # These are equivalent
     garth.SleepData.get()
     garth.SleepData.get(date.today())
