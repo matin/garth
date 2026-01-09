@@ -8,6 +8,7 @@ from .data import (
     HRVData,
     MorningTrainingReadinessData,
     SleepData,
+    TrainingReadinessData,
     WeightData,
 )
 from .http import Client, client
@@ -48,6 +49,7 @@ __all__ = [
     "MorningTrainingReadinessData",
     "MonthlyTrainingStatus",
     "SleepData",
+    "TrainingReadinessData",
     "UserProfile",
     "UserSettings",
     "WeeklyIntensityMinutes",

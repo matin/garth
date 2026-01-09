@@ -11,6 +11,7 @@ __all__ = [
     "MorningTrainingReadinessData",
     "SleepData",
     "StressReading",
+    "TrainingReadinessData",
     "WeightData",
 ]
 
@@ -28,4 +29,5 @@ from .heart_rate import DailyHeartRate
 from .hrv import HRVData
 from .morning_training_readiness import MorningTrainingReadinessData
 from .sleep import SleepData
+from .training_readiness import TrainingReadinessData
 from .weight import WeightData
