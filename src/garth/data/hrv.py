@@ -7,7 +7,7 @@ from pydantic.dataclasses import dataclass
 from typing_extensions import Self
 
 from .. import http
-from ..utils import camel_to_snake_dict
+from ..utils import camel_to_snake_dict, format_end_date
 from ._base import Data
 
 
@@ -54,9 +54,13 @@ class HRVData(Data):
 
     @classmethod
     def get(
-        cls, day: date | str, *, client: http.Client | None = None
+        cls,
+        day: date | str | None = None,
+        *,
+        client: http.Client | None = None,
     ) -> Self | None:
         client = client or http.client
+        day = format_end_date(day)
         path = f"/hrv-service/hrv/{day}"
         hrv_data = client.connectapi(path)
         if not hrv_data:

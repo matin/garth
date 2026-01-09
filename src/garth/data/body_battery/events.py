@@ -65,15 +65,15 @@ class BodyBatteryData(Data):
     @classmethod
     def get(
         cls,
-        date_str: str | date | None = None,
+        day: str | date | None = None,
         *,
         client: http.Client | None = None,
     ) -> list[Self]:
         """Get Body Battery events for a specific date."""
         client = client or http.client
-        date_str = format_end_date(date_str)
+        day = format_end_date(day)
 
-        path = f"/wellness-service/wellness/bodyBattery/events/{date_str}"
+        path = f"/wellness-service/wellness/bodyBattery/events/{day}"
         try:
             response = client.connectapi(path)
         except Exception as e:

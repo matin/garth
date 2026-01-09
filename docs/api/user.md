@@ -7,6 +7,13 @@ User profile, settings, and daily summary data.
 Get a comprehensive daily summary including calories, steps, heart rate,
 stress, body battery, and more.
 
+!!! tip "Date defaults to today"
+    `.get()` and `.list()` accept an optional date parameter that defaults to
+    today if not provided:
+    ```python
+    garth.DailySummary.get()  # Get today's summary
+    ```
+
 ### Get single day
 
 ```python

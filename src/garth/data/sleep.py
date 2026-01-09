@@ -7,7 +7,11 @@ from pydantic.dataclasses import dataclass
 from typing_extensions import Self
 
 from .. import http
-from ..utils import camel_to_snake_dict, get_localized_datetime
+from ..utils import (
+    camel_to_snake_dict,
+    format_end_date,
+    get_localized_datetime,
+)
 from ._base import Data
 
 
@@ -101,12 +105,13 @@ class SleepData(Data):
     @classmethod
     def get(
         cls,
-        day: date | str,
+        day: date | str | None = None,
         *,
         buffer_minutes: int = 60,
         client: http.Client | None = None,
     ) -> Self | None:
         client = client or http.client
+        day = format_end_date(day)
         path = (
             f"/wellness-service/wellness/dailySleepData/{client.username}?"
             f"nonSleepBufferMinutes={buffer_minutes}&date={day}"

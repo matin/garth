@@ -3,6 +3,18 @@
 Data classes provide detailed, raw data for specific metrics including body battery,
 heart rate, HRV readings, sleep stages, and weight measurements.
 
+!!! tip "Date defaults to today"
+    All `.get()` and `.list()` methods accept an optional date parameter that
+    defaults to today if not provided:
+    ```python
+    # These are equivalent
+    garth.SleepData.get()
+    garth.SleepData.get(date.today())
+
+    # Same for list()
+    garth.WeightData.list(days=7)  # Last 7 days ending today
+    ```
+
 ## Body Battery
 
 ### Daily Body Battery and stress data

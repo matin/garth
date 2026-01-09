@@ -3,6 +3,13 @@
 Garmin scores and metrics including endurance score, hill score, VO2 max,
 and morning training readiness.
 
+!!! tip "Date defaults to today"
+    All `.get()` and `.list()` methods accept an optional date parameter that
+    defaults to today if not provided:
+    ```python
+    garth.GarminScoresData.get()  # Get today's scores
+    ```
+
 ## Garmin Scores
 
 ### Get scores for single day
