@@ -45,7 +45,7 @@ the Connect API.
 ### Install
 
 ```bash
-python -m pip install garth
+pip install garth
 ```
 
 ### Authenticate

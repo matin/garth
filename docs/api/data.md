@@ -1,7 +1,7 @@
 # Data
 
 Data classes provide detailed, raw data for specific metrics including body battery,
-HRV readings, sleep stages, and weight measurements.
+heart rate, HRV readings, sleep stages, and weight measurements.
 
 ## Body Battery
 
@@ -100,6 +100,54 @@ event = events[0]
 event.current_level    # 85 (last reading)
 event.max_level        # 85
 event.min_level        # 45
+```
+
+## Heart Rate Data
+
+### Daily heart rate
+
+Retrieve heart rate data for a specific day, including resting heart rate,
+min/max values, and time-series readings throughout the day.
+
+```python
+garth.DailyHeartRate.get("2024-01-15")
+```
+
+```python
+DailyHeartRate(
+    user_profile_pk=2591602,
+    calendar_date=datetime.date(2024, 1, 15),
+    start_timestamp_gmt=datetime.datetime(2024, 1, 15, 8, 0),
+    end_timestamp_gmt=datetime.datetime(2024, 1, 16, 7, 59, 59),
+    start_timestamp_local=datetime.datetime(2024, 1, 15, 0, 0),
+    end_timestamp_local=datetime.datetime(2024, 1, 15, 23, 59, 59),
+    max_heart_rate=145,
+    min_heart_rate=48,
+    resting_heart_rate=52,
+    last_seven_days_avg_resting_heart_rate=51,
+    heart_rate_values=[
+        [1705305600000, 62], [1705305660000, 65], [1705305720000, 58],
+        # ... time-series data throughout the day
+    ],
+    heart_rate_value_descriptors=None
+)
+
+# Access structured readings
+hr = garth.DailyHeartRate.get("2024-01-15")
+hr.resting_heart_rate           # 52
+hr.max_heart_rate               # 145
+hr.min_heart_rate               # 48
+hr.last_seven_days_avg_resting_heart_rate  # 51
+
+# Iterate over readings as HeartRateReading objects
+for reading in hr.readings:
+    print(f"{reading.timestamp}: {reading.heart_rate} bpm")
+```
+
+### List heart rate data
+
+```python
+garth.DailyHeartRate.list("2024-01-15", 7)
 ```
 
 ## HRV Data

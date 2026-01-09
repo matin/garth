@@ -7,7 +7,7 @@ Stats provide aggregated daily and weekly summaries of various health metrics.
 ### Daily stress levels
 
 ```python
-DailyStress.list("2023-07-23", 2)
+garth.DailyStress.list("2023-07-23", 2)
 ```
 
 ```python
@@ -34,7 +34,7 @@ DailyStress.list("2023-07-23", 2)
 ### Weekly stress levels
 
 ```python
-WeeklyStress.list("2023-07-23", 2)
+garth.WeeklyStress.list("2023-07-23", 2)
 ```
 
 ```python

@@ -39,9 +39,14 @@ garth.save("~/.garth")
 
 ```python
 import garth
+from garth.exc import GarthException
 
 garth.resume("~/.garth")
-garth.client.username
+try:
+    garth.client.username
+except GarthException:
+    # Session is expired. You'll need to log in again
+    pass
 ```
 
 ### Fetch data
