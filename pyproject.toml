@@ -84,6 +84,7 @@ linting = [
 ]
 testing = [
     "coverage",
+    "freezegun",
     "pytest",
     "pytest-vcr",
 ]
