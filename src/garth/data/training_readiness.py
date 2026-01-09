@@ -37,7 +37,7 @@ class TrainingReadinessData(Data):
     sleep_history_factor_percent: int
     sleep_history_factor_feedback: str
     valid_sleep: bool
-    input_context: str
+    input_context: str | None
     primary_activity_tracker: bool
     recovery_time_change_phrase: str | None = None
 
