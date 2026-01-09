@@ -134,16 +134,10 @@ class DailySleepData(Data):
         day = format_end_date(day)
         path = f"/sleep-service/sleep/dailySleepData?date={day}"
         data = client.connectapi(path)
-
-        if not data:
-            return None
-
         assert isinstance(data, dict)
         data = camel_to_snake_dict(data)
 
-        if not data.get("daily_sleep_dto") or not data["daily_sleep_dto"].get(
-            "id"
-        ):
+        if not data["daily_sleep_dto"].get("id"):
             return None
 
         return cls(**data)
@@ -156,13 +150,11 @@ class DailySleepData(Data):
     @property
     def sleep_need_minutes(self) -> int | None:
         """Get the sleep need in minutes for this day."""
-        if self.daily_sleep_dto.sleep_need:
-            return self.daily_sleep_dto.sleep_need.actual
-        return None
+        need = self.daily_sleep_dto.sleep_need
+        return need.actual if need else None
 
     @property
     def next_sleep_need_minutes(self) -> int | None:
         """Get the sleep need in minutes for the next day."""
-        if self.daily_sleep_dto.next_sleep_need:
-            return self.daily_sleep_dto.next_sleep_need.actual
-        return None
+        need = self.daily_sleep_dto.next_sleep_need
+        return need.actual if need else None
