@@ -360,6 +360,65 @@ List sleep data over several nights:
 garth.SleepData.list("2023-07-20", 30)
 ```
 
+## Daily Sleep Data with Sleep Need
+
+`DailySleepData` provides detailed sleep data including sleep need recommendations
+from the Garmin coach. This includes personalized sleep need adjustments based on
+training, HRV, and sleep history.
+
+### Get daily sleep data
+
+```python
+garth.DailySleepData.get("2025-07-07")
+```
+
+```python
+DailySleepData(
+    daily_sleep_dto=SleepDTO(
+        id=1751863648000,
+        user_profile_pk=2591602,
+        calendar_date=datetime.date(2025, 7, 7),
+        sleep_time_seconds=24180,
+        sleep_scores=SleepScores(
+            overall=SleepScore(qualifier_key='GOOD', value=83),
+            # ... other scores
+        ),
+        sleep_need=SleepNeed(
+            user_profile_pk=2591602,
+            calendar_date=datetime.date(2025, 7, 7),
+            device_id=3469703076,
+            timestamp_gmt=datetime.datetime(2025, 7, 6, 12, 22, 29),
+            baseline=470,  # minutes
+            actual=470,    # minutes
+            feedback='NO_CHANGE_NO_ADJUSTMENTS',
+            training_feedback='NO_CHANGE',
+            sleep_history_adjustment='NO_CHANGE',
+            hrv_adjustment='NO_CHANGE',
+            nap_adjustment='NO_CHANGE',
+            displayed_for_the_day=False,
+            preferred_activity_tracker=True
+        ),
+        next_sleep_need=SleepNeed(...)
+    ),
+    rem_sleep_data=True,
+    body_battery_change=65,
+    resting_heart_rate=44,
+    skin_temp_data_exists=True,
+    avg_skin_temp_deviation_c=-0.4
+)
+
+# Convenience properties for sleep need
+data = garth.DailySleepData.get("2025-07-07")
+data.sleep_need_minutes       # 470 (today's sleep need)
+data.next_sleep_need_minutes  # 470 (tomorrow's sleep need)
+```
+
+### List daily sleep data
+
+```python
+garth.DailySleepData.list("2025-07-07", 7)  # Last 7 days
+```
+
 ## Weight Data
 
 Retrieve the latest weight measurement and body composition data for a given date.

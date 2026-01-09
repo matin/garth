@@ -1,0 +1,147 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/sleep-service/sleep/dailySleepData?date=2025-07-07
+  response:
+    body:
+      string: '{"dailySleepDTO": {"id": 1751863648000, "userProfilePK": 2591602, "calendarDate":
+        "2025-07-07", "sleepTimeSeconds": 24180, "napTimeSeconds": 0, "sleepWindowConfirmed":
+        true, "sleepWindowConfirmationType": "enhanced_confirmed_final", "sleepStartTimestampGMT":
+        1751863648000, "sleepEndTimestampGMT": 1751888248000, "sleepStartTimestampLocal":
+        1751842048000, "sleepEndTimestampLocal": 1751866648000, "autoSleepStartTimestampGMT":
+        null, "autoSleepEndTimestampGMT": null, "sleepQualityTypePK": null, "sleepResultTypePK":
+        null, "unmeasurableSleepSeconds": 0, "deepSleepSeconds": 5280, "lightSleepSeconds":
+        13440, "remSleepSeconds": 5460, "awakeSleepSeconds": 420, "deviceRemCapable":
+        true, "retro": false, "sleepFromDevice": true, "averageSpO2Value": 93.0, "lowestSpO2Value":
+        86, "highestSpO2Value": 100, "averageSpO2HRSleep": 46.0, "averageRespirationValue":
+        13.0, "lowestRespirationValue": 9.0, "highestRespirationValue": 17.0, "awakeCount":
+        1, "avgSleepStress": 14.0, "ageGroup": "ADULT", "sleepScoreFeedback": "POSITIVE_DEEP",
+        "sleepScoreInsight": "NONE", "sleepScorePersonalizedInsight": "STRESS_POS_EXCELLENT_OR_GOOD_SLEEP_RESTFUL_DAY",
+        "sleepScores": {"totalDuration": {"qualifierKey": "FAIR", "optimalStart":
+        28200.0, "optimalEnd": 28200.0}, "stress": {"qualifierKey": "GOOD", "optimalStart":
+        0.0, "optimalEnd": 15.0}, "awakeCount": {"qualifierKey": "EXCELLENT", "optimalStart":
+        0.0, "optimalEnd": 1.0}, "overall": {"value": 83, "qualifierKey": "GOOD"},
+        "remPercentage": {"value": 23, "qualifierKey": "EXCELLENT", "optimalStart":
+        21.0, "optimalEnd": 31.0, "idealStartInSeconds": 5077.8, "idealEndInSeconds":
+        7495.8}, "restlessness": {"qualifierKey": "GOOD", "optimalStart": 0.0, "optimalEnd":
+        5.0}, "lightPercentage": {"value": 56, "qualifierKey": "EXCELLENT", "optimalStart":
+        30.0, "optimalEnd": 64.0, "idealStartInSeconds": 7254.0, "idealEndInSeconds":
+        15475.2}, "deepPercentage": {"value": 22, "qualifierKey": "EXCELLENT", "optimalStart":
+        16.0, "optimalEnd": 33.0, "idealStartInSeconds": 3868.8, "idealEndInSeconds":
+        7979.4}}, "sleepVersion": 2, "sleepNeed": {"userProfilePk": 2591602, "calendarDate":
+        "2025-07-07", "deviceId": 3469703076, "timestampGmt": "2025-07-06T12:22:29",
+        "baseline": 470, "actual": 470, "feedback": "NO_CHANGE_NO_ADJUSTMENTS", "trainingFeedback":
+        "NO_CHANGE", "sleepHistoryAdjustment": "NO_CHANGE", "hrvAdjustment": "NO_CHANGE",
+        "napAdjustment": "NO_CHANGE", "displayedForTheDay": false, "preferredActivityTracker":
+        true}, "nextSleepNeed": {"userProfilePk": 2591602, "calendarDate": "2025-07-08",
+        "deviceId": 3469703076, "timestampGmt": "2025-07-07T14:57:05", "baseline":
+        470, "actual": 470, "feedback": "NO_CHANGE_NO_ADJUSTMENTS", "trainingFeedback":
+        "NO_CHANGE", "sleepHistoryAdjustment": "NO_CHANGE", "hrvAdjustment": "NO_CHANGE",
+        "napAdjustment": "NO_CHANGE", "displayedForTheDay": false, "preferredActivityTracker":
+        true}}, "sleepMovement": null, "remSleepData": true, "sleepLevels": null,
+        "wellnessSpO2SleepSummaryDTO": {"userProfilePk": 2591602, "deviceId": 3469703076,
+        "sleepMeasurementStartGMT": "2025-07-07T04:48:00.0", "sleepMeasurementEndGMT":
+        "2025-07-07T11:37:00.0", "alertThresholdValue": null, "numberOfEventsBelowThreshold":
+        null, "durationOfEventsBelowThreshold": null, "averageSPO2": 93.0, "averageSpO2HR":
+        46.0, "lowestSPO2": 86}, "skinTempDataExists": true, "avgSkinTempDeviationC":
+        -0.4, "avgSkinTempDeviationF": -0.7, "bodyBatteryChange": 65, "skinTempCalibrationDays":
+        19, "restingHeartRate": 44}'
+    headers:
+      CF-RAY:
+      - 9bb75e7778f8ca13-QRO
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 09 Jan 2026 22:28:40 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=SiRmqxq4gI%2FJSSzrUsnRtd2h%2FMD%2BaCsoXP2UJectoSicm6pnUTwwvXMmda2mzzYo8rMugrvQAaRvDJKA%2FfRZEXDwCIRDsbMPKjX8PK4XNyzglvoIp7mhxRjp%2BZA%2BFac01gMr8%2FcDLw%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - _cfuvid=SANITIZED
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/sleep-service/sleep/dailySleepData?date=2030-01-01
+  response:
+    body:
+      string: '{"dailySleepDTO": {"id": null, "userProfilePK": 2591602, "calendarDate":
+        "2030-01-01", "sleepTimeSeconds": null, "napTimeSeconds": null, "sleepWindowConfirmed":
+        null, "sleepWindowConfirmationType": null, "sleepStartTimestampGMT": null,
+        "sleepEndTimestampGMT": null, "sleepStartTimestampLocal": null, "sleepEndTimestampLocal":
+        null, "autoSleepStartTimestampGMT": null, "autoSleepEndTimestampGMT": null,
+        "sleepQualityTypePK": null, "sleepResultTypePK": null, "unmeasurableSleepSeconds":
+        null, "deepSleepSeconds": null, "lightSleepSeconds": null, "remSleepSeconds":
+        null, "awakeSleepSeconds": null, "deviceRemCapable": false, "retro": false},
+        "sleepMovement": [], "remSleepData": null, "sleepLevels": []}'
+    headers:
+      CF-RAY:
+      - 9bb75e783e7585e7-QRO
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 09 Jan 2026 22:28:40 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=s4bENo4SnATzQEsGl5b7ZO4EXV3CpxHSPQP62pT64irrG9JWJ0E3son40KIhUUavZEsZinjdWrHwP53tWcPfgupY3ekEKwyViL5ggwYecQ%2FoIGXFBBknBIslTJ6HyWcqob0deZOa2A%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+version: 1
