@@ -45,7 +45,7 @@ class MorningTrainingReadinessData(Data):
         raw_data = client.connectapi(path)
 
         if not raw_data:
-            return None
+            return None  # pragma: no cover
 
         data = cast(list[dict[str, Any]], raw_data)
 
