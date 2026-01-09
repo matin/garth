@@ -825,4 +825,169 @@ interactions:
     status:
       code: 200
       message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/metrics-service/metrics/trainingreadiness/2025-07-07
+  response:
+    body:
+      string: '[{"userProfilePK": 2591602, "calendarDate": "2025-07-07", "timestamp":
+        "2025-07-08T03:50:17.0", "timestampLocal": "2025-07-07T21:50:17.0", "deviceId":
+        3469703076, "level": "MODERATE", "feedbackLong": "MOD_RT_MOD_SS_GOOD_WORKOUT_COMPLETED",
+        "feedbackShort": "RECOVERY_IN_PROGRESS", "score": 50, "sleepScore": 83, "sleepScoreFactorPercent":
+        76, "sleepScoreFactorFeedback": "GOOD", "recoveryTime": 2004, "recoveryTimeFactorPercent":
+        45, "recoveryTimeFactorFeedback": "MODERATE", "acwrFactorPercent": 70, "acwrFactorFeedback":
+        "GOOD", "acuteLoad": 583, "stressHistoryFactorPercent": 84, "stressHistoryFactorFeedback":
+        "GOOD", "hrvFactorPercent": 99, "hrvFactorFeedback": "GOOD", "hrvWeeklyAverage":
+        42, "sleepHistoryFactorPercent": 80, "sleepHistoryFactorFeedback": "GOOD",
+        "validSleep": true, "inputContext": "UPDATE_REALTIME_VARIABLES", "primaryActivityTracker":
+        true, "recoveryTimeChangePhrase": null, "sleepHistoryFactorFeedbackPhrase":
+        null, "hrvFactorFeedbackPhrase": null, "stressHistoryFactorFeedbackPhrase":
+        null, "acwrFactorFeedbackPhrase": null, "recoveryTimeFactorFeedbackPhrase":
+        null, "sleepScoreFactorFeedbackPhrase": null}, {"userProfilePK": 2591602,
+        "calendarDate": "2025-07-07", "timestamp": "2025-07-07T14:57:05.0", "timestampLocal":
+        "2025-07-07T08:57:05.0", "deviceId": 3469703076, "level": "LOW", "feedbackLong":
+        "LOW_RT_HIGH_SS_GOOD_OR_MOD", "feedbackShort": "HIGH_RECOVERY_NEEDS", "score":
+        32, "sleepScore": 83, "sleepScoreFactorPercent": 76, "sleepScoreFactorFeedback":
+        "GOOD", "recoveryTime": 2777, "recoveryTimeFactorPercent": 32, "recoveryTimeFactorFeedback":
+        "POOR", "acwrFactorPercent": 70, "acwrFactorFeedback": "GOOD", "acuteLoad":
+        583, "stressHistoryFactorPercent": 84, "stressHistoryFactorFeedback": "GOOD",
+        "hrvFactorPercent": 99, "hrvFactorFeedback": "GOOD", "hrvWeeklyAverage": 42,
+        "sleepHistoryFactorPercent": 80, "sleepHistoryFactorFeedback": "GOOD", "validSleep":
+        true, "inputContext": "AFTER_POST_EXERCISE_RESET", "primaryActivityTracker":
+        true, "recoveryTimeChangePhrase": "NEW_EXERCISE", "sleepHistoryFactorFeedbackPhrase":
+        null, "hrvFactorFeedbackPhrase": null, "stressHistoryFactorFeedbackPhrase":
+        null, "acwrFactorFeedbackPhrase": null, "recoveryTimeFactorFeedbackPhrase":
+        null, "sleepScoreFactorFeedbackPhrase": null}, {"userProfilePK": 2591602,
+        "calendarDate": "2025-07-07", "timestamp": "2025-07-07T14:43:30.0", "timestampLocal":
+        "2025-07-07T08:43:30.0", "deviceId": 3469703076, "level": "LOW", "feedbackLong":
+        "LOW_RT_HIGH_SS_GOOD_OR_MOD", "feedbackShort": "HIGH_RECOVERY_NEEDS", "score":
+        32, "sleepScore": 83, "sleepScoreFactorPercent": 76, "sleepScoreFactorFeedback":
+        "GOOD", "recoveryTime": 2790, "recoveryTimeFactorPercent": 31, "recoveryTimeFactorFeedback":
+        "POOR", "acwrFactorPercent": 71, "acwrFactorFeedback": "GOOD", "acuteLoad":
+        571, "stressHistoryFactorPercent": 84, "stressHistoryFactorFeedback": "GOOD",
+        "hrvFactorPercent": 99, "hrvFactorFeedback": "GOOD", "hrvWeeklyAverage": 42,
+        "sleepHistoryFactorPercent": 80, "sleepHistoryFactorFeedback": "GOOD", "validSleep":
+        true, "inputContext": "AFTER_POST_EXERCISE_RESET", "primaryActivityTracker":
+        true, "recoveryTimeChangePhrase": "REACHED_ZERO", "sleepHistoryFactorFeedbackPhrase":
+        null, "hrvFactorFeedbackPhrase": null, "stressHistoryFactorFeedbackPhrase":
+        null, "acwrFactorFeedbackPhrase": null, "recoveryTimeFactorFeedbackPhrase":
+        null, "sleepScoreFactorFeedbackPhrase": null}, {"userProfilePK": 2591602,
+        "calendarDate": "2025-07-07", "timestamp": "2025-07-07T11:45:17.0", "timestampLocal":
+        "2025-07-07T05:45:17.0", "deviceId": 3469703076, "level": "HIGH", "feedbackLong":
+        "HIGH_RT_HIGHEST_SS_AVAILABLE", "feedbackShort": "WELL_RECOVERED", "score":
+        80, "sleepScore": 83, "sleepScoreFactorPercent": 76, "sleepScoreFactorFeedback":
+        "GOOD", "recoveryTime": 1, "recoveryTimeFactorPercent": 99, "recoveryTimeFactorFeedback":
+        "GOOD", "acwrFactorPercent": 90, "acwrFactorFeedback": "GOOD", "acuteLoad":
+        351, "stressHistoryFactorPercent": 84, "stressHistoryFactorFeedback": "GOOD",
+        "hrvFactorPercent": 99, "hrvFactorFeedback": "GOOD", "hrvWeeklyAverage": 42,
+        "sleepHistoryFactorPercent": 80, "sleepHistoryFactorFeedback": "GOOD", "validSleep":
+        true, "inputContext": "AFTER_WAKEUP_RESET", "primaryActivityTracker": true,
+        "recoveryTimeChangePhrase": "NO_CHANGE_SLEEP", "sleepHistoryFactorFeedbackPhrase":
+        null, "hrvFactorFeedbackPhrase": null, "stressHistoryFactorFeedbackPhrase":
+        null, "acwrFactorFeedbackPhrase": null, "recoveryTimeFactorFeedbackPhrase":
+        null, "sleepScoreFactorFeedbackPhrase": null}, {"userProfilePK": 2591602,
+        "calendarDate": "2025-07-07", "timestamp": "2025-07-07T08:50:17.0", "timestampLocal":
+        "2025-07-07T02:50:17.0", "deviceId": 3469703076, "level": "HIGH", "feedbackLong":
+        "HIGH_RT_AVAILABLE_SS_UNKNOWN", "feedbackShort": "WELL_RECOVERED", "score":
+        75, "sleepScore": null, "sleepScoreFactorPercent": 0, "sleepScoreFactorFeedback":
+        "NONE", "recoveryTime": 0, "recoveryTimeFactorPercent": 100, "recoveryTimeFactorFeedback":
+        "VERY_GOOD", "acwrFactorPercent": 90, "acwrFactorFeedback": "GOOD", "acuteLoad":
+        420, "stressHistoryFactorPercent": 74, "stressHistoryFactorFeedback": "GOOD",
+        "hrvFactorPercent": 98, "hrvFactorFeedback": "GOOD", "hrvWeeklyAverage": 43,
+        "sleepHistoryFactorPercent": 80, "sleepHistoryFactorFeedback": "GOOD", "validSleep":
+        false, "inputContext": "UPDATE_REALTIME_VARIABLES", "primaryActivityTracker":
+        true, "recoveryTimeChangePhrase": null, "sleepHistoryFactorFeedbackPhrase":
+        null, "hrvFactorFeedbackPhrase": null, "stressHistoryFactorFeedbackPhrase":
+        null, "acwrFactorFeedbackPhrase": null, "recoveryTimeFactorFeedbackPhrase":
+        null, "sleepScoreFactorFeedbackPhrase": null}]'
+    headers:
+      CF-RAY:
+      - 9bb73a443b4accc4-DFW
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Fri, 09 Jan 2026 22:03:57 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=zaq4%2BhAGAjviUkBBfd%2F2878H2V6ub3Fk1E1ztj0Mo9Ds0Ktt1hOhpiILdsKwMRv3YnsKtyyo8GQze2BcZWtG87TNCsrEtOuklTpWhQJQ3DK9i9f46N4sXEXPXo7Tls6DnLhvPPZ%2Fsw%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      Cookie:
+      - _cfuvid=SANITIZED
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/metrics-service/metrics/trainingreadiness/2030-01-01
+  response:
+    body:
+      string: '[]'
+    headers:
+      CF-RAY:
+      - 9bb73a44efb2b1f2-QRO
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '2'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Fri, 09 Jan 2026 22:03:57 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=Gng7XQ%2FFrpqAwQU7b7BFPmhp%2FgRjMw4jn%2B1w6d0Svp82bxkZOfyRCbxd81%2BxDYMZH06AqtRXXum3alxIq3Lcqo94fSkTETKDUbdiDAAzjehbggFD%2F47czz%2BpOVLCFN2kEbXUI8%2FDVA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
 version: 1
