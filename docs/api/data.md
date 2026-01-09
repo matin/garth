@@ -358,7 +358,7 @@ Retrieve the latest weight measurement and body composition data for a given dat
 ### Get single day
 
 ```python
-garth.WeightData.get("2025-06-01")
+garth.WeightData.get("2025-06-15")
 ```
 
 ```python
