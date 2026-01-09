@@ -4,6 +4,7 @@ import pytest
 
 from garth import DailyHydration
 from garth.http import Client
+from garth.stats.hydration import HydrationLogEntry
 
 
 @pytest.mark.vcr
@@ -18,4 +19,10 @@ def test_daily_hydration(authed_client: Client):
 @pytest.mark.vcr
 def test_daily_hydration_log(authed_client: Client):
     timestamp = datetime(2026, 1, 9, 15, 30, 0)
-    DailyHydration.log(500.0, timestamp=timestamp, client=authed_client)
+    entry = DailyHydration.log(
+        500.0, timestamp=timestamp, client=authed_client
+    )
+    assert isinstance(entry, HydrationLogEntry)
+    assert entry.calendar_date == date(2026, 1, 9)
+    assert entry.value_in_ml == 1000.0  # 500 existing + 500 logged
+    assert entry.last_entry_timestamp_local == timestamp
