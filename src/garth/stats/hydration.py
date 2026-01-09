@@ -16,8 +16,8 @@ class HydrationLogEntry:
     user_id: int
     calendar_date: date
     value_in_ml: float
-    goal_in_ml: float
     last_entry_timestamp_local: datetime
+    goal_in_ml: float | None = None
     daily_averagein_ml: float | None = None
     sweat_loss_in_ml: float | None = None
     activity_intake_in_ml: float | None = None
