@@ -5,7 +5,7 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Authorization:
       - Bearer SANITIZED
       Connection:
@@ -16,42 +16,79 @@ interactions:
     uri: https://connectapi.garmin.com/metrics-service/metrics/trainingreadiness/2025-07-07
   response:
     body:
-      string: '[{"userProfilePK": 131234790, "calendarDate": "2025-07-07", "timestamp":
-        "2025-07-07T17:43:54.0", "timestampLocal": "2025-07-07T19:43:54.0", "deviceId":
-        3345342345, "level": "PRIME", "feedbackLong": "PRIME_RT_HIGHEST_SS_AVAILABLE_ACWR_POS",
-        "feedbackShort": "READY_FOR_ACTION", "score": 100, "sleepScore": 80, "sleepScoreFactorPercent":
-        70, "sleepScoreFactorFeedback": "GOOD", "recoveryTime": 1, "recoveryTimeFactorPercent":
-        99, "recoveryTimeFactorFeedback": "GOOD", "acwrFactorPercent": 100, "acwrFactorFeedback":
-        "VERY_GOOD", "acuteLoad": 20, "stressHistoryFactorPercent": 72, "stressHistoryFactorFeedback":
-        "GOOD", "hrvFactorPercent": 92, "hrvFactorFeedback": "GOOD", "hrvWeeklyAverage":
-        53, "sleepHistoryFactorPercent": 92, "sleepHistoryFactorFeedback": "VERY_GOOD",
-        "validSleep": true, "inputContext": "AFTER_POST_EXERCISE_RESET", "primaryActivityTracker":
-        true, "recoveryTimeChangePhrase": "REACHED_ZERO"}, {"userProfilePK": 131234790,
-        "calendarDate": "2025-07-07", "timestamp": "2025-07-07T04:00:25.0", "timestampLocal":
-        "2025-07-07T06:00:25.0", "deviceId": 3345342345, "level": "PRIME", "feedbackLong":
-        "PRIME_RT_HIGHEST_SS_AVAILABLE_ACWR_POS", "feedbackShort": "READY_FOR_ACTION",
-        "score": 100, "sleepScore": 80, "sleepScoreFactorPercent": 70, "sleepScoreFactorFeedback":
+      string: '[{"userProfilePK": 2591602, "calendarDate": "2025-07-07", "timestamp":
+        "2025-07-08T03:50:17.0", "timestampLocal": "2025-07-07T21:50:17.0", "deviceId":
+        3469703076, "level": "MODERATE", "feedbackLong": "MOD_RT_MOD_SS_GOOD_WORKOUT_COMPLETED",
+        "feedbackShort": "RECOVERY_IN_PROGRESS", "score": 50, "sleepScore": 83, "sleepScoreFactorPercent":
+        76, "sleepScoreFactorFeedback": "GOOD", "recoveryTime": 2004, "recoveryTimeFactorPercent":
+        45, "recoveryTimeFactorFeedback": "MODERATE", "acwrFactorPercent": 70, "acwrFactorFeedback":
+        "GOOD", "acuteLoad": 583, "stressHistoryFactorPercent": 84, "stressHistoryFactorFeedback":
+        "GOOD", "hrvFactorPercent": 99, "hrvFactorFeedback": "GOOD", "hrvWeeklyAverage":
+        42, "sleepHistoryFactorPercent": 80, "sleepHistoryFactorFeedback": "GOOD",
+        "validSleep": true, "inputContext": "UPDATE_REALTIME_VARIABLES", "primaryActivityTracker":
+        true, "recoveryTimeChangePhrase": null, "sleepHistoryFactorFeedbackPhrase":
+        null, "hrvFactorFeedbackPhrase": null, "stressHistoryFactorFeedbackPhrase":
+        null, "acwrFactorFeedbackPhrase": null, "recoveryTimeFactorFeedbackPhrase":
+        null, "sleepScoreFactorFeedbackPhrase": null}, {"userProfilePK": 2591602,
+        "calendarDate": "2025-07-07", "timestamp": "2025-07-07T14:57:05.0", "timestampLocal":
+        "2025-07-07T08:57:05.0", "deviceId": 3469703076, "level": "LOW", "feedbackLong":
+        "LOW_RT_HIGH_SS_GOOD_OR_MOD", "feedbackShort": "HIGH_RECOVERY_NEEDS", "score":
+        32, "sleepScore": 83, "sleepScoreFactorPercent": 76, "sleepScoreFactorFeedback":
+        "GOOD", "recoveryTime": 2777, "recoveryTimeFactorPercent": 32, "recoveryTimeFactorFeedback":
+        "POOR", "acwrFactorPercent": 70, "acwrFactorFeedback": "GOOD", "acuteLoad":
+        583, "stressHistoryFactorPercent": 84, "stressHistoryFactorFeedback": "GOOD",
+        "hrvFactorPercent": 99, "hrvFactorFeedback": "GOOD", "hrvWeeklyAverage": 42,
+        "sleepHistoryFactorPercent": 80, "sleepHistoryFactorFeedback": "GOOD", "validSleep":
+        true, "inputContext": "AFTER_POST_EXERCISE_RESET", "primaryActivityTracker":
+        true, "recoveryTimeChangePhrase": "NEW_EXERCISE", "sleepHistoryFactorFeedbackPhrase":
+        null, "hrvFactorFeedbackPhrase": null, "stressHistoryFactorFeedbackPhrase":
+        null, "acwrFactorFeedbackPhrase": null, "recoveryTimeFactorFeedbackPhrase":
+        null, "sleepScoreFactorFeedbackPhrase": null}, {"userProfilePK": 2591602,
+        "calendarDate": "2025-07-07", "timestamp": "2025-07-07T14:43:30.0", "timestampLocal":
+        "2025-07-07T08:43:30.0", "deviceId": 3469703076, "level": "LOW", "feedbackLong":
+        "LOW_RT_HIGH_SS_GOOD_OR_MOD", "feedbackShort": "HIGH_RECOVERY_NEEDS", "score":
+        32, "sleepScore": 83, "sleepScoreFactorPercent": 76, "sleepScoreFactorFeedback":
+        "GOOD", "recoveryTime": 2790, "recoveryTimeFactorPercent": 31, "recoveryTimeFactorFeedback":
+        "POOR", "acwrFactorPercent": 71, "acwrFactorFeedback": "GOOD", "acuteLoad":
+        571, "stressHistoryFactorPercent": 84, "stressHistoryFactorFeedback": "GOOD",
+        "hrvFactorPercent": 99, "hrvFactorFeedback": "GOOD", "hrvWeeklyAverage": 42,
+        "sleepHistoryFactorPercent": 80, "sleepHistoryFactorFeedback": "GOOD", "validSleep":
+        true, "inputContext": "AFTER_POST_EXERCISE_RESET", "primaryActivityTracker":
+        true, "recoveryTimeChangePhrase": "REACHED_ZERO", "sleepHistoryFactorFeedbackPhrase":
+        null, "hrvFactorFeedbackPhrase": null, "stressHistoryFactorFeedbackPhrase":
+        null, "acwrFactorFeedbackPhrase": null, "recoveryTimeFactorFeedbackPhrase":
+        null, "sleepScoreFactorFeedbackPhrase": null}, {"userProfilePK": 2591602,
+        "calendarDate": "2025-07-07", "timestamp": "2025-07-07T11:45:17.0", "timestampLocal":
+        "2025-07-07T05:45:17.0", "deviceId": 3469703076, "level": "HIGH", "feedbackLong":
+        "HIGH_RT_HIGHEST_SS_AVAILABLE", "feedbackShort": "WELL_RECOVERED", "score":
+        80, "sleepScore": 83, "sleepScoreFactorPercent": 76, "sleepScoreFactorFeedback":
         "GOOD", "recoveryTime": 1, "recoveryTimeFactorPercent": 99, "recoveryTimeFactorFeedback":
-        "GOOD", "acwrFactorPercent": 100, "acwrFactorFeedback": "VERY_GOOD", "acuteLoad":
-        20, "stressHistoryFactorPercent": 72, "stressHistoryFactorFeedback": "GOOD",
-        "hrvFactorPercent": 92, "hrvFactorFeedback": "GOOD", "hrvWeeklyAverage": 53,
-        "sleepHistoryFactorPercent": 92, "sleepHistoryFactorFeedback": "VERY_GOOD",
-        "validSleep": true, "inputContext": "AFTER_WAKEUP_RESET", "primaryActivityTracker":
-        true, "recoveryTimeChangePhrase": "NO_CHANGE_SLEEP"}, {"userProfilePK": 131234790,
-        "calendarDate": "2025-07-07", "timestamp": "2025-07-06T22:39:28.0", "timestampLocal":
-        "2025-07-07T00:39:28.0", "deviceId": 3345342345, "level": "HIGH", "feedbackLong":
-        "HIGH_RT_AVAILABLE_SS_UNKNOWN_ACWR_POS", "feedbackShort": "WELL_RECOVERED",
-        "score": 94, "sleepScore": null, "sleepScoreFactorPercent": 0, "sleepScoreFactorFeedback":
+        "GOOD", "acwrFactorPercent": 90, "acwrFactorFeedback": "GOOD", "acuteLoad":
+        351, "stressHistoryFactorPercent": 84, "stressHistoryFactorFeedback": "GOOD",
+        "hrvFactorPercent": 99, "hrvFactorFeedback": "GOOD", "hrvWeeklyAverage": 42,
+        "sleepHistoryFactorPercent": 80, "sleepHistoryFactorFeedback": "GOOD", "validSleep":
+        true, "inputContext": "AFTER_WAKEUP_RESET", "primaryActivityTracker": true,
+        "recoveryTimeChangePhrase": "NO_CHANGE_SLEEP", "sleepHistoryFactorFeedbackPhrase":
+        null, "hrvFactorFeedbackPhrase": null, "stressHistoryFactorFeedbackPhrase":
+        null, "acwrFactorFeedbackPhrase": null, "recoveryTimeFactorFeedbackPhrase":
+        null, "sleepScoreFactorFeedbackPhrase": null}, {"userProfilePK": 2591602,
+        "calendarDate": "2025-07-07", "timestamp": "2025-07-07T08:50:17.0", "timestampLocal":
+        "2025-07-07T02:50:17.0", "deviceId": 3469703076, "level": "HIGH", "feedbackLong":
+        "HIGH_RT_AVAILABLE_SS_UNKNOWN", "feedbackShort": "WELL_RECOVERED", "score":
+        75, "sleepScore": null, "sleepScoreFactorPercent": 0, "sleepScoreFactorFeedback":
         "NONE", "recoveryTime": 0, "recoveryTimeFactorPercent": 100, "recoveryTimeFactorFeedback":
-        "VERY_GOOD", "acwrFactorPercent": 100, "acwrFactorFeedback": "VERY_GOOD",
-        "acuteLoad": 24, "stressHistoryFactorPercent": 79, "stressHistoryFactorFeedback":
-        "GOOD", "hrvFactorPercent": 87, "hrvFactorFeedback": "GOOD", "hrvWeeklyAverage":
-        53, "sleepHistoryFactorPercent": 92, "sleepHistoryFactorFeedback": "VERY_GOOD",
-        "validSleep": false, "inputContext": "UPDATE_REALTIME_VARIABLES", "primaryActivityTracker":
-        true, "recoveryTimeChangePhrase": null}]'
+        "VERY_GOOD", "acwrFactorPercent": 90, "acwrFactorFeedback": "GOOD", "acuteLoad":
+        420, "stressHistoryFactorPercent": 74, "stressHistoryFactorFeedback": "GOOD",
+        "hrvFactorPercent": 98, "hrvFactorFeedback": "GOOD", "hrvWeeklyAverage": 43,
+        "sleepHistoryFactorPercent": 80, "sleepHistoryFactorFeedback": "GOOD", "validSleep":
+        false, "inputContext": "UPDATE_REALTIME_VARIABLES", "primaryActivityTracker":
+        true, "recoveryTimeChangePhrase": null, "sleepHistoryFactorFeedbackPhrase":
+        null, "hrvFactorFeedbackPhrase": null, "stressHistoryFactorFeedbackPhrase":
+        null, "acwrFactorFeedbackPhrase": null, "recoveryTimeFactorFeedbackPhrase":
+        null, "sleepScoreFactorFeedbackPhrase": null}]'
     headers:
       CF-RAY:
-      - 95d8ecf8fb8cf98c-PRG
+      - 9bb73dbf4ac55e48-QRO
       Cache-Control:
       - no-cache, no-store, private
       Connection:
@@ -59,11 +96,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 11 Jul 2025 14:17:40 GMT
+      - Fri, 09 Jan 2026 22:06:20 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=klo8Y2fOoFs1Fk3Xvf2V%2F0uvJJS84SKEmffnXoGhq2z9dVu%2BhS4uUbfpagfzhpu%2FhCxsRsoXL6ABjJ3ehKOrw1ggv9o5p%2FHUcolb5K5D7PvGkbN%2FDk5qVq9SOWh5UWVtVISZdWxSkQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=L%2FlQxTuApJAR3nRd5CH%2B98tNTANSBAPC8E0kZ4ysWqWimQP83e1EyuBbgJESHuJZtT%2BUum5wPYg8i0BZa1sR%2BdGP%2F3YpsLl1T4f%2B64gX8csKjfZIRUi62MMZYt5dxKqFNYz8eUZKIQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:
@@ -85,7 +122,7 @@ interactions:
       Accept:
       - '*/*'
       Accept-Encoding:
-      - gzip, deflate
+      - gzip, deflate, zstd
       Authorization:
       - Bearer SANITIZED
       Connection:
@@ -98,31 +135,23 @@ interactions:
     uri: https://connectapi.garmin.com/metrics-service/metrics/trainingreadiness/2025-07-06
   response:
     body:
-      string: '[{"userProfilePK": 131234790, "calendarDate": "2025-07-06", "timestamp":
-        "2025-07-06T05:59:18.0", "timestampLocal": "2025-07-06T07:59:18.0", "deviceId":
-        3345342345, "level": "PRIME", "feedbackLong": "PRIME_RT_HIGHEST_SS_AVAILABLE_ACWR_POS",
-        "feedbackShort": "READY_FOR_ACTION", "score": 100, "sleepScore": 91, "sleepScoreFactorPercent":
-        91, "sleepScoreFactorFeedback": "VERY_GOOD", "recoveryTime": 0, "recoveryTimeFactorPercent":
-        100, "recoveryTimeFactorFeedback": "VERY_GOOD", "acwrFactorPercent": 100,
-        "acwrFactorFeedback": "VERY_GOOD", "acuteLoad": 24, "stressHistoryFactorPercent":
-        79, "stressHistoryFactorFeedback": "GOOD", "hrvFactorPercent": 89, "hrvFactorFeedback":
-        "GOOD", "hrvWeeklyAverage": 53, "sleepHistoryFactorPercent": 92, "sleepHistoryFactorFeedback":
-        "VERY_GOOD", "validSleep": true, "inputContext": "AFTER_WAKEUP_RESET", "primaryActivityTracker":
-        true, "recoveryTimeChangePhrase": "REACHED_ZERO"}, {"userProfilePK": 131234790,
-        "calendarDate": "2025-07-06", "timestamp": "2025-07-05T22:39:28.0", "timestampLocal":
-        "2025-07-06T00:39:28.0", "deviceId": 3345342345, "level": "HIGH", "feedbackLong":
-        "HIGH_RT_AVAILABLE_SS_UNKNOWN_ACWR_POS", "feedbackShort": "WELL_RECOVERED",
-        "score": 94, "sleepScore": null, "sleepScoreFactorPercent": 0, "sleepScoreFactorFeedback":
-        "NONE", "recoveryTime": 0, "recoveryTimeFactorPercent": 100, "recoveryTimeFactorFeedback":
-        "VERY_GOOD", "acwrFactorPercent": 100, "acwrFactorFeedback": "VERY_GOOD",
-        "acuteLoad": 28, "stressHistoryFactorPercent": 73, "stressHistoryFactorFeedback":
-        "GOOD", "hrvFactorPercent": 92, "hrvFactorFeedback": "GOOD", "hrvWeeklyAverage":
-        53, "sleepHistoryFactorPercent": 92, "sleepHistoryFactorFeedback": "VERY_GOOD",
-        "validSleep": false, "inputContext": "UPDATE_REALTIME_VARIABLES", "primaryActivityTracker":
-        true, "recoveryTimeChangePhrase": null}]'
+      string: '[{"userProfilePK": 2591602, "calendarDate": "2025-07-06", "timestamp":
+        "2025-07-06T12:22:28.0", "timestampLocal": "2025-07-06T06:22:28.0", "deviceId":
+        3469703076, "level": "MODERATE", "feedbackLong": "MOD_RT_LOW_SS_GOOD", "feedbackShort":
+        "RECOVERED_AND_READY", "score": 66, "sleepScore": 83, "sleepScoreFactorPercent":
+        76, "sleepScoreFactorFeedback": "GOOD", "recoveryTime": 563, "recoveryTimeFactorPercent":
+        85, "recoveryTimeFactorFeedback": "GOOD", "acwrFactorPercent": 84, "acwrFactorFeedback":
+        "GOOD", "acuteLoad": 420, "stressHistoryFactorPercent": 74, "stressHistoryFactorFeedback":
+        "GOOD", "hrvFactorPercent": 100, "hrvFactorFeedback": "VERY_GOOD", "hrvWeeklyAverage":
+        43, "sleepHistoryFactorPercent": 78, "sleepHistoryFactorFeedback": "GOOD",
+        "validSleep": true, "inputContext": "AFTER_WAKEUP_RESET", "primaryActivityTracker":
+        true, "recoveryTimeChangePhrase": "NO_CHANGE_SLEEP", "sleepHistoryFactorFeedbackPhrase":
+        null, "hrvFactorFeedbackPhrase": null, "stressHistoryFactorFeedbackPhrase":
+        null, "acwrFactorFeedbackPhrase": null, "recoveryTimeFactorFeedbackPhrase":
+        null, "sleepScoreFactorFeedbackPhrase": null}]'
     headers:
       CF-RAY:
-      - 95d8ecfa4db28b99-PRG
+      - 9bb73dc01c6c85db-QRO
       Cache-Control:
       - no-cache, no-store, private
       Connection:
@@ -130,11 +159,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 11 Jul 2025 14:17:40 GMT
+      - Fri, 09 Jan 2026 22:06:20 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=%2BW9Gq40zGYna1vWf0YNbEFVFWZr6cldvSJKZjWYCNu2SSGhOsfbxFiCpbCWfpe4EaY2TWP4%2B2L0AdeUuR1jPMvVQJYQBftjEobmV9pWqy1SKZVzDz8aVrnnQyFQE5JofAZtovCDW%2Bw%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=mLcegIfKSmrh67gBu0k2Yp%2BZaiMvjIOYEB%2F%2FfZfS1RZd4FI8PWHzOevgE4Jl58QYUEd2q%2BD7yKK8J4k6mixFIpUmR41kX8yjAIMEJ4S6h5Kr9k29tMYeymOsJbO6uRkXKOzhUggLqA%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
