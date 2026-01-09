@@ -907,11 +907,7 @@ WeightData(
     source_type='INDEX_SCALE',
     weight_delta=200.00000000000284,
     timestamp_gmt=1749996876000,
-    datetime_utc=datetime.datetime(2025, 6, 15, 14, 14, 36, tzinfo=TzInfo(UTC)),
-    datetime_local=datetime.datetime(
-        2025, 6, 15, 8, 14, 36,
-        tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=64800))
-    ),
+    timestamp_local=1749975276000,
     bmi=22.799999237060547,
     body_fat=19.3,
     body_water=58.9,
@@ -921,6 +917,10 @@ WeightData(
     visceral_fat=None,
     metabolic_age=None
 )
+
+# datetime_utc and datetime_local are available as properties:
+# weight.datetime_utc -> datetime.datetime(2025, 6, 15, 14, 14, 36, tzinfo=UTC)
+# weight.datetime_local -> datetime.datetime(2025, 6, 15, 8, 14, 36, tzinfo=...)
 ```
 
 Get weight entries for a date range.
@@ -938,11 +938,7 @@ garth.WeightData.list("2025-06-01", 30)
         source_type='INDEX_SCALE',
         weight_delta=500.0,
         timestamp_gmt=1749307658000,
-        datetime_utc=datetime.datetime(2025, 6, 7, 14, 47, 38, tzinfo=TzInfo(UTC)),
-        datetime_local=datetime.datetime(
-            2025, 6, 7, 8, 47, 38,
-            tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=64800))
-        ),
+        timestamp_local=1749286058000,
         bmi=22.600000381469727,
         body_fat=20.0,
         body_water=58.4,
@@ -959,11 +955,7 @@ garth.WeightData.list("2025-06-01", 30)
         source_type='INDEX_SCALE',
         weight_delta=-100.00000000000142,
         timestamp_gmt=1749909180000,
-        datetime_utc=datetime.datetime(2025, 6, 14, 13, 53, tzinfo=TzInfo(UTC)),
-        datetime_local=datetime.datetime(
-            2025, 6, 14, 7, 53,
-            tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=64800))
-        ),
+        timestamp_local=1749887580000,
         bmi=22.5,
         body_fat=20.3,
         body_water=58.2,
@@ -980,13 +972,7 @@ garth.WeightData.list("2025-06-01", 30)
         source_type='MANUAL',
         weight_delta=399.9999999999986,
         timestamp_gmt=1749948725175,
-        datetime_utc=datetime.datetime(
-            2025, 6, 15, 0, 52, 5, 175000, tzinfo=TzInfo(UTC)
-        ),
-        datetime_local=datetime.datetime(
-            2025, 6, 14, 18, 52, 5, 175000,
-            tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=64800))
-        ),
+        timestamp_local=1749927125175,
         bmi=None,
         body_fat=None,
         body_water=None,
@@ -1003,11 +989,7 @@ garth.WeightData.list("2025-06-01", 30)
         source_type='INDEX_SCALE',
         weight_delta=200.00000000000284,
         timestamp_gmt=1749996876000,
-        datetime_utc=datetime.datetime(2025, 6, 15, 14, 14, 36, tzinfo=TzInfo(UTC)),
-        datetime_local=datetime.datetime(
-            2025, 6, 15, 8, 14, 36,
-            tzinfo=datetime.timezone(datetime.timedelta(days=-1, seconds=64800))
-        ),
+        timestamp_local=1749975276000,
         bmi=22.799999237060547,
         body_fat=19.3,
         body_water=58.9,
@@ -1018,6 +1000,8 @@ garth.WeightData.list("2025-06-01", 30)
         metabolic_age=None
     )
 ]
+
+# datetime_utc and datetime_local are available as properties on each entry
 ```
 
 ### Daily Summary
