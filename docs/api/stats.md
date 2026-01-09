@@ -69,6 +69,30 @@ garth.DailyHydration.list(period=2)
 ]
 ```
 
+### Log hydration intake
+
+```python
+garth.DailyHydration.log(500.0)  # Log 500ml now
+```
+
+```python
+HydrationLogEntry(
+    user_id=2591602,
+    calendar_date=datetime.date(2026, 1, 9),
+    value_in_ml=1000.0,
+    last_entry_timestamp_local=datetime.datetime(2026, 1, 9, 15, 30),
+    goal_in_ml=3382.0,
+    sweat_loss_in_ml=582.0,
+    activity_intake_in_ml=0.0
+)
+```
+
+Log with a specific timestamp:
+
+```python
+garth.DailyHydration.log(500.0, timestamp=datetime.datetime(2026, 1, 9, 15, 30))
+```
+
 ## Steps
 
 ### Daily steps
