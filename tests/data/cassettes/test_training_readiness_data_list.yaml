@@ -88,7 +88,7 @@ interactions:
         null, "sleepScoreFactorFeedbackPhrase": null}]'
     headers:
       CF-RAY:
-      - 9bb73dbd39ecd9f7-QRO
+      - 9bb73afcaa6f07a3-QRO
       Cache-Control:
       - no-cache, no-store, private
       Connection:
@@ -96,11 +96,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 09 Jan 2026 22:06:19 GMT
+      - Fri, 09 Jan 2026 22:04:27 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=dJ3jFdZX8QgYWv%2Bcrd9YVoVms9kiu8JCNmJRE%2Bu6VAL980ozqahZar8U5g5w2mE8B46Lvyi279Ct69uQfUWZHh%2B68orWLt1QGq6t56RfK4RFq6uxcHqq%2F%2BLWt212oQsMiZx2MPKdYg%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=M7Czos9xD%2BJgj3ZknFNTztvM9Soue0Vp8TjhFv3vDsx1DXmSbUGpFcZtt7Y0JbxJhjZBUoh2UMUHBgjloqwQZqXvJPdhCZCcXBx2FK1bh5k4onaqaWnfTB68kOGtZxgtEUQ0OYJmFA%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Set-Cookie:
@@ -132,27 +132,26 @@ interactions:
       User-Agent:
       - GCM-iOS-5.7.2.1
     method: GET
-    uri: https://connectapi.garmin.com/metrics-service/metrics/trainingreadiness/2024-07-07
+    uri: https://connectapi.garmin.com/metrics-service/metrics/trainingreadiness/2025-07-06
   response:
     body:
-      string: '[{"userProfilePK": 2591602, "calendarDate": "2024-07-07", "timestamp":
-        "2024-07-07T13:47:19.0", "timestampLocal": "2024-07-07T07:47:19.0", "deviceId":
-        3469703076, "level": "LOW", "feedbackLong": "LOW_RT_MOD_OR_LOW_SS_MOD_SLEEP_HISTORY_NEG",
-        "feedbackShort": "FOCUS_ON_SLEEP_QUALITY", "score": 49, "sleepScore": 60,
-        "sleepScoreFactorPercent": 40, "sleepScoreFactorFeedback": "MODERATE", "recoveryTime":
-        1, "recoveryTimeFactorPercent": 99, "recoveryTimeFactorFeedback": "GOOD",
-        "acwrFactorPercent": 100, "acwrFactorFeedback": "VERY_GOOD", "acuteLoad":
-        175, "stressHistoryFactorPercent": 66, "stressHistoryFactorFeedback": "MODERATE",
-        "hrvFactorPercent": 100, "hrvFactorFeedback": "VERY_GOOD", "hrvWeeklyAverage":
-        42, "sleepHistoryFactorPercent": 45, "sleepHistoryFactorFeedback": "MODERATE",
-        "validSleep": true, "inputContext": null, "primaryActivityTracker": true,
-        "recoveryTimeChangePhrase": "NO_CHANGE_SLEEP", "sleepHistoryFactorFeedbackPhrase":
+      string: '[{"userProfilePK": 2591602, "calendarDate": "2025-07-06", "timestamp":
+        "2025-07-06T12:22:28.0", "timestampLocal": "2025-07-06T06:22:28.0", "deviceId":
+        3469703076, "level": "MODERATE", "feedbackLong": "MOD_RT_LOW_SS_GOOD", "feedbackShort":
+        "RECOVERED_AND_READY", "score": 66, "sleepScore": 83, "sleepScoreFactorPercent":
+        76, "sleepScoreFactorFeedback": "GOOD", "recoveryTime": 563, "recoveryTimeFactorPercent":
+        85, "recoveryTimeFactorFeedback": "GOOD", "acwrFactorPercent": 84, "acwrFactorFeedback":
+        "GOOD", "acuteLoad": 420, "stressHistoryFactorPercent": 74, "stressHistoryFactorFeedback":
+        "GOOD", "hrvFactorPercent": 100, "hrvFactorFeedback": "VERY_GOOD", "hrvWeeklyAverage":
+        43, "sleepHistoryFactorPercent": 78, "sleepHistoryFactorFeedback": "GOOD",
+        "validSleep": true, "inputContext": "AFTER_WAKEUP_RESET", "primaryActivityTracker":
+        true, "recoveryTimeChangePhrase": "NO_CHANGE_SLEEP", "sleepHistoryFactorFeedbackPhrase":
         null, "hrvFactorFeedbackPhrase": null, "stressHistoryFactorFeedbackPhrase":
         null, "acwrFactorFeedbackPhrase": null, "recoveryTimeFactorFeedbackPhrase":
         null, "sleepScoreFactorFeedbackPhrase": null}]'
     headers:
       CF-RAY:
-      - 9bb73dbe9bbac0f4-DFW
+      - 9bb73afdbeec1f84-QRO
       Cache-Control:
       - no-cache, no-store, private
       Connection:
@@ -160,11 +159,11 @@ interactions:
       Content-Type:
       - application/json;charset=UTF-8
       Date:
-      - Fri, 09 Jan 2026 22:06:19 GMT
+      - Fri, 09 Jan 2026 22:04:27 GMT
       NEL:
       - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
       Report-To:
-      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=B%2Ba6q57zEBqiybvoT2gZml09b7kgFBoEMcLn6gVDcedD%2F3VeKSI3UlSlm6JE3TTt3AoblxifsfUtF2gVpVE5BAROr%2BmXCSTZm%2FHNMdbJjFxUmK96pg3rGVcAKJXB%2FgxtM5qZCnPSAA%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=hVMWAUYcSH6o2a50k1D9p8zldAmxtNst4h7qHXlvk7IAQgGOcn0Nl6xuYB33AXHMKRGUM5Crl930yVNuP7XOyPciYTuaNBYTDDYllBfnWxm5RNzgI5GRmfBMSk0cgyzpYlmYjl%2FmbQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
       Server:
       - cloudflare
       Transfer-Encoding:
