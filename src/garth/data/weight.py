@@ -1,6 +1,7 @@
 from datetime import date, datetime, timedelta, timezone
 from itertools import chain
 
+from pydantic import Field
 from pydantic.dataclasses import dataclass
 from typing_extensions import Self
 
@@ -21,7 +22,7 @@ class WeightData(Data):
     source_type: str
     weight_delta: float
     timestamp_gmt: int
-    timestamp_local: int
+    timestamp_local: int = Field(alias="date")
     bmi: float | None = None
     body_fat: float | None = None
     body_water: float | None = None
@@ -42,14 +43,6 @@ class WeightData(Data):
         return get_localized_datetime(self.timestamp_gmt, self.timestamp_local)
 
     @classmethod
-    def _transform(cls, data: dict) -> dict:
-        """Transform API response to match field names."""
-        data = camel_to_snake_dict(data)
-        # Rename 'date' to 'timestamp_local' to avoid conflict with date type
-        data["timestamp_local"] = data.pop("date")
-        return data
-
-    @classmethod
     def get(
         cls, day: date | str, *, client: http.Client | None = None
     ) -> Self | None:
@@ -64,7 +57,7 @@ class WeightData(Data):
         if not day_weight_list:
             return None
 
-        return cls(**cls._transform(day_weight_list[0]))
+        return cls(**camel_to_snake_dict(day_weight_list[0]))
 
     @classmethod
     def list(
@@ -90,7 +83,7 @@ class WeightData(Data):
             summary["allWeightMetrics"] for summary in weight_summaries
         )
         weight_data_list = (
-            cls(**cls._transform(weight_data))
+            cls(**camel_to_snake_dict(weight_data))
             for weight_data in weight_metrics
         )
         return sorted(weight_data_list, key=lambda d: d.datetime_utc)
