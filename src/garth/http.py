@@ -24,7 +24,7 @@ class Client:
     oauth2_token: OAuth2Token | dict[str, Any] | None = None
     timeout: int = 10
     retries: int = 3
-    status_forcelist: tuple[int, ...] = (408, 429, 500, 502, 503, 504)
+    status_forcelist: tuple[int, ...] = (408, 500, 502, 503, 504)
     backoff_factor: float = 0.5
     pool_connections: int = 10
     pool_maxsize: int = 10
