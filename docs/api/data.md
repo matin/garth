@@ -419,6 +419,69 @@ data.next_sleep_need_minutes  # 470 (tomorrow's sleep need)
 garth.DailySleepData.list("2025-07-07", 7)  # Last 7 days
 ```
 
+## Fitness Activity (Adaptive Coaching)
+
+Retrieve activities with adaptive coaching metadata from the fitness stats service.
+This includes workout type, coaching status, and training effects for activities
+that are part of your Garmin coach training plan.
+
+### List fitness activities
+
+```python
+garth.FitnessActivity.list("2026-01-12", days=7)
+```
+
+```python
+[
+    FitnessActivity(
+        activity_id=21461718086,
+        start_local=datetime.datetime(2026, 1, 6, 7, 14, 18),
+        activity_type='hiking',
+        workout_group_enumerator=1,
+        aerobic_training_effect=2.4,
+        parent_id=None,
+        workout_type=None,
+        adaptive_coaching_workout_status=None,
+        multisport_set=None
+    ),
+    FitnessActivity(
+        activity_id=21482825013,
+        start_local=datetime.datetime(2026, 1, 8, 8, 10, 21),
+        activity_type='running',
+        workout_group_enumerator=2,
+        aerobic_training_effect=2.7,
+        parent_id=None,
+        workout_type='ADAPTIVE_COACHING',
+        adaptive_coaching_workout_status='COMPLETED_TODAYS_WORKOUT',
+        multisport_set=None
+    ),
+    FitnessActivity(
+        activity_id=21515597313,
+        start_local=datetime.datetime(2026, 1, 11, 10, 13, 58),
+        activity_type='running',
+        workout_group_enumerator=5,
+        aerobic_training_effect=3.3,
+        parent_id=None,
+        workout_type='ADAPTIVE_COACHING',
+        adaptive_coaching_workout_status='COMPLETED_VIA_ACTIVITY',
+        multisport_set=None
+    )
+]
+
+# Filter for coaching activities
+activities = garth.FitnessActivity.list("2026-01-12", days=7)
+coaching = [a for a in activities if a.workout_type == "ADAPTIVE_COACHING"]
+for a in coaching:
+    print(f"{a.activity_type}: {a.adaptive_coaching_workout_status}")
+# running: COMPLETED_TODAYS_WORKOUT
+# running: COMPLETED_VIA_ACTIVITY
+```
+
+### Coaching status values
+
+- `COMPLETED_TODAYS_WORKOUT` - Completed the scheduled workout for today
+- `COMPLETED_VIA_ACTIVITY` - Completed an activity that matches the workout
+
 ## Weight Data
 
 Retrieve the latest weight measurement and body composition data for a given date.
