@@ -14,7 +14,7 @@ from .telemetry import Telemetry
 from .utils import asdict
 
 
-USER_AGENT = {"User-Agent": "GCM-iOS-5.7.2.1"}
+USER_AGENT = {"User-Agent": "GCM-iOS-5.19.1.2"}
 
 
 class Client:

@@ -1,37 +1,37 @@
 import pytest
 
 from garth.http import Client
-from garth.telemetry import Telemetry, _sanitize
+from garth.telemetry import Telemetry, sanitize
 
 
 def test_sanitize_password():
     text = '{"password": "secret123", "username": "user"}'
-    result = _sanitize(text)
+    result = sanitize(text)
     assert "secret123" not in result
-    assert '"password": "SANITIZED"' in result
+    assert '"password": "[REDACTED]"' in result
     assert "username" in result
 
 
 def test_sanitize_tokens():
     text = '{"access_token": "abc123", "refresh_token": "xyz789"}'
-    result = _sanitize(text)
+    result = sanitize(text)
     assert "abc123" not in result
     assert "xyz789" not in result
-    assert result.count("SANITIZED") == 2
+    assert result.count("[REDACTED]") == 2
 
 
 def test_sanitize_oauth_tokens():
     text = '{"oauth_token": "token1", "oauth_token_secret": "secret1"}'
-    result = _sanitize(text)
+    result = sanitize(text)
     assert "token1" not in result
     assert "secret1" not in result
 
 
 def test_sanitize_query_params():
     text = "password=mysecret&username=user"
-    result = _sanitize(text)
+    result = sanitize(text)
     assert "mysecret" not in result
-    assert "password=SANITIZED" in result
+    assert "password=[REDACTED]" in result
 
 
 def test_telemetry_defaults():

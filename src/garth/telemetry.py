@@ -4,6 +4,8 @@ import re
 from dataclasses import dataclass, field
 
 
+REDACTED = "[REDACTED]"
+
 # Query param patterns (key=value format)
 QUERY_PARAM_PATTERNS = [
     "username",
@@ -31,21 +33,26 @@ JSON_SENSITIVE_FIELDS = [
 SENSITIVE_HEADERS = ["Authorization", "Cookie", "Set-Cookie"]
 
 
-def _sanitize(text: str) -> str:
+def sanitize_cookie(cookie_value: str) -> str:
+    """Sanitize cookie value by redacting all values."""
+    return re.sub(r"=[^;]*", f"={REDACTED}", cookie_value)
+
+
+def sanitize(text: str) -> str:
     """Sanitize sensitive data from request/response text."""
     # Sanitize query params (key=value&...)
     for key in QUERY_PARAM_PATTERNS:
         text = re.sub(
-            key + r"=[^&\s]*", f"{key}=SANITIZED", text, flags=re.IGNORECASE
+            key + r"=[^&\s]*", f"{key}={REDACTED}", text, flags=re.IGNORECASE
         )
 
     # Try to sanitize JSON
     try:
         data = json.loads(text)
         if isinstance(data, dict):
-            for field in JSON_SENSITIVE_FIELDS:
-                if field in data:
-                    data[field] = "SANITIZED"
+            for fld in JSON_SENSITIVE_FIELDS:
+                if fld in data:
+                    data[fld] = REDACTED
             return json.dumps(data)
     except (json.JSONDecodeError, TypeError):
         pass
@@ -53,21 +60,21 @@ def _sanitize(text: str) -> str:
     return text
 
 
-def _sanitize_headers(headers: dict) -> dict:
+def sanitize_headers(headers: dict) -> dict:
     """Sanitize sensitive headers."""
     sanitized = dict(headers)
     for key in list(sanitized.keys()):
         if key in SENSITIVE_HEADERS or key.lower() in [
             h.lower() for h in SENSITIVE_HEADERS
         ]:
-            sanitized[key] = "SANITIZED"
+            sanitized[key] = REDACTED
     return sanitized
 
 
 def _response_hook(span, request, response):
     """Log sanitized request/response details for debugging."""
     try:
-        req_headers = _sanitize_headers(dict(request.headers))
+        req_headers = sanitize_headers(dict(request.headers))
         span.set_attribute("http.request.headers.sanitized", str(req_headers))
     except Exception:
         pass
@@ -77,12 +84,12 @@ def _response_hook(span, request, response):
             body = request.body
             if isinstance(body, bytes):
                 body = body.decode("utf-8", errors="replace")
-            span.set_attribute("http.request.body.sanitized", _sanitize(body))
+            span.set_attribute("http.request.body.sanitized", sanitize(body))
     except Exception:
         pass
 
     try:
-        resp_headers = _sanitize_headers(dict(response.headers))
+        resp_headers = sanitize_headers(dict(response.headers))
         span.set_attribute(
             "http.response.headers.sanitized", str(resp_headers)
         )
@@ -91,7 +98,7 @@ def _response_hook(span, request, response):
 
     try:
         span.set_attribute(
-            "http.response.body.sanitized", _sanitize(response.text)
+            "http.response.body.sanitized", sanitize(response.text)
         )
     except Exception:
         pass
