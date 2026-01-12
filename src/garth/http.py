@@ -201,7 +201,7 @@ class Client:
         # appears even Garmin uses this approach when the OAuth2 is expired
         self.oauth2_token = sso.exchange(self.oauth1_token, self)
         if self._garth_home:
-            self.dump(self._garth_home)
+            self.dump(self._garth_home, oauth2_only=True)
 
     def connectapi(
         self, path: str, method="GET", **kwargs
@@ -229,12 +229,13 @@ class Client:
         assert isinstance(result, dict)
         return result
 
-    def dump(self, dir_path: str):
+    def dump(self, dir_path: str, /, oauth2_only: bool = False):
         dir_path = os.path.expanduser(dir_path)
         os.makedirs(dir_path, exist_ok=True)
-        with open(os.path.join(dir_path, "oauth1_token.json"), "w") as f:
-            if self.oauth1_token:
-                json.dump(asdict(self.oauth1_token), f, indent=4)
+        if not oauth2_only:
+            with open(os.path.join(dir_path, "oauth1_token.json"), "w") as f:
+                if self.oauth1_token:
+                    json.dump(asdict(self.oauth1_token), f, indent=4)
         with open(os.path.join(dir_path, "oauth2_token.json"), "w") as f:
             if self.oauth2_token:
                 json.dump(asdict(self.oauth2_token), f, indent=4)

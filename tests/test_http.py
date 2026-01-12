@@ -95,8 +95,21 @@ def test_auto_persist_on_refresh(
             garth.sso, "exchange", lambda *args, **kwargs: new_oauth2
         )
 
+        # Get oauth1 file modification time before refresh
+        import os
+
+        oauth1_path = os.path.join(tempdir, "oauth1_token.json")
+        oauth1_mtime_before = os.path.getmtime(oauth1_path)
+
+        # Small delay to ensure mtime would change if file is written
+        time.sleep(0.01)
+
         # Trigger refresh
         client.refresh_oauth2()
+
+        # Verify oauth1 file was NOT updated (oauth2_only=True)
+        oauth1_mtime_after = os.path.getmtime(oauth1_path)
+        assert oauth1_mtime_before == oauth1_mtime_after
 
         # Verify the new token was persisted to GARTH_HOME
         fresh_client = Client()
