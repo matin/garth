@@ -75,7 +75,7 @@ def _response_hook(span, request, response):
     """Log sanitized request/response details for debugging."""
     try:
         req_headers = sanitize_headers(dict(request.headers))
-        span.set_attribute("http.request.headers.sanitized", str(req_headers))
+        span.set_attribute("http.request.headers", str(req_headers))
     except Exception:
         pass
 
@@ -84,29 +84,30 @@ def _response_hook(span, request, response):
             body = request.body
             if isinstance(body, bytes):
                 body = body.decode("utf-8", errors="replace")
-            span.set_attribute("http.request.body.sanitized", sanitize(body))
+            span.set_attribute("http.request.body", sanitize(body))
     except Exception:
         pass
 
     try:
         resp_headers = sanitize_headers(dict(response.headers))
-        span.set_attribute(
-            "http.response.headers.sanitized", str(resp_headers)
-        )
+        span.set_attribute("http.response.headers", str(resp_headers))
     except Exception:
         pass
 
     try:
-        span.set_attribute(
-            "http.response.body.sanitized", sanitize(response.text)
-        )
+        span.set_attribute("http.response.body", sanitize(response.text))
     except Exception:
         pass
 
 
 def _scrubbing_callback(m):
     """Allow our pre-sanitized attributes through Logfire's scrubbing."""
-    if m.path[0] == "attributes" and m.path[1].endswith(".sanitized"):
+    if m.path[0] == "attributes" and m.path[1] in (
+        "http.request.headers",
+        "http.request.body",
+        "http.response.headers",
+        "http.response.body",
+    ):
         return m.value
     return None  # Use default scrubbing
 
