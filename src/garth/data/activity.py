@@ -197,3 +197,40 @@ class Activity:
             item = camel_to_snake_dict(item)
             activities.append(cls(**item))
         return activities
+
+    @classmethod
+    def update(
+        cls,
+        activity_id: int,
+        *,
+        name: str | None = None,
+        description: str | None = None,
+        client: http.Client | None = None,
+    ) -> None:
+        """Update an activity's name and/or description.
+
+        Args:
+            activity_id: The Garmin activity ID to update
+            name: New name for the activity (optional)
+            description: New description for the activity (optional)
+            client: Optional HTTP client (uses default if not provided)
+
+        Raises:
+            ValueError: If neither name nor description is provided
+
+        Example:
+            >>> Activity.update(12345678901, name="Morning Run")
+            >>> Activity.update(12345678901, description="Great weather!")
+        """
+        if name is None and description is None:
+            raise ValueError(
+                "At least one of 'name' or 'description' required"
+            )
+        client = client or http.client
+        payload: dict[str, int | str] = {"activityId": activity_id}
+        if name is not None:
+            payload["activityName"] = name
+        if description is not None:
+            payload["description"] = description
+        path = f"/activity-service/activity/{activity_id}"
+        client.connectapi(path, method="PUT", json=payload)

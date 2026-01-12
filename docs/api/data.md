@@ -419,6 +419,132 @@ data.next_sleep_need_minutes  # 470 (tomorrow's sleep need)
 garth.DailySleepData.list("2025-07-07", 7)  # Last 7 days
 ```
 
+## Activity
+
+Retrieve, list, and update Garmin Connect activities.
+
+### Get activity by ID
+
+Fetch detailed activity data including full summary metrics.
+
+```python
+activity = garth.Activity.get(21522899847)
+```
+
+```python
+Activity(
+    activity_id=21522899847,
+    activity_name='Morning Run',
+    activity_type=ActivityType(
+        type_id=1,
+        type_key='running',
+        parent_type_id=17,
+        is_hidden=False,
+        restricted=False,
+        trimmable=True
+    ),
+    start_time_local=datetime.datetime(2026, 1, 12, 7, 38, 18),
+    start_time_gmt=datetime.datetime(2026, 1, 12, 13, 38, 18),
+    user_profile_id=2591602,
+    is_multi_sport_parent=False,
+    event_type=EventType(type_id=9, type_key='uncategorized', sort_order=10),
+    summary=Summary(
+        start_time_local=datetime.datetime(2026, 1, 12, 7, 38, 18),
+        start_time_gmt=datetime.datetime(2026, 1, 12, 13, 38, 18),
+        distance=5000.0,
+        duration=1800.0,
+        moving_duration=1750.0,
+        elapsed_duration=1850.0,
+        elevation_gain=45.0,
+        elevation_loss=42.0,
+        calories=350.0,
+        average_hr=145.0,
+        max_hr=172.0,
+        min_hr=98.0,
+        average_speed=2.78,
+        max_speed=3.5,
+        average_run_cadence=170.0,
+        training_effect=3.2,
+        anaerobic_training_effect=1.5,
+        steps=4500
+    ),
+    location_name='Local Park'
+)
+
+# Access activity details
+activity.activity_name           # 'Morning Run'
+activity.activity_type.type_key  # 'running'
+activity.summary.distance        # 5000.0
+activity.summary.average_hr      # 145.0
+activity.summary.calories        # 350.0
+```
+
+### List recent activities
+
+Fetch a list of recent activities with pagination support. The list endpoint returns
+simplified activity data without the full summary metrics.
+
+```python
+# Get the 10 most recent activities
+activities = garth.Activity.list(limit=10)
+
+# Paginate through activities
+page1 = garth.Activity.list(limit=20, start=0)   # First 20
+page2 = garth.Activity.list(limit=20, start=20)  # Next 20
+```
+
+```python
+[
+    Activity(
+        activity_id=21522899847,
+        activity_name='Morning Run',
+        activity_type=ActivityType(type_id=1, type_key='running', ...),
+        start_time_local=datetime.datetime(2026, 1, 12, 7, 38, 18),
+        distance=5000.0,
+        duration=1800.0,
+        calories=350.0,
+        average_hr=145.0,
+        max_hr=172.0,
+        elevation_gain=45.0,
+        steps=4500
+    ),
+    Activity(
+        activity_id=21515597313,
+        activity_name='Evening Walk',
+        activity_type=ActivityType(type_id=9, type_key='walking', ...),
+        ...
+    ),
+    # ... more activities
+]
+
+# Iterate through activities
+for activity in activities:
+    print(f"{activity.activity_name}: {activity.distance}m")
+```
+
+!!! tip "Get full details"
+    The list endpoint returns simplified data. To get full summary metrics
+    for a specific activity, use `Activity.get(activity_id)`.
+
+### Update activity name or description
+
+Rename an activity or update its description.
+
+```python
+# Rename an activity
+garth.Activity.update(21522899847, name="Morning Run")
+
+# Update description only
+garth.Activity.update(21522899847, description="Great weather today!")
+
+# Update both name and description
+garth.Activity.update(21522899847, name="5K PR", description="Personal best!")
+```
+
+!!! note
+    At least one of `name` or `description` must be provided, otherwise
+    a `ValueError` is raised.
+
 ## Fitness Activity (Adaptive Coaching)
 
 Retrieve activities with adaptive coaching metadata from the fitness stats service.
