@@ -9,6 +9,9 @@ class GarthException(Exception):
 
     msg: str
 
+    def __str__(self) -> str:
+        return self.msg
+
 
 @dataclass
 class GarthHTTPError(GarthException):

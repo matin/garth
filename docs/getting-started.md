@@ -77,6 +77,50 @@ except GarthException:
     # Session is expired. You'll need to log in again
 ```
 
+### Auto-resume from environment variables
+
+Garth can automatically restore your session from environment variables when
+the client is initialized. This is useful for scripts, containers, and CI/CD
+pipelines.
+
+**Using `GARTH_HOME`** (directory path):
+
+```bash
+export GARTH_HOME=~/.garth
+```
+
+```python
+import garth
+# Session is automatically loaded from ~/.garth
+garth.client.username
+```
+
+**Using `GARTH_TOKEN`** (base64-encoded token):
+
+```bash
+export GARTH_TOKEN="eyJvYXV0aF90b2tlbi..."
+```
+
+```python
+import garth
+# Session is automatically loaded from the token
+garth.client.username
+```
+
+Generate a `GARTH_TOKEN` using:
+
+```bash
+uvx garth login
+```
+
+!!! warning "Mutual exclusivity"
+    `GARTH_HOME` and `GARTH_TOKEN` cannot both be set. Garth will raise a
+    `GarthException` if both environment variables are present.
+
+!!! tip "Auto-persist on token refresh"
+    When using `GARTH_HOME`, refreshed OAuth2 tokens are automatically
+    persisted back to the directory, keeping your session current.
+
 !!! note "Token lifetime"
     The OAuth1 token survives for approximately one year. The OAuth2 token
     auto-refreshes as needed when making API calls.
