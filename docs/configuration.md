@@ -126,10 +126,13 @@ garth.configure(
 
 ### What gets logged
 
-| Request Type | Success | Failure |
-|--------------|---------|---------|
-| API calls | Method, URL, status, latency | + sanitized error body |
-| Auth (SSO) | Method, URL, status, latency | + sanitized error body |
+All requests log:
 
-**Always redacted:** Authorization headers, passwords, tokens in request/response
-bodies.
+- Method, URL, status code, latency
+- Request headers (sanitized)
+- Request body (sanitized)
+- Response headers (sanitized)
+- Response body (sanitized)
+
+**Always redacted:** Authorization headers, cookies, passwords, tokens, and other
+sensitive fields in request/response bodies.
