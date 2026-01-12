@@ -62,6 +62,48 @@ def test_auto_resume_both_set_raises(monkeypatch: pytest.MonkeyPatch):
         Client()
 
 
+def test_auto_persist_on_refresh(
+    authed_client: Client, monkeypatch: pytest.MonkeyPatch
+):
+    with tempfile.TemporaryDirectory() as tempdir:
+        # Save initial tokens
+        authed_client.dump(tempdir)
+        monkeypatch.setenv("GARTH_HOME", tempdir)
+        monkeypatch.delenv("GARTH_TOKEN", raising=False)
+
+        # Create client that auto-resumes from GARTH_HOME
+        client = Client()
+        assert client._garth_home == tempdir
+
+        # Create a new token with different expiration
+        new_oauth2 = OAuth2Token(
+            scope="CONNECT_READ CONNECT_WRITE",
+            jti="new_jti",
+            token_type="Bearer",
+            access_token="new_access_token",
+            refresh_token="new_refresh_token",
+            expires_in=7200,
+            refresh_token_expires_in=14400,
+            expires_at=int(time.time() + 7200),
+            refresh_token_expires_at=int(time.time() + 14400),
+        )
+
+        # Mock sso.exchange to return the new token
+        import garth.sso
+
+        monkeypatch.setattr(
+            garth.sso, "exchange", lambda *args, **kwargs: new_oauth2
+        )
+
+        # Trigger refresh
+        client.refresh_oauth2()
+
+        # Verify the new token was persisted to GARTH_HOME
+        fresh_client = Client()
+        fresh_client.load(tempdir)
+        assert fresh_client.oauth2_token == new_oauth2
+
+
 def test_configure_oauth2_token(client: Client, oauth2_token: OAuth2Token):
     assert client.oauth2_token is None
     client.configure(oauth2_token=oauth2_token)

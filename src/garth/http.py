@@ -29,6 +29,7 @@ class Client:
     pool_connections: int = 10
     pool_maxsize: int = 10
     _user_profile: dict[str, Any] | None = None
+    _garth_home: str | None = None
 
     def __init__(self, session: Session | None = None, **kwargs):
         self.sess = session if session else Session()
@@ -104,6 +105,7 @@ class Client:
 
         if garth_home:
             self.load(garth_home)
+            self._garth_home = garth_home
         elif garth_token:
             self.loads(garth_token)
 
@@ -198,6 +200,8 @@ class Client:
         # There is a way to perform a refresh of an OAuth2 token, but it
         # appears even Garmin uses this approach when the OAuth2 is expired
         self.oauth2_token = sso.exchange(self.oauth1_token, self)
+        if self._garth_home:
+            self.dump(self._garth_home)
 
     def connectapi(
         self, path: str, method="GET", **kwargs
