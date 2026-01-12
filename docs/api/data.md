@@ -419,6 +419,51 @@ data.next_sleep_need_minutes  # 470 (tomorrow's sleep need)
 garth.DailySleepData.list("2025-07-07", 7)  # Last 7 days
 ```
 
+## Activity
+
+Retrieve, list, and update Garmin Connect activities.
+
+### Get activity by ID
+
+```python
+activity = garth.Activity.get(21522899847)
+```
+
+```python
+Activity(
+    activity_id=21522899847,
+    activity_name='Morning Run',
+    activity_type=ActivityType(type_id=1, type_key='running', ...),
+    start_time_local=datetime.datetime(2026, 1, 12, 7, 38, 18),
+    summary=Summary(
+        distance=5000.0,
+        duration=1800.0,
+        calories=350.0,
+        average_hr=145.0,
+        ...
+    )
+)
+```
+
+### List recent activities
+
+```python
+activities = garth.Activity.list(limit=10)
+```
+
+### Update activity name or description
+
+```python
+# Rename an activity
+garth.Activity.update(21522899847, name="Morning Run")
+
+# Update description
+garth.Activity.update(21522899847, description="Great weather!")
+
+# Update both
+garth.Activity.update(21522899847, name="5K Run", description="Personal best!")
+```
+
 ## Fitness Activity (Adaptive Coaching)
 
 Retrieve activities with adaptive coaching metadata from the fitness stats service.
