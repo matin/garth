@@ -1,0 +1,70 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/fitnessstats-service/activity/all?startDate=2026-01-06&endDate=2026-01-12&standardizedUnits=true&metric=activityType&metric=workoutType&metric=aerobicTrainingEffect&metric=adaptiveCoachingWorkoutStatus&metric=parentId&metric=workoutGroupEnumerator
+  response:
+    body:
+      string: '[{"activityId": 21461718086, "aerobicTrainingEffect": 2.4000000953674316,
+        "parentId": null, "workoutType": null, "adaptiveCoachingWorkoutStatus": null,
+        "multisportSet": null, "startLocal": "2026-01-06T07:14:18", "activityType":
+        "hiking", "workoutGroupEnumerator": 1}, {"activityId": 21482825013, "aerobicTrainingEffect":
+        2.700000047683716, "parentId": null, "workoutType": "ADAPTIVE_COACHING", "adaptiveCoachingWorkoutStatus":
+        "COMPLETED_TODAYS_WORKOUT", "multisportSet": null, "startLocal": "2026-01-08T08:10:21",
+        "activityType": "running", "workoutGroupEnumerator": 2}, {"activityId": 21492483008,
+        "aerobicTrainingEffect": 0.20000000298023224, "parentId": null, "workoutType":
+        null, "adaptiveCoachingWorkoutStatus": null, "multisportSet": null, "startLocal":
+        "2026-01-09T07:39:32", "activityType": "fitness_equipment", "workoutGroupEnumerator":
+        3}, {"activityId": 21506095559, "aerobicTrainingEffect": 1.100000023841858,
+        "parentId": null, "workoutType": null, "adaptiveCoachingWorkoutStatus": null,
+        "multisportSet": null, "startLocal": "2026-01-10T13:14:08", "activityType":
+        "hiking", "workoutGroupEnumerator": 4}, {"activityId": 21515597313, "aerobicTrainingEffect":
+        3.299999952316284, "parentId": null, "workoutType": "ADAPTIVE_COACHING", "adaptiveCoachingWorkoutStatus":
+        "COMPLETED_VIA_ACTIVITY", "multisportSet": null, "startLocal": "2026-01-11T10:13:58",
+        "activityType": "running", "workoutGroupEnumerator": 5}, {"activityId": 21522899847,
+        "aerobicTrainingEffect": 0.20000000298023224, "parentId": null, "workoutType":
+        null, "adaptiveCoachingWorkoutStatus": null, "multisportSet": null, "startLocal":
+        "2026-01-12T07:38:18", "activityType": "fitness_equipment", "workoutGroupEnumerator":
+        6}]'
+    headers:
+      CF-RAY:
+      - 9bcf9e8ffd6b127d-QRO
+      Cache-Control:
+      - no-cache, no-store, private
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Mon, 12 Jan 2026 21:06:43 GMT
+      NEL:
+      - '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}'
+      Report-To:
+      - '{"endpoints":[{"url":"https:\/\/a.nel.cloudflare.com\/report\/v4?s=n%2Ff1NFpKWbk7OcDyW%2FGr%2B5d9G3Q4dmsl6A0gNODpORH%2FmG4GhGfufMnkQA51cxn21AiwWtZuloq9Nuilz0QxAdWX4J5k8K6TJAG%2F7xMvyvW9tBo37X7sy5UAyi%2FqQJsFNZVmcTeemQ%3D%3D"}],"group":"cf-nel","max_age":604800}'
+      Server:
+      - cloudflare
+      Set-Cookie:
+      - _cfuvid=SANITIZED; path=SANITIZED; domain=SANITIZED; HttpOnly; Secure; SameSite=SANITIZED
+      Transfer-Encoding:
+      - chunked
+      alt-svc:
+      - h3=":443"; ma=86400
+      cf-cache-status:
+      - DYNAMIC
+      pragma:
+      - no-cache
+    status:
+      code: 200
+      message: OK
+version: 1
