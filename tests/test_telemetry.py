@@ -1,7 +1,17 @@
+from unittest.mock import MagicMock
+
 import pytest
 
 from garth.http import Client
-from garth.telemetry import Telemetry, sanitize
+from garth.telemetry import (
+    REDACTED,
+    Telemetry,
+    _response_hook,
+    _scrubbing_callback,
+    sanitize,
+    sanitize_cookie,
+    sanitize_headers,
+)
 
 
 def test_sanitize_password():
@@ -122,4 +132,157 @@ def test_telemetry_only_configures_once(monkeypatch):
     # Even if enabled, should not reconfigure
     t.configure(enabled=True)
     # _configured should still be True (not reconfigured)
+    assert t._configured is True
+
+
+def test_sanitize_cookie():
+    cookie = "session=abc123; path=/; domain=example.com"
+    result = sanitize_cookie(cookie)
+    assert "abc123" not in result
+    assert f"session={REDACTED}" in result
+
+
+def test_sanitize_headers():
+    headers = {
+        "Authorization": "Bearer token123",
+        "Cookie": "session=abc",
+        "Content-Type": "application/json",
+    }
+    result = sanitize_headers(headers)
+    assert result["Authorization"] == REDACTED
+    assert result["Cookie"] == REDACTED
+    assert result["Content-Type"] == "application/json"
+
+
+def test_sanitize_headers_case_insensitive():
+    headers = {"authorization": "Bearer token123", "cookie": "session=abc"}
+    result = sanitize_headers(headers)
+    assert result["authorization"] == REDACTED
+    assert result["cookie"] == REDACTED
+
+
+def test_response_hook_with_string_body():
+    span = MagicMock()
+    request = MagicMock()
+    request.headers = {"Content-Type": "application/json"}
+    request.body = '{"password": "secret"}'
+    response = MagicMock()
+    response.headers = {"Content-Type": "application/json"}
+    response.text = '{"access_token": "token123"}'
+
+    _response_hook(span, request, response)
+
+    # Check that attributes were set
+    assert span.set_attribute.call_count == 4
+    calls = {
+        call[0][0]: call[0][1] for call in span.set_attribute.call_args_list
+    }
+    assert "http.request.headers" in calls
+    assert "http.request.body" in calls
+    assert "http.response.headers" in calls
+    assert "http.response.body" in calls
+    # Verify sanitization
+    assert "secret" not in calls["http.request.body"]
+    assert "token123" not in calls["http.response.body"]
+
+
+def test_response_hook_with_bytes_body():
+    span = MagicMock()
+    request = MagicMock()
+    request.headers = {"Content-Type": "application/json"}
+    request.body = b'{"password": "secret"}'
+    response = MagicMock()
+    response.headers = {"Content-Type": "application/json"}
+    response.text = '{"data": "ok"}'
+
+    _response_hook(span, request, response)
+
+    calls = {
+        call[0][0]: call[0][1] for call in span.set_attribute.call_args_list
+    }
+    assert "http.request.body" in calls
+    assert "secret" not in calls["http.request.body"]
+
+
+def test_response_hook_no_body():
+    span = MagicMock()
+    request = MagicMock()
+    request.headers = {"Content-Type": "application/json"}
+    request.body = None
+    response = MagicMock()
+    response.headers = {"Content-Type": "application/json"}
+    response.text = '{"data": "ok"}'
+
+    _response_hook(span, request, response)
+
+    # Should only set 3 attributes (no request body)
+    assert span.set_attribute.call_count == 3
+
+
+def test_response_hook_handles_exceptions():
+    span = MagicMock()
+    span.set_attribute.side_effect = Exception("test error")
+    request = MagicMock()
+    request.headers = {"Content-Type": "application/json"}
+    request.body = "test"
+    response = MagicMock()
+    response.headers = {"Content-Type": "application/json"}
+    response.text = "test"
+
+    # Should not raise, just silently handle exceptions
+    _response_hook(span, request, response)
+
+
+def test_scrubbing_callback_allows_http_attributes():
+    m = MagicMock()
+    m.path = ("attributes", "http.request.body")
+    m.value = "test body"
+
+    result = _scrubbing_callback(m)
+    assert result == "test body"
+
+
+def test_scrubbing_callback_default_scrubbing():
+    m = MagicMock()
+    m.path = ("attributes", "other.attribute")
+    m.value = "sensitive"
+
+    result = _scrubbing_callback(m)
+    assert result is None  # Use default scrubbing
+
+
+def test_telemetry_env_enabled_with_mock(monkeypatch):
+    """Test GARTH_TELEMETRY=true enables telemetry."""
+    import sys
+
+    monkeypatch.setenv("GARTH_TELEMETRY", "true")
+    monkeypatch.delenv("GARTH_TELEMETRY_SERVICE_NAME", raising=False)
+    monkeypatch.delenv("LOGFIRE_SEND_TO_LOGFIRE", raising=False)
+
+    mock_logfire = MagicMock()
+    monkeypatch.setitem(sys.modules, "logfire", mock_logfire)
+
+    t = Telemetry()
+    t.configure()
+
+    assert t.enabled is True
+    assert t._configured is True
+    mock_logfire.configure.assert_called_once()
+    mock_logfire.instrument_requests.assert_called_once()
+
+
+def test_telemetry_sets_token_env_var(monkeypatch):
+    """Test that token parameter sets LOGFIRE_TOKEN env var."""
+    import sys
+
+    monkeypatch.setenv("GARTH_TELEMETRY", "true")
+    monkeypatch.delenv("LOGFIRE_TOKEN", raising=False)
+
+    mock_logfire = MagicMock()
+    monkeypatch.setitem(sys.modules, "logfire", mock_logfire)
+
+    t = Telemetry()
+    t.configure(token="my-test-token")
+
+    assert t.token == "my-test-token"
     assert t._configured is True
