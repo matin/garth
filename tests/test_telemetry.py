@@ -1,3 +1,6 @@
+import pytest
+
+from garth.http import Client
 from garth.telemetry import Telemetry, _sanitize
 
 
@@ -5,7 +8,7 @@ def test_sanitize_password():
     text = '{"password": "secret123", "username": "user"}'
     result = _sanitize(text)
     assert "secret123" not in result
-    assert "[REDACTED]" in result
+    assert '"password": "SANITIZED"' in result
     assert "username" in result
 
 
@@ -14,7 +17,7 @@ def test_sanitize_tokens():
     result = _sanitize(text)
     assert "abc123" not in result
     assert "xyz789" not in result
-    assert result.count("[REDACTED]") == 2
+    assert result.count("SANITIZED") == 2
 
 
 def test_sanitize_oauth_tokens():
@@ -28,7 +31,7 @@ def test_sanitize_query_params():
     text = "password=mysecret&username=user"
     result = _sanitize(text)
     assert "mysecret" not in result
-    assert "[REDACTED]" in result
+    assert "password=SANITIZED" in result
 
 
 def test_telemetry_defaults():
@@ -52,26 +55,20 @@ def test_telemetry_configure_disabled(monkeypatch):
     assert t._configured is False  # Not configured because disabled
 
 
-def test_telemetry_env_override_enabled(monkeypatch):
-    monkeypatch.setenv("GARTH_TELEMETRY", "true")
-    monkeypatch.delenv("GARTH_TELEMETRY_SERVICE_NAME", raising=False)
-    monkeypatch.delenv("LOGFIRE_SEND_TO_LOGFIRE", raising=False)
-    monkeypatch.delenv("LOGFIRE_TOKEN", raising=False)
+@pytest.mark.vcr
+def test_telemetry_enabled_request(authed_client: Client):
+    """Test that telemetry works with real API requests (VCR recorded)."""
+    # Configure telemetry with send_to_logfire=False to avoid needing
+    # credentials. This still enables request instrumentation via OTel.
+    authed_client.telemetry.configure(enabled=True, send_to_logfire=False)
 
-    # Mock logfire before creating Telemetry
-    import sys
-    from unittest.mock import MagicMock
+    assert authed_client.telemetry.enabled is True
+    assert authed_client.telemetry._configured is True
 
-    mock_logfire = MagicMock()
-    monkeypatch.setitem(sys.modules, "logfire", mock_logfire)
-
-    t = Telemetry()
-    t.configure()
-
-    assert t.enabled is True
-    assert t._configured is True
-    mock_logfire.configure.assert_called_once()
-    mock_logfire.instrument_requests.assert_called_once()
+    # Make a real API request - this will be recorded by VCR
+    profile = authed_client.connectapi("/userprofile-service/socialProfile")
+    assert profile is not None
+    assert "displayName" in profile
 
 
 def test_telemetry_env_override_disabled(monkeypatch):

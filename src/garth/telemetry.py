@@ -1,34 +1,107 @@
+import json
 import os
 import re
 from dataclasses import dataclass, field
 
 
-SENSITIVE_PATTERNS = [
-    r'"password"\s*:\s*"[^"]*"',
-    r'"refresh_token"\s*:\s*"[^"]*"',
-    r'"access_token"\s*:\s*"[^"]*"',
-    r'"oauth_token"\s*:\s*"[^"]*"',
-    r'"oauth_token_secret"\s*:\s*"[^"]*"',
-    r"password=[^&\s]*",
-    r"embed=[^&\s]*",
+# Query param patterns (key=value format)
+QUERY_PARAM_PATTERNS = [
+    "username",
+    "password",
+    "refresh_token",
+    "oauth_token",
+    "oauth_token_secret",
+    "mfa_token",
+    "embed",
 ]
+
+# JSON field names to sanitize
+JSON_SENSITIVE_FIELDS = [
+    "access_token",
+    "refresh_token",
+    "jti",
+    "consumer_key",
+    "consumer_secret",
+    "password",
+    "oauth_token",
+    "oauth_token_secret",
+]
+
+# Header keys to sanitize
+SENSITIVE_HEADERS = ["Authorization", "Cookie", "Set-Cookie"]
 
 
 def _sanitize(text: str) -> str:
-    """Redact sensitive data from request/response bodies."""
-    for pattern in SENSITIVE_PATTERNS:
-        text = re.sub(pattern, "[REDACTED]", text, flags=re.IGNORECASE)
+    """Sanitize sensitive data from request/response text."""
+    # Sanitize query params (key=value&...)
+    for key in QUERY_PARAM_PATTERNS:
+        text = re.sub(
+            key + r"=[^&\s]*", f"{key}=SANITIZED", text, flags=re.IGNORECASE
+        )
+
+    # Try to sanitize JSON
+    try:
+        data = json.loads(text)
+        if isinstance(data, dict):
+            for field in JSON_SENSITIVE_FIELDS:
+                if field in data:
+                    data[field] = "SANITIZED"
+            return json.dumps(data)
+    except (json.JSONDecodeError, TypeError):
+        pass
+
     return text
 
 
+def _sanitize_headers(headers: dict) -> dict:
+    """Sanitize sensitive headers."""
+    sanitized = dict(headers)
+    for key in list(sanitized.keys()):
+        if key in SENSITIVE_HEADERS or key.lower() in [
+            h.lower() for h in SENSITIVE_HEADERS
+        ]:
+            sanitized[key] = "SANITIZED"
+    return sanitized
+
+
 def _response_hook(span, request, response):
-    """Log sanitized response body on failures for debugging."""
-    if response.status_code >= 400:
-        try:
-            body = response.text[:1000]
-            span.set_attribute("http.response.body.sanitized", _sanitize(body))
-        except Exception:
-            pass
+    """Log sanitized request/response details for debugging."""
+    try:
+        req_headers = _sanitize_headers(dict(request.headers))
+        span.set_attribute("http.request.headers.sanitized", str(req_headers))
+    except Exception:
+        pass
+
+    try:
+        if request.body:
+            body = request.body
+            if isinstance(body, bytes):
+                body = body.decode("utf-8", errors="replace")
+            span.set_attribute("http.request.body.sanitized", _sanitize(body))
+    except Exception:
+        pass
+
+    try:
+        resp_headers = _sanitize_headers(dict(response.headers))
+        span.set_attribute(
+            "http.response.headers.sanitized", str(resp_headers)
+        )
+    except Exception:
+        pass
+
+    try:
+        span.set_attribute(
+            "http.response.body.sanitized", _sanitize(response.text)
+        )
+    except Exception:
+        pass
+
+
+def _scrubbing_callback(m):
+    """Allow our pre-sanitized attributes through Logfire's scrubbing."""
+    if m.path[0] == "attributes" and m.path[1].endswith(".sanitized"):
+        return m.value
+    return None  # Use default scrubbing
 
 
 @dataclass
@@ -89,6 +162,7 @@ class Telemetry:
         logfire.configure(
             service_name=self.service_name,
             send_to_logfire=self.send_to_logfire,
+            scrubbing=logfire.ScrubbingOptions(callback=_scrubbing_callback),
         )
         logfire.instrument_requests(response_hook=_response_hook)
         self._configured = True
