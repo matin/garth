@@ -13,6 +13,7 @@ Garmin SSO auth + Connect Python client
 - OAuth1/OAuth2 authentication (OAuth1 token lasts ~1 year)
 - MFA support with custom handlers
 - Auto-refresh of OAuth2 token
+- Auto-resume from `GARTH_HOME` or `GARTH_TOKEN` environment variables
 - Works on Google Colab
 - Pydantic dataclasses for validated data
 - Full test coverage
@@ -47,6 +48,20 @@ try:
 except GarthException:
     # Session is expired. You'll need to log in again
     pass
+```
+
+Or use environment variables for automatic session restoration:
+
+```bash
+export GARTH_HOME=~/.garth
+# or
+export GARTH_TOKEN="eyJvYXV0aF90b2tlbi..."  # from `uvx garth login`
+```
+
+```python
+import garth
+# Session is automatically loaded
+garth.client.username
 ```
 
 ### Fetch data
