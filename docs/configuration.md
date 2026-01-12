@@ -52,11 +52,16 @@ Configure automatic retry behavior for failed requests:
 
 ```python
 garth.configure(
-    retries=5,                              # Max retry attempts (default: 3)
-    status_forcelist=(429, 500, 502, 503),  # HTTP codes to retry
-    backoff_factor=1.0,                     # Delay multiplier between retries
+    retries=5,                            # Max retry attempts (default: 3)
+    status_forcelist=(408, 500, 502, 503, 504),  # HTTP codes to retry
+    backoff_factor=1.0,                   # Delay multiplier between retries
 )
 ```
+
+!!! note "429 not retried by default"
+    HTTP 429 (Too Many Requests) is not in the default retry list because
+    retrying can make rate limiting worse. Add it explicitly if needed:
+    `status_forcelist=(408, 429, 500, 502, 503, 504)`
 
 ## Connection Pool Settings
 
