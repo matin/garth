@@ -18,7 +18,10 @@ def session():
 
 
 @pytest.fixture
-def client(session) -> Client:
+def client(session, monkeypatch) -> Client:
+    # Clear env vars to prevent auto-resume in tests
+    monkeypatch.delenv("GARTH_HOME", raising=False)
+    monkeypatch.delenv("GARTH_TOKEN", raising=False)
     return Client(session=session)
 
 

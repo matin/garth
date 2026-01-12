@@ -6,7 +6,7 @@ import pytest
 from requests.adapters import HTTPAdapter
 
 from garth.auth_tokens import OAuth1Token, OAuth2Token
-from garth.exc import GarthHTTPError
+from garth.exc import GarthException, GarthHTTPError
 from garth.http import Client
 
 
@@ -27,6 +27,39 @@ def test_dumps_and_loads(authed_client: Client):
     new_client.loads(s)
     assert new_client.oauth1_token == authed_client.oauth1_token
     assert new_client.oauth2_token == authed_client.oauth2_token
+
+
+def test_auto_resume_garth_home(
+    authed_client: Client, monkeypatch: pytest.MonkeyPatch
+):
+    with tempfile.TemporaryDirectory() as tempdir:
+        authed_client.dump(tempdir)
+        monkeypatch.setenv("GARTH_HOME", tempdir)
+        monkeypatch.delenv("GARTH_TOKEN", raising=False)
+
+        client = Client()
+        assert client.oauth1_token == authed_client.oauth1_token
+        assert client.oauth2_token == authed_client.oauth2_token
+
+
+def test_auto_resume_garth_token(
+    authed_client: Client, monkeypatch: pytest.MonkeyPatch
+):
+    token = authed_client.dumps()
+    monkeypatch.setenv("GARTH_TOKEN", token)
+    monkeypatch.delenv("GARTH_HOME", raising=False)
+
+    client = Client()
+    assert client.oauth1_token == authed_client.oauth1_token
+    assert client.oauth2_token == authed_client.oauth2_token
+
+
+def test_auto_resume_both_set_raises(monkeypatch: pytest.MonkeyPatch):
+    monkeypatch.setenv("GARTH_HOME", "/some/path")
+    monkeypatch.setenv("GARTH_TOKEN", "some_token")
+
+    with pytest.raises(GarthException, match="cannot both be set"):
+        Client()
 
 
 def test_configure_oauth2_token(client: Client, oauth2_token: OAuth2Token):

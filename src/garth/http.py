@@ -9,7 +9,7 @@ from requests.adapters import HTTPAdapter, Retry
 
 from . import sso
 from .auth_tokens import OAuth1Token, OAuth2Token
-from .exc import GarthHTTPError
+from .exc import GarthException, GarthHTTPError
 from .utils import asdict
 
 
@@ -40,6 +40,7 @@ class Client:
             backoff_factor=self.backoff_factor,
             **kwargs,
         )
+        self._auto_resume()
 
     def configure(
         self,
@@ -90,6 +91,21 @@ class Client:
             pool_maxsize=self.pool_maxsize,
         )
         self.sess.mount("https://", adapter)
+
+    def _auto_resume(self):
+        """Auto-resume session from GARTH_HOME or GARTH_TOKEN env vars."""
+        garth_home = os.environ.get("GARTH_HOME")
+        garth_token = os.environ.get("GARTH_TOKEN")
+
+        if garth_home and garth_token:
+            raise GarthException(
+                msg="GARTH_HOME and GARTH_TOKEN cannot both be set"
+            )
+
+        if garth_home:
+            self.load(garth_home)
+        elif garth_token:
+            self.loads(garth_token)
 
     @property
     def user_profile(self):
