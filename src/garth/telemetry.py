@@ -31,6 +31,7 @@ JSON_SENSITIVE_FIELDS = [
 
 # Header keys to sanitize
 SENSITIVE_HEADERS = ["Authorization", "Cookie", "Set-Cookie"]
+SENSITIVE_HEADERS_LOWER = {h.lower() for h in SENSITIVE_HEADERS}
 
 
 def sanitize_cookie(cookie_value: str) -> str:
@@ -64,9 +65,7 @@ def sanitize_headers(headers: dict) -> dict:
     """Sanitize sensitive headers."""
     sanitized = dict(headers)
     for key in list(sanitized.keys()):
-        if key in SENSITIVE_HEADERS or key.lower() in [
-            h.lower() for h in SENSITIVE_HEADERS
-        ]:
+        if key in SENSITIVE_HEADERS or key.lower() in SENSITIVE_HEADERS_LOWER:
             sanitized[key] = REDACTED
     return sanitized
 
