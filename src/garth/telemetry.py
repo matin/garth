@@ -65,7 +65,7 @@ def sanitize_headers(headers: dict) -> dict:
     """Sanitize sensitive headers."""
     sanitized = dict(headers)
     for key in list(sanitized.keys()):
-        if key in SENSITIVE_HEADERS or key.lower() in SENSITIVE_HEADERS_LOWER:
+        if key.lower() in SENSITIVE_HEADERS_LOWER:
             sanitized[key] = REDACTED
     return sanitized
 
