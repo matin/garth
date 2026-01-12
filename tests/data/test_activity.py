@@ -54,19 +54,31 @@ def test_activity_update_validation():
 
 
 @pytest.mark.vcr
-def test_activity_update(authed_client: Client):
+@pytest.mark.parametrize(
+    "name,description",
+    [
+        ("Test Name Only", None),
+        (None, "Test description only"),
+        ("Test Both", "Test both description"),
+    ],
+    ids=["name_only", "description_only", "both"],
+)
+def test_activity_update(
+    authed_client: Client, name: str | None, description: str | None
+):
     activity_id = 21522899847
 
-    # Get original name
-    original = Activity.get(activity_id, client=authed_client)
-    original_name = original.activity_name
+    # Update with the given parameters
+    Activity.update(
+        activity_id, name=name, description=description, client=authed_client
+    )
 
-    # Update to new name
-    Activity.update(activity_id, name="Test Rename", client=authed_client)
-
-    # Verify change
+    # Verify the update took effect
     updated = Activity.get(activity_id, client=authed_client)
-    assert updated.activity_name == "Test Rename"
+    if name is not None:
+        assert updated.activity_name == name
 
-    # Revert to original name
-    Activity.update(activity_id, name=original_name, client=authed_client)
+    # Revert to original
+    Activity.update(
+        activity_id, name="Yoga", description="", client=authed_client
+    )
