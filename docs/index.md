@@ -42,37 +42,20 @@ the Connect API.
 
 ## Quick Start
 
-### Install
-
 ```bash
 pip install garth
 ```
-
-### Authenticate
 
 ```python
 import garth
 from getpass import getpass
 
-email = input("Enter email address: ")
-password = getpass("Enter password: ")
-# If there's MFA, you'll be prompted during the login
-garth.login(email, password)
-
+# Login and save session
+garth.login(input("Email: "), getpass("Password: "))
 garth.save("~/.garth")
-```
 
-### Resume session
-
-```python
-import garth
-from garth.exc import GarthException
-
+# Later, resume the session
 garth.resume("~/.garth")
-try:
-    garth.client.username
-except GarthException:
-    # Session is expired. You'll need to log in again
 ```
 
 ## Next Steps

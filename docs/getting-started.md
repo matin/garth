@@ -49,33 +49,29 @@ For advanced use cases (like async handling), MFA can be handled separately:
 
 ```python
 result1, result2 = garth.login(email, password, return_on_mfa=True)
-if result1 == "needs_mfa":  # MFA is required
-    mfa_code = "123456"  # Get this from your custom MFA flow
-    oauth1, oauth2 = garth.resume_login(result2, mfa_code)
+if result1 == "needs_mfa":
+    # MFA is required - get code from your custom flow
+    mfa_code = "123456"
+    garth.resume_login(result2, mfa_code)
+else:
+    # No MFA required - result1 and result2 are the tokens
+    oauth1, oauth2 = result1, result2
 ```
 
 ## Session Management
-
-### Save session
-
-After logging in, save the session to avoid logging in again:
-
-```python
-garth.save("~/.garth")
-```
 
 ### Resume session
 
 ```python
 import garth
-from garth.exc import GarthException
 
 garth.resume("~/.garth")
-try:
-    garth.client.username
-except GarthException:
-    # Session is expired. You'll need to log in again
+# Make an API call to verify the session works
+garth.client.username
 ```
+
+If the session file doesn't exist or the token has expired (~1 year lifetime),
+you'll need to log in again.
 
 ### Auto-resume from environment variables
 
@@ -107,10 +103,16 @@ import garth
 garth.client.username
 ```
 
-Generate a `GARTH_TOKEN` using:
+Generate a `GARTH_TOKEN` using the CLI:
 
 ```bash
 uvx garth login
+```
+
+For China region, use `--domain garmin.cn`:
+
+```bash
+uvx garth --domain garmin.cn login
 ```
 
 !!! warning "Mutual exclusivity"
@@ -124,20 +126,3 @@ uvx garth login
 !!! note "Token lifetime"
     The OAuth1 token survives for approximately one year. The OAuth2 token
     auto-refreshes as needed when making API calls.
-
-## CLI Authentication
-
-You can also authenticate using the command line:
-
-```bash
-uvx garth login
-```
-
-For China region:
-
-```bash
-uvx garth --domain garmin.cn login
-```
-
-This generates a `GARTH_TOKEN` that can be used with tools like
-[garth-mcp-server](https://github.com/matin/garth-mcp-server).

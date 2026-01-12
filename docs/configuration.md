@@ -1,5 +1,8 @@
 # Configuration
 
+All configuration is done through `garth.configure()`. Options can be combined
+in a single call.
+
 ## Domain Settings
 
 ### China region
@@ -31,4 +34,37 @@ garth.configure(proxies={
     "http": "http://proxy.example.com:8080",
     "https": "http://proxy.example.com:8080"
 })
+```
+
+## Request Settings
+
+### Timeout
+
+Set the request timeout in seconds (default: 10):
+
+```python
+garth.configure(timeout=30)
+```
+
+### Retries
+
+Configure automatic retry behavior for failed requests:
+
+```python
+garth.configure(
+    retries=5,                              # Max retry attempts (default: 3)
+    status_forcelist=(429, 500, 502, 503),  # HTTP codes to retry
+    backoff_factor=1.0,                     # Delay multiplier between retries
+)
+```
+
+## Connection Pool Settings
+
+For high-throughput applications:
+
+```python
+garth.configure(
+    pool_connections=20,  # Number of connection pools (default: 10)
+    pool_maxsize=20,      # Max connections per pool (default: 10)
+)
 ```
