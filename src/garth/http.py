@@ -10,6 +10,7 @@ from requests.adapters import HTTPAdapter, Retry
 from . import sso
 from .auth_tokens import OAuth1Token, OAuth2Token
 from .exc import GarthException, GarthHTTPError
+from .telemetry import Telemetry
 from .utils import asdict
 
 
@@ -30,10 +31,12 @@ class Client:
     pool_maxsize: int = 10
     _user_profile: dict[str, Any] | None = None
     _garth_home: str | None = None
+    telemetry: Telemetry
 
     def __init__(self, session: Session | None = None, **kwargs):
         self.sess = session if session else Session()
         self.sess.headers.update(USER_AGENT)
+        self.telemetry = Telemetry()
         self.configure(
             timeout=self.timeout,
             retries=self.retries,
@@ -57,6 +60,10 @@ class Client:
         backoff_factor: float | None = None,
         pool_connections: int | None = None,
         pool_maxsize: int | None = None,
+        telemetry_enabled: bool | None = None,
+        telemetry_service_name: str | None = None,
+        telemetry_send_to_logfire: bool | None = None,
+        telemetry_token: str | None = None,
     ):
         if oauth1_token is not None:
             self.oauth1_token = oauth1_token
@@ -92,6 +99,13 @@ class Client:
             pool_maxsize=self.pool_maxsize,
         )
         self.sess.mount("https://", adapter)
+
+        self.telemetry.configure(
+            enabled=telemetry_enabled,
+            service_name=telemetry_service_name,
+            send_to_logfire=telemetry_send_to_logfire,
+            token=telemetry_token,
+        )
 
     def _auto_resume(self):
         """Auto-resume session from GARTH_HOME or GARTH_TOKEN env vars."""
