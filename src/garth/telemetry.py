@@ -170,6 +170,7 @@ class Telemetry:
             service_name=self.service_name,
             send_to_logfire=self.send_to_logfire,
             scrubbing=logfire.ScrubbingOptions(callback=_scrubbing_callback),
+            console=False,
         )
         logfire.instrument_requests(response_hook=_response_hook)
         self._configured = True
