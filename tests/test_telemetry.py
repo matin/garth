@@ -66,8 +66,14 @@ def test_telemetry_configure_disabled(monkeypatch):
 
 
 @pytest.mark.vcr
-def test_telemetry_enabled_request(authed_client: Client):
+def test_telemetry_enabled_request(authed_client: Client, monkeypatch):
     """Test that telemetry works with real API requests (VCR recorded)."""
+    import sys
+
+    # Mock logfire to avoid OpenTelemetry version conflicts in CI
+    mock_logfire = MagicMock()
+    monkeypatch.setitem(sys.modules, "logfire", mock_logfire)
+
     # Configure telemetry with send_to_logfire=False to avoid needing
     # credentials. This still enables request instrumentation via OTel.
     authed_client.telemetry.configure(enabled=True, send_to_logfire=False)
