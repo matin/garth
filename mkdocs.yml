@@ -40,6 +40,7 @@ nav:
       - Scores: api/scores.md
       - User: api/user.md
   - Examples: examples.md
+  - MCP Server: mcp.md
   - Contributing: contributing.md
   - Telemetry: telemetry.md
 
