@@ -1,0 +1,44 @@
+name: Bug Report
+description: Report a bug or unexpected behavior
+labels: ["bug"]
+body:
+  - type: textarea
+    attributes:
+      label: Describe the bug
+      description: What happened? What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+      description: How can we reproduce this issue?
+      placeholder: |
+        1. Call `garth.connectapi(...)`
+        2. Pass these parameters...
+        3. See error...
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Error message
+      description: Paste the full error message or traceback
+      render: shell
+
+  - type: input
+    attributes:
+      label: Garth version
+      description: Run `pip show garth` or check your requirements
+      placeholder: "0.6.0"
+
+  - type: input
+    attributes:
+      label: Python version
+      description: Run `python --version`
+      placeholder: "3.14.0"
+
+  - type: textarea
+    attributes:
+      label: Additional context
+      description: Any other relevant information

@@ -1,0 +1,67 @@
+name: Authentication Issue
+description: Report problems with Garmin authentication
+labels: ["auth"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Before submitting
+
+        Please try reproducing the issue with `uvx garth login` to isolate
+        whether the problem is with Garth or your integration.
+
+  - type: checkboxes
+    attributes:
+      label: Debugging steps completed
+      options:
+        - label: I tried `uvx garth login` and can reproduce the issue
+          required: true
+
+  - type: textarea
+    attributes:
+      label: Describe the issue
+      description: What happened? What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Steps to reproduce
+      description: How can we reproduce this issue?
+      placeholder: |
+        1. Run `uvx garth login`
+        2. Enter credentials
+        3. See error...
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: Error message
+      description: Paste the full error message or traceback
+      render: shell
+
+  - type: input
+    attributes:
+      label: Garth version
+      description: Run `pip show garth` or check your requirements
+      placeholder: "0.6.0"
+
+  - type: input
+    attributes:
+      label: Python version
+      description: Run `python --version`
+      placeholder: "3.14.0"
+
+  - type: textarea
+    attributes:
+      label: Logfire telemetry link (optional)
+      description: |
+        If you can share telemetry data, enable it and provide a public link:
+        ```bash
+        export GARTH_TELEMETRY=true
+        export LOGFIRE_TOKEN=<your-token>
+        ```
+        See [telemetry docs](https://garth.readthedocs.io/en/latest/telemetry/)
+        for setup. Create a public link from the Logfire dashboard and paste
+        here.
