@@ -1,8 +1,6 @@
 import gzip
 import io
-import json
 import os
-import re
 import time
 
 import pytest
@@ -10,6 +8,7 @@ from requests import Session
 
 from garth.auth_tokens import OAuth1Token, OAuth2Token
 from garth.http import Client
+from garth.telemetry import REDACTED, sanitize, sanitize_cookie
 
 
 @pytest.fixture
@@ -87,10 +86,6 @@ def vcr(vcr):
     return vcr
 
 
-def sanitize_cookie(cookie_value) -> str:
-    return re.sub(r"=[^;]*", "=SANITIZED", cookie_value)
-
-
 def sanitize_request(request):
     if request.body:
         try:
@@ -98,9 +93,7 @@ def sanitize_request(request):
         except UnicodeDecodeError:
             ...
         else:
-            for key in ["username", "password", "refresh_token"]:
-                body = re.sub(key + r"=[^&]*", f"{key}=SANITIZED", body)
-            request.body = body.encode("utf8")
+            request.body = sanitize(body).encode("utf8")
 
     if "Cookie" in request.headers:
         cookies = request.headers["Cookie"].split("; ")
@@ -136,31 +129,7 @@ def sanitize_response(response):
     except UnicodeDecodeError:
         pass
     else:
-        patterns = [
-            "oauth_token=[^&]*",
-            "oauth_token_secret=[^&]*",
-            "mfa_token=[^&]*",
-        ]
-        for pattern in patterns:
-            body = re.sub(pattern, pattern.split("=")[0] + "=SANITIZED", body)
-        try:
-            body_json = json.loads(body)
-        except json.JSONDecodeError:
-            pass
-        else:
-            if body_json and isinstance(body_json, dict):
-                for field in [
-                    "access_token",
-                    "refresh_token",
-                    "jti",
-                    "consumer_key",
-                    "consumer_secret",
-                ]:
-                    if field in body_json:
-                        body_json[field] = "SANITIZED"
-
-            body = json.dumps(body_json)
-        response["body"]["string"] = body.encode("utf8")
+        response["body"]["string"] = sanitize(body).encode("utf8")
 
     return response
 
@@ -168,7 +137,7 @@ def sanitize_response(response):
 @pytest.fixture(scope="session")
 def vcr_config():
     return {
-        "filter_headers": [("Authorization", "Bearer SANITIZED")],
+        "filter_headers": [("Authorization", f"Bearer {REDACTED}")],
         "before_record_request": sanitize_request,
         "before_record_response": sanitize_response,
     }
