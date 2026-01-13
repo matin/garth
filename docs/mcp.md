@@ -97,7 +97,7 @@ for headless authentication.
 
 Each tool maps to either:
 
-1. **Garth data classes** - Structured, validated responses using garth's
+1. **Garth data classes** - Structured, validated responses using Garth's
    stats and data modules (e.g., `DailySleep`, `DailyStress`)
 2. **Direct API calls** - Raw Garmin Connect API access via `connectapi()`
    for endpoints not yet wrapped by garth
