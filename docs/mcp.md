@@ -2,7 +2,7 @@
 
 [garth-mcp-server](https://github.com/matin/garth-mcp-server/) is a
 Model Context Protocol (MCP) server that exposes Garmin Connect data to
-AI assistants like Claude. It uses garth as the underlying library for
+AI assistants like Claude. It uses Garth as the underlying library for
 authentication and API access.
 
 ## Installation
