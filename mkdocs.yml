@@ -41,6 +41,7 @@ nav:
       - User: api/user.md
   - Examples: examples.md
   - Contributing: contributing.md
+  - Telemetry: telemetry.md
 
 markdown_extensions:
   - pymdownx.highlight:

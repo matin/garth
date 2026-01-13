@@ -1,6 +1,7 @@
 import base64
 import json
 import os
+from collections.abc import Callable
 from typing import IO, Any, Literal
 from urllib.parse import urljoin
 
@@ -64,6 +65,7 @@ class Client:
         telemetry_service_name: str | None = None,
         telemetry_send_to_logfire: bool | None = None,
         telemetry_token: str | None = None,
+        telemetry_callback: Callable[[dict], None] | None = None,
     ):
         if oauth1_token is not None:
             self.oauth1_token = oauth1_token
@@ -105,7 +107,9 @@ class Client:
             service_name=telemetry_service_name,
             send_to_logfire=telemetry_send_to_logfire,
             token=telemetry_token,
+            callback=telemetry_callback,
         )
+        self.telemetry.attach(self.sess)
 
     def _auto_resume(self):
         """Auto-resume session from GARTH_HOME or GARTH_TOKEN env vars."""

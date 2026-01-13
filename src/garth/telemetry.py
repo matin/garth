@@ -1,7 +1,10 @@
 import json
 import os
 import re
+from collections.abc import Callable
 from dataclasses import dataclass, field
+
+from requests import Response, Session
 
 
 REDACTED = "[REDACTED]"
@@ -70,45 +73,9 @@ def sanitize_headers(headers: dict) -> dict:
     return sanitized
 
 
-def _response_hook(span, request, response):
-    """Log sanitized request/response details for debugging."""
-    try:
-        req_headers = sanitize_headers(dict(request.headers))
-        span.set_attribute("http.request.headers", str(req_headers))
-    except Exception:
-        pass
-
-    try:
-        if request.body:
-            body = request.body
-            if isinstance(body, bytes):
-                body = body.decode("utf-8", errors="replace")
-            span.set_attribute("http.request.body", sanitize(body))
-    except Exception:
-        pass
-
-    try:
-        resp_headers = sanitize_headers(dict(response.headers))
-        span.set_attribute("http.response.headers", str(resp_headers))
-    except Exception:
-        pass
-
-    try:
-        span.set_attribute("http.response.body", sanitize(response.text))
-    except Exception:
-        pass
-
-
 def _scrubbing_callback(m):
-    """Allow our pre-sanitized attributes through Logfire's scrubbing."""
-    if m.path[0] == "attributes" and m.path[1] in (
-        "http.request.headers",
-        "http.request.body",
-        "http.response.headers",
-        "http.response.body",
-    ):
-        return m.value
-    return None  # Use default scrubbing
+    """Bypass logfire scrubbing since we've already sanitized all data."""
+    return m.value
 
 
 @dataclass
@@ -117,7 +84,48 @@ class Telemetry:
     enabled: bool = False
     send_to_logfire: bool = True
     token: str | None = None
+    callback: Callable[[dict], None] | None = None
     _configured: bool = field(default=False, repr=False)
+    _logfire_configured: bool = field(default=False, repr=False)
+    _attached_sessions: set = field(default_factory=set, repr=False)
+
+    def _default_callback(self, data: dict):
+        """Default callback that sends to logfire."""
+        import logfire
+
+        logfire.info("http {method} {url} {status_code}", **data)
+
+    def _response_hook(self, response: Response, *args, **kwargs):
+        """Session hook that captures request/response data."""
+        if not self.enabled:
+            return
+
+        try:
+            request = response.request
+            data = {
+                "method": request.method,
+                "url": request.url,
+                "status_code": response.status_code,
+                "request_headers": str(
+                    sanitize_headers(dict(request.headers))
+                ),
+                "response_headers": str(
+                    sanitize_headers(dict(response.headers))
+                ),
+            }
+
+            if request.body:
+                body = request.body
+                if isinstance(body, bytes):
+                    body = body.decode("utf-8", errors="replace")
+                data["request_body"] = sanitize(body)
+
+            data["response_body"] = sanitize(response.text)
+
+            callback = self.callback or self._default_callback
+            callback(data)
+        except Exception:
+            pass  # Don't let telemetry errors break the app
 
     def configure(
         self,
@@ -125,6 +133,7 @@ class Telemetry:
         enabled: bool | None = None,
         send_to_logfire: bool | None = None,
         token: str | None = None,
+        callback: Callable[[dict], None] | None = None,
     ):
         """
         Configure telemetry. Disabled by default.
@@ -134,6 +143,9 @@ class Telemetry:
             enabled: Enable/disable telemetry (default: False)
             send_to_logfire: Send to Logfire Cloud (default: True)
             token: Logfire write token (or use LOGFIRE_TOKEN env var)
+            callback: Custom callback for telemetry data. If provided,
+                logfire will not be configured and data will be passed
+                to this callback instead.
         """
         if service_name is not None:
             self.service_name = service_name
@@ -143,6 +155,8 @@ class Telemetry:
             self.send_to_logfire = send_to_logfire
         if token is not None:
             self.token = token
+        if callback is not None:
+            self.callback = callback
 
         # Check env var overrides
         env_enabled = os.getenv("GARTH_TELEMETRY", "").lower()
@@ -157,12 +171,23 @@ class Telemetry:
         if os.getenv("LOGFIRE_SEND_TO_LOGFIRE", "").lower() == "false":
             self.send_to_logfire = False
 
-        if not self.enabled or self._configured:
+        if not self.enabled:
             return
 
-        # Set token if provided
+        # Configure logfire only if using default callback and not yet done
+        if self.callback is None and not self._logfire_configured:
+            self._configure_logfire()
+
+        self._configured = True
+
+    def _configure_logfire(self):
+        """Configure logfire for default callback."""
+        env_token = os.getenv("LOGFIRE_TOKEN")
         if self.token:
             os.environ["LOGFIRE_TOKEN"] = self.token
+        elif not env_token:
+            # No token available, can't configure logfire
+            return
 
         import logfire
 
@@ -172,5 +197,17 @@ class Telemetry:
             scrubbing=logfire.ScrubbingOptions(callback=_scrubbing_callback),
             console=False,
         )
-        logfire.instrument_requests(response_hook=_response_hook)
-        self._configured = True
+        self._logfire_configured = True
+
+    def attach(self, session: Session):
+        """Attach telemetry hooks to a session.
+
+        This method is idempotent - calling it multiple times with the same
+        session will only attach the hook once.
+        """
+        session_id = id(session)
+        if session_id in self._attached_sessions:
+            return
+
+        session.hooks["response"].append(self._response_hook)
+        self._attached_sessions.add(session_id)

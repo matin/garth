@@ -49,6 +49,7 @@ class GarminOAuth1Session(OAuth1Session):
             self.mount("https://", parent.adapters["https://"])
             self.proxies = parent.proxies
             self.verify = parent.verify
+            self.hooks["response"].extend(parent.hooks["response"])
 
 
 def login(
