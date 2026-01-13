@@ -9,8 +9,7 @@ from requests import Response, Session
 
 REDACTED = "[REDACTED]"
 
-# Query param patterns (key=value format)
-QUERY_PARAM_PATTERNS = [
+_SENSITIVE_QUERY_PARAMS = [
     "username",
     "password",
     "refresh_token",
@@ -18,6 +17,15 @@ QUERY_PARAM_PATTERNS = [
     "oauth_token_secret",
     "mfa_token",
     "embed",
+]
+
+# Pre-compiled regex patterns for query params (key=value format)
+_QUERY_PARAM_PATTERNS = [
+    re.compile(rf"{key}=[^&\s]*", re.IGNORECASE)
+    for key in _SENSITIVE_QUERY_PARAMS
+]
+_QUERY_PARAM_REPLACEMENTS = [
+    f"{key}={REDACTED}" for key in _SENSITIVE_QUERY_PARAMS
 ]
 
 # JSON field names to sanitize
@@ -36,19 +44,22 @@ JSON_SENSITIVE_FIELDS = [
 SENSITIVE_HEADERS = ["Authorization", "Cookie", "Set-Cookie"]
 SENSITIVE_HEADERS_LOWER = {h.lower() for h in SENSITIVE_HEADERS}
 
+# Pre-compiled regex for cookie sanitization
+_COOKIE_PATTERN = re.compile(r"=[^;]*")
+
 
 def sanitize_cookie(cookie_value: str) -> str:
     """Sanitize cookie value by redacting all values."""
-    return re.sub(r"=[^;]*", f"={REDACTED}", cookie_value)
+    return _COOKIE_PATTERN.sub(f"={REDACTED}", cookie_value)
 
 
 def sanitize(text: str) -> str:
     """Sanitize sensitive data from request/response text."""
-    # Sanitize query params (key=value&...)
-    for key in QUERY_PARAM_PATTERNS:
-        text = re.sub(
-            key + r"=[^&\s]*", f"{key}={REDACTED}", text, flags=re.IGNORECASE
-        )
+    # Sanitize query params using pre-compiled patterns
+    for pattern, replacement in zip(
+        _QUERY_PARAM_PATTERNS, _QUERY_PARAM_REPLACEMENTS, strict=True
+    ):
+        text = pattern.sub(replacement, text)
 
     # Try to sanitize JSON
     try:
