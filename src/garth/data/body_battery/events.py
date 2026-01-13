@@ -34,7 +34,7 @@ class BodyBatteryData(Data):
     event: BodyBatteryEvent | None = None
     activity_name: str | None = None
     activity_type: str | None = None
-    activity_id: str | None = None
+    activity_id: str | int | None = None
     average_stress: float | None = None
     stress_values_array: list[list[int]] | None = None
     body_battery_values_array: list[list[Any]] | None = None
