@@ -20,7 +20,7 @@ class WeightData(Data):
     calendar_date: date
     weight: int
     source_type: str
-    weight_delta: float
+    weight_delta: float | None
     timestamp_gmt: int
     timestamp_local: int = Field(alias="date")
     bmi: float | None = None
