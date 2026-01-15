@@ -297,7 +297,7 @@ def test_scrubbing_callback_bypasses_logfire_scrubbing():
 
 def test_telemetry_env_enabled_with_mock(monkeypatch):
     """Test GARTH_TELEMETRY=true enables telemetry."""
-    import sys
+    import garth.telemetry as telemetry_module
 
     monkeypatch.setenv("GARTH_TELEMETRY", "true")
     monkeypatch.setenv("LOGFIRE_TOKEN", "test-token")
@@ -305,7 +305,7 @@ def test_telemetry_env_enabled_with_mock(monkeypatch):
     monkeypatch.delenv("LOGFIRE_SEND_TO_LOGFIRE", raising=False)
 
     mock_logfire = MagicMock()
-    monkeypatch.setitem(sys.modules, "logfire", mock_logfire)
+    monkeypatch.setattr(telemetry_module, "logfire", mock_logfire)
 
     t = Telemetry()
     t.configure()
@@ -318,13 +318,13 @@ def test_telemetry_env_enabled_with_mock(monkeypatch):
 
 def test_telemetry_sets_token_env_var(monkeypatch):
     """Test that token parameter sets LOGFIRE_TOKEN env var."""
-    import sys
+    import garth.telemetry as telemetry_module
 
     monkeypatch.setenv("GARTH_TELEMETRY", "true")
     monkeypatch.delenv("LOGFIRE_TOKEN", raising=False)
 
     mock_logfire = MagicMock()
-    monkeypatch.setitem(sys.modules, "logfire", mock_logfire)
+    monkeypatch.setattr(telemetry_module, "logfire", mock_logfire)
 
     t = Telemetry()
     t.configure(token="my-test-token")
@@ -419,10 +419,10 @@ def test_client_telemetry_callback(monkeypatch):
 
 def test_default_callback_calls_logfire(monkeypatch):
     """Test that _default_callback calls logfire.info."""
-    import sys
+    import garth.telemetry as telemetry_module
 
     mock_logfire = MagicMock()
-    monkeypatch.setitem(sys.modules, "logfire", mock_logfire)
+    monkeypatch.setattr(telemetry_module, "logfire", mock_logfire)
 
     t = Telemetry()
     data = {
@@ -436,3 +436,34 @@ def test_default_callback_calls_logfire(monkeypatch):
     mock_logfire.info.assert_called_once_with(
         "http {method} {url} {status_code}", **data
     )
+
+
+def test_default_callback_skips_when_logfire_unavailable(monkeypatch):
+    """Test _default_callback does nothing when logfire is not installed."""
+    import garth.telemetry as telemetry_module
+
+    monkeypatch.setattr(telemetry_module, "LOGFIRE_AVAILABLE", False)
+
+    t = Telemetry()
+    data = {
+        "method": "GET",
+        "url": "https://example.com/api",
+        "status_code": 200,
+    }
+
+    # Should not raise any errors
+    t._default_callback(data)
+
+
+def test_configure_logfire_skips_when_unavailable(monkeypatch):
+    """Test _configure_logfire does nothing when logfire is not installed."""
+    import garth.telemetry as telemetry_module
+
+    monkeypatch.setattr(telemetry_module, "LOGFIRE_AVAILABLE", False)
+    monkeypatch.setenv("LOGFIRE_TOKEN", "test-token")
+
+    t = Telemetry()
+    t.enabled = True
+    t._configure_logfire()
+
+    assert t._logfire_configured is False

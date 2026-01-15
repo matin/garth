@@ -7,6 +7,15 @@ from dataclasses import dataclass, field
 from requests import Response, Session
 
 
+try:
+    import logfire
+
+    LOGFIRE_AVAILABLE = True
+except ImportError:  # pragma: no cover
+    logfire = None  # type: ignore[assignment]
+    LOGFIRE_AVAILABLE = False
+
+
 REDACTED = "[REDACTED]"
 
 _SENSITIVE_QUERY_PARAMS = [
@@ -102,8 +111,8 @@ class Telemetry:
 
     def _default_callback(self, data: dict):
         """Default callback that sends to logfire."""
-        import logfire
-
+        if not LOGFIRE_AVAILABLE:
+            return
         logfire.info("http {method} {url} {status_code}", **data)
 
     def _response_hook(self, response: Response, *args, **kwargs):
@@ -193,14 +202,15 @@ class Telemetry:
 
     def _configure_logfire(self):
         """Configure logfire for default callback."""
+        if not LOGFIRE_AVAILABLE:
+            return
+
         env_token = os.getenv("LOGFIRE_TOKEN")
         if self.token:
             os.environ["LOGFIRE_TOKEN"] = self.token
         elif not env_token:
             # No token available, can't configure logfire
             return
-
-        import logfire
 
         logfire.configure(
             service_name=self.service_name,

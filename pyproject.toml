@@ -9,7 +9,6 @@ dependencies = [
     "requests>=2.0.0,<3.0.0",
     "pydantic>=1.10.12,<3.0.0",
     "requests-oauthlib>=1.3.1,<3.0.0",
-    "logfire>=2.11,<5.0",
 ]
 requires-python = ">=3.10"
 readme = "README.md"
@@ -37,6 +36,9 @@ keywords = ["garmin", "garmin api", "garmin connect", "garmin sso"]
 "Changelog" = "https://github.com/matin/garth/releases"
 
 [project.optional-dependencies]
+telemetry = [
+    "logfire>=2.11,<5.0",
+]
 docs = [
     "mkdocs>=1.6",
     "mkdocs-material>=9.5",
@@ -88,6 +90,7 @@ testing = [
     "freezegun",
     "pytest",
     "pytest-vcr",
+    "logfire>=2.11,<5.0",
 ]
 
 [tool.ruff.lint.isort]
