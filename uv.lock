@@ -663,7 +663,6 @@ wheels = [
 name = "garth"
 source = { editable = "." }
 dependencies = [
-    { name = "logfire" },
     { name = "pydantic" },
     { name = "requests" },
     { name = "requests-oauthlib" },
@@ -673,6 +672,9 @@ dependencies = [
 docs = [
     { name = "mkdocs" },
     { name = "mkdocs-material" },
+]
+telemetry = [
+    { name = "logfire" },
 ]
 
 [package.dev-dependencies]
@@ -692,20 +694,21 @@ linting = [
 testing = [
     { name = "coverage" },
     { name = "freezegun" },
+    { name = "logfire" },
     { name = "pytest" },
     { name = "pytest-vcr" },
 ]
 
 [package.metadata]
 requires-dist = [
-    { name = "logfire", specifier = ">=2.11,<5.0" },
+    { name = "logfire", marker = "extra == 'telemetry'", specifier = ">=2.11,<5.0" },
     { name = "mkdocs", marker = "extra == 'docs'", specifier = ">=1.6" },
     { name = "mkdocs-material", marker = "extra == 'docs'", specifier = ">=9.5" },
     { name = "pydantic", specifier = ">=1.10.12,<3.0.0" },
     { name = "requests", specifier = ">=2.0.0,<3.0.0" },
     { name = "requests-oauthlib", specifier = ">=1.3.1,<3.0.0" },
 ]
-provides-extras = ["docs"]
+provides-extras = ["docs", "telemetry"]
 
 [package.metadata.requires-dev]
 dev = [
@@ -723,6 +726,7 @@ linting = [
 testing = [
     { name = "coverage" },
     { name = "freezegun" },
+    { name = "logfire", specifier = ">=2.11,<5.0" },
     { name = "pytest" },
     { name = "pytest-vcr" },
 ]

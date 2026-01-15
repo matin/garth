@@ -2,8 +2,16 @@
 
 Garth supports optional telemetry using [Pydantic Logfire](https://pydantic.dev/logfire)
 for logging and observability. Telemetry is **disabled by default** and is
-**isolated to garth's requests only** - it won't affect other HTTP clients in
+**isolated to Garth's requests only** - it won't affect other HTTP clients in
 your application.
+
+## Installation
+
+Telemetry dependencies are optional. Install with the telemetry extra:
+
+```bash
+pip install garth[telemetry]
+```
 
 ## Enable telemetry
 
