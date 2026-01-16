@@ -57,8 +57,10 @@ body:
     attributes:
       label: Logfire telemetry link (optional)
       description: |
-        If you can share telemetry data, enable it and provide a public link:
+        If you can share telemetry data, install with telemetry support and
+        enable it:
         ```bash
+        pip install garth[telemetry]
         export GARTH_TELEMETRY=true
         export LOGFIRE_TOKEN=<your-token>
         ```
