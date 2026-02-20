@@ -40,8 +40,7 @@ telemetry = [
     "logfire>=2.11,<5.0",
 ]
 docs = [
-    "mkdocs>=1.6",
-    "mkdocs-material>=9.5",
+    "zensical",
 ]
 
 [build-system]
