@@ -1,5 +1,6 @@
 from .data import (
     Activity,
+    Badge,
     BodyBatteryData,
     DailyBodyBatteryStress,
     DailyHeartRate,
@@ -34,6 +35,7 @@ from .version import __version__
 
 __all__ = [
     "Activity",
+    "Badge",
     "BodyBatteryData",
     "Client",
     "DailyBodyBatteryStress",

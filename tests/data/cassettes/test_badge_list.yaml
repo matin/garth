@@ -1,0 +1,295 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/badge-service/badge/earned
+  response:
+    body:
+      string: '[
+        {
+          "badgeId": 1166,
+          "badgeKey": "breath_50_times",
+          "badgeName": "Deep Breathing 4",
+          "badgeUuid": null,
+          "badgeCategoryId": 1,
+          "badgeDifficultyId": 3,
+          "badgePoints": 4,
+          "badgeTypeIds": [
+            4
+          ],
+          "badgeSeriesId": 59,
+          "badgeStartDate": "2020-04-28T00:00:00.0",
+          "badgeEndDate": null,
+          "userProfileId": 42,
+          "fullName": "Garmin",
+          "displayName": "user-guid",
+          "badgeEarnedDate": "2026-02-18T06:05:49.0",
+          "badgeEarnedNumber": 1,
+          "premium": false,
+          "badgeLimitCount": null,
+          "badgeIsViewed": false,
+          "badgeProgressValue": 50.0,
+          "badgeTargetValue": 50.0,
+          "badgeUnitId": 3,
+          "badgeAssocTypeId": 5,
+          "badgeAssocType": "none",
+          "badgeAssocDataId": null,
+          "badgeAssocDataName": null,
+          "earnedByMe": true,
+          "currentPlayerType": null,
+          "userJoined": null,
+          "badgeChallengeStatusId": null,
+          "badgePromotionCodeTypeList": [
+            null
+          ],
+          "promotionCodeStatus": null,
+          "createDate": "2024-12-23T15:30:55.66",
+          "relatedBadges": null
+        },
+        {
+          "badgeId": 2886,
+          "badgeKey": "activity_chinese_horse_year_2026",
+          "badgeName": "Year of the Horse 2026",
+          "badgeUuid": "A7210D7B58D14501BB209993911F18E1",
+          "badgeCategoryId": 1,
+          "badgeDifficultyId": 1,
+          "badgePoints": 1,
+          "badgeTypeIds": [
+            1,
+            6
+          ],
+          "badgeSeriesId": null,
+          "badgeStartDate": "2026-02-17T00:00:00.0",
+          "badgeEndDate": "2026-02-17T23:59:59.0",
+          "userProfileId": 42,
+          "fullName": "Garmin",
+          "displayName": "user-guid",
+          "badgeEarnedDate": "2026-02-17T04:20:56.0",
+          "badgeEarnedNumber": 1,
+          "premium": false,
+          "badgeLimitCount": null,
+          "badgeIsViewed": false,
+          "badgeProgressValue": 0.0,
+          "badgeTargetValue": null,
+          "badgeUnitId": null,
+          "badgeAssocTypeId": 1,
+          "badgeAssocType": "activityId",
+          "badgeAssocDataId": "21892246130",
+          "badgeAssocDataName": null,
+          "earnedByMe": true,
+          "currentPlayerType": null,
+          "userJoined": null,
+          "badgeChallengeStatusId": null,
+          "badgePromotionCodeTypeList": [
+            null
+          ],
+          "promotionCodeStatus": null,
+          "createDate": "2026-02-17T05:22:59.247",
+          "relatedBadges": null
+        },
+        {
+          "badgeId": 1136,
+          "badgeKey": "steps_30day_10000",
+          "badgeName": "10K a Day Challenge",
+          "badgeUuid": null,
+          "badgeCategoryId": 5,
+          "badgeDifficultyId": 3,
+          "badgePoints": 4,
+          "badgeTypeIds": [
+            3,
+            4
+          ],
+          "badgeSeriesId": null,
+          "badgeStartDate": "2020-04-01T00:00:00.0",
+          "badgeEndDate": null,
+          "userProfileId": 42,
+          "fullName": "Garmin",
+          "displayName": "user-guid",
+          "badgeEarnedDate": "2026-02-15T18:03:34.11",
+          "badgeEarnedNumber": 11,
+          "premium": false,
+          "badgeLimitCount": 250,
+          "badgeIsViewed": true,
+          "badgeProgressValue": 30.0,
+          "badgeTargetValue": 30.0,
+          "badgeUnitId": 4,
+          "badgeAssocTypeId": 5,
+          "badgeAssocType": "none",
+          "badgeAssocDataId": null,
+          "badgeAssocDataName": null,
+          "earnedByMe": true,
+          "currentPlayerType": null,
+          "userJoined": null,
+          "badgeChallengeStatusId": null,
+          "badgePromotionCodeTypeList": [
+            null
+          ],
+          "promotionCodeStatus": null,
+          "createDate": "2026-01-01T22:54:12.827",
+          "relatedBadges": null
+        }
+      ]'
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Thu, 18 Feb 2026 12:00:00 GMT
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/badge-service/badge/available?showExclusiveBadge=true
+  response:
+    body:
+      string: '[
+        {
+          "badgeId": 2918,
+          "badgeKey": "challenge_run_10k_2026_02",
+          "badgeName": "February Weekend 10K",
+          "badgeUuid": "DF7FEB14CBD54D81A3A2388ECB888DC8",
+          "badgeCategoryId": 4,
+          "badgeDifficultyId": 2,
+          "badgePoints": 2,
+          "badgeTypeIds": [
+            1,
+            6
+          ],
+          "badgeSeriesId": null,
+          "badgeStartDate": "2026-02-20T00:00:00.0",
+          "badgeEndDate": "2026-02-22T23:59:59.0",
+          "userProfileId": null,
+          "fullName": null,
+          "displayName": null,
+          "badgeEarnedDate": null,
+          "badgeEarnedNumber": null,
+          "premium": false,
+          "badgeLimitCount": null,
+          "badgeIsViewed": null,
+          "badgeProgressValue": null,
+          "badgeTargetValue": null,
+          "badgeUnitId": null,
+          "badgeAssocTypeId": 9,
+          "badgeAssocType": "activityId",
+          "badgeAssocDataId": null,
+          "badgeAssocDataName": null,
+          "earnedByMe": false,
+          "currentPlayerType": null,
+          "userJoined": null,
+          "badgeChallengeStatusId": null,
+          "badgePromotionCodeTypeList": [],
+          "promotionCodeStatus": null,
+          "createDate": "2026-02-08T13:48:59.727",
+          "relatedBadges": null
+        },
+        {
+          "badgeId": 77,
+          "badgeKey": "run_marathon",
+          "badgeName": "Marathon",
+          "badgeUuid": null,
+          "badgeCategoryId": 2,
+          "badgeDifficultyId": 4,
+          "badgePoints": 8,
+          "badgeTypeIds": [
+            3
+          ],
+          "badgeSeriesId": 20,
+          "badgeStartDate": "2018-04-03T00:00:00.0",
+          "badgeEndDate": null,
+          "userProfileId": null,
+          "fullName": null,
+          "displayName": null,
+          "badgeEarnedDate": null,
+          "badgeEarnedNumber": null,
+          "premium": false,
+          "badgeLimitCount": 250,
+          "badgeIsViewed": null,
+          "badgeProgressValue": null,
+          "badgeTargetValue": null,
+          "badgeUnitId": null,
+          "badgeAssocTypeId": 1,
+          "badgeAssocType": "activityId",
+          "badgeAssocDataId": null,
+          "badgeAssocDataName": null,
+          "earnedByMe": false,
+          "currentPlayerType": null,
+          "userJoined": null,
+          "badgeChallengeStatusId": null,
+          "badgePromotionCodeTypeList": [],
+          "promotionCodeStatus": null,
+          "createDate": null,
+          "relatedBadges": null
+        },
+        {
+          "badgeId": 2733,
+          "badgeKey": "nutrition_day_log_weight",
+          "badgeName": "Daily Balance",
+          "badgeUuid": "EB9322A42AC34F46A224D861905BC01C",
+          "badgeCategoryId": 7,
+          "badgeDifficultyId": 2,
+          "badgePoints": 2,
+          "badgeTypeIds": [
+            3,
+            4
+          ],
+          "badgeSeriesId": 125,
+          "badgeStartDate": "2026-01-05T00:00:00.0",
+          "badgeEndDate": null,
+          "userProfileId": 42,
+          "fullName": "Garmin",
+          "displayName": "user-guid",
+          "badgeEarnedDate": null,
+          "badgeEarnedNumber": 1,
+          "premium": false,
+          "badgeLimitCount": 250,
+          "badgeIsViewed": false,
+          "badgeProgressValue": 24.0,
+          "badgeTargetValue": 30.0,
+          "badgeUnitId": 4,
+          "badgeAssocTypeId": 5,
+          "badgeAssocType": "none",
+          "badgeAssocDataId": null,
+          "badgeAssocDataName": null,
+          "earnedByMe": false,
+          "currentPlayerType": null,
+          "userJoined": null,
+          "badgeChallengeStatusId": null,
+          "badgePromotionCodeTypeList": [
+            null
+          ],
+          "promotionCodeStatus": null,
+          "createDate": "2026-01-14T13:20:46.629",
+          "relatedBadges": null
+        }]'
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Thu, 18 Feb 2026 12:00:00 GMT
+    status:
+      code: 200
+      message: OK
+version: 1
