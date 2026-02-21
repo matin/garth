@@ -1,0 +1,80 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/badge-service/badge/detail/v2/1136
+  response:
+    body:
+      string: '{
+        "badgeId": 1136,
+        "badgeKey": "steps_30day_10000",
+        "badgeName": "10K a Day Challenge",
+        "badgeUuid": null,
+        "badgeCategoryId": 5,
+        "badgeDifficultyId": 3,
+        "badgePoints": 4,
+        "badgeTypeIds": [
+          3,
+          4
+        ],
+        "badgeSeriesId": null,
+        "badgeStartDate": "2020-04-01T00:00:00.0",
+        "badgeEndDate": null,
+        "userProfileId": 42,
+        "fullName": "Garmin",
+        "displayName": "user-guid",
+        "badgeEarnedDate": "2026-02-15T18:03:34.11",
+        "badgeEarnedNumber": 11,
+        "premium": false,
+        "badgeLimitCount": 250,
+        "badgeIsViewed": true,
+        "badgeProgressValue": 5.0,
+        "badgeTargetValue": 30.0,
+        "badgeUnitId": 4,
+        "badgeAssocTypeId": 5,
+        "badgeAssocType": "none",
+        "badgeAssocDataId": null,
+        "badgeAssocDataName": null,
+        "earnedByMe": true,
+        "currentPlayerType": null,
+        "userJoined": true,
+        "badgeChallengeStatusId": null,
+        "badgePromotionCodeTypeList": [
+          null
+        ],
+        "promotionCodeStatus": null,
+        "createDate": "2026-01-01T22:54:12.827",
+        "relatedBadges": [],
+        "connectionNumber": 1,
+        "connections": [
+          {
+            "userProfileId": 44,
+            "fullName": "Garmin1",
+            "displayName": "guid",
+            "profileImageUrlMedium": "https://s3.amazonaws.com/garmin-connect-prod/profile_images/guid-prfr.png",
+            "profileImageUrlSmall": "https://s3.amazonaws.com/garmin-connect-prod/profile_images/guid-prth.png",
+            "userLevel": 6,
+            "badgeEarnedDate": "2023-04-26T17:34:10.293"
+          }
+        ]
+      }'
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Thu, 18 Feb 2026 12:00:00 GMT
+    status:
+      code: 200
+      message: OK
+version: 1
