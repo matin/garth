@@ -16,7 +16,7 @@ def test_badge_list(authed_client: Client):
         assert badge.badge_assoc_type_id
 
     badge = next(b for b in badges if b.badge_id == 1136)
-    
+
     assert badge.badge_target_value == 30
     assert badge.badge_progress_value == 30 # in list it's always equal target for earned
 
@@ -27,4 +27,3 @@ def test_badge_get(authed_client: Client):
 
     assert badge.badge_target_value == 30
     assert badge.badge_progress_value == 5
-
