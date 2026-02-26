@@ -15,10 +15,20 @@ def test_badge_list(authed_client: Client):
         assert badge.badge_type_ids
         assert badge.badge_assoc_type_id
 
-    badge = next(b for b in badges if b.badge_id == 1136)
+    earned_badge = next(b for b in badges if b.badge_id == 1136)
+    assert earned_badge.repeatable == True
+    assert earned_badge.badge_target_value == 30
+    assert earned_badge.badge_progress_value == 30 # in list it's always equal target for earned
+    assert earned_badge.reload(client=authed_client).badge_progress_value == 5
 
-    assert badge.badge_target_value == 30
-    assert badge.badge_progress_value == 30 # in list it's always equal target for earned
+    limited_time_badge = next(b for b in badges if b.badge_id == 2886)
+    assert limited_time_badge.limited_time == True
+
+    cumulative_badge = next(b for b in badges if b.badge_id == 2733)
+    assert cumulative_badge.cumulative == True
+
+    month_chalenge_badge = next(b for b in badges if b.badge_id == 2918)
+    assert month_chalenge_badge.month_chalenge == True
 
 @pytest.mark.vcr
 def test_badge_get(authed_client: Client):
@@ -27,3 +37,7 @@ def test_badge_get(authed_client: Client):
 
     assert badge.badge_target_value == 30
     assert badge.badge_progress_value == 5
+
+    assert Badge.get(55, client=authed_client).annual == True
+
+    assert Badge.get(2139, client=authed_client).expedition == True

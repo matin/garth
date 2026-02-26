@@ -109,8 +109,8 @@ class Badge:
     def expedition(self) -> bool:
         return self.badge_assoc_type_id == Badge.ASSOC_TYPE_BADGE_CHALLENGE
 
-    def reload(self):
-        return Badge.get(self.badge_id)
+    def reload(self, client: http.Client | None = None):
+        return Badge.get(self.badge_id, client or http.client)
 
     @classmethod
     def get(
