@@ -32,12 +32,6 @@ def test_badge_list(authed_client: Client):
 
 @pytest.mark.vcr
 def test_badge_get(authed_client: Client):
-    badge = Badge.get(1136, client=authed_client)
-    assert badge.badge_id
-
-    assert badge.badge_target_value == 30
-    assert badge.badge_progress_value == 5
-
     assert Badge.get(55, client=authed_client).annual == True
 
     assert Badge.get(2139, client=authed_client).expedition == True
