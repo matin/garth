@@ -30,8 +30,8 @@ def test_badge_list(authed_client: Client):
     cumulative_badge = next(b for b in badges if b.badge_id == 2733)
     assert cumulative_badge.cumulative
 
-    month_chalenge_badge = next(b for b in badges if b.badge_id == 2918)
-    assert month_chalenge_badge.month_chalenge
+    month_challenge_badge = next(b for b in badges if b.badge_id == 2918)
+    assert month_challenge_badge.month_challenge
 
 
 @pytest.mark.vcr

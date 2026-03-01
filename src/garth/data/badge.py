@@ -10,6 +10,18 @@ from ..utils import camel_to_snake_dict
 
 @dataclass(frozen=True)
 class Badge:
+    """Garmin Connect badges data.
+
+    Retrieve badges by ID or full list.
+
+    Example:
+        >>> badge = Badge.get(55, client=authed_client).annual
+        >>> badge.badge_name
+        'Strong Start'
+        >>> badge.earned_by_me
+        True
+    """
+
     badge_id: int
     badge_key: str
     badge_name: str
@@ -103,7 +115,7 @@ class Badge:
         return Badge.TYPE_CUMULATIVE in self.badge_type_ids
 
     @property
-    def month_chalenge(self) -> bool:
+    def month_challenge(self) -> bool:
         return (
             self.badge_category_id == Badge.CATEGORY_CHALLENGES
             and self.limited_time
@@ -114,10 +126,22 @@ class Badge:
         return self.badge_assoc_type_id == Badge.ASSOC_TYPE_BADGE_CHALLENGE
 
     def reload(self, client: http.Client | None = None):
+        """Get actual data for Badge
+        Useful to retrieve actual information for repeatable badges from list response
+        """
         return Badge.get(self.badge_id, client or http.client)
 
     @classmethod
     def get(cls, id: int, client: http.Client | None = None) -> Self:
+        """Get badge by ID.
+
+        Args:
+            id: The Garmin badge ID
+            client: Optional HTTP client (uses default if not provided)
+
+        Returns:
+            Badge instance with full details
+        """
         client = client or http.client
         path = f"/badge-service/badge/detail/v2/{id}"
         data = client.connectapi(path)
@@ -133,6 +157,13 @@ class Badge:
         cls,
         client: http.Client | None = None,
     ) -> list[Self]:
+        """List of badges, combines earned and available lists.
+        Earned and repeatable badges contain data for the first receiving
+        For actual progress they should be loaded directly by get or reload methods
+
+        Returns:
+            List of Badge instances
+        """
         client = client or http.client
 
         path = "/badge-service/badge/earned"
