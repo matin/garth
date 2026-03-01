@@ -7,6 +7,7 @@ from typing_extensions import Self
 from .. import http
 from ..utils import camel_to_snake_dict
 
+
 @dataclass(frozen=True)
 class Badge:
     badge_id: int
@@ -103,7 +104,10 @@ class Badge:
 
     @property
     def month_chalenge(self) -> bool:
-        return self.badge_category_id == Badge.CATEGORY_CHALLENGES and self.limited_time
+        return (
+            self.badge_category_id == Badge.CATEGORY_CHALLENGES
+            and self.limited_time
+        )
 
     @property
     def expedition(self) -> bool:
@@ -113,14 +117,15 @@ class Badge:
         return Badge.get(self.badge_id, client or http.client)
 
     @classmethod
-    def get(
-        cls, id: int, client: http.Client | None = None
-    ) -> Self:
+    def get(cls, id: int, client: http.Client | None = None) -> Self:
         client = client or http.client
         path = f"/badge-service/badge/detail/v2/{id}"
         data = client.connectapi(path)
+        assert data, f"No data returned from {path}"
+        assert isinstance(data, dict), (
+            f"Expected dict from {path}, got {type(data).__name__}"
+        )
         data = camel_to_snake_dict(data)
-        assert isinstance(data, dict)
         return cls(**data)
 
     @classmethod
@@ -129,8 +134,23 @@ class Badge:
         client: http.Client | None = None,
     ) -> list[Self]:
         client = client or http.client
-        earned = client.connectapi("/badge-service/badge/earned")
-        available = client.connectapi("/badge-service/badge/available?showExclusiveBadge=true")
 
-        badges = [camel_to_snake_dict(badge) for badge in earned + available]
-        return [cls(**badge) for badge in badges]
+        path = "/badge-service/badge/earned"
+        earned = client.connectapi(path)
+        assert isinstance(earned, list), (
+            f"Expected list from {path}, got {type(earned).__name__}"
+        )
+
+        path = "/badge-service/badge/available?showExclusiveBadge=true"
+        available = client.connectapi(path)
+        assert isinstance(available, list), (
+            f"Expected list from {path}, got {type(available).__name__}"
+        )
+
+        data = earned + available
+
+        badges = []
+        for item in data:
+            item = camel_to_snake_dict(item)
+            badges.append(cls(**item))
+        return badges
