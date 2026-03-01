@@ -15,7 +15,7 @@ class Badge:
     Retrieve badges by ID or full list.
 
     Example:
-        >>> badge = Badge.get(55, client=authed_client).annual
+        >>> badge = Badge.get(55, client=authed_client)
         >>> badge.badge_name
         'Strong Start'
         >>> badge.earned_by_me
