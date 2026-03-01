@@ -28,7 +28,7 @@ class Badge:
     badge_category_id: int
     badge_difficulty_id: int
     badge_points: int
-    badge_type_ids: builtins.list["int"]
+    badge_type_ids: builtins.list[int]
     premium: bool
     earned_by_me: bool
     badge_assoc_type_id: int
@@ -125,30 +125,33 @@ class Badge:
     def expedition(self) -> bool:
         return self.badge_assoc_type_id == Badge.ASSOC_TYPE_BADGE_CHALLENGE
 
-    def reload(self, client: http.Client | None = None):
+    def reload(self, client: http.Client | None = None) -> Self:
         """Get actual data for Badge
         Useful to retrieve actual information for repeatable badges from list response
         """
         return Badge.get(self.badge_id, client or http.client)
 
     @classmethod
-    def get(cls, id: int, client: http.Client | None = None) -> Self:
+    def get(cls, badge_id: int, client: http.Client | None = None) -> Self:
         """Get badge by ID.
 
         Args:
-            id: The Garmin badge ID
+            badge_id: The Garmin badge ID
             client: Optional HTTP client (uses default if not provided)
 
         Returns:
             Badge instance with full details
         """
         client = client or http.client
-        path = f"/badge-service/badge/detail/v2/{id}"
+        path = f"/badge-service/badge/detail/v2/{badge_id}"
         data = client.connectapi(path)
-        assert data, f"No data returned from {path}"
-        assert isinstance(data, dict), (
-            f"Expected dict from {path}, got {type(data).__name__}"
-        )
+        if not data:
+            raise ValueError(f"No data returned from {path}")
+        if not isinstance(data, dict):
+            raise TypeError(
+                f"Expected dict from {path}, got {type(data).__name__}"
+            )
+
         data = camel_to_snake_dict(data)
         return cls(**data)
 
@@ -168,20 +171,20 @@ class Badge:
 
         path = "/badge-service/badge/earned"
         earned = client.connectapi(path)
-        assert isinstance(earned, list), (
-            f"Expected list from {path}, got {type(earned).__name__}"
-        )
+        if not isinstance(earned, list):
+            raise TypeError(
+                f"Expected list from {path}, got {type(earned).__name__}"
+            )
 
         path = "/badge-service/badge/available?showExclusiveBadge=true"
         available = client.connectapi(path)
-        assert isinstance(available, list), (
-            f"Expected list from {path}, got {type(available).__name__}"
-        )
+        if not isinstance(available, list):
+            raise TypeError(
+                f"Expected list from {path}, got {type(available).__name__}"
+            )
 
         data = earned + available
+        if not all(isinstance(item, dict) for item in data):
+            raise TypeError("Badge list payload contains non-dict entries")
 
-        badges = []
-        for item in data:
-            item = camel_to_snake_dict(item)
-            badges.append(cls(**item))
-        return badges
+        return [cls(**camel_to_snake_dict(item)) for item in data]
