@@ -425,6 +425,7 @@ def test_default_callback_calls_logfire(monkeypatch):
     monkeypatch.setattr(telemetry_module, "logfire", mock_logfire)
 
     t = Telemetry()
+    t._logfire_configured = True
     data = {
         "method": "GET",
         "url": "https://example.com/api",

@@ -111,7 +111,7 @@ class Telemetry:
 
     def _default_callback(self, data: dict):
         """Default callback that sends to logfire."""
-        if not LOGFIRE_AVAILABLE:
+        if not LOGFIRE_AVAILABLE or not self._logfire_configured:
             return
         logfire.info("http {method} {url} {status_code}", **data)
 
