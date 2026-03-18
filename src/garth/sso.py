@@ -16,7 +16,7 @@ from .auth_tokens import OAuth1Token, OAuth2Token
 from .exc import GarthException
 
 
-CLIENT_ID = "GCM_IOS_DARK"
+CLIENT_ID = "GCM_ANDROID_DARK"
 OAUTH_CONSUMER_URL = "https://thegarth.s3.amazonaws.com/oauth_consumer.json"
 OAUTH_CONSUMER: dict[str, str] = {}
 
@@ -98,7 +98,7 @@ def login(
     | tuple[Literal["needs_mfa"], dict[str, Any]]
 ):
     client = client or http.client
-    service_url = f"https://mobile.integration.{client.domain}/gcm/ios"
+    service_url = f"https://mobile.integration.{client.domain}/gcm/android"
     login_params = {
         "clientId": CLIENT_ID,
         "locale": "en-US",
@@ -148,7 +148,7 @@ def login(
 def get_oauth1_token(ticket: str, client: http.Client) -> OAuth1Token:
     sess = GarminOAuth1Session(parent=client.sess)
     base_url = f"https://connectapi.{client.domain}/oauth-service/oauth/"
-    login_url = f"https://mobile.integration.{client.domain}/gcm/ios"
+    login_url = f"https://mobile.integration.{client.domain}/gcm/android"
     url = (
         f"{base_url}preauthorized?ticket={ticket}&login-url={login_url}"
         "&accepts-mfa-tokens=true"
@@ -177,7 +177,7 @@ def exchange(
     )
     data: dict[str, str] = {}
     if login:
-        data["audience"] = "GARMIN_CONNECT_MOBILE_IOS_DI"
+        data["audience"] = "GARMIN_CONNECT_MOBILE_ANDROID_DI"
     if oauth1.mfa_token:
         data["mfa_token"] = oauth1.mfa_token
     base_url = f"https://connectapi.{client.domain}/oauth-service/oauth/"
