@@ -139,7 +139,7 @@ class Telemetry(BaseSettings):
 
         try:
             request = response.request
-            if request is None:
+            if request is None:  # pragma: no cover
                 return
             data = {
                 "session_id": self.session_id,
