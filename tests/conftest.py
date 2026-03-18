@@ -78,7 +78,7 @@ def authed_client(
     client = Client()
     recording = os.environ.get("GARTH_RECORD_CASSETTES") == "true"
     garth_home = os.environ.get("GARTH_RECORD_CASSETTES_HOME")
-    if recording and garth_home:
+    if recording and garth_home:  # pragma: no cover
         client.load(garth_home)
     else:
         client.configure(oauth1_token=oauth1_token, oauth2_token=oauth2_token)
