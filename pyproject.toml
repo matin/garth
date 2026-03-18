@@ -53,7 +53,7 @@ path = "src/garth/version.py"
 addopts = "--ignore=__pypackages__ --ignore-glob=*.yaml"
 
 [tool.ty.src]
-include = ["src", "tests"]
+include = ["src"]
 
 [tool.ty.rules]
 invalid-method-override = "warn"

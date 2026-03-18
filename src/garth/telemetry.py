@@ -139,6 +139,8 @@ class Telemetry(BaseSettings):
 
         try:
             request = response.request
+            if request is None:
+                return
             data = {
                 "session_id": self.session_id,
                 "garth_version": __version__,
