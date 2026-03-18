@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import builtins
 from datetime import datetime
 
 from pydantic.dataclasses import dataclass
@@ -175,7 +176,7 @@ class Activity:
         start: int = 0,
         *,
         client: http.Client | None = None,
-    ) -> list[Self]:
+    ) -> builtins.list[Self]:
         """List recent activities with pagination.
 
         Args:

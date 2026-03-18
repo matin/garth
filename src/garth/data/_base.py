@@ -1,3 +1,4 @@
+import builtins
 from abc import ABC, abstractmethod
 from concurrent.futures import ThreadPoolExecutor
 from datetime import date
@@ -20,7 +21,7 @@ class Data(ABC):
         day: date | str | None = None,
         *,
         client: http.Client | None = None,
-    ) -> Self | list[Self] | None: ...
+    ) -> Self | builtins.list[Self] | None: ...
 
     @classmethod
     def list(
@@ -30,7 +31,7 @@ class Data(ABC):
         *,
         client: http.Client | None = None,
         max_workers: int = MAX_WORKERS,
-    ) -> list[Self]:
+    ) -> builtins.list[Self]:
         client = client or http.client
         end = format_end_date(end)
 

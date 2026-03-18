@@ -31,7 +31,7 @@ format: .uv
 lint: .uv
 	uv run ruff format --check $(sources)
 	uv run ruff check $(sources)
-	uv run mypy $(sources)
+	uv run ty check
 
 .PHONY: codespell  ## Use Codespell to do spellchecking
 codespell: .pre-commit

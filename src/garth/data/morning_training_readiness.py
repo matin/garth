@@ -1,3 +1,4 @@
+import builtins
 from datetime import date, datetime
 from typing import Any, cast
 
@@ -66,6 +67,6 @@ class MorningTrainingReadinessData(Data):
         return cls(**morning_readiness_data)
 
     @classmethod
-    def list(cls, *args, **kwargs) -> list[Self]:
+    def list(cls, *args, **kwargs) -> builtins.list[Self]:
         data = super().list(*args, **kwargs)
         return sorted(data, key=lambda d: d.calendar_date)

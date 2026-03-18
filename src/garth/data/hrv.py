@@ -72,6 +72,6 @@ class HRVData(Data):
         return cls(**hrv_data)
 
     @classmethod
-    def list(cls, *args, **kwargs) -> list[Self]:
+    def list(cls, *args, **kwargs) -> builtins.list[Self]:
         data = super().list(*args, **kwargs)
         return sorted(data, key=lambda d: d.hrv_summary.calendar_date)
