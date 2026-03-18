@@ -5,6 +5,7 @@ from requests import Session
 
 from garth.http import Client
 from garth.telemetry import (
+    DEFAULT_TOKEN,
     REDACTED,
     Telemetry,
     _scrubbing_callback,
@@ -44,26 +45,27 @@ def test_sanitize_query_params():
     assert "password=[REDACTED]" in result
 
 
-def test_telemetry_defaults():
+def test_telemetry_defaults(monkeypatch):
+    monkeypatch.delenv("GARTH_TELEMETRY_ENABLED", raising=False)
+    monkeypatch.delenv("GARTH_TELEMETRY_TOKEN", raising=False)
+    monkeypatch.delenv("GARTH_TELEMETRY_SEND_TO_LOGFIRE", raising=False)
+
     t = Telemetry()
-    assert t.service_name == "garth"
-    assert t.enabled is False
+    assert t.enabled is True
     assert t.send_to_logfire is True
-    assert t.token is None
+    assert t.token == DEFAULT_TOKEN
     assert t.callback is None
-    assert t._configured is False
+    assert t.session_id  # non-empty
 
 
 def test_telemetry_configure_disabled(monkeypatch):
-    monkeypatch.delenv("GARTH_TELEMETRY", raising=False)
-    monkeypatch.delenv("GARTH_TELEMETRY_SERVICE_NAME", raising=False)
-    monkeypatch.delenv("LOGFIRE_SEND_TO_LOGFIRE", raising=False)
+    monkeypatch.delenv("GARTH_TELEMETRY_ENABLED", raising=False)
+    monkeypatch.delenv("GARTH_TELEMETRY_TOKEN", raising=False)
+    monkeypatch.delenv("GARTH_TELEMETRY_SEND_TO_LOGFIRE", raising=False)
 
     t = Telemetry()
-    t.configure(service_name="my-app")
-    assert t.service_name == "my-app"
+    t.configure(enabled=False)
     assert t.enabled is False
-    assert t._configured is False  # Not configured because disabled
 
 
 @pytest.mark.vcr
@@ -74,82 +76,56 @@ def test_telemetry_enabled_request(authed_client: Client, monkeypatch):
     def capture_callback(data):
         captured_data.append(data)
 
-    # Configure telemetry with custom callback to capture data
     authed_client.configure(
         telemetry_enabled=True,
         telemetry_callback=capture_callback,
     )
 
     assert authed_client.telemetry.enabled is True
-    assert authed_client.telemetry._configured is True
 
-    # Make a real API request - this will be recorded by VCR
     profile = authed_client.connectapi("/userprofile-service/socialProfile")
     assert profile is not None
     assert "displayName" in profile
 
-    # Verify telemetry was captured
     assert len(captured_data) == 1
     assert captured_data[0]["method"] == "GET"
     assert "userprofile-service" in captured_data[0]["url"]
     assert captured_data[0]["status_code"] == 200
+    assert "session_id" in captured_data[0]
 
 
 def test_telemetry_env_override_disabled(monkeypatch):
-    monkeypatch.setenv("GARTH_TELEMETRY", "false")
+    monkeypatch.setenv("GARTH_TELEMETRY_ENABLED", "false")
 
     t = Telemetry()
-    t.configure(enabled=True)  # Try to enable via code
-    assert t.enabled is False  # Env var wins
-
-
-def test_telemetry_env_service_name(monkeypatch):
-    monkeypatch.setenv("GARTH_TELEMETRY_SERVICE_NAME", "custom-service")
-    monkeypatch.delenv("GARTH_TELEMETRY", raising=False)
-
-    t = Telemetry()
-    t.configure()
-    assert t.service_name == "custom-service"
+    assert t.enabled is False
 
 
 def test_telemetry_env_send_to_logfire_false(monkeypatch):
-    monkeypatch.setenv("LOGFIRE_SEND_TO_LOGFIRE", "false")
-    monkeypatch.delenv("GARTH_TELEMETRY", raising=False)
-    monkeypatch.delenv("GARTH_TELEMETRY_SERVICE_NAME", raising=False)
+    monkeypatch.setenv("GARTH_TELEMETRY_SEND_TO_LOGFIRE", "false")
+    monkeypatch.delenv("GARTH_TELEMETRY_ENABLED", raising=False)
 
     t = Telemetry()
-    t.configure()
     assert t.send_to_logfire is False
 
 
-def test_telemetry_configure_all_params():
+def test_telemetry_configure_all_params(monkeypatch):
+    monkeypatch.delenv("GARTH_TELEMETRY_ENABLED", raising=False)
+    monkeypatch.delenv("GARTH_TELEMETRY_TOKEN", raising=False)
+    monkeypatch.delenv("GARTH_TELEMETRY_SEND_TO_LOGFIRE", raising=False)
+
     t = Telemetry()
     callback = lambda data: None  # noqa: E731
     t.configure(
-        service_name="test-service",
         enabled=False,
         send_to_logfire=False,
         token="test-token",
         callback=callback,
     )
-    assert t.service_name == "test-service"
     assert t.enabled is False
     assert t.send_to_logfire is False
     assert t.token == "test-token"
     assert t.callback is callback
-
-
-def test_telemetry_only_configures_once(monkeypatch):
-    monkeypatch.delenv("GARTH_TELEMETRY", raising=False)
-    monkeypatch.delenv("LOGFIRE_TOKEN", raising=False)
-
-    t = Telemetry()
-    t._configured = True  # Pretend already configured
-
-    # Even if enabled, should not reconfigure
-    t.configure(enabled=True)
-    # _configured should still be True (not reconfigured)
-    assert t._configured is True
 
 
 def test_sanitize_cookie():
@@ -172,20 +148,21 @@ def test_sanitize_headers():
 
 
 def test_sanitize_headers_case_insensitive():
-    headers = {"authorization": "Bearer token123", "cookie": "session=abc"}
+    headers = {
+        "authorization": "Bearer token123",
+        "cookie": "session=abc",
+    }
     result = sanitize_headers(headers)
     assert result["authorization"] == REDACTED
     assert result["cookie"] == REDACTED
 
 
 def test_response_hook_with_string_body():
-    """Test session response hook captures and sanitizes data."""
     captured_data = []
     t = Telemetry()
     t.enabled = True
     t.callback = lambda data: captured_data.append(data)
 
-    # Create mock response with request
     response = MagicMock()
     response.request = MagicMock()
     response.request.method = "POST"
@@ -203,12 +180,12 @@ def test_response_hook_with_string_body():
     assert data["method"] == "POST"
     assert data["url"] == "https://example.com/api"
     assert data["status_code"] == 200
+    assert data["session_id"] == t.session_id
     assert "secret" not in data["request_body"]
     assert "token123" not in data["response_body"]
 
 
 def test_response_hook_with_bytes_body():
-    """Test session response hook handles bytes body."""
     captured_data = []
     t = Telemetry()
     t.enabled = True
@@ -231,7 +208,6 @@ def test_response_hook_with_bytes_body():
 
 
 def test_response_hook_no_body():
-    """Test session response hook handles missing request body."""
     captured_data = []
     t = Telemetry()
     t.enabled = True
@@ -254,7 +230,6 @@ def test_response_hook_no_body():
 
 
 def test_response_hook_disabled():
-    """Test session response hook does nothing when disabled."""
     captured_data = []
     t = Telemetry()
     t.enabled = False
@@ -267,7 +242,6 @@ def test_response_hook_disabled():
 
 
 def test_response_hook_handles_exceptions():
-    """Test session response hook handles exceptions gracefully."""
     t = Telemetry()
     t.enabled = True
     t.callback = lambda data: 1 / 0  # Will raise ZeroDivisionError
@@ -282,12 +256,11 @@ def test_response_hook_handles_exceptions():
     response.headers = {}
     response.text = "{}"
 
-    # Should not raise, just silently handle exceptions
+    # Should not raise
     t._response_hook(response)
 
 
 def test_scrubbing_callback_bypasses_logfire_scrubbing():
-    """Scrubbing callback should return value as-is since we pre-sanitize."""
     m = MagicMock()
     m.value = "test body"
 
@@ -296,13 +269,11 @@ def test_scrubbing_callback_bypasses_logfire_scrubbing():
 
 
 def test_telemetry_env_enabled_with_mock(monkeypatch):
-    """Test GARTH_TELEMETRY=true enables telemetry."""
     import garth.telemetry as telemetry_module
 
-    monkeypatch.setenv("GARTH_TELEMETRY", "true")
-    monkeypatch.setenv("LOGFIRE_TOKEN", "test-token")
-    monkeypatch.delenv("GARTH_TELEMETRY_SERVICE_NAME", raising=False)
-    monkeypatch.delenv("LOGFIRE_SEND_TO_LOGFIRE", raising=False)
+    monkeypatch.setenv("GARTH_TELEMETRY_ENABLED", "true")
+    monkeypatch.delenv("GARTH_TELEMETRY_TOKEN", raising=False)
+    monkeypatch.delenv("GARTH_TELEMETRY_SEND_TO_LOGFIRE", raising=False)
 
     mock_logfire = MagicMock()
     monkeypatch.setattr(telemetry_module, "logfire", mock_logfire)
@@ -311,30 +282,11 @@ def test_telemetry_env_enabled_with_mock(monkeypatch):
     t.configure()
 
     assert t.enabled is True
-    assert t._configured is True
     assert t._logfire_configured is True
     mock_logfire.configure.assert_called_once()
 
 
-def test_telemetry_sets_token_env_var(monkeypatch):
-    """Test that token parameter sets LOGFIRE_TOKEN env var."""
-    import garth.telemetry as telemetry_module
-
-    monkeypatch.setenv("GARTH_TELEMETRY", "true")
-    monkeypatch.delenv("LOGFIRE_TOKEN", raising=False)
-
-    mock_logfire = MagicMock()
-    monkeypatch.setattr(telemetry_module, "logfire", mock_logfire)
-
-    t = Telemetry()
-    t.configure(token="my-test-token")
-
-    assert t.token == "my-test-token"
-    assert t._configured is True
-
-
 def test_telemetry_attach_to_session():
-    """Test attaching telemetry hooks to a session."""
     t = Telemetry()
     t.enabled = True
 
@@ -348,7 +300,6 @@ def test_telemetry_attach_to_session():
 
 
 def test_telemetry_attach_idempotent():
-    """Test attaching to the same session multiple times adds only one hook."""
     t = Telemetry()
     t.enabled = True
 
@@ -363,48 +314,20 @@ def test_telemetry_attach_idempotent():
 
 
 def test_telemetry_custom_callback_skips_logfire(monkeypatch):
-    """Test that providing a custom callback skips logfire configuration."""
-    import sys
-
-    monkeypatch.setenv("GARTH_TELEMETRY", "true")
-    monkeypatch.setenv("LOGFIRE_TOKEN", "test-token")
-
-    mock_logfire = MagicMock()
-    monkeypatch.setitem(sys.modules, "logfire", mock_logfire)
+    monkeypatch.setenv("GARTH_TELEMETRY_ENABLED", "true")
+    monkeypatch.delenv("GARTH_TELEMETRY_TOKEN", raising=False)
 
     t = Telemetry()
     t.configure(callback=lambda data: None)
 
     assert t.enabled is True
-    assert t._configured is True
     assert t._logfire_configured is False
-    mock_logfire.configure.assert_not_called()
-
-
-def test_telemetry_no_token_skips_logfire_config(monkeypatch):
-    """Test that missing token skips logfire configuration."""
-    import sys
-
-    monkeypatch.setenv("GARTH_TELEMETRY", "true")
-    monkeypatch.delenv("LOGFIRE_TOKEN", raising=False)
-
-    mock_logfire = MagicMock()
-    monkeypatch.setitem(sys.modules, "logfire", mock_logfire)
-
-    t = Telemetry()
-    t.configure()  # No token provided
-
-    assert t.enabled is True
-    assert t._configured is True
-    assert t._logfire_configured is False
-    mock_logfire.configure.assert_not_called()
 
 
 def test_client_telemetry_callback(monkeypatch):
-    """Test that client properly passes telemetry callback."""
     monkeypatch.delenv("GARTH_HOME", raising=False)
     monkeypatch.delenv("GARTH_TOKEN", raising=False)
-    monkeypatch.delenv("GARTH_TELEMETRY", raising=False)
+    monkeypatch.delenv("GARTH_TELEMETRY_ENABLED", raising=False)
 
     captured_data = []
     client = Client()
@@ -417,15 +340,12 @@ def test_client_telemetry_callback(monkeypatch):
     assert client.telemetry.callback is not None
 
 
-def test_default_callback_calls_logfire(monkeypatch):
-    """Test that _default_callback calls logfire.info."""
-    import garth.telemetry as telemetry_module
-
-    mock_logfire = MagicMock()
-    monkeypatch.setattr(telemetry_module, "logfire", mock_logfire)
+def test_default_callback_calls_logfire_instance():
+    mock_instance = MagicMock()
 
     t = Telemetry()
     t._logfire_configured = True
+    t._logfire_instance = mock_instance
     data = {
         "method": "GET",
         "url": "https://example.com/api",
@@ -434,13 +354,12 @@ def test_default_callback_calls_logfire(monkeypatch):
 
     t._default_callback(data)
 
-    mock_logfire.info.assert_called_once_with(
+    mock_instance.info.assert_called_once_with(
         "http {method} {url} {status_code}", **data
     )
 
 
 def test_default_callback_skips_when_logfire_unavailable(monkeypatch):
-    """Test _default_callback does nothing when logfire is not installed."""
     import garth.telemetry as telemetry_module
 
     monkeypatch.setattr(telemetry_module, "LOGFIRE_AVAILABLE", False)
@@ -452,19 +371,43 @@ def test_default_callback_skips_when_logfire_unavailable(monkeypatch):
         "status_code": 200,
     }
 
-    # Should not raise any errors
+    # Should not raise
     t._default_callback(data)
 
 
 def test_configure_logfire_skips_when_unavailable(monkeypatch):
-    """Test _configure_logfire does nothing when logfire is not installed."""
     import garth.telemetry as telemetry_module
 
     monkeypatch.setattr(telemetry_module, "LOGFIRE_AVAILABLE", False)
-    monkeypatch.setenv("LOGFIRE_TOKEN", "test-token")
 
     t = Telemetry()
     t.enabled = True
     t._configure_logfire()
 
     assert t._logfire_configured is False
+
+
+def test_configure_logfire_uses_local_instance(monkeypatch):
+    """logfire.configure is called with local=True to avoid
+    overwriting the host app's logfire config."""
+    import garth.telemetry as telemetry_module
+
+    mock_logfire = MagicMock()
+    monkeypatch.setattr(telemetry_module, "logfire", mock_logfire)
+
+    t = Telemetry()
+    t.enabled = True
+    t._configure_logfire()
+
+    mock_logfire.configure.assert_called_once()
+    call_kwargs = mock_logfire.configure.call_args[1]
+    assert call_kwargs["local"] is True
+    assert call_kwargs["service_name"] == "garth"
+    assert t._logfire_instance is not None
+
+
+def test_session_id_unique():
+    t1 = Telemetry()
+    t2 = Telemetry()
+    assert t1.session_id != t2.session_id
+    assert len(t1.session_id) == 16

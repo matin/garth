@@ -62,7 +62,6 @@ class Client:
         pool_connections: int | None = None,
         pool_maxsize: int | None = None,
         telemetry_enabled: bool | None = None,
-        telemetry_service_name: str | None = None,
         telemetry_send_to_logfire: bool | None = None,
         telemetry_token: str | None = None,
         telemetry_callback: Callable[[dict], None] | None = None,
@@ -104,7 +103,6 @@ class Client:
 
         self.telemetry.configure(
             enabled=telemetry_enabled,
-            service_name=telemetry_service_name,
             send_to_logfire=telemetry_send_to_logfire,
             token=telemetry_token,
             callback=telemetry_callback,
