@@ -148,6 +148,7 @@ def login(
 def get_oauth1_token(
     ticket: str, client: http.Client, retries: int = 3
 ) -> OAuth1Token:
+    retries = max(retries, 1)
     sess = GarminOAuth1Session(parent=client.sess)
     base_url = f"https://connectapi.{client.domain}/oauth-service/oauth/"
     login_url = f"https://mobile.integration.{client.domain}/gcm/android"
