@@ -42,15 +42,6 @@ SSO_PAGE_HEADERS = {
     "Sec-Fetch-Mode": "navigate",
     "Sec-Fetch-Dest": "document",
 }
-SSO_API_HEADERS = {
-    "User-Agent": _SSO_UA,
-    "Accept": "application/json, text/plain, */*",
-    "Accept-Language": "en-US,en;q=0.9",
-    "Origin": "https://sso.garmin.com",
-    "Sec-Fetch-Mode": "cors",
-    "Sec-Fetch-Site": "same-origin",
-    "Sec-Fetch-Dest": "empty",
-}
 
 
 class GarminOAuth1Session(OAuth1Session):
@@ -127,8 +118,6 @@ def login(
         "sso",
         "/mobile/api/login",
         params=login_params,
-        headers=SSO_API_HEADERS,
-        referrer=True,
         json={
             "username": email,
             "password": password,
@@ -219,8 +208,6 @@ def handle_mfa(
         "sso",
         "/mobile/api/mfa/verifyCode",
         params=login_params,
-        headers=SSO_API_HEADERS,
-        referrer=True,
         json={
             "mfaMethod": "email",
             "mfaVerificationCode": mfa_code,
