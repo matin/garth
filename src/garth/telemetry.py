@@ -8,6 +8,8 @@ from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 from requests import Response, Session
 
+from .version import __version__
+
 
 try:
     import logfire
@@ -139,6 +141,7 @@ class Telemetry(BaseSettings):
             request = response.request
             data = {
                 "session_id": self.session_id,
+                "garth_version": __version__,
                 "method": request.method,
                 "url": request.url,
                 "status_code": response.status_code,

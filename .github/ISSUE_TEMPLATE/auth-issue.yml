@@ -57,11 +57,8 @@ body:
     attributes:
       label: Telemetry session ID
       description: |
-        Garth sends anonymous telemetry to help diagnose auth issues.
-        Please share your session ID so we can look up the request logs:
-        ```python
-        import garth
-        print(garth.client.telemetry.session_id)
-        ```
+        Garth prints a session ID to stdout on import (e.g. "Garth session: a01e3fc1...").
+        Please share it so we can look up the request logs.
         If you disabled telemetry (`GARTH_TELEMETRY_ENABLED=false`),
         re-enable it and reproduce the issue to generate a session ID.
+      placeholder: "a01e3fc1d5ac4c9a"
