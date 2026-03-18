@@ -1,6 +1,5 @@
 import base64
 import json
-import logging
 import os
 from collections.abc import Callable
 from typing import IO, Any, Literal
@@ -21,7 +20,6 @@ from .utils import asdict
 USER_AGENT = {"User-Agent": "GCM-iOS-5.22.1.4"}
 OAUTH1_TOKEN_FILE = "oauth1_token.json"
 OAUTH2_TOKEN_FILE = "oauth2_token.json"
-logger = logging.getLogger(__name__)
 
 
 class GarthSettings(BaseSettings):
