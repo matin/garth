@@ -148,12 +148,9 @@ class Client:
     @property
     def user_profile(self):
         if not self._user_profile:
-            self._user_profile = self.connectapi(
-                "/userprofile-service/socialProfile"
-            )
-            assert isinstance(self._user_profile, dict), (
-                "No profile from connectapi"
-            )
+            result = self.connectapi("/userprofile-service/socialProfile")
+            assert isinstance(result, dict), "No profile from connectapi"
+            self._user_profile = result
         return self._user_profile
 
     @property

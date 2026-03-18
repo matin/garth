@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import builtins
 from datetime import date, datetime
 from typing import Any
 
@@ -41,7 +42,7 @@ class FitnessActivity:
         days: int = 7,
         *,
         client: http.Client | None = None,
-    ) -> list[Self]:
+    ) -> builtins.list[Self]:
         """List activities with fitness stats and coaching data.
 
         Args:

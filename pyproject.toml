@@ -52,8 +52,11 @@ path = "src/garth/version.py"
 [tool.pytest.ini_options]
 addopts = "--ignore=__pypackages__ --ignore-glob=*.yaml"
 
-[tool.mypy]
-ignore_missing_imports = true
+[tool.ty.src]
+include = ["src"]
+
+[tool.ty.rules]
+invalid-method-override = "warn"
 
 [tool.ruff]
 line-length = 79
@@ -80,8 +83,7 @@ dev = [
 ]
 linting = [
     "ruff",
-    "mypy",
-    "types-requests",
+    "ty",
 ]
 testing = [
     "coverage",

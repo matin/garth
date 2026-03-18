@@ -1,3 +1,4 @@
+import builtins
 from datetime import date
 
 from pydantic.dataclasses import dataclass
@@ -79,6 +80,6 @@ class GarminScoresData(Data):
         return cls(**data)
 
     @classmethod
-    def list(cls, *args, **kwargs) -> list[Self]:
+    def list(cls, *args, **kwargs) -> builtins.list[Self]:
         data = super().list(*args, **kwargs)
         return sorted(data, key=lambda d: d.calendar_date)

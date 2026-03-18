@@ -1,3 +1,4 @@
+import builtins
 from datetime import date, datetime
 from typing import Any, cast
 
@@ -47,7 +48,7 @@ class TrainingReadinessData(Data):
         day: date | str | None = None,
         *,
         client: http.Client | None = None,
-    ) -> list[Self] | None:
+    ) -> builtins.list[Self] | None:
         client = client or http.client
         day = format_end_date(day)
         path = f"/metrics-service/metrics/trainingreadiness/{day}"
@@ -60,6 +61,6 @@ class TrainingReadinessData(Data):
         return [cls(**camel_to_snake_dict(entry)) for entry in data]
 
     @classmethod
-    def list(cls, *args, **kwargs) -> list[Self]:
+    def list(cls, *args, **kwargs) -> builtins.list[Self]:
         data = super().list(*args, **kwargs)
         return sorted(data, key=lambda d: (d.calendar_date, d.timestamp))

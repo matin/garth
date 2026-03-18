@@ -1,3 +1,4 @@
+import builtins
 from datetime import date, datetime, timedelta, timezone
 from itertools import chain
 
@@ -71,7 +72,7 @@ class WeightData(Data):
         *,
         client: http.Client | None = None,
         max_workers: int = MAX_WORKERS,
-    ) -> list[Self]:
+    ) -> builtins.list[Self]:
         client = client or http.client
         end = format_end_date(end)
         start = end - timedelta(days=days - 1)

@@ -271,12 +271,12 @@ def test_training_status_pagination_edge_cases():
         }
     }
 
+    call_count = {"n": 0}
+
     def mock_connectapi_side_effect(path):
-        # First call returns data, subsequent calls return empty
-        if hasattr(mock_connectapi_side_effect, "call_count"):
-            mock_connectapi_side_effect.call_count += 1
+        call_count["n"] += 1
+        if call_count["n"] > 1:
             return {}
-        mock_connectapi_side_effect.call_count = 1
         return mock_response
 
     mock_client.connectapi.side_effect = mock_connectapi_side_effect
