@@ -114,6 +114,43 @@ def test_auto_save_on_login(monkeypatch: pytest.MonkeyPatch):
         assert new_client.oauth2_token == mock_oauth2
 
 
+def test_auto_save_on_resume_login(monkeypatch: pytest.MonkeyPatch):
+    with tempfile.TemporaryDirectory() as tempdir:
+        monkeypatch.setenv("GARTH_HOME", tempdir)
+        monkeypatch.delenv("GARTH_TOKEN", raising=False)
+
+        client = Client()
+
+        import garth.sso
+
+        mock_oauth1 = OAuth1Token(
+            oauth_token="test_token",
+            oauth_token_secret="test_secret",
+            domain="garmin.com",
+        )
+        mock_oauth2 = OAuth2Token(
+            scope="CONNECT_READ",
+            jti="test_jti",
+            token_type="Bearer",
+            access_token="test_access",
+            refresh_token="test_refresh",
+            expires_in=3600,
+            refresh_token_expires_in=7200,
+            expires_at=int(time.time() + 3600),
+            refresh_token_expires_at=int(time.time() + 7200),
+        )
+        monkeypatch.setattr(
+            garth.sso,
+            "resume_login",
+            lambda *a, **kw: (mock_oauth1, mock_oauth2),
+        )
+
+        client.resume_login({"client": client, "login_params": {}}, "123")
+
+        assert os.path.exists(os.path.join(tempdir, "oauth1_token.json"))
+        assert os.path.exists(os.path.join(tempdir, "oauth2_token.json"))
+
+
 def test_auto_resume_both_set_raises(monkeypatch: pytest.MonkeyPatch):
     monkeypatch.setenv("GARTH_HOME", "/some/path")
     monkeypatch.setenv("GARTH_TOKEN", "some_token")
