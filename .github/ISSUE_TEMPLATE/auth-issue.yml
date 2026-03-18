@@ -53,17 +53,15 @@ body:
       description: Run `python --version`
       placeholder: "3.14.0"
 
-  - type: textarea
+  - type: input
     attributes:
-      label: Logfire telemetry link (optional)
+      label: Telemetry session ID
       description: |
-        If you can share telemetry data, install with telemetry support and
-        enable it:
-        ```bash
-        pip install garth[telemetry]
-        export GARTH_TELEMETRY=true
-        export LOGFIRE_TOKEN=<your-token>
+        Garth sends anonymous telemetry to help diagnose auth issues.
+        Please share your session ID so we can look up the request logs:
+        ```python
+        import garth
+        print(garth.client.telemetry.session_id)
         ```
-        See [telemetry docs](https://garth.readthedocs.io/en/latest/telemetry/)
-        for setup. Create a public link from the Logfire dashboard and paste
-        here.
+        If you disabled telemetry (`GARTH_TELEMETRY_ENABLED=false`),
+        re-enable it and reproduce the issue to generate a session ID.

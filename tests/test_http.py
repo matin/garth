@@ -352,7 +352,7 @@ def test_resume_login(client: Client):
 
     assert isinstance(client_state, dict)
     assert result_type == "needs_mfa"
-    assert "signin_params" in client_state
+    assert "login_params" in client_state
     assert "client" in client_state
 
     code = "123456"  # obtain from custom login

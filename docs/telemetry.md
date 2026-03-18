@@ -1,44 +1,40 @@
 # Telemetry
 
-Garth supports optional telemetry using [Pydantic Logfire](https://pydantic.dev/logfire)
-for logging and observability. Telemetry is **disabled by default** and is
-**isolated to Garth's requests only** - it won't affect other HTTP clients in
-your application.
+Garth includes built-in telemetry using
+[Pydantic Logfire](https://pydantic.dev/logfire) for logging and observability.
+Telemetry is **enabled by default** to help diagnose authentication issues. It
+is **isolated to Garth's requests only** — it won't affect other HTTP clients
+in your application.
 
-## Installation
+## Why telemetry is on by default
 
-Telemetry dependencies are optional. Install with the telemetry extra:
+Garmin occasionally changes their authentication endpoints in ways that only
+affect a subset of users — for example, the
+[SSO migration](https://github.com/cyberjunky/python-garminconnect/issues/332)
+that caused 403 errors for some users while others were unaffected. Without
+telemetry, these issues are nearly impossible to reproduce or diagnose. With
+default-on telemetry, maintainers can look up the exact request/response
+sequence for a failing session using the session ID.
 
-```bash
-pip install garth[telemetry]
+Each session generates a unique `session_id`. When reporting issues, include
+your session ID so maintainers can look up your request logs:
+
+```python
+print(garth.client.telemetry.session_id)
 ```
 
-## Enable telemetry
+## Disable telemetry
 
-Via environment variables:
+Via environment variable:
 
 ```bash
-export GARTH_TELEMETRY=true
-export LOGFIRE_TOKEN=your_write_token
+export GARTH_TELEMETRY_ENABLED=false
 ```
 
 Via code:
 
 ```python
-garth.configure(
-    telemetry_enabled=True,
-    telemetry_token="your_write_token",
-)
-```
-
-## Custom service name
-
-```bash
-export GARTH_TELEMETRY_SERVICE_NAME=my-fitness-app
-```
-
-```python
-garth.configure(telemetry_service_name="my-fitness-app")
+garth.configure(telemetry_enabled=False)
 ```
 
 ## Custom callback
@@ -47,8 +43,8 @@ To send telemetry data to a custom destination instead of Logfire:
 
 ```python
 def my_telemetry_handler(data: dict):
-    # data contains: method, url, status_code, request_headers,
-    # request_body, response_headers, response_body
+    # data contains: session_id, method, url, status_code,
+    # request_headers, request_body, response_headers, response_body
     print(f"{data['method']} {data['url']} -> {data['status_code']}")
 
 garth.configure(
@@ -60,40 +56,22 @@ garth.configure(
 When a custom callback is provided, logfire is not configured and all telemetry
 data is passed to your callback instead.
 
-## Use with existing logfire setup
+## Configuration
 
-If your application already configures logfire, garth will use your existing
-configuration. Just enable telemetry without providing a token:
+Telemetry settings can be configured via environment variables with the
+`GARTH_TELEMETRY_` prefix:
 
-```python
-import logfire
-logfire.configure(token="your-app-token", service_name="your-app")
-
-import garth
-garth.configure(telemetry_enabled=True)  # Uses your existing logfire config
-```
-
-## Use alternative OTLP backend
-
-To send traces to your own OpenTelemetry collector instead of Logfire Cloud:
-
-```bash
-export GARTH_TELEMETRY=true
-export LOGFIRE_SEND_TO_LOGFIRE=false
-export OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4318
-```
-
-```python
-garth.configure(
-    telemetry_enabled=True,
-    telemetry_send_to_logfire=False,
-)
-```
+| Environment Variable | Default | Description |
+|---|---|---|
+| `GARTH_TELEMETRY_ENABLED` | `true` | Enable/disable telemetry |
+| `GARTH_TELEMETRY_SEND_TO_LOGFIRE` | `true` | Send to Logfire Cloud |
+| `GARTH_TELEMETRY_TOKEN` | *(built-in)* | Logfire write token |
 
 ## What gets logged
 
-All garth requests log:
+All garth HTTP requests log:
 
+- Session ID (unique per garth session)
 - Method, URL, status code
 - Request headers (sanitized)
 - Request body (sanitized)

@@ -16,6 +16,7 @@ Garmin SSO auth + Connect Python client
 - Auto-resume from `GARTH_HOME` or `GARTH_TOKEN` environment variables
 - Works on Google Colab
 - Pydantic dataclasses for validated data
+- Built-in telemetry for diagnosing auth issues
 - Full test coverage
 
 ## Installation

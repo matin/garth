@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import asyncio
 import inspect
-import re
 import time
 from collections.abc import Callable
 from typing import Any, Literal
@@ -17,11 +16,12 @@ from .auth_tokens import OAuth1Token, OAuth2Token
 from .exc import GarthException
 
 
-CSRF_RE = re.compile(r'name="_csrf"\s+value="(.+?)"')
-TITLE_RE = re.compile(r"<title>(.+?)</title>")
+CLIENT_ID = "GCM_IOS_DARK"
 OAUTH_CONSUMER_URL = "https://thegarth.s3.amazonaws.com/oauth_consumer.json"
 OAUTH_CONSUMER: dict[str, str] = {}
-USER_AGENT = {"User-Agent": "com.garmin.android.apps.connectmobile"}
+
+SSO_SUCCESSFUL = "SUCCESSFUL"
+SSO_MFA_REQUIRED = "MFA_REQUIRED"
 
 
 class GarminOAuth1Session(OAuth1Session):
@@ -52,6 +52,19 @@ class GarminOAuth1Session(OAuth1Session):
             self.hooks["response"].extend(parent.hooks["response"])
 
 
+def _parse_sso_response(
+    resp_json: dict[str, Any],
+    expected_type: str | None = None,
+) -> dict[str, Any]:
+    status = resp_json.get("responseStatus", {})
+    resp_type = status.get("type", "UNKNOWN")
+    message = status.get("message", "")
+    if expected_type and resp_type != expected_type:
+        detail = f"{resp_type}: {message}" if message else resp_type
+        raise GarthException(msg=f"SSO error: {detail}")
+    return resp_json
+
+
 def login(
     email: str,
     password: str,
@@ -63,96 +76,64 @@ def login(
     tuple[OAuth1Token, OAuth2Token]
     | tuple[Literal["needs_mfa"], dict[str, Any]]
 ):
-    """Login to Garmin Connect.
-
-    Args:
-        email: Garmin account email
-        password: Garmin account password
-        client: Optional HTTP client to use
-        prompt_mfa: Callable that prompts for MFA code. Returns on MFA if None.
-        return_on_mfa: If True, returns dict with MFA info instead of prompting
-
-    Returns:
-        If return_on_mfa=False (default):
-            Tuple[OAuth1Token, OAuth2Token]: OAuth tokens after login
-        If return_on_mfa=True and MFA required:
-            dict: Contains needs_mfa and client_state for resume_login()
-    """
     client = client or http.client
-
-    # Define params based on domain
-    SSO = f"https://sso.{client.domain}/sso"
-    SSO_EMBED = f"{SSO}/embed"
-    SSO_EMBED_PARAMS = dict(
-        id="gauth-widget",
-        embedWidget="true",
-        gauthHost=SSO,
-    )
-    SIGNIN_PARAMS = {
-        **SSO_EMBED_PARAMS,
-        **dict(
-            gauthHost=SSO_EMBED,
-            service=SSO_EMBED,
-            source=SSO_EMBED,
-            redirectAfterAccountLoginUrl=SSO_EMBED,
-            redirectAfterAccountCreationUrl=SSO_EMBED,
-        ),
+    service_url = f"https://mobile.integration.{client.domain}/gcm/ios"
+    login_params = {
+        "clientId": CLIENT_ID,
+        "locale": "en-US",
+        "service": service_url,
     }
 
     # Set cookies
-    client.get("sso", "/sso/embed", params=SSO_EMBED_PARAMS)
-
-    # Get CSRF token
     client.get(
         "sso",
-        "/sso/signin",
-        params=SIGNIN_PARAMS,
-        referrer=True,
+        "/mobile/sso/en/sign-in",
+        params={"clientId": CLIENT_ID},
     )
-    csrf_token = get_csrf_token(client.last_resp.text)
 
-    # Submit login form with email and password
+    # Submit login
     client.post(
         "sso",
-        "/sso/signin",
-        params=SIGNIN_PARAMS,
-        referrer=True,
-        data=dict(
-            username=email,
-            password=password,
-            embed="true",
-            _csrf=csrf_token,
-        ),
+        "/mobile/api/login",
+        params=login_params,
+        json={
+            "username": email,
+            "password": password,
+            "rememberMe": False,
+            "captchaToken": "",
+        },
     )
-    title = get_title(client.last_resp.text)
+    resp_json = client.last_resp.json()
+    resp_type = resp_json.get("responseStatus", {}).get("type")
 
-    # Handle MFA
-    if "MFA" in title:
+    if resp_type == SSO_SUCCESSFUL:
+        ticket = resp_json["serviceTicketId"]
+        return _complete_login(ticket, client)
+
+    if resp_type == SSO_MFA_REQUIRED:
         if return_on_mfa or prompt_mfa is None:
             return "needs_mfa", {
-                "signin_params": SIGNIN_PARAMS,
+                "login_params": login_params,
                 "client": client,
             }
+        ticket = handle_mfa(client, login_params, prompt_mfa)
+        return _complete_login(ticket, client)
 
-        handle_mfa(client, SIGNIN_PARAMS, prompt_mfa)
-        title = get_title(client.last_resp.text)
-
-    if title != "Success":
-        raise GarthException(f"Unexpected title: {title}")
-    return _complete_login(client)
+    _parse_sso_response(resp_json, SSO_SUCCESSFUL)
+    raise GarthException(msg="Unexpected SSO response")  # pragma: no cover
 
 
 def get_oauth1_token(ticket: str, client: http.Client) -> OAuth1Token:
     sess = GarminOAuth1Session(parent=client.sess)
     base_url = f"https://connectapi.{client.domain}/oauth-service/oauth/"
-    login_url = f"https://sso.{client.domain}/sso/embed"
+    login_url = f"https://mobile.integration.{client.domain}/gcm/ios"
     url = (
         f"{base_url}preauthorized?ticket={ticket}&login-url={login_url}"
         "&accepts-mfa-tokens=true"
     )
     resp = sess.get(
         url,
-        headers=USER_AGENT,
+        headers=http.USER_AGENT,
         timeout=client.timeout,
     )
     resp.raise_for_status()
@@ -167,11 +148,13 @@ def exchange(oauth1: OAuth1Token, client: http.Client) -> OAuth2Token:
         resource_owner_secret=oauth1.oauth_token_secret,
         parent=client.sess,
     )
-    data = dict(mfa_token=oauth1.mfa_token) if oauth1.mfa_token else {}
+    data: dict[str, str] = {"audience": "GARMIN_CONNECT_MOBILE_IOS_DI"}
+    if oauth1.mfa_token:
+        data["mfa_token"] = oauth1.mfa_token
     base_url = f"https://connectapi.{client.domain}/oauth-service/oauth/"
     url = f"{base_url}exchange/user/2.0"
     headers = {
-        **USER_AGENT,
+        **http.USER_AGENT,
         **{"Content-Type": "application/x-www-form-urlencoded"},
     }
     resp = sess.post(
@@ -186,25 +169,26 @@ def exchange(oauth1: OAuth1Token, client: http.Client) -> OAuth2Token:
 
 
 def handle_mfa(
-    client: http.Client, signin_params: dict, prompt_mfa: Callable
-) -> None:
-    csrf_token = get_csrf_token(client.last_resp.text)
+    client: http.Client, login_params: dict, prompt_mfa: Callable
+) -> str:
     if inspect.iscoroutinefunction(prompt_mfa):
         mfa_code = asyncio.run(prompt_mfa())
     else:
         mfa_code = prompt_mfa()
     client.post(
         "sso",
-        "/sso/verifyMFA/loginEnterMfaCode",
-        params=signin_params,
-        referrer=True,
-        data={
-            "mfa-code": mfa_code,
-            "embed": "true",
-            "_csrf": csrf_token,
-            "fromPage": "setupEnterMfaCode",
+        "/mobile/api/mfa/verifyCode",
+        params=login_params,
+        json={
+            "mfaMethod": "email",
+            "mfaVerificationCode": mfa_code,
+            "rememberMyBrowser": False,
+            "reconsentList": [],
+            "mfaSetup": False,
         },
     )
+    resp_json = _parse_sso_response(client.last_resp.json(), SSO_SUCCESSFUL)
+    return resp_json["serviceTicketId"]
 
 
 def set_expirations(token: dict) -> dict:
@@ -215,56 +199,18 @@ def set_expirations(token: dict) -> dict:
     return token
 
 
-def get_csrf_token(html: str) -> str:
-    m = CSRF_RE.search(html)
-    if not m:
-        raise GarthException("Couldn't find CSRF token")
-    return m.group(1)
-
-
-def get_title(html: str) -> str:
-    m = TITLE_RE.search(html)
-    if not m:
-        raise GarthException("Couldn't find title")
-    return m.group(1)
-
-
 def resume_login(
     client_state: dict, mfa_code: str
 ) -> tuple[OAuth1Token, OAuth2Token]:
-    """Complete login after MFA code is provided.
-
-    Args:
-        client_state: The client state from login() when MFA was needed
-        mfa_code: The MFA code provided by the user
-
-    Returns:
-        Tuple[OAuth1Token, OAuth2Token]: The OAuth tokens after login
-    """
     client = client_state["client"]
-    signin_params = client_state["signin_params"]
-    handle_mfa(client, signin_params, lambda: mfa_code)
-    return _complete_login(client)
+    login_params = client_state["login_params"]
+    ticket = handle_mfa(client, login_params, lambda: mfa_code)
+    return _complete_login(ticket, client)
 
 
-def _complete_login(client: http.Client) -> tuple[OAuth1Token, OAuth2Token]:
-    """Complete the login process after successful authentication.
-
-    Args:
-        client: The HTTP client
-
-    Returns:
-        Tuple[OAuth1Token, OAuth2Token]: The OAuth tokens
-    """
-    # Parse ticket
-    m = re.search(r'embed\?ticket=([^"]+)"', client.last_resp.text)
-    if not m:
-        raise GarthException(
-            "Couldn't find ticket in response"
-        )  # pragma: no cover
-    ticket = m.group(1)
-
+def _complete_login(
+    ticket: str, client: http.Client
+) -> tuple[OAuth1Token, OAuth2Token]:
     oauth1 = get_oauth1_token(ticket, client)
     oauth2 = exchange(oauth1, client)
-
     return oauth1, oauth2

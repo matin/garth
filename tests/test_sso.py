@@ -1,6 +1,7 @@
 import time
 
 import pytest
+import requests
 
 from garth import sso
 from garth.auth_tokens import OAuth1Token, OAuth2Token
@@ -10,7 +11,7 @@ from garth.http import Client
 
 @pytest.mark.vcr
 def test_login_email_password_fail(client: Client):
-    with pytest.raises(GarthHTTPError):
+    with pytest.raises(GarthException):
         sso.login("user@example.com", "wrong_p@ssword", client=client)
 
 
@@ -89,7 +90,7 @@ def test_login_return_on_mfa(client: Client):
 
     assert isinstance(client_state, dict)
     assert result_type == "needs_mfa"
-    assert "signin_params" in client_state
+    assert "login_params" in client_state
     assert "client" in client_state
 
     code = "123456"  # obtain from custom login
@@ -129,57 +130,84 @@ def test_exchange(authed_client: Client):
     assert authed_client.oauth2_token != oauth2_token
 
 
-def test_get_csrf_token():
-    html = """
-    <html>
-    <head>
-    </head>
-    <body>
-    <h1>Success</h1>
-    <input name="_csrf"    value="foo">
-    </body>
-    </html>
-    """
-    assert sso.get_csrf_token(html) == "foo"
+def test_parse_sso_response_success():
+    resp = {
+        "serviceTicketId": "ST-123",
+        "responseStatus": {
+            "type": "SUCCESSFUL",
+            "message": "",
+            "httpStatus": "OK",
+        },
+    }
+    result = sso._parse_sso_response(resp, "SUCCESSFUL")
+    assert result["serviceTicketId"] == "ST-123"
 
 
-def test_get_csrf_token_fail():
-    html = """
-    <html>
-    <head>
-    </head>
-    <body>
-    <h1>Success</h1>
-    </body>
-    </html>
-    """
-    with pytest.raises(GarthException):
-        sso.get_csrf_token(html)
+def test_parse_sso_response_error():
+    resp = {
+        "responseStatus": {
+            "type": "INVALID_CREDENTIALS",
+            "message": "Bad password",
+            "httpStatus": "UNAUTHORIZED",
+        },
+    }
+    with pytest.raises(GarthException, match="INVALID_CREDENTIALS"):
+        sso._parse_sso_response(resp, "SUCCESSFUL")
 
 
-def test_get_title():
-    html = """
-    <html>
-    <head>
-    <title>Success</title>
-    </head>
-    <body>
-    <h1>Success</h1>
-    </body>
-    </html>
-    """
-    assert sso.get_title(html) == "Success"
+def test_parse_sso_response_no_expected():
+    resp = {
+        "responseStatus": {
+            "type": "MFA_REQUIRED",
+            "message": "",
+            "httpStatus": "OK",
+        },
+    }
+    result = sso._parse_sso_response(resp)
+    assert result["responseStatus"]["type"] == "MFA_REQUIRED"
 
 
-def test_get_title_fail():
-    html = """
-    <html>
-    <head>
-    </head>
-    <body>
-    <h1>Success</h1>
-    </body>
-    </html>
-    """
-    with pytest.raises(GarthException):
-        sso.get_title(html)
+def test_handle_mfa_http_error(monkeypatch, client: Client):
+    from unittest.mock import MagicMock
+
+    def mock_post(*a, **kw):
+        raise GarthHTTPError(
+            msg="MFA verification failed",
+            error=requests.HTTPError(response=MagicMock()),
+        )
+
+    monkeypatch.setattr(client, "post", mock_post)
+
+    with pytest.raises(GarthHTTPError, match="MFA verification failed"):
+        sso.handle_mfa(client, {"clientId": "X"}, lambda: "123456")
+
+
+def test_login_unexpected_response_type(monkeypatch, client: Client):
+    from unittest.mock import MagicMock
+
+    unexpected_json = {
+        "responseStatus": {
+            "type": "CAPTCHA_REQUIRED",
+            "message": "solve captcha",
+            "httpStatus": "OK",
+        },
+    }
+
+    call_count = 0
+
+    def mock_request(method, *args, **kwargs):
+        nonlocal call_count
+        call_count += 1
+        mock_resp = MagicMock()
+        mock_resp.ok = True
+        mock_resp.status_code = 200
+        # First call is the cookie GET, second is the login POST
+        if call_count == 2:
+            mock_resp.json.return_value = unexpected_json
+        client.last_resp = mock_resp
+        return mock_resp
+
+    monkeypatch.setattr(client, "request", mock_request)
+
+    with pytest.raises(GarthException, match="CAPTCHA_REQUIRED"):
+        sso.login("user@example.com", "password", client=client)

@@ -1,5 +1,6 @@
 import base64
 import json
+import logging
 import os
 from collections.abc import Callable
 from typing import IO, Any, Literal
@@ -15,7 +16,8 @@ from .telemetry import Telemetry
 from .utils import asdict
 
 
-USER_AGENT = {"User-Agent": "GCM-iOS-5.19.1.2"}
+USER_AGENT = {"User-Agent": "GCM-iOS-5.22.1.4"}
+logger = logging.getLogger(__name__)
 
 
 class Client:
@@ -45,6 +47,8 @@ class Client:
             backoff_factor=self.backoff_factor,
             **kwargs,
         )
+        if self.telemetry.enabled:
+            logger.info("Garth session: %s", self.telemetry.session_id)
         self._auto_resume()
 
     def configure(
@@ -62,7 +66,6 @@ class Client:
         pool_connections: int | None = None,
         pool_maxsize: int | None = None,
         telemetry_enabled: bool | None = None,
-        telemetry_service_name: str | None = None,
         telemetry_send_to_logfire: bool | None = None,
         telemetry_token: str | None = None,
         telemetry_callback: Callable[[dict], None] | None = None,
@@ -104,7 +107,6 @@ class Client:
 
         self.telemetry.configure(
             enabled=telemetry_enabled,
-            service_name=telemetry_service_name,
             send_to_logfire=telemetry_send_to_logfire,
             token=telemetry_token,
             callback=telemetry_callback,

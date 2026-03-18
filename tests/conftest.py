@@ -11,6 +11,12 @@ from garth.http import Client
 from garth.telemetry import REDACTED, sanitize, sanitize_cookie
 
 
+@pytest.fixture(autouse=True)
+def _disable_telemetry(monkeypatch):
+    """Disable telemetry in all tests to prevent logfire network requests."""
+    monkeypatch.setenv("GARTH_TELEMETRY_ENABLED", "false")
+
+
 @pytest.fixture
 def session():
     return Session()

@@ -1,9 +1,11 @@
 import json
-import os
 import re
+import uuid
 from collections.abc import Callable
-from dataclasses import dataclass, field
+from typing import Any
 
+from pydantic import Field
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from requests import Response, Session
 
 
@@ -17,6 +19,7 @@ except ImportError:  # pragma: no cover
 
 
 REDACTED = "[REDACTED]"
+DEFAULT_TOKEN = "pylf_v1_us_6zTrqKw3YjJBHfpVPVr55wYcJ9sTV6sd4D3C4hsXLfJC"
 
 _SENSITIVE_QUERY_PARAMS = [
     "username",
@@ -98,22 +101,34 @@ def _scrubbing_callback(m):
     return m.value
 
 
-@dataclass
-class Telemetry:
-    service_name: str = "garth"
-    enabled: bool = False
+class Telemetry(BaseSettings):
+    model_config = SettingsConfigDict(
+        env_prefix="GARTH_TELEMETRY_",
+        extra="ignore",
+    )
+
+    enabled: bool = True
     send_to_logfire: bool = True
-    token: str | None = None
-    callback: Callable[[dict], None] | None = None
-    _configured: bool = field(default=False, repr=False)
-    _logfire_configured: bool = field(default=False, repr=False)
-    _attached_sessions: set = field(default_factory=set, repr=False)
+    token: str = DEFAULT_TOKEN
+    callback: Callable[[dict], None] | None = Field(default=None, exclude=True)
+    session_id: str = Field(
+        default_factory=lambda: uuid.uuid4().hex[:16],
+        exclude=True,
+    )
+    _logfire_configured: bool = False
+    _logfire_instance: Any = None
+    _attached_sessions: set = set()
+
+    def model_post_init(self, __context):
+        self._attached_sessions = set()
 
     def _default_callback(self, data: dict):
         """Default callback that sends to logfire."""
-        if not LOGFIRE_AVAILABLE:
+        if not LOGFIRE_AVAILABLE or not self._logfire_configured:
             return
-        logfire.info("http {method} {url} {status_code}", **data)
+        self._logfire_instance.info(
+            "http {method} {url} {status_code}", **data
+        )
 
     def _response_hook(self, response: Response, *args, **kwargs):
         """Session hook that captures request/response data."""
@@ -123,6 +138,7 @@ class Telemetry:
         try:
             request = response.request
             data = {
+                "session_id": self.session_id,
                 "method": request.method,
                 "url": request.url,
                 "status_code": response.status_code,
@@ -149,26 +165,22 @@ class Telemetry:
 
     def configure(
         self,
-        service_name: str | None = None,
         enabled: bool | None = None,
         send_to_logfire: bool | None = None,
         token: str | None = None,
         callback: Callable[[dict], None] | None = None,
     ):
         """
-        Configure telemetry. Disabled by default.
+        Configure telemetry. Enabled by default.
 
         Args:
-            service_name: Service name for traces (default: "garth")
-            enabled: Enable/disable telemetry (default: False)
+            enabled: Enable/disable telemetry (default: True)
             send_to_logfire: Send to Logfire Cloud (default: True)
-            token: Logfire write token (or use LOGFIRE_TOKEN env var)
+            token: Logfire write token
             callback: Custom callback for telemetry data. If provided,
                 logfire will not be configured and data will be passed
                 to this callback instead.
         """
-        if service_name is not None:
-            self.service_name = service_name
         if enabled is not None:
             self.enabled = enabled
         if send_to_logfire is not None:
@@ -178,19 +190,6 @@ class Telemetry:
         if callback is not None:
             self.callback = callback
 
-        # Check env var overrides
-        env_enabled = os.getenv("GARTH_TELEMETRY", "").lower()
-        if env_enabled == "true":
-            self.enabled = True
-        elif env_enabled == "false":
-            self.enabled = False
-
-        env_service_name = os.getenv("GARTH_TELEMETRY_SERVICE_NAME")
-        if env_service_name:
-            self.service_name = env_service_name
-        if os.getenv("LOGFIRE_SEND_TO_LOGFIRE", "").lower() == "false":
-            self.send_to_logfire = False
-
         if not self.enabled:
             return
 
@@ -198,23 +197,20 @@ class Telemetry:
         if self.callback is None and not self._logfire_configured:
             self._configure_logfire()
 
-        self._configured = True
-
     def _configure_logfire(self):
-        """Configure logfire for default callback."""
+        """Configure a local logfire instance for garth telemetry.
+
+        Uses local=True to avoid overwriting logfire configuration
+        in applications that integrate garth.
+        """
         if not LOGFIRE_AVAILABLE:
             return
 
-        env_token = os.getenv("LOGFIRE_TOKEN")
-        if self.token:
-            os.environ["LOGFIRE_TOKEN"] = self.token
-        elif not env_token:
-            # No token available, can't configure logfire
-            return
-
-        logfire.configure(
-            service_name=self.service_name,
+        self._logfire_instance = logfire.configure(
+            local=True,
+            service_name="garth",
             send_to_logfire=self.send_to_logfire,
+            token=self.token,
             scrubbing=logfire.ScrubbingOptions(callback=_scrubbing_callback),
             console=False,
         )
@@ -223,8 +219,8 @@ class Telemetry:
     def attach(self, session: Session):
         """Attach telemetry hooks to a session.
 
-        This method is idempotent - calling it multiple times with the same
-        session will only attach the hook once.
+        This method is idempotent - calling it multiple times with the
+        same session will only attach the hook once.
         """
         session_id = id(session)
         if session_id in self._attached_sessions:
