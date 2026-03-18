@@ -11,7 +11,7 @@ interactions:
       User-Agent:
       - GCM-iOS-5.22.1.4
     method: GET
-    uri: https://sso.garmin.com/mobile/sso/en/sign-in?clientId=GCM_IOS_DARK
+    uri: https://sso.garmin.com/mobile/sso/en/sign-in?clientId=GCM_ANDROID_DARK
   response:
     body:
       string: "<!DOCTYPE html>\n<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"\
@@ -387,7 +387,7 @@ interactions:
         ,\"dobEntryInfoTitle\":\"Account Setup\",\"generalLoginAreaCodeIsInvalid\"\
         :\"Area Code is invalid\",\"createAccOrCompleteFieldsBelow\":\"Or, you can\
         \ complete the fields below:\",\"generalTextRequired\":\"Required\"},\n  \
-        \              clientRegistries: {\"clientId\":\"GCM_IOS_DARK\",\"registryOption\"\
+        \              clientRegistries: {\"clientId\":\"GCM_ANDROID_DARK\",\"registryOption\"\
         :{\"lockToEmailAddress\":\"\",\"lockedToIdentifier\":false,\"redirectAccountUrl\"\
         :\"https:\\/\\/mobile.integration.garmin.com\\/gcm\\/ios\",\"logoutUrl\":\"\
         https:\\/\\/connect.garmin.com\\/\",\"termsOfUseUrl\":\"https:\\/\\/www.garmin.com\\\
@@ -634,7 +634,7 @@ interactions:
       User-Agent:
       - GCM-iOS-5.22.1.4
     method: POST
-    uri: https://sso.garmin.com/mobile/api/login?clientId=GCM_IOS_DARK&locale=en-US&service=https%3A%2F%2Fmobile.integration.garmin.com%2Fgcm%2Fios
+    uri: https://sso.garmin.com/mobile/api/login?clientId=GCM_ANDROID_DARK&locale=en-US&service=https%3A%2F%2Fmobile.integration.garmin.com%2Fgcm%2Fandroid
   response:
     body:
       string: '{"serviceURL": null, "serviceTicketId": null, "responseStatus": {"type":
@@ -698,10 +698,10 @@ interactions:
       User-Agent:
       - GCM-iOS-5.22.1.4
     method: POST
-    uri: https://sso.garmin.com/mobile/api/mfa/verifyCode?clientId=GCM_IOS_DARK&locale=en-US&service=https%3A%2F%2Fmobile.integration.garmin.com%2Fgcm%2Fios
+    uri: https://sso.garmin.com/mobile/api/mfa/verifyCode?clientId=GCM_ANDROID_DARK&locale=en-US&service=https%3A%2F%2Fmobile.integration.garmin.com%2Fgcm%2Fandroid
   response:
     body:
-      string: '{"serviceURL": "https://mobile.integration.garmin.com/gcm/ios", "serviceTicketId":
+      string: '{"serviceURL": "https://mobile.integration.garmin.com/gcm/android", "serviceTicketId":
         "ST-0172640-s7YMrcqSIs9rr46AGPLK-sso", "responseStatus": {"type": "SUCCESSFUL",
         "message": "", "httpStatus": "OK"}, "responseReason": null, "samlResponse":
         null, "authType": "CAS"}'
@@ -833,7 +833,7 @@ interactions:
       - !!binary |
         R0NNLWlPUy01LjIyLjEuNA==
     method: GET
-    uri: https://connectapi.garmin.com/oauth-service/oauth/preauthorized?ticket=ST-0172640-s7YMrcqSIs9rr46AGPLK-sso&login-url=https://mobile.integration.garmin.com/gcm/ios&accepts-mfa-tokens=true
+    uri: https://connectapi.garmin.com/oauth-service/oauth/preauthorized?ticket=ST-0172640-s7YMrcqSIs9rr46AGPLK-sso&login-url=https://mobile.integration.garmin.com/gcm/android&accepts-mfa-tokens=true
   response:
     body:
       string: oauth_token=[REDACTED]&oauth_token_secret=[REDACTED]&mfa_token=[REDACTED]&mfa_expiration_timestamp=2027-03-18
@@ -866,7 +866,7 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: audience=GARMIN_CONNECT_MOBILE_IOS_DI&mfa_token=[REDACTED]
+    body: audience=GARMIN_CONNECT_MOBILE_ANDROID_DI&mfa_token=[REDACTED]
     headers:
       Accept:
       - !!binary |
