@@ -47,6 +47,7 @@ class GarminOAuth1Session(OAuth1Session):
         )
         if parent is not None:
             self.mount("https://", parent.adapters["https://"])
+            self.cookies.update(parent.cookies)
             self.proxies = parent.proxies
             self.verify = parent.verify
             self.hooks["response"].extend(parent.hooks["response"])
