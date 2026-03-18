@@ -111,6 +111,10 @@ authentication. The codebase is organized into several key modules:
 ## Testing Infrastructure
 
 - Uses pytest with VCR cassettes for HTTP recording/playback
+- VCR defaults to playback-only (`record_mode="none"`) — **tests never
+  hit the real Garmin API** unless explicitly recording
+- To record new cassettes, set `GARTH_RECORD_CASSETTES=true` and
+  `GARTH_RECORD_CASSETTES_HOME=~/.garth`
 - Comprehensive test coverage across all modules
 - Separate test directories mirroring source structure
 - Coverage reporting with HTML and XML output
