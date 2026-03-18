@@ -142,13 +142,20 @@ def get_oauth1_token(ticket: str, client: http.Client) -> OAuth1Token:
     return OAuth1Token(domain=client.domain, **token)  # type: ignore
 
 
-def exchange(oauth1: OAuth1Token, client: http.Client) -> OAuth2Token:
+def exchange(
+    oauth1: OAuth1Token,
+    client: http.Client,
+    *,
+    login: bool = False,
+) -> OAuth2Token:
     sess = GarminOAuth1Session(
         resource_owner_key=oauth1.oauth_token,
         resource_owner_secret=oauth1.oauth_token_secret,
         parent=client.sess,
     )
-    data: dict[str, str] = {"audience": "GARMIN_CONNECT_MOBILE_IOS_DI"}
+    data: dict[str, str] = {}
+    if login:
+        data["audience"] = "GARMIN_CONNECT_MOBILE_IOS_DI"
     if oauth1.mfa_token:
         data["mfa_token"] = oauth1.mfa_token
     base_url = f"https://connectapi.{client.domain}/oauth-service/oauth/"
@@ -212,5 +219,5 @@ def _complete_login(
     ticket: str, client: http.Client
 ) -> tuple[OAuth1Token, OAuth2Token]:
     oauth1 = get_oauth1_token(ticket, client)
-    oauth2 = exchange(oauth1, client)
+    oauth2 = exchange(oauth1, client, login=True)
     return oauth1, oauth2
