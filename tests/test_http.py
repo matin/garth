@@ -1,3 +1,4 @@
+import os
 import tempfile
 import time
 from typing import Any, cast
@@ -52,6 +53,64 @@ def test_auto_resume_garth_token(
     client = Client()
     assert client.oauth1_token == authed_client.oauth1_token
     assert client.oauth2_token == authed_client.oauth2_token
+
+
+def test_auto_resume_garth_home_missing_tokens(
+    monkeypatch: pytest.MonkeyPatch,
+):
+    with tempfile.TemporaryDirectory() as tempdir:
+        monkeypatch.setenv("GARTH_HOME", tempdir)
+        monkeypatch.delenv("GARTH_TOKEN", raising=False)
+
+        client = Client()
+        assert client._garth_home == tempdir
+        assert client.oauth1_token is None
+        assert client.oauth2_token is None
+
+
+def test_auto_save_on_login(monkeypatch: pytest.MonkeyPatch):
+    with tempfile.TemporaryDirectory() as tempdir:
+        monkeypatch.setenv("GARTH_HOME", tempdir)
+        monkeypatch.delenv("GARTH_TOKEN", raising=False)
+
+        client = Client()
+        assert client._garth_home == tempdir
+
+        # Mock sso.login to return tokens
+        import garth.sso
+
+        mock_oauth1 = OAuth1Token(
+            oauth_token="test_token",
+            oauth_token_secret="test_secret",
+            domain="garmin.com",
+        )
+        mock_oauth2 = OAuth2Token(
+            scope="CONNECT_READ",
+            jti="test_jti",
+            token_type="Bearer",
+            access_token="test_access",
+            refresh_token="test_refresh",
+            expires_in=3600,
+            refresh_token_expires_in=7200,
+            expires_at=int(time.time() + 3600),
+            refresh_token_expires_at=int(time.time() + 7200),
+        )
+        monkeypatch.setattr(
+            garth.sso,
+            "login",
+            lambda *a, **kw: (mock_oauth1, mock_oauth2),
+        )
+
+        client.login("user@example.com", "password")
+
+        # Tokens should be saved to GARTH_HOME
+        assert os.path.exists(os.path.join(tempdir, "oauth1_token.json"))
+        assert os.path.exists(os.path.join(tempdir, "oauth2_token.json"))
+
+        # Verify saved tokens can be loaded
+        new_client = Client()
+        new_client.load(tempdir)
+        assert new_client.oauth1_token == mock_oauth1
 
 
 def test_auto_resume_both_set_raises(monkeypatch: pytest.MonkeyPatch):
