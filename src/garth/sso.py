@@ -145,7 +145,9 @@ def login(
     raise GarthException(msg="Unexpected SSO response")  # pragma: no cover
 
 
-def get_oauth1_token(ticket: str, client: http.Client) -> OAuth1Token:
+def get_oauth1_token(
+    ticket: str, client: http.Client, retries: int = 3
+) -> OAuth1Token:
     sess = GarminOAuth1Session(parent=client.sess)
     base_url = f"https://connectapi.{client.domain}/oauth-service/oauth/"
     login_url = f"https://mobile.integration.{client.domain}/gcm/android"
@@ -153,12 +155,18 @@ def get_oauth1_token(ticket: str, client: http.Client) -> OAuth1Token:
         f"{base_url}preauthorized?ticket={ticket}&login-url={login_url}"
         "&accepts-mfa-tokens=true"
     )
-    resp = sess.get(
-        url,
-        headers=OAUTH_USER_AGENT,
-        timeout=client.timeout,
-    )
-    resp.raise_for_status()
+    for attempt in range(retries):
+        resp = sess.get(
+            url,
+            headers=OAUTH_USER_AGENT,
+            timeout=client.timeout,
+        )
+        if resp.ok:
+            break
+        if attempt < retries - 1 and resp.status_code in (401, 429):
+            time.sleep(1 * (attempt + 1))
+            continue
+        resp.raise_for_status()
     parsed = parse_qs(resp.text)
     token = {k: v[0] for k, v in parsed.items()}
     return OAuth1Token(domain=client.domain, **token)  # type: ignore
