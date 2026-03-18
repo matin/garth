@@ -26,18 +26,30 @@ SSO_MFA_REQUIRED = "MFA_REQUIRED"
 # Android user agent — must match the Android consumer key from S3
 OAUTH_USER_AGENT = {"User-Agent": "com.garmin.android.apps.connectmobile"}
 
-# Browser-like headers for SSO web pages to avoid Cloudflare challenges
-SSO_HEADERS = {
-    "User-Agent": (
-        "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) "
-        "AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
-    ),
+# Browser-like headers for SSO to avoid Cloudflare challenges.
+# The SSO endpoints run in a WebView, so requests must look like a
+# browser — not a Python HTTP client.
+_SSO_UA = (
+    "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) "
+    "AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
+)
+SSO_PAGE_HEADERS = {
+    "User-Agent": _SSO_UA,
     "Accept": (
         "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
     ),
     "Accept-Language": "en-US,en;q=0.9",
     "Sec-Fetch-Mode": "navigate",
     "Sec-Fetch-Dest": "document",
+}
+SSO_API_HEADERS = {
+    "User-Agent": _SSO_UA,
+    "Accept": "application/json, text/plain, */*",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Origin": "https://sso.garmin.com",
+    "Sec-Fetch-Mode": "cors",
+    "Sec-Fetch-Site": "same-origin",
+    "Sec-Fetch-Dest": "empty",
 }
 
 
@@ -107,7 +119,7 @@ def login(
         "sso",
         "/mobile/sso/en/sign-in",
         params={"clientId": CLIENT_ID},
-        headers={**SSO_HEADERS, "Sec-Fetch-Site": "none"},
+        headers={**SSO_PAGE_HEADERS, "Sec-Fetch-Site": "none"},
     )
 
     # Submit login
@@ -115,6 +127,8 @@ def login(
         "sso",
         "/mobile/api/login",
         params=login_params,
+        headers=SSO_API_HEADERS,
+        referrer=True,
         json={
             "username": email,
             "password": password,
@@ -205,6 +219,8 @@ def handle_mfa(
         "sso",
         "/mobile/api/mfa/verifyCode",
         params=login_params,
+        headers=SSO_API_HEADERS,
+        referrer=True,
         json={
             "mfaMethod": "email",
             "mfaVerificationCode": mfa_code,
@@ -242,7 +258,7 @@ def _complete_login(
         client.get(
             "sso",
             "/portal/sso/embed",
-            headers={**SSO_HEADERS, "Sec-Fetch-Site": "same-origin"},
+            headers={**SSO_PAGE_HEADERS, "Sec-Fetch-Site": "same-origin"},
             referrer=True,
         )
     except GarthException:  # pragma: no cover
