@@ -83,6 +83,7 @@ def test_telemetry_enabled_request(authed_client: Client, monkeypatch):
     )
 
     assert authed_client.telemetry.enabled is True
+    authed_client.telemetry._public_ip = "test"
 
     profile = authed_client.connectapi("/userprofile-service/socialProfile")
     assert profile is not None

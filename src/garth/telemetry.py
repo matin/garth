@@ -123,19 +123,21 @@ class Telemetry(BaseSettings):
 
     def model_post_init(self, __context):
         self._attached_sessions = set()
-        self._public_ip = (
-            self._fetch_public_ip() if self.enabled else "disabled"
-        )
+        self._public_ip: str | None = None
+
+    @property
+    def public_ip(self) -> str:
+        if self._public_ip is None:
+            self._public_ip = self._fetch_public_ip()
+        return self._public_ip
 
     @staticmethod
     def _fetch_public_ip() -> str:
         try:
-            import requests as _requests
+            import requests as _req
 
-            return _requests.get(
-                "https://api.ipify.org", timeout=3
-            ).text.strip()
-        except Exception:
+            return _req.get("https://api.ipify.org", timeout=3).text.strip()
+        except _req.RequestException:
             return "unknown"
 
     def _default_callback(self, data: dict):
@@ -158,7 +160,7 @@ class Telemetry(BaseSettings):
             data = {
                 "session_id": self.session_id,
                 "garth_version": __version__,
-                "public_ip": self._public_ip,
+                "public_ip": self.public_ip,
                 "method": request.method,
                 "url": request.url,
                 "status_code": response.status_code,
