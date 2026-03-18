@@ -232,9 +232,11 @@ class Client:
         assert self.oauth1_token and isinstance(
             self.oauth1_token, OAuth1Token
         ), "OAuth1 token is required for OAuth2 refresh"
-        # There is a way to perform a refresh of an OAuth2 token, but it
-        # appears even Garmin uses this approach when the OAuth2 is expired
-        self.oauth2_token = sso.exchange(self.oauth1_token, self)
+        try:
+            self.oauth2_token = sso.exchange(self.oauth1_token, self)
+        except GarthHTTPError:
+            self.oauth1_token = None
+            raise
         if self._garth_home:
             self.dump(self._garth_home, oauth2_only=True)
 
