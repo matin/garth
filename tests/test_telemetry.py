@@ -92,6 +92,7 @@ def test_telemetry_enabled_request(authed_client: Client, monkeypatch):
     assert "userprofile-service" in captured_data[0]["url"]
     assert captured_data[0]["status_code"] == 200
     assert "session_id" in captured_data[0]
+    assert "garth_version" in captured_data[0]
 
 
 def test_telemetry_env_override_disabled(monkeypatch):
@@ -181,6 +182,7 @@ def test_response_hook_with_string_body():
     assert data["url"] == "https://example.com/api"
     assert data["status_code"] == 200
     assert data["session_id"] == t.session_id
+    assert data["garth_version"]
     assert "secret" not in data["request_body"]
     assert "token123" not in data["response_body"]
 
