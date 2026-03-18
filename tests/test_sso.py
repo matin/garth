@@ -167,6 +167,62 @@ def test_parse_sso_response_no_expected():
     assert result["responseStatus"]["type"] == "MFA_REQUIRED"
 
 
+def test_get_oauth1_token_retries_on_401(monkeypatch, client: Client):
+    from unittest.mock import MagicMock, patch
+
+    mock_resp_401 = MagicMock()
+    mock_resp_401.ok = False
+    mock_resp_401.status_code = 401
+
+    mock_resp_200 = MagicMock()
+    mock_resp_200.ok = True
+    mock_resp_200.text = "oauth_token=tok&oauth_token_secret=sec"
+
+    call_count = {"n": 0}
+
+    def mock_get(*a, **kw):
+        call_count["n"] += 1
+        if call_count["n"] < 3:
+            return mock_resp_401
+        return mock_resp_200
+
+    with (
+        patch.object(
+            sso.GarminOAuth1Session, "__init__", lambda *a, **kw: None
+        ),
+        patch.object(sso.GarminOAuth1Session, "get", mock_get),
+        patch.object(sso.GarminOAuth1Session, "mount", lambda *a, **kw: None),
+        patch("time.sleep"),
+    ):
+        result = sso.get_oauth1_token("ticket", client)
+        assert result.oauth_token == "tok"
+        assert call_count["n"] == 3
+
+
+def test_get_oauth1_token_raises_after_retries(monkeypatch, client: Client):
+    from unittest.mock import MagicMock, patch
+
+    mock_resp = MagicMock()
+    mock_resp.ok = False
+    mock_resp.status_code = 401
+    mock_resp.raise_for_status.side_effect = requests.HTTPError(
+        response=mock_resp
+    )
+
+    with (
+        patch.object(
+            sso.GarminOAuth1Session, "__init__", lambda *a, **kw: None
+        ),
+        patch.object(
+            sso.GarminOAuth1Session, "get", lambda *a, **kw: mock_resp
+        ),
+        patch.object(sso.GarminOAuth1Session, "mount", lambda *a, **kw: None),
+        patch("time.sleep"),
+    ):
+        with pytest.raises(requests.HTTPError):
+            sso.get_oauth1_token("ticket", client)
+
+
 def test_handle_mfa_http_error(monkeypatch, client: Client):
     from unittest.mock import MagicMock
 
