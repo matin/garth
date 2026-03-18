@@ -23,6 +23,9 @@ OAUTH_CONSUMER: dict[str, str] = {}
 SSO_SUCCESSFUL = "SUCCESSFUL"
 SSO_MFA_REQUIRED = "MFA_REQUIRED"
 
+# Android user agent — must match the Android consumer key from S3
+OAUTH_USER_AGENT = {"User-Agent": "com.garmin.android.apps.connectmobile"}
+
 # Browser-like headers for SSO web pages to avoid Cloudflare challenges
 SSO_HEADERS = {
     "User-Agent": (
@@ -149,7 +152,7 @@ def get_oauth1_token(ticket: str, client: http.Client) -> OAuth1Token:
     )
     resp = sess.get(
         url,
-        headers=http.USER_AGENT,
+        headers=OAUTH_USER_AGENT,
         timeout=client.timeout,
     )
     resp.raise_for_status()
@@ -177,7 +180,7 @@ def exchange(
     base_url = f"https://connectapi.{client.domain}/oauth-service/oauth/"
     url = f"{base_url}exchange/user/2.0"
     headers = {
-        **http.USER_AGENT,
+        **OAUTH_USER_AGENT,
         **{"Content-Type": "application/x-www-form-urlencoded"},
     }
     resp = sess.post(
