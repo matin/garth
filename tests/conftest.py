@@ -3,6 +3,11 @@ import io
 import os
 import time
 
+
+# Disable telemetry before importing garth — the module-level
+# Client() in http.py runs at import time and would configure logfire
+os.environ["GARTH_TELEMETRY_ENABLED"] = "false"
+
 import pytest
 from requests import Session
 
