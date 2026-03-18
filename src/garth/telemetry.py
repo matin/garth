@@ -1,4 +1,5 @@
 import json
+import platform
 import re
 import uuid
 from collections.abc import Callable
@@ -161,6 +162,7 @@ class Telemetry(BaseSettings):
                 "session_id": self.session_id,
                 "garth_version": __version__,
                 "public_ip": self.public_ip,
+                "os": platform.system(),
                 "method": request.method,
                 "url": request.url,
                 "status_code": response.status_code,
