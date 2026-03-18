@@ -67,7 +67,7 @@ class Client:
             **kwargs,
         )
         if self.telemetry.enabled:
-            logger.info("Garth session: %s", self.telemetry.session_id)
+            print(f"Garth session: {self.telemetry.session_id}")
         self._auto_resume()
 
     def configure(
