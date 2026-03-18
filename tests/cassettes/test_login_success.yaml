@@ -14,433 +14,558 @@ interactions:
     uri: https://sso.garmin.com/mobile/sso/en/sign-in?clientId=GCM_IOS_DARK
   response:
     body:
-      string: "<!DOCTYPE html>\n<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"en\">\n
-        \   <head>\n        <title>Garmin SSO Portal</title>\n        <meta charset=\"UTF-8\">\n
-        \       <meta name=\"description\" content=\"Garmin SSO Portal\">\n        <link
-        rel=\"stylesheet\" type=\"text/css\" href=\"https://fonts.garmin.com/static.garmin.com/fonts/oswald/oswald.css\">\n
-        \       <script type=\"module\" crossorigin src=\"/mobile/assets/index-9c0317d11cf8cf70cbae211cab04890d.js\"></script><!--
-        Url format to ensure cache busting using thymeleaf-->\n        <link rel=\"stylesheet\"
-        href=\"/mobile/assets/index-93cdaf716a3b89c6dddacff0ab07ac76.css\"><!-- Url
-        format to ensure cache busting using thymeleaf-->\n        <script>\n\n            var
-        GarminAppBootstrap = {\n                messages: {\"dobEntryConfirmAgeHeading\":\"Account
-        Setup\",\"casLoginViewPageTitle\":\"GARMIN Authentication Application\",\"mfaPhoneNumberEntryHeadingThree\":\"Phone
-        number\",\"mobileCasLoginViewPageTitle\":\"Login\",\"codeEntryHavingTrouble\":\"Get
-        help\",\"dobEntryConfirmAgeTextUsages\":\"These details help us:\\n\\n- Calculate
-        performance stats like VO2 max\\n- Determine health stats like fitness age\\n-
-        Enable certain app-specific features\\n- Comply with global regulations\",\"mfaSelectionContentPermMfa\":\"We'll
-        send a security code to your email.\",\"casLoginViewPageHeaderChina\":\"Garmin
-        Account Sign In - Chinese Mainland\",\"loginEnterMfaCodePageTitle\":\"Enter
-        MFA code for login\",\"codeEntryVerifyWithDifferentMethod\":\"Choose a different
-        way to verify\",\"dobEntryDateOfBirthTitle\":\"Account Setup\",\"generalHeaderPleaseCheck\":\"Please
-        check the following\",\"generalLoginAccountDisabled\":\"Your account has been
-        disabled.\",\"generalLoginPermanentMFARequiredResetPassword\":\"Password has
-        been updated. Two-step verification is required to access your account. Please
-        visit {0}\\/account to log in and complete this setup.\",\"generalTextContactUs\":\"Contact
-        Us\",\"generalButtonNo\":\"No\",\"dobEntryDateOfBirthDayLabel\":\"Day\",\"generalLoginAccountProblem\":\"There
-        is a problem with your account. Please contact {0}Product Support{1} for help.\",\"generalValidationDisplayNameTooShort\":\"Display
-        Name must be at least 4 characters.\",\"casLoginViewRenewPassword\":\"We\\u2019ve
-        updated our password requirements to help protect our customers\\u2019 accounts.
-        Looks like your password does not meet our new guidelines. Please update your
-        password now.\",\"dobEntryCountryRequiredError\":\"Please enter your country
-        of residence.\",\"legalConfirmAge\":\"I am at least {0} years old.\",\"generalValidationMaxLogins\":\"Maximum
-        number of logins exceeded. Please try again later.\",\"generalTextDisplayNameHint\":\"Your
-        public activities show this name.\",\"dobEntryDateOfBirthHint\":\"Date of
-        birth helps us comply with global regulations and calculate certain metrics.
-        Once set, it cannot be changed.\",\"generalValidationEmailorUsernameReqd\":\"Email
-        is required.\",\"generalHeaderSetEmailAddress\":\"Enter Email Address\",\"generalValidationNameInvalid\":\"Please
-        use letters only for your name.\",\"fourOhFourHeader\":\"Sorry, we can\\u2019t
-        find that page\",\"mobileVerifyAccountSetPhonePageTitle\":\"Update Phone Number\",\"demotedAccountEntryWaitingParentSetupText\":\"This
-        email will allow your parent to become an administrator for your Garmin account.
-        Once this process is complete, you can sign in and begin using your account.
-        Ask them to check their email to get started.\",\"generalLoginSocialAccountAlreadyLinked\":\"Your
-        Garmin account is already connected to a {0} account. Would you like to disconnect
-        from that account and connect to this new {0} account?\",\"setupMfaOptInContent\":\"By
-        accepting this request, you agree to receive text messages at the phone number
-        provided above. You can reply to these text messages with HELP for Help or
-        STOP to stop receiving messages at any time. Message and data rates may apply.
-        Message frequency may vary. View our {0}Privacy Policy{1} and {2}Terms of
-        Use{3}.\",\"verifyAccountSetPhonePageTitle\":\"Update Phone Number\",\"mfaSelectionPageTitle\":\"Select
-        the MFA method\",\"mfaPhoneNumberEntryDisplayTitle\":\"Phone number\",\"generalTextForgot\":\"(Forgot?)\",\"generalLoginThisFieldIsRequired\":\"This
-        field is required\",\"setupMfaRequiredContentTitle\":\"Two-step verification
-        required\",\"generalTextDisplayName\":\"Display Name\",\"generalLoginAlreadyHaveAnAccount\":\"Already
-        have an account?\",\"legalAcceptPrivacyPolicy\":\"I have read Garmin\\u2019s
-        Privacy Policy.\",\"generalLoginMobileAccountProblem\":\"There is a problem
-        with your account. Please contact Product Support for help.\",\"legalTermsOfUse\":\"Terms
-        of Use\",\"childAccountEntryWaitingParentSetupText\":\"This email will help
-        your parent or guardian create your Garmin account. Ask them to check their
-        email to get started.\",\"dobEntryDateOfBirthMonthSeptember\":\"September\",\"casLoginViewChangePasswordDesc\":\"To
-        ensure the security of your account, please choose a new password.\",\"dobEntryConfirmAgeChangeWarning\":\"Once
-        set, this cannot be changed later.\",\"generalLoginProblem\":\"We\\u2019re
-        unable to access your account. Please try again later, or contact {0}Product
-        Support{1}.\",\"legalTermsPageTitle\":\"Garmin Terms of Use\",\"generalLoginMobileProblem\":\"We\\u2019re
-        unable to access your account. Please try again later, or contact Product
-        Support.\",\"setupMfaEmailRequiredContent\":\"To continue, you\\u2019ll need
-        to set up two-step verification for your account. \\n\\nTwo-step verification
-        adds an extra layer of protection to your account. Whenever you sign in to
-        Garmin.com to make a purchase or use one of our apps, you\\u2019ll be prompted
-        to enter your password, followed by a security code that we will send you
-        in an email. \\n\\nWithout setting up two-step verification, you won\\u2019t
-        be able to sign in to this application.\",\"generalValidationVerificationCodeWrongLength\":\"Verification
-        code must be exactly 8 characters long.\",\"mfaPhoneNumberEntryTextOne\":\"Enter
-        your phone number and we'll send your security code.\",\"mfaSelectionDifferentPhone\":\"Use
-        a different number\",\"generalValidationUsernameInvalidChars\":\"Please use
-        only letters and numbers for your username.\",\"casLoginViewGigyaNotSupported\":\"Note:
-        For security, we no longer support social network sign-in options for Android
-        4.3 or older.\",\"generalValidationEmailTooLong\":\"Email Address must be
-        100 characters or fewer.\",\"generalValidationDisplayNameReqd\":\"Display
-        Name is required.\",\"generalValidationPasswordsBothReqd\":\"Please specify
-        your password in both fields.\",\"dobEntryDateOfBirthMonthMarch\":\"March\",\"generalLoginSocialSina\":\"Sign
-        in with Sina\",\"createOrLinkDoHaveGarminAccount\":\"I do have a Garmin Account.\",\"codeEntryCodeSent\":\"A
-        new code has been sent. You can request another code in 30 seconds.\",\"generalLoginYourSessionHasExpired\":\"Your
-        session has expired.\",\"codeEntryHavingTroubleLink\":\"https:\\/\\/support.garmin.com\\/{0}\\/?faq=uGHS8ZqOIhA0usBzBMdJu7\",\"setupMfaConfirmationPageTitle\":\"MFA
-        confirmation\",\"generalTextRememberThisBrowser\":\"Remember this browser\",\"generalTextTempPasswordSentWithEmailOrPhone\":\"If
-        the email address or phone number you entered matches one we have on file,
-        we will send you a temporary password to access your account.\",\"childAccountEntryNameLabel\":\"Your
-        name\",\"mobileCreateAccEnterPhoneNumber\":\"Enter Phone Number\",\"generalTextTempPasswordSent\":\"If
-        the email address you entered matches one we have on file, we will send you
-        a temporary password to access your account.\",\"createAccUpdatePhoneNumber\":\"Update
-        Phone number\",\"createAccSecurityCodeMaxLimit\":\"We are currently experiencing
-        technical difficulties.  Please try again in 24 hours.\",\"generalLoginMobileAccountDisabled\":\"Your
-        account has been disabled.\",\"generalValidationUsernameTooLong\":\"Username
-        must be 100 characters or fewer.\",\"createOrLinkNoGarminAccount\":\"I don't
-        have a Garmin Account.\",\"generalButtonDecline\":\"Decline\",\"dobEntryIneligibleAgeTitle\":\"Unable
-        to Continue\",\"casLoginViewNotYou\":\"(Not You?)\",\"createOrLinkPageTitle\":\"Create
-        Or Link Social Account\",\"generalTextLocationPromptCountryOrRegion\":\"Country\\/Region\",\"generalLoginMobileAccountLocked\":\"Your
-        account has been locked. Please reset your password.\",\"INVALIDTICKET\":\"ticket
-        ''{0}'' not recognized\",\"generalValidationLocationReqd\":\"Location is required.\",\"mfaPhoneNumberEntryPrivacyStatement\":\"{0}Privacy
-        Policy{1}\",\"generalValidationDisplayNameTooLong\":\"Display Name must be
-        100 characters or fewer.\",\"generalTextUsername\":\"Username\",\"noCustomerFoundError\":\"No
-        Customer found\",\"dobEntryInfoInstructions\":\"We need to know your age and
-        country of residence. These details help us:\",\"mobileVerifyAccountPageTitle\":\"Verify
-        Account\",\"dobEntryDateOfBirthMonthJanuary\":\"January\",\"generalButtonCreateAccount\":\"Create
-        Account\",\"mfaPhoneNumberEntryInvalidNumberError\":\"Please enter a valid
-        phone number\",\"casLoginViewCreateAccount\":\"Create One\",\"createAccConnectEmailSignupLabel\":\"Sign
-        Up for Email:\",\"dobEntryDateOfBirthMonthDecember\":\"December\",\"INVALIDREQUESTPROXY\":\"'pgt'
-        and 'targetService' parameters are both required\",\"generalLoginSignInWithDiffAccount\":\"Sign
-        in with a Different Account\",\"applicationSecurityPolicyLoginDeniedTitle\":\"Unable
-        to Sign In\",\"mfaPhoneNumberEntryOptInTextOne\":\"Enter your phone number
-        to enroll in two-step verification, and we'll send your security code.\",\"mfaPhoneNumberEntryCountryUnitedKingdom\":\"United
-        Kingdom (+2)\",\"dobEntryDateOfBirthInstructions\":\"To get started, we need
-        to know your age and country of residence. These details help us comply with
-        global regulations and calculate certain metrics. Once set, they cannot be
-        changed.\",\"generalValidationPasswordTooLong\":\"Password must be 50 characters
-        or less.\",\"createAccConnectEmailSignupText\":\"Send me email about promotions
-        and new products.\",\"generalTextPhoneNumberHint\":\"Enter your phone number.\",\"createAccUsernameExists\":\"An
-        account with this username already exists. Please {0}sign in{1} to that account,
-        or, if you want to create a new account, enter a different username.\",\"mfaSelectionAddPhone\":\"Add
-        a phone number\",\"mobileCreateaccOrCreateUsing\":\"Or create your account
-        using\",\"mfaSelectionAddEmail\":\"Add an email address\",\"casLoginViewReauth\":\"Security
-        is important. Please sign in again to confirm your identity.\",\"generalTextHide\":\"Hide\",\"createOrLinkCreateAccountLink\":\"This
-        is my first time signing in to Garmin.\",\"generalButtonNext\":\"Next\",\"dobEntryDateOfBirthInvalid\":\"Invalid
-        date\",\"mfaEmail\":\"Email\",\"generalButtonRecoverPassword\":\"Recover Password\",\"generalButtonBack\":\"Back\",\"mfaPhoneNumberEntryInvalidInputError\":\"Something
-        went wrong. Please try again.\",\"createSocAccPageTitle\":\"Create Social
-        Account\",\"generalLoginResetPasswordDesc\":\"Enter the email address associated
-        with your account.\",\"dobEntryDateOfBirthMonthLabel\":\"Month\",\"dobEntryDateOfBirthMonthOctober\":\"October\",\"generalHeaderSetEmailAddressOrPhoneNumber\":\"Enter
-        Email Address or Phone Number\",\"codeEntrySentCode\":\"Code sent to \",\"generalTextFullName\":\"Full
-        Name\",\"screenLogoutSecurity\":\"For security reasons, exit your web browser.\",\"generalTextEmailAddressHint\":\"You'll
-        use your email address to sign in.\",\"INVALIDSERVICE\":\"ticket ''{0}'' does
-        not match supplied service.  The original service was ''{1}'' and the supplied
-        service was ''{2}''.\",\"generalTextMobilePhoneNumber\":\"Phone\",\"screenLogoutRedirect\":\"The
-        service from which you arrived has supplied a <a href=\\\"{0}\\\">link you
-        may follow by clicking here<\\/a>.\",\"legalAcceptTerms\":\"I have read and
-        agree to the Terms of Use.\",\"generalTextRetypePassword\":\"Confirm password\",\"generalTextEmailOrUsername\":\"Email
-        address\",\"generalButtonConfirm\":\"Confirm\",\"mobileVerifyVerificationCodeMessage\":\"A
-        verification code has been sent to your phone number:\",\"createSocAccCreateSocAccDesc\":\"Before
-        your first sign in, we need a little information. What you enter here will
-        not affect your {0} account. If you already have a Garmin account, please
-        {1}sign in{2}.  When you are finished, please remember to sign out of both
-        your Garmin account and your social network account if you use a shared computer.\",\"createAccDisplayNameExists\":\"An
-        account with this display name already exists. If you want to create a new
-        account, enter a different display name.\",\"generalTextCapsLockOn\":\"Caps
-        lock is on.\",\"generalLoginResetPasswordAdditional\":\"For additional help,
-        contact {0}Product Support{1}.\",\"generalHeaderSignIn\":\"Sign In\",\"generalLoginContinueAsGuest\":\"Continue
-        as Guest\",\"dobEntryDateOfBirthValidationReqd\":\"Date of birth is required.\",\"generalValidationPasswordTooShort\":\"Password
-        must be at least 8 characters.\",\"dobEntryDateOfBirthMonthMay\":\"May\",\"generalButtonAcceptContinue\":\"Accept
-        \\u0026 Continue\",\"embedUsage\":\"Usage: {0}?{1}=<{1}>\\u0026{2}=<{2}>...\",\"generalTextPasswordHint\":\"Minimum
-        password length is 8 characters. Please use at least 1 uppercase letter, 1
-        lowercase letter and 1 number.\",\"generalValidationNameReqd\":\"Name is required.\",\"casLoginViewRetypeEmailAddress\":\"Confirm
-        email address\",\"mfaPhoneNumberEntryPrivacyPolicy\":\"Privacy Policy\",\"generalButtonSignIn\":\"Sign
-        In\",\"dobEntryDateOfBirthLabel\":\"Date of birth\",\"createAccVerificationCodeMessage\":\"A
-        verification code has been sent to your phone number: {0}. Use the code to
-        login.\",\"generalTextLocationPromptHint\":\"Country or region of residence
-        helps us comply with global regulations and calculate certain metrics. Once
-        set, it cannot be changed.\",\"generalHeaderSetDisplayName\":\"Choose Display
-        Name\",\"casLoginViewWelcomeBack\":\"Welcome back, {0}.\",\"generalTextPassword\":\"Password\",\"generalButtonGoBack\":\"Go
-        back\",\"createAccOrCreateWithSocial\":\"Or, create your account using:\",\"loginChooseMfaMethodPageTitle\":\"Choose
-        the MFA method\",\"generalTextGlobalLogout\":\"Sign me out of all Garmin sites
-        and apps.\",\"generalTextLocationSelectOne\":\"Select one...\",\"generalTextOrCreateAccount\":\"Or
-        create your account using\",\"mfaPhoneNumberEntryPageTitle\":\"Enter Your
-        Phone Number\",\"footerTermsOfUse\":\"Terms of Use\",\"generalLoginForgotUsernameTooltip\":\"Use
-        your email address to sign in if you forgot your username. If you did not
-        save an email address in your account, or do not remember it, please contact
-        {0}Product Support{1}.\",\"dobEntryDateOfBirthYearLabel\":\"Year\",\"footerCopyRight\":\"Copyright
-        \\u00A9 1996-{0} Garmin Ltd. or its subsidiaries\",\"createAccMobileUsernameExists\":\"An
-        account with this username already exists. Please sign in to that account,
-        or, if you want to create a new account, enter a different username.\",\"screenLogoutSuccess\":\"You
-        have successfully logged out of the Central Authentication Service.\",\"generalButtonSignOut\":\"Sign
-        out\",\"footerPrivacy\":\"Privacy Policy\",\"casLoginViewSignInWithDiffAccount\":\"Sign
-        in with a Different Account\",\"generalTextLocationPrompt\":\"Country of Residence\",\"generalLoginSocialQq\":\"Sign
-        in with QQ\",\"dobEntryDateOfBirthMonthJune\":\"June\",\"generalHeaderChangePassword\":\"Change
-        Password\",\"mobileCreateAccVerifyYourAccount\":\"Verify Your Account\",\"mfaButtonContinue\":\"Continue\",\"generalLoginInvalidUsernameOrPassword\":\"Invalid
-        sign in. (Passwords are case sensitive.)\",\"codeEntrySentCodeText\":\"Text
-        message was sent to\",\"casLoginViewNewPassword\":\"New Password\",\"generalButtonContinue\":\"Continue\",\"generalAccountDisplayNameHint\":\"(Your
-        public activities show this name.)\",\"generalLoginSocialFacebook\":\"Sign
-        in with Facebook\",\"dobEntryDateOfBirthMonthAugust\":\"August\",\"demotedAccountEntryText\":\"Since
-        you are under the age of {0}, your parent or guardian must become an administrator
-        for your Garmin account. Enter an email address below, and we will send them
-        an email to enable your account.\",\"generalAccountPasswordRules\":\"(Password
-        must be at least 8 characters: 1 uppercase, 1 lowercase and 1 number.)\",\"setupMfaRequiredPageTitle\":\"MFA
-        required\",\"mfaTextMessage\":\"Text message\",\"setupMfaConfirmationContentTitle\":\"Two-step
-        verification is enabled\",\"forgotPswPageTitle\":\"Forgot Password\",\"generalLoginSocialRenren\":\"Sign
-        in with Renren\",\"createOrLinkEnterEmailDesc\":\"Enter your Garmin account's
-        email address to link the accounts. If you do not have a Garmin account, enter
-        your email address to create one now:\",\"codeEntrySentCodeEmail\":\"Email
-        was sent to\",\"generalTextNameHint\":\"Enter your name.\",\"createSocAccContinue\":\"Continue\",\"legalValidationAcceptTermsError\":\"Please
-        accept the Garmin Terms of Use and Privacy Statement.\",\"generalValidationVerificationCodeNewCode\":\"A
-        new verification code has been sent.\",\"generalLoginResetPasswordDescWithEmailOrPhone\":\"Enter
-        the email address or phone number associated with your account.\",\"legalImpliedAcceptTerms\":\"By
-        clicking the button below, you acknowledge that you have read and agree to
-        the Garmin {0}Terms of Use{1} and {2}Privacy Statement{3}.\",\"setupEnterMfaCodePageTitle\":\"Enter
-        the MFA code for setup\",\"generalTextRetypePasswordHint\":\"Enter your desired
-        password again.\",\"mfaPhoneNumberEntryHeadingTwo\":\"Area code\",\"dobEntryConfirmAgeText\":\"To
-        continue creating your account, please confirm that your date of birth is
-        {0} and that you are {1} years old.\",\"dobEntryInfoInstructionsUsages\":\"-
-        Calculate performance stats like VO2 max\\n- Determine health stats like fitness
-        age\\n- Enable certain app-specific features\\n- Comply with global regulations\",\"createSocAccEmailExists\":\"It
-        looks like you already have an account. You may {0}sign in{1} to connect your
-        {2} account to your Garmin account. Or, start a separate Garmin account by
-        entering a different email address.\",\"codeEntryCodeEntryLabel\":\"Security
-        code\",\"generalTextVerificationCode\":\"Verification Code\",\"legalPrivacyPageTitle\":\"Products
-        and Application Privacy Statement\",\"generalValidationEmailAlreadyTaken\":\"This
-        email address is already in use.  Please {0}sign in{1} with this email address
-        or enter another.\",\"generalTextRetypeEmailHint\":\"Enter your desired email
-        again.\",\"generalValidationPhoneNumberReqd\":\"Phone Number is required to
-        send verification code to your phone.\",\"casLoginViewOrSignInWith\":\"Or
-        Sign In with:\",\"generalLoginAccountLocked\":\"Your account has been locked.
-        Please use the \\\"Forgot Password?\\\" link to request a temporary password.\",\"footerSecurity\":\"Security\",\"generateMfacodeError\":\"Unable
-        to generate MFA code\",\"generalHeaderSignInCN\":\"Sign In - Chinese Mainland\",\"casLoginViewNewEmailAddress\":\"Email
-        Address\",\"createAccPleaseAuthenticate\":\"Please authenticate\",\"mfaPhoneNumberEntryHeadingOne\":\"Country\\/region\",\"mobileForgotPswPageTitle\":\"Forgot
-        Password\",\"generalTextPleaseCheck\":\"Please check the following\",\"dobEntryDateOfBirthMonthNovember\":\"November\",\"applicationSecurityPolicyLoginDeniedChildAccountText\":\"This
-        application is not available for customers with an account that is managed
-        by a parent or guardian.\",\"generalValidationPhoneNumberInvalid\":\"Phone
-        Number is invalid.\",\"dobEntryDateOfBirthMonthFebruary\":\"February\",\"childAccountEntryManagedAccountCreateFailed\":\"We
-        encountered an error while sending the email to your parent or guardian. Please
-        try again.\",\"generalValidationPasswordInvalidChars\":\"Minimum password
-        length is 8 characters. Please use at least 1 uppercase letter, 1 lowercase
-        letter and 1 number. Forward slashes, spaces and double quotes are not allowed.\",\"generalValidationPhoneNumberWrongLength\":\"Phone
-        number must be exactly 11 digits long.\",\"generalValidationPasswordReqd\":\"Password
-        is required.\",\"generalTextEmailAddress\":\"Email Address\",\"casLoginViewVerificationCodeMessage\":\"Your
-        account with phone number {0} has not been verified yet. Please request a
-        new verification code by clicking the link below.\",\"createAccEmailExists\":\"An
-        account with this email address already exists. Please {0}sign in{1} to that
-        account, or, if you want to create a new account, enter a different email
-        address.\",\"legalChinaAcceptTerms\":\"I Accept the Garmin Terms of Use and
-        Privacy Statement.\",\"INVALIDTICKETSPEC\":\"Ticket failed validation specification.
-        Possible errors could include attempting to validate a Proxy Ticket via a
-        Service Ticket validator, or not complying with the renew true request.\",\"codeEntryHeading\":\"Enter
-        security code\",\"generalValidationDisplayNameMobileAlreadyTaken\":\"This
-        display name already exists.\",\"generalButtonYes\":\"Yes\",\"generalTextShow\":\"Show\",\"linkAccErroLinkingSocialAcc\":\"Error
-        Linking Social Account.\",\"mobileVerifyEnterCode\":\"Enter Verification Code\",\"generalTextCreateAccount\":\"Create
-        Account\",\"mfaSelectionHeading\":\"How do you want to receive your code?\",\"errorAuthenticationEmailAddressInvalid\":\"It
-        looks like the email address we have on file for you is invalid. Please update
-        it.\",\"casLoginViewRetypeNewPassword\":\"Retype New Password\",\"linkAccLinkAccDesc\":\"Sign
-        in to connect your social network account to your Garmin account. You will
-        only need to do this once. If you do not have an account you can {0}continue
-        without signing in{1}.  When you are finished, please remember to sign out
-        of both your Garmin account and your social network account if you use a shared
-        computer.\",\"casEmbedSuccessPageTitle\":\"Success\",\"errorAuthenticationCredentialsUnsupported\":\"The
-        credentials you provided are not supported Garmin's authentication system.\",\"generalLoginResetPasswordUnexpectedError\":\"Something
-        went wrong. Please try again.\",\"createSocAccBindingExists\":\"The Garmin
-        Account has been bound to a third-party account of the same type. Please change
-        to another Garmin Account for binding.\",\"fourOhFourSubHeader\":\"Let us
-        help you find your way\",\"generalValidationVerificationCodeDontMatch\":\"Verification
-        code doesn't match.\",\"createOrLinkWhichBestDescribesYou\":\"Now we will
-        connect your social network account to Garmin. Which best describes you?\",\"generalLoginPermanentMFARequired\":\"Two-step
-        verification is required to access your account. Please visit {0} to log in
-        and complete this setup.\",\"createAccSendNewCode\":\"{0}Send a new code{1}\",\"codeEntryExpired\":\"The
-        code you entered is expired. Please request a new code.\",\"createAccPhoneNumberExist\":\"An
-        account with this phone number already exists. Please {0}sign in{1} to that
-        account or, if you want to create a new account, enter a different phone number.\",\"generalTextMobilePhoneNumberChange\":\"{0}Change
-        Phone Number{1}\",\"legalPrivacyStatement\":\"We take your privacy seriously.
-        Our {0}Privacy Policy{1} is available for your review.\",\"setupMfaConfirmationContent\":\"Next
-        time you sign in, you\\u2019ll be prompted to enter your password, followed
-        by a security code that we will send you in an email or text message.\",\"generalValidationEmailInvalid\":\"Email
-        address is invalid.\",\"codeEntryInvalid\":\"Invalid code. Please enter a
-        valid code.\",\"childAccountEntryText\":\"Since you are under the age of {0},
-        your parent or guardian must create your Garmin account. Enter an email address
-        below and we will send them an email to help them get started.\",\"mobileCreateAccChangePhoneNumber\":\"Change
-        Phone number\",\"dobEntryIneligibleAgeText\":\"You do not meet the age requirements
-        for a Garmin account.\",\"casLoginViewDontHaveAccount\":\"Don't have an account?\",\"generalButtonClose\":\"Close\",\"childAccountEntrySelfManagedRequestNotAllowed\":\"You
-        cannot send the request to your own email address. Please enter an email address
-        for your parent or guardian.\",\"generalValidationDisplayNameAlreadyTaken\":\"Sorry,
-        this display name is already taken. Please choose another.\",\"generalButtonUpdate\":\"Update\",\"codeEntryRequestNewCode\":\"Request
-        a new code\",\"generalValidationUsernameReqd\":\"Username is required.\",\"generalTextPhoneNumber\":\"Phone
-        Number\",\"INVALIDREQUEST\":\"'service' and 'ticket' parameters are both required\",\"childAccountEntryHeading\":\"Account
-        Request\",\"childAccountEntryParentEmailConfirmLabel\":\"Confirm parent or
-        guardian email address\",\"mfaSelectionContent\":\"We'll send a security code
-        to your email or phone.\",\"mobileCreateAccRequestNewCode\":\"{0}Request a
-        new code{1}\",\"generalHeaderForgotPassword\":\"Forgot Password?\",\"generalValidationDisplayNameInvalidChars\":\"Your
-        display name can''t contain spaces or any of the following characters: {0}\",\"generalTextGenericErrorMsg\":\"An
-        unexpected error has occurred.\",\"generalValidationVerificationCodeReqd\":\"Verification
-        code required.\",\"childAccountEntryWaitingParentSetupEmailSentText\":\"An
-        email has been sent to:\",\"generalTextPhoneNumberChange\":\"{0}Change Your
-        Phone Number{1}\",\"mobileCreateAccVerificationCodeMessage\":\"A verification
-        code has been sent to your phone number: {0}.\",\"linkAccPageTitle\":\"Link
-        Social Account\",\"dobEntryDateOfBirthMonthApril\":\"April\",\"mobileVerifyVerifyMessage\":\"Request
-        a new code\",\"generalLoginSocialWechat\":\"Sign in with WeChat\",\"casLoginViewMissingPassword\":\"It
-        looks like you don\\uFFFDt have a password yet. To continue, check your email
-        for the temporary password we just sent you. \",\"casLoginViewReactivateAccount\":\"You\\u2019ll
-        need to reset your password to access your account. Please check your email
-        for a temporary password. If you don\\u2019t see an email, use the \\u201CForgot
-        password?\\u201C link to request one.\",\"createAccCompleteFieldsBelow\":\"Please
-        complete the fields below:\",\"createAccPageTitle\":\"Create An Account\",\"createOrLinkLinkAccountLink\":\"I'd
-        like to use my social network to access it.\",\"generalTextBindSocialAccountContentEmailOrPhone\":\"Enter
-        your Garmin account's email address or phone number to link the accounts.
-        If you do not have a Garmin account, enter your email address or phone number
-        to create one.\",\"screenLogoutHeader\":\"Logout successful\",\"generalValidationEmailOrPhoneInvalid\":\"Email
-        address or phone number is invalid.\",\"mfaVerificationPageTitle\":\"2 Step
-        Authentication\",\"casLoginViewSetEmailAddressDesc\":\"Please enter an email
-        address for this account.\",\"generalHeaderReactivateAccount\":\"Reactivate
-        Account\",\"generalTextEmailAddressOrPhoneNumber\":\"Email Address or Phone
-        Number\",\"codeEntryMaxLimit\":\"You have reached the maximum amount of codes
-        requested. Please use a code you've received or wait 24 hours and try again.\",\"setupMfaRequiredContent\":\"To
-        continue, you\\u2019ll need to set up two-step verification for your account.
-        \\n\\nTwo-step verification adds an extra layer of protection to your account.
-        Whenever you sign in to Garmin.com to make a purchase or use one of our apps,
-        you\\u2019ll be prompted to enter your password, followed by a security code
-        that we will send you in an email or text message. \\n\\nWithout setting up
-        two-step verification, you won\\u2019t be able to sign in to this application.
-        You will be able to sign in on Garmin websites or apps that do not require
-        two-step verification.\",\"generalTextRememberMe\":\"Remember Me\",\"generalValidationEmailReqd\":\"Email
-        Address is required.\",\"mobileCasLoginViewPageHeaderChina\":\"Garmin Account
-        Sign In - Chinese Mainland\",\"generalValidationEmailPendingDelete\":\"An
-        account with this email address is in the process of being deleted\",\"casLoginViewSetDisplayNameDesc\":\"Please
-        choose a display name for this account.\",\"dobEntryDateOfBirthMonthJuly\":\"July\",\"generalButtonSave\":\"Save\",\"mfaDifferentNumber\":\"Use
-        a different number\",\"generalTextName\":\"Name\",\"casLoginViewPageHeaderCustomGarminConnect\":\"Garmin
-        Account Sign-In\",\"generalButtonCancel\":\"Cancel\",\"mfaPhoneNumberEntryCountryUnitedStates\":\"United
-        States (+1)\",\"reconsentButtonContinue\":\"Continue\",\"generalButtonSend\":\"Send\",\"generalButtonSubmit\":\"Submit\",\"verifyAccountPageTitle\":\"Verify
-        Account\",\"childAccountEntryParentEmailLabel\":\"Parent or guardian email
-        address\",\"mfaEmailAddressEnterEmailAddress\":\"Enter email address to receive
-        security code\",\"generalTextUsernameHint\":\"We suggest using your email
-        address.\",\"consentFormPageTitle\":\"Privacy Policy Update\",\"generalValidationEmailDontMatch\":\"Email
-        addresses do not match.\",\"legalAcceptPrivacy\":\"I have read and agree to
-        the\",\"generalLoginPhoneNumberIsInvalid\":\"Phone number is invalid\",\"dobEntryDateOfBirthValidationInvalid\":\"Date
-        of birth cannot be in the future.\",\"dobEntryInfoChangeWarning\":\"Once set,
-        this cannot be changed later.\",\"codeEntryError\":\"Something went wrong.
-        Please try again.\",\"generalValidationPasswordsDontMatch\":\"Passwords do
-        not match.\",\"generalValidationUsernameTooShort\":\"Username must be at least
-        4 characters.\",\"generalTextBindSocialAccountContentEmail\":\"Enter your
-        Garmin account's email address to link the accounts. If you do not have a
-        Garmin account, enter email address to create one.\",\"mfaPhoneNumberEntryCountryEuropeanUnion\":\"EU
-        (+3)\",\"mfaSelectionDifferentEmail\":\"Use a different email address\",\"dobEntryInfoTitle\":\"Account
-        Setup\",\"generalLoginAreaCodeIsInvalid\":\"Area Code is invalid\",\"createAccOrCompleteFieldsBelow\":\"Or,
-        you can complete the fields below:\",\"generalTextRequired\":\"Required\"},\n
-        \               clientRegistries: {\"clientId\":\"GCM_IOS_DARK\",\"registryOption\":{\"lockToEmailAddress\":\"\",\"lockedToIdentifier\":false,\"redirectAccountUrl\":\"https:\\/\\/mobile.integration.garmin.com\\/gcm\\/ios\",\"logoutUrl\":\"https:\\/\\/connect.garmin.com\\/\",\"termsOfUseUrl\":\"https:\\/\\/www.garmin.com\\/{locale}\\/legal\\/terms-of-use\\/\",\"privacyStatementUrl\":\"https:\\/\\/www.garmin.com\\/{locale}\\/privacy\\/connect\\/\",\"securityUrl\":\"https:\\/\\/www.garmin.com\\/{locale}\\/legal\\/security\\/\",\"managedAccountRequestApprovalUrl\":\"https:\\/\\/connect.garmin.com\\/modern\\/user\\/managed-account\\/approval\",\"consentTypes\":[\"GLOBAL_PRIVACY_POLICY\"],\"additionalServiceUrls\":[],\"additionalLogoutUrls\":[],\"globalOptInShown\":false,\"generateExtraServiceTicket\":true,\"generateTwoExtraServiceTickets\":true,\"showConnectLegalAge\":false,\"locationPromptShown\":true,\"mfaRequired\":false,\"continueAsGuest\":false,\"createAccountShown\":false,\"signInShown\":false,\"rememberMeShown\":false,\"rememberMyDeviceShown\":false,\"allowChildAccess\":true,\"allowLegacySession\":false,\"dobCollectionEnabled\":true,\"thickClient\":true},\"registryVisualOptions\":{\"global\":{\"backgroundImages\":[],\"mobileBackgroundImages\":[],\"tabletBackgroundImages\":[],\"header\":{\"backgroundColor\":\"#DCDCDC\",\"textColor\":\"#000000\",\"bottomBorderColor\":\"#DCDCDC\",\"logoUrl\":\"https:\\/\\/connect.garmin.com\\/\",\"logoImageUrl\":\"https:\\/\\/connect.garmin.com\\/static\\/logo-sprite-@2x-87aa58de41a3347bb5fc1e8ad25c31b6.png\",\"logoWidth\":\"150px\",\"logoHeight\":\"28px\",\"logoBackgroundSize\":\"236px
-        271px\",\"logoBackgroundColor\":\"transparent\",\"logoBackgroundRepeat\":\"no-repeat\",\"logoBackgroundPosition\":\"0
-        -23.47619px\",\"logoAlignmentMobile\":\"center\",\"logoAlignmentDesktop\":\"left\"},\"displayFormHeaderGarminLogo\":false,\"backgroundColor\":\"transparent\",\"hidePageHeader\":true,\"hidePageFooter\":true,\"hidePrimaryHeader\":true},\"text\":{\"h1\":{\"fontStack\":\"system-ui,
-        -apple-system, sans-serif\",\"fontSize\":\"28px\",\"textColor\":\"#F4F4F4\",\"textTransform\":\"capitalize\"},\"h2\":{\"fontStack\":\"system-ui,
-        -apple-system, sans-serif\",\"fontSize\":\"20px\",\"textColor\":\"#F4F4F4\",\"textTransform\":\"capitalize\"},\"body\":{\"fontStack\":\"system-ui,
-        -apple-system, sans-serif\",\"fontSize\":\"0.9375rem\",\"textColor\":\"#F4F4F4\"},\"link\":{\"textColor\":\"inherit\"}},\"button\":{\"primary\":{\"hover\":{\"backgroundColor\":\"#1976D2\",\"borderColor\":\"#1976D2\",\"textColor\":\"#FFFFFF\"},\"active\":{\"backgroundColor\":\"#0A59B2\",\"borderColor\":\"#0A59B2\",\"textColor\":\"#FFFFFF\"},\"visited\":{\"backgroundColor\":\"#1976D2\",\"borderColor\":\"#1976D2\",\"textColor\":\"#FFFFFF\"},\"disabled\":{\"backgroundColor\":\"#0D3B69\",\"borderColor\":\"#0D3B69\",\"textColor\":\"#808080\"},\"default\":{\"padding\":\"16px
-        8px\",\"textTransform\":\"capitalize\",\"backgroundColor\":\"#1976D2\",\"borderColor\":\"#1976D2\",\"textColor\":\"#FFFFFF\",\"borderRadius\":\"4px\"}},\"secondary\":{\"default\":{\"padding\":\"16px
-        8px\",\"textTransform\":\"capitalize\",\"backgroundColor\":\"#3B3B3B\",\"textColor\":\"#F4F4F4\"}}},\"input\":{\"default\":{\"backgroundColor\":\"#252525\",\"borderColor\":\"#A6A6A6\",\"borderRadius\":\"4px\",\"borderWidth\":\"1PX\"}},\"styles\":{\"button\":{\"primary\":{\"default\":{\"fontSize\":\"1.0625rem\",\"height\":\"3.375rem\"}},\"secondary\":{\"default\":{\"borderRadius\":\"4px\",\"fontSize\":\"1.0625rem\",\"height\":\"3.375rem\"},\"hover\":{\"backgroundColor\":\"#3B3B3B\",\"borderColor\":\"#3B3B3B\",\"textColor\":\"#F4F4F4\",\"textDecoration\":\"none\"},\"active\":{\"backgroundColor\":\"#3B3B3B\",\"borderColor\":\"#3B3B3B\",\"textColor\":\"#F4F4F4\"},\"visited\":{\"backgroundColor\":\"#3B3B3B\",\"borderColor\":\"#3B3B3B\",\"textColor\":\"#F4F4F4\"},\"disabled\":{\"backgroundColor\":\"#1E1E1E\",\"borderColor\":\"#1E1E1E\",\"textColor\":\"#7A7A7A\"}}},\"input\":{\"active\":{\"backgroundColor\":\"#1D1D1D\",\"border\":{\"width\":\"2px\"}},\"fontSize\":\"1.0625rem\",\"padding\":\"12px
-        8px\",\"margin\":\"4px 0 0 0\",\"date\":{\"colorScheme\":\"dark\"},\"error\":{\"borderColor\":\"#F85454\"}},\"formError\":{\"textColor\":\"#F85454\",\"fontSize\":\"0.8125rem\"},\"formHelp\":{\"fontSize\":\"0.8125rem\",\"textColor\":\"#A6A6A6\"},\"pageCard\":{\"loaderColor\":\"#1976D2\"},\"portal-content\":{\"margin\":\"16px\"},\"validation-form\":{\"margin\":\"0\"}}}},\n
-        \               buyUrl: \"https:\\/\\/buy.garmin.com\",\n                locale:
-        \"en_US\",\n                isChinaLocation: false,\n                service:
-        \"https:\\/\\/mobile.integration.garmin.com\\/gcm\\/ios\",\n                securityUrl:
-        \"https:\\/\\/www.garmin.com\\/en-US\\/legal\\/security\\/\",\n                privacyUrl:
-        \"https:\\/\\/www.garmin.com\\/en-US\\/privacy\\/connect\\/\",\n                termsOfUseUrl:
-        \"https:\\/\\/www.garmin.com\\/en-US\\/legal\\/terms-of-use\\/\",\n                accountManagementUrl:
-        \"https:\\/\\/www.garmin.com\\/en-US\\/account\\/\",\n                dcRequirePrivacyConsent:
-        false,\n                privacyConsentEnabledCountries: [\"CN\",\"KR\"],\n
-        \               isCloudflareHeaderNeedsConsent: false,\n                consentTypeList:
-        [{\"consentLocale\":\"en-US\",\"consentType\":\"GLOBAL_PRIVACY_POLICY\",\"labelText\":\"I
-        have read and agree to the Garmin Privacy Policy\",\"consentText\":\"Garmin
-        Privacy Policy\",\"consentUrl\":\"https:\\/\\/www.garmin.com\\/en-US\\/privacy\\/global\\/\",\"version\":\"6\"}],\n
-        \               globalMarketingConsentText: \"Get product news and promotions
-        based on your preferences, devices and services.\",\n                recaptchaSiteKey:
-        \"6LcayeglAAAAAAyYEWMrIX1hfN__8Z6ifrS4OsyZ\",\n                recaptchaJsUrl:
-        \"https:\\/\\/www.google.com\\/recaptcha\\/enterprise.js?render=explicit\\u0026hl=\",\n
-        \               isCaptchaEnabled: false,\n                accountVerificationEnabled:
-        true,\n                phoneRegistrationRequired: false,\n                loginIdentifierEnabled:
-        false,\n                loginIdentifierPrefill: null,\n                allowedCountries:
-        [\"CN\"],\n                primaryType: \"email\",\n                dcName:
-        \"WW\",\n                relayState:null,\n                platform: \"mobile\"\n
-        \           }\n            const headElement = document.getElementsByTagName('head')[0];
-        // is a node\n            if (!GarminAppBootstrap.clientRegistries?.registryOption?.thickClient)
-        {\n                document.documentElement.style.setProperty('--sso-viewport-height',
-        `${window.visualViewport ? window.visualViewport.height : window.innerHeight}px`);\n
-        \           } else {\n                headElement.innerHTML += '<meta name=\"viewport\"
-        content=\"width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0,
-        user-scalable=no\">\\n';\n                document.documentElement.style.setProperty('-webkit-text-size-adjust',
-        `100%`);\n                document.documentElement.style.setProperty('font',
-        `var(--sso-root-font, -apple-system-body)`);\n\n            }\n\n            const
-        wcsHead = \"<meta name=\\\"viewport\\\" content=\\\"width=device-width,initial-scale=1\\\"><meta
-        http-equiv=\\\"X-UA-Compatible\\\" content=\\\"IE=edge\\\"><link rel=\\\"preconnect\\\"
-        href=\\\"https:\\/\\/static.garmin.com\\\"><link rel=\\\"preconnect\\\" href=\\\"https:\\/\\/share-assets.fe.garmin.com\\\"><link
-        rel=\\\"apple-touch-icon\\\" sizes=\\\"180x180\\\" href=\\\"https:\\/\\/share-assets.fe.garmin.com\\/apple-touch-icon.png\\\"><link
-        rel=\\\"icon\\\" type=\\\"image\\/png\\\" sizes=\\\"32x32\\\" href=\\\"https:\\/\\/share-assets.fe.garmin.com\\/favicon-32x32.png\\\"><link
-        rel=\\\"icon\\\" type=\\\"image\\/png\\\" sizes=\\\"16x16\\\" href=\\\"https:\\/\\/share-assets.fe.garmin.com\\/favicon-16x16.png\\\"><link
-        rel=\\\"manifest\\\" href=\\\"https:\\/\\/share-assets.fe.garmin.com\\/site.webmanifest\\\"><link
-        rel=\\\"mask-icon\\\" href=\\\"https:\\/\\/share-assets.fe.garmin.com\\/safari-pinned-tab.svg\\\"
-        color=\\\"#000000\\\"><link rel=\\\"shortcut icon\\\" href=\\\"https:\\/\\/share-assets.fe.garmin.com\\/favicon.ico\\\"><meta
-        name=\\\"msapplication-TileColor\\\" content=\\\"#ffffff\\\"><meta name=\\\"msapplication-config\\\"
-        content=\\\"https:\\/\\/share-assets.fe.garmin.com\\/browserconfig.xml\\\"><meta
-        name=\\\"theme-color\\\" content=\\\"#ffffff\\\"><link rel=\\\"stylesheet\\\"
-        type=\\\"text\\/css\\\" href=\\\"https:\\/\\/fonts.garmin.com\\/fonts\\/roboto-standard\\/roboto-standard.css\\\"
-        media=\\\"screen\\\"><link rel=\\\"stylesheet\\\" type=\\\"text\\/css\\\"
-        href=\\\"https:\\/\\/fonts.garmin.com\\/fonts\\/oswald\\/oswald.css\\\" media=\\\"screen\\\"><link
-        rel=\\\"preload\\\" as=\\\"font\\\" type=\\\"font\\/otf\\\" crossorigin href=\\\"https:\\/\\/fonts.garmin.com\\/fonts\\/superscripts-oswald\\/Superscript-Oswald-Regular.otf\\\"><link
-        rel=\\\"preload\\\" as=\\\"font\\\" type=\\\"font\\/otf\\\" crossorigin href=\\\"https:\\/\\/fonts.garmin.com\\/fonts\\/superscripts-oswald\\/Superscript-Oswald-InsideSup-Regular.otf\\\"><link
-        rel=\\\"stylesheet\\\" type=\\\"text\\/css\\\" href=\\\"https:\\/\\/fonts.garmin.com\\/fonts\\/superscripts-oswald\\/superscripts-insidesup-oswald.css\\\"
-        media=\\\"screen\\\"><link rel=\\\"stylesheet\\\" type=\\\"text\\/css\\\"
-        href=\\\"https:\\/\\/fonts.garmin.com\\/fonts\\/superscripts-oswald\\/superscripts-oswald.css\\\"
-        media=\\\"screen\\\"><link rel=\\\"preload\\\" as=\\\"font\\\" type=\\\"font\\/otf\\\"
-        crossorigin href=\\\"https:\\/\\/fonts.garmin.com\\/fonts\\/superscripts-roboto\\/Superscript-Roboto-InsideSup-Regular.otf\\\"><link
-        rel=\\\"preload\\\" as=\\\"font\\\" type=\\\"font\\/otf\\\" crossorigin href=\\\"https:\\/\\/fonts.garmin.com\\/fonts\\/superscripts-roboto\\/Superscript-Roboto-Regular.otf\\\"><link
-        rel=\\\"stylesheet\\\" type=\\\"text\\/css\\\" href=\\\"https:\\/\\/fonts.garmin.com\\/fonts\\/superscripts-roboto\\/superscripts-insidesup-roboto.css\\\"
-        media=\\\"screen\\\"><link rel=\\\"stylesheet\\\" type=\\\"text\\/css\\\"
-        href=\\\"https:\\/\\/fonts.garmin.com\\/fonts\\/superscripts-roboto\\/superscripts-roboto.css\\\"
-        media=\\\"screen\\\"><script id=\\\"utag\\\">(()=>{let a=e=>{\\\"complete\\\"===e.target.readyState\\u0026\\u0026t()},n=(r=200,o=1e3)=>new
-        Promise((e,t)=>{let a=Date.now(),n=()=>{1===window?.utag?.handler?.iflag?e():Date.now()-a>=o?t(new
-        Error(\\\"Timeout: Unable to validate that utag is ready\\\")):setTimeout(n,r)};n()}),t=()=>{let
-        e=document.getElementById(\\\"utag\\\"),t=document.createElement(\\\"script\\\");t.src=window?.WCS_ANALYTICS_OVERRIDES?.usePrimaryUtag?\\\"https:\\/\\/tags.tiqcdn.com\\/utag\\/garmin\\/primary\\/prod\\/utag.js\\\":\\\"https:\\/\\/tags.tiqcdn.com\\/utag\\/garmin\\/main\\/prod\\/utag.js\\\",t.type=\\\"text\\/javascript\\\",t.async=!0,t.onload=()=>{n().then(()=>{window.dispatchEvent(new
-        Event(\\\"utag-ready\\\"))}).catch(e=>{console.warn(e)})},setTimeout(()=>{e.parentNode.insertBefore(t,e),document.removeEventListener(\\\"readystatechange\\\",a)},500)};\\\"complete\\\"!==document.readyState?document.addEventListener(\\\"readystatechange\\\",a,{passive:!0},!0):t()})()<\\/script><link
-        rel=\\\"preconnect\\\" href=\\\"https:\\/\\/consent.trustarc.com\\/\\\" crossorigin>\";\n\n
-        \           if (wcsHead) {\n                headElement.innerHTML += wcsHead;\n
-        \           } else {\n                headElement.innerHTML +='<meta name=\"viewport\"
-        content=\"width=device-width,initial-scale=1\">\\n' +\n                    '<meta
-        name=\"theme-color\" content=\"#ffffff\">\\n' +\n                    '<meta
-        http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n' +\n                    '<link
-        rel=\"preconnect\" href=\"https://static.garmin.com\">\\n' +\n                    '<link
-        nonce=\"180f8f7b-0113-41ed-95e4-9a7739336e97\" rel=\"preload\" as=\"font\"
-        type=\"font/otf\" crossorigin href=\"https://fonts.garmin.com/static.garmin.com/fonts/superscripts-oswald/Superscript-Oswald-Regular.otf\">\\n'
-        +\n                    '<link nonce=\"180f8f7b-0113-41ed-95e4-9a7739336e97\"
-        rel=\"preload\" as=\"font\" type=\"font/otf\" crossorigin href=\"https://fonts.garmin.com/static.garmin.com/fonts/superscripts-oswald/Superscript-Oswald-InsideSup-Regular.otf\">\\n'
-        +\n                    '<link rel=\"stylesheet\" type=\"text/css\" href=\"https://fonts.garmin.com/static.garmin.com/fonts/superscripts-oswald/superscripts-insidesup-oswald.css\"
-        media=\"screen\">\\n' +\n                    '<link rel=\"stylesheet\" type=\"text/css\"
-        href=\"https://fonts.garmin.com/static.garmin.com/fonts/superscripts-oswald/superscripts-oswald.css\"
-        media=\"screen\">\\n' +\n                    '<link rel=\"stylesheet\" type=\"text/css\"
-        href=\"https://fonts.garmin.com/fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap\"
-        media=\"screen\">\\n' +\n                    '<link rel=\"stylesheet\" type=\"text/css\"
-        href=\"https://fonts.garmin.com/fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap\"
-        media=\"screen\">\\n' +\n                    '<link rel=\"stylesheet\" type=\"text/css\"
-        href=\"https://fonts.garmin.com/static.garmin.com/fonts/oswald/oswald.css\"
-        media=\"screen\">\\n' +\n                    '<link rel=\"apple-touch-icon\"
-        sizes=\"180x180\" href=\"https://static.garmin.com/favicons/apple-touch-icon.png\">\\n'
-        +\n                    '<link rel=\"icon\" type=\"image/png\" sizes=\"32x32\"
-        href=\"https://static.garmin.com/favicons/favicon-32x32.png\">\\n' +\n                    '<link
-        rel=\"icon\" type=\"image/png\" sizes=\"16x16\" href=\"https://static.garmin.com/favicons/favicon-16x16.png\">\\n'
-        +\n                    '<link rel=\"manifest\" href=\"https://static.garmin.com/favicons/site.webmanifest\">\\n'
-        +\n                    '<link rel=\"mask-icon\" href=\"https://static.garmin.com/favicons/safari-pinned-tab.svg\"
-        color=\"#5a757c\">\\n' +\n                    '<meta name=\"msapplication-TileColor\"
-        content=\"#2d89ef\">\\n' +\n                    '<link rel=\"preconnect\"
-        href=\"https://consent.trustarc.com/\" crossorigin>';\n            }\n        </script>\n
-        \   </head>\n    <body>\n        <div id=\"app\"></div>\n    <script>(function(){function
-        c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML=\"window.__CF$cv$params={r:'9de1f40eab56d90f',t:'MTc3MzgxMjk1OS4wMDAwMDA='};var
-        a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);\";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var
-        a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else
-        if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var
-        e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>\n</html>\n"
+      string: "<!DOCTYPE html>\n<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"\
+        en\">\n    <head>\n        <title>Garmin SSO Portal</title>\n        <meta\
+        \ charset=\"UTF-8\">\n        <meta name=\"description\" content=\"Garmin\
+        \ SSO Portal\">\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"\
+        https://fonts.garmin.com/static.garmin.com/fonts/oswald/oswald.css\">\n  \
+        \      <script type=\"module\" crossorigin src=\"/mobile/assets/index-9c0317d11cf8cf70cbae211cab04890d.js\"\
+        ></script><!-- Url format to ensure cache busting using thymeleaf-->\n   \
+        \     <link rel=\"stylesheet\" href=\"/mobile/assets/index-93cdaf716a3b89c6dddacff0ab07ac76.css\"\
+        ><!-- Url format to ensure cache busting using thymeleaf-->\n        <script>\n\
+        \n            var GarminAppBootstrap = {\n                messages: {\"dobEntryConfirmAgeHeading\"\
+        :\"Account Setup\",\"casLoginViewPageTitle\":\"GARMIN Authentication Application\"\
+        ,\"mfaPhoneNumberEntryHeadingThree\":\"Phone number\",\"mobileCasLoginViewPageTitle\"\
+        :\"Login\",\"codeEntryHavingTrouble\":\"Get help\",\"dobEntryConfirmAgeTextUsages\"\
+        :\"These details help us:\\n\\n- Calculate performance stats like VO2 max\\\
+        n- Determine health stats like fitness age\\n- Enable certain app-specific\
+        \ features\\n- Comply with global regulations\",\"mfaSelectionContentPermMfa\"\
+        :\"We'll send a security code to your email.\",\"casLoginViewPageHeaderChina\"\
+        :\"Garmin Account Sign In - Chinese Mainland\",\"loginEnterMfaCodePageTitle\"\
+        :\"Enter MFA code for login\",\"codeEntryVerifyWithDifferentMethod\":\"Choose\
+        \ a different way to verify\",\"dobEntryDateOfBirthTitle\":\"Account Setup\"\
+        ,\"generalHeaderPleaseCheck\":\"Please check the following\",\"generalLoginAccountDisabled\"\
+        :\"Your account has been disabled.\",\"generalLoginPermanentMFARequiredResetPassword\"\
+        :\"Password has been updated. Two-step verification is required to access\
+        \ your account. Please visit {0}\\/account to log in and complete this setup.\"\
+        ,\"generalTextContactUs\":\"Contact Us\",\"generalButtonNo\":\"No\",\"dobEntryDateOfBirthDayLabel\"\
+        :\"Day\",\"generalLoginAccountProblem\":\"There is a problem with your account.\
+        \ Please contact {0}Product Support{1} for help.\",\"generalValidationDisplayNameTooShort\"\
+        :\"Display Name must be at least 4 characters.\",\"casLoginViewRenewPassword\"\
+        :\"We\\u2019ve updated our password requirements to help protect our customers\\\
+        u2019 accounts. Looks like your password does not meet our new guidelines.\
+        \ Please update your password now.\",\"dobEntryCountryRequiredError\":\"Please\
+        \ enter your country of residence.\",\"legalConfirmAge\":\"I am at least {0}\
+        \ years old.\",\"generalValidationMaxLogins\":\"Maximum number of logins exceeded.\
+        \ Please try again later.\",\"generalTextDisplayNameHint\":\"Your public activities\
+        \ show this name.\",\"dobEntryDateOfBirthHint\":\"Date of birth helps us comply\
+        \ with global regulations and calculate certain metrics. Once set, it cannot\
+        \ be changed.\",\"generalValidationEmailorUsernameReqd\":\"Email is required.\"\
+        ,\"generalHeaderSetEmailAddress\":\"Enter Email Address\",\"generalValidationNameInvalid\"\
+        :\"Please use letters only for your name.\",\"fourOhFourHeader\":\"Sorry,\
+        \ we can\\u2019t find that page\",\"mobileVerifyAccountSetPhonePageTitle\"\
+        :\"Update Phone Number\",\"demotedAccountEntryWaitingParentSetupText\":\"\
+        This email will allow your parent to become an administrator for your Garmin\
+        \ account. Once this process is complete, you can sign in and begin using\
+        \ your account. Ask them to check their email to get started.\",\"generalLoginSocialAccountAlreadyLinked\"\
+        :\"Your Garmin account is already connected to a {0} account. Would you like\
+        \ to disconnect from that account and connect to this new {0} account?\",\"\
+        setupMfaOptInContent\":\"By accepting this request, you agree to receive text\
+        \ messages at the phone number provided above. You can reply to these text\
+        \ messages with HELP for Help or STOP to stop receiving messages at any time.\
+        \ Message and data rates may apply. Message frequency may vary. View our {0}Privacy\
+        \ Policy{1} and {2}Terms of Use{3}.\",\"verifyAccountSetPhonePageTitle\":\"\
+        Update Phone Number\",\"mfaSelectionPageTitle\":\"Select the MFA method\"\
+        ,\"mfaPhoneNumberEntryDisplayTitle\":\"Phone number\",\"generalTextForgot\"\
+        :\"(Forgot?)\",\"generalLoginThisFieldIsRequired\":\"This field is required\"\
+        ,\"setupMfaRequiredContentTitle\":\"Two-step verification required\",\"generalTextDisplayName\"\
+        :\"Display Name\",\"generalLoginAlreadyHaveAnAccount\":\"Already have an account?\"\
+        ,\"legalAcceptPrivacyPolicy\":\"I have read Garmin\\u2019s Privacy Policy.\"\
+        ,\"generalLoginMobileAccountProblem\":\"There is a problem with your account.\
+        \ Please contact Product Support for help.\",\"legalTermsOfUse\":\"Terms of\
+        \ Use\",\"childAccountEntryWaitingParentSetupText\":\"This email will help\
+        \ your parent or guardian create your Garmin account. Ask them to check their\
+        \ email to get started.\",\"dobEntryDateOfBirthMonthSeptember\":\"September\"\
+        ,\"casLoginViewChangePasswordDesc\":\"To ensure the security of your account,\
+        \ please choose a new password.\",\"dobEntryConfirmAgeChangeWarning\":\"Once\
+        \ set, this cannot be changed later.\",\"generalLoginProblem\":\"We\\u2019re\
+        \ unable to access your account. Please try again later, or contact {0}Product\
+        \ Support{1}.\",\"legalTermsPageTitle\":\"Garmin Terms of Use\",\"generalLoginMobileProblem\"\
+        :\"We\\u2019re unable to access your account. Please try again later, or contact\
+        \ Product Support.\",\"setupMfaEmailRequiredContent\":\"To continue, you\\\
+        u2019ll need to set up two-step verification for your account. \\n\\nTwo-step\
+        \ verification adds an extra layer of protection to your account. Whenever\
+        \ you sign in to Garmin.com to make a purchase or use one of our apps, you\\\
+        u2019ll be prompted to enter your password, followed by a security code that\
+        \ we will send you in an email. \\n\\nWithout setting up two-step verification,\
+        \ you won\\u2019t be able to sign in to this application.\",\"generalValidationVerificationCodeWrongLength\"\
+        :\"Verification code must be exactly 8 characters long.\",\"mfaPhoneNumberEntryTextOne\"\
+        :\"Enter your phone number and we'll send your security code.\",\"mfaSelectionDifferentPhone\"\
+        :\"Use a different number\",\"generalValidationUsernameInvalidChars\":\"Please\
+        \ use only letters and numbers for your username.\",\"casLoginViewGigyaNotSupported\"\
+        :\"Note: For security, we no longer support social network sign-in options\
+        \ for Android 4.3 or older.\",\"generalValidationEmailTooLong\":\"Email Address\
+        \ must be 100 characters or fewer.\",\"generalValidationDisplayNameReqd\"\
+        :\"Display Name is required.\",\"generalValidationPasswordsBothReqd\":\"Please\
+        \ specify your password in both fields.\",\"dobEntryDateOfBirthMonthMarch\"\
+        :\"March\",\"generalLoginSocialSina\":\"Sign in with Sina\",\"createOrLinkDoHaveGarminAccount\"\
+        :\"I do have a Garmin Account.\",\"codeEntryCodeSent\":\"A new code has been\
+        \ sent. You can request another code in 30 seconds.\",\"generalLoginYourSessionHasExpired\"\
+        :\"Your session has expired.\",\"codeEntryHavingTroubleLink\":\"https:\\/\\\
+        /support.garmin.com\\/{0}\\/?faq=uGHS8ZqOIhA0usBzBMdJu7\",\"setupMfaConfirmationPageTitle\"\
+        :\"MFA confirmation\",\"generalTextRememberThisBrowser\":\"Remember this browser\"\
+        ,\"generalTextTempPasswordSentWithEmailOrPhone\":\"If the email address or\
+        \ phone number you entered matches one we have on file, we will send you a\
+        \ temporary password to access your account.\",\"childAccountEntryNameLabel\"\
+        :\"Your name\",\"mobileCreateAccEnterPhoneNumber\":\"Enter Phone Number\"\
+        ,\"generalTextTempPasswordSent\":\"If the email address you entered matches\
+        \ one we have on file, we will send you a temporary password to access your\
+        \ account.\",\"createAccUpdatePhoneNumber\":\"Update Phone number\",\"createAccSecurityCodeMaxLimit\"\
+        :\"We are currently experiencing technical difficulties.  Please try again\
+        \ in 24 hours.\",\"generalLoginMobileAccountDisabled\":\"Your account has\
+        \ been disabled.\",\"generalValidationUsernameTooLong\":\"Username must be\
+        \ 100 characters or fewer.\",\"createOrLinkNoGarminAccount\":\"I don't have\
+        \ a Garmin Account.\",\"generalButtonDecline\":\"Decline\",\"dobEntryIneligibleAgeTitle\"\
+        :\"Unable to Continue\",\"casLoginViewNotYou\":\"(Not You?)\",\"createOrLinkPageTitle\"\
+        :\"Create Or Link Social Account\",\"generalTextLocationPromptCountryOrRegion\"\
+        :\"Country\\/Region\",\"generalLoginMobileAccountLocked\":\"Your account has\
+        \ been locked. Please reset your password.\",\"INVALIDTICKET\":\"ticket ''{0}''\
+        \ not recognized\",\"generalValidationLocationReqd\":\"Location is required.\"\
+        ,\"mfaPhoneNumberEntryPrivacyStatement\":\"{0}Privacy Policy{1}\",\"generalValidationDisplayNameTooLong\"\
+        :\"Display Name must be 100 characters or fewer.\",\"generalTextUsername\"\
+        :\"Username\",\"noCustomerFoundError\":\"No Customer found\",\"dobEntryInfoInstructions\"\
+        :\"We need to know your age and country of residence. These details help us:\"\
+        ,\"mobileVerifyAccountPageTitle\":\"Verify Account\",\"dobEntryDateOfBirthMonthJanuary\"\
+        :\"January\",\"generalButtonCreateAccount\":\"Create Account\",\"mfaPhoneNumberEntryInvalidNumberError\"\
+        :\"Please enter a valid phone number\",\"casLoginViewCreateAccount\":\"Create\
+        \ One\",\"createAccConnectEmailSignupLabel\":\"Sign Up for Email:\",\"dobEntryDateOfBirthMonthDecember\"\
+        :\"December\",\"INVALIDREQUESTPROXY\":\"'pgt' and 'targetService' parameters\
+        \ are both required\",\"generalLoginSignInWithDiffAccount\":\"Sign in with\
+        \ a Different Account\",\"applicationSecurityPolicyLoginDeniedTitle\":\"Unable\
+        \ to Sign In\",\"mfaPhoneNumberEntryOptInTextOne\":\"Enter your phone number\
+        \ to enroll in two-step verification, and we'll send your security code.\"\
+        ,\"mfaPhoneNumberEntryCountryUnitedKingdom\":\"United Kingdom (+2)\",\"dobEntryDateOfBirthInstructions\"\
+        :\"To get started, we need to know your age and country of residence. These\
+        \ details help us comply with global regulations and calculate certain metrics.\
+        \ Once set, they cannot be changed.\",\"generalValidationPasswordTooLong\"\
+        :\"Password must be 50 characters or less.\",\"createAccConnectEmailSignupText\"\
+        :\"Send me email about promotions and new products.\",\"generalTextPhoneNumberHint\"\
+        :\"Enter your phone number.\",\"createAccUsernameExists\":\"An account with\
+        \ this username already exists. Please {0}sign in{1} to that account, or,\
+        \ if you want to create a new account, enter a different username.\",\"mfaSelectionAddPhone\"\
+        :\"Add a phone number\",\"mobileCreateaccOrCreateUsing\":\"Or create your\
+        \ account using\",\"mfaSelectionAddEmail\":\"Add an email address\",\"casLoginViewReauth\"\
+        :\"Security is important. Please sign in again to confirm your identity.\"\
+        ,\"generalTextHide\":\"Hide\",\"createOrLinkCreateAccountLink\":\"This is\
+        \ my first time signing in to Garmin.\",\"generalButtonNext\":\"Next\",\"\
+        dobEntryDateOfBirthInvalid\":\"Invalid date\",\"mfaEmail\":\"Email\",\"generalButtonRecoverPassword\"\
+        :\"Recover Password\",\"generalButtonBack\":\"Back\",\"mfaPhoneNumberEntryInvalidInputError\"\
+        :\"Something went wrong. Please try again.\",\"createSocAccPageTitle\":\"\
+        Create Social Account\",\"generalLoginResetPasswordDesc\":\"Enter the email\
+        \ address associated with your account.\",\"dobEntryDateOfBirthMonthLabel\"\
+        :\"Month\",\"dobEntryDateOfBirthMonthOctober\":\"October\",\"generalHeaderSetEmailAddressOrPhoneNumber\"\
+        :\"Enter Email Address or Phone Number\",\"codeEntrySentCode\":\"Code sent\
+        \ to \",\"generalTextFullName\":\"Full Name\",\"screenLogoutSecurity\":\"\
+        For security reasons, exit your web browser.\",\"generalTextEmailAddressHint\"\
+        :\"You'll use your email address to sign in.\",\"INVALIDSERVICE\":\"ticket\
+        \ ''{0}'' does not match supplied service.  The original service was ''{1}''\
+        \ and the supplied service was ''{2}''.\",\"generalTextMobilePhoneNumber\"\
+        :\"Phone\",\"screenLogoutRedirect\":\"The service from which you arrived has\
+        \ supplied a <a href=\\\"{0}\\\">link you may follow by clicking here<\\/a>.\"\
+        ,\"legalAcceptTerms\":\"I have read and agree to the Terms of Use.\",\"generalTextRetypePassword\"\
+        :\"Confirm password\",\"generalTextEmailOrUsername\":\"Email address\",\"\
+        generalButtonConfirm\":\"Confirm\",\"mobileVerifyVerificationCodeMessage\"\
+        :\"A verification code has been sent to your phone number:\",\"createSocAccCreateSocAccDesc\"\
+        :\"Before your first sign in, we need a little information. What you enter\
+        \ here will not affect your {0} account. If you already have a Garmin account,\
+        \ please {1}sign in{2}.  When you are finished, please remember to sign out\
+        \ of both your Garmin account and your social network account if you use a\
+        \ shared computer.\",\"createAccDisplayNameExists\":\"An account with this\
+        \ display name already exists. If you want to create a new account, enter\
+        \ a different display name.\",\"generalTextCapsLockOn\":\"Caps lock is on.\"\
+        ,\"generalLoginResetPasswordAdditional\":\"For additional help, contact {0}Product\
+        \ Support{1}.\",\"generalHeaderSignIn\":\"Sign In\",\"generalLoginContinueAsGuest\"\
+        :\"Continue as Guest\",\"dobEntryDateOfBirthValidationReqd\":\"Date of birth\
+        \ is required.\",\"generalValidationPasswordTooShort\":\"Password must be\
+        \ at least 8 characters.\",\"dobEntryDateOfBirthMonthMay\":\"May\",\"generalButtonAcceptContinue\"\
+        :\"Accept \\u0026 Continue\",\"embedUsage\":\"Usage: {0}?{1}=<{1}>\\u0026{2}=<{2}>...\"\
+        ,\"generalTextPasswordHint\":\"Minimum password length is 8 characters. Please\
+        \ use at least 1 uppercase letter, 1 lowercase letter and 1 number.\",\"generalValidationNameReqd\"\
+        :\"Name is required.\",\"casLoginViewRetypeEmailAddress\":\"Confirm email\
+        \ address\",\"mfaPhoneNumberEntryPrivacyPolicy\":\"Privacy Policy\",\"generalButtonSignIn\"\
+        :\"Sign In\",\"dobEntryDateOfBirthLabel\":\"Date of birth\",\"createAccVerificationCodeMessage\"\
+        :\"A verification code has been sent to your phone number: {0}. Use the code\
+        \ to login.\",\"generalTextLocationPromptHint\":\"Country or region of residence\
+        \ helps us comply with global regulations and calculate certain metrics. Once\
+        \ set, it cannot be changed.\",\"generalHeaderSetDisplayName\":\"Choose Display\
+        \ Name\",\"casLoginViewWelcomeBack\":\"Welcome back, {0}.\",\"generalTextPassword\"\
+        :\"Password\",\"generalButtonGoBack\":\"Go back\",\"createAccOrCreateWithSocial\"\
+        :\"Or, create your account using:\",\"loginChooseMfaMethodPageTitle\":\"Choose\
+        \ the MFA method\",\"generalTextGlobalLogout\":\"Sign me out of all Garmin\
+        \ sites and apps.\",\"generalTextLocationSelectOne\":\"Select one...\",\"\
+        generalTextOrCreateAccount\":\"Or create your account using\",\"mfaPhoneNumberEntryPageTitle\"\
+        :\"Enter Your Phone Number\",\"footerTermsOfUse\":\"Terms of Use\",\"generalLoginForgotUsernameTooltip\"\
+        :\"Use your email address to sign in if you forgot your username. If you did\
+        \ not save an email address in your account, or do not remember it, please\
+        \ contact {0}Product Support{1}.\",\"dobEntryDateOfBirthYearLabel\":\"Year\"\
+        ,\"footerCopyRight\":\"Copyright \\u00A9 1996-{0} Garmin Ltd. or its subsidiaries\"\
+        ,\"createAccMobileUsernameExists\":\"An account with this username already\
+        \ exists. Please sign in to that account, or, if you want to create a new\
+        \ account, enter a different username.\",\"screenLogoutSuccess\":\"You have\
+        \ successfully logged out of the Central Authentication Service.\",\"generalButtonSignOut\"\
+        :\"Sign out\",\"footerPrivacy\":\"Privacy Policy\",\"casLoginViewSignInWithDiffAccount\"\
+        :\"Sign in with a Different Account\",\"generalTextLocationPrompt\":\"Country\
+        \ of Residence\",\"generalLoginSocialQq\":\"Sign in with QQ\",\"dobEntryDateOfBirthMonthJune\"\
+        :\"June\",\"generalHeaderChangePassword\":\"Change Password\",\"mobileCreateAccVerifyYourAccount\"\
+        :\"Verify Your Account\",\"mfaButtonContinue\":\"Continue\",\"generalLoginInvalidUsernameOrPassword\"\
+        :\"Invalid sign in. (Passwords are case sensitive.)\",\"codeEntrySentCodeText\"\
+        :\"Text message was sent to\",\"casLoginViewNewPassword\":\"New Password\"\
+        ,\"generalButtonContinue\":\"Continue\",\"generalAccountDisplayNameHint\"\
+        :\"(Your public activities show this name.)\",\"generalLoginSocialFacebook\"\
+        :\"Sign in with Facebook\",\"dobEntryDateOfBirthMonthAugust\":\"August\",\"\
+        demotedAccountEntryText\":\"Since you are under the age of {0}, your parent\
+        \ or guardian must become an administrator for your Garmin account. Enter\
+        \ an email address below, and we will send them an email to enable your account.\"\
+        ,\"generalAccountPasswordRules\":\"(Password must be at least 8 characters:\
+        \ 1 uppercase, 1 lowercase and 1 number.)\",\"setupMfaRequiredPageTitle\"\
+        :\"MFA required\",\"mfaTextMessage\":\"Text message\",\"setupMfaConfirmationContentTitle\"\
+        :\"Two-step verification is enabled\",\"forgotPswPageTitle\":\"Forgot Password\"\
+        ,\"generalLoginSocialRenren\":\"Sign in with Renren\",\"createOrLinkEnterEmailDesc\"\
+        :\"Enter your Garmin account's email address to link the accounts. If you\
+        \ do not have a Garmin account, enter your email address to create one now:\"\
+        ,\"codeEntrySentCodeEmail\":\"Email was sent to\",\"generalTextNameHint\"\
+        :\"Enter your name.\",\"createSocAccContinue\":\"Continue\",\"legalValidationAcceptTermsError\"\
+        :\"Please accept the Garmin Terms of Use and Privacy Statement.\",\"generalValidationVerificationCodeNewCode\"\
+        :\"A new verification code has been sent.\",\"generalLoginResetPasswordDescWithEmailOrPhone\"\
+        :\"Enter the email address or phone number associated with your account.\"\
+        ,\"legalImpliedAcceptTerms\":\"By clicking the button below, you acknowledge\
+        \ that you have read and agree to the Garmin {0}Terms of Use{1} and {2}Privacy\
+        \ Statement{3}.\",\"setupEnterMfaCodePageTitle\":\"Enter the MFA code for\
+        \ setup\",\"generalTextRetypePasswordHint\":\"Enter your desired password\
+        \ again.\",\"mfaPhoneNumberEntryHeadingTwo\":\"Area code\",\"dobEntryConfirmAgeText\"\
+        :\"To continue creating your account, please confirm that your date of birth\
+        \ is {0} and that you are {1} years old.\",\"dobEntryInfoInstructionsUsages\"\
+        :\"- Calculate performance stats like VO2 max\\n- Determine health stats like\
+        \ fitness age\\n- Enable certain app-specific features\\n- Comply with global\
+        \ regulations\",\"createSocAccEmailExists\":\"It looks like you already have\
+        \ an account. You may {0}sign in{1} to connect your {2} account to your Garmin\
+        \ account. Or, start a separate Garmin account by entering a different email\
+        \ address.\",\"codeEntryCodeEntryLabel\":\"Security code\",\"generalTextVerificationCode\"\
+        :\"Verification Code\",\"legalPrivacyPageTitle\":\"Products and Application\
+        \ Privacy Statement\",\"generalValidationEmailAlreadyTaken\":\"This email\
+        \ address is already in use.  Please {0}sign in{1} with this email address\
+        \ or enter another.\",\"generalTextRetypeEmailHint\":\"Enter your desired\
+        \ email again.\",\"generalValidationPhoneNumberReqd\":\"Phone Number is required\
+        \ to send verification code to your phone.\",\"casLoginViewOrSignInWith\"\
+        :\"Or Sign In with:\",\"generalLoginAccountLocked\":\"Your account has been\
+        \ locked. Please use the \\\"Forgot Password?\\\" link to request a temporary\
+        \ password.\",\"footerSecurity\":\"Security\",\"generateMfacodeError\":\"\
+        Unable to generate MFA code\",\"generalHeaderSignInCN\":\"Sign In - Chinese\
+        \ Mainland\",\"casLoginViewNewEmailAddress\":\"Email Address\",\"createAccPleaseAuthenticate\"\
+        :\"Please authenticate\",\"mfaPhoneNumberEntryHeadingOne\":\"Country\\/region\"\
+        ,\"mobileForgotPswPageTitle\":\"Forgot Password\",\"generalTextPleaseCheck\"\
+        :\"Please check the following\",\"dobEntryDateOfBirthMonthNovember\":\"November\"\
+        ,\"applicationSecurityPolicyLoginDeniedChildAccountText\":\"This application\
+        \ is not available for customers with an account that is managed by a parent\
+        \ or guardian.\",\"generalValidationPhoneNumberInvalid\":\"Phone Number is\
+        \ invalid.\",\"dobEntryDateOfBirthMonthFebruary\":\"February\",\"childAccountEntryManagedAccountCreateFailed\"\
+        :\"We encountered an error while sending the email to your parent or guardian.\
+        \ Please try again.\",\"generalValidationPasswordInvalidChars\":\"Minimum\
+        \ password length is 8 characters. Please use at least 1 uppercase letter,\
+        \ 1 lowercase letter and 1 number. Forward slashes, spaces and double quotes\
+        \ are not allowed.\",\"generalValidationPhoneNumberWrongLength\":\"Phone number\
+        \ must be exactly 11 digits long.\",\"generalValidationPasswordReqd\":\"Password\
+        \ is required.\",\"generalTextEmailAddress\":\"Email Address\",\"casLoginViewVerificationCodeMessage\"\
+        :\"Your account with phone number {0} has not been verified yet. Please request\
+        \ a new verification code by clicking the link below.\",\"createAccEmailExists\"\
+        :\"An account with this email address already exists. Please {0}sign in{1}\
+        \ to that account, or, if you want to create a new account, enter a different\
+        \ email address.\",\"legalChinaAcceptTerms\":\"I Accept the Garmin Terms of\
+        \ Use and Privacy Statement.\",\"INVALIDTICKETSPEC\":\"Ticket failed validation\
+        \ specification. Possible errors could include attempting to validate a Proxy\
+        \ Ticket via a Service Ticket validator, or not complying with the renew true\
+        \ request.\",\"codeEntryHeading\":\"Enter security code\",\"generalValidationDisplayNameMobileAlreadyTaken\"\
+        :\"This display name already exists.\",\"generalButtonYes\":\"Yes\",\"generalTextShow\"\
+        :\"Show\",\"linkAccErroLinkingSocialAcc\":\"Error Linking Social Account.\"\
+        ,\"mobileVerifyEnterCode\":\"Enter Verification Code\",\"generalTextCreateAccount\"\
+        :\"Create Account\",\"mfaSelectionHeading\":\"How do you want to receive your\
+        \ code?\",\"errorAuthenticationEmailAddressInvalid\":\"It looks like the email\
+        \ address we have on file for you is invalid. Please update it.\",\"casLoginViewRetypeNewPassword\"\
+        :\"Retype New Password\",\"linkAccLinkAccDesc\":\"Sign in to connect your\
+        \ social network account to your Garmin account. You will only need to do\
+        \ this once. If you do not have an account you can {0}continue without signing\
+        \ in{1}.  When you are finished, please remember to sign out of both your\
+        \ Garmin account and your social network account if you use a shared computer.\"\
+        ,\"casEmbedSuccessPageTitle\":\"Success\",\"errorAuthenticationCredentialsUnsupported\"\
+        :\"The credentials you provided are not supported Garmin's authentication\
+        \ system.\",\"generalLoginResetPasswordUnexpectedError\":\"Something went\
+        \ wrong. Please try again.\",\"createSocAccBindingExists\":\"The Garmin Account\
+        \ has been bound to a third-party account of the same type. Please change\
+        \ to another Garmin Account for binding.\",\"fourOhFourSubHeader\":\"Let us\
+        \ help you find your way\",\"generalValidationVerificationCodeDontMatch\"\
+        :\"Verification code doesn't match.\",\"createOrLinkWhichBestDescribesYou\"\
+        :\"Now we will connect your social network account to Garmin. Which best describes\
+        \ you?\",\"generalLoginPermanentMFARequired\":\"Two-step verification is required\
+        \ to access your account. Please visit {0} to log in and complete this setup.\"\
+        ,\"createAccSendNewCode\":\"{0}Send a new code{1}\",\"codeEntryExpired\":\"\
+        The code you entered is expired. Please request a new code.\",\"createAccPhoneNumberExist\"\
+        :\"An account with this phone number already exists. Please {0}sign in{1}\
+        \ to that account or, if you want to create a new account, enter a different\
+        \ phone number.\",\"generalTextMobilePhoneNumberChange\":\"{0}Change Phone\
+        \ Number{1}\",\"legalPrivacyStatement\":\"We take your privacy seriously.\
+        \ Our {0}Privacy Policy{1} is available for your review.\",\"setupMfaConfirmationContent\"\
+        :\"Next time you sign in, you\\u2019ll be prompted to enter your password,\
+        \ followed by a security code that we will send you in an email or text message.\"\
+        ,\"generalValidationEmailInvalid\":\"Email address is invalid.\",\"codeEntryInvalid\"\
+        :\"Invalid code. Please enter a valid code.\",\"childAccountEntryText\":\"\
+        Since you are under the age of {0}, your parent or guardian must create your\
+        \ Garmin account. Enter an email address below and we will send them an email\
+        \ to help them get started.\",\"mobileCreateAccChangePhoneNumber\":\"Change\
+        \ Phone number\",\"dobEntryIneligibleAgeText\":\"You do not meet the age requirements\
+        \ for a Garmin account.\",\"casLoginViewDontHaveAccount\":\"Don't have an\
+        \ account?\",\"generalButtonClose\":\"Close\",\"childAccountEntrySelfManagedRequestNotAllowed\"\
+        :\"You cannot send the request to your own email address. Please enter an\
+        \ email address for your parent or guardian.\",\"generalValidationDisplayNameAlreadyTaken\"\
+        :\"Sorry, this display name is already taken. Please choose another.\",\"\
+        generalButtonUpdate\":\"Update\",\"codeEntryRequestNewCode\":\"Request a new\
+        \ code\",\"generalValidationUsernameReqd\":\"Username is required.\",\"generalTextPhoneNumber\"\
+        :\"Phone Number\",\"INVALIDREQUEST\":\"'service' and 'ticket' parameters are\
+        \ both required\",\"childAccountEntryHeading\":\"Account Request\",\"childAccountEntryParentEmailConfirmLabel\"\
+        :\"Confirm parent or guardian email address\",\"mfaSelectionContent\":\"We'll\
+        \ send a security code to your email or phone.\",\"mobileCreateAccRequestNewCode\"\
+        :\"{0}Request a new code{1}\",\"generalHeaderForgotPassword\":\"Forgot Password?\"\
+        ,\"generalValidationDisplayNameInvalidChars\":\"Your display name can''t contain\
+        \ spaces or any of the following characters: {0}\",\"generalTextGenericErrorMsg\"\
+        :\"An unexpected error has occurred.\",\"generalValidationVerificationCodeReqd\"\
+        :\"Verification code required.\",\"childAccountEntryWaitingParentSetupEmailSentText\"\
+        :\"An email has been sent to:\",\"generalTextPhoneNumberChange\":\"{0}Change\
+        \ Your Phone Number{1}\",\"mobileCreateAccVerificationCodeMessage\":\"A verification\
+        \ code has been sent to your phone number: {0}.\",\"linkAccPageTitle\":\"\
+        Link Social Account\",\"dobEntryDateOfBirthMonthApril\":\"April\",\"mobileVerifyVerifyMessage\"\
+        :\"Request a new code\",\"generalLoginSocialWechat\":\"Sign in with WeChat\"\
+        ,\"casLoginViewMissingPassword\":\"It looks like you don\\uFFFDt have a password\
+        \ yet. To continue, check your email for the temporary password we just sent\
+        \ you. \",\"casLoginViewReactivateAccount\":\"You\\u2019ll need to reset your\
+        \ password to access your account. Please check your email for a temporary\
+        \ password. If you don\\u2019t see an email, use the \\u201CForgot password?\\\
+        u201C link to request one.\",\"createAccCompleteFieldsBelow\":\"Please complete\
+        \ the fields below:\",\"createAccPageTitle\":\"Create An Account\",\"createOrLinkLinkAccountLink\"\
+        :\"I'd like to use my social network to access it.\",\"generalTextBindSocialAccountContentEmailOrPhone\"\
+        :\"Enter your Garmin account's email address or phone number to link the accounts.\
+        \ If you do not have a Garmin account, enter your email address or phone number\
+        \ to create one.\",\"screenLogoutHeader\":\"Logout successful\",\"generalValidationEmailOrPhoneInvalid\"\
+        :\"Email address or phone number is invalid.\",\"mfaVerificationPageTitle\"\
+        :\"2 Step Authentication\",\"casLoginViewSetEmailAddressDesc\":\"Please enter\
+        \ an email address for this account.\",\"generalHeaderReactivateAccount\"\
+        :\"Reactivate Account\",\"generalTextEmailAddressOrPhoneNumber\":\"Email Address\
+        \ or Phone Number\",\"codeEntryMaxLimit\":\"You have reached the maximum amount\
+        \ of codes requested. Please use a code you've received or wait 24 hours and\
+        \ try again.\",\"setupMfaRequiredContent\":\"To continue, you\\u2019ll need\
+        \ to set up two-step verification for your account. \\n\\nTwo-step verification\
+        \ adds an extra layer of protection to your account. Whenever you sign in\
+        \ to Garmin.com to make a purchase or use one of our apps, you\\u2019ll be\
+        \ prompted to enter your password, followed by a security code that we will\
+        \ send you in an email or text message. \\n\\nWithout setting up two-step\
+        \ verification, you won\\u2019t be able to sign in to this application. You\
+        \ will be able to sign in on Garmin websites or apps that do not require two-step\
+        \ verification.\",\"generalTextRememberMe\":\"Remember Me\",\"generalValidationEmailReqd\"\
+        :\"Email Address is required.\",\"mobileCasLoginViewPageHeaderChina\":\"Garmin\
+        \ Account Sign In - Chinese Mainland\",\"generalValidationEmailPendingDelete\"\
+        :\"An account with this email address is in the process of being deleted\"\
+        ,\"casLoginViewSetDisplayNameDesc\":\"Please choose a display name for this\
+        \ account.\",\"dobEntryDateOfBirthMonthJuly\":\"July\",\"generalButtonSave\"\
+        :\"Save\",\"mfaDifferentNumber\":\"Use a different number\",\"generalTextName\"\
+        :\"Name\",\"casLoginViewPageHeaderCustomGarminConnect\":\"Garmin Account Sign-In\"\
+        ,\"generalButtonCancel\":\"Cancel\",\"mfaPhoneNumberEntryCountryUnitedStates\"\
+        :\"United States (+1)\",\"reconsentButtonContinue\":\"Continue\",\"generalButtonSend\"\
+        :\"Send\",\"generalButtonSubmit\":\"Submit\",\"verifyAccountPageTitle\":\"\
+        Verify Account\",\"childAccountEntryParentEmailLabel\":\"Parent or guardian\
+        \ email address\",\"mfaEmailAddressEnterEmailAddress\":\"Enter email address\
+        \ to receive security code\",\"generalTextUsernameHint\":\"We suggest using\
+        \ your email address.\",\"consentFormPageTitle\":\"Privacy Policy Update\"\
+        ,\"generalValidationEmailDontMatch\":\"Email addresses do not match.\",\"\
+        legalAcceptPrivacy\":\"I have read and agree to the\",\"generalLoginPhoneNumberIsInvalid\"\
+        :\"Phone number is invalid\",\"dobEntryDateOfBirthValidationInvalid\":\"Date\
+        \ of birth cannot be in the future.\",\"dobEntryInfoChangeWarning\":\"Once\
+        \ set, this cannot be changed later.\",\"codeEntryError\":\"Something went\
+        \ wrong. Please try again.\",\"generalValidationPasswordsDontMatch\":\"Passwords\
+        \ do not match.\",\"generalValidationUsernameTooShort\":\"Username must be\
+        \ at least 4 characters.\",\"generalTextBindSocialAccountContentEmail\":\"\
+        Enter your Garmin account's email address to link the accounts. If you do\
+        \ not have a Garmin account, enter email address to create one.\",\"mfaPhoneNumberEntryCountryEuropeanUnion\"\
+        :\"EU (+3)\",\"mfaSelectionDifferentEmail\":\"Use a different email address\"\
+        ,\"dobEntryInfoTitle\":\"Account Setup\",\"generalLoginAreaCodeIsInvalid\"\
+        :\"Area Code is invalid\",\"createAccOrCompleteFieldsBelow\":\"Or, you can\
+        \ complete the fields below:\",\"generalTextRequired\":\"Required\"},\n  \
+        \              clientRegistries: {\"clientId\":\"GCM_IOS_DARK\",\"registryOption\"\
+        :{\"lockToEmailAddress\":\"\",\"lockedToIdentifier\":false,\"redirectAccountUrl\"\
+        :\"https:\\/\\/mobile.integration.garmin.com\\/gcm\\/ios\",\"logoutUrl\":\"\
+        https:\\/\\/connect.garmin.com\\/\",\"termsOfUseUrl\":\"https:\\/\\/www.garmin.com\\\
+        /{locale}\\/legal\\/terms-of-use\\/\",\"privacyStatementUrl\":\"https:\\/\\\
+        /www.garmin.com\\/{locale}\\/privacy\\/connect\\/\",\"securityUrl\":\"https:\\\
+        /\\/www.garmin.com\\/{locale}\\/legal\\/security\\/\",\"managedAccountRequestApprovalUrl\"\
+        :\"https:\\/\\/connect.garmin.com\\/modern\\/user\\/managed-account\\/approval\"\
+        ,\"consentTypes\":[\"GLOBAL_PRIVACY_POLICY\"],\"additionalServiceUrls\":[],\"\
+        additionalLogoutUrls\":[],\"globalOptInShown\":false,\"generateExtraServiceTicket\"\
+        :true,\"generateTwoExtraServiceTickets\":true,\"showConnectLegalAge\":false,\"\
+        locationPromptShown\":true,\"mfaRequired\":false,\"continueAsGuest\":false,\"\
+        createAccountShown\":false,\"signInShown\":false,\"rememberMeShown\":false,\"\
+        rememberMyDeviceShown\":false,\"allowChildAccess\":true,\"allowLegacySession\"\
+        :false,\"dobCollectionEnabled\":true,\"thickClient\":true},\"registryVisualOptions\"\
+        :{\"global\":{\"backgroundImages\":[],\"mobileBackgroundImages\":[],\"tabletBackgroundImages\"\
+        :[],\"header\":{\"backgroundColor\":\"#DCDCDC\",\"textColor\":\"#000000\"\
+        ,\"bottomBorderColor\":\"#DCDCDC\",\"logoUrl\":\"https:\\/\\/connect.garmin.com\\\
+        /\",\"logoImageUrl\":\"https:\\/\\/connect.garmin.com\\/static\\/logo-sprite-@2x-87aa58de41a3347bb5fc1e8ad25c31b6.png\"\
+        ,\"logoWidth\":\"150px\",\"logoHeight\":\"28px\",\"logoBackgroundSize\":\"\
+        236px 271px\",\"logoBackgroundColor\":\"transparent\",\"logoBackgroundRepeat\"\
+        :\"no-repeat\",\"logoBackgroundPosition\":\"0 -23.47619px\",\"logoAlignmentMobile\"\
+        :\"center\",\"logoAlignmentDesktop\":\"left\"},\"displayFormHeaderGarminLogo\"\
+        :false,\"backgroundColor\":\"transparent\",\"hidePageHeader\":true,\"hidePageFooter\"\
+        :true,\"hidePrimaryHeader\":true},\"text\":{\"h1\":{\"fontStack\":\"system-ui,\
+        \ -apple-system, sans-serif\",\"fontSize\":\"28px\",\"textColor\":\"#F4F4F4\"\
+        ,\"textTransform\":\"capitalize\"},\"h2\":{\"fontStack\":\"system-ui, -apple-system,\
+        \ sans-serif\",\"fontSize\":\"20px\",\"textColor\":\"#F4F4F4\",\"textTransform\"\
+        :\"capitalize\"},\"body\":{\"fontStack\":\"system-ui, -apple-system, sans-serif\"\
+        ,\"fontSize\":\"0.9375rem\",\"textColor\":\"#F4F4F4\"},\"link\":{\"textColor\"\
+        :\"inherit\"}},\"button\":{\"primary\":{\"hover\":{\"backgroundColor\":\"\
+        #1976D2\",\"borderColor\":\"#1976D2\",\"textColor\":\"#FFFFFF\"},\"active\"\
+        :{\"backgroundColor\":\"#0A59B2\",\"borderColor\":\"#0A59B2\",\"textColor\"\
+        :\"#FFFFFF\"},\"visited\":{\"backgroundColor\":\"#1976D2\",\"borderColor\"\
+        :\"#1976D2\",\"textColor\":\"#FFFFFF\"},\"disabled\":{\"backgroundColor\"\
+        :\"#0D3B69\",\"borderColor\":\"#0D3B69\",\"textColor\":\"#808080\"},\"default\"\
+        :{\"padding\":\"16px 8px\",\"textTransform\":\"capitalize\",\"backgroundColor\"\
+        :\"#1976D2\",\"borderColor\":\"#1976D2\",\"textColor\":\"#FFFFFF\",\"borderRadius\"\
+        :\"4px\"}},\"secondary\":{\"default\":{\"padding\":\"16px 8px\",\"textTransform\"\
+        :\"capitalize\",\"backgroundColor\":\"#3B3B3B\",\"textColor\":\"#F4F4F4\"\
+        }}},\"input\":{\"default\":{\"backgroundColor\":\"#252525\",\"borderColor\"\
+        :\"#A6A6A6\",\"borderRadius\":\"4px\",\"borderWidth\":\"1PX\"}},\"styles\"\
+        :{\"button\":{\"primary\":{\"default\":{\"fontSize\":\"1.0625rem\",\"height\"\
+        :\"3.375rem\"}},\"secondary\":{\"default\":{\"borderRadius\":\"4px\",\"fontSize\"\
+        :\"1.0625rem\",\"height\":\"3.375rem\"},\"hover\":{\"backgroundColor\":\"\
+        #3B3B3B\",\"borderColor\":\"#3B3B3B\",\"textColor\":\"#F4F4F4\",\"textDecoration\"\
+        :\"none\"},\"active\":{\"backgroundColor\":\"#3B3B3B\",\"borderColor\":\"\
+        #3B3B3B\",\"textColor\":\"#F4F4F4\"},\"visited\":{\"backgroundColor\":\"#3B3B3B\"\
+        ,\"borderColor\":\"#3B3B3B\",\"textColor\":\"#F4F4F4\"},\"disabled\":{\"backgroundColor\"\
+        :\"#1E1E1E\",\"borderColor\":\"#1E1E1E\",\"textColor\":\"#7A7A7A\"}}},\"input\"\
+        :{\"active\":{\"backgroundColor\":\"#1D1D1D\",\"border\":{\"width\":\"2px\"\
+        }},\"fontSize\":\"1.0625rem\",\"padding\":\"12px 8px\",\"margin\":\"4px 0\
+        \ 0 0\",\"date\":{\"colorScheme\":\"dark\"},\"error\":{\"borderColor\":\"\
+        #F85454\"}},\"formError\":{\"textColor\":\"#F85454\",\"fontSize\":\"0.8125rem\"\
+        },\"formHelp\":{\"fontSize\":\"0.8125rem\",\"textColor\":\"#A6A6A6\"},\"pageCard\"\
+        :{\"loaderColor\":\"#1976D2\"},\"portal-content\":{\"margin\":\"16px\"},\"\
+        validation-form\":{\"margin\":\"0\"}}}},\n                buyUrl: \"https:\\\
+        /\\/buy.garmin.com\",\n                locale: \"en_US\",\n              \
+        \  isChinaLocation: false,\n                service: \"https:\\/\\/mobile.integration.garmin.com\\\
+        /gcm\\/ios\",\n                securityUrl: \"https:\\/\\/www.garmin.com\\\
+        /en-US\\/legal\\/security\\/\",\n                privacyUrl: \"https:\\/\\\
+        /www.garmin.com\\/en-US\\/privacy\\/connect\\/\",\n                termsOfUseUrl:\
+        \ \"https:\\/\\/www.garmin.com\\/en-US\\/legal\\/terms-of-use\\/\",\n    \
+        \            accountManagementUrl: \"https:\\/\\/www.garmin.com\\/en-US\\\
+        /account\\/\",\n                dcRequirePrivacyConsent: false,\n        \
+        \        privacyConsentEnabledCountries: [\"CN\",\"KR\"],\n              \
+        \  isCloudflareHeaderNeedsConsent: false,\n                consentTypeList:\
+        \ [{\"consentLocale\":\"en-US\",\"consentType\":\"GLOBAL_PRIVACY_POLICY\"\
+        ,\"labelText\":\"I have read and agree to the Garmin Privacy Policy\",\"consentText\"\
+        :\"Garmin Privacy Policy\",\"consentUrl\":\"https:\\/\\/www.garmin.com\\/en-US\\\
+        /privacy\\/global\\/\",\"version\":\"6\"}],\n                globalMarketingConsentText:\
+        \ \"Get product news and promotions based on your preferences, devices and\
+        \ services.\",\n                recaptchaSiteKey: \"6LcayeglAAAAAAyYEWMrIX1hfN__8Z6ifrS4OsyZ\"\
+        ,\n                recaptchaJsUrl: \"https:\\/\\/www.google.com\\/recaptcha\\\
+        /enterprise.js?render=explicit\\u0026hl=\",\n                isCaptchaEnabled:\
+        \ false,\n                accountVerificationEnabled: true,\n            \
+        \    phoneRegistrationRequired: false,\n                loginIdentifierEnabled:\
+        \ false,\n                loginIdentifierPrefill: null,\n                allowedCountries:\
+        \ [\"CN\"],\n                primaryType: \"email\",\n                dcName:\
+        \ \"WW\",\n                relayState:null,\n                platform: \"\
+        mobile\"\n            }\n            const headElement = document.getElementsByTagName('head')[0];\
+        \ // is a node\n            if (!GarminAppBootstrap.clientRegistries?.registryOption?.thickClient)\
+        \ {\n                document.documentElement.style.setProperty('--sso-viewport-height',\
+        \ `${window.visualViewport ? window.visualViewport.height : window.innerHeight}px`);\n\
+        \            } else {\n                headElement.innerHTML += '<meta name=\"\
+        viewport\" content=\"width=device-width, initial-scale=1, minimum-scale=1.0,\
+        \ maximum-scale=1.0, user-scalable=no\">\\n';\n                document.documentElement.style.setProperty('-webkit-text-size-adjust',\
+        \ `100%`);\n                document.documentElement.style.setProperty('font',\
+        \ `var(--sso-root-font, -apple-system-body)`);\n\n            }\n\n      \
+        \      const wcsHead = \"<meta name=\\\"viewport\\\" content=\\\"width=device-width,initial-scale=1\\\
+        \"><meta http-equiv=\\\"X-UA-Compatible\\\" content=\\\"IE=edge\\\"><link\
+        \ rel=\\\"preconnect\\\" href=\\\"https:\\/\\/static.garmin.com\\\"><link\
+        \ rel=\\\"preconnect\\\" href=\\\"https:\\/\\/share-assets.fe.garmin.com\\\
+        \"><link rel=\\\"apple-touch-icon\\\" sizes=\\\"180x180\\\" href=\\\"https:\\\
+        /\\/share-assets.fe.garmin.com\\/apple-touch-icon.png\\\"><link rel=\\\"icon\\\
+        \" type=\\\"image\\/png\\\" sizes=\\\"32x32\\\" href=\\\"https:\\/\\/share-assets.fe.garmin.com\\\
+        /favicon-32x32.png\\\"><link rel=\\\"icon\\\" type=\\\"image\\/png\\\" sizes=\\\
+        \"16x16\\\" href=\\\"https:\\/\\/share-assets.fe.garmin.com\\/favicon-16x16.png\\\
+        \"><link rel=\\\"manifest\\\" href=\\\"https:\\/\\/share-assets.fe.garmin.com\\\
+        /site.webmanifest\\\"><link rel=\\\"mask-icon\\\" href=\\\"https:\\/\\/share-assets.fe.garmin.com\\\
+        /safari-pinned-tab.svg\\\" color=\\\"#000000\\\"><link rel=\\\"shortcut icon\\\
+        \" href=\\\"https:\\/\\/share-assets.fe.garmin.com\\/favicon.ico\\\"><meta\
+        \ name=\\\"msapplication-TileColor\\\" content=\\\"#ffffff\\\"><meta name=\\\
+        \"msapplication-config\\\" content=\\\"https:\\/\\/share-assets.fe.garmin.com\\\
+        /browserconfig.xml\\\"><meta name=\\\"theme-color\\\" content=\\\"#ffffff\\\
+        \"><link rel=\\\"stylesheet\\\" type=\\\"text\\/css\\\" href=\\\"https:\\\
+        /\\/fonts.garmin.com\\/fonts\\/roboto-standard\\/roboto-standard.css\\\" media=\\\
+        \"screen\\\"><link rel=\\\"stylesheet\\\" type=\\\"text\\/css\\\" href=\\\"\
+        https:\\/\\/fonts.garmin.com\\/fonts\\/oswald\\/oswald.css\\\" media=\\\"\
+        screen\\\"><link rel=\\\"preload\\\" as=\\\"font\\\" type=\\\"font\\/otf\\\
+        \" crossorigin href=\\\"https:\\/\\/fonts.garmin.com\\/fonts\\/superscripts-oswald\\\
+        /Superscript-Oswald-Regular.otf\\\"><link rel=\\\"preload\\\" as=\\\"font\\\
+        \" type=\\\"font\\/otf\\\" crossorigin href=\\\"https:\\/\\/fonts.garmin.com\\\
+        /fonts\\/superscripts-oswald\\/Superscript-Oswald-InsideSup-Regular.otf\\\"\
+        ><link rel=\\\"stylesheet\\\" type=\\\"text\\/css\\\" href=\\\"https:\\/\\\
+        /fonts.garmin.com\\/fonts\\/superscripts-oswald\\/superscripts-insidesup-oswald.css\\\
+        \" media=\\\"screen\\\"><link rel=\\\"stylesheet\\\" type=\\\"text\\/css\\\
+        \" href=\\\"https:\\/\\/fonts.garmin.com\\/fonts\\/superscripts-oswald\\/superscripts-oswald.css\\\
+        \" media=\\\"screen\\\"><link rel=\\\"preload\\\" as=\\\"font\\\" type=\\\"\
+        font\\/otf\\\" crossorigin href=\\\"https:\\/\\/fonts.garmin.com\\/fonts\\\
+        /superscripts-roboto\\/Superscript-Roboto-InsideSup-Regular.otf\\\"><link\
+        \ rel=\\\"preload\\\" as=\\\"font\\\" type=\\\"font\\/otf\\\" crossorigin\
+        \ href=\\\"https:\\/\\/fonts.garmin.com\\/fonts\\/superscripts-roboto\\/Superscript-Roboto-Regular.otf\\\
+        \"><link rel=\\\"stylesheet\\\" type=\\\"text\\/css\\\" href=\\\"https:\\\
+        /\\/fonts.garmin.com\\/fonts\\/superscripts-roboto\\/superscripts-insidesup-roboto.css\\\
+        \" media=\\\"screen\\\"><link rel=\\\"stylesheet\\\" type=\\\"text\\/css\\\
+        \" href=\\\"https:\\/\\/fonts.garmin.com\\/fonts\\/superscripts-roboto\\/superscripts-roboto.css\\\
+        \" media=\\\"screen\\\"><script id=\\\"utag\\\">(()=>{let a=e=>{\\\"complete\\\
+        \"===e.target.readyState\\u0026\\u0026t()},n=(r=200,o=1e3)=>new Promise((e,t)=>{let\
+        \ a=Date.now(),n=()=>{1===window?.utag?.handler?.iflag?e():Date.now()-a>=o?t(new\
+        \ Error(\\\"Timeout: Unable to validate that utag is ready\\\")):setTimeout(n,r)};n()}),t=()=>{let\
+        \ e=document.getElementById(\\\"utag\\\"),t=document.createElement(\\\"script\\\
+        \");t.src=window?.WCS_ANALYTICS_OVERRIDES?.usePrimaryUtag?\\\"https:\\/\\\
+        /tags.tiqcdn.com\\/utag\\/garmin\\/primary\\/prod\\/utag.js\\\":\\\"https:\\\
+        /\\/tags.tiqcdn.com\\/utag\\/garmin\\/main\\/prod\\/utag.js\\\",t.type=\\\"\
+        text\\/javascript\\\",t.async=!0,t.onload=()=>{n().then(()=>{window.dispatchEvent(new\
+        \ Event(\\\"utag-ready\\\"))}).catch(e=>{console.warn(e)})},setTimeout(()=>{e.parentNode.insertBefore(t,e),document.removeEventListener(\\\
+        \"readystatechange\\\",a)},500)};\\\"complete\\\"!==document.readyState?document.addEventListener(\\\
+        \"readystatechange\\\",a,{passive:!0},!0):t()})()<\\/script><link rel=\\\"\
+        preconnect\\\" href=\\\"https:\\/\\/consent.trustarc.com\\/\\\" crossorigin>\"\
+        ;\n\n            if (wcsHead) {\n                headElement.innerHTML +=\
+        \ wcsHead;\n            } else {\n                headElement.innerHTML +='<meta\
+        \ name=\"viewport\" content=\"width=device-width,initial-scale=1\">\\n' +\n\
+        \                    '<meta name=\"theme-color\" content=\"#ffffff\">\\n'\
+        \ +\n                    '<meta http-equiv=\"X-UA-Compatible\" content=\"\
+        IE=edge\">\\n' +\n                    '<link rel=\"preconnect\" href=\"https://static.garmin.com\"\
+        >\\n' +\n                    '<link nonce=\"180f8f7b-0113-41ed-95e4-9a7739336e97\"\
+        \ rel=\"preload\" as=\"font\" type=\"font/otf\" crossorigin href=\"https://fonts.garmin.com/static.garmin.com/fonts/superscripts-oswald/Superscript-Oswald-Regular.otf\"\
+        >\\n' +\n                    '<link nonce=\"180f8f7b-0113-41ed-95e4-9a7739336e97\"\
+        \ rel=\"preload\" as=\"font\" type=\"font/otf\" crossorigin href=\"https://fonts.garmin.com/static.garmin.com/fonts/superscripts-oswald/Superscript-Oswald-InsideSup-Regular.otf\"\
+        >\\n' +\n                    '<link rel=\"stylesheet\" type=\"text/css\" href=\"\
+        https://fonts.garmin.com/static.garmin.com/fonts/superscripts-oswald/superscripts-insidesup-oswald.css\"\
+        \ media=\"screen\">\\n' +\n                    '<link rel=\"stylesheet\" type=\"\
+        text/css\" href=\"https://fonts.garmin.com/static.garmin.com/fonts/superscripts-oswald/superscripts-oswald.css\"\
+        \ media=\"screen\">\\n' +\n                    '<link rel=\"stylesheet\" type=\"\
+        text/css\" href=\"https://fonts.garmin.com/fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap\"\
+        \ media=\"screen\">\\n' +\n                    '<link rel=\"stylesheet\" type=\"\
+        text/css\" href=\"https://fonts.garmin.com/fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap\"\
+        \ media=\"screen\">\\n' +\n                    '<link rel=\"stylesheet\" type=\"\
+        text/css\" href=\"https://fonts.garmin.com/static.garmin.com/fonts/oswald/oswald.css\"\
+        \ media=\"screen\">\\n' +\n                    '<link rel=\"apple-touch-icon\"\
+        \ sizes=\"180x180\" href=\"https://static.garmin.com/favicons/apple-touch-icon.png\"\
+        >\\n' +\n                    '<link rel=\"icon\" type=\"image/png\" sizes=\"\
+        32x32\" href=\"https://static.garmin.com/favicons/favicon-32x32.png\">\\n'\
+        \ +\n                    '<link rel=\"icon\" type=\"image/png\" sizes=\"16x16\"\
+        \ href=\"https://static.garmin.com/favicons/favicon-16x16.png\">\\n' +\n \
+        \                   '<link rel=\"manifest\" href=\"https://static.garmin.com/favicons/site.webmanifest\"\
+        >\\n' +\n                    '<link rel=\"mask-icon\" href=\"https://static.garmin.com/favicons/safari-pinned-tab.svg\"\
+        \ color=\"#5a757c\">\\n' +\n                    '<meta name=\"msapplication-TileColor\"\
+        \ content=\"#2d89ef\">\\n' +\n                    '<link rel=\"preconnect\"\
+        \ href=\"https://consent.trustarc.com/\" crossorigin>';\n            }\n \
+        \       </script>\n    </head>\n    <body>\n        <div id=\"app\"></div>\n\
+        \    <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var\
+        \ d=b.createElement('script');d.innerHTML=\"window.__CF$cv$params={r:'9de1f40eab56d90f',t:'MTc3MzgxMjk1OS4wMDAwMDA='};var\
+        \ a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);\"\
+        ;b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else\
+        \ if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var\
+        \ e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>\n\
+        </html>\n"
     headers:
       Access-Control-Allow-Credentials:
       - 'true'
@@ -595,6 +720,30 @@ interactions:
       - PZR28HA9NRPMB1ZA
       x-amz-server-side-encryption:
       - AES256
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate, zstd
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.22.1.4
+    method: GET
+    uri: https://sso.garmin.com/portal/sso/embed
+  response:
+    body:
+      string: ''
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - text/html;charset=UTF-8
     status:
       code: 200
       message: OK
