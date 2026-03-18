@@ -219,9 +219,12 @@ def resume_login(
 def _complete_login(
     ticket: str, client: http.Client
 ) -> tuple[OAuth1Token, OAuth2Token]:
-    # Validate SSO session — sets Cloudflare LB cookie needed by
-    # preauthorized to reach the correct backend
-    client.get("sso", "/portal/sso/embed")
+    # Sets Cloudflare LB cookie for backend pinning — best-effort
+    # (Cloudflare may challenge with 403 for bot detection)
+    try:
+        client.get("sso", "/portal/sso/embed")
+    except GarthException:
+        pass
 
     oauth1 = get_oauth1_token(ticket, client)
     oauth2 = exchange(oauth1, client, login=True)
