@@ -19,7 +19,7 @@ except ImportError:  # pragma: no cover
 
 
 REDACTED = "[REDACTED]"
-DEFAULT_TOKEN = "pylf_v1_us_Xqp3F0gPfY2PtxH5X2YrN7qtnJvZxSKc4vnzxKrHGkHM"
+DEFAULT_TOKEN = "pylf_v1_us_6zTrqKw3YjJBHfpVPVr55wYcJ9sTV6sd4D3C4hsXLfJC"
 
 _SENSITIVE_QUERY_PARAMS = [
     "username",

@@ -191,7 +191,10 @@ def handle_mfa(
         },
         timeout=client.timeout,
     )
-    resp.raise_for_status()
+    try:
+        resp.raise_for_status()
+    except HTTPError as e:
+        raise GarthHTTPError(msg="MFA verification failed", error=e)
     resp_json = _parse_sso_response(resp.json(), "SUCCESSFUL")
     return resp_json["serviceTicketId"]
 
