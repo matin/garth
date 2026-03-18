@@ -23,6 +23,20 @@ OAUTH_CONSUMER: dict[str, str] = {}
 SSO_SUCCESSFUL = "SUCCESSFUL"
 SSO_MFA_REQUIRED = "MFA_REQUIRED"
 
+# Browser-like headers for SSO web pages to avoid Cloudflare challenges
+SSO_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) "
+        "AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
+    ),
+    "Accept": (
+        "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+    ),
+    "Accept-Language": "en-US,en;q=0.9",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Dest": "document",
+}
+
 
 class GarminOAuth1Session(OAuth1Session):
     def __init__(
@@ -90,6 +104,7 @@ def login(
         "sso",
         "/mobile/sso/en/sign-in",
         params={"clientId": CLIENT_ID},
+        headers={**SSO_HEADERS, "Sec-Fetch-Site": "none"},
     )
 
     # Submit login
@@ -219,9 +234,16 @@ def resume_login(
 def _complete_login(
     ticket: str, client: http.Client
 ) -> tuple[OAuth1Token, OAuth2Token]:
-    # Validate SSO session — sets Cloudflare LB cookie needed by
-    # preauthorized to reach the correct backend
-    client.get("sso", "/portal/sso/embed")
+    # Sets Cloudflare LB cookie for backend pinning — best-effort
+    try:
+        client.get(
+            "sso",
+            "/portal/sso/embed",
+            headers={**SSO_HEADERS, "Sec-Fetch-Site": "same-origin"},
+            referrer=True,
+        )
+    except GarthException:  # pragma: no cover
+        pass
 
     oauth1 = get_oauth1_token(ticket, client)
     oauth2 = exchange(oauth1, client, login=True)
