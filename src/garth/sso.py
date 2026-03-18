@@ -47,6 +47,7 @@ class GarminOAuth1Session(OAuth1Session):
         )
         if parent is not None:
             self.mount("https://", parent.adapters["https://"])
+            self.cookies.update(parent.cookies)
             self.proxies = parent.proxies
             self.verify = parent.verify
             self.hooks["response"].extend(parent.hooks["response"])
@@ -218,6 +219,10 @@ def resume_login(
 def _complete_login(
     ticket: str, client: http.Client
 ) -> tuple[OAuth1Token, OAuth2Token]:
+    # Validate SSO session — sets Cloudflare LB cookie needed by
+    # preauthorized to reach the correct backend
+    client.get("sso", "/portal/sso/embed")
+
     oauth1 = get_oauth1_token(ticket, client)
     oauth2 = exchange(oauth1, client, login=True)
     return oauth1, oauth2
