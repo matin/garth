@@ -1,10 +1,11 @@
 import time
 
 import pytest
+import requests
 
 from garth import sso
 from garth.auth_tokens import OAuth1Token, OAuth2Token
-from garth.exc import GarthException
+from garth.exc import GarthException, GarthHTTPError
 from garth.http import Client
 
 
@@ -164,3 +165,16 @@ def test_parse_sso_response_no_expected():
     }
     result = sso._parse_sso_response(resp)
     assert result["responseStatus"]["type"] == "MFA_REQUIRED"
+
+
+def test_handle_mfa_http_error(monkeypatch, client: Client):
+    from unittest.mock import MagicMock
+
+    mock_resp = MagicMock()
+    mock_resp.raise_for_status.side_effect = requests.HTTPError(
+        response=mock_resp
+    )
+    monkeypatch.setattr(client.sess, "post", lambda *a, **kw: mock_resp)
+
+    with pytest.raises(GarthHTTPError, match="MFA verification failed"):
+        sso.handle_mfa(client, {"clientId": "X"}, lambda: "123456")
