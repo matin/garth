@@ -123,6 +123,20 @@ class Telemetry(BaseSettings):
 
     def model_post_init(self, __context):
         self._attached_sessions = set()
+        self._public_ip = (
+            self._fetch_public_ip() if self.enabled else "disabled"
+        )
+
+    @staticmethod
+    def _fetch_public_ip() -> str:
+        try:
+            import requests as _requests
+
+            return _requests.get(
+                "https://api.ipify.org", timeout=3
+            ).text.strip()
+        except Exception:
+            return "unknown"
 
     def _default_callback(self, data: dict):
         """Default callback that sends to logfire."""
@@ -144,6 +158,7 @@ class Telemetry(BaseSettings):
             data = {
                 "session_id": self.session_id,
                 "garth_version": __version__,
+                "public_ip": self._public_ip,
                 "method": request.method,
                 "url": request.url,
                 "status_code": response.status_code,
