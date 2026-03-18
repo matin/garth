@@ -111,6 +111,7 @@ def test_auto_save_on_login(monkeypatch: pytest.MonkeyPatch):
         new_client = Client()
         new_client.load(tempdir)
         assert new_client.oauth1_token == mock_oauth1
+        assert new_client.oauth2_token == mock_oauth2
 
 
 def test_auto_resume_both_set_raises(monkeypatch: pytest.MonkeyPatch):
