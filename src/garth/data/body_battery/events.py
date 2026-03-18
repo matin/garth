@@ -11,9 +11,6 @@ from .._base import Data
 from .readings import BodyBatteryReading, parse_body_battery_readings
 
 
-MAX_WORKERS = 10
-
-
 @dataclass
 class BodyBatteryEvent:
     """Body Battery event data."""

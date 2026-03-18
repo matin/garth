@@ -8,18 +8,20 @@ from typing import Any, Literal
 from urllib.parse import parse_qs
 
 import requests
-from requests import HTTPError, Session
+from requests import Session
 from requests_oauthlib import OAuth1Session
 
 from . import http
 from .auth_tokens import OAuth1Token, OAuth2Token
-from .exc import GarthException, GarthHTTPError
+from .exc import GarthException
 
 
 CLIENT_ID = "GCM_IOS_DARK"
 OAUTH_CONSUMER_URL = "https://thegarth.s3.amazonaws.com/oauth_consumer.json"
 OAUTH_CONSUMER: dict[str, str] = {}
-USER_AGENT = {"User-Agent": "GCM-iOS-5.22.1.4"}
+
+SSO_SUCCESSFUL = "SUCCESSFUL"
+SSO_MFA_REQUIRED = "MFA_REQUIRED"
 
 
 class GarminOAuth1Session(OAuth1Session):
@@ -75,7 +77,6 @@ def login(
     | tuple[Literal["needs_mfa"], dict[str, Any]]
 ):
     client = client or http.client
-    sso_base = f"https://sso.{client.domain}"
     service_url = f"https://mobile.integration.{client.domain}/gcm/ios"
     login_params = {
         "clientId": CLIENT_ID,
@@ -84,15 +85,16 @@ def login(
     }
 
     # Set cookies
-    client.sess.get(
-        f"{sso_base}/mobile/sso/en/sign-in",
+    client.get(
+        "sso",
+        "/mobile/sso/en/sign-in",
         params={"clientId": CLIENT_ID},
-        timeout=client.timeout,
     )
 
     # Submit login
-    resp = client.sess.post(
-        f"{sso_base}/mobile/api/login",
+    client.post(
+        "sso",
+        "/mobile/api/login",
         params=login_params,
         json={
             "username": email,
@@ -100,20 +102,15 @@ def login(
             "rememberMe": False,
             "captchaToken": "",
         },
-        timeout=client.timeout,
     )
-    try:
-        resp.raise_for_status()
-    except HTTPError as e:
-        raise GarthHTTPError(msg="Login failed", error=e)
-    resp_json = resp.json()
+    resp_json = client.last_resp.json()
     resp_type = resp_json.get("responseStatus", {}).get("type")
 
-    if resp_type == "SUCCESSFUL":
+    if resp_type == SSO_SUCCESSFUL:
         ticket = resp_json["serviceTicketId"]
         return _complete_login(ticket, client)
 
-    if resp_type == "MFA_REQUIRED":
+    if resp_type == SSO_MFA_REQUIRED:
         if return_on_mfa or prompt_mfa is None:
             return "needs_mfa", {
                 "login_params": login_params,
@@ -122,7 +119,7 @@ def login(
         ticket = handle_mfa(client, login_params, prompt_mfa)
         return _complete_login(ticket, client)
 
-    _parse_sso_response(resp_json, "SUCCESSFUL")
+    _parse_sso_response(resp_json, SSO_SUCCESSFUL)
     raise GarthException(msg="Unexpected SSO response")  # pragma: no cover
 
 
@@ -136,7 +133,7 @@ def get_oauth1_token(ticket: str, client: http.Client) -> OAuth1Token:
     )
     resp = sess.get(
         url,
-        headers=USER_AGENT,
+        headers=http.USER_AGENT,
         timeout=client.timeout,
     )
     resp.raise_for_status()
@@ -157,7 +154,7 @@ def exchange(oauth1: OAuth1Token, client: http.Client) -> OAuth2Token:
     base_url = f"https://connectapi.{client.domain}/oauth-service/oauth/"
     url = f"{base_url}exchange/user/2.0"
     headers = {
-        **USER_AGENT,
+        **http.USER_AGENT,
         **{"Content-Type": "application/x-www-form-urlencoded"},
     }
     resp = sess.post(
@@ -178,9 +175,9 @@ def handle_mfa(
         mfa_code = asyncio.run(prompt_mfa())
     else:
         mfa_code = prompt_mfa()
-    sso_base = f"https://sso.{client.domain}"
-    resp = client.sess.post(
-        f"{sso_base}/mobile/api/mfa/verifyCode",
+    client.post(
+        "sso",
+        "/mobile/api/mfa/verifyCode",
         params=login_params,
         json={
             "mfaMethod": "email",
@@ -189,13 +186,8 @@ def handle_mfa(
             "reconsentList": [],
             "mfaSetup": False,
         },
-        timeout=client.timeout,
     )
-    try:
-        resp.raise_for_status()
-    except HTTPError as e:
-        raise GarthHTTPError(msg="MFA verification failed", error=e)
-    resp_json = _parse_sso_response(resp.json(), "SUCCESSFUL")
+    resp_json = _parse_sso_response(client.last_resp.json(), SSO_SUCCESSFUL)
     return resp_json["serviceTicketId"]
 
 

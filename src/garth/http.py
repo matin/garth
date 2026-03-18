@@ -1,5 +1,6 @@
 import base64
 import json
+import logging
 import os
 from collections.abc import Callable
 from typing import IO, Any, Literal
@@ -16,6 +17,7 @@ from .utils import asdict
 
 
 USER_AGENT = {"User-Agent": "GCM-iOS-5.22.1.4"}
+logger = logging.getLogger(__name__)
 
 
 class Client:
@@ -46,7 +48,7 @@ class Client:
             **kwargs,
         )
         if self.telemetry.enabled:
-            print(f"Garth session: {self.telemetry.session_id}")
+            logger.info("Garth session: %s", self.telemetry.session_id)
         self._auto_resume()
 
     def configure(

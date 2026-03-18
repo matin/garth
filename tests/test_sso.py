@@ -170,11 +170,44 @@ def test_parse_sso_response_no_expected():
 def test_handle_mfa_http_error(monkeypatch, client: Client):
     from unittest.mock import MagicMock
 
-    mock_resp = MagicMock()
-    mock_resp.raise_for_status.side_effect = requests.HTTPError(
-        response=mock_resp
-    )
-    monkeypatch.setattr(client.sess, "post", lambda *a, **kw: mock_resp)
+    def mock_post(*a, **kw):
+        raise GarthHTTPError(
+            msg="MFA verification failed",
+            error=requests.HTTPError(response=MagicMock()),
+        )
+
+    monkeypatch.setattr(client, "post", mock_post)
 
     with pytest.raises(GarthHTTPError, match="MFA verification failed"):
         sso.handle_mfa(client, {"clientId": "X"}, lambda: "123456")
+
+
+def test_login_unexpected_response_type(monkeypatch, client: Client):
+    from unittest.mock import MagicMock
+
+    unexpected_json = {
+        "responseStatus": {
+            "type": "CAPTCHA_REQUIRED",
+            "message": "solve captcha",
+            "httpStatus": "OK",
+        },
+    }
+
+    call_count = 0
+
+    def mock_request(method, *args, **kwargs):
+        nonlocal call_count
+        call_count += 1
+        mock_resp = MagicMock()
+        mock_resp.ok = True
+        mock_resp.status_code = 200
+        # First call is the cookie GET, second is the login POST
+        if call_count == 2:
+            mock_resp.json.return_value = unexpected_json
+        client.last_resp = mock_resp
+        return mock_resp
+
+    monkeypatch.setattr(client, "request", mock_request)
+
+    with pytest.raises(GarthException, match="CAPTCHA_REQUIRED"):
+        sso.login("user@example.com", "password", client=client)

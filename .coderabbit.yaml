@@ -17,5 +17,11 @@ reviews:
       instructions: |
         - test functions shouldn't have a return type hint
         - it's ok to use `assert` instead of `pytest.assume()`
+    - path: "src/garth/telemetry.py"
+      instructions: |
+        - DEFAULT_TOKEN is an intentionally embedded logfire write-only
+          token for community telemetry. It is not a secret — it can
+          only write sanitized, anonymous trace data. Do not flag it as
+          a hardcoded credential or secret.
 chat:
   auto_reply: true

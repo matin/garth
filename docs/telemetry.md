@@ -6,6 +6,16 @@ Telemetry is **enabled by default** to help diagnose authentication issues. It
 is **isolated to Garth's requests only** — it won't affect other HTTP clients
 in your application.
 
+## Why telemetry is on by default
+
+Garmin occasionally changes their authentication endpoints in ways that only
+affect a subset of users — for example, the
+[SSO migration](https://github.com/cyberjunky/python-garminconnect/issues/332)
+that caused 403 errors for some users while others were unaffected. Without
+telemetry, these issues are nearly impossible to reproduce or diagnose. With
+default-on telemetry, maintainers can look up the exact request/response
+sequence for a failing session using the session ID.
+
 Each session generates a unique `session_id`. When reporting issues, include
 your session ID so maintainers can look up your request logs:
 

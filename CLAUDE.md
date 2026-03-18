@@ -3,6 +3,26 @@
 This file provides guidance to Claude Code (claude.ai/code) when working with
 code in this repository.
 
+## Philosophy
+
+> *"Programs must be written for people to read, and only incidentally for
+> machines to execute."* — Harold Abelson
+
+The goal is a codebase that:
+
+- Reads naturally, almost like prose
+- Surprises no one
+- Makes the next person smile when they open a file
+
+**Principles:**
+
+- No function should require scrolling to read
+- Use `Literal` types with Pydantic validation instead of magic strings where
+  runtime validation is needed (e.g.,
+  `app_mode: Literal["public", "internal", "all"]`). Use constants or enums
+  for values used across multiple modules without validation.
+- A new contributor should understand the project in 10 minutes
+
 ## Development Commands
 
 ### Setup and Installation
