@@ -19,6 +19,8 @@ from .utils import asdict
 
 
 USER_AGENT = {"User-Agent": "GCM-iOS-5.22.1.4"}
+OAUTH1_TOKEN_FILE = "oauth1_token.json"
+OAUTH2_TOKEN_FILE = "oauth2_token.json"
 logger = logging.getLogger(__name__)
 
 
@@ -136,7 +138,7 @@ class Client:
         if settings.home:
             self._garth_home = settings.home
             token_path = os.path.join(
-                os.path.expanduser(settings.home), "oauth1_token.json"
+                os.path.expanduser(settings.home), OAUTH1_TOKEN_FILE
             )
             if os.path.exists(token_path):
                 self.load(settings.home)
@@ -271,10 +273,10 @@ class Client:
         dir_path = os.path.expanduser(dir_path)
         os.makedirs(dir_path, exist_ok=True)
         if not oauth2_only:
-            with open(os.path.join(dir_path, "oauth1_token.json"), "w") as f:
+            with open(os.path.join(dir_path, OAUTH1_TOKEN_FILE), "w") as f:
                 if self.oauth1_token:
                     json.dump(asdict(self.oauth1_token), f, indent=4)
-        with open(os.path.join(dir_path, "oauth2_token.json"), "w") as f:
+        with open(os.path.join(dir_path, OAUTH2_TOKEN_FILE), "w") as f:
             if self.oauth2_token:
                 json.dump(asdict(self.oauth2_token), f, indent=4)
 
@@ -287,9 +289,9 @@ class Client:
 
     def load(self, dir_path: str):
         dir_path = os.path.expanduser(dir_path)
-        with open(os.path.join(dir_path, "oauth1_token.json")) as f:
+        with open(os.path.join(dir_path, OAUTH1_TOKEN_FILE)) as f:
             oauth1 = OAuth1Token(**json.load(f))
-        with open(os.path.join(dir_path, "oauth2_token.json")) as f:
+        with open(os.path.join(dir_path, OAUTH2_TOKEN_FILE)) as f:
             oauth2 = OAuth2Token(**json.load(f))
         self.configure(
             oauth1_token=oauth1, oauth2_token=oauth2, domain=oauth1.domain
