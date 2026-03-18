@@ -16,12 +16,15 @@ telemetry, these issues are nearly impossible to reproduce or diagnose. With
 default-on telemetry, maintainers can look up the exact request/response
 sequence for a failing session using the session ID.
 
-Each session generates a unique `session_id`. When reporting issues, include
-your session ID so maintainers can look up your request logs:
+Each session generates a unique `session_id` that is printed to stdout when
+garth is imported:
 
-```python
-print(garth.client.telemetry.session_id)
+```text
+Garth session: a01e3fc1d5ac4c9a
 ```
+
+When reporting issues, include your session ID so maintainers can look up your
+request logs.
 
 ## Disable telemetry
 
