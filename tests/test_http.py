@@ -54,6 +54,77 @@ def test_auto_resume_garth_token(
     assert client.oauth2_token == authed_client.oauth2_token
 
 
+def test_auto_resume_garth_home_missing_tokens(
+    monkeypatch: pytest.MonkeyPatch,
+):
+    with tempfile.TemporaryDirectory() as tempdir:
+        monkeypatch.setenv("GARTH_HOME", tempdir)
+        monkeypatch.delenv("GARTH_TOKEN", raising=False)
+
+        client = Client()
+        assert client._garth_home == tempdir
+        assert client.oauth1_token is None
+        assert client.oauth2_token is None
+
+
+@pytest.fixture
+def garth_home_client(monkeypatch: pytest.MonkeyPatch):
+    """Client with GARTH_HOME set to a temp dir and mock tokens."""
+    import garth.sso
+
+    with tempfile.TemporaryDirectory() as tempdir:
+        monkeypatch.setenv("GARTH_HOME", tempdir)
+        monkeypatch.delenv("GARTH_TOKEN", raising=False)
+
+        client = Client()
+        mock_oauth1 = OAuth1Token(
+            oauth_token="test_token",
+            oauth_token_secret="test_secret",
+            domain="garmin.com",
+        )
+        mock_oauth2 = OAuth2Token(
+            scope="CONNECT_READ",
+            jti="test_jti",
+            token_type="Bearer",
+            access_token="test_access",
+            refresh_token="test_refresh",
+            expires_in=3600,
+            refresh_token_expires_in=7200,
+            expires_at=int(time.time() + 3600),
+            refresh_token_expires_at=int(time.time() + 7200),
+        )
+        yield client, tempdir, mock_oauth1, mock_oauth2, garth.sso
+
+
+def _assert_tokens_saved(tempdir, mock_oauth1, mock_oauth2):
+    loaded = Client()
+    loaded.load(tempdir)
+    assert loaded.oauth1_token == mock_oauth1
+    assert loaded.oauth2_token == mock_oauth2
+
+
+def test_auto_save_on_login(garth_home_client, monkeypatch):
+    client, tempdir, mock_oauth1, mock_oauth2, sso_mod = garth_home_client
+    monkeypatch.setattr(
+        sso_mod, "login", lambda *a, **kw: (mock_oauth1, mock_oauth2)
+    )
+
+    client.login("user@example.com", "password")
+    _assert_tokens_saved(tempdir, mock_oauth1, mock_oauth2)
+
+
+def test_auto_save_on_resume_login(garth_home_client, monkeypatch):
+    client, tempdir, mock_oauth1, mock_oauth2, sso_mod = garth_home_client
+    monkeypatch.setattr(
+        sso_mod,
+        "resume_login",
+        lambda *a, **kw: (mock_oauth1, mock_oauth2),
+    )
+
+    client.resume_login({"client": client, "login_params": {}}, "123")
+    _assert_tokens_saved(tempdir, mock_oauth1, mock_oauth2)
+
+
 def test_auto_resume_both_set_raises(monkeypatch: pytest.MonkeyPatch):
     monkeypatch.setenv("GARTH_HOME", "/some/path")
     monkeypatch.setenv("GARTH_TOKEN", "some_token")

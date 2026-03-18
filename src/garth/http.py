@@ -6,6 +6,8 @@ from collections.abc import Callable
 from typing import IO, Any, Literal
 from urllib.parse import urljoin
 
+from pydantic import model_validator
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from requests import HTTPError, Response, Session
 from requests.adapters import HTTPAdapter, Retry
 
@@ -17,7 +19,24 @@ from .utils import asdict
 
 
 USER_AGENT = {"User-Agent": "GCM-iOS-5.22.1.4"}
+OAUTH1_TOKEN_FILE = "oauth1_token.json"
+OAUTH2_TOKEN_FILE = "oauth2_token.json"
 logger = logging.getLogger(__name__)
+
+
+class GarthSettings(BaseSettings):
+    model_config = SettingsConfigDict(env_prefix="GARTH_")
+
+    home: str | None = None
+    token: str | None = None
+
+    @model_validator(mode="after")
+    def check_mutual_exclusivity(self):
+        if self.home and self.token:
+            raise GarthException(
+                msg="GARTH_HOME and GARTH_TOKEN cannot both be set"
+            )
+        return self
 
 
 class Client:
@@ -115,19 +134,16 @@ class Client:
 
     def _auto_resume(self):
         """Auto-resume session from GARTH_HOME or GARTH_TOKEN env vars."""
-        garth_home = os.environ.get("GARTH_HOME")
-        garth_token = os.environ.get("GARTH_TOKEN")
-
-        if garth_home and garth_token:
-            raise GarthException(
-                msg="GARTH_HOME and GARTH_TOKEN cannot both be set"
+        settings = GarthSettings()
+        if settings.home:
+            self._garth_home = settings.home
+            token_path = os.path.join(
+                os.path.expanduser(settings.home), OAUTH1_TOKEN_FILE
             )
-
-        if garth_home:
-            self.load(garth_home)
-            self._garth_home = garth_home
-        elif garth_token:
-            self.loads(garth_token)
+            if os.path.exists(token_path):
+                self.load(settings.home)
+        elif settings.token:
+            self.loads(settings.token)
 
     @property
     def user_profile(self):
@@ -205,12 +221,16 @@ class Client:
         self.oauth1_token, self.oauth2_token = sso.login(
             *args, **kwargs, client=self
         )
+        if self._garth_home:
+            self.dump(self._garth_home)
         return self.oauth1_token, self.oauth2_token
 
     def resume_login(self, *args, **kwargs):
         self.oauth1_token, self.oauth2_token = sso.resume_login(
             *args, **kwargs
         )
+        if self._garth_home:
+            self.dump(self._garth_home)
         return self.oauth1_token, self.oauth2_token
 
     def refresh_oauth2(self):
@@ -253,10 +273,10 @@ class Client:
         dir_path = os.path.expanduser(dir_path)
         os.makedirs(dir_path, exist_ok=True)
         if not oauth2_only:
-            with open(os.path.join(dir_path, "oauth1_token.json"), "w") as f:
+            with open(os.path.join(dir_path, OAUTH1_TOKEN_FILE), "w") as f:
                 if self.oauth1_token:
                     json.dump(asdict(self.oauth1_token), f, indent=4)
-        with open(os.path.join(dir_path, "oauth2_token.json"), "w") as f:
+        with open(os.path.join(dir_path, OAUTH2_TOKEN_FILE), "w") as f:
             if self.oauth2_token:
                 json.dump(asdict(self.oauth2_token), f, indent=4)
 
@@ -269,9 +289,9 @@ class Client:
 
     def load(self, dir_path: str):
         dir_path = os.path.expanduser(dir_path)
-        with open(os.path.join(dir_path, "oauth1_token.json")) as f:
+        with open(os.path.join(dir_path, OAUTH1_TOKEN_FILE)) as f:
             oauth1 = OAuth1Token(**json.load(f))
-        with open(os.path.join(dir_path, "oauth2_token.json")) as f:
+        with open(os.path.join(dir_path, OAUTH2_TOKEN_FILE)) as f:
             oauth2 = OAuth2Token(**json.load(f))
         self.configure(
             oauth1_token=oauth1, oauth2_token=oauth2, domain=oauth1.domain
