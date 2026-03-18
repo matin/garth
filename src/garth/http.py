@@ -45,6 +45,8 @@ class Client:
             backoff_factor=self.backoff_factor,
             **kwargs,
         )
+        if self.telemetry.enabled:
+            print(f"Garth session: {self.telemetry.session_id}")
         self._auto_resume()
 
     def configure(
