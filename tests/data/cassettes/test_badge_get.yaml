@@ -1,0 +1,188 @@
+interactions:
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/badge-service/badge/detail/v2/55
+  response:
+    body:
+      string: '{
+        "badgeId": 55,
+        "badgeKey": "activity_new_year",
+        "badgeName": "Strong Start",
+        "badgeUuid": null,
+        "badgeCategoryId": 1,
+        "badgeDifficultyId": 1,
+        "badgePoints": 1,
+        "badgeTypeIds": [
+          3,
+          5
+        ],
+        "badgeSeriesId": 3,
+        "badgeStartDate": "2018-01-01T00:00:00.0",
+        "badgeEndDate": "2027-01-01T23:59:59.0",
+        "userProfileId": 126523240,
+        "fullName": "Garmin",
+        "displayName": "user-guid",
+        "badgeEarnedDate": "2026-01-01T13:58:28.0",
+        "badgeEarnedNumber": 1,
+        "premium": false,
+        "badgeLimitCount": 250,
+        "badgeIsViewed": true,
+        "badgeProgressValue": 0.0,
+        "badgeTargetValue": null,
+        "badgeUnitId": null,
+        "badgeAssocTypeId": 1,
+        "badgeAssocType": "activityId",
+        "badgeAssocDataId": "21411202296",
+        "badgeAssocDataName": null,
+        "earnedByMe": true,
+        "currentPlayerType": null,
+        "userJoined": null,
+        "badgeChallengeStatusId": null,
+        "badgePromotionCodeTypeList": [
+          null
+        ],
+        "promotionCodeStatus": null,
+        "createDate": "2026-01-01T14:04:22.60",
+        "relatedBadges": null
+      }'
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Thu, 18 Feb 2026 12:00:00 GMT
+    status:
+      code: 200
+      message: OK
+- request:
+    body: null
+    headers:
+      Accept:
+      - '*/*'
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer SANITIZED
+      Connection:
+      - keep-alive
+      User-Agent:
+      - GCM-iOS-5.7.2.1
+    method: GET
+    uri: https://connectapi.garmin.com/badge-service/badge/detail/v2/2139
+  response:
+    body:
+      string: '{
+        "badgeId": 2139,
+        "badgeKey": "virtual_hike_via_transilvanica",
+        "badgeName": "Via Transilvanica",
+        "badgeUuid": "3054CA5CB9F24491A6287AE6281D03E3",
+        "badgeCategoryId": 4,
+        "badgeDifficultyId": 3,
+        "badgePoints": 4,
+        "badgeTypeIds": [
+          4
+        ],
+        "badgeSeriesId": 86,
+        "badgeStartDate": "2023-01-01T00:00:00.0",
+        "badgeEndDate": null,
+        "userProfileId": 126523240,
+        "fullName": "Garmin",
+        "displayName": "user-guid",
+        "badgeEarnedDate": "2026-02-10T12:29:06.777",
+        "badgeEarnedNumber": 1,
+        "premium": false,
+        "badgeLimitCount": null,
+        "badgeIsViewed": true,
+        "badgeProgressValue": 1400000.0,
+        "badgeTargetValue": 1400000.0,
+        "badgeUnitId": 1,
+        "badgeAssocTypeId": 9,
+        "badgeAssocType": "none",
+        "badgeAssocDataId": "3054CA5CB9F24491A6287AE6281D03E3",
+        "badgeAssocDataName": null,
+        "earnedByMe": true,
+        "currentPlayerType": null,
+        "userJoined": true,
+        "badgeChallengeStatusId": null,
+        "badgePromotionCodeTypeList": [
+          null
+        ],
+        "promotionCodeStatus": null,
+        "createDate": "2025-09-27T17:36:01.822",
+        "relatedBadges": [
+        {
+          "badgeId": 1603,
+          "badgeKey": "virtual_hike_camino_de_santiago",
+          "badgeUuid": "34D4BEAEBAD9427C9DF73672B1F91DBD",
+          "badgeName": "Camino de Santiago",
+          "badgeDifficultyId": 3,
+          "badgePoints": 4,
+          "badgeTypeIds": [
+            4
+          ],
+          "earnedByMe": true,
+          "badgeCategoryId": 4
+        },
+        {
+          "badgeId": 1619,
+          "badgeKey": "virtual_hike_mont_blanc_circular",
+          "badgeUuid": "B8416056067147AA8EE10ED46AFB3EFB",
+          "badgeName": "Mont Blanc Circular",
+          "badgeDifficultyId": 2,
+          "badgePoints": 2,
+          "badgeTypeIds": [
+            4
+          ],
+          "earnedByMe": true,
+          "badgeCategoryId": 4
+        },
+        {
+          "badgeId": 1625,
+          "badgeKey": "virtual_hike_rheinsteig_trail",
+          "badgeUuid": "63584C38779C4977A76CE71FD13BDA3D",
+          "badgeName": "Rheinsteig Trail",
+          "badgeDifficultyId": 3,
+          "badgePoints": 4,
+          "badgeTypeIds": [
+            4
+          ],
+          "earnedByMe": true,
+          "badgeCategoryId": 4
+        },
+        {
+          "badgeId": 1627,
+          "badgeKey": "virtual_climb_west_highland_way",
+          "badgeUuid": "BC90E4D52430458C8A11EB95D169E692",
+          "badgeName": "West Highland Way",
+          "badgeDifficultyId": 2,
+          "badgePoints": 2,
+          "badgeTypeIds": [
+            4
+          ],
+          "earnedByMe": true,
+          "badgeCategoryId": 4
+        }
+        ],
+        "connectionNumber": 1,
+        "connections": []
+      }'
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Date:
+      - Thu, 18 Feb 2026 12:00:00 GMT
+    status:
+      code: 200
+      message: OK
+version: 1
