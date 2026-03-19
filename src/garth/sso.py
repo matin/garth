@@ -118,7 +118,6 @@ def login(
         "sso",
         "/mobile/api/login",
         params=login_params,
-        headers=SSO_PAGE_HEADERS,
         json={
             "username": email,
             "password": password,
@@ -218,7 +217,6 @@ def handle_mfa(
         "sso",
         "/mobile/api/mfa/verifyCode",
         params=login_params,
-        headers=SSO_PAGE_HEADERS,
         json={
             "mfaMethod": mfa_method,
             "mfaVerificationCode": mfa_code,
