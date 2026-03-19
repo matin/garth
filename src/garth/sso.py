@@ -133,12 +133,17 @@ def login(
         return _complete_login(ticket, client)
 
     if resp_type == SSO_MFA_REQUIRED:
+        mfa_info = resp_json.get("customerMfaInfo") or {}
+        mfa_method = mfa_info.get("mfaLastMethodUsed") or "email"
         if return_on_mfa or prompt_mfa is None:
             return "needs_mfa", {
                 "login_params": login_params,
                 "client": client,
+                "mfa_method": mfa_method,
             }
-        ticket = handle_mfa(client, login_params, prompt_mfa)
+        ticket = handle_mfa(
+            client, login_params, prompt_mfa, mfa_method=mfa_method
+        )
         return _complete_login(ticket, client)
 
     _parse_sso_response(resp_json, SSO_SUCCESSFUL)
@@ -198,7 +203,11 @@ def exchange(
 
 
 def handle_mfa(
-    client: http.Client, login_params: dict, prompt_mfa: Callable
+    client: http.Client,
+    login_params: dict,
+    prompt_mfa: Callable,
+    *,
+    mfa_method: str = "email",
 ) -> str:
     if inspect.iscoroutinefunction(prompt_mfa):
         mfa_code = asyncio.run(prompt_mfa())
@@ -209,7 +218,7 @@ def handle_mfa(
         "/mobile/api/mfa/verifyCode",
         params=login_params,
         json={
-            "mfaMethod": "email",
+            "mfaMethod": mfa_method,
             "mfaVerificationCode": mfa_code,
             "rememberMyBrowser": False,
             "reconsentList": [],
@@ -233,7 +242,10 @@ def resume_login(
 ) -> tuple[OAuth1Token, OAuth2Token]:
     client = client_state["client"]
     login_params = client_state["login_params"]
-    ticket = handle_mfa(client, login_params, lambda: mfa_code)
+    mfa_method = client_state.get("mfa_method", "email")
+    ticket = handle_mfa(
+        client, login_params, lambda: mfa_code, mfa_method=mfa_method
+    )
     return _complete_login(ticket, client)
 
 
