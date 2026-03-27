@@ -52,8 +52,8 @@ def test_telemetry_defaults(monkeypatch):
     monkeypatch.delenv("GARTH_TELEMETRY_SEND_TO_LOGFIRE", raising=False)
 
     t = Telemetry()
-    assert t.enabled is True
-    assert t.send_to_logfire is True
+    assert t.enabled is False
+    assert t.send_to_logfire is False
     assert t.token == DEFAULT_TOKEN
     assert t.callback is None
     assert t.session_id  # non-empty

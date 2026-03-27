@@ -1,4 +1,14 @@
-from .data import (
+import warnings
+
+
+warnings.warn(
+    "Garth is deprecated and no longer maintained. "
+    "See https://github.com/matin/garth/discussions/222",
+    DeprecationWarning,
+    stacklevel=2,
+)
+
+from .data import (  # noqa: E402
     Activity,
     BodyBatteryData,
     DailyBodyBatteryStress,
@@ -13,8 +23,8 @@ from .data import (
     TrainingReadinessData,
     WeightData,
 )
-from .http import Client, client
-from .stats import (
+from .http import Client, client  # noqa: E402
+from .stats import (  # noqa: E402
     DailyHRV,
     DailyHydration,
     DailyIntensityMinutes,
@@ -28,8 +38,8 @@ from .stats import (
     WeeklyStress,
     WeeklyTrainingStatus,
 )
-from .users import UserProfile, UserSettings
-from .version import __version__
+from .users import UserProfile, UserSettings  # noqa: E402
+from .version import __version__  # noqa: E402
 
 
 __all__ = [

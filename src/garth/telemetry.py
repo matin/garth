@@ -109,8 +109,8 @@ class Telemetry(BaseSettings):
         extra="ignore",
     )
 
-    enabled: bool = True
-    send_to_logfire: bool = True
+    enabled: bool = False
+    send_to_logfire: bool = False
     token: str = DEFAULT_TOKEN
     callback: Callable[[dict], None] | None = Field(default=None, exclude=True)
     session_id: str = Field(
