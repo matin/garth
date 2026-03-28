@@ -145,7 +145,7 @@ class Badge:
         client = client or http.client
         path = f"/badge-service/badge/detail/v2/{badge_id}"
         data = client.connectapi(path)
-        if not data:
+        if data is None:
             raise ValueError(f"No data returned from {path}")
         if not isinstance(data, dict):
             raise TypeError(
@@ -171,20 +171,21 @@ class Badge:
 
         path = "/badge-service/badge/earned"
         earned = client.connectapi(path)
-        if not isinstance(earned, list):
-            raise TypeError(
-                f"Expected list from {path}, got {type(earned).__name__}"
-            )
+        cls._require_type(earned, list, path)
 
         path = "/badge-service/badge/available?showExclusiveBadge=true"
         available = client.connectapi(path)
-        if not isinstance(available, list):
-            raise TypeError(
-                f"Expected list from {path}, got {type(available).__name__}"
-            )
+        cls._require_type(available, list, path)
 
         data = earned + available
         if not all(isinstance(item, dict) for item in data):
             raise TypeError("Badge list payload contains non-dict entries")
 
         return [cls(**camel_to_snake_dict(item)) for item in data]
+
+    @staticmethod
+    def _require_type(payload: object, expected: type, path: str) -> None:
+        if not isinstance(payload, expected):
+            raise TypeError(
+                f"Expected {expected.__name__} from {path}, got {type(payload).__name__}"
+            )
