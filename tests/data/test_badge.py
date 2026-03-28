@@ -1,0 +1,41 @@
+import pytest
+
+from garth import Badge
+from garth.http import Client
+
+
+@pytest.mark.vcr
+def test_badge_list(authed_client: Client):
+    badges = Badge.list(client=authed_client)
+    assert len(badges) == 6
+    assert len([b for b in badges if b.earned_by_me]) == 3
+    for badge in badges:
+        assert badge.badge_id
+        assert badge.badge_name
+        assert badge.badge_category_id
+        assert badge.badge_type_ids
+        assert badge.badge_assoc_type_id
+
+    earned_badge = next(b for b in badges if b.badge_id == 1136)
+    assert earned_badge.repeatable
+    assert earned_badge.badge_target_value == 30
+    assert (
+        earned_badge.badge_progress_value == 30
+    )  # in list it's always equal target for earned
+    assert earned_badge.reload(client=authed_client).badge_progress_value == 5
+
+    limited_time_badge = next(b for b in badges if b.badge_id == 2886)
+    assert limited_time_badge.limited_time
+
+    cumulative_badge = next(b for b in badges if b.badge_id == 2733)
+    assert cumulative_badge.cumulative
+
+    month_challenge_badge = next(b for b in badges if b.badge_id == 2918)
+    assert month_challenge_badge.month_challenge
+
+
+@pytest.mark.vcr
+def test_badge_get(authed_client: Client):
+    assert Badge.get(55, client=authed_client).annual
+
+    assert Badge.get(2139, client=authed_client).expedition

@@ -2,6 +2,7 @@ import warnings
 
 from .data import (
     Activity,
+    Badge,
     BodyBatteryData,
     DailyBodyBatteryStress,
     DailyHeartRate,
@@ -44,6 +45,7 @@ warnings.warn(
 
 __all__ = [
     "Activity",
+    "Badge",
     "BodyBatteryData",
     "Client",
     "DailyBodyBatteryStress",
