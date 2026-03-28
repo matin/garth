@@ -16,7 +16,7 @@ try:
 
     LOGFIRE_AVAILABLE = True
 except ImportError:  # pragma: no cover
-    logfire = None  # type: ignore[assignment]  # knot: ignore[invalid-assignment]
+    logfire = None  # type: ignore[assignment]  # ty: ignore[invalid-assignment]
     LOGFIRE_AVAILABLE = False
 
 
