@@ -45,8 +45,8 @@ Telemetry settings can be configured via environment variables with the
 
 | Environment Variable | Default | Description |
 |---|---|---|
-| `GARTH_TELEMETRY_ENABLED` | `true` | Enable/disable telemetry |
-| `GARTH_TELEMETRY_SEND_TO_LOGFIRE` | `true` | Send to Logfire Cloud |
+| `GARTH_TELEMETRY_ENABLED` | `false` | Enable/disable telemetry |
+| `GARTH_TELEMETRY_SEND_TO_LOGFIRE` | `false` | Send to Logfire Cloud |
 | `GARTH_TELEMETRY_TOKEN` | *(built-in)* | Logfire write token |
 
 ## What gets logged

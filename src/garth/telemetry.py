@@ -176,11 +176,11 @@ class Telemetry(BaseSettings):
         callback: Callable[[dict], None] | None = None,
     ):
         """
-        Configure telemetry. Enabled by default.
+        Configure telemetry. Disabled by default.
 
         Args:
-            enabled: Enable/disable telemetry (default: True)
-            send_to_logfire: Send to Logfire Cloud (default: True)
+            enabled: Enable/disable telemetry (default: False)
+            send_to_logfire: Send to Logfire Cloud (default: False)
             token: Logfire write token
             callback: Custom callback for telemetry data. If provided,
                 logfire will not be configured and data will be passed
