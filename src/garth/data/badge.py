@@ -1,4 +1,3 @@
-import builtins
 from datetime import datetime
 
 from pydantic.dataclasses import dataclass
@@ -28,7 +27,7 @@ class Badge:
     badge_category_id: int
     badge_difficulty_id: int
     badge_points: int
-    badge_type_ids: builtins.list[int]
+    badge_type_ids: tuple[int]
     premium: bool
     earned_by_me: bool
     badge_assoc_type_id: int
@@ -130,7 +129,7 @@ class Badge:
         """Get actual data for Badge
         Useful to retrieve actual information for repeatable badges from list response
         """
-        return Badge.get(self.badge_id, client or http.client)
+        return type(self).get(self.badge_id, client or http.client)
 
     @classmethod
     def get(cls, badge_id: int, client: http.Client | None = None) -> Self:
