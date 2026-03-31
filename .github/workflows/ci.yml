@@ -81,7 +81,7 @@ jobs:
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}-with-deps
 
       - name: upload coverage to Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           files: ./coverage/coverage.xml
           flags: unittests
