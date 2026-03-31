@@ -1,89 +1,60 @@
 from __future__ import annotations
 
-import asyncio
-import inspect
+import json
+import logging
+import os
 import time
 from collections.abc import Callable
+from pathlib import Path
 from typing import Any, Literal
-from urllib.parse import parse_qs
-
-import requests
-from requests import Session
-from requests_oauthlib import OAuth1Session
 
 from . import http
 from .auth_tokens import OAuth1Token, OAuth2Token
 from .exc import GarthException
 
+log = logging.getLogger(__name__)
 
-CLIENT_ID = "GCM_ANDROID_DARK"
-OAUTH_CONSUMER_URL = "https://thegarth.s3.amazonaws.com/oauth_consumer.json"
-OAUTH_CONSUMER: dict[str, str] = {}
+DEFAULT_SESSION_DIR = Path.home() / ".garth"
 
-SSO_SUCCESSFUL = "SUCCESSFUL"
-SSO_MFA_REQUIRED = "MFA_REQUIRED"
+# Browser state — module-level singleton.
+# Limitation: only one active session at a time. This matches garth's
+# existing singleton pattern (garth.client). Multi-account use requires
+# separate Python processes.
+_cm = None  # Camoufox context manager
+_browser = None
+_page = None
+_csrf = None
 
-# Android user agent — must match the Android consumer key from S3
-OAUTH_USER_AGENT = {"User-Agent": "com.garmin.android.apps.connectmobile"}
-
-# Browser-like headers for SSO to avoid Cloudflare challenges.
-# The SSO endpoints run in a WebView, so requests must look like a
-# browser — not a Python HTTP client.
-_SSO_UA = (
-    "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) "
-    "AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
-)
-SSO_PAGE_HEADERS = {
-    "User-Agent": _SSO_UA,
-    "Accept": (
-        "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
-    ),
-    "Accept-Language": "en-US,en;q=0.9",
-    "Sec-Fetch-Mode": "navigate",
-    "Sec-Fetch-Dest": "document",
-}
+# Sentinel value used to identify browser-backed placeholder tokens.
+# When tokens contain this value, they cannot be used without a browser.
+BROWSER_TOKEN_SENTINEL = "browser_session"
 
 
-class GarminOAuth1Session(OAuth1Session):
-    def __init__(
-        self,
-        /,
-        parent: Session | None = None,
-        **kwargs,
-    ):
-        global OAUTH_CONSUMER
-        if not OAUTH_CONSUMER:
-            request_kwargs: dict[str, Any] = {}
-            if parent is not None:
-                request_kwargs["proxies"] = parent.proxies
-                request_kwargs["verify"] = parent.verify
-            OAUTH_CONSUMER = requests.get(
-                OAUTH_CONSUMER_URL, **request_kwargs
-            ).json()
-        super().__init__(
-            OAUTH_CONSUMER["consumer_key"],
-            OAUTH_CONSUMER["consumer_secret"],
-            **kwargs,
-        )
-        if parent is not None:
-            self.mount("https://", parent.adapters["https://"])
-            self.cookies.update(parent.cookies)
-            self.proxies = parent.proxies
-            self.verify = parent.verify
-            self.hooks["response"].extend(parent.hooks["response"])
+def _connect_base_url(domain: str) -> str:
+    """Return the Connect base URL for a given domain."""
+    if domain == "garmin.cn":
+        return "https://connect.garmin.cn"
+    return "https://connect.garmin.com"
 
 
-def _parse_sso_response(
-    resp_json: dict[str, Any],
-    expected_type: str | None = None,
-) -> dict[str, Any]:
-    status = resp_json.get("responseStatus", {})
-    resp_type = status.get("type", "UNKNOWN")
-    message = status.get("message", "")
-    if expected_type and resp_type != expected_type:
-        detail = f"{resp_type}: {message}" if message else resp_type
-        raise GarthException(msg=f"SSO error: {detail}")
-    return resp_json
+def _placeholder_oauth2() -> OAuth2Token:
+    """Create a placeholder OAuth2 token for browser-backed sessions.
+
+    The browser session handles real auth via cookies. These tokens
+    exist only to satisfy garth's Client interface which expects
+    OAuth tokens to be set after login.
+    """
+    return OAuth2Token(
+        scope="readwrite",
+        jti=BROWSER_TOKEN_SENTINEL,
+        token_type="Bearer",
+        access_token=BROWSER_TOKEN_SENTINEL,
+        refresh_token=BROWSER_TOKEN_SENTINEL,
+        expires_in=86400 * 365,
+        expires_at=int(time.time()) + 86400 * 365,
+        refresh_token_expires_in=86400 * 365,
+        refresh_token_expires_at=int(time.time()) + 86400 * 365,
+    )
 
 
 def login(
@@ -93,81 +64,109 @@ def login(
     client: http.Client | None = None,
     prompt_mfa: Callable | None = lambda: input("MFA code: "),
     return_on_mfa: bool = False,
+    session_dir: str | Path | None = None,
+    headless: bool = True,
 ) -> (
     tuple[OAuth1Token, OAuth2Token]
     | tuple[Literal["needs_mfa"], dict[str, Any]]
 ):
-    client = client or http.client
-    service_url = f"https://mobile.integration.{client.domain}/gcm/android"
-    login_params = {
-        "clientId": CLIENT_ID,
-        "locale": "en-US",
-        "service": service_url,
-    }
+    """Login to Garmin Connect via browser automation.
 
-    # Set cookies
-    client.get(
-        "sso",
-        "/mobile/sso/en/sign-in",
-        params={"clientId": CLIENT_ID},
-        headers={**SSO_PAGE_HEADERS, "Sec-Fetch-Site": "none"},
-    )
+    Uses Camoufox (headless Firefox) to perform SSO login, bypassing
+    Cloudflare bot detection that blocks all Python HTTP clients.
 
-    # Submit login
-    client.post(
-        "sso",
-        "/mobile/api/login",
-        params=login_params,
-        headers=SSO_PAGE_HEADERS,
-        json={
-            "username": email,
-            "password": password,
-            "rememberMe": False,
-            "captchaToken": "",
-        },
-    )
-    resp_json = client.last_resp.json()
-    resp_type = resp_json.get("responseStatus", {}).get("type")
+    Note:
+        This is not thread-safe. Playwright browser pages cannot be
+        shared across threads. Use one Client per thread if needed.
 
-    if resp_type == SSO_SUCCESSFUL:
-        ticket = resp_json["serviceTicketId"]
-        return _complete_login(ticket, client)
+    Args:
+        email: Garmin account email
+        password: Garmin account password
+        client: garth Client instance (used for domain config)
+        prompt_mfa: Callable that returns MFA code when prompted
+        return_on_mfa: Not supported with browser login. Raises
+            NotImplementedError if True.
+        session_dir: Directory to store browser session cookies
+        headless: Run browser without visible window (default: True)
+    """
+    global _cm, _browser, _page, _csrf
 
-    if resp_type == SSO_MFA_REQUIRED:
-        mfa_info = resp_json.get("customerMfaInfo") or {}
-        mfa_method = mfa_info.get("mfaLastMethodUsed") or "email"
-        if return_on_mfa or prompt_mfa is None:
-            return "needs_mfa", {
-                "login_params": login_params,
-                "client": client,
-                "mfa_method": mfa_method,
-            }
-        ticket = handle_mfa(
-            client, login_params, prompt_mfa, mfa_method=mfa_method
+    if return_on_mfa:
+        raise NotImplementedError(
+            "return_on_mfa is not supported with browser-based login. "
+            "MFA is handled interactively via the prompt_mfa callback."
         )
-        return _complete_login(ticket, client)
 
-    _parse_sso_response(resp_json, SSO_SUCCESSFUL)
-    raise GarthException(msg="Unexpected SSO response")  # pragma: no cover
+    client = client or http.client
+    session_dir = Path(session_dir) if session_dir else DEFAULT_SESSION_DIR
+    session_dir.mkdir(parents=True, exist_ok=True)
+    session_file = session_dir / "browser_session.json"
+    connect_base = _connect_base_url(client.domain)
 
+    # Close any existing browser before launching a new one
+    close()
 
-def get_oauth1_token(ticket: str, client: http.Client) -> OAuth1Token:
-    sess = GarminOAuth1Session(parent=client.sess)
-    base_url = f"https://connectapi.{client.domain}/oauth-service/oauth/"
-    login_url = f"https://mobile.integration.{client.domain}/gcm/android"
-    url = (
-        f"{base_url}preauthorized?ticket={ticket}&login-url={login_url}"
-        "&accepts-mfa-tokens=true"
+    # Launch browser via context manager
+    from camoufox.sync_api import Camoufox
+
+    _cm = Camoufox(headless=headless)
+    try:
+        _browser = _cm.__enter__()
+        _page = _browser.new_page()
+        context = _page.context
+
+        # Load saved session cookies
+        if session_file.exists():
+            try:
+                session = json.loads(session_file.read_text())
+                age_days = (
+                    time.time() - session.get("saved_at", 0)
+                ) / 86400
+                if age_days < 364 and session.get("cookies"):
+                    context.add_cookies(session["cookies"])
+                    log.info(
+                        "Loaded session cookies (%.0f days old)",
+                        age_days,
+                    )
+            except Exception as e:
+                log.debug("Could not load session cookies: %s", e)
+
+        # Navigate to Garmin Connect
+        try:
+            _page.goto(
+                f"{connect_base}/modern/",
+                wait_until="domcontentloaded",
+                timeout=30000,
+            )
+        except Exception as e:
+            log.debug(
+                "Initial navigation error (may be expected): %s", e
+            )
+        time.sleep(3)
+
+        # Check if session is valid
+        url = _page.url
+        needs_login = "sso.garmin" in url or not _try_setup(
+            client.domain
+        )
+
+        if needs_login:
+            _do_login(email, password, prompt_mfa, client.domain)
+            _save_session(session_file)
+
+    except Exception:
+        close()
+        raise
+
+    # Return placeholder tokens — the browser session handles auth
+    oauth1 = OAuth1Token(
+        oauth_token=BROWSER_TOKEN_SENTINEL,
+        oauth_token_secret=BROWSER_TOKEN_SENTINEL,
+        domain=client.domain,
     )
-    resp = sess.get(
-        url,
-        headers=OAUTH_USER_AGENT,
-        timeout=client.timeout,
-    )
-    resp.raise_for_status()
-    parsed = parse_qs(resp.text)
-    token = {k: v[0] for k, v in parsed.items()}
-    return OAuth1Token(domain=client.domain, **token)  # type: ignore
+    oauth2 = _placeholder_oauth2()
+
+    return oauth1, oauth2
 
 
 def exchange(
@@ -176,31 +175,12 @@ def exchange(
     *,
     login: bool = False,
 ) -> OAuth2Token:
-    sess = GarminOAuth1Session(
-        resource_owner_key=oauth1.oauth_token,
-        resource_owner_secret=oauth1.oauth_token_secret,
-        parent=client.sess,
-    )
-    data: dict[str, str] = {}
-    if login:
-        data["audience"] = "GARMIN_CONNECT_MOBILE_ANDROID_DI"
-    if oauth1.mfa_token:
-        data["mfa_token"] = oauth1.mfa_token
-    base_url = f"https://connectapi.{client.domain}/oauth-service/oauth/"
-    url = f"{base_url}exchange/user/2.0"
-    headers = {
-        **OAUTH_USER_AGENT,
-        **{"Content-Type": "application/x-www-form-urlencoded"},
-    }
-    resp = sess.post(
-        url,
-        headers=headers,
-        data=data,
-        timeout=client.timeout,
-    )
-    resp.raise_for_status()
-    token = resp.json()
-    return OAuth2Token(**set_expirations(token))
+    """Refresh OAuth2 token — no-op with browser transport.
+
+    The browser session handles auth via cookies, so token refresh
+    is not needed. Returns a fresh placeholder token.
+    """
+    return _placeholder_oauth2()
 
 
 def handle_mfa(
@@ -210,25 +190,19 @@ def handle_mfa(
     *,
     mfa_method: str = "email",
 ) -> str:
-    if inspect.iscoroutinefunction(prompt_mfa):
-        mfa_code = asyncio.run(prompt_mfa())
-    else:
-        mfa_code = prompt_mfa()
-    client.post(
-        "sso",
-        "/mobile/api/mfa/verifyCode",
-        params=login_params,
-        headers=SSO_PAGE_HEADERS,
-        json={
-            "mfaMethod": mfa_method,
-            "mfaVerificationCode": mfa_code,
-            "rememberMyBrowser": False,
-            "reconsentList": [],
-            "mfaSetup": False,
-        },
+    """Not used with browser transport — MFA is handled in-browser."""
+    raise NotImplementedError(
+        "MFA is handled by the browser login flow"
     )
-    resp_json = _parse_sso_response(client.last_resp.json(), SSO_SUCCESSFUL)
-    return resp_json["serviceTicketId"]
+
+
+def resume_login(
+    client_state: dict, mfa_code: str
+) -> tuple[OAuth1Token, OAuth2Token]:
+    """Not used with browser transport — MFA is handled in-browser."""
+    raise NotImplementedError(
+        "MFA is handled by the browser login flow"
+    )
 
 
 def set_expirations(token: dict) -> dict:
@@ -239,32 +213,241 @@ def set_expirations(token: dict) -> dict:
     return token
 
 
-def resume_login(
-    client_state: dict, mfa_code: str
-) -> tuple[OAuth1Token, OAuth2Token]:
-    client = client_state["client"]
-    login_params = client_state["login_params"]
-    mfa_method = client_state.get("mfa_method", "email")
-    ticket = handle_mfa(
-        client, login_params, lambda: mfa_code, mfa_method=mfa_method
-    )
-    return _complete_login(ticket, client)
+def is_browser_token(token: OAuth1Token | OAuth2Token | None) -> bool:
+    """Check if a token is a browser-backed placeholder."""
+    if token is None:
+        return False
+    if isinstance(token, OAuth1Token):
+        return token.oauth_token == BROWSER_TOKEN_SENTINEL
+    if isinstance(token, OAuth2Token):
+        return token.access_token == BROWSER_TOKEN_SENTINEL
+    return False
 
 
-def _complete_login(
-    ticket: str, client: http.Client
-) -> tuple[OAuth1Token, OAuth2Token]:
-    # Sets Cloudflare LB cookie for backend pinning — best-effort
+def get_page():
+    """Get the browser page for use by Client.request()."""
+    return _page
+
+
+def get_csrf():
+    """Get the CSRF token for use by Client.request()."""
+    return _csrf
+
+
+def close() -> None:
+    """Close the browser. Call when done."""
+    global _cm, _browser, _page, _csrf
+    if _cm:
+        try:
+            _cm.__exit__(None, None, None)
+        except Exception as e:
+            log.debug(
+                "Error closing browser context manager: %s", e
+            )
+    _cm = None
+    _browser = None
+    _page = None
+    _csrf = None
+
+
+# --- Internal helpers ---
+
+
+def _try_setup(domain: str = "garmin.com") -> bool:
+    """Extract CSRF token and verify session is valid."""
+    global _csrf
+    connect_base = _connect_base_url(domain)
+    current = _page.url
+    if "/modern/" not in current:
+        try:
+            _page.goto(
+                f"{connect_base}/modern/",
+                wait_until="domcontentloaded",
+            )
+        except Exception as e:
+            log.debug("Navigation to /modern/ failed: %s", e)
+        time.sleep(3)
+
     try:
-        client.get(
-            "sso",
-            "/portal/sso/embed",
-            headers={**SSO_PAGE_HEADERS, "Sec-Fetch-Site": "same-origin"},
-            referrer=True,
-        )
-    except GarthException:  # pragma: no cover
-        pass
+        setup = _page.evaluate("""
+            async () => {
+                const csrf = document.querySelector(
+                    'meta[name="csrf-token"], meta[name="_csrf"]'
+                )?.content;
+                const h = {'connect-csrf-token': csrf};
+                const resp = await fetch(
+                    '/gc-api/userprofile-service/socialProfile',
+                    {credentials: 'include', headers: h}
+                );
+                const profile = resp.status === 200
+                    ? await resp.json() : null;
+                return {
+                    csrf,
+                    displayName: profile?.displayName,
+                };
+            }
+        """)
+        _csrf = setup.get("csrf")
+        return bool(_csrf)
+    except Exception as e:
+        log.debug("CSRF extraction failed: %s", e)
+        return False
 
-    oauth1 = get_oauth1_token(ticket, client)
-    oauth2 = exchange(oauth1, client, login=True)
-    return oauth1, oauth2
+
+def _do_login(
+    email: str,
+    password: str,
+    prompt_mfa: Callable | None,
+    domain: str = "garmin.com",
+) -> None:
+    """Perform SSO login via browser."""
+    global _page, _csrf
+
+    # Build SSO URL from domain config (supports garmin.cn)
+    sso_domain = "sso.garmin.com"
+    connect_domain = "connect.garmin.com"
+    if domain == "garmin.cn":
+        sso_domain = "sso.garmin.cn"
+        connect_domain = "connect.garmin.cn"
+
+    sso_url = (
+        f"https://{sso_domain}/portal/sso/en-US/sign-in"
+        f"?clientId=GarminConnect"
+        f"&service=https%3A%2F%2F{connect_domain}%2Fapp"
+    )
+
+    try:
+        _page.goto(
+            sso_url, wait_until="domcontentloaded", timeout=30000
+        )
+    except Exception as e:
+        log.debug("SSO page navigation error: %s", e)
+    time.sleep(3)
+
+    # Fill login form
+    email_input = _page.locator('input[name="email"]').first
+    email_input.wait_for(timeout=15000)
+    email_input.click()
+    _page.keyboard.type(email, delay=30)
+
+    _page.locator('input[name="password"]').first.click()
+    _page.keyboard.type(password, delay=30)
+
+    try:
+        _page.evaluate(
+            "() => { const cb = document.querySelector("
+            '"input[name=remember]"); '
+            "if (cb && !cb.checked) cb.click(); }"
+        )
+    except Exception as e:
+        log.debug("Remember-me checkbox not found: %s", e)
+
+    _page.locator('button[type="submit"]').first.click()
+
+    # Wait for redirect or MFA
+    for _ in range(120):
+        time.sleep(1)
+        url = _page.url
+
+        if (
+            connect_domain in url
+            and sso_domain not in url
+        ):
+            break
+
+        # Check tabs (some redirects open new tabs)
+        for p in _page.context.pages:
+            if (
+                connect_domain in p.url
+                and sso_domain not in p.url
+            ):
+                _page = p
+                break
+        if (
+            connect_domain in _page.url
+            and sso_domain not in _page.url
+        ):
+            break
+
+        # MFA detection
+        has_mfa = _page.evaluate(
+            "() => document.querySelector("
+            '"input[name=securityCode]") !== null'
+        )
+        if has_mfa:
+            mfa_func = prompt_mfa or input
+            code = mfa_func().strip()
+
+            _page.locator(
+                'input[name="securityCode"]'
+            ).first.fill(code)
+            try:
+                _page.evaluate(
+                    "() => { const cb = document.querySelector("
+                    '"input[name=remember]"); '
+                    "if (cb && !cb.checked) cb.click(); }"
+                )
+            except Exception as e:
+                log.debug(
+                    "MFA remember checkbox not found: %s", e
+                )
+            _page.locator(
+                'button:has-text("Next")'
+            ).first.click()
+
+            # Wait for redirect after MFA
+            for _ in range(60):
+                time.sleep(1)
+                if (
+                    connect_domain in _page.url
+                    and sso_domain not in _page.url
+                ):
+                    break
+                try:
+                    on_connect = (
+                        connect_domain in _page.url
+                    )
+                    if on_connect:
+                        _page.goto(
+                            f"https://{connect_domain}/modern/",
+                            wait_until="domcontentloaded",
+                        )
+                        time.sleep(2)
+                        break
+                except Exception as e:
+                    log.debug("Post-MFA check failed: %s", e)
+            break
+
+    time.sleep(3)
+
+    if sso_domain in _page.url:
+        raise GarthException(
+            msg="Login failed — still on SSO page"
+        )
+
+    if not _try_setup(domain):
+        raise GarthException(
+            msg="Login succeeded but could not extract session data"
+        )
+
+
+def _save_session(session_file: Path) -> None:
+    """Save browser cookies for session persistence."""
+    try:
+        cookies = _page.context.cookies()
+        garmin_cookies = [
+            c for c in cookies if "garmin" in c.get("domain", "")
+        ]
+        session = {
+            "cookies": garmin_cookies,
+            "saved_at": time.time(),
+        }
+        fd = os.open(
+            str(session_file),
+            os.O_WRONLY | os.O_CREAT | os.O_TRUNC,
+            0o600,
+        )
+        with os.fdopen(fd, "w") as f:
+            json.dump(session, f, indent=2)
+    except Exception as e:
+        log.warning("Could not save session cookies: %s", e)

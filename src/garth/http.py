@@ -1,23 +1,21 @@
 import base64
 import json
+import logging
 import os
 from collections.abc import Callable
 from typing import IO, Any, Literal
-from urllib.parse import urljoin
+from urllib.parse import urlencode
 
 from pydantic import model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from requests import HTTPError, Response, Session
-from requests.adapters import HTTPAdapter, Retry
 
 from . import sso
 from .auth_tokens import OAuth1Token, OAuth2Token
 from .exc import GarthException, GarthHTTPError
-from .telemetry import Telemetry
 from .utils import asdict
 
+log = logging.getLogger(__name__)
 
-USER_AGENT = {"User-Agent": "GCM-iOS-5.22.1.4"}
 OAUTH1_TOKEN_FILE = "oauth1_token.json"
 OAUTH2_TOKEN_FILE = "oauth2_token.json"
 
@@ -37,9 +35,52 @@ class GarthSettings(BaseSettings):
         return self
 
 
+class _Response:
+    """Response wrapper compatible with garth's existing API.
+
+    Note:
+        This is not thread-safe. Playwright browser pages cannot be
+        shared across threads.
+    """
+
+    def __init__(
+        self, status_code: int, text: str, url: str
+    ) -> None:
+        self.status_code = status_code
+        self.text = text
+        self.url = url
+        self.ok = 200 <= status_code < 300
+        self.content = (
+            text.encode() if isinstance(text, str) else b""
+        )
+
+    def json(self) -> Any:
+        return json.loads(self.text)
+
+    def raise_for_status(self) -> None:
+        if not self.ok:
+            raise GarthHTTPError(
+                msg="Error in request",
+                error=Exception(
+                    f"{self.status_code} for url: {self.url}"
+                ),
+            )
+
+
 class Client:
-    sess: Session
-    last_resp: Response
+    """Garmin Connect API client using browser-based transport.
+
+    All HTTP requests are routed through a Camoufox headless browser
+    via ``page.evaluate(fetch(...))``, bypassing Cloudflare bot
+    detection.
+
+    Note:
+        This client is **not thread-safe**. Playwright browser pages
+        cannot be shared across threads. If you need concurrent
+        access, use separate Client instances in separate processes.
+    """
+
+    last_resp: _Response | None = None
     domain: str = "garmin.com"
     oauth1_token: OAuth1Token | Literal["needs_mfa"] | None = None
     oauth2_token: OAuth2Token | dict[str, Any] | None = None
@@ -51,21 +92,9 @@ class Client:
     pool_maxsize: int = 10
     _user_profile: dict[str, Any] | None = None
     _garth_home: str | None = None
-    telemetry: Telemetry
 
-    def __init__(self, session: Session | None = None, **kwargs):
-        self.sess = session if session else Session()
-        self.sess.headers.update(USER_AGENT)
-        self.telemetry = Telemetry()
-        self.configure(
-            timeout=self.timeout,
-            retries=self.retries,
-            status_forcelist=self.status_forcelist,
-            backoff_factor=self.backoff_factor,
-            **kwargs,
-        )
-        if self.telemetry.enabled:
-            print(f"Garth session: {self.telemetry.session_id}")
+    def __init__(self, **kwargs):
+        self.configure(**kwargs)
         self._auto_resume()
 
     def configure(
@@ -82,10 +111,6 @@ class Client:
         backoff_factor: float | None = None,
         pool_connections: int | None = None,
         pool_maxsize: int | None = None,
-        telemetry_enabled: bool | None = None,
-        telemetry_send_to_logfire: bool | None = None,
-        telemetry_token: str | None = None,
-        telemetry_callback: Callable[[dict], None] | None = None,
     ):
         if oauth1_token is not None:
             self.oauth1_token = oauth1_token
@@ -94,9 +119,13 @@ class Client:
         if domain:
             self.domain = domain
         if proxies is not None:
-            self.sess.proxies.update(proxies)
+            log.warning(
+                "proxies not supported with browser transport"
+            )
         if ssl_verify is not None:
-            self.sess.verify = ssl_verify
+            log.warning(
+                "ssl_verify not supported with browser transport"
+            )
         if timeout is not None:
             self.timeout = timeout
         if retries is not None:
@@ -110,33 +139,14 @@ class Client:
         if pool_maxsize is not None:
             self.pool_maxsize = pool_maxsize
 
-        retry = Retry(
-            total=self.retries,
-            status_forcelist=self.status_forcelist,
-            backoff_factor=self.backoff_factor,
-        )
-        adapter = HTTPAdapter(
-            max_retries=retry,
-            pool_connections=self.pool_connections,
-            pool_maxsize=self.pool_maxsize,
-        )
-        self.sess.mount("https://", adapter)
-
-        self.telemetry.configure(
-            enabled=telemetry_enabled,
-            send_to_logfire=telemetry_send_to_logfire,
-            token=telemetry_token,
-            callback=telemetry_callback,
-        )
-        self.telemetry.attach(self.sess)
-
     def _auto_resume(self):
-        """Auto-resume session from GARTH_HOME or GARTH_TOKEN env vars."""
+        """Auto-resume session from GARTH_HOME or GARTH_TOKEN."""
         settings = GarthSettings()
         if settings.home:
             self._garth_home = settings.home
             token_path = os.path.join(
-                os.path.expanduser(settings.home), OAUTH1_TOKEN_FILE
+                os.path.expanduser(settings.home),
+                OAUTH1_TOKEN_FILE,
             )
             if os.path.exists(token_path):
                 self.load(settings.home)
@@ -146,8 +156,12 @@ class Client:
     @property
     def user_profile(self):
         if not self._user_profile:
-            result = self.connectapi("/userprofile-service/socialProfile")
-            assert isinstance(result, dict), "No profile from connectapi"
+            result = self.connectapi(
+                "/userprofile-service/socialProfile"
+            )
+            assert isinstance(result, dict), (
+                "No profile from connectapi"
+            )
             self._user_profile = result
         return self._user_profile
 
@@ -167,49 +181,195 @@ class Client:
         /,
         api: bool = False,
         referrer: str | bool = False,
-        headers: dict = {},
+        headers: dict | None = None,
         **kwargs,
-    ) -> Response:
-        url = f"https://{subdomain}.{self.domain}"
-        url = urljoin(url, path)
-        if referrer is True and self.last_resp:
-            headers["referer"] = self.last_resp.url
-        if api:
-            assert self.oauth1_token, (
-                "OAuth1 token is required for API requests"
-            )
-            if (
-                not isinstance(self.oauth2_token, OAuth2Token)
-                or self.oauth2_token.expired
-            ):
-                self.refresh_oauth2()
-            headers["Authorization"] = str(self.oauth2_token)
-        self.last_resp = self.sess.request(
-            method,
-            url,
-            headers=headers,
-            timeout=self.timeout,
-            **kwargs,
-        )
-        try:
-            self.last_resp.raise_for_status()
-        except HTTPError as e:
-            raise GarthHTTPError(
-                msg="Error in request",
-                error=e,
-            )
-        return self.last_resp
+    ) -> _Response:
+        """Make an API request through the browser.
 
-    def get(self, *args, **kwargs) -> Response:
+        All requests are routed through ``page.evaluate(fetch(...))``
+        in the Camoufox browser, bypassing Cloudflare.
+
+        Note:
+            The ``subdomain``, ``api``, and ``referrer`` parameters
+            are accepted for backward compatibility. With browser
+            transport, all requests go through the same origin via
+            ``/gc-api/`` prefix.
+        """
+        if headers is None:
+            headers = {}
+
+        page = sso.get_page()
+        csrf = sso.get_csrf()
+
+        if not page:
+            raise GarthException(
+                msg="Not logged in — call login() first"
+            )
+
+        url = f"/gc-api/{path.lstrip('/')}"
+
+        params = kwargs.get("params")
+        if params:
+            url += "?" + urlencode(params, doseq=True)
+
+        json_body = kwargs.get("json")
+        data = kwargs.get("data")
+
+        # Encode dict data as URL-encoded form
+        if isinstance(data, dict):
+            data = urlencode(data)
+        elif isinstance(data, bytes):
+            data = data.decode("utf-8", errors="replace")
+
+        # Handle file uploads
+        files = kwargs.get("files")
+        if files:
+            if len(files) > 1:
+                raise GarthException(
+                    msg="Only single file upload is supported"
+                )
+            return self._upload_via_browser(
+                page, csrf or "", url, files
+            )
+
+        result = page.evaluate("""
+            async ([url, method, jsonBody, formData, csrf,
+                    extraHeaders]) => {
+                const h = {
+                    'connect-csrf-token': csrf || '',
+                    'Accept': 'application/json'
+                };
+                if (extraHeaders) {
+                    Object.assign(h, extraHeaders);
+                }
+                let body = undefined;
+                if (jsonBody) {
+                    h['Content-Type'] = 'application/json';
+                    body = JSON.stringify(jsonBody);
+                } else if (formData) {
+                    h['Content-Type'] =
+                        'application/x-www-form-urlencoded';
+                    body = formData;
+                }
+                try {
+                    const resp = await fetch(url, {
+                        method: method || 'GET',
+                        credentials: 'include',
+                        headers: h,
+                        body: body
+                    });
+                    const text = await resp.text();
+                    return {
+                        status: resp.status,
+                        text: text,
+                        url: resp.url
+                    };
+                } catch(e) {
+                    return {status: 0, error: e.message};
+                }
+            }
+        """, [
+            url,
+            method.upper(),
+            json_body,
+            data if isinstance(data, str) else None,
+            csrf,
+            headers if headers else None,
+        ])
+
+        if result.get("error"):
+            raise GarthHTTPError(
+                msg=f"Browser fetch error: {result['error']}",
+                error=Exception(result["error"]),
+            )
+
+        status = result.get("status", 0)
+        text = result.get("text", "")
+        resp_url = result.get("url", "")
+
+        resp = _Response(status, text, resp_url)
+        self.last_resp = resp
+
+        if not resp.ok:
+            resp.raise_for_status()
+
+        return resp
+
+    def _upload_via_browser(
+        self,
+        page,
+        csrf: str | None,
+        url: str,
+        files: dict,
+    ) -> _Response:
+        """Upload a single file via browser FormData.
+
+        Note:
+            The caller-specified field name is ignored; Garmin's
+            upload API expects the field name ``file``.
+        """
+        _field_name, (filename, fp) = next(iter(files.items()))
+        file_bytes = fp.read()
+        b64_data = base64.b64encode(file_bytes).decode()
+
+        result = page.evaluate("""
+            async ([url, b64Data, fileName, csrf]) => {
+                const resp = await fetch(
+                    'data:application/octet-stream;base64,'
+                    + b64Data
+                );
+                const blob = await resp.blob();
+                const formData = new FormData();
+                formData.append('file', blob, fileName);
+                try {
+                    const resp2 = await fetch(url, {
+                        method: 'POST',
+                        credentials: 'include',
+                        headers: {
+                            'connect-csrf-token': csrf || ''
+                        },
+                        body: formData
+                    });
+                    const text = await resp2.text();
+                    return {
+                        status: resp2.status,
+                        text: text,
+                        url: resp2.url
+                    };
+                } catch(e) {
+                    return {status: 0, error: e.message};
+                }
+            }
+        """, [url, b64_data, filename, csrf or ""])
+
+        if result.get("error"):
+            raise GarthHTTPError(
+                msg=f"Upload error: {result['error']}",
+                error=Exception(result["error"]),
+            )
+
+        resp = _Response(
+            result.get("status", 0),
+            result.get("text", ""),
+            result.get("url", ""),
+        )
+        self.last_resp = resp
+
+        if not resp.ok:
+            resp.raise_for_status()
+
+        return resp
+
+    def get(self, *args, **kwargs) -> _Response:
         return self.request("GET", *args, **kwargs)
 
-    def post(self, *args, **kwargs) -> Response:
+    def post(self, *args, **kwargs) -> _Response:
         return self.request("POST", *args, **kwargs)
 
-    def delete(self, *args, **kwargs) -> Response:
+    def delete(self, *args, **kwargs) -> _Response:
         return self.request("DELETE", *args, **kwargs)
 
-    def put(self, *args, **kwargs) -> Response:
+    def put(self, *args, **kwargs) -> _Response:
         return self.request("PUT", *args, **kwargs)
 
     def login(self, *args, **kwargs):
@@ -232,28 +392,83 @@ class Client:
         assert self.oauth1_token and isinstance(
             self.oauth1_token, OAuth1Token
         ), "OAuth1 token is required for OAuth2 refresh"
-        try:
-            self.oauth2_token = sso.exchange(self.oauth1_token, self)
-        except GarthHTTPError:
-            self.oauth1_token = None
-            raise
+        self.oauth2_token = sso.exchange(self.oauth1_token, self)
         if self._garth_home:
             self.dump(self._garth_home, oauth2_only=True)
 
     def connectapi(
         self, path: str, method="GET", **kwargs
     ) -> dict[str, Any] | list[dict[str, Any]] | None:
-        resp = self.request(method, "connectapi", path, api=True, **kwargs)
+        resp = self.request(
+            method, "connectapi", path, api=True, **kwargs
+        )
         if resp.status_code == 204:
             return None
         return resp.json()
 
     def download(self, path: str, **kwargs) -> bytes:
-        resp = self.get("connectapi", path, api=True, **kwargs)
-        return resp.content
+        """Download binary data (FIT files, etc.)."""
+        page = sso.get_page()
+        csrf = sso.get_csrf()
+
+        if not page:
+            raise GarthException(
+                msg="Not logged in — call login() first"
+            )
+
+        url = f"/gc-api/{path.lstrip('/')}"
+
+        result = page.evaluate("""
+            async ([url, csrf]) => {
+                try {
+                    const resp = await fetch(url, {
+                        credentials: 'include',
+                        headers: {
+                            'connect-csrf-token': csrf || ''
+                        }
+                    });
+                    if (resp.status !== 200) {
+                        return {
+                            status: resp.status, data: null
+                        };
+                    }
+                    const blob = await resp.blob();
+                    return await new Promise((resolve) => {
+                        const reader = new FileReader();
+                        reader.onloadend = () => {
+                            const b64 = reader.result
+                                .split(',')[1];
+                            resolve({status: 200, data: b64});
+                        };
+                        reader.readAsDataURL(blob);
+                    });
+                } catch(e) {
+                    return {status: 0, error: e.message};
+                }
+            }
+        """, [url, csrf])
+
+        if result.get("error") or result.get("status") != 200:
+            raise GarthHTTPError(
+                msg=(
+                    "Download failed: "
+                    f"HTTP {result.get('status')}"
+                ),
+                error=Exception(
+                    result.get(
+                        "error",
+                        f"HTTP {result.get('status')}",
+                    )
+                ),
+            )
+
+        return base64.b64decode(result["data"])
 
     def upload(
-        self, fp: IO[bytes], /, path: str = "/upload-service/upload"
+        self,
+        fp: IO[bytes],
+        /,
+        path: str = "/upload-service/upload",
     ) -> dict[str, Any]:
         fname = os.path.basename(fp.name)
         files = {"file": (fname, fp)}
@@ -266,16 +481,26 @@ class Client:
         assert isinstance(result, dict)
         return result
 
-    def dump(self, dir_path: str, /, oauth2_only: bool = False):
+    def dump(
+        self, dir_path: str, /, oauth2_only: bool = False
+    ) -> None:
         dir_path = os.path.expanduser(dir_path)
         os.makedirs(dir_path, exist_ok=True)
         if not oauth2_only:
-            with open(os.path.join(dir_path, OAUTH1_TOKEN_FILE), "w") as f:
+            with open(
+                os.path.join(dir_path, OAUTH1_TOKEN_FILE), "w"
+            ) as f:
                 if self.oauth1_token:
-                    json.dump(asdict(self.oauth1_token), f, indent=4)
-        with open(os.path.join(dir_path, OAUTH2_TOKEN_FILE), "w") as f:
+                    json.dump(
+                        asdict(self.oauth1_token), f, indent=4
+                    )
+        with open(
+            os.path.join(dir_path, OAUTH2_TOKEN_FILE), "w"
+        ) as f:
             if self.oauth2_token:
-                json.dump(asdict(self.oauth2_token), f, indent=4)
+                json.dump(
+                    asdict(self.oauth2_token), f, indent=4
+                )
 
     def dumps(self) -> str:
         r = []
@@ -284,20 +509,45 @@ class Client:
         s = json.dumps(r)
         return base64.b64encode(s.encode()).decode()
 
-    def load(self, dir_path: str):
+    def load(self, dir_path: str) -> None:
         dir_path = os.path.expanduser(dir_path)
-        with open(os.path.join(dir_path, OAUTH1_TOKEN_FILE)) as f:
+        with open(
+            os.path.join(dir_path, OAUTH1_TOKEN_FILE)
+        ) as f:
             oauth1 = OAuth1Token(**json.load(f))
-        with open(os.path.join(dir_path, OAUTH2_TOKEN_FILE)) as f:
+        with open(
+            os.path.join(dir_path, OAUTH2_TOKEN_FILE)
+        ) as f:
             oauth2 = OAuth2Token(**json.load(f))
+
+        # Detect browser-backed placeholder tokens
+        if sso.is_browser_token(oauth1):
+            log.warning(
+                "Loaded browser-session tokens from %s. "
+                "These require an active browser — call login() "
+                "to start a new session.",
+                dir_path,
+            )
+
         self.configure(
-            oauth1_token=oauth1, oauth2_token=oauth2, domain=oauth1.domain
+            oauth1_token=oauth1,
+            oauth2_token=oauth2,
+            domain=oauth1.domain,
         )
 
-    def loads(self, s: str):
+    def loads(self, s: str) -> None:
         oauth1, oauth2 = json.loads(base64.b64decode(s))
+        oauth1_obj = OAuth1Token(**oauth1)
+
+        if sso.is_browser_token(oauth1_obj):
+            log.warning(
+                "Loaded browser-session tokens from string. "
+                "These require an active browser — call login() "
+                "to start a new session."
+            )
+
         self.configure(
-            oauth1_token=OAuth1Token(**oauth1),
+            oauth1_token=oauth1_obj,
             oauth2_token=OAuth2Token(**oauth2),
             domain=oauth1.get("domain"),
         )
