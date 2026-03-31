@@ -30,6 +30,13 @@ _csrf = None
 BROWSER_TOKEN_SENTINEL = "browser_session"
 
 
+def _connect_base_url(domain: str) -> str:
+    """Return the Connect base URL for a given domain."""
+    if domain == "garmin.cn":
+        return "https://connect.garmin.cn"
+    return "https://connect.garmin.com"
+
+
 def _placeholder_oauth2() -> OAuth2Token:
     """Create a placeholder OAuth2 token for browser-backed sessions.
 
@@ -94,6 +101,7 @@ def login(
     session_dir = Path(session_dir) if session_dir else DEFAULT_SESSION_DIR
     session_dir.mkdir(parents=True, exist_ok=True)
     session_file = session_dir / "browser_session.json"
+    connect_base = _connect_base_url(client.domain)
 
     # Close any existing browser before launching a new one
     close()
@@ -102,43 +110,53 @@ def login(
     from camoufox.sync_api import Camoufox
 
     _cm = Camoufox(headless=headless)
-    _browser = _cm.__enter__()
-    _page = _browser.new_page()
-    context = _page.context
-
-    # Load saved session cookies
-    if session_file.exists():
-        try:
-            session = json.loads(session_file.read_text())
-            age_days = (
-                time.time() - session.get("saved_at", 0)
-            ) / 86400
-            if age_days < 364 and session.get("cookies"):
-                context.add_cookies(session["cookies"])
-                log.info(
-                    "Loaded session cookies (%.0f days old)", age_days
-                )
-        except Exception as e:
-            log.debug("Could not load session cookies: %s", e)
-
-    # Navigate to Garmin Connect
     try:
-        _page.goto(
-            "https://connect.garmin.com/modern/",
-            wait_until="domcontentloaded",
-            timeout=30000,
+        _browser = _cm.__enter__()
+        _page = _browser.new_page()
+        context = _page.context
+
+        # Load saved session cookies
+        if session_file.exists():
+            try:
+                session = json.loads(session_file.read_text())
+                age_days = (
+                    time.time() - session.get("saved_at", 0)
+                ) / 86400
+                if age_days < 364 and session.get("cookies"):
+                    context.add_cookies(session["cookies"])
+                    log.info(
+                        "Loaded session cookies (%.0f days old)",
+                        age_days,
+                    )
+            except Exception as e:
+                log.debug("Could not load session cookies: %s", e)
+
+        # Navigate to Garmin Connect
+        try:
+            _page.goto(
+                f"{connect_base}/modern/",
+                wait_until="domcontentloaded",
+                timeout=30000,
+            )
+        except Exception as e:
+            log.debug(
+                "Initial navigation error (may be expected): %s", e
+            )
+        time.sleep(3)
+
+        # Check if session is valid
+        url = _page.url
+        needs_login = "sso.garmin" in url or not _try_setup(
+            client.domain
         )
-    except Exception as e:
-        log.debug("Initial navigation error (may be expected): %s", e)
-    time.sleep(3)
 
-    # Check if session is valid
-    url = _page.url
-    needs_login = "sso.garmin.com" in url or not _try_setup()
+        if needs_login:
+            _do_login(email, password, prompt_mfa, client.domain)
+            _save_session(session_file)
 
-    if needs_login:
-        _do_login(email, password, prompt_mfa, client.domain)
-        _save_session(session_file)
+    except Exception:
+        close()
+        raise
 
     # Return placeholder tokens — the browser session handles auth
     oauth1 = OAuth1Token(
@@ -223,7 +241,9 @@ def close() -> None:
         try:
             _cm.__exit__(None, None, None)
         except Exception as e:
-            log.debug("Error closing browser context manager: %s", e)
+            log.debug(
+                "Error closing browser context manager: %s", e
+            )
     _cm = None
     _browser = None
     _page = None
@@ -233,14 +253,15 @@ def close() -> None:
 # --- Internal helpers ---
 
 
-def _try_setup() -> bool:
+def _try_setup(domain: str = "garmin.com") -> bool:
     """Extract CSRF token and verify session is valid."""
     global _csrf
+    connect_base = _connect_base_url(domain)
     current = _page.url
     if "/modern/" not in current:
         try:
             _page.goto(
-                "https://connect.garmin.com/modern/",
+                f"{connect_base}/modern/",
                 wait_until="domcontentloaded",
             )
         except Exception as e:
@@ -367,8 +388,12 @@ def _do_login(
                     "if (cb && !cb.checked) cb.click(); }"
                 )
             except Exception as e:
-                log.debug("MFA remember checkbox not found: %s", e)
-            _page.locator('button:has-text("Next")').first.click()
+                log.debug(
+                    "MFA remember checkbox not found: %s", e
+                )
+            _page.locator(
+                'button:has-text("Next")'
+            ).first.click()
 
             # Wait for redirect after MFA
             for _ in range(60):
@@ -379,11 +404,10 @@ def _do_login(
                 ):
                     break
                 try:
-                    has_app = _page.evaluate(
-                        "() => document.body?.innerText"
-                        '?.includes("Activities")'
+                    on_connect = (
+                        connect_domain in _page.url
                     )
-                    if has_app:
+                    if on_connect:
                         _page.goto(
                             f"https://{connect_domain}/modern/",
                             wait_until="domcontentloaded",
@@ -401,7 +425,7 @@ def _do_login(
             msg="Login failed — still on SSO page"
         )
 
-    if not _try_setup():
+    if not _try_setup(domain):
         raise GarthException(
             msg="Login succeeded but could not extract session data"
         )

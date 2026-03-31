@@ -110,13 +110,15 @@ def _make_cassette_replayer(interactions):
         /,
         api=False,
         referrer=False,
-        headers={},
+        headers=None,
         **kwargs,
     ):
+        if headers is None:
+            headers = {}
         match_path = path.lstrip("/")
         params = kwargs.get("params")
         if params:
-            match_path += "?" + urlencode(params)
+            match_path += "?" + urlencode(params, doseq=True)
 
         with lock:
             best_idx = None
@@ -132,12 +134,16 @@ def _make_cassette_replayer(interactions):
                     best_idx = i
                     break
 
-            if best_idx is None and remaining:
-                best_idx = 0
-
             if best_idx is None:
+                expected = f"{method.upper()} {match_path}"
+                available = [
+                    f"{r['request'].get('method', 'GET')} "
+                    f"{r['request'].get('uri', '')}"
+                    for r in remaining
+                ]
                 raise RuntimeError(
-                    "No cassette interactions remaining"
+                    f"No cassette match for {expected}. "
+                    f"Available: {available}"
                 )
 
             interaction = remaining.pop(best_idx)

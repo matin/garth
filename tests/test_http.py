@@ -356,13 +356,14 @@ def test_auto_persist_on_refresh(
 
         import os
         oauth1_path = os.path.join(tempdir, "oauth1_token.json")
-        oauth1_mtime_before = os.path.getmtime(oauth1_path)
-        time.sleep(0.01)
+        with open(oauth1_path) as f:
+            oauth1_content_before = f.read()
 
         client.refresh_oauth2()
 
-        oauth1_mtime_after = os.path.getmtime(oauth1_path)
-        assert oauth1_mtime_before == oauth1_mtime_after
+        with open(oauth1_path) as f:
+            oauth1_content_after = f.read()
+        assert oauth1_content_before == oauth1_content_after
 
         fresh_client = Client()
         fresh_client.load(tempdir)

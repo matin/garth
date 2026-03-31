@@ -4,6 +4,7 @@ import logging
 import os
 from collections.abc import Callable
 from typing import IO, Any, Literal
+from urllib.parse import urlencode
 
 from pydantic import model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -110,7 +111,6 @@ class Client:
         backoff_factor: float | None = None,
         pool_connections: int | None = None,
         pool_maxsize: int | None = None,
-        **kwargs,
     ):
         if oauth1_token is not None:
             self.oauth1_token = oauth1_token
@@ -181,14 +181,23 @@ class Client:
         /,
         api: bool = False,
         referrer: str | bool = False,
-        headers: dict = {},
+        headers: dict | None = None,
         **kwargs,
     ) -> _Response:
         """Make an API request through the browser.
 
         All requests are routed through ``page.evaluate(fetch(...))``
         in the Camoufox browser, bypassing Cloudflare.
+
+        Note:
+            The ``subdomain``, ``api``, and ``referrer`` parameters
+            are accepted for backward compatibility. With browser
+            transport, all requests go through the same origin via
+            ``/gc-api/`` prefix.
         """
+        if headers is None:
+            headers = {}
+
         page = sso.get_page()
         csrf = sso.get_csrf()
 
@@ -201,11 +210,16 @@ class Client:
 
         params = kwargs.get("params")
         if params:
-            from urllib.parse import urlencode
-            url += "?" + urlencode(params)
+            url += "?" + urlencode(params, doseq=True)
 
         json_body = kwargs.get("json")
         data = kwargs.get("data")
+
+        # Encode dict data as URL-encoded form
+        if isinstance(data, dict):
+            data = urlencode(data)
+        elif isinstance(data, bytes):
+            data = data.decode("utf-8", errors="replace")
 
         # Handle file uploads
         files = kwargs.get("files")
@@ -215,7 +229,7 @@ class Client:
                     msg="Only single file upload is supported"
                 )
             return self._upload_via_browser(
-                page, csrf, url, files
+                page, csrf or "", url, files
             )
 
         result = page.evaluate("""
@@ -282,10 +296,19 @@ class Client:
         return resp
 
     def _upload_via_browser(
-        self, page, csrf: str, url: str, files: dict
+        self,
+        page,
+        csrf: str | None,
+        url: str,
+        files: dict,
     ) -> _Response:
-        """Upload a single file via browser FormData."""
-        field_name, (filename, fp) = next(iter(files.items()))
+        """Upload a single file via browser FormData.
+
+        Note:
+            The caller-specified field name is ignored; Garmin's
+            upload API expects the field name ``file``.
+        """
+        _field_name, (filename, fp) = next(iter(files.items()))
         file_bytes = fp.read()
         b64_data = base64.b64encode(file_bytes).decode()
 
@@ -299,7 +322,7 @@ class Client:
                 const formData = new FormData();
                 formData.append('file', blob, fileName);
                 try {
-                    const resp = await fetch(url, {
+                    const resp2 = await fetch(url, {
                         method: 'POST',
                         credentials: 'include',
                         headers: {
@@ -307,17 +330,17 @@ class Client:
                         },
                         body: formData
                     });
-                    const text = await resp.text();
+                    const text = await resp2.text();
                     return {
-                        status: resp.status,
+                        status: resp2.status,
                         text: text,
-                        url: resp.url
+                        url: resp2.url
                     };
                 } catch(e) {
                     return {status: 0, error: e.message};
                 }
             }
-        """, [url, b64_data, filename, csrf])
+        """, [url, b64_data, filename, csrf or ""])
 
         if result.get("error"):
             raise GarthHTTPError(
