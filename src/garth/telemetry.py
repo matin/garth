@@ -6,7 +6,6 @@ from typing import Any
 
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from requests import Response, Session
 
 from .version import __version__
 
@@ -112,17 +111,18 @@ class Telemetry(BaseSettings):
     enabled: bool = False
     send_to_logfire: bool = False
     token: str = DEFAULT_TOKEN
-    callback: Callable[[dict], None] | None = Field(default=None, exclude=True)
+    callback: Callable[[dict], None] | None = Field(
+        default=None, exclude=True
+    )
     session_id: str = Field(
         default_factory=lambda: uuid.uuid4().hex[:16],
         exclude=True,
     )
     _logfire_configured: bool = False
     _logfire_instance: Any = None
-    _attached_sessions: set = set()
 
     def model_post_init(self, __context):
-        self._attached_sessions = set()
+        pass
 
     def _default_callback(self, data: dict):
         """Default callback that sends to logfire."""
@@ -132,42 +132,6 @@ class Telemetry(BaseSettings):
             "http {method} {url} {status_code}", **data
         )
 
-    def _response_hook(self, response: Response, *args, **kwargs):
-        """Session hook that captures request/response data."""
-        if not self.enabled:
-            return
-
-        try:
-            request = response.request
-            if request is None:  # pragma: no cover
-                return
-            data = {
-                "session_id": self.session_id,
-                "garth_version": __version__,
-                "method": request.method,
-                "url": request.url,
-                "status_code": response.status_code,
-                "request_headers": str(
-                    sanitize_headers(dict(request.headers))
-                ),
-                "response_headers": str(
-                    sanitize_headers(dict(response.headers))
-                ),
-            }
-
-            if request.body:
-                body = request.body
-                if isinstance(body, bytes):
-                    body = body.decode("utf-8", errors="replace")
-                data["request_body"] = sanitize(body)
-
-            data["response_body"] = sanitize(response.text)
-
-            callback = self.callback or self._default_callback
-            callback(data)
-        except Exception:
-            pass  # Don't let telemetry errors break the app
-
     def configure(
         self,
         enabled: bool | None = None,
@@ -175,17 +139,6 @@ class Telemetry(BaseSettings):
         token: str | None = None,
         callback: Callable[[dict], None] | None = None,
     ):
-        """
-        Configure telemetry. Disabled by default.
-
-        Args:
-            enabled: Enable/disable telemetry (default: False)
-            send_to_logfire: Send to Logfire Cloud (default: False)
-            token: Logfire write token
-            callback: Custom callback for telemetry data. If provided,
-                logfire will not be configured and data will be passed
-                to this callback instead.
-        """
         if enabled is not None:
             self.enabled = enabled
         if send_to_logfire is not None:
@@ -198,16 +151,10 @@ class Telemetry(BaseSettings):
         if not self.enabled:
             return
 
-        # Configure logfire only if using default callback and not yet done
         if self.callback is None and not self._logfire_configured:
             self._configure_logfire()
 
     def _configure_logfire(self):
-        """Configure a local logfire instance for garth telemetry.
-
-        Uses local=True to avoid overwriting logfire configuration
-        in applications that integrate garth.
-        """
         if not LOGFIRE_AVAILABLE:
             return
 
@@ -216,20 +163,9 @@ class Telemetry(BaseSettings):
             service_name="garth",
             send_to_logfire=self.send_to_logfire,
             token=self.token,
-            scrubbing=logfire.ScrubbingOptions(callback=_scrubbing_callback),
+            scrubbing=logfire.ScrubbingOptions(
+                callback=_scrubbing_callback
+            ),
             console=False,
         )
         self._logfire_configured = True
-
-    def attach(self, session: Session):
-        """Attach telemetry hooks to a session.
-
-        This method is idempotent - calling it multiple times with the
-        same session will only attach the hook once.
-        """
-        session_id = id(session)
-        if session_id in self._attached_sessions:
-            return
-
-        session.hooks["response"].append(self._response_hook)
-        self._attached_sessions.add(session_id)

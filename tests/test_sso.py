@@ -1,113 +1,18 @@
 import time
 
 import pytest
-import requests
 
 from garth import sso
 from garth.auth_tokens import OAuth1Token, OAuth2Token
-from garth.exc import GarthException, GarthHTTPError
-from garth.http import Client
-
-
-@pytest.mark.vcr
-def test_login_email_password_fail(client: Client):
-    with pytest.raises(GarthException):
-        sso.login("user@example.com", "wrong_p@ssword", client=client)
-
-
-@pytest.mark.vcr
-def test_login_success(client: Client):
-    oauth1, oauth2 = sso.login(
-        "user@example.com", "correct_password", client=client
-    )
-
-    assert oauth1
-    assert isinstance(oauth1, OAuth1Token)
-    assert oauth2
-    assert isinstance(oauth2, OAuth2Token)
-
-
-@pytest.mark.vcr
-def test_login_success_mfa(monkeypatch, client: Client):
-    def mock_input(_):
-        return "671091"
-
-    monkeypatch.setattr("builtins.input", mock_input)
-    oauth1, oauth2 = sso.login(
-        "user@example.com", "correct_password", client=client
-    )
-
-    assert oauth1
-    assert isinstance(oauth1, OAuth1Token)
-    assert oauth2
-    assert isinstance(oauth2, OAuth2Token)
-
-
-@pytest.mark.vcr
-def test_login_success_mfa_async(monkeypatch, client: Client):
-    def mock_input(_):
-        return "031174"
-
-    async def prompt_mfa():
-        return input("MFA code: ")
-
-    monkeypatch.setattr("builtins.input", mock_input)
-    oauth1, oauth2 = sso.login(
-        "user@example.com",
-        "correct_password",
-        client=client,
-        prompt_mfa=prompt_mfa,
-    )
-
-    assert oauth1
-    assert isinstance(oauth1, OAuth1Token)
-    assert oauth2
-    assert isinstance(oauth2, OAuth2Token)
-
-
-@pytest.mark.vcr
-def test_login_mfa_fail(client: Client):
-    with pytest.raises(GarthException):
-        oauth1, oauth2 = sso.login(
-            "user@example.com",
-            "correct_password",
-            client=client,
-            prompt_mfa=lambda: "123456",
-        )
-
-
-@pytest.mark.vcr
-def test_login_return_on_mfa(client: Client):
-    result = sso.login(
-        "user@example.com",
-        "correct_password",
-        client=client,
-        return_on_mfa=True,
-    )
-
-    assert isinstance(result, tuple)
-    result_type, client_state = result
-
-    assert isinstance(client_state, dict)
-    assert result_type == "needs_mfa"
-    assert "login_params" in client_state
-    assert "client" in client_state
-
-    code = "123456"  # obtain from custom login
-
-    # test resuming the login
-    oauth1, oauth2 = sso.resume_login(client_state, code)
-
-    assert oauth1
-    assert isinstance(oauth1, OAuth1Token)
-    assert oauth2
-    assert isinstance(oauth2, OAuth2Token)
 
 
 def test_set_expirations(oauth2_token_dict: dict):
     token = sso.set_expirations(oauth2_token_dict)
     assert (
-        token["expires_at"] - time.time() - oauth2_token_dict["expires_in"] < 1
+        token["expires_at"]
+        - time.time()
+        - oauth2_token_dict["expires_in"]
+        < 1
     )
     assert (
         token["refresh_token_expires_at"]
@@ -117,97 +22,69 @@ def test_set_expirations(oauth2_token_dict: dict):
     )
 
 
-@pytest.mark.vcr
-def test_exchange(authed_client: Client):
-    assert authed_client.oauth1_token and isinstance(
-        authed_client.oauth1_token, OAuth1Token
+def test_exchange_returns_oauth2(oauth1_token: OAuth1Token):
+    from garth.http import Client
+
+    client = Client()
+    oauth2 = sso.exchange(oauth1_token, client)
+    assert isinstance(oauth2, OAuth2Token)
+    assert not oauth2.expired
+    assert oauth2.token_type == "Bearer"
+    assert oauth2.access_token == sso.BROWSER_TOKEN_SENTINEL
+
+
+def test_placeholder_oauth2():
+    token = sso._placeholder_oauth2()
+    assert isinstance(token, OAuth2Token)
+    assert token.access_token == sso.BROWSER_TOKEN_SENTINEL
+    assert not token.expired
+
+
+def test_is_browser_token():
+    oauth1 = OAuth1Token(
+        oauth_token=sso.BROWSER_TOKEN_SENTINEL,
+        oauth_token_secret=sso.BROWSER_TOKEN_SENTINEL,
+        domain="garmin.com",
     )
-    oauth1_token = authed_client.oauth1_token
-    oauth2_token = sso.exchange(oauth1_token, client=authed_client)
-    assert not oauth2_token.expired
-    assert not oauth2_token.refresh_expired
-    assert oauth2_token.token_type.title() == "Bearer"
-    assert authed_client.oauth2_token != oauth2_token
+    assert sso.is_browser_token(oauth1)
+
+    oauth1_real = OAuth1Token(
+        oauth_token="real_token",
+        oauth_token_secret="real_secret",
+        domain="garmin.com",
+    )
+    assert not sso.is_browser_token(oauth1_real)
+    assert not sso.is_browser_token(None)
 
 
-def test_parse_sso_response_success():
-    resp = {
-        "serviceTicketId": "ST-123",
-        "responseStatus": {
-            "type": "SUCCESSFUL",
-            "message": "",
-            "httpStatus": "OK",
-        },
-    }
-    result = sso._parse_sso_response(resp, "SUCCESSFUL")
-    assert result["serviceTicketId"] == "ST-123"
+def test_handle_mfa_not_implemented():
+    from garth.http import Client
+
+    client = Client()
+    with pytest.raises(NotImplementedError):
+        sso.handle_mfa(client, {}, lambda: "123456")
 
 
-def test_parse_sso_response_error():
-    resp = {
-        "responseStatus": {
-            "type": "INVALID_CREDENTIALS",
-            "message": "Bad password",
-            "httpStatus": "UNAUTHORIZED",
-        },
-    }
-    with pytest.raises(GarthException, match="INVALID_CREDENTIALS"):
-        sso._parse_sso_response(resp, "SUCCESSFUL")
+def test_resume_login_not_implemented():
+    with pytest.raises(NotImplementedError):
+        sso.resume_login({}, "123456")
 
 
-def test_parse_sso_response_no_expected():
-    resp = {
-        "responseStatus": {
-            "type": "MFA_REQUIRED",
-            "message": "",
-            "httpStatus": "OK",
-        },
-    }
-    result = sso._parse_sso_response(resp)
-    assert result["responseStatus"]["type"] == "MFA_REQUIRED"
+def test_get_page_returns_none_before_login():
+    assert sso.get_page() is None
 
 
-def test_handle_mfa_http_error(monkeypatch, client: Client):
-    from unittest.mock import MagicMock
-
-    def mock_post(*a, **kw):
-        raise GarthHTTPError(
-            msg="MFA verification failed",
-            error=requests.HTTPError(response=MagicMock()),
-        )
-
-    monkeypatch.setattr(client, "post", mock_post)
-
-    with pytest.raises(GarthHTTPError, match="MFA verification failed"):
-        sso.handle_mfa(client, {"clientId": "X"}, lambda: "123456")
+def test_get_csrf_returns_none_before_login():
+    assert sso.get_csrf() is None
 
 
-def test_login_unexpected_response_type(monkeypatch, client: Client):
-    from unittest.mock import MagicMock
+def test_close_is_safe_before_login():
+    sso.close()
 
-    unexpected_json = {
-        "responseStatus": {
-            "type": "CAPTCHA_REQUIRED",
-            "message": "solve captcha",
-            "httpStatus": "OK",
-        },
-    }
 
-    call_count = 0
-
-    def mock_request(method, *args, **kwargs):
-        nonlocal call_count
-        call_count += 1
-        mock_resp = MagicMock()
-        mock_resp.ok = True
-        mock_resp.status_code = 200
-        # First call is the cookie GET, second is the login POST
-        if call_count == 2:
-            mock_resp.json.return_value = unexpected_json
-        client.last_resp = mock_resp
-        return mock_resp
-
-    monkeypatch.setattr(client, "request", mock_request)
-
-    with pytest.raises(GarthException, match="CAPTCHA_REQUIRED"):
-        sso.login("user@example.com", "password", client=client)
+def test_close_clears_all_state():
+    sso.close()
+    assert sso.get_page() is None
+    assert sso.get_csrf() is None
+    assert sso._browser is None
+    assert sso._cm is None

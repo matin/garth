@@ -3,11 +3,11 @@ import time
 from typing import Any, cast
 
 import pytest
-from requests.adapters import HTTPAdapter
 
+from garth import sso
 from garth.auth_tokens import OAuth1Token, OAuth2Token
 from garth.exc import GarthException, GarthHTTPError
-from garth.http import Client
+from garth.http import Client, _Response
 
 
 def test_dump_and_load(authed_client: Client):
@@ -67,9 +67,214 @@ def test_auto_resume_garth_home_missing_tokens(
         assert client.oauth2_token is None
 
 
+def test_auto_resume_both_set_raises(
+    monkeypatch: pytest.MonkeyPatch,
+):
+    monkeypatch.setenv("GARTH_HOME", "/some/path")
+    monkeypatch.setenv("GARTH_TOKEN", "some_token")
+
+    with pytest.raises(GarthException, match="cannot both be set"):
+        Client()
+
+
+def test_load_browser_tokens_warns(caplog):
+    """Loading browser-backed tokens should warn the user."""
+    browser_oauth1 = OAuth1Token(
+        oauth_token=sso.BROWSER_TOKEN_SENTINEL,
+        oauth_token_secret=sso.BROWSER_TOKEN_SENTINEL,
+        domain="garmin.com",
+    )
+    browser_oauth2 = sso._placeholder_oauth2()
+
+    with tempfile.TemporaryDirectory() as tempdir:
+        # Save browser tokens
+        client = Client()
+        client.configure(
+            oauth1_token=browser_oauth1,
+            oauth2_token=browser_oauth2,
+        )
+        client.dump(tempdir)
+
+        # Load them back — should warn
+        import logging
+        with caplog.at_level(logging.WARNING, logger="garth.http"):
+            new_client = Client()
+            new_client.load(tempdir)
+
+        assert "browser-session" in caplog.text
+        assert "call login()" in caplog.text
+
+
+def test_loads_browser_tokens_warns(caplog):
+    """Loading browser-backed tokens from string should warn."""
+    browser_oauth1 = OAuth1Token(
+        oauth_token=sso.BROWSER_TOKEN_SENTINEL,
+        oauth_token_secret=sso.BROWSER_TOKEN_SENTINEL,
+        domain="garmin.com",
+    )
+    browser_oauth2 = sso._placeholder_oauth2()
+
+    client = Client()
+    client.configure(
+        oauth1_token=browser_oauth1,
+        oauth2_token=browser_oauth2,
+    )
+    token_str = client.dumps()
+
+    import logging
+    with caplog.at_level(logging.WARNING, logger="garth.http"):
+        new_client = Client()
+        new_client.loads(token_str)
+
+    assert "browser-session" in caplog.text
+
+
+def test_configure_oauth2_token(
+    client: Client, oauth2_token: OAuth2Token
+):
+    assert client.oauth2_token is None
+    client.configure(oauth2_token=oauth2_token)
+    assert client.oauth2_token == oauth2_token
+
+
+def test_configure_domain(client: Client):
+    assert client.domain == "garmin.com"
+    client.configure(domain="garmin.cn")
+    assert client.domain == "garmin.cn"
+
+
+def test_configure_timeout(client: Client):
+    assert client.timeout == 10
+    client.configure(timeout=99)
+    assert client.timeout == 99
+
+
+def test_configure_retry(client: Client):
+    assert client.retries == 3
+    client.configure(retries=99)
+    assert client.retries == 99
+
+
+def test_configure_proxies_warns(client: Client, caplog):
+    """Proxies should emit a warning with browser transport."""
+    import logging
+    with caplog.at_level(logging.WARNING, logger="garth.http"):
+        client.configure(proxies={"https": "http://localhost"})
+    assert "proxies" in caplog.text
+
+
+def test_configure_ssl_verify_warns(client: Client, caplog):
+    """ssl_verify should emit a warning with browser transport."""
+    import logging
+    with caplog.at_level(logging.WARNING, logger="garth.http"):
+        client.configure(ssl_verify=False)
+    assert "ssl_verify" in caplog.text
+
+
+def test_request_requires_login(client: Client):
+    with pytest.raises(GarthException, match="Not logged in"):
+        client.request("GET", "connectapi", "/test-path")
+
+
+def test_response_class():
+    resp = _Response(200, '{"key": "value"}', "https://example.com")
+    assert resp.ok
+    assert resp.status_code == 200
+    assert resp.json() == {"key": "value"}
+    assert resp.content == b'{"key": "value"}'
+    resp.raise_for_status()
+
+
+def test_response_error():
+    resp = _Response(403, "Forbidden", "https://example.com")
+    assert not resp.ok
+    with pytest.raises(GarthHTTPError, match="403"):
+        resp.raise_for_status()
+
+
+@pytest.mark.vcr
+def test_connectapi(authed_client: Client):
+    stress = cast(
+        list[dict[str, Any]],
+        authed_client.connectapi(
+            "/usersummary-service/stats/stress/daily/"
+            "2023-07-21/2023-07-21"
+        ),
+    )
+    assert stress
+    assert isinstance(stress, list)
+    assert len(stress) == 1
+    assert stress[0]["calendarDate"] == "2023-07-21"
+    assert list(stress[0]["values"].keys()) == [
+        "highStressDuration",
+        "lowStressDuration",
+        "overallStressLevel",
+        "restStressDuration",
+        "mediumStressDuration",
+    ]
+
+
+@pytest.mark.vcr
+def test_username(authed_client: Client):
+    assert authed_client._user_profile is None
+    assert authed_client.username
+    assert authed_client._user_profile
+
+
+@pytest.mark.vcr
+def test_profile_alias(authed_client: Client):
+    assert authed_client._user_profile is None
+    profile = authed_client.profile
+    assert profile == authed_client.user_profile
+    assert authed_client._user_profile is not None
+
+
+def test_download(authed_client: Client, monkeypatch):
+    """Download returns bytes via browser fetch."""
+    class MockPage:
+        def evaluate(self, js, args):
+            import base64
+            data = base64.b64encode(
+                b"\x50\x4b\x03\x04test"
+            ).decode()
+            return {"status": 200, "data": data}
+
+    monkeypatch.setattr(sso, "get_page", lambda: MockPage())
+    monkeypatch.setattr(sso, "get_csrf", lambda: "test_csrf")
+
+    result = authed_client.download(
+        "/download-service/files/activity/11998957007"
+    )
+    assert result
+    assert isinstance(result, bytes)
+    assert result[:4] == b"\x50\x4b\x03\x04"
+
+
+def test_upload_rejects_multiple_files(
+    authed_client: Client, monkeypatch
+):
+    """Upload should reject multiple files."""
+    class MockPage:
+        def evaluate(self, js, args):
+            return {"status": 200, "text": "{}", "url": ""}
+
+    monkeypatch.setattr(sso, "get_page", lambda: MockPage())
+    monkeypatch.setattr(sso, "get_csrf", lambda: "test_csrf")
+
+    import io
+    files = {
+        "file1": ("a.fit", io.BytesIO(b"data1")),
+        "file2": ("b.fit", io.BytesIO(b"data2")),
+    }
+    with pytest.raises(GarthException, match="single file"):
+        authed_client.request(
+            "POST", "connectapi", "/upload", files=files
+        )
+
+
 @pytest.fixture
 def garth_home_client(monkeypatch: pytest.MonkeyPatch):
-    """Client with GARTH_HOME set to a temp dir and mock tokens."""
+    """Client with GARTH_HOME set to a temp dir."""
     import garth.sso
 
     with tempfile.TemporaryDirectory() as tempdir:
@@ -93,7 +298,9 @@ def garth_home_client(monkeypatch: pytest.MonkeyPatch):
             expires_at=int(time.time() + 3600),
             refresh_token_expires_at=int(time.time() + 7200),
         )
-        yield client, tempdir, mock_oauth1, mock_oauth2, garth.sso
+        yield (
+            client, tempdir, mock_oauth1, mock_oauth2, garth.sso
+        )
 
 
 def _assert_tokens_saved(tempdir, mock_oauth1, mock_oauth2):
@@ -104,49 +311,30 @@ def _assert_tokens_saved(tempdir, mock_oauth1, mock_oauth2):
 
 
 def test_auto_save_on_login(garth_home_client, monkeypatch):
-    client, tempdir, mock_oauth1, mock_oauth2, sso_mod = garth_home_client
+    client, tempdir, mock_oauth1, mock_oauth2, sso_mod = (
+        garth_home_client
+    )
     monkeypatch.setattr(
-        sso_mod, "login", lambda *a, **kw: (mock_oauth1, mock_oauth2)
+        sso_mod,
+        "login",
+        lambda *a, **kw: (mock_oauth1, mock_oauth2),
     )
 
     client.login("user@example.com", "password")
     _assert_tokens_saved(tempdir, mock_oauth1, mock_oauth2)
 
 
-def test_auto_save_on_resume_login(garth_home_client, monkeypatch):
-    client, tempdir, mock_oauth1, mock_oauth2, sso_mod = garth_home_client
-    monkeypatch.setattr(
-        sso_mod,
-        "resume_login",
-        lambda *a, **kw: (mock_oauth1, mock_oauth2),
-    )
-
-    client.resume_login({"client": client, "login_params": {}}, "123")
-    _assert_tokens_saved(tempdir, mock_oauth1, mock_oauth2)
-
-
-def test_auto_resume_both_set_raises(monkeypatch: pytest.MonkeyPatch):
-    monkeypatch.setenv("GARTH_HOME", "/some/path")
-    monkeypatch.setenv("GARTH_TOKEN", "some_token")
-
-    with pytest.raises(GarthException, match="cannot both be set"):
-        Client()
-
-
 def test_auto_persist_on_refresh(
     authed_client: Client, monkeypatch: pytest.MonkeyPatch
 ):
     with tempfile.TemporaryDirectory() as tempdir:
-        # Save initial tokens
         authed_client.dump(tempdir)
         monkeypatch.setenv("GARTH_HOME", tempdir)
         monkeypatch.delenv("GARTH_TOKEN", raising=False)
 
-        # Create client that auto-resumes from GARTH_HOME
         client = Client()
         assert client._garth_home == tempdir
 
-        # Create a new token with different expiration
         new_oauth2 = OAuth2Token(
             scope="CONNECT_READ CONNECT_WRITE",
             jti="new_jti",
@@ -159,279 +347,23 @@ def test_auto_persist_on_refresh(
             refresh_token_expires_at=int(time.time() + 14400),
         )
 
-        # Mock sso.exchange to return the new token
         import garth.sso
-
         monkeypatch.setattr(
-            garth.sso, "exchange", lambda *args, **kwargs: new_oauth2
+            garth.sso,
+            "exchange",
+            lambda *args, **kwargs: new_oauth2,
         )
 
-        # Get oauth1 file modification time before refresh
         import os
-
         oauth1_path = os.path.join(tempdir, "oauth1_token.json")
         oauth1_mtime_before = os.path.getmtime(oauth1_path)
-
-        # Small delay to ensure mtime would change if file is written
         time.sleep(0.01)
 
-        # Trigger refresh
         client.refresh_oauth2()
 
-        # Verify oauth1 file was NOT updated (oauth2_only=True)
         oauth1_mtime_after = os.path.getmtime(oauth1_path)
         assert oauth1_mtime_before == oauth1_mtime_after
 
-        # Verify the new token was persisted to GARTH_HOME
         fresh_client = Client()
         fresh_client.load(tempdir)
         assert fresh_client.oauth2_token == new_oauth2
-
-
-def test_configure_oauth2_token(client: Client, oauth2_token: OAuth2Token):
-    assert client.oauth2_token is None
-    client.configure(oauth2_token=oauth2_token)
-    assert client.oauth2_token == oauth2_token
-
-
-def test_configure_domain(client: Client):
-    assert client.domain == "garmin.com"
-    client.configure(domain="garmin.cn")
-    assert client.domain == "garmin.cn"
-
-
-def test_configure_proxies(client: Client):
-    assert client.sess.proxies == {}
-    proxy = {"https": "http://localhost:8888"}
-    client.configure(proxies=proxy)
-    assert client.sess.proxies["https"] == proxy["https"]
-
-
-def test_configure_ssl_verify(client: Client):
-    assert client.sess.verify is True
-    client.configure(ssl_verify=False)
-    assert client.sess.verify is False
-
-
-def test_configure_timeout(client: Client):
-    assert client.timeout == 10
-    client.configure(timeout=99)
-    assert client.timeout == 99
-
-
-def test_configure_retry(client: Client):
-    assert client.retries == 3
-    adapter = client.sess.adapters["https://"]
-    assert isinstance(adapter, HTTPAdapter)
-    assert adapter.max_retries.total == client.retries
-
-    client.configure(retries=99)
-    assert client.retries == 99
-    adapter = client.sess.adapters["https://"]
-    assert isinstance(adapter, HTTPAdapter)
-    assert adapter.max_retries.total == 99
-
-
-def test_configure_status_forcelist(client: Client):
-    assert client.status_forcelist == (408, 500, 502, 503, 504)
-    adapter = client.sess.adapters["https://"]
-    assert isinstance(adapter, HTTPAdapter)
-    assert adapter.max_retries.status_forcelist == client.status_forcelist
-
-    client.configure(status_forcelist=(200, 201, 202))
-    assert client.status_forcelist == (200, 201, 202)
-    adapter = client.sess.adapters["https://"]
-    assert isinstance(adapter, HTTPAdapter)
-    assert adapter.max_retries.status_forcelist == client.status_forcelist
-
-
-def test_configure_backoff_factor(client: Client):
-    assert client.backoff_factor == 0.5
-    adapter = client.sess.adapters["https://"]
-    assert isinstance(adapter, HTTPAdapter)
-    assert adapter.max_retries.backoff_factor == client.backoff_factor
-
-    client.configure(backoff_factor=0.99)
-    assert client.backoff_factor == 0.99
-    adapter = client.sess.adapters["https://"]
-    assert isinstance(adapter, HTTPAdapter)
-    assert adapter.max_retries.backoff_factor == client.backoff_factor
-
-
-def test_configure_pool_maxsize(client: Client):
-    assert client.pool_maxsize == 10
-    client.configure(pool_maxsize=99)
-    assert client.pool_maxsize == 99
-    adapter = client.sess.adapters["https://"]
-    assert isinstance(adapter, HTTPAdapter)
-    assert adapter.poolmanager.connection_pool_kw["maxsize"] == 99
-
-
-def test_configure_pool_connections(client: Client):
-    client.configure(pool_connections=99)
-    assert client.pool_connections == 99
-    adapter = client.sess.adapters["https://"]
-    assert isinstance(adapter, HTTPAdapter)
-    assert getattr(adapter, "_pool_connections", None) == 99, (
-        "Pool connections not properly configured"
-    )
-
-
-@pytest.mark.vcr
-def test_client_request(client: Client):
-    resp = client.request("GET", "connect", "/")
-    assert resp.ok
-
-    with pytest.raises(GarthHTTPError) as e:
-        client.request("GET", "connectapi", "/")
-    assert "404" in str(e.value)
-
-
-@pytest.mark.vcr
-def test_login_success_mfa(monkeypatch, client: Client):
-    def mock_input(_):
-        return "327751"
-
-    monkeypatch.setattr("builtins.input", mock_input)
-
-    assert client.oauth1_token is None
-    assert client.oauth2_token is None
-    client.login("user@example.com", "correct_password")
-    assert client.oauth1_token
-    assert client.oauth2_token
-
-
-@pytest.mark.vcr
-def test_username(authed_client: Client):
-    assert authed_client._user_profile is None
-    assert authed_client.username
-    assert authed_client._user_profile
-
-
-@pytest.mark.vcr
-def test_profile_alias(authed_client: Client):
-    assert authed_client._user_profile is None
-    profile = authed_client.profile
-    assert profile == authed_client.user_profile
-    assert authed_client._user_profile is not None
-
-
-@pytest.mark.vcr
-def test_connectapi(authed_client: Client):
-    stress = cast(
-        list[dict[str, Any]],
-        authed_client.connectapi(
-            "/usersummary-service/stats/stress/daily/2023-07-21/2023-07-21"
-        ),
-    )
-    assert stress
-    assert isinstance(stress, list)
-    assert len(stress) == 1
-    assert stress[0]["calendarDate"] == "2023-07-21"
-    assert list(stress[0]["values"].keys()) == [
-        "highStressDuration",
-        "lowStressDuration",
-        "overallStressLevel",
-        "restStressDuration",
-        "mediumStressDuration",
-    ]
-
-
-@pytest.mark.vcr
-def test_refresh_oauth2_token(authed_client: Client):
-    assert authed_client.oauth2_token and isinstance(
-        authed_client.oauth2_token, OAuth2Token
-    )
-    authed_client.oauth2_token.expires_at = int(time.time())
-    assert authed_client.oauth2_token.expired
-    profile = authed_client.connectapi("/userprofile-service/socialProfile")
-    assert profile
-    assert isinstance(profile, dict)
-    assert profile["userName"]
-
-
-@pytest.mark.vcr
-def test_download(authed_client: Client):
-    downloaded = authed_client.download(
-        "/download-service/files/activity/11998957007"
-    )
-    assert downloaded
-    zip_magic_number = b"\x50\x4b\x03\x04"
-    assert downloaded[:4] == zip_magic_number
-
-
-@pytest.mark.vcr
-def test_upload(authed_client: Client):
-    fpath = "tests/12129115726_ACTIVITY.fit"
-    with open(fpath, "rb") as f:
-        uploaded = authed_client.upload(f)
-    assert uploaded
-
-
-@pytest.mark.vcr
-def test_delete(authed_client: Client):
-    activity_id = "12135235656"
-    path = f"/activity-service/activity/{activity_id}"
-    assert authed_client.connectapi(path)
-    authed_client.delete(
-        "connectapi",
-        path,
-        api=True,
-    )
-    with pytest.raises(GarthHTTPError) as e:
-        authed_client.connectapi(path)
-    assert "404" in str(e.value)
-
-
-@pytest.mark.vcr
-def test_put(authed_client: Client):
-    data = [
-        {
-            "changeState": "CHANGED",
-            "trainingMethod": "HR_RESERVE",
-            "lactateThresholdHeartRateUsed": 170,
-            "maxHeartRateUsed": 185,
-            "restingHrAutoUpdateUsed": False,
-            "sport": "DEFAULT",
-            "zone1Floor": 130,
-            "zone2Floor": 140,
-            "zone3Floor": 150,
-            "zone4Floor": 160,
-            "zone5Floor": 170,
-        }
-    ]
-    path = "/biometric-service/heartRateZones"
-    authed_client.put(
-        "connectapi",
-        path,
-        api=True,
-        json=data,
-    )
-    assert authed_client.connectapi(path)
-
-
-@pytest.mark.vcr
-def test_resume_login(client: Client):
-    result = client.login(
-        "example@example.com",
-        "correct_password",
-        return_on_mfa=True,
-    )
-
-    assert isinstance(result, tuple)
-    result_type, client_state = result
-
-    assert isinstance(client_state, dict)
-    assert result_type == "needs_mfa"
-    assert "login_params" in client_state
-    assert "client" in client_state
-
-    code = "123456"  # obtain from custom login
-
-    # test resuming the login
-    oauth1, oauth2 = client.resume_login(client_state, code)
-
-    assert oauth1
-    assert isinstance(oauth1, OAuth1Token)
-    assert oauth2
-    assert isinstance(oauth2, OAuth2Token)

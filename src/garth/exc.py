@@ -1,7 +1,5 @@
 from dataclasses import dataclass
 
-from requests import HTTPError
-
 
 @dataclass
 class GarthException(Exception):
@@ -15,7 +13,7 @@ class GarthException(Exception):
 
 @dataclass
 class GarthHTTPError(GarthException):
-    error: HTTPError
+    error: Exception
 
     def __str__(self) -> str:
         return f"{self.msg}: {self.error}"
