@@ -1,5 +1,3 @@
-import warnings
-
 from .data import (
     Activity,
     BodyBatteryData,
@@ -32,14 +30,6 @@ from .stats import (
 )
 from .users import UserProfile, UserSettings
 from .version import __version__
-
-
-warnings.warn(
-    "Garth is deprecated and no longer maintained. "
-    "See https://github.com/matin/garth/discussions/222",
-    DeprecationWarning,
-    stacklevel=2,
-)
 
 
 __all__ = [
