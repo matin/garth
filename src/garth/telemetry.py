@@ -16,7 +16,7 @@ try:
 
     LOGFIRE_AVAILABLE = True
 except ImportError:  # pragma: no cover
-    logfire = None  # type: ignore[assignment]  # ty: ignore[invalid-assignment]
+    logfire = None  # type: ignore[assignment]
     LOGFIRE_AVAILABLE = False
 
 
@@ -109,8 +109,8 @@ class Telemetry(BaseSettings):
         extra="ignore",
     )
 
-    enabled: bool = False
-    send_to_logfire: bool = False
+    enabled: bool = True
+    send_to_logfire: bool = True
     token: str = DEFAULT_TOKEN
     callback: Callable[[dict], None] | None = Field(default=None, exclude=True)
     session_id: str = Field(
@@ -176,11 +176,11 @@ class Telemetry(BaseSettings):
         callback: Callable[[dict], None] | None = None,
     ):
         """
-        Configure telemetry. Disabled by default.
+        Configure telemetry. Enabled by default.
 
         Args:
-            enabled: Enable/disable telemetry (default: False)
-            send_to_logfire: Send to Logfire Cloud (default: False)
+            enabled: Enable/disable telemetry (default: True)
+            send_to_logfire: Send to Logfire Cloud (default: True)
             token: Logfire write token
             callback: Custom callback for telemetry data. If provided,
                 logfire will not be configured and data will be passed

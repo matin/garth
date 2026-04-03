@@ -30,8 +30,9 @@ OAUTH_USER_AGENT = {"User-Agent": "com.garmin.android.apps.connectmobile"}
 # The SSO endpoints run in a WebView, so requests must look like a
 # browser — not a Python HTTP client.
 _SSO_UA = (
-    "Mozilla/5.0 (iPhone; CPU iPhone OS 18_7 like Mac OS X) "
-    "AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+    "AppleWebKit/537.36 (KHTML, like Gecko) "
+    "Chrome/131.0.0.0 Safari/537.36"
 )
 SSO_PAGE_HEADERS = {
     "User-Agent": _SSO_UA,
