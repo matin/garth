@@ -12,6 +12,7 @@ from garth.telemetry import (
     sanitize,
     sanitize_cookie,
     sanitize_headers,
+    sanitize_url,
 )
 from garth.version import __version__
 
@@ -44,6 +45,37 @@ def test_sanitize_query_params():
     result = sanitize(text)
     assert "mysecret" not in result
     assert "password=[REDACTED]" in result
+
+
+def test_sanitize_preserves_query_parameter_casing():
+    text = "serviceTicket=secret&TiCkEt=other&PASSWORD=password"
+    assert sanitize(text) == (
+        "serviceTicket=[REDACTED]&TiCkEt=[REDACTED]&PASSWORD=[REDACTED]"
+    )
+
+
+@pytest.mark.parametrize(
+    ("url", "expected"),
+    [
+        (
+            "https://user:secret@sso.garmin.com/path/path-secret"
+            "?access_token=secret&next=https%3A%2F%2Fevil.test%2Fsecret"
+            "#secret",
+            "https://sso.garmin.com",
+        ),
+        (
+            "https://connectapi.garmin.cn/api?ticket=secret",
+            "https://connectapi.garmin.cn",
+        ),
+        ("https://secret.sso.garmin.com/path", REDACTED),
+        ("https://sso.garmin.com.evil.test/path", REDACTED),
+        ("http://sso.garmin.com/path", REDACTED),
+        ("https://[invalid", REDACTED),
+    ],
+)
+def test_sanitize_url_excludes_untrusted_values(url, expected):
+    """URL telemetry contains only explicitly allowed Garmin origins."""
+    assert sanitize_url(url) == expected
 
 
 def test_telemetry_defaults(monkeypatch):
@@ -90,7 +122,7 @@ def test_telemetry_enabled_request(authed_client: Client, monkeypatch):
 
     assert len(captured_data) == 1
     assert captured_data[0]["method"] == "GET"
-    assert "userprofile-service" in captured_data[0]["url"]
+    assert captured_data[0]["url"] == "https://connectapi.garmin.com"
     assert captured_data[0]["status_code"] == 200
     assert "session_id" in captured_data[0]
     assert captured_data[0]["garth_version"] == __version__
@@ -180,7 +212,7 @@ def test_response_hook_with_string_body():
     assert len(captured_data) == 1
     data = captured_data[0]
     assert data["method"] == "POST"
-    assert data["url"] == "https://example.com/api"
+    assert data["url"] == REDACTED
     assert data["status_code"] == 200
     assert data["session_id"] == t.session_id
     assert data["garth_version"] == __version__
@@ -407,6 +439,61 @@ def test_configure_logfire_uses_local_instance(monkeypatch):
     assert call_kwargs["local"] is True
     assert call_kwargs["service_name"] == "garth"
     assert t._logfire_instance is not None
+
+
+def test_logfire_integration_records_sanitized_response(monkeypatch):
+    """Export sanitized telemetry through a real local Logfire instance."""
+    import logfire
+    from opentelemetry.sdk.trace.export import SimpleSpanProcessor
+    from opentelemetry.sdk.trace.export.in_memory_span_exporter import (
+        InMemorySpanExporter,
+    )
+
+    exporter = InMemorySpanExporter()
+    configure = logfire.configure
+
+    def configure_with_exporter(**kwargs):
+        return configure(
+            **kwargs,
+            additional_span_processors=[SimpleSpanProcessor(exporter)],
+        )
+
+    monkeypatch.setattr(logfire, "configure", configure_with_exporter)
+    t = Telemetry()
+    t.configure(enabled=True, send_to_logfire=False)
+
+    response = MagicMock()
+    response.request.method = "POST"
+    response.request.url = (
+        "https://sso.garmin.com/api/path-secret?access_token=query-secret"
+        "&ticket=ST-ticket-secret&page=1"
+    )
+    response.request.headers = {"Authorization": "secret"}
+    response.request.body = '{"password": "secret"}'
+    response.status_code = 200
+    response.headers = {"Set-Cookie": "session=cookie-secret"}
+    response.text = (
+        '{"access_token": "secret", "serviceTicketId": "ST-ticket-secret"}'
+    )
+    t._response_hook(response)
+
+    spans = exporter.get_finished_spans()
+    assert len(spans) == 1
+    attributes = spans[0].attributes
+    assert attributes["method"] == "POST"
+    assert attributes["status_code"] == 200
+    assert attributes["url"] == "https://sso.garmin.com"
+    assert "query-secret" not in attributes["url"]
+    assert "ST-ticket-secret" not in attributes["url"]
+    assert REDACTED in attributes["request_headers"]
+    assert REDACTED in attributes["response_headers"]
+    assert REDACTED in attributes["request_body"]
+    assert REDACTED in attributes["response_body"]
+    assert "secret" not in attributes["request_headers"]
+    assert "cookie-secret" not in attributes["response_headers"]
+    assert "secret" not in attributes["request_body"]
+    assert "secret" not in attributes["response_body"]
+    assert "serviceTicketId" in attributes["response_body"]
 
 
 def test_session_id_unique():

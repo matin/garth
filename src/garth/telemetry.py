@@ -2,7 +2,9 @@ import json
 import re
 import uuid
 from collections.abc import Callable
+from contextlib import suppress
 from typing import Any
+from urllib.parse import urlsplit
 
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -30,17 +32,21 @@ _SENSITIVE_QUERY_PARAMS = [
     "oauth_token",
     "oauth_token_secret",
     "mfa_token",
+    "ticket",
     "embed",
 ]
 
 # Pre-compiled regex patterns for query params (key=value format)
 _QUERY_PARAM_PATTERNS = [
-    re.compile(rf"{key}=[^&\s]*", re.IGNORECASE)
+    re.compile(rf"({key}=)[^&\s]*", re.IGNORECASE)
     for key in _SENSITIVE_QUERY_PARAMS
 ]
-_QUERY_PARAM_REPLACEMENTS = [
-    f"{key}={REDACTED}" for key in _SENSITIVE_QUERY_PARAMS
-]
+
+_TELEMETRY_HOSTS = {
+    f"{subdomain}.garmin.{tld}"
+    for subdomain in ("sso", "connectapi")
+    for tld in ("com", "cn")
+}
 
 # JSON field names to sanitize
 JSON_SENSITIVE_FIELDS = [
@@ -52,6 +58,7 @@ JSON_SENSITIVE_FIELDS = [
     "password",
     "oauth_token",
     "oauth_token_secret",
+    "serviceTicketId",
 ]
 
 # Header keys to sanitize
@@ -70,10 +77,8 @@ def sanitize_cookie(cookie_value: str) -> str:
 def sanitize(text: str) -> str:
     """Sanitize sensitive data from request/response text."""
     # Sanitize query params using pre-compiled patterns
-    for pattern, replacement in zip(
-        _QUERY_PARAM_PATTERNS, _QUERY_PARAM_REPLACEMENTS, strict=True
-    ):
-        text = pattern.sub(replacement, text)
+    for pattern in _QUERY_PARAM_PATTERNS:
+        text = pattern.sub(lambda match: f"{match[1]}{REDACTED}", text)
 
     # Try to sanitize JSON
     try:
@@ -87,6 +92,15 @@ def sanitize(text: str) -> str:
         pass
 
     return text
+
+
+def sanitize_url(url: str) -> str:
+    """Keep only known Garmin HTTPS origins, excluding untrusted URL values."""
+    with suppress(ValueError):
+        parsed = urlsplit(url)
+        if parsed.scheme == "https" and parsed.hostname in _TELEMETRY_HOSTS:
+            return f"https://{parsed.hostname}"
+    return REDACTED
 
 
 def sanitize_headers(headers: dict) -> dict:
@@ -145,7 +159,11 @@ class Telemetry(BaseSettings):
                 "session_id": self.session_id,
                 "garth_version": __version__,
                 "method": request.method,
-                "url": request.url,
+                "url": (
+                    sanitize_url(request.url)
+                    if request.url is not None
+                    else None
+                ),
                 "status_code": response.status_code,
                 "request_headers": str(
                     sanitize_headers(dict(request.headers))

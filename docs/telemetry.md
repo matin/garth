@@ -54,7 +54,7 @@ Telemetry settings can be configured via environment variables with the
 All garth HTTP requests log:
 
 - Session ID (unique per garth session)
-- Method, URL, status code
+- Method, URL origin, status code
 - Request headers (sanitized)
 - Request body (sanitized)
 - Response headers (sanitized)
@@ -62,3 +62,6 @@ All garth HTTP requests log:
 
 **Always redacted:** Authorization headers, cookies, passwords, tokens, and other
 sensitive fields in request/response bodies.
+
+URLs contain only recognized Garmin HTTPS origins; paths, queries, fragments,
+credentials, and unrecognized hosts are not included.

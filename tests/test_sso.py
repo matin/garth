@@ -1,3 +1,4 @@
+import json
 import time
 
 import pytest
@@ -7,6 +8,7 @@ from garth import sso
 from garth.auth_tokens import OAuth1Token, OAuth2Token
 from garth.exc import GarthException, GarthHTTPError
 from garth.http import Client
+from garth.telemetry import REDACTED
 
 
 @pytest.mark.vcr
@@ -17,6 +19,11 @@ def test_login_email_password_fail(client: Client):
 
 @pytest.mark.vcr
 def test_login_success(client: Client):
+    """Log in using recorded requests and verify telemetry redacts tickets."""
+    captured = []
+    client.configure(
+        telemetry_enabled=True, telemetry_callback=captured.append
+    )
     oauth1, oauth2 = sso.login(
         "user@example.com", "correct_password", client=client
     )
@@ -25,6 +32,14 @@ def test_login_success(client: Client):
     assert isinstance(oauth1, OAuth1Token)
     assert oauth2
     assert isinstance(oauth2, OAuth2Token)
+    login = next(
+        item for item in captured if "serviceTicketId" in item["response_body"]
+    )
+    preauth = next(
+        item for item in captured if "oauth_token=" in item["response_body"]
+    )
+    assert json.loads(login["response_body"])["serviceTicketId"] == REDACTED
+    assert preauth["url"] == "https://connectapi.garmin.com"
 
 
 @pytest.mark.vcr

@@ -101,6 +101,8 @@ def vcr(vcr):
 
 
 def sanitize_request(request):
+    """Redact request values before recording or matching VCR data."""
+    request.uri = sanitize(request.uri)
     if request.body:
         try:
             body = request.body.decode("utf8")
